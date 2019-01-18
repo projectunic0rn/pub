@@ -1,0 +1,55 @@
+{
+  "name": "pub",
+  "description": "Project Unicorn Blog",
+  "version": "0.1.0",
+  "author": "Rodger Jordas <rmjordas@gmail.com> (https://rmjordas.github.io)",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{js,jsx,ts,tsx,json}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmjordas/pub.git"
+  },
+  "keywords": [
+    "gatsby",
+    "typescript"
+  ],
+  "dependencies": {
+    "gatsby": "^2.0.53",
+    "gatsby-image": "^2.0.20",
+    "gatsby-plugin-manifest": "^2.0.9",
+    "gatsby-plugin-offline": "^2.0.16",
+    "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-sharp": "^2.0.14",
+    "gatsby-plugin-typescript": "^2.0.3",
+    "gatsby-remark-external-links": "0.0.4",
+    "gatsby-remark-images": "^3.0.1",
+    "gatsby-remark-prismjs": "3.2.0",
+    "gatsby-remark-responsive-iframe": "^2.0.7",
+    "gatsby-source-filesystem": "^2.0.12",
+    "gatsby-transformer-remark": "^2.1.15",
+    "gatsby-transformer-sharp": "^2.1.8",
+    "prismjs": "1.15.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.15",
+    "@types/react": "^16.7.17",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-helmet": "^5.0.7",
+    "prettier": "^1.15.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-react": "^3.6.0",
+    "typescript-tslint-plugin": "0.2.1"
+  }
+}

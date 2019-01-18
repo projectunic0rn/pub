@@ -1,0 +1,33 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "interface-name": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "member-access": true,
+    "ordered-imports": true,
+    "no-console": [true],
+    "no-var-requires": true,
+    "jsx-no-lambda": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "public-static-field",
+          "public-instance-field",
+          "public-constructor",
+          "private-static-field",
+          "private-instance-field",
+          "private-constructor",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
+    ]
+  },
+  "rulesDirectory": []
+}
