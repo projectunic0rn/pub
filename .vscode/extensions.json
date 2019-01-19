@@ -7,6 +7,7 @@
     "editorconfig.editorconfig",
     "prisma.vscode-graphql",
     "esbenp.prettier-vscode",
-    "ms-vscode.vscode-typescript-tslint-plugin"
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "jpoissonnier.vscode-styled-components"
   ]
 }
