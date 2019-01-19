@@ -1,7 +1,8 @@
 import { graphql, StaticQuery } from 'gatsby';
 import * as React from 'react';
-import styled from 'styled-components';
 
+import styled, { ThemeProvider } from '../styled-components';
+import { GlobalStyle, theme } from '../styles';
 import Header from './header';
 
 interface Data {
@@ -33,9 +34,15 @@ function renderChildren(
 ): (data: Data) => React.ReactNode {
   return (data) => (
     <React.Fragment>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <Header siteTitle={data.site.siteMetadata.title} />
 
-      <ChildrenWrapper>{children}</ChildrenWrapper>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
+        </React.Fragment>
+      </ThemeProvider>
+
+      <GlobalStyle />
     </React.Fragment>
   );
 }
