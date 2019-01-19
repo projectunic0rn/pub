@@ -3,6 +3,11 @@ title: Contributing
 date: '2019-01-18T13:40:32.169Z'
 ---
 
+Thank you for your interest in the project.
+
+We definitely appreciate any contributions you can provide. To get started
+publishing contributions, please read first the the instructions below.
+
 ## Requirements
 
 Ensure you have the following installed in your system:
@@ -458,37 +463,37 @@ for resolution, but the resulting history graph will be different.
 
 ## Tech Stack & Tools
 
-**Front End**
+### Front End
 
-- ReactJS - a JavaScript library for building user interfaces.
-- TypeScript - a typed superset of JavaScript that compiles to plain JavaScript.
-- SCSS - a CSS pre-processor with syntax advancements.
+- **ReactJS** - a JavaScript library for building user interfaces.
+- **TypeScript** - a typed superset of JavaScript that compiles to plain JavaScript.
+- **SCSS** - a CSS pre-processor with syntax advancements.
 
-**Back End**
+### Back End
 
-- C# - a general-purpose, multi-paradigm programming language.
-- Travis CI - A hosted, distributed continuous integration service.
-- Azure - a cloud computing service created by Microsoft.
+- **C#** - a general-purpose, multi-paradigm programming language.
+- **Travis CI** - A hosted, distributed continuous integration service.
+- **Azure** - a cloud computing service created by Microsoft.
 
-**Task Planning**
+### Task Planning
 
-- Waffle - a lightweight project management tool.
-- MindMup - a mind mapping application to create argument maps and concept maps.
-- Google Docs - a word processor included as part of a free, web-based software office suite offered by Google.
+- **Waffle** - a lightweight project management tool.
+- **MindMup** - a mind mapping application to create argument maps and concept maps.
+- **Google Docs** - a word processor included as part of a free, web-based software office suite offered by Google.
 
-**Design Tools**
+### Design Tools
 
-- Adobe XD - a vector-based tool developed and published by Adobe Inc for designing and prototyping user experience for web and mobile apps.
-- Zeplin - is a collaboration tool, built for UI designers and frontend developers.
+- **Adobe XD** - a vector-based tool developed and published by Adobe Inc for designing and prototyping user experience for web and mobile apps.
+- **Zeplin** - is a collaboration tool, built for UI designers and frontend developers.
 
-**Version Control**
+### Version Control
 
-- Git - a version-control system for tracking changes in computer files and coordinating work on those files among multiple people.
+- **Git** - a version-control system for tracking changes in computer files and coordinating work on those files among multiple people.
 
-**Communication**
+### Communication
 
-- Slack - a cloud-based set of proprietary team collaboration tools and services.
-- Google Hangouts - is a communication platform developed by Google which includes messaging, video chat, SMS and VOIP features.
+- **Slack** - a cloud-based set of proprietary team collaboration tools and services.
+- **Google Hangouts** - is a communication platform developed by Google which includes messaging, video chat, SMS and VOIP features.
 
 ## Read more
 
