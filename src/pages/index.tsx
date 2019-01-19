@@ -1,10 +1,10 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
-import Image from '../components/image';
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import styled from '../styled-components';
+import Image from '@components/image';
+import Layout from '@components/layout';
+import Seo from '@components/seo';
+import styled from '@styled-components';
 
 interface PostNode {
   node: {

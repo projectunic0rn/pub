@@ -1,8 +1,8 @@
 import { graphql, StaticQuery } from 'gatsby';
 import * as React from 'react';
 
-import styled, { ThemeProvider } from '../styled-components';
-import { GlobalStyle, theme } from '../styles';
+import styled, { ThemeProvider } from '@styled-components';
+import { GlobalStyle, theme } from '@styles';
 import Header from './header';
 
 interface Data {
