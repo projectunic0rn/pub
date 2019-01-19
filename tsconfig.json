@@ -1,7 +1,17 @@
 {
   "compilerOptions": {
-    "plugins": [{ "name": "typescript-tslint-plugin" }]
-    ,"jsx":"preserve"
+    "plugins": [{ "name": "typescript-tslint-plugin" }],
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@images/*": ["./src/images/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles": ["./src/styles/index.ts"],
+      "@templates/*": ["./src/templates/*"],
+      "@styled-components": ["./src/styled-components.ts"]
+    }
   },
   "include": ["src"]
 }

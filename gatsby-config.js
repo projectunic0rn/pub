@@ -50,6 +50,21 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          '@': 'src',
+          '@components': 'src/components',
+          '@images': 'src/images',
+          '@pages': 'src/pages',
+          '@styles': 'src/styles/index',
+          '@templates': 'src/templates',
+          '@styled-components': 'src/styled-components',
+        },
+        extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
+      },
+    },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',

@@ -27,6 +27,18 @@
           "private-instance-method"
         ]
       }
+    ],
+    "no-implicit-dependencies": [
+      true,
+      [
+        "@",
+        "@components",
+        "@images",
+        "@pages",
+        "@styles",
+        "@templates",
+        "@styled-components"
+      ]
     ]
   },
   "rulesDirectory": []
