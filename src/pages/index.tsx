@@ -34,6 +34,30 @@ interface IndexPageProps {
   };
 }
 
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 const ImageWrapper = styled.div`
   max-width: 300px;
   margin: 0 auto 1.45rem;
@@ -53,10 +77,7 @@ const IndexPage: React.FunctionComponent<IndexPageProps> = (props) => {
 
   return (
     <Layout>
-      <Seo
-        title="All posts"
-        keywords={['blog', 'gatsby', 'javascript', 'react']}
-      />
+      <Seo title="Home" keywords={['blog', 'gatsby', 'typescript', 'react']} />
 
       <ImageWrapper>
         <Image />
@@ -82,27 +103,3 @@ const IndexPage: React.FunctionComponent<IndexPageProps> = (props) => {
 };
 
 export default IndexPage;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
-      }
-    }
-  }
-`;

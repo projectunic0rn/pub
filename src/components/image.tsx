@@ -1,24 +1,33 @@
 import { graphql, StaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
-const Image = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        placeholderImage: file(relativePath: { eq: "unicorn-icon.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 300) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+interface Data {
+  placeholderImage: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}
+
+function renderImg(data: Data) {
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />;
+}
+
+const imageQuery = graphql`
+  query {
+    placeholderImage: file(relativePath: { eq: "unicorn-icon.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
         }
       }
-    `}
-    render={(data) => (
-      <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-    )}
-  />
+    }
+  }
+`;
+
+const Image: React.FunctionComponent = () => (
+  <StaticQuery query={imageQuery} render={renderImg} />
 );
 
 export default Image;
