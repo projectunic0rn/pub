@@ -36,7 +36,7 @@ interface IndexPageProps {
 
 const ImageWrapper = styled.div`
   max-width: 300px;
-  margin-bottom: 1.45rem;
+  margin: 0 auto 1.45rem;
 `;
 
 const Title = styled.h3`
