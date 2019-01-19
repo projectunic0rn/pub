@@ -2,7 +2,7 @@
 
 <br>
 
-<img src="./src/images/gatsby-icon.png" alt="Pub" width="128">
+<img src="./src/images/unicorn-icon.png" alt="Pub" width="128">
 
 <br>
 <br>
