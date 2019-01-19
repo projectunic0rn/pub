@@ -1,5 +1,5 @@
 ---
-title: Contributing
+title: Get Started
 date: '2019-01-18T13:40:32.169Z'
 ---
 
