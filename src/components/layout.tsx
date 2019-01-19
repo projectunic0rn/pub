@@ -1,7 +1,14 @@
 import { graphql, StaticQuery } from 'gatsby';
 import * as React from 'react';
+import styled from 'styled-components';
 
 import Header from './header';
+
+const ChildrenWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 0 1.0875rem 1.45rem;
+`;
 
 const Layout: React.FunctionComponent = ({ children }) => (
   <StaticQuery
@@ -18,16 +25,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
       <React.Fragment>
         <Header siteTitle={data.site.siteMetadata.title} />
 
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: '40rem',
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-          }}
-        >
-          {children}
-        </div>
+        <ChildrenWrapper>{children}</ChildrenWrapper>
       </React.Fragment>
     )}
   />

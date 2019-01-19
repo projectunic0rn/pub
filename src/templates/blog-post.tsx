@@ -1,5 +1,6 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
+import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
@@ -27,6 +28,24 @@ interface BlogPostTemplateProps {
   };
 }
 
+const PostDate = styled.p`
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+`;
+
+const Hr = styled.hr`
+  margin-bottom: 14px;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+`;
+
 const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
   props,
 ) => {
@@ -39,33 +58,13 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
 
       <h1>{post.frontmatter.title}</h1>
 
-      <p
-        style={{
-          display: 'block',
-          marginBottom: '1rem',
-          marginTop: '-rem',
-        }}
-      >
-        {post.frontmatter.date}
-      </p>
+      <PostDate>{post.frontmatter.date}</PostDate>
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <hr
-        style={{
-          marginBottom: '14px',
-        }}
-      />
+      <Hr />
 
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          listStyle: 'none',
-          padding: 0,
-        }}
-      >
+      <List>
         <li>
           {previous && (
             <Link to={previous.fields.slug} rel="prev">
@@ -81,7 +80,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
             </Link>
           )}
         </li>
-      </ul>
+      </List>
     </Layout>
   );
 };

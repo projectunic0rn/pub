@@ -1,5 +1,6 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
+import styled from 'styled-components';
 
 import Image from '../components/image';
 import Layout from '../components/layout';
@@ -33,6 +34,19 @@ interface IndexPageProps {
   };
 }
 
+const ImageWrapper = styled.div`
+  max-width: 300px;
+  margin-bottom: 1.45rem;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 0.25rem;
+`;
+
+const StyledLink = styled(Link)`
+  box-shadow: none;
+`;
+
 const IndexPage: React.FunctionComponent<IndexPageProps> = (props) => {
   const { data } = props;
   const posts = data.allMarkdownRemark.edges;
@@ -44,24 +58,18 @@ const IndexPage: React.FunctionComponent<IndexPageProps> = (props) => {
         keywords={['blog', 'gatsby', 'javascript', 'react']}
       />
 
-      <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
+      <ImageWrapper>
         <Image />
-      </div>
+      </ImageWrapper>
 
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
 
         return (
           <div key={node.fields.slug}>
-            <h3
-              style={{
-                marginBottom: '0.25rem',
-              }}
-            >
-              <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                {title}
-              </Link>
-            </h3>
+            <Title>
+              <StyledLink to={node.fields.slug}>{title}</StyledLink>
+            </Title>
 
             <small>{node.frontmatter.date}</small>
 
