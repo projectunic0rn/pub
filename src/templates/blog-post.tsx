@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
+import Container from '@components/container';
 import Layout from '@components/layout';
 import Seo from '@components/seo';
 import styled from '@styled-components';
@@ -78,29 +79,31 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
 
       <h1>{post.frontmatter.title}</h1>
 
-      <PostDate>{post.frontmatter.date}</PostDate>
+      <Container>
+        <PostDate>{post.frontmatter.date}</PostDate>
 
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <Hr />
+        <Hr />
 
-      <List>
-        <li>
-          {previous && (
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
+        <List>
+          <li>
+            {previous && (
+              <Link to={previous.fields.slug} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
 
-        <li>
-          {next && (
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </li>
-      </List>
+          <li>
+            {next && (
+              <Link to={next.fields.slug} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </List>
+      </Container>
     </Layout>
   );
 };

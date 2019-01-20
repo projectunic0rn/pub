@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
+import Container from '@components/container';
 import Image from '@components/image';
 import Layout from '@components/layout';
 import Seo from '@components/seo';
@@ -77,25 +78,27 @@ const IndexPage: React.FunctionComponent<IndexPageProps> = (props) => {
     <Layout>
       <Seo title="Home" keywords={['blog', 'gatsby', 'typescript', 'react']} />
 
-      <ImageWrapper>
-        <Image />
-      </ImageWrapper>
+      <Container>
+        <ImageWrapper>
+          <Image />
+        </ImageWrapper>
 
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug;
+        {posts.map(({ node }) => {
+          const title = node.frontmatter.title || node.fields.slug;
 
-        return (
-          <div key={node.fields.slug}>
-            <Title>
-              <StyledLink to={node.fields.slug}>{title}</StyledLink>
-            </Title>
+          return (
+            <div key={node.fields.slug}>
+              <Title>
+                <StyledLink to={node.fields.slug}>{title}</StyledLink>
+              </Title>
 
-            <small>{node.frontmatter.date}</small>
+              <small>{node.frontmatter.date}</small>
 
-            <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-          </div>
-        );
-      })}
+              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            </div>
+          );
+        })}
+      </Container>
     </Layout>
   );
 };
