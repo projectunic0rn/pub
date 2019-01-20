@@ -5,6 +5,7 @@ import * as React from 'react';
 import Container from '@components/container';
 import Hero from '@components/hero';
 import Layout from '@components/layout';
+import PostLinks from '@components/post-links';
 import Seo from '@components/seo';
 import styled from '@styled-components';
 
@@ -120,23 +121,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
 
         <Hr />
 
-        <List>
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </List>
+        <PostLinks previous={previous} next={next} />
       </Container>
     </Layout>
   );
