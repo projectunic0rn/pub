@@ -37,6 +37,7 @@
         "@pages",
         "@styles",
         "@templates",
+        "@utils",
         "@styled-components"
       ]
     ]

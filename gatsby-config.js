@@ -60,6 +60,7 @@ module.exports = {
           '@pages': 'src/pages',
           '@styles': 'src/styles/index',
           '@templates': 'src/templates',
+          '@utils': 'src/utils',
           '@styled-components': 'src/styled-components',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],

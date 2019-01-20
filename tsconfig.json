@@ -10,6 +10,7 @@
       "@pages/*": ["./src/pages/*"],
       "@styles": ["./src/styles/index.ts"],
       "@templates/*": ["./src/templates/*"],
+      "@utils/*": ["./src/utils/*"],
       "@styled-components": ["./src/styled-components.ts"]
     }
   },
