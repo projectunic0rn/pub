@@ -1,6 +1,8 @@
 import { createGlobalStyle } from '@styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Viga');
+
   html {
     box-sizing: border-box;
   }
@@ -9,6 +11,11 @@ export const GlobalStyle = createGlobalStyle`
   *:before,
   *:after {
     box-sizing: inherit;
+  }
+
+  ::selection {
+    background: rebeccapurple;
+    color: white;
   }
 
   html,
@@ -33,6 +40,16 @@ export const GlobalStyle = createGlobalStyle`
   pre[class*='language-'] {
     font-family: 'Hack', 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New',
       monospace !important;
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Viga';
     font-weight: 400;
   }
 `;
