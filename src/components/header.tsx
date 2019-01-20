@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 const Wrapper = styled.header`
-  background: rebeccapurple;
+  background: ${({ theme }) => theme.colors.highlight};
   width: 100%;
   padding: 1.5rem 0;
 `;
