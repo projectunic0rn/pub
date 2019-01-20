@@ -25,8 +25,6 @@ const siteTitleQuery = graphql`
 
 const ChildrenWrapper = styled.div`
   margin: 0 auto;
-  max-width: 40rem;
-  padding: 0 1.0875rem 1.45rem;
 `;
 
 function renderChildren(
