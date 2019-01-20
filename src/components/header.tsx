@@ -7,33 +7,80 @@ interface HeaderProps {
   siteTitle?: string;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   background: rebeccapurple;
-  margin-bottom: 1.45rem;
-`;
-
-const InnerWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 40rem;
-  padding: 1.45rem 1.0875rem;
-`;
-
-const SiteTitle = styled.h1`
-  margin: 0;
+  width: 100%;
+  padding: 1.5rem 0;
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
   text-decoration: none;
+  color: lightgray;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &:hover {
+    color: white;
+  }
 `;
+
+const Brand = styled(StyledLink)`
+  font-family: 'Viga';
+  font-weight: 400;
+`;
+
+const Nav = styled.nav`
+  width: 100%;
+  max-width: ${({ theme }) => theme.sizes.maxWidth};
+  margin: 0 auto;
+  padding: 0 1.5em;
+`;
+
+const List = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  display: inline-block;
+  margin-left: 1em;
+
+  &:first-child {
+    position: relative;
+    margin: 0;
+    flex-basis: 100%;
+  }
+`;
+
+const activeLinkStyle = {
+  color: 'white',
+};
 
 const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle = '' }) => (
   <Wrapper>
-    <InnerWrapper>
-      <SiteTitle>
-        <StyledLink to="/">{siteTitle}</StyledLink>
-      </SiteTitle>
-    </InnerWrapper>
+    <Nav>
+      <List>
+        <ListItem>
+          <Brand to="/" activeStyle={activeLinkStyle}>
+            {siteTitle}
+          </Brand>
+        </ListItem>
+
+        <ListItem>
+          <StyledLink to="/about/" activeStyle={activeLinkStyle}>
+            About
+          </StyledLink>
+        </ListItem>
+
+        <ListItem>
+          <StyledLink to="/tags/" activeStyle={activeLinkStyle}>
+            Tags
+          </StyledLink>
+        </ListItem>
+      </List>
+    </Nav>
   </Wrapper>
 );
 
