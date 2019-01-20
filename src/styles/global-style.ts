@@ -43,6 +43,15 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  pre[class*="language-"]::selection,
+  pre[class*="language-"] ::selection,
+  code[class*="language-"]::selection,
+  code[class*="language-"] ::selection {
+    text-shadow: none;
+    background: rebeccapurple;
+    color: #fff;
+  }
+
   h1,
   h2,
   h3,
