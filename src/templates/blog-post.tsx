@@ -110,7 +110,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
             ? image.childImageSharp.fluid
             : props.data.file.childImageSharp.fluid
         }
-        height={'50vh'}
+        height="50vh"
       />
 
       <Container>
