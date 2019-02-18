@@ -1,13 +1,17 @@
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
+import Helmet from 'react-helmet';
 
 import Container from '@components/container';
 import Hero from '@components/hero';
 import Layout from '@components/layout';
+import PageBody from '@components/page-body';
+import PostDate from '@components/post-date';
 import PostLinks from '@components/post-links';
+import PostTags from '@components/post-tags';
 import Seo from '@components/seo';
-import styled from '@styled-components';
+import { site } from '@config/site';
 
 interface BlogPostTemplateProps {
   data: {
@@ -28,6 +32,7 @@ interface BlogPostTemplateProps {
       frontmatter: {
         title: string;
         date: string;
+        tags: string[];
         image: {
           childImageSharp: {
             fluid: FluidObject;
@@ -64,6 +69,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        tags
         image {
           childImageSharp {
             fluid(maxWidth: 700) {
@@ -76,53 +82,35 @@ export const pageQuery = graphql`
   }
 `;
 
-const PostDate = styled.p`
-  display: block;
-  margin-bottom: 1rem;
-`;
-
-const Hr = styled.hr`
-  margin-bottom: 14px;
-`;
-
-const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-`;
-
-const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = (
-  props,
-) => {
-  const post = props.data.markdownRemark;
-  const { previous, next } = props.pageContext;
+const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
+  data,
+  pageContext,
+}) => {
+  const post = data.markdownRemark;
+  const { title, tags, date } = post.frontmatter;
+  const { previous, next } = pageContext;
   const { image } = post.frontmatter;
 
   return (
     <Layout>
-      <Seo title={post.frontmatter.title} description={post.excerpt} />
+      <Helmet>{`${title} - ${site.title}`}</Helmet>
+      <Seo title={title} description={post.excerpt} />
 
       <Hero
-        title={post.frontmatter.title}
+        title={title}
         fluid={
-          image
-            ? image.childImageSharp.fluid
-            : props.data.file.childImageSharp.fluid
+          image ? image.childImageSharp.fluid : data.file.childImageSharp.fluid
         }
         height="50vh"
       />
 
       <Container>
-        <PostDate>{post.frontmatter.date}</PostDate>
-
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-
-        <Hr />
-
-        <PostLinks previous={previous} next={next} />
+        {tags && <PostTags tags={tags} />}
+        <PostDate date={date} />
+        <PageBody body={post.html} />
       </Container>
+
+      <PostLinks previous={previous} next={next} />
     </Layout>
   );
 };

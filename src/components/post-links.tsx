@@ -2,11 +2,14 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
-import { truncate } from '@utils/string-utils';
+
+interface PostNode {
+  fields: { slug: string };
+}
 
 interface PostLinksProps {
-  previous: any;
-  next: any;
+  previous: PostNode;
+  next: PostNode;
 }
 
 const Wrapper = styled.div`
@@ -48,24 +51,19 @@ const NextLink = styled(Link)`
 const PostLinks: React.FunctionComponent<PostLinksProps> = ({
   previous,
   next,
-}) => {
-  return (
-    <Wrapper>
-      <Box>
-        {previous && (
-          <PreviousLink to={previous.fields.slug}>
-            &#8592; {truncate(previous.frontmatter.title)}
-          </PreviousLink>
-        )}
-
-        {next && (
-          <NextLink to={next.fields.slug}>
-            {truncate(next.frontmatter.title)} &#8594;
-          </NextLink>
-        )}
-      </Box>
-    </Wrapper>
-  );
-};
+}) => (
+  <Wrapper>
+    <Box>
+      {previous && (
+        <PreviousLink to={`/${previous.fields.slug}/`}>
+          &#8592; Prev Post
+        </PreviousLink>
+      )}
+      {next && (
+        <NextLink to={`/${next.fields.slug}/`}>Next Post &#8594;</NextLink>
+      )}
+    </Box>
+  </Wrapper>
+);
 
 export default PostLinks;
