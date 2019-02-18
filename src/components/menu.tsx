@@ -1,9 +1,10 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
+import { site } from '@config/site';
 import styled from '@styled-components';
 
-interface HeaderProps {
+interface MenuProps {
   siteTitle?: string;
 }
 
@@ -15,7 +16,7 @@ const Wrapper = styled.header`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: lightgray;
+  color: white;
   font-weight: 600;
   transition: all 0.2s;
 
@@ -25,8 +26,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Brand = styled(StyledLink)`
-  font-family: 'Viga';
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const Nav = styled.nav`
@@ -40,7 +40,6 @@ const List = styled.ul`
   display: flex;
   justify-content: space-between;
   margin: 0;
-  padding: 0;
 `;
 
 const ListItem = styled.li`
@@ -58,7 +57,7 @@ const activeLinkStyle = {
   color: 'white',
 };
 
-const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle = '' }) => (
+const Menu: React.FunctionComponent<MenuProps> = ({ siteTitle }) => (
   <Wrapper>
     <Nav>
       <List>
@@ -84,4 +83,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle = '' }) => (
   </Wrapper>
 );
 
-export default Header;
+Menu.defaultProps = {
+  siteTitle: site.title,
+};
+
+export default Menu;
