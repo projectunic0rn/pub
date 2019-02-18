@@ -61,6 +61,7 @@ module.exports = {
           '@styles': 'src/styles/index',
           '@templates': 'src/templates',
           '@utils': 'src/utils',
+          '@config': 'src/config',
           '@styled-components': 'src/styled-components',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
