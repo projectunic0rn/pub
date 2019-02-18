@@ -3,6 +3,17 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 
+interface PaginationProps {
+  context: {
+    tag?: string;
+    slug?: string;
+    limit?: number;
+    skip?: number;
+    numPages?: number;
+    currentPage?: number;
+  };
+}
+
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -48,7 +59,7 @@ const PageIndicator = styled.span`
   opacity: 0.7;
 `;
 
-function Pagination({ context }) {
+const Pagination: React.FunctionComponent<PaginationProps> = ({ context }) => {
   const { numPages, currentPage, slug } = context;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -74,6 +85,6 @@ function Pagination({ context }) {
       {!isLast && <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>}
     </Wrapper>
   );
-}
+};
 
 export default Pagination;

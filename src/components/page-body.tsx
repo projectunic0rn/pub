@@ -2,6 +2,10 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 
+interface PageBodyProps {
+  body: string;
+}
+
 const Body = styled.div`
   margin: 0 auto;
   max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
@@ -97,7 +101,7 @@ const Body = styled.div`
   }
 `;
 
-const PageBody = ({ body }) => (
+const PageBody: React.FunctionComponent<PageBodyProps> = ({ body }) => (
   <Body dangerouslySetInnerHTML={{ __html: body }} />
 );
 
