@@ -46,7 +46,7 @@ const Item = styled.li`
   }
 `;
 
-const Footer = () => (
+const Footer: React.FunctionComponent = () => (
   <Wrapper>
     <List>
       <Item>
