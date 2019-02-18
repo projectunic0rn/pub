@@ -33,6 +33,7 @@
       [
         "@",
         "@components",
+        "@config",
         "@images",
         "@pages",
         "@styles",
