@@ -1,8 +1,6 @@
 import { createGlobalStyle } from '@styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Viga');
-
   html {
     box-sizing: border-box;
   }
@@ -13,52 +11,118 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
-  ::selection {
-    background: rebeccapurple;
-    color: white;
-  }
-
-  html,
-  body {
-    width: 100%;
-    height: 100%;
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
     margin: 0;
     padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+
+  /* Added to Fix Footer to bottom of viewport */
+  html, body {
+    height: 100%;
+  }
+
+  .siteRoot {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .siteContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+  }
+
+  footer {
+    width: 100%;
+  }
+
+  /* End Fix to Place Footer on Bottom of Viewport */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+
+  @media screen and (min-width: 35em) {
+    html {
+      margin-right: calc(-100vw + 100%);
+      overflow-x: hidden;
+    }
+  }
+
+  ol, ul, li {
+    list-style: none;
+  }
+
+  blockquote, q {
+    quotes: none;
+  }
+
+  blockquote::before, blockquote::after,
+  q::before, q::after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #666666;
-  }
-
-  code,
-  code[class*='language-'],
-  pre[class*='language-'] {
-    font-family: 'Hack', 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New',
-      monospace !important;
+    background: white;
+    line-height: 1;
+    font-size: 100%;
+    font-variant-ligatures: none;
+    text-rendering: optimizeLegibility;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
     font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 
-  pre[class*="language-"]::selection,
-  pre[class*="language-"] ::selection,
-  code[class*="language-"]::selection,
-  code[class*="language-"] ::selection {
-    text-shadow: none;
-    background: rebeccapurple;
-    color: #fff;
+  img {
+    display: block;
+  	width: 100%;
+  	height: auto;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Viga';
-    font-weight: 400;
+  button,
+  input {
+    font-family: inherit;
+    font-size: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    appearance: none;
+    border-radius: 0;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:invalid {
+      box-shadow: none;
+    }
   }
 `;
