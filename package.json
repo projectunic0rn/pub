@@ -31,6 +31,7 @@
     "gatsby-plugin-sharp": "2.0.20",
     "gatsby-plugin-styled-components": "3.0.5",
     "gatsby-plugin-typescript": "2.0.8",
+    "gatsby-plugin-typography": "2.2.7",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-images": "3.0.4",
     "gatsby-remark-prismjs": "3.2.4",
@@ -43,8 +44,11 @@
     "react": "16.8.2",
     "react-dom": "16.8.2",
     "react-helmet": "5.2.0",
+    "react-typography": "0.16.18",
     "styled-components": "4.1.3",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "typography": "0.16.18",
+    "typography-theme-funston": "0.16.18"
   },
   "devDependencies": {
     "@types/node": "11.9.4",
