@@ -16,7 +16,7 @@ interface HeroProps extends Pick<BgImgProps, 'height'> {
 
 const Wrapper = styled.section`
   position: relative;
-  min-height: 18.75em;
+  min-height: 300px;
 `;
 
 const BgImg = styled(Img)<BgImgProps & GatsbyImageProps>`
@@ -25,7 +25,7 @@ const BgImg = styled(Img)<BgImgProps & GatsbyImageProps>`
   left: 0;
   width: 100%;
   z-index: -1;
-  min-height: 18.75em;
+  min-height: 300px;
   height: auto;
 
   @media (min-width: ${({ theme }) => theme.responsive.small}) {
@@ -52,15 +52,14 @@ const BgImg = styled(Img)<BgImgProps & GatsbyImageProps>`
 `;
 
 const Title = styled.h1`
-  font-family: 'Viga';
   font-size: 3em;
   text-transform: capitalize;
-  font-weight: 400;
+  font-weight: 600;
   position: absolute;
   width: 100%;
   max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
   padding: 0 1rem;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -70,7 +69,6 @@ const Title = styled.h1`
 const Hero: React.FunctionComponent<HeroProps> = ({ height, fluid, title }) => (
   <Wrapper>
     <BgImg height={height} fluid={fluid} backgroundColor="#eeeeee" />
-
     <Title>{title}</Title>
   </Wrapper>
 );

@@ -10,7 +10,8 @@ interface PostLinksProps {
 }
 
 const Wrapper = styled.div`
-  margin: 2em 0 0 0;
+  margin: -2em 0 0 0;
+  padding: 0 1.5em 2em;
 `;
 
 const Box = styled.div`
@@ -18,19 +19,18 @@ const Box = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   width: 100%;
+  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
 
   a {
-    background: transparent;
-    border: 1px solid ${({ theme }) => theme.colors.highlight};
-    color: ${({ theme }) => theme.colors.highlight};
+    background: ${({ theme }) => theme.colors.base};
+    color: white;
     padding: 1em;
     border-radius: 2px;
     text-decoration: none;
     transition: 0.2s;
 
     &:hover {
-      background: ${(props) => props.theme.colors.highlight};
-      color: white;
+      background: ${({ theme }) => theme.colors.highlight};
     }
   }
 `;
