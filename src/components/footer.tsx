@@ -51,7 +51,7 @@ const Footer = () => (
     <List>
       <Item>
         <a
-          href="https://www.projectunicorn.net/"
+          href="https://projectunicorn.net/"
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
