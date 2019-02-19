@@ -2,6 +2,8 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import { site } from '@config/site';
+// @ts-ignore
+import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 
 interface MenuProps {

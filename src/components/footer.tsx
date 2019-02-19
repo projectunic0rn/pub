@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+// @ts-ignore
+import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 
 const Wrapper = styled.footer`
@@ -55,7 +57,7 @@ const Footer: React.FunctionComponent = () => (
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
-          Project Unicorn
+          <img src={puLogo} style={{ width: '100px' }} alt="Project Unicorn" />
         </a>
       </Item>
 
