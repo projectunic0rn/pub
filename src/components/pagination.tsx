@@ -12,7 +12,7 @@ interface PaginationProps {
     numPages?: number;
     currentPage?: number;
   };
-  prefix: string;
+  prefix?: string;
 }
 
 const Wrapper = styled.div`
@@ -74,7 +74,8 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
   const prevPageNum = currentPage - 1 === 1 ? `` : currentPage - 1;
   const nextPageNum = currentPage + 1;
 
-  const pathPrefix = typeof slug === 'string' ? `/${prefix}/${slug}` : '';
+  const pathPrefix =
+    typeof slug === 'string' ? `${prefix ? `/${prefix}/` : '/'}${slug}` : '';
   const prevPageLink = isFirst ? null : `${pathPrefix}/${prevPageNum}/`;
   const nextPageLink = isLast ? null : `${pathPrefix}/${nextPageNum}/`;
 
