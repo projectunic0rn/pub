@@ -1,7 +1,12 @@
 ---
 title: Get Started
+author: rmjordas
 date: '2019-01-18T13:40:32.169Z'
 image: ./grocery.jpg
+tags:
+  - mentorship
+  - contributing
+  - guide
 ---
 
 Thank you for your interest in the project.
@@ -146,7 +151,7 @@ REACT_APP_MAGIC_NUMBER=42
 
 Then access these values in the application:
 
-```ts
+```typescript
 interface AppConfig {
   [key: string]: string | undefined;
 }
