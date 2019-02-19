@@ -44,6 +44,7 @@ interface TagTemplateProps {
   pageContext: {
     tag: string;
     slug: string;
+    totalPosts: number;
     limit?: number;
     skip?: number;
     numPages?: number;
@@ -95,7 +96,7 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
   pageContext,
 }) => {
   const posts = data.allMarkdownRemark.edges;
-  const { tag: title, slug, skip, limit, currentPage } = pageContext;
+  const { tag: title, slug, totalPosts, currentPage } = pageContext;
   const numberOfPosts = posts.length;
   const isFirstPage = currentPage === 1;
 
@@ -129,13 +130,13 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
 
       <Container>
         <PageTitle small={true}>
-          {numberOfPosts} Post{numberOfPosts > 1 ? 's' : ''} Tagged: &ldquo;
+          {totalPosts} Post{numberOfPosts > 1 ? 's' : ''} Tagged: &ldquo;
           {title}
           &rdquo;
         </PageTitle>
 
         <CardList>
-          {posts.slice(skip, limit * currentPage).map(({ node }) => (
+          {posts.map(({ node }) => (
             <Card
               key={node.fields.slug}
               slug={node.fields.slug}
