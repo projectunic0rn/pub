@@ -57,7 +57,7 @@ export const pageQuery = graphql`
     }
     file(relativePath: { eq: "default-post-image.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 300) {
+        fluid(maxWidth: 1800) {
           ...GatsbyImageSharpFluid
         }
       }
@@ -72,7 +72,7 @@ export const pageQuery = graphql`
         tags
         image {
           childImageSharp {
-            fluid(maxWidth: 700) {
+            fluid(maxWidth: 1800) {
               ...GatsbyImageSharpFluid
             }
           }

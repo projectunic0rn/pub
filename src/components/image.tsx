@@ -18,7 +18,7 @@ const imageQuery = graphql`
   query {
     placeholderImage: file(relativePath: { eq: "unicorn-icon.png" }) {
       childImageSharp {
-        fluid(maxWidth: 300) {
+        fluid(maxWidth: 1800) {
           ...GatsbyImageSharpFluid
         }
       }
