@@ -127,15 +127,21 @@ exports.createPages = ({ graphql, actions }) => {
       const tags = {};
 
       posts.forEach(({ node }) => {
-        node.frontmatter.tags.forEach((v) => {
-          const sluggedTag = slugify(v);
-          const tag = tags[sluggedTag];
+        const { tags: postTags } = node.frontmatter;
 
-          if (tag) {
-            tag.posts.push(node.fields.slug);
+        if (!postTags) {
+          return;
+        }
+
+        postTags.forEach((tag) => {
+          const sluggedTag = slugify(tag);
+          const tagObj = tags[sluggedTag];
+
+          if (tagObj) {
+            tagObj.posts.push(node.fields.slug);
           } else {
             tags[sluggedTag] = {
-              tag: v,
+              tag,
               posts: [node.fields.slug],
             };
           }
@@ -151,7 +157,7 @@ exports.createPages = ({ graphql, actions }) => {
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
             path: `/tag/${slug}/${i === 0 ? '' : i + 1}`,
-            component: path.resolve(`./src/templates/tag.tsx`),
+            component: path.resolve('./src/templates/tag.tsx'),
             context: {
               tag,
               slug,
