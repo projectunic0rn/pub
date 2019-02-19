@@ -152,7 +152,7 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination context={pageContext} />
+      <Pagination prefix="tag" context={pageContext} />
     </Layout>
   );
 };
