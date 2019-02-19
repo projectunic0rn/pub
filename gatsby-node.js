@@ -13,6 +13,12 @@ exports.onCreateNode = ({ node, actions }) => {
       node,
       value,
     });
+
+    createNodeField({
+      name: 'author',
+      node,
+      value: node.frontmatter.author,
+    });
   }
 };
 
@@ -151,8 +157,8 @@ exports.createPages = ({ graphql, actions }) => {
       const postsPerPage = 6;
 
       Object.entries(tags).forEach(([slug, { tag, posts }]) => {
-        const totalTags = posts.length;
-        const numPages = Math.ceil(totalTags / postsPerPage);
+        const totalPosts = posts.length;
+        const numPages = Math.ceil(totalPosts / postsPerPage);
 
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
@@ -161,6 +167,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               tag,
               slug,
+              totalPosts,
               limit: postsPerPage,
               skip: i * postsPerPage,
               numPages: numPages,
@@ -174,5 +181,86 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  return Promise.all([loadPosts, loadTags]);
+  const loadAuthors = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                author {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    `).then((result) => {
+      if (result.errors) {
+        reject(result.errors);
+      }
+
+      const posts = result.data.allMarkdownRemark.edges;
+      const authors = {};
+
+      posts.forEach(({ node }) => {
+        const { author } = node.frontmatter;
+
+        if (!author) {
+          return;
+        }
+
+        const sluggedAuthor = slugify(author.id);
+        const authorObj = authors[sluggedAuthor];
+
+        if (authorObj) {
+          authorObj.posts.push(node.fields.slug);
+        } else {
+          authors[sluggedAuthor] = {
+            name: author.name,
+            id: author.id,
+            posts: [node.fields.slug],
+          };
+        }
+      });
+
+      const postsPerPage = 6;
+
+      Object.entries(authors).forEach(
+        ([slug, { id: authorId, name: authorName }]) => {
+          const totalPosts = posts.length;
+          const numPages = Math.ceil(totalPosts / postsPerPage);
+
+          Array.from({ length: numPages }).forEach((_, i) => {
+            createPage({
+              path: `/author/${slug}/${i === 0 ? '' : i + 1}`,
+              component: path.resolve('./src/templates/author.tsx'),
+              context: {
+                authorId,
+                authorName,
+                totalPosts,
+                slug,
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPages: numPages,
+                currentPage: i + 1,
+              },
+            });
+          });
+        },
+      );
+
+      resolve();
+    });
+  });
+
+  return Promise.all([loadPosts, loadTags, loadAuthors]);
 };

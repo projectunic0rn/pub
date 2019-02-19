@@ -6,6 +6,7 @@ module.exports = {
     author: '@rmjordas',
   },
   plugins: [
+    'gatsby-transformer-yaml',
     {
       resolve: `gatsby-plugin-typography`,
       options: {
@@ -15,15 +16,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/blog`,
-        name: 'blog',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/content/assets`,
-        name: 'assets',
+        path: `${__dirname}/content`,
+        name: 'content',
       },
     },
     {
@@ -100,4 +94,7 @@ module.exports = {
     },
     'gatsby-plugin-offline',
   ],
+  mapping: {
+    'MarkdownRemark.frontmatter.author': `AuthorYaml`,
+  },
 };
