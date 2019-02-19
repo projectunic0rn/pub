@@ -24,15 +24,17 @@ const Wrapper = styled.div`
   padding: 0 1.5em 2em;
 
   a {
-    background: ${({ theme }) => theme.colors.base};
-    color: white;
+    background: transparent;
+    color: ${({ theme }) => theme.colors.base};
     padding: 1em;
+    border-color: ${({ theme }) => theme.colors.highlight};
     border-radius: 2px;
     text-decoration: none;
     transition: 0.2s;
 
     &:hover {
       background: ${({ theme }) => theme.colors.highlight};
+      color: white;
     }
   }
 `;

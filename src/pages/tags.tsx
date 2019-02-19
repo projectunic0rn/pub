@@ -34,9 +34,11 @@ const Tag = styled.li`
 
   a {
     float: left;
+    font-size: 0.8em;
     transition: 0.2s;
     background: ${({ theme }) => theme.colors.tertiary};
     padding: 0.5em;
+    border-color: ${({ theme }) => theme.colors.secondary};
     border-radius: 2px;
     text-transform: capitalize;
     text-decoration: none;
@@ -45,6 +47,7 @@ const Tag = styled.li`
 
     &:hover {
       background: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.base};
     }
   }
 `;

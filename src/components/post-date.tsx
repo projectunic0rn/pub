@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 
 const Date = styled.p`
   display: inline-block;
+
   span {
     font-weight: 600;
   }

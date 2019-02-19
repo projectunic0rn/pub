@@ -25,8 +25,8 @@ const Box = styled.div`
   max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
 
   a {
-    background: ${({ theme }) => theme.colors.base};
-    color: white;
+    background: transparent;
+    color: ${({ theme }) => theme.colors.highlight};
     padding: 1em;
     border-radius: 2px;
     text-decoration: none;
@@ -34,6 +34,7 @@ const Box = styled.div`
 
     &:hover {
       background: ${({ theme }) => theme.colors.highlight};
+      color: white;
     }
   }
 `;

@@ -9,24 +9,19 @@ interface MenuProps {
 }
 
 const Wrapper = styled.header`
-  background: ${({ theme }) => theme.colors.highlight};
+  background: white
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1em 0;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
-  font-weight: 600;
+  color: ${({ theme }) => theme.colors.highlight};
   transition: all 0.2s;
 
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.colors.highlight};
   }
-`;
-
-const Brand = styled(StyledLink)`
-  font-weight: 700;
 `;
 
 const Nav = styled.nav`
@@ -40,11 +35,12 @@ const List = styled.ul`
   display: flex;
   justify-content: space-between;
   margin: 0;
+  align-items: center;
 `;
 
 const ListItem = styled.li`
   display: inline-block;
-  margin-left: 1em;
+  margin: 0 0 0 1em;
 
   &:first-child {
     position: relative;
@@ -53,23 +49,19 @@ const ListItem = styled.li`
   }
 `;
 
-const activeLinkStyle = {
-  color: 'white',
-};
+const activeLinkStyle = {};
 
 const Menu: React.FunctionComponent<MenuProps> = ({ siteTitle }) => (
   <Wrapper>
     <Nav>
       <List>
         <ListItem>
-          <Brand to="/" activeStyle={activeLinkStyle}>
-            {siteTitle}
-          </Brand>
-        </ListItem>
-
-        <ListItem>
-          <StyledLink to="/about/" activeStyle={activeLinkStyle}>
-            About
+          <StyledLink to="/" activeStyle={activeLinkStyle}>
+            <img
+              src={puLogo}
+              style={{ width: '100px' }}
+              alt="Project Unicorn"
+            />
           </StyledLink>
         </ListItem>
 

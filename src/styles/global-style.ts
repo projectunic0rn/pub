@@ -52,8 +52,8 @@ export const GlobalStyle = createGlobalStyle`
   footer {
     width: 100%;
   }
-
   /* End Fix to Place Footer on Bottom of Viewport */
+
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
@@ -83,10 +83,6 @@ export const GlobalStyle = createGlobalStyle`
   table {
     border-collapse: collapse;
     border-spacing: 0;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   body {

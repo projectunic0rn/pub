@@ -1,6 +1,6 @@
 const colors = {
-  base: '#121212', // Black
-  highlight: 'rebeccapurple', // Purple
+  base: '#121212', // Off-black
+  highlight: '#5f8ddc', // Light Blue
   secondary: '#e9e9e9', // Medium Gray
   tertiary: '#f3f3f3', // Light Gray
 };

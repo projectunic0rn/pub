@@ -21,7 +21,7 @@ const Post = styled.li<PostProps>`
   position: relative;
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
-  margin: 0 0 1em 0;
+  padding: 0 0 1rem 0;
   width: 100%;
   transition: background 0.2s;
 
@@ -46,6 +46,14 @@ const Post = styled.li<PostProps>`
     color: ${({ theme }) => theme.colors.base};
     text-decoration: none;
 
+    &:hover {
+      color: ${({ theme }) => theme.colors.base};
+
+      h2 {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
+    }
+
     .gatsby-image-wrapper {
       height: 0;
       padding-bottom: 60%;
@@ -58,20 +66,17 @@ const Post = styled.li<PostProps>`
 `;
 
 const Title = styled.h2`
-  font-size: 1.5em;
-  font-weight: 600;
   text-transform: capitalize;
   margin: 1rem 1rem 0.5rem 1rem;
 `;
 
-const Date = styled.h3`
+const Date = styled.h4`
   margin: 0 1rem 1.5rem 1rem;
   color: gray;
 `;
 
 const Excerpt = styled.p`
   margin: 0 1rem 1rem 1rem;
-  line-height: 1.6;
 `;
 
 const Card: React.FunctionComponent<CardProps> = ({
