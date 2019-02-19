@@ -18,8 +18,8 @@ Pub
     <img src="https://travis-ci.com/rmjordas/pub.svg" alt="Travis CI">
   </a>
 
-  <a href="https://project-unicorn.netlify.com">
-    <img src="https://img.shields.io/badge/website-https://project--unicorn.netlify.com-blue.svg" alt="Project Unicorn Blog">
+  <a href="https://projectunicorn.net/blog">
+    <img src="https://img.shields.io/badge/website-https://projectunicorn.net/blog-blue.svg" alt="Project Unicorn Blog">
   </a>
 </p>
 
@@ -37,21 +37,10 @@ npm start
 npm run build
 ```
 
-### Create a post
+## Documentation
 
-_TODO_
-
-### Add an author
-
-_TODO_
-
-### Add a page
-
-_TODO_
-
-## Contributing
-
-Please see our [Contributing Guide](.github/CONTRIBUTING.md)
+- [Contributing Guide](.github/CONTRIBUTING.md)
+- [Attribution Notice](NOTICE)
 
 ## License
 
