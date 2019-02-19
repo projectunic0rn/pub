@@ -63,13 +63,13 @@ const Footer: React.FunctionComponent = () => (
 
       <Item>
         <a
-          href="https://github.com/rmjordas/pub"
+          href="https://github.com/projectUnic0rn/pub"
           target="_blank"
           rel="noopener noreferrer"
         >
           pub
         </a>{' '}
-        by{' '}
+        repo is maintained by{' '}
         <a
           href="https://github.com/rmjordas"
           target="_blank"
