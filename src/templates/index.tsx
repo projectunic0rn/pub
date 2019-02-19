@@ -9,7 +9,6 @@ import Container from '@components/container';
 import Layout from '@components/layout';
 import Pagination from '@components/pagination';
 import Seo from '@components/seo';
-import { site } from '@config/site';
 
 interface PostNode {
   node: {
