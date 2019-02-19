@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'Project Unicorn',
-    description: 'Project Unicorn Blog',
+    title: 'Project Unicorn Blog',
+    description:
+      'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
     author: '@rmjordas',
   },
   plugins: [
