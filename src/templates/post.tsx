@@ -7,11 +7,23 @@ import Container from '@components/container';
 import Hero from '@components/hero';
 import Layout from '@components/layout';
 import PageBody from '@components/page-body';
-import PostDate from '@components/post-date';
 import PostLinks from '@components/post-links';
+import PostMeta from '@components/post-meta';
 import PostTags from '@components/post-tags';
 import Seo from '@components/seo';
 import { site } from '@config/site';
+
+export interface Author {
+  id: string;
+  name: string;
+  github: string;
+  bio?: string;
+  avatar: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}
 
 interface BlogPostTemplateProps {
   data: {
@@ -33,6 +45,7 @@ interface BlogPostTemplateProps {
         title: string;
         date: string;
         tags: string[];
+        author: Author;
         image: {
           childImageSharp: {
             fluid: FluidObject;
@@ -70,6 +83,19 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        author {
+          id
+          name
+          bio
+          github
+          avatar {
+            childImageSharp {
+              fluid(maxWidth: 1800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
         image {
           childImageSharp {
             fluid(maxWidth: 1800) {
@@ -87,7 +113,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
   pageContext,
 }) => {
   const post = data.markdownRemark;
-  const { title, tags, date } = post.frontmatter;
+  const { title, tags, date, author } = post.frontmatter;
   const { previous, next } = pageContext;
   const { image } = post.frontmatter;
 
@@ -105,9 +131,9 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
       />
 
       <Container>
-        {tags && <PostTags tags={tags} />}
-        <PostDate date={date} />
+        <PostMeta date={date} author={author} />
         <PageBody body={post.html} />
+        {tags && <PostTags tags={tags} />}
       </Container>
 
       <PostLinks previous={previous} next={next} />
