@@ -27,6 +27,8 @@ Pub
 
 ## Quick start
 
+### Common commands
+
 ```bash
 # develop
 npm start
@@ -35,8 +37,24 @@ npm start
 npm run build
 ```
 
+### Create a post
+
+_TODO_
+
+### Add an author
+
+_TODO_
+
+### Add a page
+
+_TODO_
+
+## Contributing
+
+Please see our [Contributing Guide](.github/CONTRIBUTING.md)
+
 ## License
 
-Copyright 2019 Rodger Jordas
+Copyright 2019 Project Unicorn
 
 This project is licensed under the terms of the MIT License.
