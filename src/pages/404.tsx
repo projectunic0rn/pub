@@ -21,7 +21,7 @@ const NotFoundPage: React.FunctionComponent = () => (
   <Layout>
     <Seo title="Page not found" />
     <Helmet>
-      <title>404 - Page Not Found</title>
+      <title>404 | Page Not Found</title>
       <meta name="description" content="Page not found" />
     </Helmet>
 

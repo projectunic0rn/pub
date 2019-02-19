@@ -51,6 +51,45 @@ interface TagTemplateProps {
   };
 }
 
+export const tagQuery = graphql`
+  query($tag: String, $skip: Int!, $limit: Int!) {
+    file(relativePath: { eq: "default-post-image.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+      limit: $limit
+      skip: $skip
+    ) {
+      totalCount
+      edges {
+        node {
+          excerpt(pruneLength: 80)
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            image {
+              childImageSharp {
+                fluid(maxWidth: 1800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
   data,
   pageContext,
@@ -64,17 +103,24 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
     <Layout>
       {isFirstPage ? (
         <Helmet>
-          <title>{`Tag: ${title} - ${site.title}`}</title>
-          <meta property="og:title" content={`Tag: ${title} - ${site.title}`} />
+          <title>{`Tag: "${title}" - ${site.title}`}</title>
+
+          <meta
+            property="og:title"
+            content={`Tag: "${title}" - ${site.title}`}
+          />
+
           <meta property="og:url" content={`${site.url}/tag/${slug}/`} />
         </Helmet>
       ) : (
         <Helmet>
-          <title>{`Tag: ${title} - Page ${currentPage} - ${site.title}`}</title>
+          <title>{`Tag: "${title}" - Page ${currentPage} - ${
+            site.title
+          }`}</title>
 
           <meta
             property="og:title"
-            content={`Tag: ${title} - Page ${currentPage} - ${site.title}`}
+            content={`Tag: "${title}" - Page ${currentPage} - ${site.title}`}
           />
 
           <meta property="og:url" content={`${site.url}/tag/${slug}/`} />
@@ -110,44 +156,5 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
     </Layout>
   );
 };
-
-export const query = graphql`
-  query($tag: String, $skip: Int!, $limit: Int!) {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
-      limit: $limit
-      skip: $skip
-    ) {
-      totalCount
-      edges {
-        node {
-          excerpt(pruneLength: 80)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 700) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default TagTemplate;
