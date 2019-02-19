@@ -1,4 +1,8 @@
 exports.slugify = (text) => {
+  if (!text) {
+    throw new Error('Value to slugify must be of type "string"');
+  }
+
   return text
     .toString()
     .toLowerCase()
