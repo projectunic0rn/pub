@@ -25,8 +25,8 @@ characters are changed into dashes. For example:
 ```
 
 This means the blog post is published on December 12, 2012 and its title is
-"The End of the World". **Please ensure that every word is separated by a
-single dash**.
+"The End of the World". **Please ensure that every word is separated only by a
+single dash (`-`)**.
 
 Inside this directory, create a new file called `index.md`. You can use the
 example file ([`index.md.example`](/content/index.md.example)) as a base for
@@ -67,7 +67,9 @@ information needed when creating the static page for a single blog post.
 - **`tags`** - A list of words and/or phrases that can summarize the main topics
   of the blog post.
 
-list available frontmatter keys...
+#### More frontmatter options
+
+_TODO_
 
 ### Add images and other assets
 
