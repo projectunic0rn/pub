@@ -2,7 +2,7 @@
 title: Hello World
 author: rmjordas
 date: '2019-02-21'
-image: null
+image: ./hello-world.jpg
 tags:
   - Project Unicorn
   - contributing
