@@ -165,4 +165,88 @@ You should see something similar to the output above.
 
 ## Instructions
 
-_TODO_
+### Clone to your machine
+
+Open you terminal and clone the repository by typing:
+
+```bash
+git clone git@github.com:projectunic0rn/pub.git
+cd pub
+pwd # $PROJECT_ROOT
+```
+
+The first command will _clone_ the project to your machine. This means that you
+tell Git to make a directory in the directory where you executed the `clone`
+command and copy the repository there. If you have a dedicated directory for
+cloned repository, make sure you are running your commands inside that
+directory.
+
+The next command will allow you to move inside the directory that Git created,
+when it cloned the repo to your machine: `pub` (same as the repository's name).
+
+> **NOTE**: You can provide the name of the directory by adding it to the last
+> part of the `clone` command:
+>
+> ```bash
+> git clone git@github.com:projectunic0rn/pub.git more-awesome-pub
+> ```
+
+The last command will output the path to the current working directory. In this
+guide, we refer to the root of the Pub repository as `$PROJECT_ROOT`.
+
+### Running `npm` scripts
+
+Before you can inspect the app in your browser, you have to first download some
+packages that this project requires. You can see a list of dependencies inside
+the file called [`package.json`](package.json).
+
+The `npm` executable provides a command to download all the project's
+dependencies:
+
+```bash
+pwd # You must be in the $PROJECT_ROOT
+npm install
+```
+
+This will grab all the packages and put it inside a `node_modules` directory in
+the `$PROJECT_ROOT`.
+
+After that, you can now run the app by executing this command in you terminal
+
+```bash
+pwd # $PROJECT_ROOT
+npm start
+```
+
+Finally, open your browser to http://localhost:8000.
+
+### Other commands
+
+The project also specifies other `npm` scripts you can run when working with
+specific portions of the application:
+
+| Script    | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| `develop` | Starts a development server that reloads when changes are made |
+| `build`   | Main command for creating static build for deployment          |
+| `format`  | Formats the source code according to Prettier rules            |
+| `test`    | Runs test                                                      |
+
+### Contributing quick start
+
+These steps will guide you through contributing to this project:
+
+- Fork the repo
+- Clone your fork and install dependencies
+
+```bash
+git clone https://github.com/<your-github-username>/pub.git
+npm install
+```
+
+Make and commit your changes. Make sure the commands `npm run build` and
+`npm run test` are working.
+
+Send a pull request and include a short summary of your changes.
+
+> [About Pull Requests](https://help.github.com/articles/about-pull-requests/)
