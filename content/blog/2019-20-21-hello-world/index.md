@@ -2,6 +2,7 @@
 title: Hello World
 author: rmjordas
 date: '2019-02-21'
+image: null
 tags:
   - Project Unicorn
   - contributing
