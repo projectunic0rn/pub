@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{js,jsx,ts,tsx,json}\"",
