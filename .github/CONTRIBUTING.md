@@ -114,24 +114,22 @@ You must be listed as an author before you post blog posts. In the
 [`content`](content/) directory, there is a file called
 [`author.yaml`](content/author.yaml). Here you add an entry with these options:
 
-- **`id`** - (Required) A unique string value for this author entry. These are the rules
-  this value:
-
+- **`id`** (Required) - A unique string value for this author entry. These are
+  the rules this value:
   - May only contain alphanumeric characters or hyphens.
   - Cannot have multiple consecutive hyphens.
   - Cannot begin or end with a hyphen.
   - Maximum is 39 characters.
-
-- **`name`** - (Required) The author's display name for blog posts.
+- **`name`** (Required) - The author's display name for blog posts.
 - **`bio`** - Short description of the author
 - **`github`** - The author's GitHub username
 - **`twitter`** - The author's Twitter username
 - **`avatar`** - The path for the image the the author would like to use as
   their avatar image. Please make sure to add the image file in the
-  [`content/assets`](content/assets) directory with the same file name as the
-  `id` above. Example value for author id, `rmjordas`: `assets/rmjordas.png`. If
-  you don't provide a value for this option, a default avatar image will be
-  used.
+  [`content/assets`][content/assets] directory with the same file name
+  as the`id` above. For example if the author id is `rmjordas`, then the value
+  should be `assets/rmjordas.png`. If you don't provide a value for this option,
+  a default avatar image will be used.
 
 ### Add a page
 
@@ -230,7 +228,7 @@ specific portions of the application:
 | `develop` | Starts a development server that reloads when changes are made |
 | `build`   | Main command for creating static build for deployment          |
 | `format`  | Formats the source code according to Prettier rules            |
-| `test`    | Runs test                                                      |
+| `test`    | Runs tests                                                     |
 
 ### Contributing quick start
 
