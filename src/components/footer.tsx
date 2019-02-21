@@ -63,7 +63,7 @@ const Footer: React.FunctionComponent = () => (
 
       <Item>
         <a
-          href="https://github.com/projectUnic0rn/pub"
+          href="https://github.com/projectunic0rn/pub"
           target="_blank"
           rel="noopener noreferrer"
         >
