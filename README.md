@@ -27,8 +27,6 @@ Pub
 
 ## Quick start
 
-### Common commands
-
 ```bash
 # develop
 npm start
