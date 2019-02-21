@@ -18,8 +18,8 @@ Pub
     <img src="https://travis-ci.com/projectunic0rn/pub.svg" alt="Travis CI">
   </a>
 
-  <a href="https://projectunicorn.net/blog">
-    <img src="https://img.shields.io/badge/website-https://projectunicorn.net/blog-blue.svg" alt="Project Unicorn Blog">
+  <a href="https://projectunic0rn.github.io/pub">
+    <img src="https://img.shields.io/badge/website-https://projectunic0rn.github.io/pub-blue.svg" alt="Project Unicorn Blog">
   </a>
 </p>
 
