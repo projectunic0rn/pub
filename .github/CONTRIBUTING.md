@@ -34,7 +34,7 @@ your blog post.
 
 ### Update blog post frontmatter
 
-Isnide `index.md.example` you will find a section at the top that starts and
+Inside `index.md.example` you will find a section at the top that starts and
 ends with three dashes:
 
 ```md
