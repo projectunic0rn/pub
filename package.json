@@ -2,7 +2,9 @@
   "name": "pub",
   "description": "Project Unicorn Blog",
   "version": "0.1.0",
-  "author": "Rodger Jordas <rmjordas@gmail.com> (https://rmjordas.github.io)",
+  "contributors": [
+    "Rodger Jordas <rmjordas@gmail.com> (https://rmjordas.github.io)"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -13,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rmjordas/pub.git"
+    "url": "git+https://github.com/projectunic0rn/pub.git"
   },
   "keywords": [
     "gatsby",

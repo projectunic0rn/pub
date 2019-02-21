@@ -14,8 +14,8 @@ Pub
 <h3 align="center">Project Unicorn Blog</h3>
 
 <p align="center">
-  <a href="https://travis-ci.com/rmjordas/pub">
-    <img src="https://travis-ci.com/rmjordas/pub.svg" alt="Travis CI">
+  <a href="https://travis-ci.com/projectunic0rn/pub">
+    <img src="https://travis-ci.com/projectunic0rn/pub.svg" alt="Travis CI">
   </a>
 
   <a href="https://projectunicorn.net/blog">

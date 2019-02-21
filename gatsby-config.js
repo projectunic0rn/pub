@@ -3,7 +3,7 @@ module.exports = {
     title: 'Project Unicorn Blog',
     description:
       'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
-    author: '@rmjordas',
+    author: '@projectunicorn2',
   },
   plugins: [
     'gatsby-transformer-yaml',
