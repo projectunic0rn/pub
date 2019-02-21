@@ -48,7 +48,7 @@ your blog post.
 Inside `index.md.example` you will find a section at the top that starts and
 ends with three dashes:
 
-```md
+```markdown
 ---
 title: The Unicorn
 author: rmjordas
@@ -83,7 +83,7 @@ information needed when creating the static page for a single blog post.
 To include images to your blog post, simply place them in the directory you
 created and refer to them using Markdown syntax.
 
-```md
+```markdown
 ## How to add images to your blog post
 
 This is the syntax:
@@ -102,7 +102,7 @@ you put this file inside the same directory but you add a reference to it on the
 frontmatter of your `index.md` file. If you have not provided a value for this
 field, a default image will be used instead.
 
-```md
+```markdown
 ---
 title: The Unicorn
 author: rmjordas
