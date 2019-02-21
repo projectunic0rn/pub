@@ -1,5 +1,5 @@
 exports.slugify = (text) => {
-  if (!text) {
+  if (typeof text !== 'string') {
     throw new Error('Value to slugify must be of type "string"');
   }
 
