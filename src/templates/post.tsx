@@ -18,7 +18,7 @@ export interface Author {
   name: string;
   github: string;
   bio?: string;
-  avatar: {
+  avatar?: {
     childImageSharp: {
       fluid: FluidObject;
     };
@@ -44,7 +44,7 @@ interface BlogPostTemplateProps {
       frontmatter: {
         title: string;
         date: string;
-        tags: string[];
+        tags?: string[];
         author: Author;
         image: {
           childImageSharp: {
