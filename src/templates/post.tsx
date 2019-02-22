@@ -3,15 +3,17 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import Container from '@components/container';
-import Hero from '@components/hero';
-import Layout from '@components/layout';
-import PageBody from '@components/page-body';
-import PostLinks from '@components/post-links';
-import PostMeta from '@components/post-meta';
-import PostTags from '@components/post-tags';
-import Seo from '@components/seo';
-import { site } from '@config/site';
+import {
+  Container,
+  Hero,
+  Layout,
+  PageBody,
+  PostLinks,
+  PostMeta,
+  PostTags,
+  Seo,
+} from '@components';
+import { site } from '@config';
 
 export interface Author {
   id: string;

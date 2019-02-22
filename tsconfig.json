@@ -5,14 +5,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@components": ["./src/components/index"],
       "@components/*": ["./src/components/*"],
+      "@config": ["./src/config/index"],
       "@config/*": ["./src/config/*"],
       "@images/*": ["./src/images/*"],
+      "@pages": ["./src/pages/index"],
       "@pages/*": ["./src/pages/*"],
-      "@styles": ["./src/styles/index.ts"],
+      "@styles": ["./src/styles/index"],
+      "@styles/*": ["./src/styles/*"],
+      "@templates": ["./src/templates/index"],
       "@templates/*": ["./src/templates/*"],
+      "@utils": ["./src/utils/index"],
       "@utils/*": ["./src/utils/*"],
-      "@styled-components": ["./src/styled-components.ts"]
+      "@styled-components": ["./src/styled-components"]
     }
   },
   "include": ["src"]

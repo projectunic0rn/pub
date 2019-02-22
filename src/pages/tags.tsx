@@ -2,12 +2,10 @@ import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
-import Container from '@components/container';
-import Layout from '@components/layout';
-import PageTitle from '@components/page-title';
-import { site } from '@config/site';
+import { Container, Layout, PageTitle } from '@components';
+import { site } from '@config';
 import styled from '@styled-components';
-import { slugify } from '@utils/string-utils';
+import { slugify } from '@utils';
 
 interface Group {
   fieldValue: string;

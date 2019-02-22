@@ -3,12 +3,14 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import Card from '@components/card';
-import CardList from '@components/card-list';
-import Container from '@components/container';
-import Layout from '@components/layout';
-import Pagination from '@components/pagination';
-import Seo from '@components/seo';
+import {
+  Card,
+  CardList,
+  Container,
+  Layout,
+  Pagination,
+  Seo,
+} from '@components';
 
 interface PostNode {
   node: {

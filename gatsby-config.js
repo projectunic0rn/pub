@@ -7,7 +7,6 @@ module.exports = {
     author: '@projectunicorn2',
   },
   plugins: [
-    'gatsby-transformer-yaml',
     {
       resolve: `gatsby-plugin-typography`,
       options: {
@@ -19,6 +18,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content`,
         name: 'content',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
       },
     },
     {
@@ -60,7 +66,7 @@ module.exports = {
           '@components': 'src/components',
           '@images': 'src/images',
           '@pages': 'src/pages',
-          '@styles': 'src/styles/index',
+          '@styles': 'src/styles',
           '@templates': 'src/templates',
           '@utils': 'src/utils',
           '@config': 'src/config',
@@ -72,13 +78,7 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`,
-      },
-    },
+    'gatsby-transformer-yaml',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
