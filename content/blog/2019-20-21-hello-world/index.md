@@ -63,12 +63,12 @@ tags:
 This section is called the _frontmatter_ and it contains the most essential
 information needed when creating the static page for a single blog post.
 
-- **`title`** - Title of you blog post, this will be the text shown inside the
+- **`title`** - Title of your blog post, this will be the text shown inside the
   hero image and it is included in the `<title>` of the HTML document for this
   blog post.
 - **`author`** - A unique id for the author of the blog post. There is an
   additional setup that needs to be done in order for the author details to be
-  properly queried (refer to [Creating an new author](#creating-a-new-author))
+  properly queried (refer to [Creating an new author](#creating-a-new-author)
   section for instructions).
 - **`date`** - The date when the blog post was published. This follows a special
   format: `YYYY-MM-DDTHH:mm:sss+/-TT:TT` where hours (`HH`), minutes (`mm`),
@@ -122,7 +122,7 @@ You must be listed as an author before you post blog posts. In the
 [`author.yaml`][author_yaml]. Here you add an entry with these options:
 
 - **`id`** (Required) - A unique string value for this author entry. These are
-  the rules this value:
+  the rules for this value:
   - May only contain alphanumeric characters or hyphens.
   - Cannot have multiple consecutive hyphens.
   - Cannot begin or end with a hyphen.
@@ -134,7 +134,7 @@ You must be listed as an author before you post blog posts. In the
 - **`avatar`** - The path for the image the the author would like to use as
   their avatar image. Please make sure to add the image file in the
   [`content/assets`][pub_content_assets_dir] directory with the same file name
-  as the`id` above. For example if the author id is `rmjordas`, then the value
+  as the `id` above. For example if the author id is `rmjordas`, then the value
   should be `assets/rmjordas.png`. If you don't provide a value for this option,
   a default avatar image will be used.
 
