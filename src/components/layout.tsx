@@ -6,6 +6,8 @@ import Menu from '@components/menu';
 import { site } from '@config/site';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
+// @ts-ignore
+import favicon from '../../static/favicon.ico';
 
 const Layout: React.FunctionComponent = ({ children }) => (
   <div className="siteRoot">
@@ -13,7 +15,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
       <title>{site.title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      {/* <link rel="icon" href={favicon} /> */}
+      <link rel="icon" href={favicon} />
     </Helmet>
 
     <ThemeProvider theme={theme}>
