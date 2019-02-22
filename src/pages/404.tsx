@@ -13,7 +13,7 @@ const Text = styled.p`
   line-height: 1.6;
 
   a {
-    color: #121212;
+    color: ${({ theme }) => theme.colors.base};
   }
 `;
 

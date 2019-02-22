@@ -24,6 +24,7 @@ const Title = styled.h1<TitleProps>`
   a {
     transition: all 0.2s;
     color: ${({ theme }) => theme.colors.base};
+
     &:hover {
       color: ${({ theme }) => theme.colors.highlight};
     }

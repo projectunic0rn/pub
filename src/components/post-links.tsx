@@ -26,7 +26,7 @@ const Box = styled.div`
 
   a {
     background: transparent;
-    color: ${({ theme }) => theme.colors.highlight};
+    color: ${({ theme }) => theme.colors.base};
     padding: 1em;
     border-radius: 2px;
     text-decoration: none;

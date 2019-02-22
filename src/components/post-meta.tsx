@@ -35,20 +35,25 @@ const Avatar = styled(Img).attrs({ small: false })<
 
 const Body = styled.div`
   flex: 1;
-  color: grey;
+  color: darkslategrey;
 `;
 
 const StyledLink = styled(Link)`
   font-weight: 600;
   font-size: 1.2em;
-  margin: 0 0 0.4em;
+  margin: 0;
   color: ${({ theme }) => theme.colors.base};
   text-decoration: none;
   display: inline-block;
+  transition: 0.2s;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+  }
 `;
 
 const Bio = styled.p`
-  margin: 0.2em 0;
+  margin: 0;
 `;
 
 const PostDate: React.FunctionComponent<PostMetaProps> = ({

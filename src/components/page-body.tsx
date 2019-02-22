@@ -16,32 +16,12 @@ const Body = styled.div`
     text-transform: capitalize;
   }
 
-  p {
-    line-height: 1.5;
-  }
-
   a {
     transition: 0.2s;
     color: ${({ theme }) => theme.colors.base};
 
     &:hover {
       color: ${({ theme }) => theme.colors.highlight};
-    }
-  }
-
-  em {
-    font-style: italic;
-  }
-
-  ul {
-    li {
-      list-style: disc;
-      list-style-position: inside;
-      line-height: 1.25;
-
-      &:last-child {
-        margin: 0;
-      }
     }
   }
 

@@ -21,7 +21,6 @@ const Post = styled.li<PostProps>`
   position: relative;
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
-  padding: 0 0 1rem 0;
   width: 100%;
   transition: background 0.2s;
 
@@ -70,13 +69,13 @@ const Title = styled.h2`
   margin: 1rem 1rem 0.5rem 1rem;
 `;
 
-const Date = styled.h4`
+const Date = styled.p`
   margin: 0 1rem 1.5rem 1rem;
-  color: gray;
+  color: darkslategray;
 `;
 
 const Excerpt = styled.p`
-  margin: 0 1rem 1rem 1rem;
+  padding: 0 1rem 1rem 1rem;
 `;
 
 const Card: React.FunctionComponent<CardProps> = ({

@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   a {
     background: transparent;
     color: ${({ theme }) => theme.colors.base};
-    padding: 1em;
+    padding: 1em 0.8em;
     border-color: ${({ theme }) => theme.colors.highlight};
     border-radius: 2px;
     text-decoration: none;
@@ -51,7 +51,7 @@ const NextLink = styled(Link)`
 `;
 
 const PageIndicator = styled.span`
-  color: gray;
+  color: darkslategray;
   position: absolute;
   left: 0;
   right: 0;

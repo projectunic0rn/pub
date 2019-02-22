@@ -20,6 +20,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.highlight};
   transition: all 0.2s;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
