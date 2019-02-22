@@ -10,12 +10,13 @@ tags:
 
 Welcome unicorn!
 
-Thank you for you interest in this project. To get started publishing blog
-posts, fixing issues or add features, please read first the the instructions
-below.
+Thank you for your interest in this project. To get started publishing blog
+posts, fixing issues or adding new features, please read first the the
+instructions below.
 
 > **WARNING**: This information may be outdated and some links may be broken.
-> Please see the original [Contributing Guide on Pub's repository][pub_repo]
+> Please see the original [Contributing Guide on Pub's repository][pub_repo] for
+> the most recent version
 
 ## Creating blog contents
 
