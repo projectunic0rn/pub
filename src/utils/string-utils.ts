@@ -10,7 +10,7 @@ export function truncate(
     maxLength: 25,
   },
 ) {
-  if (text.length > maxLength) {
+  if (text.length > maxLength && text.length > ellipsis.length) {
     return `${text
       .substr(0, maxLength - ellipsis.length)
       .trimRight()}${ellipsis}`;

@@ -16,8 +16,19 @@ test('Return correct slugged value', () => {
     '-test--d-',
     'test---e',
     't!e@s#t$f',
+    'Test G',
+    'tEstH',
   ].map((v) => slugify(v));
-  const expected = ['test-a', 'testb', 'tes-t-c', 'test-d', 'test-e', 'testf'];
+  const expected = [
+    'test-a',
+    'testb',
+    'tes-t-c',
+    'test-d',
+    'test-e',
+    'testf',
+    'test-g',
+    'testh',
+  ];
 
   expect(actual).toEqual(expect.arrayContaining(expected));
 });
