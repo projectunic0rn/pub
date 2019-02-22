@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '/pub',
+  pathPrefix: '/',
   siteMetadata: {
     title: 'Project Unicorn Blog',
     description:
