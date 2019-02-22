@@ -1,4 +1,4 @@
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
@@ -8,10 +8,6 @@ interface Data {
       fluid: FluidObject;
     };
   };
-}
-
-function renderImg(data: Data) {
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />;
 }
 
 const imageQuery = graphql`
@@ -26,8 +22,10 @@ const imageQuery = graphql`
   }
 `;
 
-const Image: React.FunctionComponent = () => (
-  <StaticQuery query={imageQuery} render={renderImg} />
-);
+const Image: React.FunctionComponent = () => {
+  const { placeholderImage }: Data = useStaticQuery(imageQuery);
+
+  return <Img fluid={placeholderImage.childImageSharp.fluid} />;
+};
 
 export default Image;
