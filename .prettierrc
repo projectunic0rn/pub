@@ -7,12 +7,12 @@
   "bracketSpacing": true,
   "semi": true,
   "useTabs": false,
+  "endOfLine": "lf",
+  "jsxSingleQuote": false,
   "overrides": [
     {
       "files": "*.md",
-      "options": {
-        "parser": "markdown"
-      }
+      "options": { "parser": "markdown" }
     }
   ]
 }
