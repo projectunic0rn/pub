@@ -12,10 +12,15 @@ interface Data {
   };
 }
 
+interface Meta {
+  content: string;
+  name: string;
+}
+
 interface SeoProps {
   description?: string;
   lang?: string;
-  meta?: any[];
+  meta?: Meta[];
   keywords?: string[];
   title: string;
 }
@@ -34,9 +39,9 @@ const detailsQuery = graphql`
 
 const Seo: React.FunctionComponent<SeoProps> = ({
   description,
-  keywords,
-  lang,
-  meta,
+  keywords = [],
+  lang = 'en',
+  meta = [],
   title,
 }) => {
   const { site }: Data = useStaticQuery(detailsQuery);
@@ -93,12 +98,6 @@ const Seo: React.FunctionComponent<SeoProps> = ({
         .concat(meta)}
     />
   );
-};
-
-Seo.defaultProps = {
-  keywords: [],
-  lang: 'en',
-  meta: [],
 };
 
 export default Seo;

@@ -56,7 +56,9 @@ const ListItem = styled.li`
 
 const activeLinkStyle = {};
 
-const Menu: React.FunctionComponent<MenuProps> = ({ siteTitle }) => (
+const Menu: React.FunctionComponent<MenuProps> = ({
+  siteTitle = site.title,
+}) => (
   <Wrapper>
     <Nav>
       <List>
@@ -79,9 +81,5 @@ const Menu: React.FunctionComponent<MenuProps> = ({ siteTitle }) => (
     </Nav>
   </Wrapper>
 );
-
-Menu.defaultProps = {
-  siteTitle: site.title,
-};
 
 export default Menu;

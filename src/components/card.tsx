@@ -83,7 +83,7 @@ const Card: React.FunctionComponent<CardProps> = ({
   title,
   publishDate,
   excerpt,
-  featured,
+  featured = false,
   fluid,
 }) => (
   <Post featured={featured}>
@@ -95,9 +95,5 @@ const Card: React.FunctionComponent<CardProps> = ({
     </Link>
   </Post>
 );
-
-Card.defaultProps = {
-  featured: false,
-};
 
 export default Card;
