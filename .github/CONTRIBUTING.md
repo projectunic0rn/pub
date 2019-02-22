@@ -37,7 +37,7 @@ your blog post.
 Inside `index.md.example` you will find a section at the top that starts and
 ends with three dashes:
 
-```md
+```markdown
 ---
 title: The Unicorn
 author: rmjordas
@@ -57,7 +57,7 @@ information needed when creating the static page for a single blog post.
   blog post.
 - **`author`** - A unique id for the author of the blog post. There is an
   additional setup that needs to be done in order for the author details to be
-  properly queried (refer to [Creating an new author](#creating-a-new-author)
+  properly queried (refer to [Creating a new author](#creating-a-new-author)
   section for instructions).
 - **`date`** - The date when the blog post was published. This follows a special
   format: `YYYY-MM-DDTHH:mm:sss+/-TT:TT` where hours (`HH`), minutes (`mm`),
@@ -99,7 +99,7 @@ field, a default image will be used instead.
 ---
 title: The Unicorn
 author: rmjordas
-date: '2012-12-12T21:12:12.12Z'
+date: '2012-12-12'
 image: ./unicorn-banner.jpg
 ---
 
@@ -110,17 +110,17 @@ Text goes here
 
 ### Add an author
 
-You must be listed as an author before you post blog posts. In the
+You must be listed as an author before you can post. In the
 [`content`](content/) directory, there is a file called
 [`author.yaml`](content/author.yaml). Here you add an entry with these options:
 
 - **`id`** (Required) - A unique string value for this author entry. These are
   the rules for this value:
-  - May only contain alphanumeric characters or hyphens.
-  - Cannot have multiple consecutive hyphens.
-  - Cannot begin or end with a hyphen.
-  - Maximum is 39 characters.
-- **`name`** (Required) - The author's display name for blog posts.
+  - May only contain alphanumeric characters or hyphens
+  - Cannot have multiple consecutive hyphens
+  - Cannot begin or end with a hyphen
+  - Maximum is 39 characters
+- **`name`** (Required) - The author's display name
 - **`bio`** - Short description of the author
 - **`github`** - The author's GitHub username
 - **`twitter`** - The author's Twitter username
@@ -160,8 +160,6 @@ git version 2.19.1.windows.1
 ```
 
 You should see something similar to the output above.
-
-## Instructions
 
 ### Clone to your machine
 
@@ -248,3 +246,7 @@ Make and commit your changes. Make sure the commands `npm run build` and
 Send a pull request and include a short summary of your changes.
 
 > [About Pull Requests](https://help.github.com/articles/about-pull-requests/)
+
+### Contributing Details
+
+_TODO_
