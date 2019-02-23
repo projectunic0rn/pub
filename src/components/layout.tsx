@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 
 import { Footer, Menu } from '@components';
 import { site } from '@config';
-// @ts-ignore
 import favicon from '@static/favicon.ico';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';

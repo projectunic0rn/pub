@@ -2,7 +2,6 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import { site } from '@config';
-// @ts-ignore
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 

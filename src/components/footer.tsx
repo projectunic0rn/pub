@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-// @ts-ignore
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 
