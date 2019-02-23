@@ -18,6 +18,7 @@
       "@templates/*": ["./src/templates/*"],
       "@utils": ["./src/utils/index"],
       "@utils/*": ["./src/utils/*"],
+      "@static/*": ["./static/*"],
       "@styled-components": ["./src/styled-components"]
     }
   },

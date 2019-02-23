@@ -39,6 +39,7 @@
         "@styles",
         "@templates",
         "@utils",
+        "@static",
         "@styled-components"
       ]
     ]

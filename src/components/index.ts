@@ -5,6 +5,7 @@ export { default as Footer } from './footer';
 export { default as Hero } from './hero';
 export { default as Image } from './image';
 export { default as Layout } from './layout';
+export { default as Menu } from './menu';
 export { default as PageBody } from './page-body';
 export { default as PageTitle } from './page-title';
 export { default as Pagination } from './pagination';

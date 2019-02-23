@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
-import { slugify } from '@utils/string-utils';
+import { slugify } from '@utils';
 
 interface PostTagsProps {
   tags: string[];

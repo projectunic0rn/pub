@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import Footer from '@components/footer';
-import Menu from '@components/menu';
-import { site } from '@config/site';
+import { Footer, Menu } from '@components';
+import { site } from '@config';
+// @ts-ignore
+import favicon from '@static/favicon.ico';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
-// @ts-ignore
-import favicon from '../../static/favicon.ico';
 
 const Layout: React.FunctionComponent = ({ children }) => (
   <div className="siteRoot">

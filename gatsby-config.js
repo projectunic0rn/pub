@@ -71,6 +71,7 @@ module.exports = {
           '@utils': 'src/utils',
           '@config': 'src/config',
           '@styled-components': 'src/styled-components',
+          '@static': 'static',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
       },
