@@ -1,13 +1,8 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { site } from '@config';
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
-
-interface MenuProps {
-  siteTitle?: string;
-}
 
 const Wrapper = styled.header`
   background: white
@@ -55,9 +50,7 @@ const ListItem = styled.li`
 
 const activeLinkStyle = {};
 
-const Menu: React.FunctionComponent<MenuProps> = ({
-  siteTitle = site.title,
-}) => (
+const Menu: React.FunctionComponent = () => (
   <Wrapper>
     <Nav>
       <List>

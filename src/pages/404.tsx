@@ -1,6 +1,5 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import { Container, Layout, PageTitle, Seo } from '@components';
 import styled from '@styled-components';
@@ -16,11 +15,7 @@ const Text = styled.p`
 
 const NotFoundPage: React.FunctionComponent = () => (
   <Layout>
-    <Seo title="Page not found" />
-    <Helmet>
-      <title>404 | Page Not Found</title>
-      <meta name="description" content="Page not found" />
-    </Helmet>
+    <Seo title="Page not found" description="Page not found" />
 
     <Container>
       <PageTitle>Page Not Found</PageTitle>

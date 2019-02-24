@@ -1,10 +1,10 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    title: 'Project Unicorn Blog',
+    title: 'Project Unicorn',
     description:
       'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
-    author: '@projectunicorn2',
+    twitter: '@projectunicorn2',
   },
   plugins: [
     {

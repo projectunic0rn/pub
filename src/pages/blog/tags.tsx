@@ -1,8 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
 
-import { Container, Layout, PageTitle } from '@components';
+import { Container, Layout, PageTitle, Seo } from '@components';
 import { site } from '@config';
 import styled from '@styled-components';
 import { slugify } from '@utils';
@@ -61,20 +60,16 @@ const Tag = styled.li`
   }
 `;
 
-const title = 'Tags';
-
 const TagsPage: React.FunctionComponent<TagsPageProps> = ({
   data: {
     allMarkdownRemark: { group },
   },
 }) => (
   <Layout>
-    <Helmet>
-      <title>{`${title} - ${site.title}`}</title>
-    </Helmet>
+    <Seo title={`Tags - ${site.title}`} />
 
     <Container>
-      <PageTitle>{title}</PageTitle>
+      <PageTitle>Tags</PageTitle>
 
       <List>
         {group.map(({ fieldValue, totalCount }) => (

@@ -1,4 +1,4 @@
 export const site = {
-  title: 'Project Unicorn Blog',
+  title: 'Project Unicorn',
   url: 'https://projectunicorn.net/',
 };

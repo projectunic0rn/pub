@@ -32,6 +32,7 @@ interface BlogPostTemplateProps {
     site: {
       siteMetadata: {
         title: string;
+        twitter: string;
       };
     };
     file: {
@@ -67,7 +68,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        author
+        twitter
       }
     }
     file(relativePath: { eq: "default-post-image.jpg" }) {

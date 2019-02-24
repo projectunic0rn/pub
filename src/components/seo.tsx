@@ -7,7 +7,7 @@ interface Data {
     siteMetadata: {
       title: string;
       description: string;
-      author: string;
+      twitter: string;
     };
   };
 }
@@ -31,7 +31,7 @@ const detailsQuery = graphql`
       siteMetadata {
         title
         description
-        author
+        twitter
       }
     }
   }
@@ -75,7 +75,7 @@ const Seo: React.FunctionComponent<SeoProps> = ({
           name: 'twitter:card',
         },
         {
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.twitter,
           name: 'twitter:creator',
         },
         {

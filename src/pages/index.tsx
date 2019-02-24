@@ -1,6 +1,7 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 
+import { Seo } from '@components';
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 
@@ -9,7 +10,6 @@ interface Data {
     siteMetadata: {
       title: string;
       description: string;
-      author: string;
     };
   };
 }
@@ -20,13 +20,12 @@ const siteQuery = graphql`
       siteMetadata {
         title
         description
-        author
       }
     }
   }
 `;
 
-const Intro = styled.div`
+const Wrapper = styled.div`
   align-items: center;
   background-color: #ededed;
   display: flex;
@@ -41,7 +40,7 @@ const Inner = styled.div`
   text-align: center;
 `;
 
-const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Uniorn' })`
+const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
   margin: 0 auto;
   width: 100%;
   max-width: 20em;
@@ -59,7 +58,9 @@ const IndexPage: React.FunctionComponent = () => {
   const { site }: Data = useStaticQuery(siteQuery);
 
   return (
-    <Intro>
+    <Wrapper>
+      <Seo title="Home" />
+
       <Inner>
         <Logo />
         <Subtitle>{site.siteMetadata.description}</Subtitle>
@@ -72,7 +73,7 @@ const IndexPage: React.FunctionComponent = () => {
           GitHub
         </a>
       </Inner>
-    </Intro>
+    </Wrapper>
   );
 };
 

@@ -34,7 +34,7 @@ interface BlogTemplateProps {
   data: {
     site: {
       siteMetadata: {
-        siteName: string;
+        title: string;
       };
     };
     file: {
@@ -106,7 +106,7 @@ const BlogTemplate: React.FunctionComponent<BlogTemplateProps> = ({
 
   return (
     <Layout>
-      <Seo title="Home" keywords={['blog', 'gatsby', 'typescript', 'react']} />
+      <Seo title="Blog" />
 
       {!isFirstPage && (
         <Helmet>
