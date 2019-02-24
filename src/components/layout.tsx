@@ -4,14 +4,26 @@ import Helmet from 'react-helmet';
 import { Footer, Menu } from '@components';
 import { useSiteMetadata } from '@hooks';
 import favicon from '@static/favicon.ico';
-import { ThemeProvider } from '@styled-components';
+import styled, { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
+
+const Root = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+`;
 
 const Layout: React.FunctionComponent = ({ children }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <div className="siteRoot">
+    <Root>
       <Helmet>
         <title>{siteMetadata.title}</title>
         <meta charSet="utf-8" />
@@ -21,17 +33,17 @@ const Layout: React.FunctionComponent = ({ children }) => {
 
       <ThemeProvider theme={theme}>
         <React.Fragment>
-          <div className="siteContent">
+          <Content>
             <Menu />
             {children}
-          </div>
+          </Content>
 
           <Footer />
         </React.Fragment>
       </ThemeProvider>
 
       <GlobalStyle />
-    </div>
+    </Root>
   );
 };
 

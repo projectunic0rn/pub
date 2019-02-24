@@ -5,18 +5,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  .siteRoot {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .siteContent {
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 auto;
-  }
-
   footer {
     width: 100%;
   }
