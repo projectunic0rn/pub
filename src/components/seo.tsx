@@ -1,16 +1,7 @@
-import { graphql, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-interface Data {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-      twitter: string;
-    };
-  };
-}
+import { useSiteMetadata } from '@hooks';
 
 interface Meta {
   content: string;
@@ -25,18 +16,6 @@ interface SeoProps {
   title: string;
 }
 
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        twitter
-      }
-    }
-  }
-`;
-
 const Seo: React.FunctionComponent<SeoProps> = ({
   description,
   keywords = [],
@@ -44,15 +23,14 @@ const Seo: React.FunctionComponent<SeoProps> = ({
   meta = [],
   title,
 }) => {
-  const { site }: Data = useStaticQuery(detailsQuery);
-
-  const metaDescription = description || site.siteMetadata.description;
+  const siteMetadata = useSiteMetadata();
+  const metaDescription = description || siteMetadata.description;
 
   return (
     <Helmet
       htmlAttributes={{ lang }}
       title={title}
-      titleTemplate={`%s - ${site.siteMetadata.title}`}
+      titleTemplate={`%s - ${siteMetadata.title}`}
       meta={[
         {
           content: metaDescription,
@@ -75,7 +53,7 @@ const Seo: React.FunctionComponent<SeoProps> = ({
           name: 'twitter:card',
         },
         {
-          content: site.siteMetadata.twitter,
+          content: siteMetadata.twitter,
           name: 'twitter:creator',
         },
         {

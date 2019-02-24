@@ -4,6 +4,7 @@ module.exports = {
     title: 'Project Unicorn',
     description:
       'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
+    url: 'https://projectunicorn.net',
     twitter: '@projectunicorn2',
   },
   plugins: [
@@ -69,8 +70,8 @@ module.exports = {
           '@styles': 'src/styles',
           '@templates': 'src/templates',
           '@utils': 'src/utils',
-          '@config': 'src/config',
           '@styled-components': 'src/styled-components',
+          '@hooks': 'src/hooks',
           '@static': 'static',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],

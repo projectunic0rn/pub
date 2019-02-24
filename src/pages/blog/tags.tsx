@@ -2,7 +2,6 @@ import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
 import { Container, Layout, PageTitle, Seo } from '@components';
-import { site } from '@config';
 import styled from '@styled-components';
 import { slugify } from '@utils';
 
@@ -66,7 +65,7 @@ const TagsPage: React.FunctionComponent<TagsPageProps> = ({
   },
 }) => (
   <Layout>
-    <Seo title={`Tags - ${site.title}`} />
+    <Seo title="Tags" />
 
     <Container>
       <PageTitle>Tags</PageTitle>

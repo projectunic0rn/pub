@@ -11,6 +11,7 @@ import {
   Pagination,
   Seo,
 } from '@components';
+import { useSiteMetadata } from '@hooks';
 
 interface PostNode {
   node: {
@@ -32,11 +33,6 @@ interface PostNode {
 
 interface BlogTemplateProps {
   data: {
-    site: {
-      siteMetadata: {
-        title: string;
-      };
-    };
     file: {
       childImageSharp: {
         fluid: FluidObject;
@@ -56,11 +52,6 @@ interface BlogTemplateProps {
 
 export const pageQuery = graphql`
   query($skip: Int!, $limit: Int!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     file(relativePath: { eq: "default-post-image.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1800) {
@@ -100,6 +91,7 @@ const BlogTemplate: React.FunctionComponent<BlogTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
@@ -110,7 +102,7 @@ const BlogTemplate: React.FunctionComponent<BlogTemplateProps> = ({
 
       {!isFirstPage && (
         <Helmet>
-          <title>{`Page ${currentPage}`}</title>
+          <title>{`Page ${currentPage} - ${siteMetadata.title}`}</title>
         </Helmet>
       )}
 

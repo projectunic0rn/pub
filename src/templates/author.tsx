@@ -11,7 +11,7 @@ import {
   PageTitle,
   Pagination,
 } from '@components';
-import { site } from '@config';
+import { useSiteMetadata } from '@hooks';
 
 interface PostNode {
   node: {
@@ -98,6 +98,7 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { authorName, slug, totalPosts, currentPage } = pageContext;
   const numberOfPosts = posts.length;
@@ -107,34 +108,34 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
     <Layout>
       {isFirstPage ? (
         <Helmet>
-          <title>{`Author: "${authorName}" - ${site.title}`}</title>
+          <title>{`Author: "${authorName}" - ${siteMetadata.title}`}</title>
 
           <meta
             property="og:title"
-            content={`Author: "${authorName}" - ${site.title}`}
+            content={`Author: "${authorName}" - ${siteMetadata.title}`}
           />
 
           <meta
             property="og:url"
-            content={`${site.url}/blog/author/${slug}/`}
+            content={`${siteMetadata.url}/blog/author/${slug}/`}
           />
         </Helmet>
       ) : (
         <Helmet>
           <title>{`Author: "${authorName}" - Page ${currentPage} - ${
-            site.title
+            siteMetadata.title
           }`}</title>
 
           <meta
             property="og:title"
             content={`Author: "${authorName}" - Page ${currentPage} - ${
-              site.title
+              siteMetadata.title
             }`}
           />
 
           <meta
             property="og:url"
-            content={`${site.url}/blog/author/${slug}/`}
+            content={`${siteMetadata.url}/blog/author/${slug}/`}
           />
         </Helmet>
       )}

@@ -31,16 +31,16 @@
     "no-implicit-dependencies": [
       true,
       [
-        "@",
         "@components",
-        "@config",
         "@images",
         "@pages",
         "@styles",
         "@templates",
         "@utils",
         "@static",
-        "@styled-components"
+        "@hooks",
+        "@styled-components",
+        "@"
       ]
     ]
   },

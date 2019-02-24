@@ -4,11 +4,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
       "@components": ["./src/components/index"],
       "@components/*": ["./src/components/*"],
-      "@config": ["./src/config/index"],
-      "@config/*": ["./src/config/*"],
       "@images/*": ["./src/images/*"],
       "@pages": ["./src/pages/index"],
       "@pages/*": ["./src/pages/*"],
@@ -18,8 +15,11 @@
       "@templates/*": ["./src/templates/*"],
       "@utils": ["./src/utils/index"],
       "@utils/*": ["./src/utils/*"],
+      "@hooks": ["./src/hooks/index"],
+      "@hooks/*": ["./src/hooks/*"],
       "@static/*": ["./static/*"],
-      "@styled-components": ["./src/styled-components"]
+      "@styled-components": ["./src/styled-components"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

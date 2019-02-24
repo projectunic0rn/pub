@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import {
   Container,
@@ -13,7 +12,6 @@ import {
   PostTags,
   Seo,
 } from '@components';
-import { site } from '@config';
 
 export interface Author {
   id: string;
@@ -29,12 +27,6 @@ export interface Author {
 
 interface BlogPostTemplateProps {
   data: {
-    site: {
-      siteMetadata: {
-        title: string;
-        twitter: string;
-      };
-    };
     file: {
       childImageSharp: {
         fluid: FluidObject;
@@ -65,12 +57,6 @@ interface BlogPostTemplateProps {
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        twitter
-      }
-    }
     file(relativePath: { eq: "default-post-image.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1800) {
@@ -122,7 +108,6 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
 
   return (
     <Layout>
-      <Helmet>{`${title} - ${site.title}`}</Helmet>
       <Seo title={title} description={post.excerpt} />
 
       <Hero

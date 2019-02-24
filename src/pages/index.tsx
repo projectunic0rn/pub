@@ -1,29 +1,10 @@
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import * as React from 'react';
 
 import { Seo } from '@components';
+import { useSiteMetadata } from '@hooks';
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
-
-interface Data {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-    };
-  };
-}
-
-const siteQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-  }
-`;
 
 const Wrapper = styled.div`
   align-items: center;
@@ -55,7 +36,7 @@ const Subtitle = styled.p`
 `;
 
 const IndexPage: React.FunctionComponent = () => {
-  const { site }: Data = useStaticQuery(siteQuery);
+  const siteMetadata = useSiteMetadata();
 
   return (
     <Wrapper>
@@ -63,7 +44,7 @@ const IndexPage: React.FunctionComponent = () => {
 
       <Inner>
         <Logo />
-        <Subtitle>{site.siteMetadata.description}</Subtitle>
+        <Subtitle>{siteMetadata.description}</Subtitle>
         <Link to="/blog">Blog</Link> |{' '}
         <a
           href="https://github.com/projectunic0rn"

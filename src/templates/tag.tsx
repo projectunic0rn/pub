@@ -11,7 +11,7 @@ import {
   PageTitle,
   Pagination,
 } from '@components';
-import { site } from '@config';
+import { useSiteMetadata } from '@hooks';
 
 interface PostNode {
   node: {
@@ -97,6 +97,7 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { tag: title, slug, totalPosts, currentPage } = pageContext;
   const numberOfPosts = posts.length;
@@ -106,27 +107,35 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
     <Layout>
       {isFirstPage ? (
         <Helmet>
-          <title>{`Tag: "${title}" - ${site.title}`}</title>
+          <title>{`Tag: "${title}" - ${siteMetadata.title}`}</title>
 
           <meta
             property="og:title"
-            content={`Tag: "${title}" - ${site.title}`}
+            content={`Tag: "${title}" - ${siteMetadata.title}`}
           />
 
-          <meta property="og:url" content={`${site.url}/blog/tag/${slug}/`} />
+          <meta
+            property="og:url"
+            content={`${siteMetadata.url}/blog/tag/${slug}/`}
+          />
         </Helmet>
       ) : (
         <Helmet>
           <title>{`Tag: "${title}" - Page ${currentPage} - ${
-            site.title
+            siteMetadata.title
           }`}</title>
 
           <meta
             property="og:title"
-            content={`Tag: "${title}" - Page ${currentPage} - ${site.title}`}
+            content={`Tag: "${title}" - Page ${currentPage} - ${
+              siteMetadata.title
+            }`}
           />
 
-          <meta property="og:url" content={`${site.url}/blog/tag/${slug}/`} />
+          <meta
+            property="og:url"
+            content={`${siteMetadata.url}/blog/tag/${slug}/`}
+          />
         </Helmet>
       )}
 
