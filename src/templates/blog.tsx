@@ -30,7 +30,7 @@ interface PostNode {
   };
 }
 
-interface IndexTemplateProps {
+interface BlogTemplateProps {
   data: {
     site: {
       siteMetadata: {
@@ -96,7 +96,7 @@ export const pageQuery = graphql`
   }
 `;
 
-const IndexTemplate: React.FunctionComponent<IndexTemplateProps> = ({
+const BlogTemplate: React.FunctionComponent<BlogTemplateProps> = ({
   data,
   pageContext,
 }) => {
@@ -134,9 +134,9 @@ const IndexTemplate: React.FunctionComponent<IndexTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination context={pageContext} />
+      <Pagination prefix="blog" context={pageContext} />
     </Layout>
   );
 };
 
-export default IndexTemplate;
+export default BlogTemplate;

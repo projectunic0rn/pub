@@ -66,7 +66,7 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
   context,
   prefix,
 }) => {
-  const { numPages, currentPage, slug } = context;
+  const { numPages, currentPage } = context;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
   const isNotPaginated = isFirst && isLast;
@@ -74,10 +74,9 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
   const prevPageNum = currentPage - 1 === 1 ? `` : currentPage - 1;
   const nextPageNum = currentPage + 1;
 
-  const pathPrefix =
-    typeof slug === 'string' ? `${prefix ? `/${prefix}/` : '/'}${slug}` : '';
-  const prevPageLink = isFirst ? null : `${pathPrefix}/${prevPageNum}/`;
-  const nextPageLink = isLast ? null : `${pathPrefix}/${nextPageNum}/`;
+  const pathPrefix = prefix ? `/${prefix}/` : '/';
+  const prevPageLink = isFirst ? null : `${pathPrefix}${prevPageNum}/`;
+  const nextPageLink = isLast ? null : `${pathPrefix}${nextPageNum}/`;
 
   return (
     <Wrapper>

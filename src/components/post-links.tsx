@@ -8,6 +8,7 @@ interface PostNode {
 }
 
 interface PostLinksProps {
+  prefix: string;
   previous: PostNode;
   next: PostNode;
 }
@@ -50,21 +51,29 @@ const NextLink = styled(Link)`
 `;
 
 const PostLinks: React.FunctionComponent<PostLinksProps> = ({
+  prefix,
   previous,
   next,
-}) => (
-  <Wrapper>
-    <Box>
-      {previous && (
-        <PreviousLink to={`/${previous.fields.slug}/`}>
-          &#8592; Prev Post
-        </PreviousLink>
-      )}
-      {next && (
-        <NextLink to={`/${next.fields.slug}/`}>Next Post &#8594;</NextLink>
-      )}
-    </Box>
-  </Wrapper>
-);
+}) => {
+  const linkPrefix = prefix ? `${prefix}/` : '';
+
+  return (
+    <Wrapper>
+      <Box>
+        {previous && (
+          <PreviousLink to={`/${linkPrefix}${previous.fields.slug}/`}>
+            &#8592; Prev Post
+          </PreviousLink>
+        )}
+
+        {next && (
+          <NextLink to={`/${linkPrefix}${next.fields.slug}/`}>
+            Next Post &#8594;
+          </NextLink>
+        )}
+      </Box>
+    </Wrapper>
+  );
+};
 
 export default PostLinks;

@@ -64,7 +64,7 @@ const PostDate: React.FunctionComponent<PostMetaProps> = ({
     {avatar && <Avatar fluid={avatar.childImageSharp.fluid} />}
 
     <Body>
-      <StyledLink to={`/author/${id}`}>{name} </StyledLink>
+      <StyledLink to={`/blog/author/${id}`}>{name} </StyledLink>
       <Bio>{bio}</Bio>
       Published on {date}
     </Body>

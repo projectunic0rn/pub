@@ -114,7 +114,10 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
             content={`Author: "${authorName}" - ${site.title}`}
           />
 
-          <meta property="og:url" content={`${site.url}/author/${slug}/`} />
+          <meta
+            property="og:url"
+            content={`${site.url}/blog/author/${slug}/`}
+          />
         </Helmet>
       ) : (
         <Helmet>
@@ -129,7 +132,10 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
             }`}
           />
 
-          <meta property="og:url" content={`${site.url}/author/${slug}/`} />
+          <meta
+            property="og:url"
+            content={`${site.url}/blog/author/${slug}/`}
+          />
         </Helmet>
       )}
 
@@ -158,7 +164,7 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination prefix="author" context={pageContext} />
+      <Pagination prefix="blog/author" context={pageContext} />
     </Layout>
   );
 };

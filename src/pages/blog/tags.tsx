@@ -20,6 +20,17 @@ interface TagsPageProps {
   };
 }
 
+export const pageQuery = graphql`
+  query {
+    allMarkdownRemark(limit: 2000) {
+      group(field: frontmatter___tags) {
+        fieldValue
+        totalCount
+      }
+    }
+  }
+`;
+
 const List = styled.ul`
   width: 100%;
   margin: 0 auto 1em auto;
@@ -68,7 +79,7 @@ const TagsPage: React.FunctionComponent<TagsPageProps> = ({
       <List>
         {group.map(({ fieldValue, totalCount }) => (
           <Tag key={fieldValue}>
-            <Link to={`/tag/${slugify(fieldValue)}/`}>
+            <Link to={`/blog/tag/${slugify(fieldValue)}/`}>
               {fieldValue} ({totalCount})
             </Link>
           </Tag>
@@ -77,16 +88,5 @@ const TagsPage: React.FunctionComponent<TagsPageProps> = ({
     </Container>
   </Layout>
 );
-
-export const pageQuery = graphql`
-  query {
-    allMarkdownRemark(limit: 2000) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
-    }
-  }
-`;
 
 export default TagsPage;

@@ -41,7 +41,7 @@ const PostTags: React.FunctionComponent<PostTagsProps> = ({ tags }) => (
   <List>
     {tags.map((tag) => (
       <Tag key={tag}>
-        <Link to={`/tag/${slugify(tag)}/`}>{tag}</Link>
+        <Link to={`/blog/tag/${slugify(tag)}/`}>{tag}</Link>
       </Tag>
     ))}
   </List>

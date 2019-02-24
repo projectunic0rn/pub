@@ -138,7 +138,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
         {tags && <PostTags tags={tags} />}
       </Container>
 
-      <PostLinks previous={previous} next={next} />
+      <PostLinks prefix="blog" previous={previous} next={next} />
     </Layout>
   );
 };

@@ -87,7 +87,7 @@ const Card: React.FunctionComponent<CardProps> = ({
   fluid,
 }) => (
   <Post featured={featured}>
-    <Link to={`/${slug}/`}>
+    <Link to={`/blog/${slug}/`}>
       <Img fluid={fluid} backgroundColor="#eeeeee" />
       <Title>{title}</Title>
       <Date>{publishDate}</Date>

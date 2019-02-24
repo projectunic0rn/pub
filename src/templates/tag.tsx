@@ -113,7 +113,7 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
             content={`Tag: "${title}" - ${site.title}`}
           />
 
-          <meta property="og:url" content={`${site.url}/tag/${slug}/`} />
+          <meta property="og:url" content={`${site.url}/blog/tag/${slug}/`} />
         </Helmet>
       ) : (
         <Helmet>
@@ -126,7 +126,7 @@ const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
             content={`Tag: "${title}" - Page ${currentPage} - ${site.title}`}
           />
 
-          <meta property="og:url" content={`${site.url}/tag/${slug}/`} />
+          <meta property="og:url" content={`${site.url}/blog/tag/${slug}/`} />
         </Helmet>
       )}
 

@@ -72,7 +72,7 @@ const Menu: React.FunctionComponent<MenuProps> = ({
         </ListItem>
 
         <ListItem>
-          <StyledLink to="/tags/" activeStyle={activeLinkStyle}>
+          <StyledLink to="/blog/tags/" activeStyle={activeLinkStyle}>
             Tags
           </StyledLink>
         </ListItem>
