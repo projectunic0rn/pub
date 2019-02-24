@@ -9,19 +9,21 @@ interface Meta {
 }
 
 interface SeoProps {
+  title: string;
   description?: string;
+  keywords?: string[];
   lang?: string;
   meta?: Meta[];
-  keywords?: string[];
-  title: string;
+  twitter?: string;
 }
 
 const Seo: React.FunctionComponent<SeoProps> = ({
+  title,
   description,
   keywords = [],
   lang = 'en',
   meta = [],
-  title,
+  twitter,
 }) => {
   const siteMetadata = useSiteMetadata();
   const metaDescription = description || siteMetadata.description;
@@ -53,7 +55,7 @@ const Seo: React.FunctionComponent<SeoProps> = ({
           name: 'twitter:card',
         },
         {
-          content: siteMetadata.twitter,
+          content: twitter || siteMetadata.twitter,
           name: 'twitter:creator',
         },
         {

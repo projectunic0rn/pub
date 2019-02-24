@@ -17,6 +17,7 @@ export interface Author {
   id: string;
   name: string;
   github: string;
+  twitter?: string;
   bio?: string;
   avatar?: {
     childImageSharp: {
@@ -77,6 +78,7 @@ export const pageQuery = graphql`
           name
           bio
           github
+          twitter
           avatar {
             childImageSharp {
               fluid(maxWidth: 1800) {
@@ -108,7 +110,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
 
   return (
     <Layout>
-      <Seo title={title} description={post.excerpt} />
+      <Seo title={title} description={post.excerpt} twitter={author.twitter} />
 
       <Hero
         title={title}
