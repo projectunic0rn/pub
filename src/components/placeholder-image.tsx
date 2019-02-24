@@ -10,7 +10,7 @@ interface Data {
   };
 }
 
-const imageQuery = graphql`
+const placeholderImageQuery = graphql`
   query {
     placeholderImage: file(relativePath: { eq: "unicorn-icon.png" }) {
       childImageSharp {
@@ -22,10 +22,10 @@ const imageQuery = graphql`
   }
 `;
 
-const Image: React.FunctionComponent = () => {
-  const { placeholderImage }: Data = useStaticQuery(imageQuery);
+const PlaceholderImage: React.FunctionComponent = () => {
+  const { placeholderImage }: Data = useStaticQuery(placeholderImageQuery);
 
   return <Img fluid={placeholderImage.childImageSharp.fluid} />;
 };
 
-export default Image;
+export default PlaceholderImage;

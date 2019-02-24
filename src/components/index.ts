@@ -3,7 +3,7 @@ export { default as Card } from './card';
 export { default as Container } from './container';
 export { default as Footer } from './footer';
 export { default as Hero } from './hero';
-export { default as Image } from './image';
+export { default as PlaceholderImage } from './placeholder-image';
 export { default as Layout } from './layout';
 export { default as Menu } from './menu';
 export { default as PageBody } from './page-body';
