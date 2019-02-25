@@ -5,9 +5,9 @@
     "msjsdiag.debugger-for-chrome",
     "mikestead.dotenv",
     "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
     "prisma.vscode-graphql",
     "esbenp.prettier-vscode",
-    "ms-vscode.vscode-typescript-tslint-plugin",
     "jpoissonnier.vscode-styled-components"
   ]
 }
