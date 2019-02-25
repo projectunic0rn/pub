@@ -58,7 +58,7 @@ const Bio = styled.p`
 
 const PostDate: React.FunctionComponent<PostMetaProps> = ({
   date,
-  author: { avatar, bio, github, id, name },
+  author: { avatar, bio, id, name },
 }) => (
   <Wrapper>
     {avatar && <Avatar fluid={avatar.childImageSharp.fluid} />}

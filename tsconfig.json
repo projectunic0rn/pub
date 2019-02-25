@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "plugins": [{ "name": "typescript-tslint-plugin" }],
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
@@ -22,5 +30,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "public", ".cache"]
 }

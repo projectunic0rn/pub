@@ -13,6 +13,10 @@ import {
   Seo,
 } from '@components';
 
+interface PostNode {
+  fields: { slug: string };
+}
+
 export interface Author {
   id: string;
   name: string;
@@ -51,8 +55,8 @@ interface BlogPostTemplateProps {
     };
   };
   pageContext: {
-    previous: any;
-    next: any;
+    previous: PostNode;
+    next: PostNode;
   };
 }
 
@@ -78,7 +82,6 @@ export const pageQuery = graphql`
           name
           bio
           github
-          twitter
           avatar {
             childImageSharp {
               fluid(maxWidth: 1800) {

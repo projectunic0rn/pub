@@ -5,7 +5,7 @@ import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
 
 const Wrapper = styled.header`
-  background: white
+  background: white;
   width: 100%;
   padding: 1em 0;
 `;

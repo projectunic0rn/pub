@@ -86,13 +86,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        /* eslint-disable @typescript-eslint/camelcase */
         name: 'Project Unicorn Blog',
         short_name: 'pub',
         start_url: '/',
         background_color: '#ffffff',
         theme_color: '#ffffff',
         display: 'minimal-ui',
-        icon: 'src/images/unicorn-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/unicorn-icon.png',
+        /* eslint-enable @typescript-eslint/camelcase */
       },
     },
     'gatsby-plugin-offline',

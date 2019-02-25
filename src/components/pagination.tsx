@@ -66,7 +66,7 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
   context,
   prefix,
 }) => {
-  const { numPages, currentPage } = context;
+  const { numPages, currentPage = 1 } = context;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
   const isNotPaginated = isFirst && isLast;
@@ -80,15 +80,19 @@ const Pagination: React.FunctionComponent<PaginationProps> = ({
 
   return (
     <Wrapper>
-      {!isFirst && (
+      {!isFirst && prevPageLink && (
         <PreviousLink to={prevPageLink}>&#8592; Prev Page</PreviousLink>
       )}
+
       {!isNotPaginated && (
         <PageIndicator>
           {currentPage}/{numPages}
         </PageIndicator>
       )}
-      {!isLast && <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>}
+
+      {!isLast && nextPageLink && (
+        <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>
+      )}
     </Wrapper>
   );
 };
