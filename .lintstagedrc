@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": ["npm run lint:fix", "git add"],
-  "{*.{json,md}}": ["npm run format", "git add"]
+  "*.{js,jsx,ts,tsx}": ["npm run format:precommit", "npm run lint:fix", "git add"],
+  "*.{json,md}": ["npm run format:precommit", "git add"]
 }
