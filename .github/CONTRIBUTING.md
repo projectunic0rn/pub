@@ -32,6 +32,14 @@ Inside this directory, create a new file called `index.md`. You can use the
 example file ([`index.md.example`](/content/index.md.example)) as a base for
 your blog post.
 
+### Writing with Markdown
+
+Markdown is the markup language that we'll use to create blog posts. If you're
+not familiar with the syntax you can see the following links:
+
+- [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
+- [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+
 ### Update blog post frontmatter
 
 Inside `index.md.example` you will find a section at the top that starts and
@@ -55,10 +63,9 @@ information needed when creating the static page for a single blog post.
 - **`title`** - Title of your blog post, this will be the text shown inside the
   hero image and it is included in the `<title>` of the HTML document for this
   blog post.
-- **`author`** - A unique id for the author of the blog post. There is an
-  additional setup that needs to be done in order for the author details to be
-  properly queried (refer to [Creating a new author](#creating-a-new-author)
-  section for instructions).
+- **`author`** - A unique ID for the author of the blog post. Please refer to
+  [Creating a new author](#creating-a-new-author) section for instructions on
+  how to create an author entry.
 - **`date`** - The date when the blog post was published. This follows a special
   format: `YYYY-MM-DDTHH:mm:sss+/-TT:TT` where hours (`HH`), minutes (`mm`),
   seconds (`sss`), and timezone offset (`+/-TT:TT`) are optional.
@@ -76,7 +83,7 @@ _TODO_
 To include images to your blog post, simply place them in the directory you
 created and refer to them using Markdown syntax.
 
-```md
+```markdown
 ## How to add images to your blog post
 
 This is the syntax:
@@ -86,16 +93,25 @@ This is the syntax:
 Some text here.
 ```
 
+#### Example
+
+```markdown
+![pu](https://avatars3.githubusercontent.com/u/41756078)
+```
+
+![pu](https://avatars3.githubusercontent.com/u/41756078)
+
 > **NOTE**: Some image formats may not be recognized by the image transformer
 > plugin, so it is best to stick to the common formats like: `jpg` (or `jpeg`),
 > `png`, `gif`, `svg`, etc.
 
 You can also add a hero image to your blog post. Similar to the other images,
 you put this file inside the same directory but you add a reference to it on the
-frontmatter of your `index.md` file. If you have not provided a value for this
-field, a default image will be used instead.
+frontmatter of your `index.md` file. In the example below, the banner image is
+reference in the `image` field. If you have not provided a value for this field,
+a default image will be used instead.
 
-```md
+```markdown
 ---
 title: The Unicorn
 author: rmjordas
@@ -108,11 +124,34 @@ image: ./unicorn-banner.jpg
 Text goes here
 ```
 
+### Syntax highlighting
+
+To use syntax aware highlighting to your code blocks, insert the language name
+after the opening code block syntax (<code>```</code>):
+
+<pre lang="markdown"><code>```graphql
+  query SiteMetadataQuery {
+    site {
+      siteMetadata {
+        title
+        description
+        url
+        twitter
+      }
+    }
+  }
+```
+</code></pre>
+
+You can view the [list of supported languages][prism_langs] in Prism's website.
+
+[prism_langs]: https://prismjs.com/#languages-list
+
 ### Add an author
 
 You must be listed as an author before you can post. In the
-[`content`](content/) directory, there is a file called
-[`author.yaml`](content/author.yaml). Here you add an entry with these options:
+[`content`](/content/) directory, there is a file called
+[`author.yaml`](/content/author.yaml). Here you add an entry with these options:
 
 - **`id`** (Required) - A unique string value for this author entry. These are
   the rules for this value:
@@ -126,12 +165,37 @@ You must be listed as an author before you can post. In the
 - **`twitter`** - The author's Twitter username
 - **`avatar`** - The path for the image the the author would like to use as
   their avatar image. Please make sure to add the image file in the
-  [`content/assets`][content/assets] directory with the same file name
+  [`content/assets`](/content/assets) directory with the same file name
   as the `id` above. For example if the author id is `rmjordas`, then the value
   should be `assets/rmjordas.png`. If you don't provide a value for this option,
   a default avatar image will be used.
 
 ### Add a page
+
+You are not limited to just adding blog posts. If you like to have a landing
+page of sorts for your project or something, you can! So we can have these:
+`/help`, `/grocerhub`, `/slack-invite`, etc. A page can be very simple and can
+be crammed into one file, e.g. `404.tsx`, `index.tsx` (this file creates Pub's
+landing page!), `tags.tsx`, etc..
+
+For now, the process of adding pages is not as streamlined as there are a lot of
+considerations like: How can a user reach that page, or are we going to change
+the layout of pages to add a component that links to that page, i.e. navigation
+components, etc. It can potentially change the design of the website. Also,
+adding pages require that you know React and JavaScript (or TypeScript).
+
+But if you want to add a simple page, just add a React component in the
+[pages](/src/pages) directory. If you want a `/help` page, you should name this
+file `help.tsx`. If you want a page on `/grocerhub/devs`, first create a new
+directory in `/src/pages` called "grocerhub" and inside that directory add
+`devs.tsx`.
+
+_TODO_
+
+Complicated pages requires a few task that you'd have to do:
+
+- Create a "PageTemplate"
+- Update Gatsby's Node API configuration file to tell it to create these pages
 
 _TODO_
 
@@ -194,7 +258,7 @@ guide, we refer to the root of the Pub repository as `$PROJECT_ROOT`.
 
 Before you can inspect the app in your browser, you have to first download some
 packages that this project requires. You can see a list of dependencies inside
-the file called [`package.json`](package.json).
+the file called [`package.json`](/package.json).
 
 The `npm` executable provides a command to download all the project's
 dependencies:
@@ -211,7 +275,7 @@ After that, you can now run the app by executing this command in you terminal
 
 ```bash
 pwd # $PROJECT_ROOT
-npm start
+npm run dev
 ```
 
 Finally, open your browser to http://localhost:8000.
@@ -221,14 +285,19 @@ Finally, open your browser to http://localhost:8000.
 The project also specifies other `npm` scripts you can run when working with
 specific portions of the application:
 
-| Script    | Description                                                    |
-| --------- | -------------------------------------------------------------- |
-| `develop` | Starts a development server that reloads when changes are made |
-| `build`   | Main command for creating static build for deployment          |
-| `format`  | Formats the source code according to Prettier rules            |
-| `test`    | Runs tests                                                     |
+| Script             | Description                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| `build`            | Main command for creating static build for deployment           |
+| `start`            | Serves the production build                                     |
+| `clean`            | Deletes the `.cache` and `public` directory                     |
+| `lint`             | Checks for lint errors                                          |
+| `lint:fix`         | Checks for lint errors and automatically fix them               |
+| `format`           | Formats the JSON and markdown files according to Prettier rules |
+| `format:precommit` | Formats the staged files according to Prettier rules            |
+| `type-check`       | Runs TypeScript compiler to check source for type errors        |
+| `test`             | Runs tests                                                      |
 
-### Contributing quick start
+### Quick start
 
 These steps will guide you through contributing to this project:
 
@@ -247,6 +316,23 @@ Send a pull request and include a short summary of your changes.
 
 > [About Pull Requests](https://help.github.com/articles/about-pull-requests/)
 
-### Contributing Details
+### More instructions
 
 _TODO_
+
+### Maintenance
+
+#### Dependencies
+
+Packages are pinned to a specific version, thus you might need to run an update
+every now and then. Run `npm oudated` to check which packages are not in their
+latest versions. You may choose to update all packages or just some: maybe those
+that release `MAJOR` or `MINOR` but not `PATCH` versions.
+
+If you do update, make sure to do checks to see if it broke something in the
+app. Run all the test suites to see if something fails, then generate a
+production build using `npm run build` and see if there are any build errors.
+Gatsby artifacts in `.cache` and `public` by running `npm run clean` and run the
+checks again if you're still having trouble.
+
+> **NOTE**: Don't forget to also commit changes in `package-lock.json`!

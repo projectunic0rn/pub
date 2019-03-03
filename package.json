@@ -2,8 +2,9 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop",
-    "start": "npm run develop",
+    "dev": "gatsby develop",
+    "start": "gatsby serve",
+    "clean": "gatsby clean",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
     "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{json,md}\"",
