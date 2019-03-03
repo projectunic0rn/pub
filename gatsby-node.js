@@ -2,6 +2,7 @@ const path = require('path');
 
 const { slugify } = require('./scripts/slugify');
 
+/** Paths to available templates. */
 const template = {
   blog: path.resolve('./src/templates/blog.tsx'),
   tag: path.resolve('./src/templates/tag.tsx'),
@@ -30,6 +31,10 @@ exports.onCreateNode = ({ node, actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  /**
+   * Creates the main blog index page, the paginated list of blog posts and the
+   * individual pages for each blog post.
+   */
   const loadBlogPosts = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -55,6 +60,16 @@ exports.createPages = ({ graphql, actions }) => {
         reject(errors);
       }
 
+      /**
+       * @typedef {object} BlogPostEdges
+       * @property {string} id Gatsby generated ID for the blog post
+       * @property {object} node
+       * @property {object} node.fields
+       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {object} node.frontmatter
+       * @property {string} node.frontmatter.title Title of the blog post
+       */
+      /** @type {BlogPostEdges[]} */
       const posts = data.allMarkdownRemark.edges;
       const postsPerFirstPage = 7;
       const postsPerPage = 6;
@@ -105,6 +120,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
+  /** Creates the paginated list of posts for every tag. */
   const loadBlogTags = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -129,7 +145,27 @@ exports.createPages = ({ graphql, actions }) => {
         reject(errors);
       }
 
+      /**
+       * @typedef {object} BlogTagEdge
+       * @property {object} node
+       * @property {object} node.fields
+       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {object} node.frontmatter
+       * @property {string[]} node.frontmatter.tags A list of tags provided in `frontmatter.tags`
+       */
+
+      /** @type {BlogTagEdge[]} */
       const posts = data.allMarkdownRemark.edges;
+      /**
+       * @typedef {object} Tag
+       * @property {string} tag
+       * @property {string[]} posts
+       */
+      /**
+       *  Re-mapped tags.
+       *
+       *  @type {{ [index: string]: Tag }}
+       */
       const tags = {};
 
       posts.forEach(({ node }) => {
@@ -181,6 +217,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
+  /** Creates the paginated list of author posts for every author. */
   const loadBlogAuthors = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -208,7 +245,30 @@ exports.createPages = ({ graphql, actions }) => {
         reject(errors);
       }
 
+      /**
+       * @typedef {object} BlogAuthorEdge
+       * @property {object} id Gatsby generated ID for the blog post
+       * @property {object} node
+       * @property {object} node.fields
+       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {object} node.frontmatter
+       * @property {object} node.frontmatter.author Mapped author object
+       * @property {string} node.frontmatter.author.id Author ID
+       * @property {string} node.frontmatter.author.name Author display name
+       */
+      /** @type {BlogAuthorEdge[]} */
       const posts = data.allMarkdownRemark.edges;
+      /**
+       * @typedef {object} Author
+       * @property {string} id Author ID
+       * @property {string} name Author display name
+       * @property {string[]} posts List of slugged post titles
+       */
+      /**
+       * Re-mapped authors.
+       *
+       *  @type {{ [index: string]: Author }}
+       */
       const authors = {};
 
       posts.forEach(({ node }) => {

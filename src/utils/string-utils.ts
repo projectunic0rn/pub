@@ -1,10 +1,18 @@
 interface TruncateOptions {
+  /**
+   * Text to display at the end of the truncated string. Its length is included
+   * in the total length of the returned string. Default is `...`.
+   */
   ellipsis?: string;
+  /** Total length of the returned string. Default is `25`. */
   maxLength?: number;
 }
 
+/** Cuts of a string to a specific length. */
 export function truncate(
+  /** String to truncate. */
   text: string,
+  /** Truncate options. */
   { ellipsis = '...', maxLength = 25 }: TruncateOptions = {
     ellipsis: '...',
     maxLength: 25,
@@ -19,7 +27,8 @@ export function truncate(
   return text;
 }
 
-export function slugify(text: string) {
+/** Creates a URL-friendly version of a string. */
+export function slugify(/** String to slugify. */ text: string) {
   return text
     .toString()
     .toLowerCase()

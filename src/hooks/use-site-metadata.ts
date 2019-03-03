@@ -26,6 +26,7 @@ const siteMetadataQuery = graphql`
   }
 `;
 
+/** Custom hook that returns the site metadata. */
 export const useSiteMetadata = () => {
   const { site }: Data = useStaticQuery(siteMetadataQuery);
 
