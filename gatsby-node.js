@@ -101,9 +101,9 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
-      posts.forEach(({ node }, i) => {
-        const previous = i === 0 ? null : posts[i - 1].node;
-        const next = i === posts.length - 1 ? null : posts[i + 1].node;
+      posts.forEach(({ node }, i, a) => {
+        const previous = i === 0 ? null : a[i - 1].node;
+        const next = i === a.length - 1 ? null : a[i + 1].node;
 
         createPage({
           path: `/blog/${node.fields.slug}/`,
