@@ -100,7 +100,7 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
 }) => {
   const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
-  const { authorName, slug, totalPosts, currentPage } = pageContext;
+  const { authorId, authorName, slug, totalPosts, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
 
   return (
@@ -164,7 +164,7 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination prefix="blog/author" context={pageContext} />
+      <Pagination prefix={`blog/author/${authorId}`} context={pageContext} />
     </Layout>
   );
 };
