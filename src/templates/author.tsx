@@ -101,7 +101,6 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
   const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { authorName, slug, totalPosts, currentPage } = pageContext;
-  const numberOfPosts = posts.length;
   const isFirstPage = currentPage === 1;
 
   return (
@@ -142,7 +141,7 @@ const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
 
       <Container>
         <PageTitle small={true}>
-          {totalPosts} Post{numberOfPosts > 1 ? 's' : ''} by &ldquo;
+          {totalPosts} Post{totalPosts > 1 ? 's' : ''} by &ldquo;
           {authorName}
           &rdquo;
         </PageTitle>

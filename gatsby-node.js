@@ -235,8 +235,8 @@ exports.createPages = ({ graphql, actions }) => {
       const postsPerPage = 6;
 
       Object.entries(authors).forEach(
-        ([slug, { id: authorId, name: authorName }]) => {
-          const totalPosts = posts.length;
+        ([slug, { id: authorId, name: authorName, posts: authorPosts }]) => {
+          const totalPosts = authorPosts.length;
           const numPages = Math.ceil(totalPosts / postsPerPage);
 
           Array.from({ length: numPages }).forEach((_, i) => {
