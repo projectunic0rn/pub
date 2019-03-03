@@ -1,12 +1,5 @@
 {
-  "name": "pub",
   "private": true,
-  "description": "Project Unicorn Blog",
-  "version": "0.1.5",
-  "contributors": [
-    "Rodger Jordas <rmjordas@gmail.com> (https://rmjordas.github.io)"
-  ],
-  "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
@@ -17,16 +10,6 @@
     "type-check": "tsc",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/projectunic0rn/pub.git"
-  },
-  "homepage": "https://projectunic0rn.github.io/pub/",
-  "keywords": [
-    "gatsby",
-    "react",
-    "typescript"
-  ],
   "dependencies": {
     "gatsby": "2.1.19",
     "gatsby-image": "2.0.30",
