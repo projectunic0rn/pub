@@ -61,7 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       /**
-       * @typedef {object} BlogPostEdges
+       * @typedef {object} BlogPostEdge
        * @property {string} id Gatsby generated ID for the blog post
        * @property {object} node
        * @property {object} node.fields
@@ -69,7 +69,7 @@ exports.createPages = ({ graphql, actions }) => {
        * @property {object} node.frontmatter
        * @property {string} node.frontmatter.title Title of the blog post
        */
-      /** @type {BlogPostEdges[]} */
+      /** @type {BlogPostEdge[]} */
       const posts = data.allMarkdownRemark.edges;
       const postsPerFirstPage = 7;
       const postsPerPage = 6;
