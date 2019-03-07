@@ -9,9 +9,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        pathToConfigModule: 'src/utils/typography',
       },
     },
     {
@@ -60,7 +60,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-alias-imports`,
+      resolve: 'gatsby-plugin-alias-imports',
       options: {
         alias: {
           '@': 'src',
@@ -100,6 +100,6 @@ module.exports = {
     'gatsby-plugin-offline',
   ],
   mapping: {
-    'MarkdownRemark.frontmatter.author': `AuthorYaml`,
+    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
   },
 };
