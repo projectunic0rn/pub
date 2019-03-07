@@ -5,6 +5,7 @@ module.exports = {
     description:
       'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
     url: 'https://projectunicorn.net',
+    siteUrl: 'https://projectunicorn.net',
     twitter: '@projectunicorn2',
   },
   plugins: [
@@ -98,6 +99,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-135765468-1',
+      },
+    },
   ],
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
