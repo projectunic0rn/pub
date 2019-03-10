@@ -17,6 +17,7 @@ const StyledLink = styled(Link)`
   height: 100%;
   display: flex;
   align-items: center;
+  background-image: none;
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};

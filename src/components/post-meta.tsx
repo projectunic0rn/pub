@@ -15,7 +15,7 @@ interface PostMetaProps {
 }
 
 const Wrapper = styled.div`
-  margin: 0 auto 2em;
+  margin: 0 auto 2.4em;
   max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ const Avatar = styled(Img).attrs({ small: false })<
   min-width: 4em;
   max-width: 4em;
   border-radius: 50%;
-  margin-right: 1em;
+  margin-right: 1.25em;
 `;
 
 const Body = styled.div`
@@ -42,13 +42,17 @@ const StyledLink = styled(Link)`
   font-weight: 600;
   font-size: 1.2em;
   margin: 0;
-  color: ${({ theme }) => theme.colors.base};
   text-decoration: none;
   display: inline-block;
   transition: 0.2s;
+  background-image: none;
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
+  && {
+    color: ${({ theme }) => theme.colors.base};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
   }
 `;
 

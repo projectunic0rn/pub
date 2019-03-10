@@ -64,6 +64,10 @@ const Post = styled.li<PostProps>`
   }
 `;
 
+const StyledLink = styled(Link)`
+  background-image: none;
+`;
+
 const Title = styled.h2`
   text-transform: capitalize;
   margin: 1rem 1rem 0.5rem 1rem;
@@ -87,12 +91,12 @@ const Card: React.FunctionComponent<CardProps> = ({
   fluid,
 }) => (
   <Post featured={featured}>
-    <Link to={`/blog/${slug}/`}>
+    <StyledLink to={`/blog/${slug}/`}>
       <Img fluid={fluid} backgroundColor="#eeeeee" />
       <Title>{title}</Title>
       <Date>{publishDate}</Date>
       <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
-    </Link>
+    </StyledLink>
   </Post>
 );
 

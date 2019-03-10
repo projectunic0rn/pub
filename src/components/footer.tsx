@@ -1,7 +1,11 @@
 import * as React from 'react';
 
 import puLogo from '@images/pu.svg';
-import styled from '@styled-components';
+import styled, { css } from '@styled-components';
+
+interface StyledAnchorProps {
+  noUnderline?: boolean;
+}
 
 const Wrapper = styled.footer`
   display: flex;
@@ -23,20 +27,18 @@ const List = styled.ul`
   margin: 0 1.5em;
 `;
 
-const Item = styled.li`
-  display: inline-block;
-  padding: 0.25em 0;
-  width: 100%;
+const StyledAnchor = styled.a<StyledAnchorProps>`
+  font-weight: 600;
+  transition: all 0.2s;
+  color: ${({ theme }) => theme.colors.base};
 
-  @media screen and (min-width: ${({ theme }) => theme.responsive.small}) {
-    width: auto;
-  }
+  ${({ noUnderline }) =>
+    noUnderline &&
+    css`
+      background-image: none;
+    `}
 
-  a {
-    font-weight: 600;
-    transition: all 0.2s;
-    color: ${({ theme }) => theme.colors.base};
-
+  && {
     &:visited {
       color: ${({ theme }) => theme.colors.base};
     }
@@ -47,35 +49,46 @@ const Item = styled.li`
   }
 `;
 
+const Item = styled.li`
+  display: inline-block;
+  padding: 0.25em 0;
+  width: 100%;
+
+  @media screen and (min-width: ${({ theme }) => theme.responsive.small}) {
+    width: auto;
+  }
+`;
+
 const Footer: React.FunctionComponent = () => (
   <Wrapper>
     <List>
       <Item>
-        <a
+        <StyledAnchor
           href="https://projectunicorn.net/"
           rel="nofollow noopener noreferrer"
           target="_blank"
+          noUnderline
         >
           <img src={puLogo} style={{ width: '100px' }} alt="Project Unicorn" />
-        </a>
+        </StyledAnchor>
       </Item>
 
       <Item>
-        <a
+        <StyledAnchor
           href="https://github.com/projectunic0rn/pub"
           target="_blank"
           rel="noopener noreferrer"
         >
           pub
-        </a>{' '}
+        </StyledAnchor>{' '}
         repo is maintained by{' '}
-        <a
+        <StyledAnchor
           href="https://github.com/rmjordas"
           target="_blank"
           rel="noopener noreferrer"
         >
           @rmjordas
-        </a>
+        </StyledAnchor>
       </Item>
     </List>
   </Wrapper>

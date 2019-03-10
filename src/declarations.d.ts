@@ -3,7 +3,7 @@ declare module '*.png';
 declare module '*.ico';
 declare module '*.svg';
 
-declare module 'typography-theme-funston' {
+declare module 'typography-theme-ocean-beach' {
   import { TypographyOptions } from 'typography';
 
   const Theme: TypographyOptions;

@@ -64,6 +64,7 @@ const Title = styled.h1`
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
+  margin-top: 0;
 `;
 
 const Hero: React.FunctionComponent<HeroProps> = ({ height, fluid, title }) => (
