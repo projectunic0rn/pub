@@ -45,7 +45,6 @@ const ListItem = styled.li`
   &:first-child {
     position: relative;
     margin: 0;
-    flex-basis: 100%;
   }
 `;
 
