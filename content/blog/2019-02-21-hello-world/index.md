@@ -344,6 +344,16 @@ checks again if you're still having trouble.
 
 > **NOTE**: Don't forget to also commit changes in `package-lock.json`!
 
+When you updgrade the Node.js version, be sure to check if the Travis
+configuration matches the `MAJOR` version, i.e. `7`, `10`, `11`. You don't need
+to specify the `MINOR` and `PATCH` versions.
+
+```yaml
+# Update the value in this part of `travis.yml`
+node_js:
+  - '10'
+```
+
 [pub_repo]: https://github.com/projectunic0rn/pub/blob/master/.github/CONTRIBUTING.md
 [pub_content_dir]: https://github.com/projectunic0rn/pub/tree/master/content
 [index_md_example]: https://github.com/projectunic0rn/pub/blob/master/content/index.md.example

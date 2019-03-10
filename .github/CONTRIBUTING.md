@@ -336,3 +336,13 @@ Gatsby artifacts in `.cache` and `public` by running `npm run clean` and run the
 checks again if you're still having trouble.
 
 > **NOTE**: Don't forget to also commit changes in `package-lock.json`!
+
+When you updgrade the Node.js version, be sure to check if the Travis
+configuration matches the `MAJOR` version, i.e. `7`, `10`, `11`. You don't need
+to specify the `MINOR` and `PATCH` versions.
+
+```yaml
+# Update the value in this part of `travis.yml`
+node_js:
+  - '10'
+```
