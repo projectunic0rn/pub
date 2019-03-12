@@ -13,7 +13,10 @@ oceanBeachTheme.overrideThemeStyles = () => ({
     borderLeft: '0.5925rem solid #5f8ddc',
   },
   code: {
-    fontSize: 'inherit',
+    fontSize: '0.9em',
+  },
+  pre: {
+    fontSize: '1em',
   },
 });
 
