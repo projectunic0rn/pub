@@ -39,6 +39,18 @@ const Seo: React.FunctionComponent<SeoProps> = ({
           name: 'description',
         },
         {
+          content: siteMetadata.url,
+          name: 'og:url',
+        },
+        {
+          content: 'en',
+          name: 'og:locale',
+        },
+        {
+          content: siteMetadata.title,
+          name: 'og:site_name',
+        },
+        {
           content: title,
           property: 'og:title',
         },
