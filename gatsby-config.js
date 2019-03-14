@@ -1,13 +1,15 @@
+const siteConfig = require('./site.config');
+
+const {
+  pathPrefix,
+  manifestOptions,
+  siteMetadata,
+  googleAnalyticsTrackingId,
+} = siteConfig;
+
 module.exports = {
-  pathPrefix: '/',
-  siteMetadata: {
-    title: 'Project Unicorn',
-    description:
-      'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software',
-    url: 'https://projectunicorn.net',
-    siteUrl: 'https://projectunicorn.net',
-    twitter: '@projectunicorn2',
-  },
+  pathPrefix,
+  siteMetadata,
   plugins: [
     {
       resolve: 'gatsby-plugin-typography',
@@ -86,23 +88,13 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
-      options: {
-        /* eslint-disable @typescript-eslint/camelcase */
-        name: 'Project Unicorn Blog',
-        short_name: 'pub',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#ffffff',
-        display: 'minimal-ui',
-        icon: 'src/images/unicorn-icon.png',
-        /* eslint-enable @typescript-eslint/camelcase */
-      },
+      options: manifestOptions,
     },
     'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: 'UA-135765468-1',
+        trackingId: googleAnalyticsTrackingId,
       },
     },
   ],

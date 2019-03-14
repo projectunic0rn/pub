@@ -55,7 +55,7 @@ const Seo: React.FunctionComponent<SeoProps> = ({
           name: 'twitter:card',
         },
         {
-          content: twitter || siteMetadata.twitter,
+          content: twitter || siteMetadata.social.twitter,
           name: 'twitter:creator',
         },
         {

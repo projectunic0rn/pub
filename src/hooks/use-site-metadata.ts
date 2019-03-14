@@ -4,7 +4,9 @@ export interface SiteMetadata {
   title: string;
   description: string;
   url: string;
-  twitter: string;
+  social: {
+    twitter: string;
+  };
 }
 
 interface Data {
@@ -20,7 +22,9 @@ const siteMetadataQuery = graphql`
         title
         description
         url
-        twitter
+        social {
+          twitter
+        }
       }
     }
   }

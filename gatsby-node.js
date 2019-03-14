@@ -1,6 +1,7 @@
 const path = require('path');
 
 const { slugify } = require('./scripts/slugify');
+const { postsPerFirstPage, postsPerPage } = require('./site.config');
 
 /** Paths to available templates. */
 const template = {
@@ -71,8 +72,6 @@ exports.createPages = ({ graphql, actions }) => {
        */
       /** @type {BlogPostEdge[]} */
       const posts = data.allMarkdownRemark.edges;
-      const postsPerFirstPage = 7;
-      const postsPerPage = 6;
       const numPages = Math.ceil(
         posts.slice(postsPerFirstPage).length / postsPerPage,
       );
