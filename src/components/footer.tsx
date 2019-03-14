@@ -83,7 +83,7 @@ const StyledLink = styled(Link)`
   ${anchorStyles}
 `;
 
-const SocialIcons = styled.img.attrs({ alt: '' })`
+const SocialIconImage = styled.img.attrs({ alt: '' })`
   width: 28px;
 `;
 
@@ -92,10 +92,6 @@ const SocialIconLink = styled(StyledAnchor)`
 
   &:last-child {
     margin-right: 0;
-  }
-
-  svg:hover path {
-    fill: red;
   }
 `;
 
@@ -109,7 +105,7 @@ const SocialIcon: React.FunctionComponent<SocialIconProps> = ({
   href,
 }) => (
   <SocialIconLink href={href}>
-    <SocialIcons src={icon} />
+    <SocialIconImage src={icon} />
   </SocialIconLink>
 );
 
