@@ -8,7 +8,7 @@ import styled from '@styled-components';
 
 const Wrapper = styled.div`
   align-items: center;
-  background-color: #ededed;
+  background-color: #efefef;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -19,6 +19,15 @@ const Inner = styled.div`
   margin: 0;
   padding: 0 3.75em;
   text-align: center;
+
+  a {
+    transition: 0.2s;
+    color: #121212;
+
+    &:hover {
+      color: #5f8ddc;
+    }
+  }
 `;
 
 const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
@@ -45,14 +54,22 @@ const IndexPage: React.FunctionComponent = () => {
       <Inner>
         <Logo />
         <Subtitle>{siteMetadata.description}</Subtitle>
-        <Link to="/blog">Blog</Link> |{' '}
+        <a
+          href="https://project-unic0rn.slack.com"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          Slack
+        </a>{' '}
+        |{' '}
         <a
           href="https://github.com/projectunic0rn"
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
           GitHub
-        </a>
+        </a>{' '}
+        | <Link to="/blog">Blog</Link>
       </Inner>
     </Wrapper>
   );
