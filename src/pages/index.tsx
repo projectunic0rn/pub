@@ -55,7 +55,7 @@ const IndexPage: React.FunctionComponent = () => {
         <Logo />
         <Subtitle>{siteMetadata.description}</Subtitle>
         <a
-          href="https://join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA"
+          href="//join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA"
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
@@ -63,7 +63,7 @@ const IndexPage: React.FunctionComponent = () => {
         </a>{' '}
         |{' '}
         <a
-          href="https://github.com/projectunic0rn"
+          href="//github.com/projectunic0rn"
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
