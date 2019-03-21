@@ -1,3 +1,5 @@
+import { filterInt } from '@utils';
+
 interface TruncateOptions {
   /**
    * Text to display at the end of the truncated string. Its length is included
@@ -37,4 +39,20 @@ export function slugify(/** String to slugify. */ text: string) {
     .replace(/--+/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, ''); // Trim - from end of text
+}
+
+/**
+ * Returns a valid style length value.
+ *
+ * @param {string | number} length The length to be formatted.
+ * @param {string} unit Unit to append to the length.
+ * */
+export function styleLengths(length: string | number = 0, unit = 'px') {
+  if (typeof length === 'string') {
+    if (isNaN(filterInt(length))) {
+      return length;
+    }
+  }
+
+  return `${length}${unit}`;
 }

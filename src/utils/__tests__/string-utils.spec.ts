@@ -1,4 +1,4 @@
-import { slugify, truncate } from '../string-utils';
+import { slugify, truncate, styleLengths } from '../string-utils';
 
 describe('truncate', () => {
   test('Default maxLength value', () => {
@@ -61,5 +61,21 @@ describe('slugify', () => {
     ];
 
     expect(actual).toEqual(expect.arrayContaining(expected));
+  });
+});
+
+describe('styleLengths', () => {
+  test('return correct unit depending on input type', () => {
+    const expected = '10px';
+
+    expect(styleLengths(10)).toBe(expected);
+    expect(styleLengths('10px')).toBe(expected);
+    expect(styleLengths(10, 'px')).toBe(expected);
+  });
+
+  test('does not append a unit for value with trailing letters', () => {
+    const expected = '1023s';
+
+    expect(styleLengths('1023s')).toBe(expected);
   });
 });
