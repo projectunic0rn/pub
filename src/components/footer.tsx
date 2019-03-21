@@ -44,6 +44,7 @@ const Heading = styled.h1`
 const List = styled.div.attrs({ role: 'list' })<ListProps>`
   display: flex;
   flex-direction: ${({ direction = 'column' }) => direction};
+  align-items: flex-start;
 `;
 
 const anchorStyles = css`
