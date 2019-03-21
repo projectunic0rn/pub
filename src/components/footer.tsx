@@ -136,9 +136,9 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Projects</Heading>
 
         <List>
-          <StyledAnchor href="https://mentrship.com">Mentrship</StyledAnchor>
+          <StyledAnchor href="//www.mentrship.com/">Mentrship</StyledAnchor>
 
-          <StyledAnchor href="https://github.com/projectunic0rn/pub">
+          <StyledAnchor href="//github.com/projectunic0rn/pub">
             Pub
           </StyledAnchor>
         </List>
@@ -148,42 +148,30 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Follow us</Heading>
 
         <List direction="row">
-          <SocialIcon
-            icon={facebook}
-            href="https://facebook.com/projectunicorn"
-          />
+          <SocialIcon icon={facebook} href="//facebook.com/" />
 
           <SocialIcon
             icon={instagram}
-            href="https://www.instagram.com/projectunicornonthegram"
+            href="//www.instagram.com/projectunicornonthegram"
           />
 
-          <SocialIcon
-            icon={twitter}
-            href="https://twitter.com/ProjectUnicorn2"
-          />
+          <SocialIcon icon={twitter} href="//twitter.com/ProjectUnicorn2" />
 
           <SocialIcon
             icon={linkedin}
-            href="https://www.linkedin.com/company/proj-unicorn/about"
+            href="//www.linkedin.com/company/proj-unicorn/about"
           />
 
-          <SocialIcon
-            icon={reddit}
-            href="https://www.reddit.com/r/projectUnicorn"
-          />
-
-          <SocialIcon icon={github} href="https://github.com/projectunic0rn" />
+          <SocialIcon icon={reddit} href="//www.reddit.com/r/projectUnicorn" />
+          <SocialIcon icon={github} href="//github.com/projectunic0rn" />
         </List>
       </Row>
     </Inner>
 
     <BottomText>
-      <StyledAnchor href="https://github.com/projectunic0rn/pub">
-        pub
-      </StyledAnchor>{' '}
-      is maintained by{' '}
-      <StyledAnchor href="https://github.com/rmjordas">@rmjordas</StyledAnchor>
+      <StyledAnchor href="//github.com/projectunic0rn/pub">pub</StyledAnchor> is
+      maintained by{' '}
+      <StyledAnchor href="//github.com/rmjordas">@rmjordas</StyledAnchor>
     </BottomText>
   </Wrapper>
 );
