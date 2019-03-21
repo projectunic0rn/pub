@@ -1,16 +1,8 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 
-import { Anchor } from '@components';
+import { Anchor, SocialIcon } from '@components';
 import styled, { css } from '@styled-components';
-import {
-  facebookIcon,
-  instagramIcon,
-  twitterIcon,
-  redditIcon,
-  linkedinIcon,
-  githubIcon,
-} from '@images';
 
 interface RowProps {
   flex?: number;
@@ -18,11 +10,6 @@ interface RowProps {
 
 interface ListProps {
   direction?: 'column' | 'row';
-}
-
-interface SocialIconProps {
-  icon: string;
-  href: string;
 }
 
 const Wrapper = styled.div`
@@ -63,6 +50,7 @@ const anchorStyles = css`
   color: hsla(0, 0%, 100%, 0.5);
   text-decoration: none;
   background-image: none;
+  transition: 0.2s;
 
   &:hover {
     color: white;
@@ -82,31 +70,10 @@ const StyledLink = styled(Link)`
   ${anchorStyles}
 `;
 
-const SocialIconImage = styled.img.attrs({ alt: '' })`
-  width: 28px;
-`;
-
-const SocialIconLink = styled(StyledAnchor)`
-  margin-right: 0.6em;
-
-  &:last-child {
-    margin-right: 0;
-  }
-`;
-
 const BottomText = styled.div`
   text-align: center;
   padding-top: 4em;
 `;
-
-const SocialIcon: React.FunctionComponent<SocialIconProps> = ({
-  icon,
-  href,
-}) => (
-  <SocialIconLink href={href}>
-    <SocialIconImage src={icon} />
-  </SocialIconLink>
-);
 
 const Footer: React.FunctionComponent = () => (
   <Wrapper>
@@ -144,26 +111,29 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Follow us</Heading>
 
         <List direction="row">
-          <SocialIcon icon={facebookIcon} href="//facebook.com/" />
+          <SocialIcon socialName="facebook" href="//facebook.com" />
 
           <SocialIcon
-            icon={instagramIcon}
+            socialName="instagram"
             href="//www.instagram.com/projectunicornonthegram"
           />
 
-          <SocialIcon icon={twitterIcon} href="//twitter.com/ProjectUnicorn2" />
+          <SocialIcon
+            socialName="twitter"
+            href="//twitter.com/ProjectUnicorn2"
+          />
 
           <SocialIcon
-            icon={linkedinIcon}
+            socialName="linkedin"
             href="//www.linkedin.com/company/proj-unicorn/about"
           />
 
           <SocialIcon
-            icon={redditIcon}
+            socialName="reddit"
             href="//www.reddit.com/r/projectUnicorn"
           />
 
-          <SocialIcon icon={githubIcon} href="//github.com/projectunic0rn" />
+          <SocialIcon socialName="github" href="//github.com/projectunic0rn" />
         </List>
       </Row>
     </Inner>
