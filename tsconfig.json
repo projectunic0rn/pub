@@ -14,6 +14,7 @@
     "paths": {
       "@components": ["./src/components/index"],
       "@components/*": ["./src/components/*"],
+      "@images": ["./src/images/index"],
       "@images/*": ["./src/images/*"],
       "@pages": ["./src/pages/index"],
       "@pages/*": ["./src/pages/*"],
