@@ -1,4 +1,4 @@
-import { filterInt } from '@utils';
+import { filterInt } from './number-utils';
 
 interface TruncateOptions {
   /**
