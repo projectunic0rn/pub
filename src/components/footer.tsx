@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 
+import { Anchor } from '@components';
 import styled, { css } from '@styled-components';
-import facebook from '@images/facebook.svg';
-import instagram from '@images/instagram.svg';
-import twitter from '@images/twitter.svg';
-import reddit from '@images/reddit.svg';
-import linkedin from '@images/linkedin.svg';
-import github from '@images/github.svg';
+import {
+  facebookIcon,
+  instagramIcon,
+  twitterIcon,
+  redditIcon,
+  linkedinIcon,
+  githubIcon,
+} from '@images';
 
 interface RowProps {
   flex?: number;
@@ -71,11 +74,7 @@ const anchorStyles = css`
   }
 `;
 
-const StyledAnchor = styled.a.attrs({
-  role: 'listitem',
-  rel: 'nofollow noopener noreferrer',
-  target: '_blank',
-})`
+const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
   ${anchorStyles};
 `;
 
@@ -136,11 +135,8 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Projects</Heading>
 
         <List>
-          <StyledAnchor href="//www.mentrship.com/">Mentrship</StyledAnchor>
-
-          <StyledAnchor href="//github.com/projectunic0rn/pub">
-            Pub
-          </StyledAnchor>
+          <StyledAnchor href="//www.mentrship.com/" content="Mentrship" />
+          <StyledAnchor href="//github.com/projectunic0rn/pub" content="Pub" />
         </List>
       </Row>
 
@@ -148,30 +144,34 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Follow us</Heading>
 
         <List direction="row">
-          <SocialIcon icon={facebook} href="//facebook.com/" />
+          <SocialIcon icon={facebookIcon} href="//facebook.com/" />
 
           <SocialIcon
-            icon={instagram}
+            icon={instagramIcon}
             href="//www.instagram.com/projectunicornonthegram"
           />
 
-          <SocialIcon icon={twitter} href="//twitter.com/ProjectUnicorn2" />
+          <SocialIcon icon={twitterIcon} href="//twitter.com/ProjectUnicorn2" />
 
           <SocialIcon
-            icon={linkedin}
+            icon={linkedinIcon}
             href="//www.linkedin.com/company/proj-unicorn/about"
           />
 
-          <SocialIcon icon={reddit} href="//www.reddit.com/r/projectUnicorn" />
-          <SocialIcon icon={github} href="//github.com/projectunic0rn" />
+          <SocialIcon
+            icon={redditIcon}
+            href="//www.reddit.com/r/projectUnicorn"
+          />
+
+          <SocialIcon icon={githubIcon} href="//github.com/projectunic0rn" />
         </List>
       </Row>
     </Inner>
 
     <BottomText>
-      <StyledAnchor href="//github.com/projectunic0rn/pub">pub</StyledAnchor> is
+      <StyledAnchor href="//github.com/projectunic0rn/pub" content="pub" /> is
       maintained by{' '}
-      <StyledAnchor href="//github.com/rmjordas">@rmjordas</StyledAnchor>
+      <StyledAnchor href="//github.com/rmjordas" content="@rmjordas" />
     </BottomText>
   </Wrapper>
 );

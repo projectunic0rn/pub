@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { Seo } from '@components';
+import { Anchor, Seo } from '@components';
 import { useSiteMetadata } from '@hooks';
 import puLogo from '@images/pu.svg';
 import styled from '@styled-components';
@@ -54,22 +54,12 @@ const IndexPage: React.FunctionComponent = () => {
       <Inner>
         <Logo />
         <Subtitle>{siteMetadata.description}</Subtitle>
-        <a
+        <Anchor
           href="//join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          Slack
-        </a>{' '}
-        |{' '}
-        <a
-          href="//github.com/projectunic0rn"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          GitHub
-        </a>{' '}
-        | <Link to="/blog">Blog</Link>
+          content="Slack"
+        />{' '}
+        | <Anchor href="//github.com/projectunic0rn" content="GitHub" /> |{' '}
+        <Link to="/blog">Blog</Link>
       </Inner>
     </Wrapper>
   );

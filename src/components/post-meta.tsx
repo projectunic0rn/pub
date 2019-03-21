@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 import { Author } from '@templates/post';
+import { Anchor } from '@components';
 
 interface AvatarProps {
   small?: boolean;
@@ -62,10 +63,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const SocialIconLink = styled.a.attrs({
-  rel: 'nofollow noopener noreferrer',
-  target: '_blank',
-})`
+const SocialIconLink = styled(Anchor)`
   color: ${({ theme }) => theme.colors.base};
   text-decoration: none;
   background-image: none;

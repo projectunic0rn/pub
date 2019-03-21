@@ -1,3 +1,4 @@
+export { default as Anchor } from './anchor';
 export { default as CardList } from './card-list';
 export { default as Card } from './card';
 export { default as Container } from './container';
