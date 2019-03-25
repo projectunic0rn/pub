@@ -31,6 +31,8 @@ export const socialIconPaths: SocialIconPaths = {
 interface OwnProps {
   socialName: SocialName;
   href: string;
+  link?: boolean;
+  title?: string;
 }
 
 type SocialIconProps = OwnProps & React.SVGProps<SVGSVGElement>;
@@ -59,16 +61,27 @@ const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
 const SocialIcon: React.FunctionComponent<SocialIconProps> = ({
   socialName,
   href,
+  title,
+  link = false,
   fontSize = 28,
   viewBox = '0 0 24 24',
   fill = 'white',
   ...svgProps
-}) => (
-  <StyledAnchor href={href}>
+}) => {
+  const Icon = () => (
     <SvgIcon fontSize={fontSize} viewBox={viewBox} fill={fill} {...svgProps}>
+      {title && <title>{title}</title>}
       <path fill="currentColor" d={socialIconPaths[socialName]} />
     </SvgIcon>
-  </StyledAnchor>
-);
+  );
+
+  return link ? (
+    <StyledAnchor href={href}>
+      <Icon />
+    </StyledAnchor>
+  ) : (
+    <Icon />
+  );
+};
 
 export default SocialIcon;

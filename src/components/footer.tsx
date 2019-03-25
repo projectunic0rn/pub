@@ -112,29 +112,37 @@ const Footer: React.FunctionComponent = () => (
         <Heading>Follow us</Heading>
 
         <List direction="row">
-          <SocialIcon socialName="facebook" href="//facebook.com" />
+          <SocialIcon link socialName="facebook" href="//facebook.com" />
 
           <SocialIcon
+            link
             socialName="instagram"
             href="//www.instagram.com/projectunicornonthegram"
           />
 
           <SocialIcon
+            link
             socialName="twitter"
             href="//twitter.com/ProjectUnicorn2"
           />
 
           <SocialIcon
+            link
             socialName="linkedin"
             href="//www.linkedin.com/company/proj-unicorn/about"
           />
 
           <SocialIcon
+            link
             socialName="reddit"
             href="//www.reddit.com/r/projectUnicorn"
           />
 
-          <SocialIcon socialName="github" href="//github.com/projectunic0rn" />
+          <SocialIcon
+            link
+            socialName="github"
+            href="//github.com/projectunic0rn"
+          />
         </List>
       </Row>
     </Inner>
