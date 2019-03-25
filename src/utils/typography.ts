@@ -18,6 +18,11 @@ oceanBeachTheme.overrideThemeStyles = () => ({
   pre: {
     fontSize: '1em',
   },
+  '@media only screen and (max-width:480px)': {
+    blockquote: {
+      borderLeft: '0.5925rem solid #5f8ddc',
+    },
+  },
 });
 
 const typography = new Typography(oceanBeachTheme);
