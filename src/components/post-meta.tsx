@@ -10,12 +10,6 @@ interface AvatarProps {
   small?: boolean;
 }
 
-interface SocialIconProps {
-  href: string;
-  type?: 'github' | 'twitter';
-  title?: string;
-}
-
 interface PostMetaProps {
   date: string;
   author: Author;
