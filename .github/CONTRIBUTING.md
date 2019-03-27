@@ -316,6 +316,43 @@ Send a pull request and include a short summary of your changes.
 
 > [About Pull Requests](https://help.github.com/articles/about-pull-requests/)
 
+### Environment Variables
+
+Environment variables can be added in [`.env-cmdrc`](/.env-cmdrc). You can add
+key-value pairs to the exisiting groups or you may create a new group. For
+example, you want to add environment variables when you are testing, you might
+add a `testing` group of environment variables:
+
+```json
+{
+  "development": { ... },
+  "production": { ... },
+  "testing": {
+    "CI": true
+  }
+}
+```
+
+Then update your commands to call `env-cmd` and the group name:
+
+```bash
+env-cmd testing npm run test
+```
+
+#### Gatsby Telemetry
+
+Gatsby added [telemetry][] when they release version 2.3.0. You can disable this
+by running:
+
+```bash
+gatsby telemetry --disable
+```
+
+Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` when you are
+running gatsby commands.
+
+[telemetry]: https://www.gatsbyjs.org/docs/telemetry/
+
 ### More instructions
 
 _TODO_

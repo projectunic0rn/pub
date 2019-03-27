@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "build": "gatsby build --prefix-paths",
-    "dev": "gatsby develop",
-    "start": "gatsby serve",
-    "clean": "gatsby clean",
+    "build": "env-cmd production gatsby build --prefix-paths",
+    "dev": "env-cmd development gatsby develop",
+    "start": "env-cmd development gatsby serve",
+    "clean": "env-cmd development gatsby clean",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
     "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{json,md}\"",
@@ -55,6 +55,7 @@
     "babel-jest": "24.5.0",
     "babel-plugin-styled-components": "1.10.0",
     "babel-preset-gatsby": "0.1.10",
+    "env-cmd": "8.0.2",
     "eslint": "5.15.3",
     "eslint-config-prettier": "4.1.0",
     "eslint-plugin-prettier": "3.0.1",
