@@ -11,6 +11,7 @@ import {
   PostMeta,
   PostTags,
   Seo,
+  Share,
 } from '@components';
 
 interface PostNode {
@@ -40,6 +41,7 @@ interface BlogPostTemplateProps {
     markdownRemark: {
       id: string;
       excerpt: string;
+      fields: { slug: string };
       html: string;
       frontmatter: {
         title: string;
@@ -72,6 +74,9 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
+      fields {
+        slug
+      }
       html
       frontmatter {
         title
@@ -107,9 +112,10 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
   pageContext,
 }) => {
   const post = data.markdownRemark;
-  const { title, tags, date, author } = post.frontmatter;
+  const { excerpt, frontmatter, fields } = post;
+  const { title, tags, date, author, image } = frontmatter;
   const { previous, next } = pageContext;
-  const { image } = post.frontmatter;
+  const { slug } = fields;
 
   return (
     <Layout>
@@ -127,6 +133,7 @@ const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
         <PostMeta date={date} author={author} />
         <PageBody body={post.html} />
         {tags && <PostTags tags={tags} />}
+        <Share post={{ title, slug, excerpt }} />
       </Container>
 
       <PostLinks prefix="blog" previous={previous} next={next} />
