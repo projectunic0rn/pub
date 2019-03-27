@@ -76,7 +76,7 @@ const BottomText = styled.div`
   padding-top: 4em;
 `;
 
-const Footer: React.FunctionComponent = () => (
+const Footer: React.FC = () => (
   <Wrapper>
     <Inner>
       <Row>

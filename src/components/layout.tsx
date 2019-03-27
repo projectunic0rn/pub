@@ -19,7 +19,7 @@ const Content = styled.div`
   flex: 1 0 auto;
 `;
 
-const Layout: React.FunctionComponent = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   const siteMetadata = useSiteMetadata();
 
   return (

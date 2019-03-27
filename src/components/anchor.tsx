@@ -7,7 +7,7 @@ interface OwnProps {
 
 type AnchorProps = OwnProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const Anchor: React.FunctionComponent<AnchorProps> = ({
+const Anchor: React.FC<AnchorProps> = ({
   external = true,
   content,
   children,

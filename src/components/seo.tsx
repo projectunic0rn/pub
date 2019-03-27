@@ -17,7 +17,7 @@ interface SeoProps {
   twitter?: string;
 }
 
-const Seo: React.FunctionComponent<SeoProps> = ({
+const Seo: React.FC<SeoProps> = ({
   title,
   description,
   keywords = [],

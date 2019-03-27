@@ -10,8 +10,6 @@ const Wrapper = styled.section`
   flex-grow: 1;
 `;
 
-const Container: React.FunctionComponent = ({ children }) => (
-  <Wrapper>{children}</Wrapper>
-);
+const Container: React.FC = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 export default Container;

@@ -58,7 +58,7 @@ const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
   }
 `;
 
-const SocialIcon: React.FunctionComponent<SocialIconProps> = ({
+const SocialIcon: React.FC<SocialIconProps> = ({
   socialName,
   href,
   title,

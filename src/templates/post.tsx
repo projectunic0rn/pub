@@ -107,7 +107,7 @@ export const pageQuery = graphql`
   }
 `;
 
-const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
+const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
   data,
   pageContext,
 }) => {

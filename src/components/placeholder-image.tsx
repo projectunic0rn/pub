@@ -22,7 +22,7 @@ const placeholderImageQuery = graphql`
   }
 `;
 
-const PlaceholderImage: React.FunctionComponent = () => {
+const PlaceholderImage: React.FC = () => {
   const { placeholderImage }: Data = useStaticQuery(placeholderImageQuery);
 
   return <Img fluid={placeholderImage.childImageSharp.fluid} />;

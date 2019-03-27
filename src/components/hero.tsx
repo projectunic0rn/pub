@@ -67,7 +67,7 @@ const Title = styled.h1`
   margin-top: 0;
 `;
 
-const Hero: React.FunctionComponent<HeroProps> = ({ height, fluid, title }) => (
+const Hero: React.FC<HeroProps> = ({ height, fluid, title }) => (
   <Wrapper>
     <BgImg height={height} fluid={fluid} backgroundColor="#eeeeee" />
     <Title>{title}</Title>

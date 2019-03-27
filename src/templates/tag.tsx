@@ -93,10 +93,7 @@ export const tagQuery = graphql`
   }
 `;
 
-const TagTemplate: React.FunctionComponent<TagTemplateProps> = ({
-  data,
-  pageContext,
-}) => {
+const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { tag: title, slug, totalPosts, currentPage } = pageContext;

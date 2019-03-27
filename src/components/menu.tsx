@@ -50,7 +50,7 @@ const ListItem = styled.li`
 
 const activeLinkStyle = {};
 
-const Menu: React.FunctionComponent = () => (
+const Menu: React.FC = () => (
   <Wrapper>
     <Nav>
       <List>

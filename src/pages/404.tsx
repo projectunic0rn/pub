@@ -13,7 +13,7 @@ const Text = styled.p`
   }
 `;
 
-const NotFoundPage: React.FunctionComponent = () => (
+const NotFoundPage: React.FC = () => (
   <Layout>
     <Seo title="Page not found" description="Page not found" />
 

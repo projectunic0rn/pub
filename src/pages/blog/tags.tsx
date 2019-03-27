@@ -59,7 +59,7 @@ const Tag = styled.li`
   }
 `;
 
-const TagsPage: React.FunctionComponent<TagsPageProps> = ({
+const TagsPage: React.FC<TagsPageProps> = ({
   data: {
     allMarkdownRemark: { group },
   },

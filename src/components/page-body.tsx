@@ -35,7 +35,7 @@ const Body = styled.div`
   }
 `;
 
-const PageBody: React.FunctionComponent<PageBodyProps> = ({ body }) => (
+const PageBody: React.FC<PageBodyProps> = ({ body }) => (
   <Body dangerouslySetInnerHTML={{ __html: body }} />
 );
 

@@ -94,7 +94,7 @@ export const authorQuery = graphql`
   }
 `;
 
-const AuthorTemplate: React.FunctionComponent<AuthorTemplateProps> = ({
+const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   data,
   pageContext,
 }) => {

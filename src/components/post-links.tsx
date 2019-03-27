@@ -50,11 +50,7 @@ const NextLink = styled(Link)`
   order: 2;
 `;
 
-const PostLinks: React.FunctionComponent<PostLinksProps> = ({
-  prefix,
-  previous,
-  next,
-}) => {
+const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
   const linkPrefix = prefix ? `${prefix}/` : '';
 
   return (

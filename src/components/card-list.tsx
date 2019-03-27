@@ -15,8 +15,6 @@ const List = styled.ul`
   }
 `;
 
-const CardList: React.FunctionComponent = ({ children }) => (
-  <List>{children}</List>
-);
+const CardList: React.FC = ({ children }) => <List>{children}</List>;
 
 export default CardList;

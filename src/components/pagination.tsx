@@ -62,10 +62,7 @@ const PageIndicator = styled.span`
   opacity: 0.7;
 `;
 
-const Pagination: React.FunctionComponent<PaginationProps> = ({
-  context,
-  prefix,
-}) => {
+const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
   const { numPages, currentPage = 1 } = context;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;

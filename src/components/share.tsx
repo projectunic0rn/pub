@@ -47,7 +47,7 @@ const Label = styled.p`
   font-weight: 700;
 `;
 
-const Share: React.FunctionComponent<ShareProps> = ({ post }) => {
+const Share: React.FC<ShareProps> = ({ post }) => {
   const { social, url: siteUrl } = useSiteMetadata();
   const twitterHandle = social.twitter.replace('@', '');
   const postUrl = `${siteUrl}/blog/${post.slug}`;

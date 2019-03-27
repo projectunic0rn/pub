@@ -87,10 +87,7 @@ export const pageQuery = graphql`
   }
 `;
 
-const BlogTemplate: React.FunctionComponent<BlogTemplateProps> = ({
-  data,
-  pageContext,
-}) => {
+const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;
   const { currentPage } = pageContext;

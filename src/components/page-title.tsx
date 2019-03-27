@@ -31,9 +31,8 @@ const Title = styled.h1<TitleProps>`
   }
 `;
 
-const PageTitle: React.FunctionComponent<PageTitleProps> = ({
-  children,
-  small = false,
-}) => <Title small={small}>{children}</Title>;
+const PageTitle: React.FC<PageTitleProps> = ({ children, small = false }) => (
+  <Title small={small}>{children}</Title>
+);
 
 export default PageTitle;

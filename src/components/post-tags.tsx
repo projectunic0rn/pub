@@ -37,7 +37,7 @@ const Tag = styled.li`
   }
 `;
 
-const PostTags: React.FunctionComponent<PostTagsProps> = ({ tags }) => (
+const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
   <List>
     {tags.map((tag) => (
       <Tag key={tag}>

@@ -86,7 +86,7 @@ const Bio = styled.p`
   margin: 0;
 `;
 
-const PostDate: React.FunctionComponent<PostMetaProps> = ({
+const PostDate: React.FC<PostMetaProps> = ({
   date,
   author: { avatar, bio, id, name, github, twitter },
 }) => (

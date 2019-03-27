@@ -8,7 +8,7 @@ interface OwnProps {
 
 type SvgIconProps = OwnProps & React.SVGProps<SVGSVGElement>;
 
-const SvgIcon: React.FunctionComponent<SvgIconProps> = ({
+const SvgIcon: React.FC<SvgIconProps> = ({
   fontSize,
   children,
   ...svgProps

@@ -44,7 +44,7 @@ const Subtitle = styled.p`
   max-width: 25em;
 `;
 
-const IndexPage: React.FunctionComponent = () => {
+const IndexPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

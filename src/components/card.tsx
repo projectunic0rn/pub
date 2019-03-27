@@ -82,7 +82,7 @@ const Excerpt = styled.p`
   padding: 0 1rem 1rem 1rem;
 `;
 
-const Card: React.FunctionComponent<CardProps> = ({
+const Card: React.FC<CardProps> = ({
   slug,
   title,
   publishDate,
