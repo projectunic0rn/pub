@@ -117,7 +117,7 @@ const Footer: React.FunctionComponent = () => (
           <SocialIcon
             link
             socialName="instagram"
-            href="//www.instagram.com/projectunicornonthegram"
+            href="//www.instagram.com/projectunicorn1"
           />
 
           <SocialIcon
