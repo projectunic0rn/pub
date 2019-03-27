@@ -350,6 +350,12 @@ Then update your commands to call `env-cmd` and the group name:
 env-cmd testing npm run test
 ```
 
+> **WARNING**: You should **not** put sensitive values in `.env-cmdrc`. These
+> values are bundled together with the application and anyone can inspect them.
+
+> **NOTE**: You might also need to restart the development server when you
+> change the `.env-cmdrc`.
+
 #### Gatsby Telemetry
 
 Gatsby added [telemetry][gatsby_telemetry] when they release version 2.3.0. You
