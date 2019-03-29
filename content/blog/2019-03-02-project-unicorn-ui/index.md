@@ -39,4 +39,4 @@ None of this work would be possible without the members of this project. Current
 
 ## Shipping 
 
-The team looks to ship Project Unicorn UI in less than 2 months from now. By the end of April. Eventually, the project will live at [projectunicorn.net](https://projectunicorn.net/).
+The team looks to ship Project Unicorn UI in less than 2 months from now. By the end of April. Eventually, the project will live at [projectunicorn.net](https://projectunicorn.dev/).
