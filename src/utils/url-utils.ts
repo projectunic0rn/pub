@@ -1,26 +1,34 @@
 type Provider = 'facebook' | 'twitter' | 'reddit' | 'linkedin';
 
+interface BaseOption {
+  /** URL to be shared. */
+  url: string;
+}
+
 interface FacebookOption {
+  /** URL to be shared. */
   u: string;
 }
 
-interface TwitterOption {
-  url: string;
+interface TwitterOption extends BaseOption {
+  /** Tweet contents. */
   text: string;
+  /** Twitter handle to tag in the post. */
   via: string;
 }
 
-interface LinkedinOption {
-  url: string;
+interface LinkedinOption extends BaseOption {
+  /** Title of the post. */
   title: string;
+  /** Summary of the post. */
   summary: string;
+  /** URL to be shared. */
   source: string;
+  /** URL to be shared. */
   mini?: boolean;
 }
 
-interface RedditOption {
-  url: string;
-}
+type RedditOption = BaseOption;
 
 type Option<T> = T extends 'facebook'
   ? FacebookOption
@@ -32,11 +40,11 @@ type Option<T> = T extends 'facebook'
   ? RedditOption
   : unknown;
 
-/**
- *
- */
+/** Generates a URL for sharing to social sites, e.g. Facebook, Twitter, etc. */
 export function makeShareUrl<T extends Provider>(
+  /** The name of the social site */
   provider: T,
+  /** Options for a particular social site */
   options: Option<T>,
 ) {
   let baseUrl: string;
