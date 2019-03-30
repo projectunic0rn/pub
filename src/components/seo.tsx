@@ -47,6 +47,10 @@ const Seo: React.FC<SeoProps> = ({
           name: 'author',
         },
         {
+          content: metaDescription,
+          name: 'description',
+        },
+        {
           content: image || 'https://projectunicorn.net/apple-touch-icon.png',
           property: 'og:image',
         },
