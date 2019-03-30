@@ -109,11 +109,14 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
           <meta
             property="og:title"
             content={`Tag: "${title}" - ${siteMetadata.title}`}
+            name="title"
+            data-react-helmet="true"
           />
 
           <meta
             property="og:url"
             content={`${siteMetadata.url}/blog/tag/${slug}/`}
+            data-react-helmet="true"
           />
         </Helmet>
       ) : (
@@ -127,11 +130,14 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
             content={`Tag: "${title}" - Page ${currentPage} - ${
               siteMetadata.title
             }`}
+            name="title"
+            data-react-helmet="true"
           />
 
           <meta
             property="og:url"
             content={`${siteMetadata.url}/blog/tag/${slug}/`}
+            data-react-helmet="true"
           />
         </Helmet>
       )}

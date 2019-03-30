@@ -112,11 +112,14 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
           <meta
             property="og:title"
             content={`Author: "${authorName}" - ${siteMetadata.title}`}
+            name="title"
+            data-react-helmet="true"
           />
 
           <meta
             property="og:url"
             content={`${siteMetadata.url}/blog/author/${slug}/`}
+            data-react-helmet="true"
           />
         </Helmet>
       ) : (
@@ -130,11 +133,14 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
             content={`Author: "${authorName}" - Page ${currentPage} - ${
               siteMetadata.title
             }`}
+            name="title"
+            data-react-helmet="true"
           />
 
           <meta
             property="og:url"
             content={`${siteMetadata.url}/blog/author/${slug}/`}
+            data-react-helmet="true"
           />
         </Helmet>
       )}
