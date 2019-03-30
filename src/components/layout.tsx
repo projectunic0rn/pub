@@ -27,7 +27,6 @@ const Layout: React.FC = ({ children }) => {
       <Helmet>
         <html lang="en" />
         <title>{siteMetadata.title}</title>
-        <meta charSet="utf-8" />
 
         <meta
           name="viewport"
