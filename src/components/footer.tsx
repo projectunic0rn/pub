@@ -52,6 +52,7 @@ const anchorStyles = css`
   text-decoration: none;
   background-image: none;
   transition: 0.2s;
+  min-height: 3em;
 
   &:hover {
     color: white;
@@ -60,6 +61,9 @@ const anchorStyles = css`
 
   &:visited {
     color: hsla(0, 0%, 100%, 0.5);
+  }
+  @media (min-width: ${({ theme }) => theme.responsive.small}) {
+    min-height: initial;
   }
 `;
 
