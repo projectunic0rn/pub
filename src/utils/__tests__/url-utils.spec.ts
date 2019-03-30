@@ -9,25 +9,9 @@ test('generates correct Facebook share URL', () => {
 
 test('generates correct LinkedIn share URL', () => {
   const url = 'https://example.website/blog/1';
-  const source = 'https://example.website';
-  const summary = 'This is the summary';
-  const title = 'This is the title';
-  let actual = makeShareUrl('linkedin', { url, source, summary, title });
+  let actual = makeShareUrl('linkedin', { url });
 
-  expect(actual.includes('mini=true')).toBe(true);
-  expect(actual.includes(`title=${encodeURIComponent(title)}`)).toBe(true);
-  expect(actual.includes(`summary=${encodeURIComponent(summary)}`)).toBe(true);
-  expect(actual.includes(`source=${source}`)).toBe(true);
-
-  actual = makeShareUrl('linkedin', {
-    url,
-    source,
-    summary,
-    title,
-    mini: false,
-  });
-
-  expect(actual.includes('mini=false')).toBe(true);
+  expect(actual.includes(`url=${encodeURIComponent(url)}`)).toBe(true);
 });
 
 test('generates correct Reddit share URL', () => {

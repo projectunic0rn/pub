@@ -17,17 +17,7 @@ interface TwitterOption extends BaseOption {
   via: string;
 }
 
-interface LinkedinOption extends BaseOption {
-  /** Title of the post. */
-  title: string;
-  /** Summary of the post. */
-  summary: string;
-  /** URL to be shared. */
-  source: string;
-  /** URL to be shared. */
-  mini?: boolean;
-}
-
+type LinkedinOption = BaseOption;
 type RedditOption = BaseOption;
 
 type Option<T> = T extends 'facebook'
@@ -55,15 +45,10 @@ export function makeShareUrl<T extends Provider>(
       baseUrl = 'https://www.facebook.com/sharer/sharer.php';
       break;
     case 'linkedin':
-      baseUrl = 'https://www.linkedin.com/shareArticle';
+      baseUrl = 'https://www.linkedin.com/sharing/share-offsite/';
       baseOptions = {
         ...baseOptions,
-        mini:
-          typeof (options as LinkedinOption).mini === 'boolean'
-            ? (options as LinkedinOption).mini
-            : true,
-        title: encodeURIComponent((options as LinkedinOption).title),
-        summary: encodeURIComponent((options as LinkedinOption).summary),
+        url: encodeURIComponent((options as LinkedinOption).url),
       };
       break;
     case 'reddit':

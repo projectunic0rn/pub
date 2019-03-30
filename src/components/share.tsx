@@ -78,12 +78,7 @@ const Share: React.FC<ShareProps> = ({ post }) => {
           link
           socialName="linkedin"
           title={`Share "${post.title}" on LinkedIn`}
-          href={makeShareUrl('linkedin', {
-            source: siteUrl,
-            summary: post.excerpt,
-            title: post.title,
-            url: postUrl,
-          })}
+          href={makeShareUrl('linkedin', { url: postUrl })}
         />
         <SocialIcon
           link
