@@ -38,7 +38,7 @@ const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
 
 const Subtitle = styled.p`
   font-size: 1.2em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.65;
   margin: 0 auto 1em;
   max-width: 25em;

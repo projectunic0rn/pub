@@ -1,6 +1,8 @@
 import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
+oceanBeachTheme.headerFontFamily = ['Roboto'];
+
 oceanBeachTheme.overrideThemeStyles = () => ({
   a: {
     color: '#5f8ddc',
