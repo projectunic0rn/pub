@@ -44,33 +44,30 @@ const Seo: React.FC<SeoProps> = ({
       meta={[
         {
           content: author || 'Project Unicorn',
-          name: 'author',
+          property: 'author',
         },
         {
           content: image || 'https://projectunicorn.net/apple-touch-icon.png',
-          name: 'image',
           property: 'og:image',
         },
         {
           content: metaDescription,
-          name: 'description',
           property: 'og:description',
         },
         {
           content: `${siteMetadata.url}/${urlSlug}`,
-          name: 'og:url',
+          property: 'og:url',
         },
         {
           content: 'en',
-          name: 'og:locale',
+          property: 'og:locale',
         },
         {
           content: siteMetadata.title,
-          name: 'og:site_name',
+          property: 'og:site_name',
         },
         {
           content: title,
-          name: 'title',
           property: 'og:title',
         },
         {
@@ -80,6 +77,10 @@ const Seo: React.FC<SeoProps> = ({
         {
           content: 'summary',
           name: 'twitter:card',
+        },
+        {
+          content: siteMetadata.social.twitter,
+          name: 'twitter:site',
         },
         {
           content: twitter || siteMetadata.social.twitter,
