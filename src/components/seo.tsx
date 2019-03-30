@@ -52,6 +52,7 @@ const Seo: React.FC<SeoProps> = ({
         {
           content: metaDescription,
           name: 'description',
+          property: 'og:description',
         },
         {
           content: `${siteMetadata.url}/${urlSlug}`,
@@ -69,11 +70,6 @@ const Seo: React.FC<SeoProps> = ({
           content: title,
           name: 'title',
           property: 'og:title',
-        },
-        {
-          content: metaDescription,
-          name: 'description',
-          property: 'og:description',
         },
         {
           content: 'website',
