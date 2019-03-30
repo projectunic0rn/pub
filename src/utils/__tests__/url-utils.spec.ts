@@ -45,6 +45,6 @@ test('generates correct Twitter share URL', () => {
   let actual = makeShareUrl('twitter', { url, text, via });
 
   expect(actual.includes(`url=${url}`)).toBe(true);
-  expect(actual.includes(`title=${encodeURIComponent(text)}`)).toBe(true);
+  expect(actual.includes(`text=${encodeURIComponent(text)}`)).toBe(true);
   expect(actual.includes(`via=${via}`)).toBe(true);
 });
