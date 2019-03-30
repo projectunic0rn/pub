@@ -44,7 +44,7 @@ const Seo: React.FC<SeoProps> = ({
       meta={[
         {
           content: author || 'Project Unicorn',
-          property: 'author',
+          name: 'author',
         },
         {
           content: image || 'https://projectunicorn.net/apple-touch-icon.png',
