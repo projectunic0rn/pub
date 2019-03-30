@@ -3,6 +3,7 @@ import { createGlobalStyle } from '@styled-components';
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto'), local('Roboto-Regular'),
@@ -12,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: italic;
     font-weight: 400;
     src: local('Roboto Italic'), local('Roboto-Italic'),
@@ -21,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Roboto';
+    font-display: swap;
     font-style: normal;
     font-weight: 700;
     src: local('Roboto Bold'), local('Roboto-Bold'),
