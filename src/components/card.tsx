@@ -22,7 +22,7 @@ const Post = styled.li<PostProps>`
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   border-radius: 2px;
   width: 100%;
-  transition: background 0.2s;
+  transition: 0.2s;
 
   @media screen and (min-width: ${({ theme }) => theme.responsive.small}) {
     flex: ${({ featured }) => (featured ? '0 0 100%' : '0 0 49%')};
@@ -44,6 +44,10 @@ const Post = styled.li<PostProps>`
     width: 100%;
     color: ${({ theme }) => theme.colors.base};
     text-decoration: none;
+
+    h2 {
+      transition: color 0.2s;
+    }
 
     &:hover {
       color: ${({ theme }) => theme.colors.base};
