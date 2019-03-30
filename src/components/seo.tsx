@@ -10,6 +10,7 @@ interface Meta {
 
 interface SeoProps {
   title: string;
+  urlSlug?: string;
   description?: string;
   keywords?: string[];
   lang?: string;
@@ -21,6 +22,7 @@ interface SeoProps {
 
 const Seo: React.FC<SeoProps> = ({
   title,
+  urlSlug = '',
   description,
   keywords = [],
   lang = 'en',
@@ -52,7 +54,7 @@ const Seo: React.FC<SeoProps> = ({
           name: 'description',
         },
         {
-          content: siteMetadata.url,
+          content: `${siteMetadata.url}/${urlSlug}`,
           name: 'og:url',
         },
         {

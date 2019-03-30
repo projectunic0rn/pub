@@ -124,6 +124,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
         description={post.excerpt}
         twitter={author.twitter}
         author={author.name}
+        urlSlug={slug}
       />
 
       <Hero
