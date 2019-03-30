@@ -18,6 +18,7 @@ interface SeoProps {
   twitter?: string;
   author?: string;
   image?: string;
+  pageType?: 'website' | 'article';
 }
 
 const Seo: React.FC<SeoProps> = ({
@@ -30,6 +31,7 @@ const Seo: React.FC<SeoProps> = ({
   twitter,
   author,
   image,
+  pageType = 'website',
 }) => {
   const siteMetadata = useSiteMetadata();
   const metaDescription = description || siteMetadata.description;
@@ -72,7 +74,7 @@ const Seo: React.FC<SeoProps> = ({
           property: 'og:title',
         },
         {
-          content: 'website',
+          content: pageType,
           property: 'og:type',
         },
         {
