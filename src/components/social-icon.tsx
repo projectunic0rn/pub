@@ -37,12 +37,13 @@ interface OwnProps {
 
 type SocialIconProps = OwnProps & React.SVGProps<SVGSVGElement>;
 
-const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
+const StyledAnchor = styled(Anchor)`
   color: hsla(0, 0%, 100%, 0.5);
   text-decoration: none;
   background-image: none;
   margin-right: 0.6em;
   transition: 0.2s;
+  padding: 0.2em;
 
   &:hover {
     color: white;
@@ -56,6 +57,17 @@ const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
   &:last-child {
     margin-right: 0;
   }
+`;
+
+const SrOnly = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 `;
 
 const SocialIcon: React.FC<SocialIconProps> = ({
@@ -77,7 +89,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
 
   return link ? (
     <StyledAnchor href={href}>
-      <Icon />
+      <Icon /> <SrOnly>{title}</SrOnly>
     </StyledAnchor>
   ) : (
     <Icon />

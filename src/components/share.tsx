@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const List = styled.div.attrs({ role: 'list' })`
+const List = styled.div`
   max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
   display: flex;
   flex-direction: row;

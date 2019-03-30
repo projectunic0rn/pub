@@ -41,7 +41,7 @@ const Heading = styled.h1`
   font-size: 1.1em;
 `;
 
-const List = styled.div.attrs({ role: 'list' })<ListProps>`
+const List = styled.div<ListProps>`
   display: flex;
   flex-direction: ${({ direction = 'column' }) => direction};
   align-items: flex-start;
@@ -63,7 +63,7 @@ const anchorStyles = css`
   }
 `;
 
-const StyledAnchor = styled(Anchor).attrs({ role: 'listitem' })`
+const StyledAnchor = styled(Anchor)`
   ${anchorStyles};
 `;
 
@@ -112,36 +112,46 @@ const Footer: React.FC = () => (
         <Heading>Follow us</Heading>
 
         <List direction="row">
-          <SocialIcon link socialName="facebook" href="//facebook.com" />
+          <SocialIcon
+            link
+            socialName="facebook"
+            href="//facebook.com"
+            title="Follow Project Unicorn on Facebook"
+          />
 
           <SocialIcon
             link
             socialName="instagram"
             href="//www.instagram.com/projectunicorn1"
+            title="Follow Project Unicorn on Instagram"
           />
 
           <SocialIcon
             link
             socialName="twitter"
             href="//twitter.com/ProjectUnicorn2"
+            title="Follow Project Unicorn on Twitter"
           />
 
           <SocialIcon
             link
             socialName="linkedin"
             href="//www.linkedin.com/company/proj-unicorn/about"
+            title="Follow Project Unicorn on LinkedIn"
           />
 
           <SocialIcon
             link
             socialName="reddit"
             href="//www.reddit.com/r/projectUnicorn"
+            title="Follow Project Unicorn on Reddit"
           />
 
           <SocialIcon
             link
             socialName="github"
             href="//github.com/projectunic0rn"
+            title="Follow Project Unicorn on GitHub"
           />
         </List>
       </Row>
