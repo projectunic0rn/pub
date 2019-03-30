@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { SocialIcon } from '@components';
 import { useSiteMetadata } from '@hooks';
+import { makeShareUrl } from '@utils';
 import styled from '@styled-components';
 
 interface ShareProps {
@@ -61,29 +62,34 @@ const Share: React.FC<ShareProps> = ({ post }) => {
           link
           socialName="facebook"
           title={`Share "${post.title}" on Facebook`}
-          href={`//www.facebook.com/sharer/sharer.php?u=${postUrl}`}
+          href={makeShareUrl('facebook', { u: postUrl })}
         />
         <SocialIcon
           link
           socialName="twitter"
           title={`Share "${post.title}" on Twitter`}
-          href={`//twitter.com/intent/tweet?url=${postUrl}&text=${encodeURIComponent(
-            post.title,
-          )}&via=${twitterHandle}&hashtags=projectunicorn`}
+          href={makeShareUrl('twitter', {
+            text: post.title,
+            url: postUrl,
+            via: twitterHandle,
+          })}
         />
         <SocialIcon
           link
           socialName="linkedin"
           title={`Share "${post.title}" on LinkedIn`}
-          href={`//www.linkedin.com/shareArticle?mini=true&url=${postUrl}&title=${encodeURIComponent(
-            post.title,
-          )}&summary=${encodeURIComponent(post.excerpt)}&source=${siteUrl}`}
+          href={makeShareUrl('linkedin', {
+            source: siteUrl,
+            summary: post.excerpt,
+            title: post.title,
+            url: postUrl,
+          })}
         />
         <SocialIcon
           link
           socialName="reddit"
           title={`Share "${post.title}" on Reddit`}
-          href={`//www.reddit.com/submit?url=${postUrl}`}
+          href={makeShareUrl('reddit', { url: postUrl })}
         />
       </List>
     </Wrapper>
