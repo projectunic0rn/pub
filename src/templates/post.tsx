@@ -119,7 +119,12 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
 
   return (
     <Layout>
-      <Seo title={title} description={post.excerpt} twitter={author.twitter} />
+      <Seo
+        title={title}
+        description={post.excerpt}
+        twitter={author.twitter}
+        author={author.name}
+      />
 
       <Hero
         title={title}

@@ -15,6 +15,8 @@ interface SeoProps {
   lang?: string;
   meta?: Meta[];
   twitter?: string;
+  author?: string;
+  image?: string;
 }
 
 const Seo: React.FC<SeoProps> = ({
@@ -24,6 +26,8 @@ const Seo: React.FC<SeoProps> = ({
   lang = 'en',
   meta = [],
   twitter,
+  author,
+  image,
 }) => {
   const siteMetadata = useSiteMetadata();
   const metaDescription = description || siteMetadata.description;
@@ -34,6 +38,15 @@ const Seo: React.FC<SeoProps> = ({
       title={title}
       titleTemplate={`%s - ${siteMetadata.title}`}
       meta={[
+        {
+          content: author,
+          name: 'author',
+        },
+        {
+          content: image,
+          name: 'image',
+          property: 'og:image',
+        },
         {
           content: metaDescription,
           name: 'description',
@@ -52,10 +65,12 @@ const Seo: React.FC<SeoProps> = ({
         },
         {
           content: title,
+          name: 'title',
           property: 'og:title',
         },
         {
           content: metaDescription,
+          name: 'description',
           property: 'og:description',
         },
         {
