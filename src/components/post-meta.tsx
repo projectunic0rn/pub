@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   flex: 1;
-  color: rgba(0, 0, 0, 0.73);
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Header = styled.header`
@@ -38,7 +38,7 @@ const Header = styled.header`
 
     & path {
       transition: 0.2s;
-      fill: rgba(0, 0, 0, 0.73);
+      fill: ${({ theme }) => theme.colors.text};
       opacity: 0.7;
     }
 

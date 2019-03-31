@@ -27,7 +27,7 @@ const List = styled.div`
 
   svg {
     path {
-      fill: rgba(0, 0, 0, 0.73);
+      fill: ${({ theme }) => theme.colors.text};
       opacity: 0.7;
     }
   }

@@ -51,7 +51,7 @@ const NextLink = styled(Link)`
 `;
 
 const PageIndicator = styled.span`
-  color: darkslategray;
+  color: ${({ theme }) => theme.colors.text};
   position: absolute;
   left: 0;
   right: 0;

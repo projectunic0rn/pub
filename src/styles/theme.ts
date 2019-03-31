@@ -3,6 +3,7 @@ const colors = {
   highlight: '#5f8ddc', // Light Blue
   secondary: '#e9e9e9', // Medium Gray
   tertiary: '#f3f3f3', // Light Gray
+  text: 'rgba(0, 0, 0, 0.73)',
 };
 
 const responsive = {

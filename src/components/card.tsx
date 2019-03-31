@@ -79,11 +79,12 @@ const Title = styled.h2`
 
 const Date = styled.p`
   margin: 0 1rem 1.5rem 1rem;
-  color: darkslategray;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Excerpt = styled.p`
   padding: 0 1rem 1rem 1rem;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Card: React.FC<CardProps> = ({
