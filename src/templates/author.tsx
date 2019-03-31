@@ -58,6 +58,8 @@ interface AuthorTemplateProps {
     authorYaml: Author;
   };
   pageContext: {
+    authorId: string;
+    authorName: string;
     totalPosts: number;
     slug: string;
     limit?: number;
@@ -126,9 +128,8 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   const siteMetadata = useSiteMetadata();
   const author = data.authorYaml;
   const posts = data.allMarkdownRemark.edges;
-  const { slug, currentPage } = pageContext;
+  const { authorId, authorName, slug, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
-  const authorName = author.name;
 
   return (
     <Layout>
@@ -193,7 +194,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination prefix={`blog/author/${author.id}`} context={pageContext} />
+      <Pagination prefix={`blog/author/${authorId}`} context={pageContext} />
     </Layout>
   );
 };

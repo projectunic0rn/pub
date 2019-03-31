@@ -293,25 +293,29 @@ exports.createPages = ({ graphql, actions }) => {
 
       const postsPerPage = 6;
 
-      Object.entries(authors).forEach(([slug, { posts: authorPosts }]) => {
-        const totalPosts = authorPosts.length;
-        const numPages = Math.ceil(totalPosts / postsPerPage);
+      Object.entries(authors).forEach(
+        ([slug, { id: authorId, name: authorName, posts: authorPosts }]) => {
+          const totalPosts = authorPosts.length;
+          const numPages = Math.ceil(totalPosts / postsPerPage);
 
-        Array.from({ length: numPages }).forEach((_, i) => {
-          createPage({
-            path: `/blog/author/${slug}/${i === 0 ? '' : i + 1}`,
-            component: template.author,
-            context: {
-              totalPosts,
-              slug,
-              limit: postsPerPage,
-              skip: i * postsPerPage,
-              numPages: numPages,
-              currentPage: i + 1,
-            },
+          Array.from({ length: numPages }).forEach((_, i) => {
+            createPage({
+              path: `/blog/author/${slug}/${i === 0 ? '' : i + 1}`,
+              component: template.author,
+              context: {
+                authorId,
+                authorName,
+                totalPosts,
+                slug,
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPages: numPages,
+                currentPage: i + 1,
+              },
+            });
           });
-        });
-      });
+        },
+      );
 
       resolve();
     });
