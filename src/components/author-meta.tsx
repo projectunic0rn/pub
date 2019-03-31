@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 
   svg {
     width: 1em;

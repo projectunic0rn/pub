@@ -4,14 +4,27 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 
 import {
+  AuthorMeta,
   Card,
   CardList,
   Container,
   Layout,
-  PageTitle,
   Pagination,
 } from '@components';
 import { useSiteMetadata } from '@hooks';
+
+export interface Author {
+  id: string;
+  name: string;
+  github: string;
+  twitter?: string;
+  bio?: string;
+  avatar?: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}
 
 interface PostNode {
   node: {
@@ -42,10 +55,9 @@ interface AuthorTemplateProps {
     allMarkdownRemark: {
       edges: PostNode[];
     };
+    authorYaml: Author;
   };
   pageContext: {
-    authorId: string;
-    authorName: string;
     totalPosts: number;
     slug: string;
     limit?: number;
@@ -61,6 +73,19 @@ export const authorQuery = graphql`
       childImageSharp {
         fluid(maxWidth: 1800) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    authorYaml(id: { eq: $authorId }) {
+      id
+      name
+      bio
+      github
+      avatar {
+        childImageSharp {
+          fluid(maxWidth: 1800) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
@@ -99,9 +124,11 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   pageContext,
 }) => {
   const siteMetadata = useSiteMetadata();
+  const author = data.authorYaml;
   const posts = data.allMarkdownRemark.edges;
-  const { authorId, authorName, slug, totalPosts, currentPage } = pageContext;
+  const { slug, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
+  const authorName = author.name;
 
   return (
     <Layout>
@@ -146,11 +173,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
       )}
 
       <Container>
-        <PageTitle small={true}>
-          {totalPosts} Post{totalPosts > 1 ? 's' : ''} by &ldquo;
-          {authorName}
-          &rdquo;
-        </PageTitle>
+        <AuthorMeta author={author} />
 
         <CardList>
           {posts.map(({ node }) => (
@@ -170,7 +193,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
         </CardList>
       </Container>
 
-      <Pagination prefix={`blog/author/${authorId}`} context={pageContext} />
+      <Pagination prefix={`blog/author/${author.id}`} context={pageContext} />
     </Layout>
   );
 };
