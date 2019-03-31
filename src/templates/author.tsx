@@ -83,7 +83,7 @@ export const authorQuery = graphql`
       github
       avatar {
         childImageSharp {
-          fluid(maxWidth: 1800) {
+          fluid(maxWidth: 68) {
             ...GatsbyImageSharpFluid
           }
         }
