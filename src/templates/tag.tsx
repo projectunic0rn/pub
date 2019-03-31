@@ -143,7 +143,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
       )}
 
       <Container>
-        <PageTitle small={true}>
+        <PageTitle size="small">
           {totalPosts} Post{numberOfPosts > 1 ? 's' : ''} Tagged: &ldquo;
           {title}
           &rdquo;
