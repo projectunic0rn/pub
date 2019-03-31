@@ -1,0 +1,76 @@
+import * as React from 'react';
+
+import { Avatar, SocialIcon } from '@components';
+import styled from '@styled-components';
+import { Author } from '@templates/author';
+
+interface AuthorMetaProps {
+  author: Author;
+}
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+
+  svg {
+    width: 1em;
+    font-size: 24px;
+
+    & path {
+      transition: 0.2s;
+      fill: ${({ theme }) => theme.colors.text};
+      opacity: 0.7;
+    }
+
+    &:hover path {
+      fill: ${({ theme }) => theme.colors.highlight};
+    }
+  }
+`;
+
+const SocialAccounts = styled.div`
+  display: flex;
+`;
+
+const Name = styled.h2`
+  margin: 1em 0 0.5em;
+`;
+
+const AuthorMeta: React.FC<AuthorMetaProps> = ({
+  author: { avatar, name, bio, github, twitter },
+}) => (
+  <Wrapper>
+    {avatar && (
+      <Avatar
+        fluid={avatar.childImageSharp.fluid}
+        alt=""
+        title={name}
+        alignment="vertical"
+      />
+    )}
+    <Name>{name}</Name>
+    <p>{bio}</p>
+
+    <SocialAccounts>
+      <SocialIcon
+        link
+        socialName="github"
+        href={`https://github.com/${github}`}
+        title={`${name} on GitHub`}
+      />
+
+      {twitter && (
+        <SocialIcon
+          link
+          socialName="twitter"
+          href={`https://twitter.com/${twitter}`}
+          title={`${name} on Twitter`}
+        />
+      )}
+    </SocialAccounts>
+  </Wrapper>
+);
+
+export default AuthorMeta;
