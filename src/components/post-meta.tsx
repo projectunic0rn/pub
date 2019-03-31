@@ -1,14 +1,9 @@
 import { Link } from 'gatsby';
-import Img, { GatsbyImageProps } from 'gatsby-image';
 import * as React from 'react';
 
 import styled from '@styled-components';
 import { Author } from '@templates/post';
-import { SocialIcon } from '@components';
-
-interface AvatarProps {
-  small?: boolean;
-}
+import { Avatar, SocialIcon } from '@components';
 
 interface PostMetaProps {
   date: string;
@@ -21,17 +16,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Avatar = styled(Img).attrs({ small: false })<
-  AvatarProps & GatsbyImageProps
->`
-  min-height: 4em;
-  max-height: 4em;
-  min-width: 4em;
-  max-width: 4em;
-  border-radius: 50%;
-  margin-right: 1.6em;
 `;
 
 const Body = styled.div`
