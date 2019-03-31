@@ -1,11 +1,8 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
+import { PostNode } from '@templates/post';
 import styled from '@styled-components';
-
-interface PostNode {
-  fields: { slug: string };
-}
 
 interface PostLinksProps {
   prefix: string;
@@ -59,7 +56,7 @@ const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
         {previous && (
           <PreviousLink
             to={`/${linkPrefix}${previous.fields.slug}/`}
-            title={previous.fields.slug}
+            title={previous.frontmatter.title}
           >
             &#8592; Prev Post
           </PreviousLink>
@@ -68,7 +65,7 @@ const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
         {next && (
           <NextLink
             to={`/${linkPrefix}${next.fields.slug}/`}
-            title={next.fields.slug}
+            title={next.frontmatter.title}
           >
             Next Post &#8594;
           </NextLink>

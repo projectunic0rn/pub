@@ -14,10 +14,23 @@ import {
   Share,
 } from '@components';
 
-interface PostNode {
+export interface PostNode {
+  id: string;
+  excerpt: string;
   fields: { slug: string };
+  html: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    tags?: string[];
+    author: Author;
+    image: {
+      childImageSharp: {
+        fluid: FluidObject;
+      };
+    };
+  };
 }
-
 export interface Author {
   id: string;
   name: string;
@@ -38,23 +51,7 @@ interface BlogPostTemplateProps {
         fluid: FluidObject;
       };
     };
-    markdownRemark: {
-      id: string;
-      excerpt: string;
-      fields: { slug: string };
-      html: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        tags?: string[];
-        author: Author;
-        image: {
-          childImageSharp: {
-            fluid: FluidObject;
-          };
-        };
-      };
-    };
+    markdownRemark: PostNode;
   };
   pageContext: {
     previous: PostNode;
