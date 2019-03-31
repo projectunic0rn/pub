@@ -88,7 +88,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
   );
 
   return link ? (
-    <StyledAnchor href={href}>
+    <StyledAnchor href={href} title={title}>
       <Icon /> <SrOnly>{title}</SrOnly>
     </StyledAnchor>
   ) : (

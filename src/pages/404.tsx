@@ -21,8 +21,11 @@ const NotFoundPage: React.FC = () => (
       <PageTitle>Page Not Found</PageTitle>
 
       <Text>
-        Please return <Link to="/">home</Link> or use the menu to navigate to a
-        different page.
+        Please return{' '}
+        <Link to="/" title="Project Unicorn home page">
+          home
+        </Link>{' '}
+        or use the menu to navigate to a different page.
       </Text>
     </Container>
   </Layout>

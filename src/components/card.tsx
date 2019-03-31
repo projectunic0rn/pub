@@ -95,7 +95,7 @@ const Card: React.FC<CardProps> = ({
   fluid,
 }) => (
   <Post featured={featured}>
-    <StyledLink to={`/blog/${slug}/`}>
+    <StyledLink to={`/blog/${slug}/`} title={title}>
       <Img fluid={fluid} backgroundColor="#eeeeee" />
       <Title>{title}</Title>
       <Date>{publishDate}</Date>

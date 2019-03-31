@@ -41,7 +41,12 @@ const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
   <List>
     {tags.map((tag) => (
       <Tag key={tag}>
-        <Link to={`/blog/tag/${slugify(tag)}/`}>{tag}</Link>
+        <Link
+          to={`/blog/tag/${slugify(tag)}/`}
+          title={`Posts tagged with ${tag}`}
+        >
+          {tag}
+        </Link>
       </Tag>
     ))}
   </List>

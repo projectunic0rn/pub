@@ -57,13 +57,19 @@ const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
     <Wrapper>
       <Box>
         {previous && (
-          <PreviousLink to={`/${linkPrefix}${previous.fields.slug}/`}>
+          <PreviousLink
+            to={`/${linkPrefix}${previous.fields.slug}/`}
+            title={previous.fields.slug}
+          >
             &#8592; Prev Post
           </PreviousLink>
         )}
 
         {next && (
-          <NextLink to={`/${linkPrefix}${next.fields.slug}/`}>
+          <NextLink
+            to={`/${linkPrefix}${next.fields.slug}/`}
+            title={next.fields.slug}
+          >
             Next Post &#8594;
           </NextLink>
         )}

@@ -57,9 +57,18 @@ const IndexPage: React.FC = () => {
         <Anchor
           href="//join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA"
           content="Slack"
+          title="Project Unicorn Slack invite link"
         />{' '}
-        | <Anchor href="//github.com/projectunic0rn" content="GitHub" /> |{' '}
-        <Link to="/blog">Blog</Link>
+        |{' '}
+        <Anchor
+          href="//github.com/projectunic0rn"
+          content="GitHub"
+          title="Project Unicorn GitHub organization"
+        />{' '}
+        |{' '}
+        <Link to="/blog" title="Project Unicorn blog">
+          Blog
+        </Link>
       </Inner>
     </Wrapper>
   );

@@ -96,10 +96,21 @@ const Footer: React.FC = () => (
         <Heading>About</Heading>
 
         <List>
-          <StyledLink to="/sitemap">Sitemap</StyledLink>
-          <StyledLink to="/contact">Contact Us</StyledLink>
-          <StyledLink to="/terms">Terms and Conditions</StyledLink>
-          <StyledLink to="/privacy">Privacy Policy</StyledLink>
+          <StyledLink to="/sitemap" title="Project Unicorn sitemap">
+            Sitemap
+          </StyledLink>
+
+          <StyledLink to="/contact" title="Project Unicorn contact page">
+            Contact Us
+          </StyledLink>
+
+          <StyledLink to="/terms" title="Project Unicorn terms and conditions">
+            Terms and Conditions
+          </StyledLink>
+
+          <StyledLink to="/privacy" title="Project Unicorn privacy policy">
+            Privacy Policy
+          </StyledLink>
         </List>
       </Row>
 
@@ -107,8 +118,17 @@ const Footer: React.FC = () => (
         <Heading>Projects</Heading>
 
         <List>
-          <StyledAnchor href="//www.mentrship.com/" content="Mentrship" />
-          <StyledAnchor href="//github.com/projectunic0rn/pub" content="Pub" />
+          <StyledAnchor
+            href="//www.mentrship.com/"
+            content="Mentrship"
+            title="Mentrship project website"
+          />
+
+          <StyledAnchor
+            href="//github.com/projectunic0rn/pub"
+            content="Pub"
+            title="Project Unicorn blog repository"
+          />
         </List>
       </Row>
 
@@ -162,9 +182,17 @@ const Footer: React.FC = () => (
     </Inner>
 
     <BottomText>
-      <StyledAnchor href="//github.com/projectunic0rn/pub" content="pub" /> is
-      maintained by{' '}
-      <StyledAnchor href="//github.com/rmjordas" content="@rmjordas" />
+      <StyledAnchor
+        href="//github.com/projectunic0rn/pub"
+        content="pub"
+        title="Project Unicorn blog repository"
+      />{' '}
+      is maintained by{' '}
+      <StyledAnchor
+        href="//github.com/rmjordas"
+        content="@rmjordas"
+        title="Rodger Jordas on GitHub"
+      />
     </BottomText>
   </Wrapper>
 );

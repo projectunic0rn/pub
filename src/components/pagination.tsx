@@ -78,7 +78,12 @@ const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
   return (
     <Wrapper>
       {!isFirst && prevPageLink && (
-        <PreviousLink to={prevPageLink}>&#8592; Prev Page</PreviousLink>
+        <PreviousLink
+          to={prevPageLink}
+          title={`Project Unicorn blog page ${prevPageNum}`}
+        >
+          &#8592; Prev Page
+        </PreviousLink>
       )}
 
       {!isNotPaginated && (
@@ -88,7 +93,12 @@ const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
       )}
 
       {!isLast && nextPageLink && (
-        <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>
+        <NextLink
+          to={nextPageLink}
+          title={`Project Unicorn blog page ${nextPageNum}`}
+        >
+          Next Page &#8594;
+        </NextLink>
       )}
     </Wrapper>
   );

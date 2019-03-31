@@ -73,7 +73,10 @@ const TagsPage: React.FC<TagsPageProps> = ({
       <List>
         {group.map(({ fieldValue, totalCount }) => (
           <Tag key={fieldValue}>
-            <Link to={`/blog/tag/${slugify(fieldValue)}/`}>
+            <Link
+              to={`/blog/tag/${slugify(fieldValue)}/`}
+              title={`Posts tagged with ${fieldValue}`}
+            >
               {fieldValue} ({totalCount})
             </Link>
           </Tag>

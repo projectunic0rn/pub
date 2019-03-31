@@ -95,7 +95,9 @@ const PostDate: React.FC<PostMetaProps> = ({
 
     <Body>
       <Header>
-        <AuthorLink to={`/blog/author/${id}`}>{name}</AuthorLink>
+        <AuthorLink to={`/blog/author/${id}`} title={`Posts by ${name}`}>
+          {name}
+        </AuthorLink>
 
         <SocialIcon
           link

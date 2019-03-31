@@ -55,7 +55,11 @@ const Menu: React.FC = () => (
     <Nav>
       <List>
         <ListItem>
-          <StyledLink to="/" activeStyle={activeLinkStyle}>
+          <StyledLink
+            to="/"
+            activeStyle={activeLinkStyle}
+            title="Project Unicorn logo"
+          >
             <img
               src={puLogo}
               style={{ width: '100px' }}
@@ -65,7 +69,11 @@ const Menu: React.FC = () => (
         </ListItem>
 
         <ListItem>
-          <StyledLink to="/blog/tags/" activeStyle={activeLinkStyle}>
+          <StyledLink
+            to="/blog/tags/"
+            activeStyle={activeLinkStyle}
+            title="Project Unicorn tags page"
+          >
             Tags
           </StyledLink>
         </ListItem>
