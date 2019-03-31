@@ -70,7 +70,7 @@ const Bio = styled.p`
   margin: 0;
 `;
 
-const PostDate: React.FC<PostMetaProps> = ({
+const PostMeta: React.FC<PostMetaProps> = ({
   date,
   author: { avatar, bio, id, name, github, twitter },
 }) => (
@@ -107,4 +107,4 @@ const PostDate: React.FC<PostMetaProps> = ({
   </Wrapper>
 );
 
-export default PostDate;
+export default PostMeta;
