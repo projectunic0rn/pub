@@ -36,7 +36,7 @@ const Row = styled.div<RowProps>`
   flex: ${({ flex = 1 }) => flex};
 `;
 
-const Heading = styled.h1`
+const Heading = styled.h3`
   color: white;
   font-size: 1.1em;
 `;
