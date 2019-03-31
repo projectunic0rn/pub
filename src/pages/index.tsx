@@ -30,7 +30,11 @@ const Inner = styled.div`
   }
 `;
 
-const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+const Logo = styled.img.attrs({
+  src: puLogo,
+  alt: 'Project Unicorn',
+  title: 'Project Unicorn',
+})`
   margin: 0 auto;
   width: 100%;
   max-width: 20em;

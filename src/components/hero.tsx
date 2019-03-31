@@ -69,7 +69,13 @@ const Title = styled.h1`
 
 const Hero: React.FC<HeroProps> = ({ height, fluid, title }) => (
   <Wrapper>
-    <BgImg height={height} fluid={fluid} backgroundColor="#eeeeee" />
+    <BgImg
+      height={height}
+      fluid={fluid}
+      backgroundColor="#eeeeee"
+      title={title}
+      alt=""
+    />
     <Title>{title}</Title>
   </Wrapper>
 );

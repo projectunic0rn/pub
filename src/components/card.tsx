@@ -96,7 +96,7 @@ const Card: React.FC<CardProps> = ({
 }) => (
   <Post featured={featured}>
     <StyledLink to={`/blog/${slug}/`} title={title}>
-      <Img fluid={fluid} backgroundColor="#eeeeee" />
+      <Img fluid={fluid} backgroundColor="#eeeeee" title={title} alt="" />
       <Title>{title}</Title>
       <Date>{publishDate}</Date>
       <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />

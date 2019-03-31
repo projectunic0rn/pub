@@ -91,7 +91,9 @@ const PostDate: React.FC<PostMetaProps> = ({
   author: { avatar, bio, id, name, github, twitter },
 }) => (
   <Wrapper>
-    {avatar && <Avatar fluid={avatar.childImageSharp.fluid} />}
+    {avatar && (
+      <Avatar fluid={avatar.childImageSharp.fluid} alt="" title={name} />
+    )}
 
     <Body>
       <Header>

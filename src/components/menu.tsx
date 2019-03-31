@@ -64,6 +64,7 @@ const Menu: React.FC = () => (
               src={puLogo}
               style={{ width: '100px' }}
               alt="Project Unicorn"
+              title="Project Unicorn"
             />
           </StyledLink>
         </ListItem>
