@@ -4,13 +4,18 @@ import * as React from 'react';
 import styled from '@styled-components';
 
 interface BgImgProps {
+  /** A CSS `height` value. */
   height?: string;
+  /** A CSS `object-fit` value. */
   fit?: string;
+  /** A CSS `position` value. */
   position?: string;
 }
 
 interface HeroProps extends Pick<BgImgProps, 'height'> {
+  /** Used by `gatsby-image` to display the properly-sized hero image. */
   fluid: FluidObject;
+  /** Title of the blog post. */
   title: string;
 }
 
@@ -67,6 +72,10 @@ const Title = styled.h1`
   margin-top: 0;
 `;
 
+/**
+ * Displays the hero image as a background and the blog post title as the
+ * foreground.
+ */
 const Hero: React.FC<HeroProps> = ({ height, fluid, title }) => (
   <Wrapper>
     <BgImg

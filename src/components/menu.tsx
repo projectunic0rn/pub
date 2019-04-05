@@ -50,6 +50,7 @@ const ListItem = styled.li`
 
 const activeLinkStyle = {};
 
+/** Displays links to different parts of the application. */
 const Menu: React.FC = () => (
   <Wrapper>
     <Nav>

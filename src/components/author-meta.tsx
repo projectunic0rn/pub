@@ -5,6 +5,7 @@ import styled from '@styled-components';
 import { Author } from '@templates/author';
 
 interface AuthorMetaProps {
+  /** The object containing details about an author. */
   author: Author;
 }
 
@@ -38,6 +39,7 @@ const Name = styled.h2`
   margin: 1em 0 0.5em;
 `;
 
+/** Displays details about an author. */
 const AuthorMeta: React.FC<AuthorMetaProps> = ({
   author: { avatar, name, bio, github, twitter },
 }) => (

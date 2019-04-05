@@ -80,6 +80,7 @@ const BottomText = styled.div`
   padding-top: 4em;
 `;
 
+/** Displays information about the website. */
 const Footer: React.FC = () => (
   <Wrapper>
     <Inner>

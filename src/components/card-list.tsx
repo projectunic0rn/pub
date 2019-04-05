@@ -15,6 +15,7 @@ const List = styled.ul`
   }
 `;
 
+/** Displays a list of `Card`s. */
 const CardList: React.FC = ({ children }) => <List>{children}</List>;
 
 export default CardList;

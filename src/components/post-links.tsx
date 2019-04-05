@@ -5,8 +5,11 @@ import { PostNode } from '@templates/post';
 import styled from '@styled-components';
 
 interface PostLinksProps {
+  /** The prefix for the paths to be used in the next and previous links. */
   prefix: string;
+  /** Contains information about the previous blog post. */
   previous: PostNode;
+  /** Contains information about the next blog post. */
   next: PostNode;
 }
 
@@ -47,6 +50,7 @@ const NextLink = styled(Link)`
   order: 2;
 `;
 
+/** Displays links to the next and previous blog post. */
 const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
   const linkPrefix = prefix ? `${prefix}/` : '';
 

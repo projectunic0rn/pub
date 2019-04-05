@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from '@styled-components';
 
 interface PageBodyProps {
+  /** Content to be shown as the page body. */
   body: string;
 }
 
@@ -35,6 +36,7 @@ const Body = styled.div`
   }
 `;
 
+/** Wrapper for a blog post's main content. */
 const PageBody: React.FC<PageBodyProps> = ({ body }) => (
   <Body dangerouslySetInnerHTML={{ __html: body }} />
 );

@@ -48,6 +48,7 @@ const Subtitle = styled.p`
   max-width: 25em;
 `;
 
+/** The website's landing page. */
 const IndexPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 

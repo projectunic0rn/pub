@@ -6,7 +6,9 @@ import { Author } from '@templates/post';
 import { Avatar, SocialIcon } from '@components';
 
 interface PostMetaProps {
+  /** The published date for a blog post. */
   date: string;
+  /** Contains details for the author of the current blog post. */
   author: Author;
 }
 
@@ -70,6 +72,7 @@ const Bio = styled.p`
   margin: 0;
 `;
 
+/** Displays details about a blog post. */
 const PostMeta: React.FC<PostMetaProps> = ({
   date,
   author: { avatar, bio, id, name, github, twitter },

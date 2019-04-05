@@ -93,6 +93,7 @@ export const tagQuery = graphql`
   }
 `;
 
+/** Used by Gatsby to display the list of tags used in blog posts. */
 const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
   const posts = data.allMarkdownRemark.edges;

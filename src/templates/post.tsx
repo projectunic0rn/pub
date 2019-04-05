@@ -104,6 +104,7 @@ export const pageQuery = graphql`
   }
 `;
 
+/** Used by Gatsby to display a single blog post. */
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
   data,
   pageContext,

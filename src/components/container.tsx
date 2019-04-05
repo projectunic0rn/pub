@@ -10,6 +10,7 @@ const Wrapper = styled.section`
   flex-grow: 1;
 `;
 
+/** Display the main content of the page. */
 const Container: React.FC = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 export default Container;

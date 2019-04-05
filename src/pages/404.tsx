@@ -13,6 +13,7 @@ const Text = styled.p`
   }
 `;
 
+/** Displays a generic page for pages that are not found. */
 const NotFoundPage: React.FC = () => (
   <Layout>
     <Seo title="Page not found" description="Page not found" />

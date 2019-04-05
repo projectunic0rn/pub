@@ -14,11 +14,17 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 export interface Author {
+  /** Unique ID of the author. */
   id: string;
+  /** Display name of the author. */
   name: string;
+  /** The author's GitHub username.  */
   github: string;
+  /** The author's Twitter username. */
   twitter?: string;
+  /** A short description of the author. */
   bio?: string;
+  /** Used by `gatsby-image` to display the properly-sized avatar image. */
   avatar?: {
     childImageSharp: {
       fluid: FluidObject;
@@ -121,6 +127,7 @@ export const authorQuery = graphql`
   }
 `;
 
+/** Used by Gatsby to display the list of blog posts by author. */
 const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   data,
   pageContext,

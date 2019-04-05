@@ -1,10 +1,15 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 export interface SiteMetadata {
+  /** The name of the website. */
   title: string;
+  /** The description of the website. */
   description: string;
+  /** The url of the website. */
   url: string;
+  /** Contains the project's social handles. */
   social: {
+    /** The websites Twitter handle. */
     twitter: string;
   };
 }

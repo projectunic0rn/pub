@@ -1,12 +1,24 @@
 import * as React from 'react';
 
 interface OwnProps {
+  /**
+   * If `true`, the `target` and provided `rel` attribute values will be passed
+   * to the return component.
+   */
   external?: boolean;
+  /**
+   * If `children` is _falsey_, this value will be the child of the returned
+   * anchor element.
+   */
   content?: string;
 }
 
 type AnchorProps = OwnProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
+/**
+ * Wrapper for a plain anchor element that sets the `rel` and `target`
+ * attributes for external links.
+ */
 const Anchor: React.FC<AnchorProps> = ({
   external = true,
   content,

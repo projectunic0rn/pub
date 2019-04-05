@@ -5,6 +5,7 @@ import styled from '@styled-components';
 type Size = 'tiny' | 'small' | 'default';
 
 interface PageTitleProps {
+  /** Determines the styles to be applied to the title text. */
   size?: Size;
 }
 
@@ -46,6 +47,7 @@ const Title = styled.h1<TitleProps>`
   }
 `;
 
+/** Wrapper for a page title. */
 const PageTitle: React.FC<PageTitleProps> = ({
   children,
   size = 'default',

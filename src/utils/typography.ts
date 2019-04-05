@@ -27,6 +27,7 @@ oceanBeachTheme.overrideThemeStyles = () => ({
   },
 });
 
+/** Configuration object for `gatsby-plugin-typography`. */
 const typography = new Typography(oceanBeachTheme);
 
 export default typography;

@@ -4,7 +4,12 @@ import Img, { GatsbyImageProps } from 'gatsby-image';
 import styled from '@styled-components';
 
 interface OwnProps {
+  /**
+   * @deprected If `true`, the avatar size will be smaller than the default
+   * size.
+   */
   small?: boolean;
+  /** This value determines if margins will applied to the image. */
   alignment?: 'horizontal' | 'vertical';
 }
 
@@ -20,6 +25,7 @@ const Image = styled(Img).attrs({ small: false })<AvatarProps>`
     alignment === 'horizontal' ? '1.6em' : 0};
 `;
 
+/** Displays an avatar image. */
 const Avatar: React.FC<AvatarProps> = ({
   alignment = 'horizontal',
   ...avatarProps

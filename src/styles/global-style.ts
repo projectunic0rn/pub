@@ -1,5 +1,6 @@
 import { createGlobalStyle } from '@styled-components';
 
+/** Application-wide default styling. */
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Roboto';

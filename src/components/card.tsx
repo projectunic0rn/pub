@@ -9,11 +9,17 @@ interface PostProps {
 }
 
 interface CardProps {
+  /** The slugged title of the blog post. */
   slug: string;
+  /** Used by `gatsby-image` to display the properly-sized hero image. */
   fluid: FluidObject;
+  /** The title of the blog post. */
   title: string;
+  /** The publish date of the blog post. */
   publishDate: string;
+  /** A short preview of the blog post. */
   excerpt: string;
+  /** If `true`, the styling for the featured blog post will be applied. */
   featured?: boolean;
 }
 
@@ -87,6 +93,7 @@ const Excerpt = styled.p`
   color: ${({ theme }) => theme.colors.text};
 `;
 
+/** Shows a blog post's condensed details. */
 const Card: React.FC<CardProps> = ({
   slug,
   title,

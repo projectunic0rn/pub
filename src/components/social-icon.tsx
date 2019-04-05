@@ -29,8 +29,14 @@ export const socialIconPaths: SocialIconPaths = {
 };
 
 interface OwnProps {
+  /** Name of the website to share to. */
   socialName: SocialName;
+  /** The website's URL for sharing. */
   href: string;
+  /**
+   * If `true` will return an icon but wrapped with an anchor element.
+   * Otherwise, it only returns the icon.
+   */
   link?: boolean;
   title?: string;
 }
@@ -70,6 +76,7 @@ const SrOnly = styled.span`
   border: 0;
 `;
 
+/** Displays an icon for a website that can be shared to. */
 const SocialIcon: React.FC<SocialIconProps> = ({
   socialName,
   href,

@@ -59,6 +59,7 @@ const Tag = styled.li`
   }
 `;
 
+/** Displays the tags used by blog posts. */
 const TagsPage: React.FC<TagsPageProps> = ({
   data: {
     allMarkdownRemark: { group },

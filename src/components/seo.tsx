@@ -9,18 +9,32 @@ interface Meta {
 }
 
 interface SeoProps {
+  /** The document title. */
   title: string;
+  /** The URL path. */
   urlSlug?: string;
+  /** Description of the document. */
   description?: string;
+  /** Keywords for the document.  */
   keywords?: string[];
+  /** Language of the document. */
   lang?: string;
+  /** Additional information for crawlers. */
   meta?: Meta[];
+  /** Twitter handle related to the content. */
   twitter?: string;
+  /** The author of the contents. */
   author?: string;
+  /** A URL for an image to be used when sharing. */
   image?: string;
+  /** Another additional information used when sharing. */
   pageType?: 'website' | 'article';
 }
 
+/**
+ * Updates the contents of the `head` element for the page that this component
+ * was inserted.
+ */
 const Seo: React.FC<SeoProps> = ({
   title,
   urlSlug = '',

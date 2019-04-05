@@ -19,6 +19,10 @@ const Content = styled.div`
   flex: 1 0 auto;
 `;
 
+/**
+ * The application shell containing common page components such as the
+ * navigation bar, footer, etc.
+ */
 const Layout: React.FC = ({ children }) => {
   const siteMetadata = useSiteMetadata();
 

@@ -5,6 +5,7 @@ import styled from '@styled-components';
 import { slugify } from '@utils';
 
 interface PostTagsProps {
+  /** A list of tags. */
   tags: string[];
 }
 
@@ -37,6 +38,7 @@ const Tag = styled.li`
   }
 `;
 
+/** Displays a row of tags for the current blog post. */
 const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
   <List>
     {tags.map((tag) => (

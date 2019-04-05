@@ -4,14 +4,18 @@ import * as React from 'react';
 import styled from '@styled-components';
 
 interface PaginationProps {
+  /** Contains information about the page. */
   context: {
     tag?: string;
     slug?: string;
     limit?: number;
     skip?: number;
+    /** The total number of pages based on the `POST_PER_PAGE` constant. */
     numPages?: number;
+    /** The current page. */
     currentPage?: number;
   };
+  /** The prefix for the paths to be used in the next and previous links. */
   prefix?: string;
 }
 
@@ -62,6 +66,10 @@ const PageIndicator = styled.span`
   opacity: 0.7;
 `;
 
+/**
+ * Displays a page indicator to show the current page compared to the total page
+ * and links to the next and previous page.
+ */
 const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
   const { numPages, currentPage = 1 } = context;
   const isFirst = currentPage === 1;

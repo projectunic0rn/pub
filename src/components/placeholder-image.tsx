@@ -22,6 +22,7 @@ const placeholderImageQuery = graphql`
   }
 `;
 
+/** Displays a properly-sized placeholder image. */
 const PlaceholderImage: React.FC = () => {
   const { placeholderImage }: Data = useStaticQuery(placeholderImageQuery);
 

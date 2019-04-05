@@ -8,6 +8,7 @@ interface OwnProps {
 
 type SvgIconProps = OwnProps & React.SVGProps<SVGSVGElement>;
 
+/** Displays an SVG element where its size can be configured via `fontSize`. */
 const SvgIcon: React.FC<SvgIconProps> = ({
   fontSize,
   children,

@@ -1,8 +1,13 @@
 const colors = {
-  base: '#121212', // Off-black
-  highlight: '#5f8ddc', // Light Blue
-  secondary: '#e9e9e9', // Medium Gray
-  tertiary: '#f3f3f3', // Light Gray
+  /** Off-black */
+  base: '#121212',
+  /** Light blue */
+  highlight: '#5f8ddc',
+  /** Medium gray */
+  secondary: '#e9e9e9',
+  /** Light gray */
+  tertiary: '#f3f3f3',
+  /** Alternate light gray */
   text: 'rgba(0, 0, 0, 0.73)',
 };
 

@@ -6,9 +6,13 @@ import { makeShareUrl } from '@utils';
 import styled from '@styled-components';
 
 interface ShareProps {
+  /** Contains information about a blog post. */
   post: {
+    /** The title of the blog post. */
     title: string;
+    /** The URL path. */
     slug: string;
+    /** A short preview of the blog post. */
     excerpt: string;
   };
 }
@@ -48,6 +52,7 @@ const Label = styled.p`
   font-weight: 700;
 `;
 
+/** Displays icons that link to social sites' share endpoints. */
 const Share: React.FC<ShareProps> = ({ post }) => {
   const { social, url: siteUrl } = useSiteMetadata();
   const twitterHandle = social.twitter.replace('@', '');
