@@ -1,7 +1,9 @@
 import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
-oceanBeachTheme.headerFontFamily = ['Roboto'];
+import * as constants from './constants';
+
+oceanBeachTheme.headerFontFamily = [constants.roboto];
 
 oceanBeachTheme.overrideThemeStyles = () => ({
   a: {
