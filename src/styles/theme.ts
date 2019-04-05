@@ -1,25 +1,27 @@
+import * as constants from './constants';
+
 const colors = {
   /** Off-black */
-  base: '#121212',
+  base: constants.offblack,
   /** Light blue */
-  highlight: '#5f8ddc',
+  highlight: constants.lightblue,
   /** Medium gray */
-  secondary: '#e9e9e9',
+  secondary: constants.mediumgray,
   /** Light gray */
-  tertiary: '#f3f3f3',
+  tertiary: constants.lightgray,
   /** Alternate light gray */
-  text: 'rgba(0, 0, 0, 0.73)',
+  text: constants.altlightgray,
 };
 
 const responsive = {
-  large: '70em',
-  medium: '50em',
-  small: '35em',
+  large: '70em' as const,
+  medium: '50em' as const,
+  small: '35em' as const,
 };
 
 const sizes = {
-  maxWidth: '1050px',
-  maxWidthCentered: '650px',
+  maxWidth: '1050px' as const,
+  maxWidthCentered: '650px' as const,
 };
 
 export interface ThemeInterface {
@@ -28,8 +30,8 @@ export interface ThemeInterface {
   sizes: typeof sizes;
 }
 
-export const theme: ThemeInterface = {
+export const theme = Object.freeze<ThemeInterface>({
   colors,
   responsive,
   sizes,
-};
+});
