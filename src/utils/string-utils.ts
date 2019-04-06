@@ -50,13 +50,13 @@ export function slugify(/** String to slugify. */ text: string) {
     .replace(/-+$/, ''); // Trim - from end of text
 }
 
-/**
- * Returns a valid style length value.
- *
- * @param {string | number} length The length to be formatted.
- * @param {string} unit Unit to append to the length.
- * */
-export function styleLengths(length: string | number = 0, unit = 'px') {
+/** Returns a valid style length value. */
+export function styleLengths(
+  /** The length to be formatted. */
+  length: string | number = 0,
+  /**Unit to append to the length. */
+  unit = 'px',
+) {
   if (typeof length === 'string') {
     if (isNaN(filterInt(length))) {
       return length;
