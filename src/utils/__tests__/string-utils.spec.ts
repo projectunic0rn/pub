@@ -1,4 +1,4 @@
-import { slugify, truncate, styleLengths } from '../string-utils';
+import { slugify, truncate, styleLengths, borderStyle } from '../string-utils';
 
 describe('truncate', () => {
   test('Default maxLength value', () => {
@@ -77,5 +77,25 @@ describe('styleLengths', () => {
     const expected = '1023s';
 
     expect(styleLengths('1023s')).toBe(expected);
+  });
+});
+
+describe('borderStyle', () => {
+  test('return correct border style', () => {
+    let actual = borderStyle({
+      color: 'red',
+      style: 'solid',
+      width: '1em',
+    });
+
+    expect(actual).toBe('1em solid red');
+
+    actual = borderStyle({
+      color: 'red',
+      style: 'solid',
+      width: 20,
+    });
+
+    expect(actual).toBe('20px solid red');
   });
 });

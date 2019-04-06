@@ -2,29 +2,40 @@ import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
 import * as constants from './constants';
+import { borderStyle } from '@utils';
 
-oceanBeachTheme.headerFontFamily = [constants.roboto];
+const { roboto, black, preFontSize, codeFontSize } = constants;
+const baseColor = constants.lightblue;
+const borderWidth = '0.5925rem' as const;
+const anchorBgImg = `linear-gradient(to top, ${black}, ${black} 1px, ${baseColor} 1px, ${baseColor} 2px, ${black} 2px)`;
+const blockquoteBorder = borderStyle({
+  width: borderWidth,
+  style: 'solid',
+  color: baseColor,
+});
 
+oceanBeachTheme.headerFontFamily = [roboto];
 oceanBeachTheme.overrideThemeStyles = () => ({
   a: {
-    color: '#5f8ddc',
+    color: baseColor,
     textShadow: 'none',
-    backgroundImage:
-      'linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 1px, #5f8ddc 1px, #5f8ddc 2px, rgba(0, 0, 0, 0) 2px)',
+    backgroundImage: anchorBgImg,
   },
-  'a:visited': { color: '#5f8ddc' },
+  'a:visited': {
+    color: baseColor,
+  },
   blockquote: {
-    borderLeft: '0.5925rem solid #5f8ddc',
+    borderLeft: blockquoteBorder,
   },
   code: {
-    fontSize: '0.9em',
+    fontSize: codeFontSize,
   },
   pre: {
-    fontSize: '1em',
+    fontSize: preFontSize,
   },
   '@media only screen and (max-width:480px)': {
     blockquote: {
-      borderLeft: '0.5925rem solid #5f8ddc',
+      borderLeft: blockquoteBorder,
     },
   },
 });

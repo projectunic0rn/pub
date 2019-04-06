@@ -10,6 +10,15 @@ interface TruncateOptions {
   maxLength?: number;
 }
 
+interface BorderStyleOptions {
+  /** Width of the border. */
+  width: string | number;
+  /** A CSS `border-style` value.  */
+  style: string;
+  /** A CSS `color` value */
+  color: string;
+}
+
 /** Cuts of a string to a specific length. */
 export function truncate(
   /** String to truncate. */
@@ -55,4 +64,9 @@ export function styleLengths(length: string | number = 0, unit = 'px') {
   }
 
   return `${length}${unit}`;
+}
+
+/** Returns a border style value. */
+export function borderStyle({ width, style, color }: BorderStyleOptions) {
+  return `${styleLengths(width)} ${style} ${color}`;
 }
