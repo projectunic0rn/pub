@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@reach/router"), require("core-js/modules/es6.array.fill"), require("core-js/modules/es6.array.iterator"), require("core-js/modules/es6.array.sort"), require("core-js/modules/es6.function.name"), require("core-js/modules/es6.map"), require("core-js/modules/es6.number.constructor"), require("core-js/modules/es6.object.assign"), require("core-js/modules/es6.object.to-string"), require("core-js/modules/es6.regexp.constructor"), require("core-js/modules/es6.regexp.replace"), require("core-js/modules/es6.regexp.split"), require("core-js/modules/es6.regexp.to-string"), require("core-js/modules/es6.string.ends-with"), require("core-js/modules/es6.string.iterator"), require("core-js/modules/es6.string.link"), require("core-js/modules/es6.string.small"), require("core-js/modules/es7.object.entries"), require("core-js/modules/es7.string.trim-right"), require("core-js/modules/web.dom.iterable"), require("crypto"), require("fs"), require("lodash"), require("minimatch"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
+		module.exports = factory(require("@reach/router"), require("core-js/modules/es6.array.fill"), require("core-js/modules/es6.array.iterator"), require("core-js/modules/es6.array.sort"), require("core-js/modules/es6.function.name"), require("core-js/modules/es6.map"), require("core-js/modules/es6.number.constructor"), require("core-js/modules/es6.object.assign"), require("core-js/modules/es6.object.freeze"), require("core-js/modules/es6.object.to-string"), require("core-js/modules/es6.regexp.constructor"), require("core-js/modules/es6.regexp.replace"), require("core-js/modules/es6.regexp.split"), require("core-js/modules/es6.regexp.to-string"), require("core-js/modules/es6.string.ends-with"), require("core-js/modules/es6.string.iterator"), require("core-js/modules/es6.string.link"), require("core-js/modules/es6.string.small"), require("core-js/modules/es7.object.entries"), require("core-js/modules/es7.string.trim-right"), require("core-js/modules/web.dom.iterable"), require("crypto"), require("fs"), require("lodash"), require("minimatch"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else if(typeof define === 'function' && define.amd)
-		define("lib", ["@reach/router", "core-js/modules/es6.array.fill", "core-js/modules/es6.array.iterator", "core-js/modules/es6.array.sort", "core-js/modules/es6.function.name", "core-js/modules/es6.map", "core-js/modules/es6.number.constructor", "core-js/modules/es6.object.assign", "core-js/modules/es6.object.to-string", "core-js/modules/es6.regexp.constructor", "core-js/modules/es6.regexp.replace", "core-js/modules/es6.regexp.split", "core-js/modules/es6.regexp.to-string", "core-js/modules/es6.string.ends-with", "core-js/modules/es6.string.iterator", "core-js/modules/es6.string.link", "core-js/modules/es6.string.small", "core-js/modules/es7.object.entries", "core-js/modules/es7.string.trim-right", "core-js/modules/web.dom.iterable", "crypto", "fs", "lodash", "minimatch", "path", "react", "react-dom/server", "react-helmet"], factory);
+		define("lib", ["@reach/router", "core-js/modules/es6.array.fill", "core-js/modules/es6.array.iterator", "core-js/modules/es6.array.sort", "core-js/modules/es6.function.name", "core-js/modules/es6.map", "core-js/modules/es6.number.constructor", "core-js/modules/es6.object.assign", "core-js/modules/es6.object.freeze", "core-js/modules/es6.object.to-string", "core-js/modules/es6.regexp.constructor", "core-js/modules/es6.regexp.replace", "core-js/modules/es6.regexp.split", "core-js/modules/es6.regexp.to-string", "core-js/modules/es6.string.ends-with", "core-js/modules/es6.string.iterator", "core-js/modules/es6.string.link", "core-js/modules/es6.string.small", "core-js/modules/es7.object.entries", "core-js/modules/es7.string.trim-right", "core-js/modules/web.dom.iterable", "crypto", "fs", "lodash", "minimatch", "path", "react", "react-dom/server", "react-helmet"], factory);
 	else if(typeof exports === 'object')
-		exports["lib"] = factory(require("@reach/router"), require("core-js/modules/es6.array.fill"), require("core-js/modules/es6.array.iterator"), require("core-js/modules/es6.array.sort"), require("core-js/modules/es6.function.name"), require("core-js/modules/es6.map"), require("core-js/modules/es6.number.constructor"), require("core-js/modules/es6.object.assign"), require("core-js/modules/es6.object.to-string"), require("core-js/modules/es6.regexp.constructor"), require("core-js/modules/es6.regexp.replace"), require("core-js/modules/es6.regexp.split"), require("core-js/modules/es6.regexp.to-string"), require("core-js/modules/es6.string.ends-with"), require("core-js/modules/es6.string.iterator"), require("core-js/modules/es6.string.link"), require("core-js/modules/es6.string.small"), require("core-js/modules/es7.object.entries"), require("core-js/modules/es7.string.trim-right"), require("core-js/modules/web.dom.iterable"), require("crypto"), require("fs"), require("lodash"), require("minimatch"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
+		exports["lib"] = factory(require("@reach/router"), require("core-js/modules/es6.array.fill"), require("core-js/modules/es6.array.iterator"), require("core-js/modules/es6.array.sort"), require("core-js/modules/es6.function.name"), require("core-js/modules/es6.map"), require("core-js/modules/es6.number.constructor"), require("core-js/modules/es6.object.assign"), require("core-js/modules/es6.object.freeze"), require("core-js/modules/es6.object.to-string"), require("core-js/modules/es6.regexp.constructor"), require("core-js/modules/es6.regexp.replace"), require("core-js/modules/es6.regexp.split"), require("core-js/modules/es6.regexp.to-string"), require("core-js/modules/es6.string.ends-with"), require("core-js/modules/es6.string.iterator"), require("core-js/modules/es6.string.link"), require("core-js/modules/es6.string.small"), require("core-js/modules/es7.object.entries"), require("core-js/modules/es7.string.trim-right"), require("core-js/modules/web.dom.iterable"), require("crypto"), require("fs"), require("lodash"), require("minimatch"), require("path"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else
-		root["lib"] = factory(root["@reach/router"], root["core-js/modules/es6.array.fill"], root["core-js/modules/es6.array.iterator"], root["core-js/modules/es6.array.sort"], root["core-js/modules/es6.function.name"], root["core-js/modules/es6.map"], root["core-js/modules/es6.number.constructor"], root["core-js/modules/es6.object.assign"], root["core-js/modules/es6.object.to-string"], root["core-js/modules/es6.regexp.constructor"], root["core-js/modules/es6.regexp.replace"], root["core-js/modules/es6.regexp.split"], root["core-js/modules/es6.regexp.to-string"], root["core-js/modules/es6.string.ends-with"], root["core-js/modules/es6.string.iterator"], root["core-js/modules/es6.string.link"], root["core-js/modules/es6.string.small"], root["core-js/modules/es7.object.entries"], root["core-js/modules/es7.string.trim-right"], root["core-js/modules/web.dom.iterable"], root["crypto"], root["fs"], root["lodash"], root["minimatch"], root["path"], root["react"], root["react-dom/server"], root["react-helmet"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE__reach_router__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_fill__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_iterator__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_sort__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_function_name__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_map__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_number_constructor__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_assign__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_to_string__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_constructor__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_replace__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_split__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_to_string__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_ends_with__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_iterator__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_link__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_small__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es7_object_entries__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es7_string_trim_right__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_web_dom_iterable__, __WEBPACK_EXTERNAL_MODULE_crypto__, __WEBPACK_EXTERNAL_MODULE_fs__, __WEBPACK_EXTERNAL_MODULE_lodash__, __WEBPACK_EXTERNAL_MODULE_minimatch__, __WEBPACK_EXTERNAL_MODULE_path__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom_server__, __WEBPACK_EXTERNAL_MODULE_react_helmet__) {
+		root["lib"] = factory(root["@reach/router"], root["core-js/modules/es6.array.fill"], root["core-js/modules/es6.array.iterator"], root["core-js/modules/es6.array.sort"], root["core-js/modules/es6.function.name"], root["core-js/modules/es6.map"], root["core-js/modules/es6.number.constructor"], root["core-js/modules/es6.object.assign"], root["core-js/modules/es6.object.freeze"], root["core-js/modules/es6.object.to-string"], root["core-js/modules/es6.regexp.constructor"], root["core-js/modules/es6.regexp.replace"], root["core-js/modules/es6.regexp.split"], root["core-js/modules/es6.regexp.to-string"], root["core-js/modules/es6.string.ends-with"], root["core-js/modules/es6.string.iterator"], root["core-js/modules/es6.string.link"], root["core-js/modules/es6.string.small"], root["core-js/modules/es7.object.entries"], root["core-js/modules/es7.string.trim-right"], root["core-js/modules/web.dom.iterable"], root["crypto"], root["fs"], root["lodash"], root["minimatch"], root["path"], root["react"], root["react-dom/server"], root["react-helmet"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE__reach_router__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_fill__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_iterator__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_array_sort__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_function_name__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_map__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_number_constructor__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_assign__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_freeze__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_to_string__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_constructor__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_replace__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_split__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_regexp_to_string__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_ends_with__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_iterator__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_link__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_string_small__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es7_object_entries__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_es7_string_trim_right__, __WEBPACK_EXTERNAL_MODULE_core_js_modules_web_dom_iterable__, __WEBPACK_EXTERNAL_MODULE_crypto__, __WEBPACK_EXTERNAL_MODULE_fs__, __WEBPACK_EXTERNAL_MODULE_lodash__, __WEBPACK_EXTERNAL_MODULE_minimatch__, __WEBPACK_EXTERNAL_MODULE_path__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom_server__, __WEBPACK_EXTERNAL_MODULE_react_helmet__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,7 +107,7 @@ var plugins = [{
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-typography/gatsby-ssr */ "./node_modules/gatsby-plugin-typography/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "pathToConfigModule": "src/utils/typography",
+    "pathToConfigModule": "src/styles/typography",
     "omitGoogleFont": true
   }
 }, {
@@ -2467,7 +2467,7 @@ exports.onRenderBody = function (_ref2) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./src/utils/typography */ "./src/utils/typography.ts")
+module.exports = __webpack_require__(/*! ./src/styles/typography */ "./src/styles/typography.ts")
 
 /***/ }),
 
@@ -7955,6 +7955,36 @@ var _ref = styled_components__WEBPACK_IMPORTED_MODULE_0__,
 
 /***/ }),
 
+/***/ "./src/styles/constants.ts":
+/*!*********************************!*\
+  !*** ./src/styles/constants.ts ***!
+  \*********************************/
+/*! exports provided: roboto, preFontSize, codeFontSize, black, offblack, lightblue, mediumgray, lightgray, altlightgray */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roboto", function() { return roboto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "preFontSize", function() { return preFontSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "codeFontSize", function() { return codeFontSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "black", function() { return black; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offblack", function() { return offblack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightblue", function() { return lightblue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mediumgray", function() { return mediumgray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightgray", function() { return lightgray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "altlightgray", function() { return altlightgray; });
+var roboto = 'Roboto';
+var preFontSize = '1em';
+var codeFontSize = '0.9em';
+var black = 'rgba(0, 0, 0, 0)';
+var offblack = '#121212';
+var lightblue = '#5f8ddc';
+var mediumgray = '#e9e9e9';
+var lightgray = '#f3f3f3';
+var altlightgray = 'rgba(0, 0, 0, 0.73)';
+
+/***/ }),
+
 /***/ "./src/styles/global-style.ts":
 /*!************************************!*\
   !*** ./src/styles/global-style.ts ***!
@@ -7991,7 +8021,7 @@ var GlobalStyle = Object(_styled_components__WEBPACK_IMPORTED_MODULE_1__["create
 /*!*****************************!*\
   !*** ./src/styles/index.ts ***!
   \*****************************/
-/*! exports provided: GlobalStyle, theme */
+/*! exports provided: typography, GlobalStyle, theme */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8001,6 +8031,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./theme */ "./src/styles/theme.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return _theme__WEBPACK_IMPORTED_MODULE_1__["theme"]; });
+
+/* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./typography */ "./src/styles/typography.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "typography", function() { return _typography__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
 
 
 
@@ -8017,21 +8051,26 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return theme; });
+/* harmony import */ var core_js_modules_es6_object_freeze__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.object.freeze */ "core-js/modules/es6.object.freeze");
+/* harmony import */ var core_js_modules_es6_object_freeze__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_freeze__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/styles/constants.ts");
+
+
 var colors = {
   /** Off-black */
-  base: '#121212',
+  base: _constants__WEBPACK_IMPORTED_MODULE_1__["offblack"],
 
   /** Light blue */
-  highlight: '#5f8ddc',
+  highlight: _constants__WEBPACK_IMPORTED_MODULE_1__["lightblue"],
 
   /** Medium gray */
-  secondary: '#e9e9e9',
+  secondary: _constants__WEBPACK_IMPORTED_MODULE_1__["mediumgray"],
 
   /** Light gray */
-  tertiary: '#f3f3f3',
+  tertiary: _constants__WEBPACK_IMPORTED_MODULE_1__["lightgray"],
 
   /** Alternate light gray */
-  text: 'rgba(0, 0, 0, 0.73)'
+  text: _constants__WEBPACK_IMPORTED_MODULE_1__["altlightgray"]
 };
 var responsive = {
   large: '70em',
@@ -8042,11 +8081,78 @@ var sizes = {
   maxWidth: '1050px',
   maxWidthCentered: '650px'
 };
-var theme = {
+var theme = Object.freeze({
   colors: colors,
   responsive: responsive,
   sizes: sizes
+});
+
+/***/ }),
+
+/***/ "./src/styles/typography.ts":
+/*!**********************************!*\
+  !*** ./src/styles/typography.ts ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var typography__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typography */ "./node_modules/typography/dist/index.js");
+/* harmony import */ var typography__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typography__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! typography-theme-ocean-beach */ "./node_modules/typography-theme-ocean-beach/dist/index.js");
+/* harmony import */ var typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/styles/constants.ts");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @utils */ "./src/utils/index.ts");
+
+
+
+
+var roboto = _constants__WEBPACK_IMPORTED_MODULE_2__["roboto"],
+    black = _constants__WEBPACK_IMPORTED_MODULE_2__["black"],
+    preFontSize = _constants__WEBPACK_IMPORTED_MODULE_2__["preFontSize"],
+    codeFontSize = _constants__WEBPACK_IMPORTED_MODULE_2__["codeFontSize"];
+var baseColor = _constants__WEBPACK_IMPORTED_MODULE_2__["lightblue"];
+var borderWidth = '0.5925rem';
+var anchorBgImg = "linear-gradient(to top, " + black + ", " + black + " 1px, " + baseColor + " 1px, " + baseColor + " 2px, " + black + " 2px)";
+var blockquoteBorder = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["borderStyle"])({
+  width: borderWidth,
+  style: 'solid',
+  color: baseColor
+});
+typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a.headerFontFamily = [roboto];
+
+typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a.overrideThemeStyles = function () {
+  return {
+    a: {
+      color: baseColor,
+      textShadow: 'none',
+      backgroundImage: anchorBgImg
+    },
+    'a:visited': {
+      color: baseColor
+    },
+    blockquote: {
+      borderLeft: blockquoteBorder
+    },
+    code: {
+      fontSize: codeFontSize
+    },
+    pre: {
+      fontSize: preFontSize
+    },
+    '@media only screen and (max-width:480px)': {
+      blockquote: {
+        borderLeft: blockquoteBorder
+      }
+    }
+  };
 };
+/** Configuration object for `gatsby-plugin-typography`. */
+
+
+var typography = new typography__WEBPACK_IMPORTED_MODULE_0___default.a(typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a);
+/* harmony default export */ __webpack_exports__["default"] = (typography);
 
 /***/ }),
 
@@ -8326,7 +8432,7 @@ var TagTemplate = function TagTemplate(_ref) {
 /*!****************************!*\
   !*** ./src/utils/index.ts ***!
   \****************************/
-/*! exports provided: typography, filterInt, truncate, slugify, styleLengths, makeShareUrl */
+/*! exports provided: filterInt, truncate, slugify, styleLengths, borderStyle, makeShareUrl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8341,12 +8447,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "styleLengths", function() { return _string_utils__WEBPACK_IMPORTED_MODULE_1__["styleLengths"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "borderStyle", function() { return _string_utils__WEBPACK_IMPORTED_MODULE_1__["borderStyle"]; });
+
 /* harmony import */ var _url_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./url-utils */ "./src/utils/url-utils.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "makeShareUrl", function() { return _url_utils__WEBPACK_IMPORTED_MODULE_2__["makeShareUrl"]; });
-
-/* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./typography */ "./src/utils/typography.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "typography", function() { return _typography__WEBPACK_IMPORTED_MODULE_3__["default"]; });
-
 
 
 
@@ -8368,12 +8472,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
 
 
-/**
- * Tests a value if it is a number; otherwise return `NaN`.
- *
- * @param {string} value The value to be filtered.
- * */
-function filterInt(value) {
+/** Tests a value if it is a number; otherwise return `NaN`. */
+function filterInt(
+/** The value to be filtered. */
+value) {
   if (/^(-|\+)?([0-9]+|Infinity)$/.test(value)) {
     return Number(value);
   }
@@ -8387,7 +8489,7 @@ function filterInt(value) {
 /*!***********************************!*\
   !*** ./src/utils/string-utils.ts ***!
   \***********************************/
-/*! exports provided: truncate, slugify, styleLengths */
+/*! exports provided: truncate, slugify, styleLengths, borderStyle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8395,6 +8497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slugify", function() { return slugify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleLengths", function() { return styleLengths; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "borderStyle", function() { return borderStyle; });
 /* harmony import */ var core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.regexp.to-string */ "core-js/modules/es6.regexp.to-string");
 /* harmony import */ var core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_to_string__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.object.to-string */ "core-js/modules/es6.object.to-string");
@@ -8442,14 +8545,13 @@ text) {
   .replace(/^-+/, '') // Trim - from start of text
   .replace(/-+$/, ''); // Trim - from end of text
 }
-/**
- * Returns a valid style length value.
- *
- * @param {string | number} length The length to be formatted.
- * @param {string} unit Unit to append to the length.
- * */
+/** Returns a valid style length value. */
 
-function styleLengths(length, unit) {
+function styleLengths(
+/** The length to be formatted. */
+length,
+/**Unit to append to the length. */
+unit) {
   if (length === void 0) {
     length = 0;
   }
@@ -8466,57 +8568,14 @@ function styleLengths(length, unit) {
 
   return "" + length + unit;
 }
+/** Returns a border style value. */
 
-/***/ }),
-
-/***/ "./src/utils/typography.ts":
-/*!*********************************!*\
-  !*** ./src/utils/typography.ts ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typography__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typography */ "./node_modules/typography/dist/index.js");
-/* harmony import */ var typography__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typography__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! typography-theme-ocean-beach */ "./node_modules/typography-theme-ocean-beach/dist/index.js");
-/* harmony import */ var typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1__);
-
-
-typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a.headerFontFamily = ['Roboto'];
-
-typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a.overrideThemeStyles = function () {
-  return {
-    a: {
-      color: '#5f8ddc',
-      textShadow: 'none',
-      backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 1px, #5f8ddc 1px, #5f8ddc 2px, rgba(0, 0, 0, 0) 2px)'
-    },
-    'a:visited': {
-      color: '#5f8ddc'
-    },
-    blockquote: {
-      borderLeft: '0.5925rem solid #5f8ddc'
-    },
-    code: {
-      fontSize: '0.9em'
-    },
-    pre: {
-      fontSize: '1em'
-    },
-    '@media only screen and (max-width:480px)': {
-      blockquote: {
-        borderLeft: '0.5925rem solid #5f8ddc'
-      }
-    }
-  };
-};
-/** Configuration object for `gatsby-plugin-typography`. */
-
-
-var typography = new typography__WEBPACK_IMPORTED_MODULE_0___default.a(typography_theme_ocean_beach__WEBPACK_IMPORTED_MODULE_1___default.a);
-/* harmony default export */ __webpack_exports__["default"] = (typography);
+function borderStyle(_ref2) {
+  var width = _ref2.width,
+      style = _ref2.style,
+      color = _ref2.color;
+  return styleLengths(width) + " " + style + " " + color;
+}
 
 /***/ }),
 
@@ -8688,6 +8747,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_number_constructo
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_assign__;
+
+/***/ }),
+
+/***/ "core-js/modules/es6.object.freeze":
+/*!****************************************************!*\
+  !*** external "core-js/modules/es6.object.freeze" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_core_js_modules_es6_object_freeze__;
 
 /***/ }),
 
