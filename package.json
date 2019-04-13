@@ -43,6 +43,7 @@
     "typography-theme-ocean-beach": "0.16.19"
   },
   "devDependencies": {
+    "@ruj/prettier-config": "1.0.0",
     "@types/jest": "24.0.11",
     "@types/node": "11.13.4",
     "@types/react": "16.8.13",
