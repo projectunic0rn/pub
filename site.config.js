@@ -19,7 +19,7 @@ module.exports = {
     titleShort: 'PU',
     /** The description of the website. */
     description:
-      'Project Unicorn is an online community that is focused on learning by building and shipping meaningful software.',
+      'A virtual co-working space to learn, build, and ship meaningful software.',
     /** The url of the website. */
     url: 'https://projectunicorn.net',
     logo: path.resolve(__dirname, 'src/images/unicorn-icon.png'),
