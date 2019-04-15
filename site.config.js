@@ -25,8 +25,21 @@ module.exports = {
     logo: path.resolve(__dirname, 'src/images/unicorn-icon.png'),
     /** Contains the project's social handles. */
     social: {
-      /** The websites Twitter handle. */
+      /** The website's Facebook username, */
+      facebook: '',
+      /** The website's Instagram username. */
+      instagram: 'projectunicorn1',
+      /** The website's Twitter username. */
       twitter: '@projectunicorn2',
+      /** The website's LinkedIn username. */
+      linkedin: 'proj-unicorn',
+      /** The website's Reddit username. */
+      reddit: 'projectUnicorn',
+      /** The website's GitHub username. */
+      github: 'projectunic0rn',
+      /** Slack invite link. */
+      slackInvite:
+        '//join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA',
     },
   },
   manifestOptions: {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 
 import { Anchor, SocialIcon } from '@components';
+import { useSiteMetadata } from '@hooks';
 import styled, { css } from '@styled-components';
 
 interface RowProps {
@@ -81,121 +82,131 @@ const BottomText = styled.div`
 `;
 
 /** Displays information about the website. */
-const Footer: React.FC = () => (
-  <Wrapper>
-    <Inner>
-      <Row>
-        <Heading>Project Unicorn</Heading>
+const Footer: React.FC = () => {
+  const siteMetadata = useSiteMetadata();
 
-        <p>
-          Project Unicorn is an online community that is focused on learning by
-          building and shipping meaningful software.
-        </p>
-      </Row>
+  return (
+    <Wrapper>
+      <Inner>
+        <Row>
+          <Heading>{siteMetadata.title}</Heading>
+          <p>{siteMetadata.description}</p>
+        </Row>
 
-      <Row>
-        <Heading>About</Heading>
+        <Row>
+          <Heading>About</Heading>
 
-        <List>
-          <StyledLink to="/sitemap" title="Project Unicorn sitemap">
-            Sitemap
-          </StyledLink>
+          <List>
+            <StyledLink to="/sitemap" title={`${siteMetadata.title} sitemap`}>
+              Sitemap
+            </StyledLink>
 
-          <StyledLink to="/contact" title="Project Unicorn contact page">
-            Contact Us
-          </StyledLink>
+            <StyledLink
+              to="/contact"
+              title={`${siteMetadata.title} contact page`}
+            >
+              Contact Us
+            </StyledLink>
 
-          <StyledLink to="/terms" title="Project Unicorn terms and conditions">
-            Terms and Conditions
-          </StyledLink>
+            <StyledLink
+              to="/terms"
+              title={`${siteMetadata.title} terms and conditions`}
+            >
+              Terms and Conditions
+            </StyledLink>
 
-          <StyledLink to="/privacy" title="Project Unicorn privacy policy">
-            Privacy Policy
-          </StyledLink>
-        </List>
-      </Row>
+            <StyledLink
+              to="/privacy"
+              title={`${siteMetadata.title} privacy policy`}
+            >
+              Privacy Policy
+            </StyledLink>
+          </List>
+        </Row>
 
-      <Row>
-        <Heading>Projects</Heading>
+        <Row>
+          <Heading>Projects</Heading>
 
-        <List>
-          <StyledAnchor
-            href="//www.mentrship.com/"
-            content="Mentrship"
-            title="Mentrship project website"
-          />
+          <List>
+            <StyledAnchor
+              href="//www.mentrship.com/"
+              content="Mentrship"
+              title="Mentrship project website"
+            />
 
-          <StyledAnchor
-            href="//github.com/projectunic0rn/pub"
-            content="Pub"
-            title="Project Unicorn blog repository"
-          />
-        </List>
-      </Row>
+            <StyledAnchor
+              href={`//github.com/${siteMetadata.social.github}/pub`}
+              content="Pub"
+              title={`${siteMetadata.title} blog repository`}
+            />
+          </List>
+        </Row>
 
-      <Row>
-        <Heading>Follow us</Heading>
+        <Row>
+          <Heading>Follow us</Heading>
 
-        <List direction="row">
-          <SocialIcon
-            link
-            socialName="facebook"
-            href="//facebook.com"
-            title="Follow Project Unicorn on Facebook"
-          />
+          <List direction="row">
+            <SocialIcon
+              link
+              socialName="facebook"
+              href={`//facebook.com/${siteMetadata.social.facebook}`}
+              title={`Follow ${siteMetadata.title} on Facebook`}
+            />
 
-          <SocialIcon
-            link
-            socialName="instagram"
-            href="//www.instagram.com/projectunicorn1"
-            title="Follow Project Unicorn on Instagram"
-          />
+            <SocialIcon
+              link
+              socialName="instagram"
+              href={`//www.instagram.com/${siteMetadata.social.instagram}`}
+              title={`Follow ${siteMetadata.title} on Instagram`}
+            />
 
-          <SocialIcon
-            link
-            socialName="twitter"
-            href="//twitter.com/ProjectUnicorn2"
-            title="Follow Project Unicorn on Twitter"
-          />
+            <SocialIcon
+              link
+              socialName="twitter"
+              href={`//twitter.com/${siteMetadata.social.twitter}`}
+              title={`Follow ${siteMetadata.title} on Twitter`}
+            />
 
-          <SocialIcon
-            link
-            socialName="linkedin"
-            href="//www.linkedin.com/company/proj-unicorn/about"
-            title="Follow Project Unicorn on LinkedIn"
-          />
+            <SocialIcon
+              link
+              socialName="linkedin"
+              href={`//www.linkedin.com/company/${
+                siteMetadata.social.linkedin
+              }/about`}
+              title={`Follow ${siteMetadata.title} on LinkedIn`}
+            />
 
-          <SocialIcon
-            link
-            socialName="reddit"
-            href="//www.reddit.com/r/projectUnicorn"
-            title="Follow Project Unicorn on Reddit"
-          />
+            <SocialIcon
+              link
+              socialName="reddit"
+              href={`//www.reddit.com/r/${siteMetadata.social.reddit}`}
+              title={`Follow ${siteMetadata.title} on Reddit`}
+            />
 
-          <SocialIcon
-            link
-            socialName="github"
-            href="//github.com/projectunic0rn"
-            title="Follow Project Unicorn on GitHub"
-          />
-        </List>
-      </Row>
-    </Inner>
+            <SocialIcon
+              link
+              socialName="github"
+              href={`//github.com/${siteMetadata.social.github}`}
+              title={`Follow ${siteMetadata.title} on GitHub`}
+            />
+          </List>
+        </Row>
+      </Inner>
 
-    <BottomText>
-      <StyledAnchor
-        href="//github.com/projectunic0rn/pub"
-        content="pub"
-        title="Project Unicorn blog repository"
-      />{' '}
-      is maintained by{' '}
-      <StyledAnchor
-        href="//github.com/rmjordas"
-        content="@rmjordas"
-        title="Rodger Jordas on GitHub"
-      />
-    </BottomText>
-  </Wrapper>
-);
-
+      <BottomText>
+        <StyledAnchor
+          href={`//github.com/${siteMetadata.social.github}/pub`}
+          content="pub"
+          title={`${siteMetadata.title} blog repository`}
+        />{' '}
+        is maintained by{' '}
+        <StyledAnchor
+          href="//github.com/rmjordas"
+          content="@rmjordas"
+          title="Rodger Jordas on GitHub"
+        />
+      </BottomText>
+    </Wrapper>
+  );
+};
 export default Footer;

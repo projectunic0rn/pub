@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
+import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
 interface PaginationProps {
@@ -71,6 +72,7 @@ const PageIndicator = styled.span`
  * and links to the next and previous page.
  */
 const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
+  const siteMetadata = useSiteMetadata();
   const { numPages, currentPage = 1 } = context;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -88,7 +90,7 @@ const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
       {!isFirst && prevPageLink && (
         <PreviousLink
           to={prevPageLink}
-          title={`Project Unicorn blog page ${prevPageNum}`}
+          title={`${siteMetadata.title} blog page ${prevPageNum}`}
         >
           &#8592; Prev Page
         </PreviousLink>
@@ -103,7 +105,7 @@ const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
       {!isLast && nextPageLink && (
         <NextLink
           to={nextPageLink}
-          title={`Project Unicorn blog page ${nextPageNum}`}
+          title={`${siteMetadata.title} blog page ${nextPageNum}`}
         >
           Next Page &#8594;
         </NextLink>

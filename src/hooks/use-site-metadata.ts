@@ -9,8 +9,20 @@ export interface SiteMetadata {
   url: string;
   /** Contains the project's social handles. */
   social: {
-    /** The websites Twitter handle. */
+    /** The website's Facebook username, */
+    facebook: string;
+    /** The website's Instagram username. */
+    instagram: string;
+    /** The website's Twitter username. */
     twitter: string;
+    /** The website's LinkedIn username. */
+    linkedin: string;
+    /** The website's Reddit username. */
+    reddit: string;
+    /** The website's GitHub username. */
+    github: string;
+    /** Slack invite link. */
+    slackInvite: string;
   };
 }
 
@@ -28,7 +40,13 @@ const siteMetadataQuery = graphql`
         description
         url
         social {
+          facebook
+          instagram
           twitter
+          linkedin
+          reddit
+          github
+          slackInvite
         }
       }
     }

@@ -57,7 +57,7 @@ const Seo: React.FC<SeoProps> = ({
       titleTemplate={`%s - ${siteMetadata.title}`}
       meta={[
         {
-          content: author || 'Project Unicorn',
+          content: author || siteMetadata.title,
           name: 'author',
         },
         {
@@ -65,7 +65,7 @@ const Seo: React.FC<SeoProps> = ({
           name: 'description',
         },
         {
-          content: image || 'https://projectunicorn.net/apple-touch-icon.png',
+          content: image || `${siteMetadata.url}/apple-touch-icon.png`,
           property: 'og:image',
         },
         {

@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import puLogo from '@images/pu.svg';
+import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
 const Wrapper = styled.header`
@@ -51,37 +52,41 @@ const ListItem = styled.li`
 const activeLinkStyle = {};
 
 /** Displays links to different parts of the application. */
-const Menu: React.FC = () => (
-  <Wrapper>
-    <Nav>
-      <List>
-        <ListItem>
-          <StyledLink
-            to="/"
-            activeStyle={activeLinkStyle}
-            title="Project Unicorn logo"
-          >
-            <img
-              src={puLogo}
-              style={{ width: '100px' }}
-              alt="Project Unicorn"
-              title="Project Unicorn"
-            />
-          </StyledLink>
-        </ListItem>
+const Menu: React.FC = () => {
+  const siteMetadata = useSiteMetadata();
 
-        <ListItem>
-          <StyledLink
-            to="/blog/tags/"
-            activeStyle={activeLinkStyle}
-            title="Project Unicorn tags page"
-          >
-            Tags
-          </StyledLink>
-        </ListItem>
-      </List>
-    </Nav>
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <Nav>
+        <List>
+          <ListItem>
+            <StyledLink
+              to="/"
+              activeStyle={activeLinkStyle}
+              title={`${siteMetadata.title} logo`}
+            >
+              <img
+                src={puLogo}
+                style={{ width: '100px' }}
+                alt={`${siteMetadata.title}`}
+                title={`${siteMetadata.title}`}
+              />
+            </StyledLink>
+          </ListItem>
+
+          <ListItem>
+            <StyledLink
+              to="/blog/tags/"
+              activeStyle={activeLinkStyle}
+              title={`${siteMetadata.title} tags page`}
+            >
+              Tags
+            </StyledLink>
+          </ListItem>
+        </List>
+      </Nav>
+    </Wrapper>
+  );
+};
 
 export default Menu;

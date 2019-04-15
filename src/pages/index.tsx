@@ -30,11 +30,7 @@ const Inner = styled.div`
   }
 `;
 
-const Logo = styled.img.attrs({
-  src: puLogo,
-  alt: 'Project Unicorn',
-  title: 'Project Unicorn',
-})`
+const Logo = styled.img.attrs({ src: puLogo })`
   margin: 0 auto;
   width: 100%;
   max-width: 20em;
@@ -57,21 +53,21 @@ const IndexPage: React.FC = () => {
       <Seo title="Home" />
 
       <Inner>
-        <Logo />
+        <Logo alt={siteMetadata.title} title={siteMetadata.title} />
         <Subtitle>{siteMetadata.description}</Subtitle>
         <Anchor
-          href="//join.slack.com/t/project-unic0rn/shared_invite/enQtNDI1MDM2NjIxNjMyLTMwNTdmNjAyMmZhMTM1YWU0OTY2NzAyM2EwMWU1MGVlOTdmYzg5YzM3YThiMzdmZDE4NTI5MDQ3MjYxYTg4OTA"
+          href={`${siteMetadata.social.slackInvite}`}
           content="Slack"
-          title="Project Unicorn Slack invite link"
+          title={`${siteMetadata.title} Slack invite link`}
         />{' '}
         |{' '}
         <Anchor
-          href="//github.com/projectunic0rn"
+          href={`//github.com/${siteMetadata.social.github}`}
           content="GitHub"
-          title="Project Unicorn GitHub organization"
+          title={`${siteMetadata.title} GitHub organization`}
         />{' '}
         |{' '}
-        <Link to="/blog" title="Project Unicorn blog">
+        <Link to="/blog" title={`${siteMetadata.title} blog`}>
           Blog
         </Link>
       </Inner>
