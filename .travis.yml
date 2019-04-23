@@ -12,7 +12,7 @@ install:
   - npm run build
 
 script:
-  - npm run type-check
+  - npm run typecheck
   - npm run lint
   - npm test
 

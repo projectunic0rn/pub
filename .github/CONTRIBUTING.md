@@ -287,15 +287,16 @@ specific portions of the application:
 
 | Script             | Description                                                     |
 | ------------------ | --------------------------------------------------------------- |
-| `build`            | Main command for creating static build for deployment           |
-| `start`            | Serves the production build                                     |
-| `clean`            | Deletes the `.cache` and `public` directory                     |
-| `lint`             | Checks for lint errors                                          |
-| `lint:fix`         | Checks for lint errors and automatically fix them               |
+| `build`            | Creates static build for deployment                             |
+| `clean`            | Deletes the `.cache` and `public` directories                   |
+| `dev`              | Starts a development server                                     |
 | `format`           | Formats the JSON and markdown files according to Prettier rules |
 | `format:precommit` | Formats the staged files according to Prettier rules            |
-| `type-check`       | Runs TypeScript compiler to check source for type errors        |
-| `test`             | Runs tests                                                      |
+| `lint`             | Checks for lint errors                                          |
+| `lint:fix`         | Checks for lint errors and automatically fix them               |
+| `start`            | Serves the production build for testing                         |
+| `test`             | Run tests                                                       |
+| `typecheck`        | Runs TypeScript compiler to check source for type errors        |
 
 ### Quick start
 

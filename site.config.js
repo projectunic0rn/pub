@@ -1,14 +1,29 @@
+require('dotenv').config();
+
 const path = require('path');
 
+const keys = Object.freeze({
+  /**
+   * Used by `gatsby-plugin-google-analytics`. This value is provided through
+   * the `.env` file located the root of the project.
+   */
+  googleAnalyticsTrackingId: process.env.GA_TRACKING_ID,
+});
+
+Object.entries(keys).forEach(([k, v]) => {
+  if (typeof v === 'undefined') {
+    throw new Error(`${k} not provided.`);
+  }
+});
+
 module.exports = {
+  ...keys,
   /** Used by Gatsby when creating production build of the website. */
   pathPrefix: '/',
   /** Number of posts to be shown on the first page of the blog index page. */
   postsPerFirstPage: 7,
   /** Number of posts to be shown on next blog post list pages. */
   postsPerPage: 6,
-  /** Used by `gatsby-plugin-google-analytics`. */
-  googleAnalyticsTrackingId: 'UA-135765468-1',
   /**
    * Information about the website. Can be accessed by components by calling
    * the `useSiteMetadata` custom React hook.
