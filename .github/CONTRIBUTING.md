@@ -364,6 +364,23 @@ running gatsby commands.
 
 _TODO_
 
+### Troubleshooting
+
+#### Commiting changes to Git fails and deletes my changes from my file system
+
+Not sure what is the exact cause of this but this could happen if you are
+running a local Gatsby development server, and you trigger the pre-commit hook
+(by running `git commit`). The pre-commit hook will process your changes and run
+type checks and some formatting. These actions probably overwhelms the Node.js
+process for some reason and deletes the changes along with other files.
+
+When this happens, you can still recover the deleted files that commited to Git,
+but **all** new changes will be lost (unless you have some program that tracks
+changes to files, e.g. Dropbox history, etc.).
+
+For _very large diffs_, it is advisable to shut down the Gatsby local
+development server first before commiting to Git.
+
 ### Maintenance
 
 #### Dependencies
