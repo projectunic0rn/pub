@@ -228,7 +228,20 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  /** Creates the paginated list of author posts for every author. */
+  /**
+   * **Creates the paginated list of author posts for every author.**
+   *
+   * The first part is is a call to the `graphql` function passed with the
+   * query string for this build step. This string only fetches what is need to
+   * build all the paginated list of author posts.
+   *
+   * We let this query run asynchronously. If the query fails, the promise is
+   * rejected and the build fails.
+   *
+   * If the query is successful, we get a list of author objects. For each item
+   * in the author list, a page will be created. The definition of an author
+   * entry is provided in `<rootDir>/content/author.yml`.
+   */
   const loadBlogAuthors = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -236,16 +249,14 @@ exports.createPages = ({ graphql, actions }) => {
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                author {
-                  id
-                  name
-                }
+          nodes {
+            fields {
+              slug
+            }
+            frontmatter {
+              author {
+                id
+                name
               }
             }
           }
@@ -257,53 +268,42 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       /**
-       * @typedef {object} BlogAuthorEdge
-       * @property {object} id Gatsby generated ID for the blog post
-       * @property {object} node
-       * @property {object} node.fields
-       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
-       * @property {object} node.frontmatter
-       * @property {object} node.frontmatter.author Mapped author object
-       * @property {string} node.frontmatter.author.id Author ID
-       * @property {string} node.frontmatter.author.name Author display name
+       * @typedef {object} BlogAuthorNode
+       * @property {object} fields
+       * @property {string} fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {object} frontmatter
+       * @property {object} frontmatter.author Mapped author object
+       * @property {string} frontmatter.author.id Author ID
+       * @property {string} frontmatter.author.name Author display name
        */
-      /** @type {BlogAuthorEdge[]} */
-      const posts = data.allMarkdownRemark.edges;
+      /** @type {BlogAuthorNode[]} */
+      const nodes = data.allMarkdownRemark.nodes;
       /**
        * @typedef {object} Author
        * @property {string} id Author ID
        * @property {string} name Author display name
        * @property {string[]} posts List of slugged post titles
        */
-      /**
-       * Re-mapped authors.
-       *
-       *  @type {{ [index: string]: Author }}
-       */
-      const authors = {};
+      /** @type {{ [index: string]: Author }}*/
+      const authorMap = {};
 
-      posts.forEach(({ node }) => {
-        const { author } = node.frontmatter;
-
-        if (!author) {
-          return;
-        }
-
+      nodes.forEach(({ frontmatter, fields }) => {
+        const { author } = frontmatter;
         const sluggedAuthor = slugify(author.id);
-        const authorObj = authors[sluggedAuthor];
+        const authorObj = authorMap[sluggedAuthor];
 
         if (authorObj) {
-          authorObj.posts.push(node.fields.slug);
+          authorObj.posts.push(fields.slug);
         } else {
-          authors[sluggedAuthor] = {
+          authorMap[sluggedAuthor] = {
             name: author.name,
             id: author.id,
-            posts: [node.fields.slug],
+            posts: [fields.slug],
           };
         }
       });
 
-      Object.entries(authors).forEach(
+      Object.entries(authorMap).forEach(
         ([slug, { id: authorId, name: authorName, posts: authorPosts }]) => {
           const totalPosts = authorPosts.length;
           const numPages = Math.ceil(totalPosts / postsPerPage);

@@ -33,20 +33,18 @@ export interface Author {
 }
 
 interface PostNode {
-  node: {
-    excerpt: string;
-    frontmatter: {
-      date: string;
-      title: string;
-      image: {
-        childImageSharp: {
-          fluid: FluidObject;
-        };
+  excerpt: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    image: {
+      childImageSharp: {
+        fluid: FluidObject;
       };
     };
-    fields: {
-      slug: string;
-    };
+  };
+  fields: {
+    slug: string;
   };
 }
 
@@ -59,7 +57,7 @@ interface AuthorTemplateProps {
     };
     totalCount: number;
     allMarkdownRemark: {
-      edges: PostNode[];
+      nodes: PostNode[];
     };
     authorYaml: Author;
   };
@@ -104,20 +102,18 @@ export const authorQuery = graphql`
       skip: $skip
     ) {
       totalCount
-      edges {
-        node {
-          excerpt(pruneLength: 80)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1800) {
-                  ...GatsbyImageSharpFluid
-                }
+      nodes {
+        excerpt(pruneLength: 80)
+        fields {
+          slug
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1800) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -134,7 +130,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
 }) => {
   const siteMetadata = useSiteMetadata();
   const author = data.authorYaml;
-  const posts = data.allMarkdownRemark.edges;
+  const { nodes } = data.allMarkdownRemark;
   const { authorId, authorName, slug, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
 
@@ -184,18 +180,18 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
         <AuthorMeta author={author} />
 
         <CardList>
-          {posts.map(({ node }) => (
+          {nodes.map(({ fields, excerpt, frontmatter }) => (
             <Card
-              key={node.fields.slug}
-              slug={node.fields.slug}
-              excerpt={node.excerpt}
+              key={fields.slug}
+              slug={fields.slug}
+              excerpt={excerpt}
               fluid={
-                node.frontmatter.image
-                  ? node.frontmatter.image.childImageSharp.fluid
+                frontmatter.image
+                  ? frontmatter.image.childImageSharp.fluid
                   : data.file.childImageSharp.fluid
               }
-              publishDate={node.frontmatter.date}
-              title={node.frontmatter.title || node.fields.slug}
+              publishDate={frontmatter.date}
+              title={frontmatter.title || fields.slug}
             />
           ))}
         </CardList>
