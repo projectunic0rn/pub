@@ -50,10 +50,13 @@ interface PostNode {
 
 interface AuthorTemplateProps {
   data: {
-    file: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
+    allFile: {
+      nodes: {
+        name: string;
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      }[];
     };
     totalCount: number;
     allMarkdownRemark: {
@@ -75,10 +78,13 @@ interface AuthorTemplateProps {
 
 export const authorQuery = graphql`
   query($authorId: String, $skip: Int!, $limit: Int!) {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1800) {
-          ...GatsbyImageSharpFluid
+    allFile(filter: { absolutePath: { regex: "/images/default/" } }) {
+      nodes {
+        name
+        childImageSharp {
+          fluid(maxWidth: 1800) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
@@ -130,9 +136,22 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
 }) => {
   const siteMetadata = useSiteMetadata();
   const author = data.authorYaml;
+  const allFileNodes = data.allFile.nodes;
   const { nodes } = data.allMarkdownRemark;
   const { authorId, authorName, slug, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
+  // @TODO+author.tsx: Create new StaticQuery hook, e.g. useDefaultImage
+  const defaultImages: { [key: string]: { fluid: FluidObject } } = {};
+
+  allFileNodes.forEach(
+    ({ name, childImageSharp }) => (defaultImages[name] = childImageSharp),
+  );
+
+  if (!author.avatar) {
+    author.avatar = {
+      childImageSharp: defaultImages['default-avatar-image'],
+    };
+  }
 
   return (
     <Layout>
@@ -188,7 +207,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
               fluid={
                 frontmatter.image
                   ? frontmatter.image.childImageSharp.fluid
-                  : data.file.childImageSharp.fluid
+                  : defaultImages['default-post-image'].fluid
               }
               publishDate={frontmatter.date}
               title={frontmatter.title || fields.slug}
