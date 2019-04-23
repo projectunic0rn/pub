@@ -1,11 +1,9 @@
-const siteConfig = require('./site.config');
-
 const {
   pathPrefix,
   manifestOptions,
   siteMetadata,
   googleAnalyticsTrackingId,
-} = siteConfig;
+} = require('./site.config');
 
 module.exports = {
   pathPrefix,

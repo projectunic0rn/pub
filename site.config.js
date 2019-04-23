@@ -2,22 +2,22 @@ require('dotenv').config();
 
 const path = require('path');
 
-const keys = Object.freeze({
+const requiredKeys = {
   /**
    * Used by `gatsby-plugin-google-analytics`. This value is provided through
    * the `.env` file located the root of the project.
    */
   googleAnalyticsTrackingId: process.env.GA_TRACKING_ID,
-});
+};
 
-Object.entries(keys).forEach(([k, v]) => {
+Object.entries(requiredKeys).forEach(([k, v]) => {
   if (typeof v === 'undefined') {
     throw new Error(`${k} not provided.`);
   }
 });
 
-module.exports = {
-  ...keys,
+module.exports = Object.freeze({
+  ...requiredKeys,
   /** Used by Gatsby when creating production build of the website. */
   pathPrefix: '/',
   /** Number of posts to be shown on the first page of the blog index page. */
@@ -68,4 +68,4 @@ module.exports = {
     icon: 'src/images/unicorn-icon.png',
     /* eslint-enable @typescript-eslint/camelcase */
   },
-};
+});
