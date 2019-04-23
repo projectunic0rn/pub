@@ -46,10 +46,13 @@ export interface Author {
 
 interface BlogPostTemplateProps {
   data: {
-    file: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
+    allFile: {
+      nodes: {
+        name: string;
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      }[];
     };
     markdownRemark: PostNode;
   };
@@ -61,10 +64,13 @@ interface BlogPostTemplateProps {
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1800) {
-          ...GatsbyImageSharpFluid
+    allFile(filter: { absolutePath: { regex: "/images/default/" } }) {
+      nodes {
+        name
+        childImageSharp {
+          fluid(maxWidth: 1800) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
@@ -109,11 +115,24 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
   data,
   pageContext,
 }) => {
+  const allFileNodes = data.allFile.nodes;
   const post = data.markdownRemark;
   const { excerpt, frontmatter, fields } = post;
   const { title, tags, date, author, image } = frontmatter;
   const { previous, next } = pageContext;
   const { slug } = fields;
+  // @TODO+author.tsx: Create new StaticQuery hook, e.g. useDefaultImage
+  const defaultImages: { [key: string]: { fluid: FluidObject } } = {};
+
+  allFileNodes.forEach(
+    ({ name, childImageSharp }) => (defaultImages[name] = childImageSharp),
+  );
+
+  if (!author.avatar) {
+    author.avatar = {
+      childImageSharp: defaultImages['default-avatar-image'],
+    };
+  }
 
   return (
     <Layout>
@@ -129,7 +148,9 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
       <Hero
         title={title}
         fluid={
-          image ? image.childImageSharp.fluid : data.file.childImageSharp.fluid
+          image
+            ? image.childImageSharp.fluid
+            : defaultImages['default-post-image'].fluid
         }
         height="50vh"
       />
