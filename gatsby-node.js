@@ -119,7 +119,20 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  /** Creates the paginated list of posts for every tag. */
+  /**
+   * **Creates the paginated list of posts for every tag.**
+   *
+   * The first part is is a call to the `graphql` function passed with the
+   * query string for this build step. This string only fetches what is need to
+   * build all the tag pages.
+   *
+   * We let this query run asynchronously. If the query fails, the promise is
+   * rejected and the build fails.
+   *
+   * If the query is successful, we get a list of tag objects. For each item in
+   * the tag list, a page will be created. The definition of a single tag is
+   * defined in the `<rootDir>/content/tag.yml`.
+   */
   const loadBlogTags = new Promise((resolve, reject) => {
     graphql(`
       {
@@ -127,14 +140,12 @@ exports.createPages = ({ graphql, actions }) => {
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                tags
-              }
+          nodes {
+            fields {
+              slug
+            }
+            frontmatter {
+              tags
             }
           }
         }
@@ -145,45 +156,38 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       /**
-       * @typedef {object} BlogTagEdge
-       * @property {object} node
-       * @property {object} node.fields
-       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
-       * @property {object} node.frontmatter
-       * @property {string[]} node.frontmatter.tags A list of tags provided in `frontmatter.tags`
+       * @typedef {object} BlogTagNode
+       * @property {object} fields
+       * @property {string} fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {BlogTag[]} fields.plainTags Tags on provided `frontmatter.tags`
+       * @property {object} frontmatter
+       * @property {string[]} frontmatter.tags A list of tags provided in `frontmatter.tags`
        */
+      /** @type {BlogTagNode[]} */
+      const nodes = data.allMarkdownRemark.nodes;
 
-      /** @type {BlogTagEdge[]} */
-      const posts = data.allMarkdownRemark.edges;
       /**
-       * @typedef {object} Tag
+       * @typedef {object} TagMapItem
        * @property {string} tag
        * @property {string[]} posts
        */
-      /**
-       *  Re-mapped tags.
-       *
-       *  @type {{ [index: string]: Tag }}
-       */
-      const tags = {};
+      /** @type {{ [index: string]: TagMapItem }} */
+      const tagMap = {};
 
-      posts.forEach(({ node }) => {
-        const { tags: postTags } = node.frontmatter;
+      nodes.forEach(({ frontmatter, fields }) => {
+        const { slug } = fields;
+        const { tags } = frontmatter;
 
-        if (!postTags) {
-          return;
-        }
-
-        postTags.forEach((tag) => {
+        tags.forEach((tag) => {
           const sluggedTag = slugify(tag);
-          const tagObj = tags[sluggedTag];
+          const tagObj = tagMap[sluggedTag];
 
           if (tagObj) {
-            tagObj.posts.push(node.fields.slug);
+            tagObj.posts.push(slug);
           } else {
-            tags[sluggedTag] = {
+            tagMap[sluggedTag] = {
               tag,
-              posts: [node.fields.slug],
+              posts: [slug],
             };
           }
         });
@@ -191,7 +195,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       const postsPerPage = 6;
 
-      Object.entries(tags).forEach(([slug, { tag, posts }]) => {
+      Object.entries(tagMap).forEach(([slug, { tag, posts }]) => {
         const totalPosts = posts.length;
         const numPages = Math.ceil(totalPosts / postsPerPage);
 

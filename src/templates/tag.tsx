@@ -14,20 +14,18 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 interface PostNode {
-  node: {
-    excerpt: string;
-    frontmatter: {
-      date: string;
-      title: string;
-      image: {
-        childImageSharp: {
-          fluid: FluidObject;
-        };
+  excerpt: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    image: {
+      childImageSharp: {
+        fluid: FluidObject;
       };
     };
-    fields: {
-      slug: string;
-    };
+  };
+  fields: {
+    slug: string;
   };
 }
 
@@ -40,7 +38,7 @@ interface TagTemplateProps {
     };
     totalCount: number;
     allMarkdownRemark: {
-      edges: PostNode[];
+      nodes: PostNode[];
     };
   };
   pageContext: {
@@ -70,20 +68,18 @@ export const tagQuery = graphql`
       skip: $skip
     ) {
       totalCount
-      edges {
-        node {
-          excerpt(pruneLength: 80)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1800) {
-                  ...GatsbyImageSharpFluid
-                }
+      nodes {
+        excerpt(pruneLength: 80)
+        fields {
+          slug
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1800) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -96,9 +92,9 @@ export const tagQuery = graphql`
 /** Used by Gatsby to display the list of tags used in blog posts. */
 const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
-  const posts = data.allMarkdownRemark.edges;
+  const { nodes } = data.allMarkdownRemark;
   const { tag: title, slug, totalPosts, currentPage } = pageContext;
-  const numberOfPosts = posts.length;
+  const numberOfPosts = nodes.length;
   const isFirstPage = currentPage === 1;
 
   return (
@@ -145,24 +141,23 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
 
       <Container>
         <PageTitle size="small">
-          {totalPosts} Post{numberOfPosts > 1 ? 's' : ''} Tagged: &ldquo;
-          {title}
+          {totalPosts} Post{numberOfPosts > 1 ? 's' : ''} Tagged: &ldquo;{title}
           &rdquo;
         </PageTitle>
 
         <CardList>
-          {posts.map(({ node }) => (
+          {nodes.map(({ fields, frontmatter, excerpt }) => (
             <Card
-              key={node.fields.slug}
-              slug={node.fields.slug}
-              excerpt={node.excerpt}
+              key={fields.slug}
+              slug={fields.slug}
+              excerpt={excerpt}
               fluid={
-                node.frontmatter.image
-                  ? node.frontmatter.image.childImageSharp.fluid
+                frontmatter.image
+                  ? frontmatter.image.childImageSharp.fluid
                   : data.file.childImageSharp.fluid
               }
-              publishDate={node.frontmatter.date}
-              title={node.frontmatter.title || node.fields.slug}
+              publishDate={frontmatter.date}
+              title={frontmatter.title || fields.slug}
             />
           ))}
         </CardList>
