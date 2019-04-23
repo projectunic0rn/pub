@@ -14,20 +14,18 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 interface PostNode {
-  node: {
-    excerpt: string;
-    frontmatter: {
-      date: string;
-      title: string;
-      image: {
-        childImageSharp: {
-          fluid: FluidObject;
-        };
+  excerpt: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    image: {
+      childImageSharp: {
+        fluid: FluidObject;
       };
     };
-    fields: {
-      slug: string;
-    };
+  };
+  fields: {
+    slug: string;
   };
 }
 
@@ -39,7 +37,7 @@ interface BlogTemplateProps {
       };
     };
     allMarkdownRemark: {
-      edges: PostNode[];
+      nodes: PostNode[];
     };
   };
   pageContext: {
@@ -64,20 +62,18 @@ export const pageQuery = graphql`
       limit: $limit
       skip: $skip
     ) {
-      edges {
-        node {
-          excerpt(pruneLength: 80)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1800) {
-                  ...GatsbyImageSharpFluid
-                }
+      nodes {
+        excerpt(pruneLength: 80)
+        fields {
+          slug
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1800) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -90,7 +86,7 @@ export const pageQuery = graphql`
 /** Used by Gatsby to display the list of blog posts at the blog index page. */
 const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
-  const posts = data.allMarkdownRemark.edges;
+  const nodes = data.allMarkdownRemark.nodes;
   const { currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
 
@@ -106,19 +102,19 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
 
       <Container>
         <CardList>
-          {posts.map(({ node }, i) => (
+          {nodes.map(({ fields, excerpt, frontmatter }, i) => (
             <Card
               featured={isFirstPage && i === 0}
-              key={node.fields.slug}
-              slug={node.fields.slug}
-              excerpt={node.excerpt}
+              key={fields.slug}
+              slug={fields.slug}
+              excerpt={excerpt}
               fluid={
-                node.frontmatter.image
-                  ? node.frontmatter.image.childImageSharp.fluid
+                frontmatter.image
+                  ? frontmatter.image.childImageSharp.fluid
                   : data.file.childImageSharp.fluid
               }
-              publishDate={node.frontmatter.date}
-              title={node.frontmatter.title || node.fields.slug}
+              publishDate={frontmatter.date}
+              title={frontmatter.title || fields.slug}
             />
           ))}
         </CardList>

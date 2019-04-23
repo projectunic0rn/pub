@@ -33,8 +33,24 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   /**
-   * Creates the main blog index page, the paginated list of blog posts and the
-   * individual pages for each blog post.
+   * **Creates the blog index page, blog post pages and paginated list of blog posts.**
+   *
+   * The first part is is a call to the `graphql` function passed with the
+   * query string for this build step. This string only fetches what is need to
+   * build all the index page, individual blog post pages and the paginated list
+   * of blog posts.
+   *
+   * We let this query run asynchronously. If the query fails, the promise is
+   * rejected and the build fails.
+   *
+   * From the query results, the first task is to create the blog index page.
+   * This page is different because its path does not have a page number, i.e.
+   * `/blog`. The other pages would have a page number in their paths, i.e.
+   * `/blog/23`.
+   *
+   * The last task is to create the individual blog posts. This step uses a
+   * different template than the paginated list of blog posts. And the _slugged_
+   * title of the blog post is appended to the path, i.e. `/blog/the-title`.
    */
   const loadBlogPosts = new Promise((resolve, reject) => {
     graphql(`
@@ -43,15 +59,13 @@ exports.createPages = ({ graphql, actions }) => {
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
-          edges {
-            node {
-              id
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+          nodes {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              title
             }
           }
         }
@@ -62,18 +76,17 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       /**
-       * @typedef {object} BlogPostEdge
+       * @typedef {object} BlogPostNode
        * @property {string} id Gatsby generated ID for the blog post
-       * @property {object} node
-       * @property {object} node.fields
-       * @property {string} node.fields.slug Slugged title of the post based on provided `frontmatter.title`
-       * @property {object} node.frontmatter
-       * @property {string} node.frontmatter.title Title of the blog post
+       * @property {object} fields
+       * @property {string} fields.slug Slugged title of the post based on provided `frontmatter.title`
+       * @property {object} frontmatter
+       * @property {string} frontmatter.title Title of the blog post
        */
-      /** @type {BlogPostEdge[]} */
-      const posts = data.allMarkdownRemark.edges;
+      /** @type {BlogPostNode[]} */
+      const nodes = data.allMarkdownRemark.nodes;
       const numPages = Math.ceil(
-        posts.slice(postsPerFirstPage).length / postsPerPage,
+        nodes.slice(postsPerFirstPage).length / postsPerPage,
       );
 
       createPage({
@@ -100,15 +113,15 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
-      posts.forEach(({ node }, i, a) => {
-        const previous = i === 0 ? null : a[i - 1].node;
-        const next = i === a.length - 1 ? null : a[i + 1].node;
+      nodes.forEach(({ fields }, i, a) => {
+        const previous = i === 0 ? null : a[i - 1];
+        const next = i === a.length - 1 ? null : a[i + 1];
 
         createPage({
-          path: `/blog/${node.fields.slug}/`,
+          path: `/blog/${fields.slug}/`,
           component: template.post,
           context: {
-            slug: node.fields.slug,
+            slug: fields.slug,
             previous,
             next,
           },
