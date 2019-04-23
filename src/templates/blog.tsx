@@ -86,7 +86,7 @@ export const pageQuery = graphql`
 /** Used by Gatsby to display the list of blog posts at the blog index page. */
 const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
-  const nodes = data.allMarkdownRemark.nodes;
+  const { nodes } = data.allMarkdownRemark;
   const { currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
 
