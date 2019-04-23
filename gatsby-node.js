@@ -141,8 +141,7 @@ exports.createPages = ({ graphql, actions }) => {
    * rejected and the build fails.
    *
    * If the query is successful, we get a list of tag objects. For each item in
-   * the tag list, a page will be created. The definition of a single tag is
-   * defined in the `<rootDir>/content/tag.yml`.
+   * the tag list, a page will be created.
    */
   const loadBlogTags = new Promise((resolve, reject) => {
     graphql(`
