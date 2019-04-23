@@ -60,7 +60,6 @@ exports.createPages = ({ graphql, actions }) => {
           limit: 1000
         ) {
           nodes {
-            id
             fields {
               slug
             }
@@ -77,7 +76,6 @@ exports.createPages = ({ graphql, actions }) => {
 
       /**
        * @typedef {object} BlogPostNode
-       * @property {string} id Gatsby generated ID for the blog post
        * @property {object} fields
        * @property {string} fields.slug Slugged title of the post based on provided `frontmatter.title`
        * @property {object} frontmatter
