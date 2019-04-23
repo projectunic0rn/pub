@@ -193,8 +193,6 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
-      const postsPerPage = 6;
-
       Object.entries(tagMap).forEach(([slug, { tag, posts }]) => {
         const totalPosts = posts.length;
         const numPages = Math.ceil(totalPosts / postsPerPage);
@@ -294,8 +292,6 @@ exports.createPages = ({ graphql, actions }) => {
           };
         }
       });
-
-      const postsPerPage = 6;
 
       Object.entries(authors).forEach(
         ([slug, { id: authorId, name: authorName, posts: authorPosts }]) => {
