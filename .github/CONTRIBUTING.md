@@ -40,6 +40,10 @@ not familiar with the syntax you can see the following links:
 - [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
 - [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
+#### Basic syntax
+
+_TODO_
+
 ### Update blog post frontmatter
 
 Inside `index.md.example` you will find a section at the top that starts and
@@ -319,32 +323,11 @@ Send a pull request and include a short summary of your changes.
 
 ### Environment Variables
 
-Environment variables can be added in [`.env-cmdrc`](/.env-cmdrc). You can add
-key-value pairs to the exisiting groups or you may create a new group. For
-example, you want to add environment variables when you are testing, you might
-add a `testing` group of environment variables:
+Environment variables can be added in an `.env` as key-value pairs following
+this syntax: `EXAMPLE_KEY="a value"` (See [`.env.example`](/.env.example)).
 
-```json
-{
-  "development": { ... },
-  "production": { ... },
-  "testing": {
-    "CI": true
-  }
-}
-```
-
-Then update your commands to call `env-cmd` and the group name:
-
-```bash
-env-cmd testing npm run test
-```
-
-> **WARNING**: You should **not** put sensitive values in `.env-cmdrc`. These
+> **WARNING**: You should **not** put sensitive values in `.env`. These
 > values are bundled together with the application and anyone can inspect them.
-
-> **NOTE**: You might also need to restart the development server when you
-> change the `.env-cmdrc`.
 
 #### Gatsby Telemetry
 
@@ -355,8 +338,15 @@ by running:
 gatsby telemetry --disable
 ```
 
-Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` when you are
-running gatsby commands.
+Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` on the project
+`.env` file:
+
+```
+GATSBY_TELEMETRY_DISABLED=1
+```
+
+> **NOTE**: You might also need to restart the development server when you
+> change the `.env`.
 
 [telemetry]: https://www.gatsbyjs.org/docs/telemetry/
 

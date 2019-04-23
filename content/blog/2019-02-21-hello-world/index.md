@@ -330,32 +330,11 @@ Send a pull request and include a short summary of your changes.
 
 ### Environment Variables
 
-Environment variables can be added in [`.env-cmdrc`][envcmdrc]. You can add
-key-value pairs to the exisiting groups or you may create a new group. For
-example, you want to add environment variables when you are testing, you might
-add a `testing` group of environment variables:
+Environment variables can be added in an `.env` as key-value pairs following
+this syntax: `EXAMPLE_KEY="a value"` (See [`.env.example`][envexample]).
 
-```json
-{
-  "development": { ... },
-  "production": { ... },
-  "testing": {
-    "CI": true
-  }
-}
-```
-
-Then update your commands to call `env-cmd` and the group name:
-
-```bash
-env-cmd testing npm run test
-```
-
-> **WARNING**: You should **not** put sensitive values in `.env-cmdrc`. These
+> **WARNING**: You should **not** put sensitive values in `.env`. These
 > values are bundled together with the application and anyone can inspect them.
-
-> **NOTE**: You might also need to restart the development server when you
-> change the `.env-cmdrc`.
 
 #### Gatsby Telemetry
 
@@ -366,8 +345,15 @@ can disable this by running:
 gatsby telemetry --disable
 ```
 
-Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` when you are
-running gatsby commands.
+Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` on the project
+`.env` file:
+
+```
+GATSBY_TELEMETRY_DISABLED=1
+```
+
+> **NOTE**: You might also need to restart the development server when you
+> change the `.env`.
 
 ### Troubleshooting
 
@@ -419,5 +405,5 @@ node_js:
 [author_yaml]: https://github.com/projectunic0rn/pub/blob/master/content/author.yaml
 [pub_content_assets_dir]: https://github.com/projectunic0rn/pub/tree/master/content/assets
 [pub_package_json]: https://github.com/rmjordas/pub/blob/master/package.json
-[envcmdrc]: https://github.com/projectunic0rn/pub/blob/master/.env-cmdrc
+[envexample]: https://github.com/projectunic0rn/pub/blob/master/.env.example
 [gatsby_telemetry]: https://www.gatsbyjs.org/docs/telemetry/
