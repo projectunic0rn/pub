@@ -11,7 +11,7 @@ import {
   Pagination,
   Seo,
 } from '@components';
-import { useSiteMetadata } from '@hooks';
+import { useDefaultPostImage, useSiteMetadata } from '@hooks';
 
 interface PostNode {
   excerpt: string;
@@ -31,11 +31,6 @@ interface PostNode {
 
 interface BlogTemplateProps {
   data: {
-    file: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
-    };
     allMarkdownRemark: {
       nodes: PostNode[];
     };
@@ -50,13 +45,6 @@ interface BlogTemplateProps {
 
 export const pageQuery = graphql`
   query($skip: Int!, $limit: Int!) {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1800) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
@@ -86,6 +74,7 @@ export const pageQuery = graphql`
 /** Used by Gatsby to display the list of blog posts at the blog index page. */
 const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
+  const defaultPostImage = useDefaultPostImage();
   const { nodes } = data.allMarkdownRemark;
   const { currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
@@ -111,7 +100,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
               fluid={
                 frontmatter.image
                   ? frontmatter.image.childImageSharp.fluid
-                  : data.file.childImageSharp.fluid
+                  : defaultPostImage.childImageSharp.fluid
               }
               publishDate={frontmatter.date}
               title={frontmatter.title || fields.slug}

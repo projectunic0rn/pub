@@ -11,7 +11,11 @@ import {
   Layout,
   Pagination,
 } from '@components';
-import { useSiteMetadata } from '@hooks';
+import {
+  useDefaultAvatarImage,
+  useDefaultPostImage,
+  useSiteMetadata,
+} from '@hooks';
 
 export interface Author {
   /** Unique ID of the author. */
@@ -50,14 +54,6 @@ interface PostNode {
 
 interface AuthorTemplateProps {
   data: {
-    allFile: {
-      nodes: {
-        name: string;
-        childImageSharp: {
-          fluid: FluidObject;
-        };
-      }[];
-    };
     totalCount: number;
     allMarkdownRemark: {
       nodes: PostNode[];
@@ -78,16 +74,6 @@ interface AuthorTemplateProps {
 
 export const authorQuery = graphql`
   query($authorId: String, $skip: Int!, $limit: Int!) {
-    allFile(filter: { absolutePath: { regex: "/images/default/" } }) {
-      nodes {
-        name
-        childImageSharp {
-          fluid(maxWidth: 1800) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
     authorYaml(id: { eq: $authorId }) {
       id
       name
@@ -135,21 +121,16 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   pageContext,
 }) => {
   const siteMetadata = useSiteMetadata();
+  const defaultAvatarImage = useDefaultAvatarImage();
+  const defaultPostImage = useDefaultPostImage();
   const author = data.authorYaml;
-  const allFileNodes = data.allFile.nodes;
   const { nodes } = data.allMarkdownRemark;
   const { authorId, authorName, slug, currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
-  // @TODO+author.tsx: Create new StaticQuery hook, e.g. useDefaultImage
-  const defaultImages: { [key: string]: { fluid: FluidObject } } = {};
-
-  allFileNodes.forEach(
-    ({ name, childImageSharp }) => (defaultImages[name] = childImageSharp),
-  );
 
   if (!author.avatar) {
     author.avatar = {
-      childImageSharp: defaultImages['default-avatar-image'],
+      childImageSharp: defaultAvatarImage.childImageSharp,
     };
   }
 
@@ -207,7 +188,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
               fluid={
                 frontmatter.image
                   ? frontmatter.image.childImageSharp.fluid
-                  : defaultImages['default-post-image'].fluid
+                  : defaultPostImage.childImageSharp.fluid
               }
               publishDate={frontmatter.date}
               title={frontmatter.title || fields.slug}

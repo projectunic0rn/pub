@@ -13,6 +13,7 @@ import {
   Seo,
   Share,
 } from '@components';
+import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
 export interface PostNode {
   id: string;
@@ -46,14 +47,6 @@ export interface Author {
 
 interface BlogPostTemplateProps {
   data: {
-    allFile: {
-      nodes: {
-        name: string;
-        childImageSharp: {
-          fluid: FluidObject;
-        };
-      }[];
-    };
     markdownRemark: PostNode;
   };
   pageContext: {
@@ -64,16 +57,6 @@ interface BlogPostTemplateProps {
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    allFile(filter: { absolutePath: { regex: "/images/default/" } }) {
-      nodes {
-        name
-        childImageSharp {
-          fluid(maxWidth: 1800) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
@@ -115,22 +98,17 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
   data,
   pageContext,
 }) => {
-  const allFileNodes = data.allFile.nodes;
+  const defaultAvatarImage = useDefaultAvatarImage();
+  const defaultPostImage = useDefaultPostImage();
   const post = data.markdownRemark;
   const { excerpt, frontmatter, fields } = post;
   const { title, tags, date, author, image } = frontmatter;
   const { previous, next } = pageContext;
   const { slug } = fields;
-  // @TODO+author.tsx: Create new StaticQuery hook, e.g. useDefaultImage
-  const defaultImages: { [key: string]: { fluid: FluidObject } } = {};
-
-  allFileNodes.forEach(
-    ({ name, childImageSharp }) => (defaultImages[name] = childImageSharp),
-  );
 
   if (!author.avatar) {
     author.avatar = {
-      childImageSharp: defaultImages['default-avatar-image'],
+      childImageSharp: defaultAvatarImage.childImageSharp,
     };
   }
 
@@ -150,7 +128,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
         fluid={
           image
             ? image.childImageSharp.fluid
-            : defaultImages['default-post-image'].fluid
+            : defaultPostImage.childImageSharp.fluid
         }
         height="50vh"
       />

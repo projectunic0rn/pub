@@ -11,7 +11,7 @@ import {
   PageTitle,
   Pagination,
 } from '@components';
-import { useSiteMetadata } from '@hooks';
+import { useDefaultPostImage, useSiteMetadata } from '@hooks';
 
 interface PostNode {
   excerpt: string;
@@ -31,11 +31,6 @@ interface PostNode {
 
 interface TagTemplateProps {
   data: {
-    file: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
-    };
     totalCount: number;
     allMarkdownRemark: {
       nodes: PostNode[];
@@ -54,13 +49,6 @@ interface TagTemplateProps {
 
 export const tagQuery = graphql`
   query($tag: String, $skip: Int!, $limit: Int!) {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1800) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
@@ -92,6 +80,7 @@ export const tagQuery = graphql`
 /** Used by Gatsby to display the list of tags used in blog posts. */
 const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
+  const defaultPostImage = useDefaultPostImage();
   const { nodes } = data.allMarkdownRemark;
   const { tag: title, slug, totalPosts, currentPage } = pageContext;
   const numberOfPosts = nodes.length;
@@ -154,7 +143,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
               fluid={
                 frontmatter.image
                   ? frontmatter.image.childImageSharp.fluid
-                  : data.file.childImageSharp.fluid
+                  : defaultPostImage.childImageSharp.fluid
               }
               publishDate={frontmatter.date}
               title={frontmatter.title || fields.slug}
