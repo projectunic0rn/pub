@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { FooterV2, Navigation } from '@components';
+import Navigation from './navigation';
+import Footer from './footer';
 import { useSiteMetadata } from '@hooks';
 import favicon from '@static/favicon.ico';
 import styled, { ThemeProvider } from '@styled-components';
@@ -43,7 +44,7 @@ const LayoutV2: React.FC = ({ children }) => {
             {children}
           </Content>
 
-          <FooterV2 />
+          <Footer />
         </React.Fragment>
       </ThemeProvider>
 

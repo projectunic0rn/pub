@@ -10,7 +10,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
-const Footer = styled.footer`
+const Wrapper = styled.footer`
   background: #121212;
   color: #fff;
   padding: 75px 55px;
@@ -83,11 +83,11 @@ const FooterIconWrapper = styled.span`
   margin: 0 10px;
 `;
 
-const FooterV2: React.FC = () => {
+const Footer: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <Footer>
+    <Wrapper>
       <FooterCol>
         <FooterLogo />
 
@@ -130,8 +130,8 @@ const FooterV2: React.FC = () => {
           </FooterIconWrapper>
         </FooterSocialWrapper>
       </FooterCol>
-    </Footer>
+    </Wrapper>
   );
 };
 
-export default FooterV2;
+export default Footer;
