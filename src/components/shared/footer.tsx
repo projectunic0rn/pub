@@ -1,5 +1,7 @@
+import { Link } from 'gatsby';
 import * as React from 'react';
 
+import { Anchor } from '@components';
 import {
   puAlt,
   instagramIcon,
@@ -8,7 +10,7 @@ import {
   githubIcon,
 } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled, { css } from '@styled-components';
 
 const Wrapper = styled.footer`
   background: #121212;
@@ -83,6 +85,27 @@ const FooterIconWrapper = styled.span`
   margin: 0 10px;
 `;
 
+const SocialIcon = styled.img.attrs({ alt: '' })`
+  margin: 0;
+`;
+
+const anchorStyles = css`
+  color: #fff;
+  background: none;
+
+  &:visited {
+    color: #fff;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  ${anchorStyles};
+`;
+
+const StyledAnchor = styled(Anchor)`
+  ${anchorStyles};
+`;
+
 const Footer: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
@@ -96,37 +119,78 @@ const Footer: React.FC = () => {
 
       <FooterCol>
         <FooterList>
-          <FooterListItem>About Us</FooterListItem>
-          <FooterListItem>Jobs</FooterListItem>
-          <FooterListItem>Press</FooterListItem>
-          <FooterListItem>Blog</FooterListItem>
+          <FooterListItem>
+            <StyledLink to="/about">About Us</StyledLink>
+          </FooterListItem>
+
+          <FooterListItem>
+            <StyledLink to="/jobs">Jobs</StyledLink>
+          </FooterListItem>
+
+          <FooterListItem>
+            <StyledLink to="/press">Press</StyledLink>
+          </FooterListItem>
+
+          <FooterListItem>
+            <StyledLink to="/blog">Blog</StyledLink>
+          </FooterListItem>
         </FooterList>
       </FooterCol>
 
       <FooterCol>
         <FooterList>
-          <FooterListItem>Contact Us</FooterListItem>
-          <FooterListItem>Terms</FooterListItem>
-          <FooterListItem>Privacy</FooterListItem>
+          <FooterListItem>
+            <StyledLink to="/contact">Contact us</StyledLink>
+          </FooterListItem>
+
+          <FooterListItem>
+            <StyledLink to="/terms">Terms</StyledLink>
+          </FooterListItem>
+
+          <FooterListItem>
+            <StyledLink to="/privacy">Privacy</StyledLink>
+          </FooterListItem>
         </FooterList>
       </FooterCol>
 
       <FooterCol>
         <FooterSocialWrapper>
           <FooterIconWrapper>
-            <img src={instagramIcon} alt="" style={{ margin: 0 }} />
+            <StyledAnchor
+              href={`//www.instagram.com/${siteMetadata.social.instagram}`}
+              title={`Follow ${siteMetadata.title} on Instagram`}
+            >
+              <SocialIcon src={instagramIcon} />
+            </StyledAnchor>
           </FooterIconWrapper>
 
           <FooterIconWrapper>
-            <img src={twitterIcon} alt="" style={{ margin: 0 }} />
+            <StyledAnchor
+              href={`//twitter.com/${siteMetadata.social.twitter}`}
+              title={`Follow ${siteMetadata.title} on Twitter`}
+            >
+              <SocialIcon src={twitterIcon} />
+            </StyledAnchor>
           </FooterIconWrapper>
 
           <FooterIconWrapper>
-            <img src={linkedinIcon} alt="" style={{ margin: 0 }} />
+            <StyledAnchor
+              href={`//www.linkedin.com/company/${
+                siteMetadata.social.linkedin
+              }/about`}
+              title={`Follow ${siteMetadata.title} on LinkedIn`}
+            >
+              <SocialIcon src={linkedinIcon} />
+            </StyledAnchor>
           </FooterIconWrapper>
 
           <FooterIconWrapper>
-            <img src={githubIcon} alt="" style={{ margin: 0 }} />
+            <StyledAnchor
+              href={`//github.com/${siteMetadata.social.github}`}
+              title={`Follow ${siteMetadata.title} on GitHub`}
+            >
+              <SocialIcon src={githubIcon} />
+            </StyledAnchor>
           </FooterIconWrapper>
         </FooterSocialWrapper>
       </FooterCol>
