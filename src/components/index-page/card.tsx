@@ -64,7 +64,7 @@ const Card: React.FC = () => (
     <CardIcon />
 
     <CardText>
-      Project Unicorn gave me an opportunity of move out of my comfort zone.
+      Project Unicorn gave me an opportunity to move out of my comfort zone.
     </CardText>
 
     <CardFooter>
