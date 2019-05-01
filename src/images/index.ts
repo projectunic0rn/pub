@@ -9,3 +9,4 @@ export { default as puAlt } from './pu-alt.svg';
 export { default as redditIcon } from './reddit.svg';
 export { default as twitterIcon } from './twitter.svg';
 export { default as unicornIcon } from './unicorn-icon.png';
+export { default as connectedWorld } from './connected-world.svg';
