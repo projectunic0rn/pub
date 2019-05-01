@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import { Anchor } from '@components';
+import CtaButton from './cta-button';
 import { connectedWorld } from '@images';
-import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
 const Wrapper = styled.header`
@@ -45,22 +44,6 @@ const HeroSubheading = styled.p`
 `;
 const HeroFormWrapper = styled.div``;
 
-const CtaButton = styled(Anchor)`
-  font-weight: 700;
-  padding: 15px 45px;
-  border: 1px solid #5f8ddc;
-  border-radius: 5px;
-
-  @media screen and (max-width: 41.6875em) {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  background: #5f8ddc;
-  color: #fff;
-`;
-
 const HeroImageWrapper = styled.figure`
   flex: 0 0 45%;
   margin: 0;
@@ -76,34 +59,25 @@ const HeroImage = styled.img.attrs({ src: connectedWorld, alt: '' })`
   width: 100%;
 `;
 
-const Hero: React.FC = () => {
-  const siteMetadata = useSiteMetadata();
+const Hero: React.FC = () => (
+  <Wrapper>
+    <HeroText>
+      <HeroHeading>No more website clones, todo or weather apps.</HeroHeading>
 
-  return (
-    <Wrapper>
-      <HeroText>
-        <HeroHeading>No more website clones, todo or weather apps.</HeroHeading>
+      <HeroSubheading>
+        Project Unicorn is an online community of software developers around the
+        world working together to create and deploy meaningful applications.
+      </HeroSubheading>
 
-        <HeroSubheading>
-          Project Unicorn is an online community of software developers around
-          the world working together to create and deploy meaningful
-          applications.
-        </HeroSubheading>
+      <HeroFormWrapper>
+        <CtaButton />
+      </HeroFormWrapper>
+    </HeroText>
 
-        <HeroFormWrapper>
-          <CtaButton
-            href={`${siteMetadata.social.slackInvite}`}
-            content="Join Slack"
-            title={`${siteMetadata.title} Slack invite link`}
-          />
-        </HeroFormWrapper>
-      </HeroText>
-
-      <HeroImageWrapper>
-        <HeroImage />
-      </HeroImageWrapper>
-    </Wrapper>
-  );
-};
+    <HeroImageWrapper>
+      <HeroImage />
+    </HeroImageWrapper>
+  </Wrapper>
+);
 
 export default Hero;

@@ -1,28 +1,11 @@
 import * as React from 'react';
 
-import { Anchor } from '@components';
-import { useSiteMetadata } from '@hooks';
+import CtaButton from './cta-button';
 import styled, { css } from '@styled-components';
 
 const pStyles = css`
   font-size: 1.1em;
   margin: 25px 0;
-`;
-
-const CtaButton = styled(Anchor)`
-  font-weight: 700;
-  padding: 15px 45px;
-  border: 1px solid #5f8ddc;
-  border-radius: 5px;
-
-  @media screen and (max-width: 41.6875em) {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  background: #5f8ddc;
-  color: #fff;
 `;
 
 const Wrapper = styled.section`
@@ -72,30 +55,21 @@ const SignupForm = styled.div`
   }
 `;
 
-const Signup: React.FC = () => {
-  const siteMetadata = useSiteMetadata();
+const Signup: React.FC = () => (
+  <Wrapper>
+    <SignupText>
+      <SignupTextHeading>Join our Slack group</SignupTextHeading>
 
-  return (
-    <Wrapper>
-      <SignupText>
-        <SignupTextHeading>Join our Slack group</SignupTextHeading>
+      <SignupTextP>
+        It only takes a minute to sign in to your slack account. If you have any
+        questions, our members would be happy to help you.
+      </SignupTextP>
+    </SignupText>
 
-        <SignupTextP>
-          It only takes a minute to sign in to your slack account. If you have
-          any questions, our members would be happy to help you.
-        </SignupTextP>
-      </SignupText>
-
-      <SignupForm>
-        <CtaButton
-          href={`${siteMetadata.social.slackInvite}`}
-          content="Join Slack"
-          title={`${siteMetadata.title} Slack invite link`}
-          style={{ border: '3px solid #fff', borderRadius: '5px' }}
-        />
-      </SignupForm>
-    </Wrapper>
-  );
-};
+    <SignupForm>
+      <CtaButton variant="secondary" />
+    </SignupForm>
+  </Wrapper>
+);
 
 export default Signup;
