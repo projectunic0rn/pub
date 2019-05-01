@@ -3,7 +3,7 @@ import * as React from 'react';
 import { avatarTestimonial, iconQuotes } from '@images';
 import styled from '@styled-components';
 
-const Card = styled.div`
+const Wrapper = styled.div`
   background: #fff;
   padding: 25px;
   margin: 50px 0;
@@ -59,8 +59,8 @@ const CardFooterTextDescription = styled.span`
   font-size: 0.9em;
 `;
 
-const CardV2: React.FC = () => (
-  <Card>
+const Card: React.FC = () => (
+  <Wrapper>
     <CardIcon />
 
     <CardText>
@@ -80,7 +80,7 @@ const CardV2: React.FC = () => (
         </CardFooterTextDescription>
       </CardFooterText>
     </CardFooter>
-  </Card>
+  </Wrapper>
 );
 
-export default CardV2;
+export default Card;

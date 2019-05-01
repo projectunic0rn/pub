@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CardV2 } from '@components';
+import Card from './card';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import styled, { css } from '@styled-components';
 
@@ -9,7 +9,7 @@ const pStyles = css`
   margin: 25px 0;
 `;
 
-const About = styled.section`
+const Wrapper = styled.section`
   position: relative;
   padding: 75px 55px;
   display: flex;
@@ -101,9 +101,9 @@ const AboutImage = styled.img.attrs({ src: goodTeam, alt: '' })`
   width: 100%;
 `;
 
-const AboutV2: React.FC = () => {
+const About: React.FC = () => {
   return (
-    <About>
+    <Wrapper>
       <AboutText>
         <AboutHeading>Create awesome stuff, together</AboutHeading>
 
@@ -123,14 +123,14 @@ const AboutV2: React.FC = () => {
           <AboutLinkImage />
         </AboutLink>
 
-        <CardV2 />
+        <Card />
       </AboutText>
 
       <AboutImageWrapper>
         <AboutImage />
       </AboutImageWrapper>
-    </About>
+    </Wrapper>
   );
 };
 
-export default AboutV2;
+export default About;

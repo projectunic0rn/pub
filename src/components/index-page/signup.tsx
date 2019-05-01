@@ -25,7 +25,7 @@ const CtaButton = styled(Anchor)`
   color: #fff;
 `;
 
-const Signup = styled.section`
+const Wrapper = styled.section`
   display: flex;
   align-items: center;
   padding: 75px 55px;
@@ -72,11 +72,11 @@ const SignupForm = styled.div`
   }
 `;
 
-const SignupV2: React.FC = () => {
+const Signup: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <Signup>
+    <Wrapper>
       <SignupText>
         <SignupTextHeading>Join our Slack group</SignupTextHeading>
 
@@ -94,8 +94,8 @@ const SignupV2: React.FC = () => {
           style={{ border: '3px solid #fff', borderRadius: '5px' }}
         />
       </SignupForm>
-    </Signup>
+    </Wrapper>
   );
 };
 
-export default SignupV2;
+export default Signup;

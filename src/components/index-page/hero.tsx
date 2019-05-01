@@ -5,7 +5,7 @@ import { connectedWorld } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
-const Hero = styled.header`
+const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,11 +76,11 @@ const HeroImage = styled.img.attrs({ src: connectedWorld, alt: '' })`
   width: 100%;
 `;
 
-const HeroV2: React.FC = () => {
+const Hero: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <Hero>
+    <Wrapper>
       <HeroText>
         <HeroHeading>No more website clones, todo or weather apps.</HeroHeading>
 
@@ -102,8 +102,8 @@ const HeroV2: React.FC = () => {
       <HeroImageWrapper>
         <HeroImage />
       </HeroImageWrapper>
-    </Hero>
+    </Wrapper>
   );
 };
 
-export default HeroV2;
+export default Hero;

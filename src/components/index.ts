@@ -22,7 +22,4 @@ export { default as SvgIcon } from './svg-icon';
 export { default as Navigation } from './navigation';
 export { default as FooterV2 } from './footer-v2';
 export { default as LayoutV2 } from './layout-v2';
-export { default as HeroV2 } from './hero-v2';
-export { default as AboutV2 } from './about-v2';
-export { default as SignupV2 } from './signup-v2';
-export { default as CardV2 } from './card-v2';
+export * from './index-page';
