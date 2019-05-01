@@ -19,3 +19,4 @@ export { default as Seo } from './seo';
 export { default as Share } from './share';
 export { default as SocialIcon } from './social-icon';
 export { default as SvgIcon } from './svg-icon';
+export { default as Navigation } from './navigation';
