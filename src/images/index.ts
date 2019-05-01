@@ -5,6 +5,7 @@ export { default as githubIcon } from './github.svg';
 export { default as instagramIcon } from './instagram.svg';
 export { default as linkedinIcon } from './linkedin.svg';
 export { default as puLogo } from './pu.svg';
+export { default as puAlt } from './pu-alt.svg';
 export { default as redditIcon } from './reddit.svg';
 export { default as twitterIcon } from './twitter.svg';
 export { default as unicornIcon } from './unicorn-icon.png';
