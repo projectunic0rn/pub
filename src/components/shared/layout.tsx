@@ -20,7 +20,7 @@ const Content = styled.div`
   flex: 1 0 auto;
 `;
 
-const LayoutV2: React.FC = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
@@ -53,4 +53,4 @@ const LayoutV2: React.FC = ({ children }) => {
   );
 };
 
-export default LayoutV2;
+export default Layout;
