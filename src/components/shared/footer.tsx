@@ -16,10 +16,9 @@ const Wrapper = styled.footer`
   background: #121212;
   color: #fff;
   padding: 75px 55px;
-  display: flex;
 
-  @media screen and (max-width: 975px) {
-    flex-direction: column;
+  @media screen and (min-width: 975px) {
+    display: flex;
   }
 `;
 
