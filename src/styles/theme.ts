@@ -22,16 +22,24 @@ const responsive = {
 const sizes = {
   maxWidth: '1050px' as const,
   maxWidthCentered: '650px' as const,
+  mediumWidth: '60.9375em' as const,
+  smallWidth: '41.6875em' as const,
+};
+
+const boxes = {
+  sectionPadding: '75px 55px' as const,
 };
 
 export interface ThemeInterface {
   colors: typeof colors;
   responsive: typeof responsive;
   sizes: typeof sizes;
+  boxes: typeof boxes;
 }
 
 export const theme = Object.freeze<ThemeInterface>({
   colors,
   responsive,
   sizes,
+  boxes,
 });

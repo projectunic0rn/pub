@@ -13,75 +13,66 @@ import { useSiteMetadata } from '@hooks';
 import styled, { css } from '@styled-components';
 
 const Wrapper = styled.footer`
-  background: #121212;
+  background: ${({ theme }) => theme.colors.base};
   color: #fff;
-  padding: 75px 55px;
+  padding: ${({ theme }) => theme.boxes.sectionPadding};
 
-  @media screen and (min-width: 975px) {
+  @media screen and (min-width: ${({ theme }) => theme.sizes.mediumWidth}) {
     display: flex;
   }
 `;
 
-const FooterCol = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
+const Col = styled.div`
   align-items: center;
+  display: flex;
   flex: 0 0 25%;
+  flex-flow: column nowrap;
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.mediumWidth}) {
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 1.25em;
   }
 `;
 
-const FooterLogo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
+const Logo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
+  align-self: flex-start;
+  margin: 0;
+  margin-bottom: 2em;
   width: 8em;
-  margin: 0;
-  margin-bottom: 32px;
-  align-self: flex-start;
 
-  path {
-    fill: #fff;
-  }
-
-  @media screen and (max-width: 41.6875em) {
-    height: 2.1875em;
-    width: 100%;
-    height: initial;
+  @media screen and (max-width: ${({ theme }) => theme.sizes.smallWidth}) {
+    align-self: center;
+    min-width: 8em;
+    width: 70%;
   }
 `;
 
-const FooterP = styled.p`
-  align-self: flex-start;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
+const Text = styled.p`
+  margin-bottom: 0.9375em;
 `;
 
-const FooterList = styled.ul`
+const List = styled.ul`
   margin: 0;
 `;
 
-const FooterListItem = styled.li`
+const ListItem = styled.li`
   list-style: none;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375em;
 `;
 
-const FooterSocialWrapper = styled.div`
-  @media screen and (max-width: 975px) {
-    margin: 25px auto 0 auto;
+const SocialWrapper = styled.div`
+  @media screen and (max-width: ${({ theme }) => theme.sizes.mediumWidth}) {
+    margin: 1.5625em auto 0 auto;
   }
 `;
 
-const FooterIconWrapper = styled.span`
+const IconWrapper = styled.span`
   display: inline-block;
-  height: 45px;
-  width: 45px;
-  line-height: 45px;
-  text-align: center;
-  border-radius: 50%;
-  /* border: 1px solid #fff; */
+  height: 2.7em;
+  line-height: 2.7em;
   margin: 0 10px;
+  text-align: center;
+  width: 2.7em;
 `;
 
 const SocialIcon = styled.img.attrs({ alt: '' })`
@@ -89,8 +80,8 @@ const SocialIcon = styled.img.attrs({ alt: '' })`
 `;
 
 const anchorStyles = css`
-  color: #fff;
   background: none;
+  color: #fff;
 
   &:visited {
     color: #fff;
@@ -105,74 +96,97 @@ const StyledAnchor = styled(Anchor)`
   ${anchorStyles};
 `;
 
+/** Footer displays information about the web site. */
 const Footer: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
     <Wrapper>
-      <FooterCol>
-        <FooterLogo />
+      <Col>
+        <Logo />
+        <Text>{siteMetadata.description}</Text>
+      </Col>
 
-        <FooterP>{siteMetadata.description}</FooterP>
-      </FooterCol>
+      <Col>
+        <List>
+          <ListItem>
+            <StyledLink to="/about" title={`${siteMetadata.title} about page`}>
+              About Us
+            </StyledLink>
+          </ListItem>
 
-      <FooterCol>
-        <FooterList>
-          <FooterListItem>
-            <StyledLink to="/about">About Us</StyledLink>
-          </FooterListItem>
+          <ListItem>
+            <StyledLink to="/jobs" title={`${siteMetadata.title} job board`}>
+              Jobs
+            </StyledLink>
+          </ListItem>
 
-          <FooterListItem>
-            <StyledLink to="/jobs">Jobs</StyledLink>
-          </FooterListItem>
+          <ListItem>
+            <StyledLink to="/press" title={`${siteMetadata.title} press kit`}>
+              Press
+            </StyledLink>
+          </ListItem>
 
-          <FooterListItem>
-            <StyledLink to="/press">Press</StyledLink>
-          </FooterListItem>
+          <ListItem>
+            <StyledLink to="/blog" title={`${siteMetadata.title} blog`}>
+              Blog
+            </StyledLink>
+          </ListItem>
+        </List>
+      </Col>
 
-          <FooterListItem>
-            <StyledLink to="/blog">Blog</StyledLink>
-          </FooterListItem>
-        </FooterList>
-      </FooterCol>
+      <Col>
+        <List>
+          <ListItem>
+            <StyledLink
+              to="/contact"
+              title={`${siteMetadata.title} contact page`}
+            >
+              Contact us
+            </StyledLink>
+          </ListItem>
 
-      <FooterCol>
-        <FooterList>
-          <FooterListItem>
-            <StyledLink to="/contact">Contact us</StyledLink>
-          </FooterListItem>
+          <ListItem>
+            <StyledLink
+              to="/terms"
+              title={`${siteMetadata.title} terms and conditions`}
+            >
+              Terms
+            </StyledLink>
+          </ListItem>
 
-          <FooterListItem>
-            <StyledLink to="/terms">Terms</StyledLink>
-          </FooterListItem>
+          <ListItem>
+            <StyledLink
+              to="/privacy"
+              title={`${siteMetadata.title} privacy policy`}
+            >
+              Privacy
+            </StyledLink>
+          </ListItem>
+        </List>
+      </Col>
 
-          <FooterListItem>
-            <StyledLink to="/privacy">Privacy</StyledLink>
-          </FooterListItem>
-        </FooterList>
-      </FooterCol>
-
-      <FooterCol>
-        <FooterSocialWrapper>
-          <FooterIconWrapper>
+      <Col>
+        <SocialWrapper>
+          <IconWrapper>
             <StyledAnchor
               href={`//www.instagram.com/${siteMetadata.social.instagram}`}
               title={`Follow ${siteMetadata.title} on Instagram`}
             >
               <SocialIcon src={instagramIcon} />
             </StyledAnchor>
-          </FooterIconWrapper>
+          </IconWrapper>
 
-          <FooterIconWrapper>
+          <IconWrapper>
             <StyledAnchor
               href={`//twitter.com/${siteMetadata.social.twitter}`}
               title={`Follow ${siteMetadata.title} on Twitter`}
             >
               <SocialIcon src={twitterIcon} />
             </StyledAnchor>
-          </FooterIconWrapper>
+          </IconWrapper>
 
-          <FooterIconWrapper>
+          <IconWrapper>
             <StyledAnchor
               href={`//www.linkedin.com/company/${
                 siteMetadata.social.linkedin
@@ -181,18 +195,18 @@ const Footer: React.FC = () => {
             >
               <SocialIcon src={linkedinIcon} />
             </StyledAnchor>
-          </FooterIconWrapper>
+          </IconWrapper>
 
-          <FooterIconWrapper>
+          <IconWrapper>
             <StyledAnchor
               href={`//github.com/${siteMetadata.social.github}`}
               title={`Follow ${siteMetadata.title} on GitHub`}
             >
               <SocialIcon src={githubIcon} />
             </StyledAnchor>
-          </FooterIconWrapper>
-        </FooterSocialWrapper>
-      </FooterCol>
+          </IconWrapper>
+        </SocialWrapper>
+      </Col>
     </Wrapper>
   );
 };
