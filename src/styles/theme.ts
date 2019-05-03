@@ -10,7 +10,11 @@ const colors = {
   /** Light gray */
   tertiary: constants.lightgray,
   /** Alternate light gray */
-  text: constants.altlightgray,
+  text: constants.lightgrayalt,
+  /** Light background for section. */
+  section: constants.lightbluealt,
+  /** Alternate color. */
+  alternate: constants.lightgreen,
 };
 
 const responsive = {
@@ -24,9 +28,18 @@ const sizes = {
   maxWidthCentered: '650px' as const,
   mediumWidth: '60.9375em' as const,
   smallWidth: '41.6875em' as const,
+  width: {
+    max: '1050px' as const,
+    maxCentered: '650px' as const,
+    medium: '60.9375em' as const,
+    small: '41.6875em' as const,
+  },
 };
 
 const boxes = {
+  padding: {
+    section: { medium: '75px 55px' as const, small: '45px 25px' as const },
+  },
   sectionPadding: '75px 55px' as const,
 };
 
