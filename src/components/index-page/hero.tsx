@@ -5,78 +5,80 @@ import { connectedWorld } from '@images';
 import styled from '@styled-components';
 
 const Wrapper = styled.header`
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
-  padding: 4.6875em 3.4375em;
+  padding: ${({ theme }) => theme.boxes.padding.section.medium};
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     flex-direction: column;
   }
 
-  @media screen and (max-width: 41.6875em) {
-    padding: 45px 25px;
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
 `;
 
-const HeroText = styled.div`
+const Text = styled.div`
   flex: 0 0 45%;
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     order: 2;
     text-align: center;
   }
 `;
 
-const HeroHeading = styled.h1`
-  line-height: 1.3;
+const Heading = styled.h1`
   font-size: 2.3em;
+  line-height: 1.3;
 
-  @media screen and (max-width: 41.6875em) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     font-size: 1.7em;
   }
 `;
 
-const HeroSubheading = styled.p`
-  padding: 30px 0;
+const SubHeading = styled.p`
   font-size: 1.2em;
   line-height: 1.5;
+  padding: 1.875em 0;
 `;
-const HeroFormWrapper = styled.div``;
 
-const HeroImageWrapper = styled.figure`
+const FormWrapper = styled.div``;
+
+const ImageWrapper = styled.figure`
   flex: 0 0 45%;
   margin: 0;
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
+    max-width: 25em;
     order: 1;
-    max-width: 400px;
     width: 90%;
   }
 `;
 
-const HeroImage = styled.img.attrs({ src: connectedWorld, alt: '' })`
+const Image = styled.img.attrs({ src: connectedWorld, alt: '' })`
   width: 100%;
 `;
 
+/** Hero contains the web site's tag line and a call-to-action button. */
 const Hero: React.FC = () => (
   <Wrapper>
-    <HeroText>
-      <HeroHeading>No more website clones, todo or weather apps.</HeroHeading>
+    <Text>
+      <Heading>No more website clones, todo or weather apps.</Heading>
 
-      <HeroSubheading>
+      <SubHeading>
         Project Unicorn is an online community of software developers around the
         world working together to create and deploy meaningful applications.
-      </HeroSubheading>
+      </SubHeading>
 
-      <HeroFormWrapper>
+      <FormWrapper>
         <CtaButton />
-      </HeroFormWrapper>
-    </HeroText>
+      </FormWrapper>
+    </Text>
 
-    <HeroImageWrapper>
-      <HeroImage />
-    </HeroImageWrapper>
+    <ImageWrapper>
+      <Image />
+    </ImageWrapper>
   </Wrapper>
 );
 
