@@ -1,19 +1,15 @@
 import * as React from 'react';
 
-import {
-  SharedLayout,
-  IndexPageHero,
-  IndexPageAbout,
-  IndexPageSignup,
-} from '@components';
+import { Hero, About, Signup } from '@components/index-page';
+import { Layout } from '@components/shared';
 
 /** The website's landing page. */
 const IndexPage: React.FC = () => (
-  <SharedLayout>
-    <IndexPageHero />
-    <IndexPageAbout />
-    <IndexPageSignup />
-  </SharedLayout>
+  <Layout>
+    <Hero />
+    <About />
+    <Signup />
+  </Layout>
 );
 
 export default IndexPage;
