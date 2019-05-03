@@ -42,8 +42,9 @@ const Wrapper = styled.section`
 
 const Text = styled.div`
   flex: 0 0 55%;
+  order: 1;
 
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     order: 2;
   }
 `;
@@ -85,6 +86,7 @@ const LinkImage = styled.img.attrs({ src: iconArrow, alt: '' })`
 
 const ImageWrapper = styled.figure`
   flex: 0 0 45%;
+  order: 2;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     flex-basis: 90%;
