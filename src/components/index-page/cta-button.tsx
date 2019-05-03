@@ -2,54 +2,52 @@ import * as React from 'react';
 
 import { Anchor } from '@components';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled, { css } from '@styled-components';
 
-type ButtonVariant = 'default' | 'secondary';
+type CtaButtonVariant = 'default' | 'secondary';
 
 interface OwnProps {
   /** The text to display inside the button. */
   content?: string;
   /** Determines the style of the button. */
-  variant?: ButtonVariant;
+  variant?: CtaButtonVariant;
 }
 
 type CtaButtonProps = OwnProps;
 
 interface ButtonProps {
-  variant: ButtonVariant;
+  variant: CtaButtonVariant;
 }
 
 const Button = styled(Anchor)<ButtonProps>`
+  border-radius: 0.3125em;
   font-weight: 700;
-  padding: 15px 45px;
-  border: ${({ variant }) => {
+  padding: 0.9375em 2.8125em;
+
+  ${({ variant, theme }) => {
     switch (variant) {
       case 'secondary':
-        return '3px solid #fff';
+        return css`
+          background: transparent;
+          border: 0.1875rem solid ${theme.colors.baseinvert};
+        `;
       case 'default':
       default:
-        return '1px solid #5f8ddc';
-    }
-  }};
-  border-radius: 5px;
-  background: ${({ variant, theme }) => {
-    switch (variant) {
-      case 'secondary':
-        return 'transparent';
-      case 'default':
-      default:
-        return theme.colors.highlight;
+        return css`
+          background: ${theme.colors.highlight};
+          border: 0.0625rem solid ${theme.colors.highlight};
+        `;
     }
   }};
 
-  @media screen and (max-width: 41.6875em) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     display: block;
-    width: 90%;
     margin: 0 auto;
+    width: 90%;
   }
 
   && {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.baseinvert};
   }
 `;
 
