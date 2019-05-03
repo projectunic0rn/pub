@@ -18,8 +18,8 @@ const Nav = styled.nav`
 `;
 
 const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
-  width: 8em;
   margin: 0;
+  width: 8em;
 
   @media screen and (max-width: 41.6875em) {
     height: 2.1875em;
@@ -33,17 +33,17 @@ const NavMenu = styled.ul`
 
 const NavMenuItem = styled.li`
   display: inline-block;
-  padding-right: 2.8125em;
-  margin: 0;
   font-weight: 700;
+  margin: 0;
+  padding-right: 2.8125em;
 
   &:last-child {
     padding: 0;
   }
 
   && a {
-    color: rgba(0, 0, 0, 0.73);
     background: none;
+    color: rgba(0, 0, 0, 0.73);
     transition: 0.2;
 
     &:hover {
