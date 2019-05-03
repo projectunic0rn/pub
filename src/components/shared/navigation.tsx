@@ -47,7 +47,7 @@ const NavMenuItem = styled.li`
     transition: 0.2;
 
     &:hover {
-      color: #5f8ddc;
+      color: ${({ theme }) => theme.colors.highlight};
     }
   }
 `;
