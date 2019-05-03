@@ -1,56 +1,40 @@
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import Navigation from './navigation';
 import Footer from './footer';
-import { useSiteMetadata } from '@hooks';
-import favicon from '@static/favicon.ico';
+import { Seo } from '@components';
 import styled, { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
 
 const Root = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
 
 const Content = styled.div`
   display: flex;
-  flex-direction: column;
   flex: 1 0 auto;
+  flex-direction: column;
 `;
 
-const Layout: React.FC = ({ children }) => {
-  const siteMetadata = useSiteMetadata();
+const Layout: React.FC = ({ children }) => (
+  <Root>
+    <Seo title="Home" />
 
-  return (
-    <Root>
-      <Helmet>
-        <html lang="en" />
-        <title>{siteMetadata.title}</title>
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+        <Content>
+          <Navigation />
+          {children}
+        </Content>
 
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
-        />
+        <Footer />
+      </React.Fragment>
+    </ThemeProvider>
 
-        <link rel="icon" href={favicon} />
-      </Helmet>
-
-      <ThemeProvider theme={theme}>
-        <React.Fragment>
-          <Content>
-            <Navigation />
-            {children}
-          </Content>
-
-          <Footer />
-        </React.Fragment>
-      </ThemeProvider>
-
-      <GlobalStyle />
-    </Root>
-  );
-};
+    <GlobalStyle />
+  </Root>
+);
 
 export default Layout;
