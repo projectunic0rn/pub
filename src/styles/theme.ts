@@ -41,8 +41,8 @@ const sizes = {
 const boxes = {
   padding: {
     section: {
-      medium: '75px 55px' as const,
-      small: '45px 25px' as const,
+      medium: '4.6875em 3.4375em' as const,
+      small: '2.8125em 1.5625em' as const,
     },
   },
 };
