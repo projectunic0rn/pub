@@ -14,11 +14,12 @@ import styled, { css } from '@styled-components';
 
 const Wrapper = styled.footer`
   background: ${({ theme }) => theme.colors.base};
-  color: #fff;
-  padding: ${({ theme }) => theme.boxes.sectionPadding};
+  color: ${({ theme }) => theme.colors.baseinvert};
+  padding: ${({ theme }) => theme.boxes.padding.section.small};
 
-  @media screen and (min-width: ${({ theme }) => theme.sizes.mediumWidth}) {
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.medium}) {
     display: flex;
+    padding: ${({ theme }) => theme.boxes.padding.section.medium};
   }
 `;
 
@@ -28,7 +29,7 @@ const Col = styled.div`
   flex: 0 0 25%;
   flex-flow: column nowrap;
 
-  @media screen and (max-width: ${({ theme }) => theme.sizes.mediumWidth}) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     align-items: flex-start;
     margin-bottom: 1.25em;
   }
@@ -40,7 +41,7 @@ const Logo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
   margin-bottom: 2em;
   width: 8em;
 
-  @media screen and (max-width: ${({ theme }) => theme.sizes.smallWidth}) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     align-self: center;
     min-width: 8em;
     width: 70%;
@@ -61,7 +62,7 @@ const ListItem = styled.li`
 `;
 
 const SocialWrapper = styled.div`
-  @media screen and (max-width: ${({ theme }) => theme.sizes.mediumWidth}) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     margin: 1.5625em auto 0 auto;
   }
 `;
@@ -70,7 +71,7 @@ const IconWrapper = styled.span`
   display: inline-block;
   height: 2.7em;
   line-height: 2.7em;
-  margin: 0 10px;
+  margin: 0 0.625em;
   text-align: center;
   width: 2.7em;
 `;
@@ -81,10 +82,10 @@ const SocialIcon = styled.img.attrs({ alt: '' })`
 
 const anchorStyles = css`
   background: none;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.baseinvert};
 
   &:visited {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.baseinvert};
   }
 `;
 

@@ -3,6 +3,8 @@ import * as constants from './constants';
 const colors = {
   /** Off-black */
   base: constants.offblack,
+  /** Opposite of base. */
+  baseinvert: constants.white,
   /** Light blue */
   highlight: constants.lightblue,
   /** Medium gray */
@@ -26,8 +28,6 @@ const responsive = {
 const sizes = {
   maxWidth: '1050px' as const,
   maxWidthCentered: '650px' as const,
-  mediumWidth: '60.9375em' as const,
-  smallWidth: '41.6875em' as const,
   width: {
     max: '1050px' as const,
     maxCentered: '650px' as const,
@@ -38,9 +38,11 @@ const sizes = {
 
 const boxes = {
   padding: {
-    section: { medium: '75px 55px' as const, small: '45px 25px' as const },
+    section: {
+      medium: '75px 55px' as const,
+      small: '45px 25px' as const,
+    },
   },
-  sectionPadding: '75px 55px' as const,
 };
 
 export interface ThemeInterface {

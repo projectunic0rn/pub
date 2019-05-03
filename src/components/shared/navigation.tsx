@@ -12,7 +12,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   padding: 3.125em;
 
-  @media screen and (max-width: 41.6875em) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: 1.5625em;
   }
 `;
@@ -21,7 +21,7 @@ const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
   margin: 0;
   width: 8em;
 
-  @media screen and (max-width: 41.6875em) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     height: 2.1875em;
   }
 `;
@@ -43,7 +43,7 @@ const NavMenuItem = styled.li`
 
   && a {
     background: none;
-    color: rgba(0, 0, 0, 0.73);
+    color: ${({ theme }) => theme.colors.text};
     transition: 0.2;
 
     &:hover {
