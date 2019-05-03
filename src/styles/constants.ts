@@ -11,3 +11,4 @@ export const mediumgray = 'hsla(0, 0%, 91%, 1)' as const;
 export const lightgray = 'hsla(0, 0%, 95%, 1)' as const;
 export const lightgrayalt = 'hsla(0, 0%, 0%, 0.73)' as const;
 export const lightgreen = 'hsla(170, 45%, 43%, 1)' as const;
+export const shadow = 'hsla(0, 0%, 0%, 0.1)' as const;

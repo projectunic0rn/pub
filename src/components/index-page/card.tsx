@@ -4,46 +4,49 @@ import { avatarTestimonial, iconQuotes } from '@images';
 import styled from '@styled-components';
 
 const Wrapper = styled.div`
-  background: #fff;
-  padding: 25px;
-  margin: 50px 0;
-  max-width: 400px;
-  width: 95%;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+  background: ${({ theme }) => theme.colors.baseinvert};
+  border-radius: 0.375em;
+  box-shadow: 0 0.875em 1.75em ${({ theme }) => theme.colors.shadow};
+  margin: 3.125em 0;
+  padding: 1.5625em;
+  width: 100%;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    max-width: 25em;
+    width: 95%;
+  }
 `;
 
-const CardIcon = styled.img.attrs({ src: iconQuotes, alt: '' })`
-  height: 15px;
-  margin: 0 0 15px;
+const Icon = styled.img.attrs({ src: iconQuotes, alt: '' })`
+  height: 0.9375em;
+  margin: 0 0 0.9375em;
 `;
 
-const CardText = styled.p`
-  margin: 0 0 24px 0;
-  /* line-height: 1.5; */
-  line-height: 2;
+const Title = styled.p`
   font-style: italic;
+  line-height: 2;
+  margin: 0 0 1.5em 0;
 `;
 
-const CardFooter = styled.div`
-  display: flex;
+const Footer = styled.div`
   align-items: center;
+  display: flex;
   padding-bottom: 0.5em;
 `;
 
-const CardAvatarWrapper = styled.figure`
-  margin: 0 18px 0 9px;
+const AvatarWrapper = styled.figure`
+  margin: 0 1.125em 0 0.5625em;
 `;
 
-const CardAvatar = styled.img.attrs({ src: avatarTestimonial, alt: '' })`
-  display: block;
-  height: 50px;
-  width: 50px;
-  margin: 0;
+const Avatar = styled.img.attrs({ src: avatarTestimonial, alt: '' })`
   border-radius: 50%;
+  display: block;
+  height: 3.125em;
+  margin: 0;
+  width: 3.125em;
 `;
 
-const CardFooterText = styled.p`
+const Text = styled.p`
   margin: 0;
 
   & span {
@@ -51,35 +54,32 @@ const CardFooterText = styled.p`
   }
 `;
 
-const CardFooterTextName = styled.span`
+const TextName = styled.span`
   font-weight: 700;
 `;
 
-const CardFooterTextDescription = styled.span`
+const TextDescription = styled.span`
   font-size: 0.9em;
 `;
 
 const Card: React.FC = () => (
   <Wrapper>
-    <CardIcon />
+    <Icon />
 
-    <CardText>
+    <Title>
       Project Unicorn gave me an opportunity to move out of my comfort zone.
-    </CardText>
+    </Title>
 
-    <CardFooter>
-      <CardAvatarWrapper>
-        <CardAvatar />
-      </CardAvatarWrapper>
+    <Footer>
+      <AvatarWrapper>
+        <Avatar />
+      </AvatarWrapper>
 
-      <CardFooterText>
-        <CardFooterTextName>Rodger Jordas</CardFooterTextName>
-
-        <CardFooterTextDescription>
-          Software developer
-        </CardFooterTextDescription>
-      </CardFooterText>
-    </CardFooter>
+      <Text>
+        <TextName>Rodger Jordas</TextName>
+        <TextDescription>Software developer</TextDescription>
+      </Text>
+    </Footer>
   </Wrapper>
 );
 

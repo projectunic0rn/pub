@@ -17,6 +17,8 @@ const colors = {
   section: constants.lightbluealt,
   /** Alternate color. */
   alternate: constants.lightgreen,
+  /** Used for box shadows. */
+  shadow: constants.shadow,
 };
 
 const responsive = {
