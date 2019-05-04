@@ -2,21 +2,21 @@ import * as constants from './constants';
 
 const colors = {
   /** Off-black */
-  base: constants.offblack,
+  base: constants.blackOff,
   /** Opposite of base. */
   baseinvert: constants.white,
   /** Light blue */
-  highlight: constants.lightblue,
+  highlight: constants.blueLight,
   /** Medium gray */
-  secondary: constants.mediumgray,
+  secondary: constants.greyMedium,
   /** Light gray */
-  tertiary: constants.lightgray,
+  tertiary: constants.greyLight,
   /** Alternate light gray */
-  text: constants.lightgrayalt,
+  text: constants.greyLightAlt,
   /** Light background for section. */
-  section: constants.lightbluealt,
+  section: constants.blueLightAlt,
   /** Alternate color. */
-  alternate: constants.lightgreen,
+  alternate: constants.greenLight,
   /** Used for box shadows. */
   shadow: constants.shadow,
 };

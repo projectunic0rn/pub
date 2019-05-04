@@ -5,7 +5,7 @@ import * as constants from './constants';
 import { borderStyle } from '@utils';
 
 const { roboto, black, preFontSize, codeFontSize } = constants;
-const baseColor = constants.lightblue;
+const baseColor = constants.blueLight;
 const borderWidth = '0.5925rem' as const;
 const anchorBgImg = `linear-gradient(to top, ${black}, ${black} 1px, ${baseColor} 1px, ${baseColor} 2px, ${black} 2px)`;
 const blockquoteBorder = borderStyle({
