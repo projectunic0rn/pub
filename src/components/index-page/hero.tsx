@@ -28,7 +28,7 @@ const Text = styled.div`
   }
 `;
 
-const Heading = styled.h1`
+const Heading = styled.h2`
   font-size: 2.3em;
   line-height: 1.3;
 

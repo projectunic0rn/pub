@@ -49,7 +49,7 @@ const Text = styled.div`
   }
 `;
 
-const Heading = styled.h1``;
+const Heading = styled.h2``;
 
 const SubText = styled.p`
   font-size: 1.1em;
