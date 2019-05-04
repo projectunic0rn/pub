@@ -1,17 +1,6 @@
-<h1 align="center">
-
-<br>
-
-<img src="./src/images/unicorn-icon.png" alt="Pub" width="128">
-
-<br>
-<br>
-
-Pub
-
-</h1>
-
-<h3 align="center">Project Unicorn Blog</h3>
+<p align="center">
+  <img src="./.github/logo.png" alt="Project Unicorn">
+</p>
 
 <p align="center">
   <a href="https://travis-ci.com/projectunic0rn/pub">
@@ -23,7 +12,7 @@ Pub
   </a>
 </p>
 
-<hr />
+<br />
 
 ## Quick start
 
