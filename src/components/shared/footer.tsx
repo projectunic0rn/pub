@@ -42,7 +42,6 @@ const Logo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
   width: 8em;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
-    align-self: center;
     min-width: 8em;
     width: 70%;
   }
