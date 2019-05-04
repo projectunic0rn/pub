@@ -1,8 +1,7 @@
-export const roboto = 'Roboto' as const;
-export const preFontSize = '1em' as const;
 export const codeFontSize = '0.9em' as const;
+export const preFontSize = '1em' as const;
 
-export const black = 'hsla(0, 0%, 0%, 0)' as const;
+export const black = 'hsla(0, 0%, 0%, 1)' as const;
 export const blackOff = 'hsla(0, 0%, 7%, 1)' as const;
 export const shadow = 'hsla(0, 0%, 0%, 0.1)' as const;
 export const white = 'hsla(0, 100%, 100%, 1)' as const;
