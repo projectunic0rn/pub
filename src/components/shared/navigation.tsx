@@ -15,6 +15,16 @@ const Nav = styled.nav`
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: 1.5625em;
   }
+
+  && a {
+    background: none;
+    color: ${({ theme }) => theme.colors.text};
+    transition: 0.2;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
+  }
 `;
 
 const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
@@ -40,16 +50,6 @@ const NavMenuItem = styled.li`
   &:last-child {
     padding: 0;
   }
-
-  && a {
-    background: none;
-    color: ${({ theme }) => theme.colors.text};
-    transition: 0.2;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.highlight};
-    }
-  }
 `;
 
 const Navigation: React.FC = () => {
@@ -57,7 +57,9 @@ const Navigation: React.FC = () => {
 
   return (
     <Nav>
-      <NavLogo />
+      <Link to="/" title={`${siteMetadata.title}`}>
+        <NavLogo />
+      </Link>
 
       <NavMenu>
         <NavMenuItem>
