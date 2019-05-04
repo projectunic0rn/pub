@@ -5,7 +5,6 @@ import * as React from 'react';
 import {
   Container,
   Hero,
-  Layout,
   PageBody,
   PostLinks,
   PostMeta,
@@ -13,6 +12,7 @@ import {
   Seo,
   Share,
 } from '@components';
+import { Layout } from '@components/shared';
 import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
 export interface PostNode {

@@ -3,14 +3,8 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import {
-  AuthorMeta,
-  Card,
-  CardList,
-  Container,
-  Layout,
-  Pagination,
-} from '@components';
+import { AuthorMeta, Card, CardList, Container, Pagination } from '@components';
+import { Layout } from '@components/shared';
 import {
   useDefaultAvatarImage,
   useDefaultPostImage,
