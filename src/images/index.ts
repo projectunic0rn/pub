@@ -16,3 +16,4 @@ export { default as iconQuotes } from './icon-quotes.svg';
 export { default as goodTeam } from './good-team.svg';
 export { default as bgCurveDesktop } from './bg-curve-desktop.svg';
 export { default as bgCurveMobile } from './bg-curve-mobile.svg';
+export { default as notFound } from './not-found.svg';
