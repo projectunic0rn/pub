@@ -47,4 +47,22 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /**
+   * Only display content to screen readers.
+   *
+   * See:
+   *   - https://a11yproject.com/posts/how-to-hide-content/
+   *   - https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
+   */
+  .visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 0.0625rem;
+    margin: -0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    padding: 0;
+    white-space: nowrap;
+    width: 0.0625rem;
+  }
 `;
