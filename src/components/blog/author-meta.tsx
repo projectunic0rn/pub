@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Avatar, SocialIcon } from '@components';
+import { SocialIcon } from '@components';
+import { Avatar } from '@components/blog';
 import styled from '@styled-components';
 import { Author } from '@templates/author';
 

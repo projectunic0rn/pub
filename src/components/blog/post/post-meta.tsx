@@ -1,9 +1,10 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import styled from '@styled-components';
+import { SocialIcon } from '@components';
+import { Avatar } from '@components/blog';
 import { Author } from '@templates/post';
-import { Avatar, SocialIcon } from '@components';
+import styled from '@styled-components';
 
 interface PostMetaProps {
   /** The published date for a blog post. */
