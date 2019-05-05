@@ -1,7 +1,5 @@
 export { default as AuthorMeta } from './author-meta';
 export { default as Avatar } from './avatar';
-export { default as CardList } from './card-list';
-export { default as Card } from './card';
 export { default as Container } from './container';
 export { default as Hero } from './hero';
 export { default as PageBody } from './page-body';
