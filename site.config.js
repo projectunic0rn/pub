@@ -37,6 +37,8 @@ module.exports = Object.freeze({
       'A virtual co-working space to learn, build, and ship meaningful software.',
     /** The url of the website. */
     url: 'https://projectunicorn.net',
+    /** The url of the app. */
+    appUrl: 'https://projectunicorn.dev',
     logo: path.resolve(__dirname, 'src/images/logo.png'),
     /** Contains the project's social handles. */
     social: {

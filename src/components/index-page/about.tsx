@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Card from './card';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
+import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
 const Wrapper = styled.section`
@@ -100,34 +101,41 @@ const Image = styled.img.attrs({ src: goodTeam, alt: '' })`
 `;
 
 /** About section details more information about the web site. */
-const About: React.FC = () => (
-  <Wrapper>
-    <Text>
-      <Heading>Create awesome stuff, together</Heading>
+const About: React.FC = () => {
+  const siteMetadata = useSiteMetadata();
 
-      <SubText>
-        Never let location be an issue when finding someone to work with on a
-        project. The Project Unicorn community has members that are ready to
-        help.
-      </SubText>
+  return (
+    <Wrapper>
+      <Text>
+        <Heading>Create awesome stuff, together</Heading>
 
-      <SubText>
-        Work with awesome people on all parts of the world. Share, inspire, and
-        build your ideas!
-      </SubText>
+        <SubText>
+          Never let location be an issue when finding someone to work with on a
+          project. The Project Unicorn community has members that are ready to
+          help.
+        </SubText>
 
-      <Link href="//projectunicorn.dev/projects">
-        See projects by members
-        <LinkImage />
-      </Link>
+        <SubText>
+          Work with awesome people on all parts of the world. Share, inspire,
+          and build your ideas!
+        </SubText>
 
-      <Card />
-    </Text>
+        <Link
+          href={`${siteMetadata.appUrl}/projects`}
+          title={`${siteMetadata.title} projects`}
+        >
+          See projects by members
+          <LinkImage />
+        </Link>
 
-    <ImageWrapper>
-      <Image />
-    </ImageWrapper>
-  </Wrapper>
-);
+        <Card />
+      </Text>
+
+      <ImageWrapper>
+        <Image />
+      </ImageWrapper>
+    </Wrapper>
+  );
+};
 
 export default About;
