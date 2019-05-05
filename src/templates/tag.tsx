@@ -3,9 +3,9 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { PageTitle, Pagination } from '@components';
+import { Pagination } from '@components';
 import { Card, CardList } from '@components/blog';
-import { Container, Layout } from '@components/shared';
+import { Container, Layout, PageTitle } from '@components/shared';
 import { useDefaultPostImage, useSiteMetadata } from '@hooks';
 
 interface PostNode {

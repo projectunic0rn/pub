@@ -1,8 +1,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { PageTitle } from '@components';
-import { Container, Layout, Seo } from '@components/shared';
+import { Container, Layout, PageTitle, Seo } from '@components/shared';
 import { notFound } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';

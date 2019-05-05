@@ -2,15 +2,8 @@ import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
-import {
-  Hero,
-  PageBody,
-  PostLinks,
-  PostMeta,
-  PostTags,
-  Share,
-} from '@components';
-import { Container, Layout, Seo } from '@components/shared';
+import { Hero, PostLinks, PostMeta, PostTags, Share } from '@components';
+import { Container, Layout, PageBody, Seo } from '@components/shared';
 import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
 export interface PostNode {
