@@ -1,4 +1,3 @@
-export { default as Anchor } from './anchor';
 export { default as AuthorMeta } from './author-meta';
 export { default as Avatar } from './avatar';
 export { default as CardList } from './card-list';

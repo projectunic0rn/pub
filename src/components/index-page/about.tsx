@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Card from './card';
+import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
@@ -63,7 +64,7 @@ const SubText = styled.p`
   }
 `;
 
-const Link = styled.a`
+const Link = styled(Anchor)`
   align-items: center;
   background: none;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.alternate};

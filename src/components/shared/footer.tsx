@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { Anchor } from '@components';
+import { Anchor } from '@components/shared';
 import {
   puAlt,
   instagramIcon,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Anchor } from '@components';
+import { Anchor } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from '@styled-components';
 
