@@ -1,11 +1,10 @@
 import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
-import * as constants from './constants';
+import { purpleLight, preFontSize, codeFontSize } from './constants';
 import { borderStyle } from '@utils';
 
-const { blueLight, preFontSize, codeFontSize } = constants;
-const highlightColor = blueLight;
+const highlightColor = purpleLight;
 const transparentColor = 'hsla(0, 0%, 0%, 0)' as const;
 const borderWidth = '0.5925rem' as const;
 const anchorBgImg = `linear-gradient(to top, ${transparentColor}, ${transparentColor} 1px, ${highlightColor} 1px, ${highlightColor} 2px, ${transparentColor} 2px)`;
