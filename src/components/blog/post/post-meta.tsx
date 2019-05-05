@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { SocialIcon } from '@components';
 import { Avatar } from '@components/blog';
+import { SocialIcon } from '@components/shared';
 import { Author } from '@templates/post';
 import styled from '@styled-components';
 

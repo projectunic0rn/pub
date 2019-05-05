@@ -4,5 +4,6 @@ export { default as Navigation } from './navigation';
 export { default as Layout } from './layout';
 export { default as Footer } from './footer';
 export { default as Seo } from './seo';
+export { default as SocialIcon } from './social-icon';
 export { default as SvgIcon } from './svg-icon';
 export * from './page';

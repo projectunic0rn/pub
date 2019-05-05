@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SocialIcon } from '@components';
+import { SocialIcon } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { makeShareUrl } from '@utils';
 import styled from '@styled-components';
