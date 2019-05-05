@@ -37,7 +37,7 @@ module.exports = Object.freeze({
       'A virtual co-working space to learn, build, and ship meaningful software.',
     /** The url of the website. */
     url: 'https://projectunicorn.net',
-    logo: path.resolve(__dirname, 'src/images/unicorn-icon.png'),
+    logo: path.resolve(__dirname, 'src/images/logo.png'),
     /** Contains the project's social handles. */
     social: {
       /** The website's Facebook username, */
@@ -65,7 +65,7 @@ module.exports = Object.freeze({
     background_color: '#ffffff',
     theme_color: '#ffffff',
     display: 'minimal-ui',
-    icon: 'src/images/unicorn-icon.png',
+    icon: 'src/images/logo.png',
     /* eslint-enable @typescript-eslint/camelcase */
   },
 });
