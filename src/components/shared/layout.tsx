@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Navigation from './navigation';
 import Footer from './footer';
-import { Seo } from '@components';
+import { Seo } from '@components/shared';
 import styled, { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
 

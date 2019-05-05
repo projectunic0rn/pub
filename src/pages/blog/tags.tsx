@@ -1,7 +1,8 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
-import { Container, PageTitle, Seo } from '@components';
+import { Container, PageTitle } from '@components';
+import { Seo } from '@components/shared';
 import { Layout } from '@components/shared';
 import styled from '@styled-components';
 import { slugify } from '@utils';

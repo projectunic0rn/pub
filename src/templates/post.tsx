@@ -9,10 +9,9 @@ import {
   PostLinks,
   PostMeta,
   PostTags,
-  Seo,
   Share,
 } from '@components';
-import { Layout } from '@components/shared';
+import { Layout, Seo } from '@components/shared';
 import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
 export interface PostNode {
