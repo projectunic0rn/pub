@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { SvgIcon } from '@components';
-import { Anchor } from '@components/shared';
+import { Anchor, SvgIcon } from '@components/shared';
 import styled from '@styled-components';
 
 export type SocialName =
