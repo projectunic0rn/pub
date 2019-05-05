@@ -3,7 +3,6 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
 import {
-  Container,
   Hero,
   PageBody,
   PostLinks,
@@ -11,7 +10,7 @@ import {
   PostTags,
   Share,
 } from '@components';
-import { Layout, Seo } from '@components/shared';
+import { Container, Layout, Seo } from '@components/shared';
 import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
 export interface PostNode {
