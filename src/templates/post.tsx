@@ -2,8 +2,7 @@ import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
-import { Share } from '@components';
-import { Hero, PostLinks, PostMeta, PostTags } from '@components/blog';
+import { Hero, PostLinks, PostMeta, PostTags, Share } from '@components/blog';
 import { Container, Layout, PageBody, Seo } from '@components/shared';
 import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
 
