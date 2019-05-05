@@ -21,7 +21,7 @@ module.exports = Object.freeze({
   /** Used by Gatsby when creating production build of the website. */
   pathPrefix: '/',
   /** Number of posts to be shown on the first page of the blog index page. */
-  postsPerFirstPage: 7,
+  postsPerFirstPage: 6,
   /** Number of posts to be shown on next blog post list pages. */
   postsPerPage: 6,
   /**

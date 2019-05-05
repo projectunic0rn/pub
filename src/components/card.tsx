@@ -25,8 +25,7 @@ interface CardProps {
 
 const Post = styled.li<PostProps>`
   position: relative;
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
-  border-radius: 2px;
+  border-radius: 0.375em;
   width: 100%;
   transition: 0.2s;
 
@@ -37,10 +36,6 @@ const Post = styled.li<PostProps>`
 
   @media screen and (min-width: ${({ theme }) => theme.responsive.medium}) {
     flex: ${({ featured }) => (featured ? '0 0 100%' : '0 0 32%')};
-  }
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.tertiary};
   }
 
   a {
@@ -78,18 +73,26 @@ const StyledLink = styled(Link)`
   background-image: none;
 `;
 
+const StyledImg = styled(Img)`
+  border-radius: 0.375em;
+`;
+
+const Text = styled.div`
+  margin: 0;
+  padding: 1em;
+`;
+
 const Title = styled.h2`
   text-transform: capitalize;
-  margin: 1rem 1rem 0.5rem 1rem;
+  margin: 0.5em 0 1em;
 `;
 
 const Date = styled.p`
-  margin: 0 1rem 1.5rem 1rem;
+  margin: 0 0 0.5em 0;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 const Excerpt = styled.p`
-  padding: 0 1rem 1rem 1rem;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -104,10 +107,13 @@ const Card: React.FC<CardProps> = ({
 }) => (
   <Post featured={featured}>
     <StyledLink to={`/blog/${slug}/`} title={title}>
-      <Img fluid={fluid} backgroundColor="#eeeeee" title={title} alt="" />
-      <Title>{title}</Title>
-      <Date>{publishDate}</Date>
-      <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
+      <StyledImg fluid={fluid} backgroundColor="#eeeeee" title={title} alt="" />
+
+      <Text>
+        <Title>{title}</Title>
+        <Date>{publishDate}</Date>
+        <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
+      </Text>
     </StyledLink>
   </Post>
 );

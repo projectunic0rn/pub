@@ -85,9 +85,8 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
 
       <Container>
         <CardList>
-          {nodes.map(({ fields, excerpt, frontmatter }, i) => (
+          {nodes.map(({ fields, excerpt, frontmatter }) => (
             <Card
-              featured={isFirstPage && i === 0}
               key={fields.slug}
               slug={fields.slug}
               excerpt={excerpt}
