@@ -64,7 +64,7 @@ const Image = styled.img.attrs({ src: connectedWorld, alt: '' })`
 const Hero: React.FC = () => (
   <Wrapper>
     <Text>
-      <Heading>No more website clones, todo or weather apps.</Heading>
+      <Heading>No more to-do or weather apps.</Heading>
 
       <SubHeading>
         Project Unicorn is an online community of software developers around the
