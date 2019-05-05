@@ -29,7 +29,7 @@ const Box = styled.div`
     background: transparent;
     color: ${({ theme }) => theme.colors.base};
     padding: 1em;
-    border-radius: 2px;
+    border-radius: 0.3125em;
     text-decoration: none;
     transition: 0.2s;
 

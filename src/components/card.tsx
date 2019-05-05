@@ -25,7 +25,7 @@ interface CardProps {
 
 const Post = styled.li<PostProps>`
   position: relative;
-  border-radius: 0.375em;
+  border-radius: 0.3125em;
   width: 100%;
   transition: 0.2s;
 
