@@ -21,7 +21,7 @@ interface ButtonProps {
 
 const Button = styled(Anchor)<ButtonProps>`
   border-radius: 0.3125em;
-  font-weight: 700;
+  font-weight: 800;
   padding: 0.9375em 2.8125em;
 
   ${({ variant, theme }) => {

@@ -55,7 +55,7 @@ const Text = styled.p`
 `;
 
 const TextName = styled.span`
-  font-weight: 700;
+  font-weight: 800;
 `;
 
 const TextDescription = styled.span`

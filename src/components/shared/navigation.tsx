@@ -43,7 +43,7 @@ const NavMenu = styled.ul`
 
 const NavMenuItem = styled.li`
   display: inline-block;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   padding-right: 2.8125em;
 

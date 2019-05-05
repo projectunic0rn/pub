@@ -49,7 +49,7 @@ const List = styled.div`
 `;
 
 const Label = styled.p`
-  font-weight: 700;
+  font-weight: 800;
 `;
 
 /** Displays icons that link to social sites' share endpoints. */
