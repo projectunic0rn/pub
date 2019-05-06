@@ -41,8 +41,10 @@ const Title = styled.h1<TitleProps>`
     transition: all 0.2s;
     color: ${({ theme }) => theme.colors.base};
 
-    &:hover {
-      color: ${({ theme }) => theme.colors.highlight};
+    @media (hover: hover) {
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
     }
   }
 `;

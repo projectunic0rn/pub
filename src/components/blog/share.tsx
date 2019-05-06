@@ -31,18 +31,21 @@ const List = styled.div`
 
   svg {
     path {
+      transition: 0.2s;
       fill: ${({ theme }) => theme.colors.text};
       opacity: 0.7;
     }
   }
 
-  & a:hover {
-    cursor: pointer;
+  @media (hover: hover) {
+    & a:hover {
+      cursor: pointer;
 
-    svg {
-      path {
-        fill: ${({ theme }) => theme.colors.highlight};
-        opacity: 1;
+      svg {
+        path {
+          fill: ${({ theme }) => theme.colors.highlight};
+          opacity: 1;
+        }
       }
     }
   }

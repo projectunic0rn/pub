@@ -38,9 +38,11 @@ const Wrapper = styled.div`
     text-decoration: none;
     transition: 0.2s;
 
-    &:hover {
-      background: ${({ theme }) => theme.colors.highlight};
-      color: white;
+    @media (hover: hover) {
+      &:hover {
+        background: ${({ theme }) => theme.colors.highlight};
+        color: white;
+      }
     }
   }
 `;

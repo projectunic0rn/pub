@@ -82,9 +82,16 @@ const SocialIcon = styled.img.attrs({ alt: '' })`
 const anchorStyles = css`
   background: none;
   color: ${({ theme }) => theme.colors.baseinvert};
+  transition: 0.1.5s;
 
   &:visited {
     color: ${({ theme }) => theme.colors.baseinvert};
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlightLight};
+    }
   }
 `;
 
@@ -174,6 +181,10 @@ const Footer: React.FC = () => {
               title={`Follow ${siteMetadata.title} on Instagram`}
             >
               <SocialIcon src={instagramIcon} />
+
+              <span className="visually-hidden">
+                {`Follow ${siteMetadata.title} on Instagram`}
+              </span>
             </StyledAnchor>
           </IconWrapper>
 

@@ -31,9 +31,11 @@ const Tag = styled.li`
     color: ${({ theme }) => theme.colors.base};
     border: 1px solid ${({ theme }) => theme.colors.secondary};
 
-    &:hover {
-      background: ${({ theme }) => theme.colors.secondary};
-      color: ${({ theme }) => theme.colors.base};
+    @media (hover: hover) {
+      &:hover {
+        background: ${({ theme }) => theme.colors.secondary};
+        color: ${({ theme }) => theme.colors.base};
+      }
     }
   }
 `;

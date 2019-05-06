@@ -5,8 +5,12 @@ const colors = {
   base: constants.blackOff,
   /** Opposite of base. */
   baseinvert: constants.white,
-  /** Light blue */
+  /** Main color but darker. */
+  highlightDark: constants.purpleMedium,
+  /** Main color. */
   highlight: constants.purpleLight,
+  /** Main color but lighter. */
+  highlightLight: constants.purpleLighter,
   /** Medium gray */
   secondary: constants.greyMedium,
   /** Light gray */

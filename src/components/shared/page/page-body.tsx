@@ -21,8 +21,10 @@ const Body = styled.div`
     transition: 0.2s;
     color: ${({ theme }) => theme.colors.base};
 
-    &:hover {
-      color: ${({ theme }) => theme.colors.highlight};
+    @media (hover: hover) {
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
     }
   }
 

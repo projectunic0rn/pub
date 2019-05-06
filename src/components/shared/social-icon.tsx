@@ -51,9 +51,11 @@ const StyledAnchor = styled(Anchor)`
   transition: 0.2s;
   padding: 0.2em;
 
-  &:hover {
-    color: white;
-    cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
   }
 
   &:visited {

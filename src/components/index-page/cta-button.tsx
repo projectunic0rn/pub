@@ -23,6 +23,7 @@ const Button = styled(Anchor)<ButtonProps>`
   border-radius: 0.3125em;
   font-weight: 800;
   padding: 0.9375em 2.8125em;
+  transition: 0.15s;
 
   ${({ variant, theme }) => {
     switch (variant) {
@@ -44,6 +45,13 @@ const Button = styled(Anchor)<ButtonProps>`
     display: block;
     margin: 0 auto;
     width: 90%;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: ${({ theme }) => theme.colors.highlightDark};
+      border-color: transparent;
+    }
   }
 
   && {

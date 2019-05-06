@@ -19,10 +19,12 @@ const Nav = styled.nav`
   && a {
     background: none;
     color: ${({ theme }) => theme.colors.text};
-    transition: 0.2;
+    transition: 0.2s;
 
-    &:hover {
-      color: ${({ theme }) => theme.colors.highlight};
+    @media (hover: hover) {
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
     }
   }
 `;

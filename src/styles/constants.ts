@@ -12,5 +12,6 @@ export const greenLight = 'hsla(146, 78%, 31%, 1)' as const;
 export const greyLight = 'hsla(0, 0%, 95%, 1)' as const;
 export const greyLightAlt = 'hsla(0, 0%, 0%, 0.73)' as const;
 export const greyMedium = 'hsla(0, 0%, 91%, 1)' as const;
+export const purpleMedium = 'hsla(276, 78%, 25%, 1)' as const;
 export const purpleLight = 'hsla(276, 97%, 38%, 1)' as const;
 export const purpleLighter = 'hsla(276, 56%, 52%, 1)' as const;

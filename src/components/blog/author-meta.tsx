@@ -26,8 +26,11 @@ const Wrapper = styled.div`
       opacity: 0.7;
     }
 
-    &:hover path {
-      fill: ${({ theme }) => theme.colors.highlight};
+    @media (hover: hover) {
+      &:hover path {
+        fill: ${({ theme }) => theme.colors.highlight};
+        opacity: 1;
+      }
     }
   }
 `;

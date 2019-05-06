@@ -50,11 +50,13 @@ const Post = styled.li<PostProps>`
       transition: color 0.2s;
     }
 
-    &:hover {
-      color: ${({ theme }) => theme.colors.base};
+    @media (hover: hover) {
+      &:hover {
+        color: ${({ theme }) => theme.colors.base};
 
-      h2 {
-        color: ${({ theme }) => theme.colors.highlight};
+        h2 {
+          color: ${({ theme }) => theme.colors.highlight};
+        }
       }
     }
 
