@@ -1,17 +1,19 @@
 import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
-import { purpleLight, preFontSize, codeFontSize } from './constants';
+import { purpleLight, purpleLighter, transparent } from './constants';
 import { borderStyle } from '@utils';
 
+const codeFontSize = '0.9em' as const;
+const preFontSize = '1em' as const;
 const highlightColor = purpleLight;
-const transparentColor = 'hsla(0, 0%, 0%, 0)' as const;
-const borderWidth = '0.5925rem' as const;
-const anchorBgImg = `linear-gradient(to top, ${transparentColor}, ${transparentColor} 1px, ${highlightColor} 1px, ${highlightColor} 2px, ${transparentColor} 2px)`;
+const highlightColorLighter = purpleLighter;
+const borderWidth = '0.3125rem' as const;
+const anchorBgImg = `linear-gradient(to top, ${transparent}, ${transparent} 1px, ${highlightColor} 1px, ${highlightColor} 2px, ${transparent} 2px)`;
 const blockquoteBorder = borderStyle({
   width: borderWidth,
   style: 'solid',
-  color: highlightColor,
+  color: highlightColorLighter,
 });
 
 oceanBeachTheme.headerFontFamily = ['Raleway', 'sans-serif'];
