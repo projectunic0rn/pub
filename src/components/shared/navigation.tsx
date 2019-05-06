@@ -6,6 +6,19 @@ import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
+export interface NavigationLink {
+  content: string;
+  external: boolean;
+  href: string;
+  title?: string;
+}
+
+interface OwnProps {
+  navLinks: NavigationLink[];
+}
+
+type NavigationProps = OwnProps;
+
 const Nav = styled.nav`
   align-items: center;
   display: flex;
@@ -54,7 +67,7 @@ const NavMenuItem = styled.li`
   }
 `;
 
-const Navigation: React.FC = () => {
+const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
@@ -64,19 +77,17 @@ const Navigation: React.FC = () => {
       </Link>
 
       <NavMenu>
-        <NavMenuItem>
-          <Link to="/blog" title={`${siteMetadata.title} blog`}>
-            Blog
-          </Link>
-        </NavMenuItem>
-
-        <NavMenuItem>
-          <Anchor
-            href={`//github.com/${siteMetadata.social.github}`}
-            content="GitHub"
-            title={`${siteMetadata.title} GitHub organization`}
-          />
-        </NavMenuItem>
+        {navLinks.map((v) => (
+          <NavMenuItem key={v.href}>
+            {v.external ? (
+              <Anchor href={v.href} content={v.content} title={v.title} />
+            ) : (
+              <Link to={v.href} title={v.title}>
+                {v.content}
+              </Link>
+            )}
+          </NavMenuItem>
+        ))}
       </NavMenu>
     </Nav>
   );

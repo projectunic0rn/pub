@@ -3,6 +3,7 @@ import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
+import { NavigationLink } from '@components/shared/navigation';
 import { Card, CardList, Pagination } from '@components/blog';
 import { Container, Layout, Seo } from '@components/shared';
 import { useDefaultPostImage, useSiteMetadata } from '@hooks';
@@ -72,9 +73,17 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const { nodes } = data.allMarkdownRemark;
   const { currentPage } = pageContext;
   const isFirstPage = currentPage === 1;
+  const navLinks: NavigationLink[] = [
+    {
+      content: 'Tags',
+      external: false,
+      href: '/blog/tags',
+      title: 'List of blog tags',
+    },
+  ];
 
   return (
-    <Layout>
+    <Layout navLinks={navLinks}>
       <Seo title="Blog" />
 
       {!isFirstPage && (
