@@ -3,6 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby';
 export interface SiteMetadata {
   /** The name of the website. */
   title: string;
+  /** Text to be shown in the landing page heading. */
+  tag: string;
   /** The description of the website. */
   description: string;
   /** The url of the website. */
@@ -39,6 +41,7 @@ const siteMetadataQuery = graphql`
     site {
       siteMetadata {
         title
+        tag
         description
         url
         appUrl
