@@ -32,9 +32,11 @@ module.exports = Object.freeze({
     /** The name of the website. */
     title: 'Project Unicorn',
     titleShort: 'PU',
+    /** Text to be shown in the landing page heading. */
+    tag: 'Build something awesome.',
     /** The description of the website. */
     description:
-      'A virtual co-working space to learn, build, and ship meaningful software.',
+      'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
     /** The url of the website. */
     url: 'https://projectunicorn.net',
     /** The url of the app. */

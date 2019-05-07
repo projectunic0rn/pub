@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import CtaButton from './cta-button';
 import { connectedWorld } from '@images';
+import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 
 const Wrapper = styled.header`
@@ -61,25 +62,25 @@ const Image = styled.img.attrs({ src: connectedWorld, alt: '' })`
 `;
 
 /** Hero contains the web site's tag line and a call-to-action button. */
-const Hero: React.FC = () => (
-  <Wrapper>
-    <Text>
-      <Heading>No more to-do or weather apps.</Heading>
+const Hero: React.FC = () => {
+  const siteMetadata = useSiteMetadata();
 
-      <SubHeading>
-        Project Unicorn is an online community of software developers around the
-        world working together to create and deploy meaningful applications.
-      </SubHeading>
+  return (
+    <Wrapper>
+      <Text>
+        <Heading>{siteMetadata.tag}</Heading>
+        <SubHeading>{siteMetadata.description}</SubHeading>
 
-      <FormWrapper>
-        <CtaButton />
-      </FormWrapper>
-    </Text>
+        <FormWrapper>
+          <CtaButton />
+        </FormWrapper>
+      </Text>
 
-    <ImageWrapper>
-      <Image />
-    </ImageWrapper>
-  </Wrapper>
-);
+      <ImageWrapper>
+        <Image />
+      </ImageWrapper>
+    </Wrapper>
+  );
+};
 
 export default Hero;
