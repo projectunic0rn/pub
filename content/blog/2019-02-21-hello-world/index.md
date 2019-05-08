@@ -14,10 +14,6 @@ Thank you for your interest in this project. To get started publishing blog
 posts, fixing issues or adding new features, please read first the the
 instructions below.
 
-> **NOTE**: This information may be outdated and some links may be broken.
-> Please see the original [Contributing Guide on Pub's repository][pub_repo] for
-> the most recent version.
-
 ## Creating blog contents
 
 ### Setup blog post directory
@@ -189,15 +185,15 @@ You are not limited to just adding blog posts. If you like to have a landing
 page of sorts for your project or something, you can! So we can have these:
 `/help`, `/grocerhub`, `/slack-invite`, etc. A page can be very simple and can
 be crammed into one file, e.g. `404.tsx`, `index.tsx` (this file creates Pub's
-landing page!), `tags.tsx`, etc..
+landing page), `tags.tsx`, etc..
 
 For now, the process of adding pages is not as streamlined as there are a lot of
 considerations like: How can a user reach that page, or are we going to change
 the layout of pages to add a component that links to that page, i.e. navigation
 components, etc. It can potentially change the design of the website. Also,
-adding pages require that you know React and JavaScript (or TypeScript).
+adding pages require that you know React, TypeScript and GraphQL.
 
-But if you want to add a simple page, just add a React component in the
+If you want to add a simple page, just add a React component in the
 [pages](/src/pages) directory. If you want a `/help` page, you should name this
 file `help.tsx`. If you want a page on `/grocerhub/devs`, first create a new
 directory in `/src/pages` called "grocerhub" and inside that directory add
@@ -372,6 +368,15 @@ changes to files, e.g. Dropbox history, etc.).
 For _very large diffs_, it is advisable to shut down the Gatsby local
 development server first before commiting to Git.
 
+#### Everything runs slow when I'm editing with Visual Studio Code
+
+There is a TypeScript release that caused type checking to run 20x slower on
+projects that use Styled Components type definitions. To fix this, please make
+sure you that your editor is using the same TypeScript version as the project.
+Refer to the bottom right portion of the status bar when you have an open
+TypeScript file. To change this value, click the version value and pick "Use
+Workspace Version" on the dropdown.
+
 ### Maintenance
 
 #### Dependencies
@@ -384,8 +389,8 @@ that release `MAJOR` or `MINOR` but not `PATCH` versions.
 If you do update, make sure to do checks to see if it broke something in the
 app. Run all the test suites to see if something fails, then generate a
 production build using `npm run build` and see if there are any build errors.
-Gatsby artifacts in `.cache` and `public` by running `npm run clean` and run the
-checks again if you're still having trouble.
+You can delete Gatsby artifacts in `.cache` and `public` by running
+`npm run clean` and run the checks again if you're still having trouble.
 
 > **NOTE**: Don't forget to also commit changes in `package-lock.json`!
 
