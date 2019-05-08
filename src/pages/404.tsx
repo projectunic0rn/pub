@@ -15,7 +15,10 @@ const Text = styled.p`
   }
 `;
 
-const Img = styled.img.attrs({ src: notFound, title: 'Not found', alt: '' })``;
+const Img = styled.img.attrs({ src: notFound, alt: '' })`
+  width: 100%;
+  max-height: 100%;
+`;
 
 /** Displays a generic page for pages that are not found. */
 const NotFoundPage: React.FC = () => {
