@@ -68,8 +68,8 @@ information needed when creating the static page for a single blog post.
   hero image and it is included in the `<title>` of the HTML document for this
   blog post.
 - **`author`** - A unique ID for the author of the blog post. Please refer to
-  [Creating a new author](#creating-a-new-author) section for instructions on
-  how to create an author entry.
+  [Add an author](#add-an-author) section for instructions on how to create an
+  author entry.
 - **`date`** - The date when the blog post was published. This follows a special
   format: `YYYY-MM-DDTHH:mm:sss+/-TT:TT` where hours (`HH`), minutes (`mm`),
   seconds (`sss`), and timezone offset (`+/-TT:TT`) are optional.
@@ -294,6 +294,7 @@ specific portions of the application:
 | `build`            | Creates static build for deployment                             |
 | `clean`            | Deletes the `.cache` and `public` directories                   |
 | `dev`              | Starts a development server                                     |
+| `dev:m`            | Starts a development server connected to LAN                    |
 | `format`           | Formats the JSON and markdown files according to Prettier rules |
 | `format:precommit` | Formats the staged files according to Prettier rules            |
 | `lint`             | Checks for lint errors                                          |
