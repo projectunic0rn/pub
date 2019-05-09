@@ -65,4 +65,8 @@ export const GlobalStyle = createGlobalStyle`
     white-space: nowrap;
     width: 0.0625rem;
   }
+
+  .heading-anchor {
+    background:none;
+  }
 `;
