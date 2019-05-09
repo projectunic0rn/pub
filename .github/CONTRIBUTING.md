@@ -1,10 +1,8 @@
 # Contributing Guide
 
-Welcome unicorn!
-
-Thank you for your interest in this project. To get started publishing blog
-posts, fixing issues or adding new features, please read first the the
-instructions below.
+Welcome and thank you for your interest in this project. To get started
+publishing blog posts, fixing issues or adding new features, please read first
+the the instructions below.
 
 ## Creating blog contents
 
@@ -40,10 +38,6 @@ not familiar with the syntax you can see the following links:
 - [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
 - [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
-#### Basic syntax
-
-_TODO_
-
 ### Update blog post frontmatter
 
 Inside `index.md.example` you will find a section at the top that starts and
@@ -51,13 +45,13 @@ ends with three dashes:
 
 ```markdown
 ---
-title: The Unicorn
+title: The End of the World
 author: rmjordas
 date: '2012-12-12'
-image: ./unicorn-banner.jpg
+image: ./hero.jpg
 tags:
   - cute
-  - fluffy
+  - scary
 ---
 ```
 
@@ -77,10 +71,6 @@ information needed when creating the static page for a single blog post.
   post positioned at the top of the page below the navigation.
 - **`tags`** - A list of words and/or phrases that can summarize the main topics
   of the blog post.
-
-#### More frontmatter options
-
-_TODO_
 
 ### Add images and other assets
 
@@ -117,13 +107,13 @@ a default image will be used instead.
 
 ```markdown
 ---
-title: The Unicorn
+title: The End of the World
 author: rmjordas
 date: '2012-12-12'
-image: ./unicorn-banner.jpg
+image: ./hero.jpg
 ---
 
-## Do androids dream of electric sheep?
+## The Year 2k12
 
 Text goes here
 ```
@@ -177,10 +167,11 @@ You must be listed as an author before you can post. In the
 ### Add a page
 
 You are not limited to just adding blog posts. If you like to have a landing
-page of sorts for your project or something, you can! So we can have these:
-`/help`, `/grocerhub`, `/slack-invite`, etc. A page can be very simple and can
-be crammed into one file, e.g. `404.tsx`, `index.tsx` (this file creates Pub's
-landing page), `tags.tsx`, etc..
+page of sorts for your project or something, you can. So we can have pages for
+these paths: `/help`, `/grocerhub`, `/slack-invite`, etc.
+
+A page can be very simple and can be crammed into one file, e.g. `404.tsx`,
+`index.tsx` (this file creates Pub's landing page), `tags.tsx`, etc..
 
 For now, the process of adding pages is not as streamlined as there are a lot of
 considerations like: How can a user reach that page, or are we going to change
@@ -188,20 +179,226 @@ the layout of pages to add a component that links to that page, i.e. navigation
 components, etc. It can potentially change the design of the website. Also,
 adding pages require that you know React, TypeScript and GraphQL.
 
+#### Simple pages
+
 If you want to add a simple page, just add a React component in the
 [pages](/src/pages) directory. If you want a `/help` page, you should name this
 file `help.tsx`. If you want a page on `/grocerhub/devs`, first create a new
 directory in `/src/pages` called "grocerhub" and inside that directory add
 `devs.tsx`.
 
-_TODO_
+Consider this file created at `pages/` called `my-page.tsx`:
 
-Complicated pages requires a few task that you'd have to do:
+```tsx
+import * as React from 'react';
 
-- Create a "PageTemplate"
-- Update Gatsby's Node API configuration file to tell it to create these pages
+interface OwnProps {
+  name?: string;
+}
 
-_TODO_
+type MyPageProps = OwnProps;
+
+const MyPage: React.FC<MyPageProps> = ({ name = 'Uny' }) => (
+  <h1>Welcome to {name}</h1>
+);
+
+export default MyPage;
+```
+
+Once you build your app, you can view this page on `/my-page`. This page
+displays a very basic page where there's only a heading element as its content.
+
+Most likely you would need to also show the top navigation and footer. These can
+be added by importing the `Layout` component. Wrap your content inside this
+component.
+
+To update the values of elements in the `<head />`, you should use the `Seo`
+component. You can put this anywhere the component heirarchy.
+
+```tsx
+import * as React from 'react';
+
+import { Layout, Seo } from '@components/shared';
+
+// ...
+
+const MyPage: React.FC<MyPageProps> = ({ name = 'Uny' }) => (
+  <React.Fragment>
+    <Seo title="My page" />
+
+    <Layout>
+      <h1>Welcome to {name}</h1>
+    </Layout>
+  </React.Fragment>
+);
+
+export default MyPage;
+```
+
+You would notice that we're using the default export in components. Although we
+can do named export, i.e. `export const MyPage = () => ();` on some components,
+Gatsby requires templates to use default export. Rather than use a mix of named
+and default exports, the project strictly enforces the rule that all components
+must use the default export syntax to avoid confusion.
+
+#### Advanced pages
+
+Once your component requires data from some source, e.g. the project's URL,
+the author of the blog post, etc., you must define the query that this component
+will perform on build.
+
+The most basic query you can add to your page is "static query". These could be
+data about the website, e.g. name, description, etc..
+
+```graphql
+query {
+  file(relativePath: { eq: "default-post-image.jpg" }) {
+    childImageSharp {
+      fluid(maxWidth: 1800) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+}
+```
+
+The query above will get an image called `default-post.image.jpg`. Since this is
+defined to be _fluid_ image Gatsby will optimize this image by creating various
+versions. To use this you need to import a special element from `gatsby-image`
+called `Img` and pass the value of `data.file.childImageSharp.fluid` to the
+`fluid` attribute.
+
+```tsx
+import { graphql } from 'gatsby';
+import { Img, FluidObject } from 'gatsby-image';
+import * as React from 'react';
+
+interface SomeComponentProps {
+  data: {
+    file: {
+      childImageSharp: {
+        fluid: FluidObject;
+      };
+    };
+  };
+}
+
+export const defaultPostImageQuery = graphql`
+  query {
+    file(relativePath: { eq: "default-post-image.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
+
+const SomeComponent: React.FC<SomeComponentProps> = ({ data }) => (
+  <Img fluid={data.file.childImageSharp.fluid} />
+);
+
+export default SomeComponent;
+```
+
+Some queries are quite common that these were extracted to their own custom
+React hook. The above query is equivalent to using the `useDefaultPostImage`
+React hook:
+
+```tsx
+import { Img } from 'gatsby-image';
+import * as React from 'react';
+
+import { useDefaultAvatarImage } from '@hooks';
+
+const SomeComponent: React.FC = () => {
+  const defaultAvatarImage = useDefaultAvatarImage();
+
+  return <Img fluid={defaultAvatarImage.childImageSharp.fluid} />;
+};
+
+export default SomeComponent;
+```
+
+#### Even more advance pages
+
+When you need to display a list of something, say, a list of recent blog posts,
+the process is more involved. First you would define a _page template_ in the
+`templates/` directory. This component is similar to other pages you will make
+except for the format of the query it exports (we'll go into detail later).
+
+Next step is to tell Gatsby that you want to create this page. Gatsby does not
+care about components outside the `pages/` directory by default. You can either
+configure Gatsby to _watch_ a directory (e.g. `pages/`) or explicitly call a
+method to create this page.
+
+The Gatsby's Node API configuration file is located at
+`<rootDir>/gatsby-node.js` and this is where we'll tell Gatsby to create the
+pages. The snippet below will create a single page that can be accessed at
+`/blogpostlist`.
+
+```js
+const path = require('path');
+
+exports.createPages = ({ actions }) => {
+  actions.createPage({
+    path: '/blogpostlist',
+    component: path.resolve('./src/templates/blog.tsx'),
+    context: {
+      limit: 6,
+      skip: 0,
+    },
+  });
+};
+```
+
+The exported `createPages` anonymous function is passed an object when Gatsby
+builds the app. The method we need is inside the the `actions` field inside this
+object.
+
+> [The `createPage` Action](https://www.gatsbyjs.org/docs/actions/#createPage)
+
+Inside the exported `createPages` anonymous function, we call `graphql`
+from the destructured parameters, and pass it a template literal containing the
+a query. This query could contain
+
+```js
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const loadBlogPosts = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          nodes {
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    `).then(({ errors, data }) => {
+      if (errors) {
+        reject(errors);
+      }
+    });
+
+    createPage({
+      path: '/blog',
+      component: template.blog,
+      context: { limit: 6, skip: 0 },
+    });
+
+    resolve();
+  });
+
+  return Promise.all([loadBlogPosts]);
+};
+```
 
 ## Development
 

@@ -8,11 +8,9 @@ tags:
   - contributing
 ---
 
-Welcome unicorn!
-
-Thank you for your interest in this project. To get started publishing blog
-posts, fixing issues or adding new features, please read first the the
-instructions below.
+Welcome and thank you for your interest in this project. To get started
+publishing blog posts, fixing issues or adding new features, please read first
+the the instructions below.
 
 ## Creating blog contents
 
@@ -55,13 +53,13 @@ ends with three dashes:
 
 ```markdown
 ---
-title: The Unicorn
+title: The End of the World
 author: rmjordas
 date: '2012-12-12'
-image: ./unicorn-banner.jpg
+image: ./hero.jpg
 tags:
   - cute
-  - fluffy
+  - scary
 ---
 ```
 
@@ -117,13 +115,13 @@ a default image will be used instead.
 
 ```markdown
 ---
-title: The Unicorn
+title: The End of the World
 author: rmjordas
 date: '2012-12-12'
-image: ./unicorn-banner.jpg
+image: ./hero.jpg
 ---
 
-## Do androids dream of electric sheep?
+## The Year 2k12
 
 Text goes here
 ```
@@ -178,8 +176,6 @@ You must be listed as an author before you can post. In the
   a default avatar image will be used.
 
 ### Add a page
-
-> **NOTE**: This section is not yet finalized.
 
 You are not limited to just adding blog posts. If you like to have a landing
 page of sorts for your project or something, you can. So we can have pages for
@@ -338,8 +334,82 @@ export default SomeComponent;
 
 #### Even more advance pages
 
-- Create a "PageTemplate"
-- Update Gatsby's Node API configuration file to tell it to create these pages
+When you need to display a list of something, say, a list of recent blog posts,
+the process is more involved. First you would define a _page template_ in the
+`templates/` directory. This component is similar to other pages you will make
+except for the format of the query it exports (we'll go into detail later).
+
+Next step is to tell Gatsby that you want to create this page. Gatsby does not
+care about components outside the `pages/` directory by default. You can either
+configure Gatsby to _watch_ a directory (e.g. `pages/`) or explicitly call a
+method to create this page.
+
+The Gatsby's Node API configuration file is located at
+`<rootDir>/gatsby-node.js` and this is where we'll tell Gatsby to create the
+pages. The snippet below will create a single page that can be accessed at
+`/blogpostlist`.
+
+```js
+const path = require('path');
+
+exports.createPages = ({ actions }) => {
+  actions.createPage({
+    path: '/blogpostlist',
+    component: path.resolve('./src/templates/blog.tsx'),
+    context: {
+      limit: 6,
+      skip: 0,
+    },
+  });
+};
+```
+
+The exported `createPages` anonymous function is passed an object when Gatsby
+builds the app. The method we need is inside the the `actions` field inside this
+object.
+
+> [The `createPage` Action](https://www.gatsbyjs.org/docs/actions/#createPage)
+
+Inside the exported `createPages` anonymous function, we call `graphql`
+from the destructured parameters, and pass it a template literal containing the
+a query. This query could contain
+
+```js
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const loadBlogPosts = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          nodes {
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    `).then(({ errors, data }) => {
+      if (errors) {
+        reject(errors);
+      }
+    });
+
+    createPage({
+      path: '/blog',
+      component: template.blog,
+      context: { limit: 6, skip: 0 },
+    });
+
+    resolve();
+  });
+
+  return Promise.all([loadBlogPosts]);
+};
+```
 
 ## Development
 
@@ -475,6 +545,8 @@ this syntax: `EXAMPLE_KEY="a value"` (See [`.env.example`][envexample]).
 Gatsby added [telemetry][gatsby_telemetry] when they release version 2.3.0. You
 can disable this by running:
 
+[gatsby_telemetry]: https://www.gatsbyjs.org/docs/telemetry/
+
 ```bash
 gatsby telemetry --disable
 ```
@@ -549,4 +621,3 @@ node_js:
 [pub_content_assets_dir]: https://github.com/projectunic0rn/pub/tree/master/content/assets
 [pub_package_json]: https://github.com/rmjordas/pub/blob/master/package.json
 [envexample]: https://github.com/projectunic0rn/pub/blob/master/.env.example
-[gatsby_telemetry]: https://www.gatsbyjs.org/docs/telemetry/
