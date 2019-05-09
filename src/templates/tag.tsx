@@ -95,7 +95,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
 
           <meta
             property="og:url"
-            content={`${siteMetadata.url}/blog/tag/${slug}/`}
+            content={`${siteMetadata.siteUrl}/blog/tag/${slug}/`}
             data-react-helmet="true"
           />
         </Helmet>
@@ -116,7 +116,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
 
           <meta
             property="og:url"
-            content={`${siteMetadata.url}/blog/tag/${slug}/`}
+            content={`${siteMetadata.siteUrl}/blog/tag/${slug}/`}
             data-react-helmet="true"
           />
         </Helmet>

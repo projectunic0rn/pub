@@ -38,7 +38,7 @@ module.exports = Object.freeze({
     description:
       'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
     /** The url of the website. */
-    url: 'https://projectunicorn.net',
+    siteUrl: 'https://projectunicorn.net',
     /** The url of the app. */
     appUrl: 'https://projectunicorn.dev',
     logo: path.resolve(__dirname, 'src/images/logo.png'),

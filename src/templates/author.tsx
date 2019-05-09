@@ -143,7 +143,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
 
           <meta
             property="og:url"
-            content={`${siteMetadata.url}/blog/author/${slug}/`}
+            content={`${siteMetadata.siteUrl}/blog/author/${slug}/`}
             data-react-helmet="true"
           />
         </Helmet>
@@ -164,7 +164,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
 
           <meta
             property="og:url"
-            content={`${siteMetadata.url}/blog/author/${slug}/`}
+            content={`${siteMetadata.siteUrl}/blog/author/${slug}/`}
             data-react-helmet="true"
           />
         </Helmet>

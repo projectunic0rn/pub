@@ -57,7 +57,7 @@ const Label = styled.p`
 
 /** Displays icons that link to social sites' share endpoints. */
 const Share: React.FC<ShareProps> = ({ post }) => {
-  const { social, url: siteUrl } = useSiteMetadata();
+  const { social, siteUrl } = useSiteMetadata();
   const twitterHandle = social.twitter.replace('@', '');
   const postUrl = `${siteUrl}/blog/${post.slug}`;
 

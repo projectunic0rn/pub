@@ -65,7 +65,7 @@ const Seo: React.FC<SeoProps> = ({
           name: 'description',
         },
         {
-          content: image || `${siteMetadata.url}/apple-touch-icon.png`,
+          content: image || `${siteMetadata.siteUrl}/apple-touch-icon.png`,
           property: 'og:image',
         },
         {
@@ -73,7 +73,7 @@ const Seo: React.FC<SeoProps> = ({
           property: 'og:description',
         },
         {
-          content: `${siteMetadata.url}/${urlSlug}`,
+          content: `${siteMetadata.siteUrl}/${urlSlug}`,
           property: 'og:url',
         },
         {

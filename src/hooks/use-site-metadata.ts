@@ -8,7 +8,7 @@ export interface SiteMetadata {
   /** The description of the website. */
   description: string;
   /** The url of the website. */
-  url: string;
+  siteUrl: string;
   /** The url of the app. */
   appUrl: string;
   /** Contains the project's social handles. */
@@ -43,7 +43,7 @@ const siteMetadataQuery = graphql`
         title
         tag
         description
-        url
+        siteUrl
         appUrl
         social {
           facebook
