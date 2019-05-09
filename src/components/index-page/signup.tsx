@@ -37,6 +37,7 @@ const TextHeading = styled.h2`
 const TextSubHeading = styled.p`
   font-size: 1.1em;
   margin: 1.5625em 0 0;
+  text-align: start;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     margin: 1.5625em 0;

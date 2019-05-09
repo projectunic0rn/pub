@@ -27,7 +27,7 @@ const Col = styled.div`
   align-items: center;
   display: flex;
   flex: 0 0 25%;
-  flex-flow: column nowrap;
+  flex-direction: column;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     align-items: flex-start;
@@ -49,6 +49,7 @@ const Logo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
 
 const Text = styled.p`
   margin-bottom: 0.9375em;
+  width: 100%;
 `;
 
 const List = styled.ul`

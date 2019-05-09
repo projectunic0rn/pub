@@ -57,6 +57,7 @@ const SubText = styled.p`
   font-size: 1.1em;
   line-height: 1.5;
   margin: 1.5625em 0;
+  text-align: start;
   width: 80%;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {

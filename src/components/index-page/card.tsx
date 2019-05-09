@@ -19,7 +19,8 @@ const Wrapper = styled.div`
 
 const Icon = styled.img.attrs({ src: iconQuotes, alt: '' })`
   height: 0.9375em;
-  margin: 0 0 0.9375em;
+  margin: 0;
+  opacity: 0.4;
 `;
 
 const Title = styled.p`

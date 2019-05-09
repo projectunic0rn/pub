@@ -42,6 +42,7 @@ const SubHeading = styled.p`
   font-size: 1.2em;
   line-height: 1.5;
   padding: 1.875em 0;
+  text-align: start;
 `;
 
 const FormWrapper = styled.div``;
