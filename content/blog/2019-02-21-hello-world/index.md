@@ -8,10 +8,9 @@ tags:
   - contributing
 ---
 
-We're happy to announce that launch of the Project Unicorn web site!
-
-As part of this announcement we're also showcasing some the projects by our
-awesome members.
+We're happy to announce the launch of the Project Unicorn web site! As part of
+this announcement we're also showcasing some the projects made by our awesome
+members.
 
 ## Project Unicorn UI
 
@@ -33,7 +32,11 @@ awesome members.
 
 ### Screenshots
 
-_TODO_
+![Project Unicorn app landing page](./pup31.png)
+
+![Project Unicorn app landing page](./pup32.png)
+
+![Project Unicorn app landing page](./pup33.png)
 
 ## FoundIT
 
@@ -52,13 +55,15 @@ _TODO_
 
 ####Screenshots
 
-_TODO_
+![Project Unicorn app landing page](./pup21.png)
+
+![Project Unicorn app landing page](./pup22.png)
 
 ## Mentrship
 
 > A mentoring platform to connect industry professionals with students.
 
-[Live](https://mentrship.com) |
+[Live](https://www.mentrship.com) |
 [Front-end repo](https://github.com/projectunic0rn/mentorship-ui) |
 [Back-end repo](https://github.com/projectunic0rn/mentorship-services)
 
@@ -71,17 +76,15 @@ _TODO_
 
 ### Screenshots
 
-_TODO_
+![Mentrship app landing page](./pup11.png)
 
-## Contribute to Project Unicorn
+![Mentrship app dashboard page](./pup12.jpg)
 
-- [Contributing Part I: Getting Started](/blog/contributing-part-i-getting-started)
-- [Contributing Part II: Publishing Blog Posts](/blog/contributing-part-ii-publishing-blog-posts)
-- [Contributing Part III: Project Unicorn Web Site](/blog/contributing-part-iii-project-unicorn-website)
+![Mentrship app contacts page](./pup13.jpg)
 
-## Follow us
+That's it for now. Thank you for reading.
 
-- [GitHub](https://github.com/projectUnic0rn)
-- [Twitter]()
-- [LinkedIn]()
-- [Instagram]()
+If you're interested in teaming up with developers around the world, you can
+apply using the form linked below.
+
+> [**Apply to join**](https://forms.gle/wPFAPmUSyALMbjhF7) 👈
