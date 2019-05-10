@@ -9,7 +9,7 @@ tags:
 ---
 
 We're happy to announce the launch of the Project Unicorn web site! As part of
-this announcement we're also showcasing some the projects made by our awesome
+this announcement we're also showcasing some of the projects made by our awesome
 members.
 
 ## Project Unicorn UI
