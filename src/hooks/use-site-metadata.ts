@@ -26,7 +26,7 @@ export interface SiteMetadata {
     /** The website's GitHub username. */
     github: string;
     /** Slack invite link. */
-    slackInvite: string;
+    applicationForm: string;
   };
 }
 
@@ -52,7 +52,7 @@ const siteMetadataQuery = graphql`
           linkedin
           reddit
           github
-          slackInvite
+          applicationForm
         }
       }
     }
