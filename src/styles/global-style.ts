@@ -66,7 +66,8 @@ export const GlobalStyle = createGlobalStyle`
     width: 0.0625rem;
   }
 
-  .heading-anchor {
+  .heading-anchor,
+  .gatsby-resp-image-link {
     background:none;
   }
 `;
