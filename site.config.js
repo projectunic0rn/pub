@@ -56,7 +56,7 @@ module.exports = Object.freeze({
       reddit: 'projectUnicorn',
       /** The website's GitHub username. */
       github: 'projectunic0rn',
-      /** Slack invite link. */
+      /** Google application form link. */
       applicationForm: '//forms.gle/wPFAPmUSyALMbjhF7',
     },
   },
