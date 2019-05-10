@@ -5,7 +5,6 @@ date: '2019-02-21'
 image: ./hero.jpg
 tags:
   - Project Unicorn
-  - contributing
 ---
 
 We're happy to announce the launch of the Project Unicorn web site! As part of
