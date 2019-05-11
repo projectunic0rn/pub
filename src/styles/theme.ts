@@ -6,11 +6,11 @@ const colors = {
   /** Opposite of base. */
   baseinvert: constants.white,
   /** Main color but darker. */
-  highlightDark: constants.purpleMedium,
+  highlightDark: constants.primaryMedium,
   /** Main color. */
-  highlight: constants.purpleLight,
+  highlight: constants.primaryLight,
   /** Main color but lighter. */
-  highlightLight: constants.purpleLighter,
+  highlightLight: constants.primaryLighter,
   /** Medium gray */
   secondary: constants.greyMedium,
   /** Light gray */

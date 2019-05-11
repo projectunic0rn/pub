@@ -13,3 +13,6 @@ export const greyMedium = 'hsla(0, 0%, 91%, 1)' as const;
 export const purpleMedium = 'hsla(276, 78%, 25%, 1)' as const;
 export const purpleLight = 'hsla(276, 97%, 38%, 1)' as const;
 export const purpleLighter = 'hsla(276, 56%, 52%, 1)' as const;
+export const primaryMedium = '#486ca8' as const;
+export const primaryLight = '#5f8ddc' as const;
+export const primaryLighter = '#a4bbe1' as const;
