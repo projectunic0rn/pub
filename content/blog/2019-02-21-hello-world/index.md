@@ -84,6 +84,6 @@ members.
 That's it for now. Thank you for reading.
 
 If you're interested in teaming up with developers around the world, you can
-apply using the form linked below.
+apply to join the Project Unicorn slack using the form linked below.
 
 > [**Apply to join**](https://forms.gle/wPFAPmUSyALMbjhF7) 👈
