@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Panel from './panel';
-import { Qa } from './qa';
+import { Qa } from './qas';
 import styled from '@styled-components';
 
 interface AccordionProps {
@@ -21,13 +21,13 @@ const Accordion: React.FC<AccordionProps> = ({ qas }) => {
 
   return (
     <Wrapper role="tablist">
-      {qas.map((qa, index) => (
+      {qas.map((v, i) => (
         <Panel
-          key={index}
+          key={i}
           activeTab={activeTab}
-          index={index}
-          {...qa}
-          activateTab={activateTab(index)}
+          index={i}
+          qa={v}
+          activateTab={activateTab(i)}
         />
       ))}
     </Wrapper>

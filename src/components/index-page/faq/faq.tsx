@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { qas } from './qa';
 import Accordion from './accordion';
+import { qas } from './qas';
 import styled from '@styled-components';
 
 const Wrapper = styled.div`

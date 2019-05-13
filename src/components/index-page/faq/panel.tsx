@@ -1,10 +1,10 @@
 import * as React from 'react';
 
+import { Qa } from './qas';
 import styled from '@styled-components';
 
 interface PanelProps {
-  question: string;
-  answer: string;
+  qa: Qa;
   activeTab: number;
   index: number;
   activateTab: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -15,7 +15,7 @@ interface CommonProps {
 }
 
 type AnswerProps = CommonProps;
-type LabelProps = CommonProps;
+type QuestionProps = CommonProps;
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.section};
@@ -29,7 +29,7 @@ const Answer = styled.p<AnswerProps>`
   transition: opacity 0.3s linear 0.18s;
 `;
 
-const Label = styled.button<LabelProps>`
+const Question = styled.button<QuestionProps>`
   background: none;
   border: none;
   color: ${({ isActive, theme }) =>
@@ -79,13 +79,7 @@ const Inner = styled.div`
   will-change: height;
 `;
 
-const Panel: React.FC<PanelProps> = ({
-  question,
-  answer,
-  activeTab,
-  index,
-  activateTab,
-}) => {
+const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
   const [height, setHeight] = React.useState(0);
   const ref = React.useRef<HTMLDivElement | null>(null);
   const isActive = activeTab === index;
@@ -101,16 +95,16 @@ const Panel: React.FC<PanelProps> = ({
 
   return (
     <Wrapper role="tabpanel" aria-expanded={isActive}>
-      <Label isActive={isActive} role="tab" onClick={activateTab}>
-        {question}
-      </Label>
+      <Question isActive={isActive} role="tab" onClick={activateTab}>
+        {qa.question}
+      </Question>
 
       <Inner
         ref={(v) => (ref.current = v)}
         style={innerStyle}
         aria-hidden={!isActive}
       >
-        <Answer isActive={isActive}>{answer}</Answer>
+        <Answer isActive={isActive}>{qa.answer}</Answer>
       </Inner>
     </Wrapper>
   );

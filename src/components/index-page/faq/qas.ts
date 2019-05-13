@@ -3,6 +3,7 @@ export interface Qa {
   readonly answer: string;
 }
 
+// make answer to be of type string[] and map this as <p>{answerParagraph}</p>
 export const qas: readonly Qa[] = [
   {
     question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
