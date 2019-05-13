@@ -10,6 +10,10 @@ interface PanelProps {
   activateTab: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+interface InnerProps {
+  height: number;
+}
+
 interface CommonProps {
   isActive: boolean;
 }
@@ -73,7 +77,8 @@ const Question = styled.button<QuestionProps>`
   }
 `;
 
-const Inner = styled.div`
+const Inner = styled.div<InnerProps>`
+  height: ${({ height }) => height}px;
   overflow: hidden;
   transition: height 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
   will-change: height;
@@ -83,9 +88,6 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
   const [height, setHeight] = React.useState(0);
   const ref = React.useRef<HTMLDivElement | null>(null);
   const isActive = activeTab === index;
-  const innerStyle = {
-    height: `${isActive ? height : 0}px`,
-  };
 
   React.useLayoutEffect(() => {
     if (ref && ref.current) {
@@ -101,7 +103,7 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
 
       <Inner
         ref={(v) => (ref.current = v)}
-        style={innerStyle}
+        height={isActive ? height : 0}
         aria-hidden={!isActive}
       >
         <Answer isActive={isActive}>{qa.answer}</Answer>
