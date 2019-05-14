@@ -106,7 +106,11 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
         height={isActive ? height : 0}
         aria-hidden={!isActive}
       >
-        <Answer isActive={isActive}>{qa.answer}</Answer>
+        <Answer isActive={isActive}>
+          {qa.answer.map((v) => (
+            <p key={v}>{v}</p>
+          ))}
+        </Answer>
       </Inner>
     </Wrapper>
   );
