@@ -7,17 +7,16 @@ export interface Qa {
 
 export const qas: readonly Qa[] = [
   {
-    question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+    question: 'Why the name Project Unicorn?',
     answer: (
       <React.Fragment>
         <p>
-          Quisque laoreet risus a ligula luctus maximus. Duis non egestas dolor.
-        </p>
-        <p>
-          Duis facilisis urna purus, ac facilisis erat sollicitudin et. Morbi
-          consectetur, <strong>metus ac ultricies mollis</strong>, ligula lectus
-          ultrices mi, sed rutrum augue ligula at diam. Mauris sem dolor,
-          tincidunt et accumsan non, <em>pellentesque quis justo</em>.
+          The name is inspired by the term unicorn developer/programmer. A
+          developer is sometimes referred to as a unicorn when they hold a
+          diverse range of skills that are incredibly valuable and rare. The
+          projects we work offer an opportunity to glean into other skills you
+          might not have including devops, design, frontend, backend, or other
+          skills required to build and ship software.
         </p>
       </React.Fragment>
     ),
