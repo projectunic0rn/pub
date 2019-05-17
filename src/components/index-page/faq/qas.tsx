@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface Qa {
   readonly question: string | React.ReactNode;
-  readonly answer: React.ReactNode;
+  readonly answer: string | React.ReactNode;
 }
 
 export const qas: readonly Qa[] = [
