@@ -8,8 +8,8 @@ tags:
 ---
 
 We're happy to announce the launch of the Project Unicorn web site! As part of
-this announcement we're also showcasing some of the projects made by our awesome
-members.
+this announcement, we're also showcasing some of the projects made by our
+awesome members.
 
 ## Project Unicorn UI
 
@@ -23,10 +23,10 @@ members.
 
 ### Core Features
 
-- Filtering on UI to view projects currently active on the slack team.
-- Filtering on UI for members available to join a project.
+- Filtering on UI to view projects currently active on the slack team
+- Filtering on UI for members available to join a project
 - Ability to start/join a project through the UI
-- Integration with Slack API to act as the frontend notification system, and build out slash commands.
+- Integration with Slack API to act as the frontend notification system, and build out slash commands
 - Integration with GitHub API to automate setting up of GitHub project teams/repos
 
 ### Screenshots
@@ -48,11 +48,11 @@ members.
 
 ### Core Features
 
-- Posting of lost items.
+- Posting of lost items
 - Searching for lost or found items
 - Form for lost and found items
 
-####Screenshots
+### Screenshots
 
 ![Project Unicorn app landing page](./pup21.png)
 
@@ -83,7 +83,8 @@ members.
 
 That's it for now. Thank you for reading.
 
-If you're interested in teaming up with developers around the world, you can
-apply to join the Project Unicorn slack using the form linked below.
+If you're interested in teaming up with developers around the world to build and
+deploy meaningful software, you can apply to join the Project Unicorn slack
+using the form linked below.
 
 > [**Apply to join**](https://forms.gle/wPFAPmUSyALMbjhF7) 👈
