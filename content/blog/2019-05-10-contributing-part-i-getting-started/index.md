@@ -8,13 +8,8 @@ tags:
   - contributing
 ---
 
-So you joined Project Unicorn to build something awesome, huh? What's the next
-step then?
-
-Blog about it, _of course_.
-
-In this section we're going set up Git, a version control system, `npm`, the
-package manager most commonly used in JavaScript/TypeScript projects, and Visual
+In this article we're going set up Git, a version control system; `npm`, the
+package manager most commonly used in JavaScript/TypeScript projects; and Visual
 Studio Code, an excellent text editor. Feel free to skip to the next part if
 you're already familiar with Git, `npm` or if you have your own editor
 configuration.
@@ -41,8 +36,10 @@ machine:
 
 Installing Node.js will also install `npm`. When you install Git on Windows, you
 are also provided with _Git Bash_. It is recommended to use this software when
-interacting with Git. This guide will assume that you are using Git Bash if you
-are using Windows. For Linux and MacOS, the default terminal will do.
+interacting with Git.
+
+This guide will assume that you are using Git Bash if you are using Windows. For
+Linux and MacOS, the default terminal will do.
 
 To verify your installations, enter the following in your terminal:
 
@@ -61,16 +58,61 @@ git version 2.21.0.windows.1
 
 ## Introduction to Git
 
-### GitHub
+Git, according to it's website, is "a free and open source distributed version
+control system". In simpler terms, this awesome piece of technology allows us to
+have a history of the changes made our code. This is useful because if we
+introduce changes that made our app buggy, we can easily revert back to an
+earlier _snapshot_ and study how and why these changes caused said bugs.
 
-Before proceeding, make sure you have an account in GitHub. Please refer to the
-following documentation:
+On the other hand, [GitHub][] is a service that offers hosting for anyone's
+code that is monitored by Git. It also has a bunch of collaboration tools for
+developers like an issue tracker, project task board and more. We use GitHub to
+access a friendlier interface for when we are inspecting a Git _repository_
+(also called a "repo").
+
+[github]: https://github.com
+
+Since we have the Project Unicorn repo hosted on GitHub you have to make sure
+you have an account in GitHub. Please refer to the following documentation:
 
 > [Signing up for a new GitHub account][signup].
 
 [signup]: https://help.github.com/articles/signing-up-for-a-new-github-account/
 
-### Git
+### Local setup
+
+If you are avoiding the command line, you can choose to use _only_ the GitHub
+website to interact with your repos. It's possible but it will be very difficult
+to produce concise entries to your history. A better tool to use is a GUI client
+that offers more features for organizing your changes. The Git website provides
+a [list of third-party GUI clients][git_gui].
+
+[git_gui]: https://git-scm.com/downloads/guis
+
+An even better tool is the command line. It can be scary to use especially if
+you have little experience with it, but it's what I recommend you to start of
+with when learning Git. The command line is also what we're gonna use for this
+guide (sorry!).
+
+So why not use a GUI client? There's nothing wrong with GUI clients, they are
+useful, too. But they may not support specific Git functions or it might be
+awkward to perform certain tasks.
+
+In addition to those issues, when you use one GUI client, you have to
+familiarize yourself with that client's layout and what it can and can't do.
+If you move on to another client, you'd have to learn again, and this time
+probably it has more features than your previous client. Of course, certain
+buttons and layouts may be similar across clients, but most of the time, they
+won't be.
+
+If you learn Git through the command line, you'll be able to just open up a
+terminal application, and fire up the command. No need to open up another GUI
+client's manual or documentation website to find out what it can and can't do.
+
+Hopefully, I've convinced you that using the command line to interact with Git
+is _bueno_.
+
+### Authenticate Your Git
 
 To be able to interact with a remote repository, such as the Project Unicorn web
 site's repository on GitHub, you have to setup authentication. Follow these
