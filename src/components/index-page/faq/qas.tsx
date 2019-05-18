@@ -14,9 +14,9 @@ export const qas: readonly Qa[] = [
           The name is inspired by the term unicorn developer/programmer. A
           developer is sometimes referred to as a unicorn when they hold a
           diverse range of skills that are incredibly valuable and rare. The
-          projects we work offer an opportunity to glean into other skills you
-          might not have including devops, design, frontend, backend, or other
-          skills required to build and ship software.
+          projects we work on offer an opportunity to glean into other skills
+          you might not have - including devops, design, frontend, backend, or
+          other skills required to build and ship software.
         </p>
       </React.Fragment>
     ),
