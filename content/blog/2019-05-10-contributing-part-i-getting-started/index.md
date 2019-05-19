@@ -56,7 +56,7 @@ v10.15.3
 git version 2.21.0.windows.1
 ```
 
-## Introduction to Git
+## Introducing Git and GitHub
 
 Git, according to it's website, is "a free and open source distributed version
 control system". In simpler terms, this awesome piece of technology allows us to
@@ -75,7 +75,7 @@ access a friendlier interface for when we are inspecting a Git _repository_
 Since we have the Project Unicorn repo hosted on GitHub you have to make sure
 you have an account in GitHub. Please refer to the following documentation:
 
-> [Signing up for a new GitHub account][signup].
+> [Signing up for a new GitHub account][signup]
 
 [signup]: https://help.github.com/articles/signing-up-for-a-new-github-account/
 
@@ -122,15 +122,120 @@ guides from GitHub:
 >
 > [Why is Git always asking for my password?](https://help.github.com/articles/why-is-git-always-asking-for-my-password/)
 
+Once that's done, we're ready to get started! We'll begin by working directly
+with the Project Unicorn repository. At the end of this tutorial series, you'd
+be able to add your contribution to the Project Unicorn repository.
+
+### Cloning a repository
+
+The first task is to get the repository to your machine. We call this process
+_cloning_ a repo. Type this command in your terminal:
+
+```bash
+git clone git@github.com:projectunic0rn/pub.git
+cd pub
+pwd
+```
+
+> **TIP**: The `cd pub` command moves you inside the `pub/` directory. You can
+> verify this by running the `pwd` command.
+
+When this is done, you now have a copy of the Project Unicorn website source
+code. This copy should include a directory called `.git` which is used by Git to
+keep track of change history. You should know that what ever changes you
+introduce in this copy on your machine will not affect the repo hosted on
+GitHub.
+
+We'll learn more on how to update the remote repo using your cloned repo later.
+
+> **NOTE**: In other tutorials, the first command you are commonly taught first
+> is `git init`. If you want Git to keep track of changes in a directory (either
+> it has files already or its empty doesn't matter), type this to your terminal:
+>
+> ```bash
+> git init
+> ```
+
+### Checking the status
+
+When you want to know what changes Git can see right now, you'd use the
+`git status` command:
+
+```bash
+$ git status
+```
+
+If you entered this while inside the Project Unicorn web site repository, you'd
+probably see this message:
+
+```bash
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+
+This tells us that it does not see any changes. Try adding a dummy file called
+`foo.txt` and run git status again:
+
+```bash
+touch foo.txt
+git status
+```
+
+> **TIP**: The touch command basically creates new but empty file(s) with the
+> name(s) you provide it, e.g. `foo.txt`. It can also be used to update an
+> exisiting a directory or file's last modified property.
+>
+> [The `touch` command](http://www.linfo.org/touch.html)
+
+The output would be:
+
+```bash
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+(use "git add <file>..." to include in what will be committed)
+
+        foo.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+Git knows you introduced a new file but the file is "untracked". It also
+provides instructions on what you can do with this new file. Don't worry for now
+on what some of these terms mean, we'll learn more about them later.
+
+Remove this file and the output of `git status` will be the same as before:
+
+```bash
+$  rm ./foo.txt
+$  git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+
+> **TIP**: We can remove a file or directory using the `rm` command.
+>
+> [The `rm` Command](http://www.linfo.org/rm.html)
+
+### Branches in Git
+
+_TODO_
+
 ### Updating the default branch
 
 When you clone the repository, you are always in the repository's default
-branch, `dev`. You can verify this by running:
+branch. For the Project Unicorn web site repo, it's called `master`. You can
+verify this by running:
 
-```console
+```bash
 $  git branch
   refactor
-* dev
+* master
   update-deps
 ```
 
@@ -386,3 +491,9 @@ doing this, you can now commit the changes.
 
 Rebasing `master` to `other-branch` with conflicts would have a similar process
 for resolution, but the resulting history graph will be different.
+
+## What's next?
+
+The next part, [**Contributing Part II: Publishing Blog
+Posts**](/blog/contributing-part-ii-publishing-blog-posts), will talk about
+how to write and save a new blog post on the Project Unicorn blog.
