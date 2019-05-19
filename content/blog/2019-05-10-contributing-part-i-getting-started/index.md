@@ -10,12 +10,12 @@ tags:
 
 In this article we're going set up Git, a version control system; `npm`, the
 package manager most commonly used in JavaScript/TypeScript projects; and Visual
-Studio Code, an excellent text editor. Feel free to skip to the next part if
+Studio Code, an excellent code editor. Feel free to skip to the next part if
 you're already familiar with Git, `npm` or if you have your own editor
 configuration.
 
-If you're new to this stuff, read on. This will help you when you join and
-contribute to other Project Unicorn projects.
+If you're new to this stuff, please read on. This will help you when you join
+and contribute to other Project Unicorn projects.
 
 > This is part 1 of the **Project Unicorn Contributing Guide series** that talks
 > about setting up your development environment for contributing to the Project
@@ -62,7 +62,7 @@ Git, according to it's website, is "a free and open source distributed version
 control system". In simpler terms, this awesome piece of technology allows us to
 have a history of the changes made our code. This is useful because if we
 introduce changes that made our app buggy, we can easily revert back to an
-earlier _snapshot_ and study how and why these changes caused said bugs.
+earlier _snapshot_ and study how and why these changes caused those bugs.
 
 On the other hand, [GitHub][] is a service that offers hosting for anyone's
 code that is monitored by Git. It also has a bunch of collaboration tools for
@@ -92,7 +92,7 @@ a [list of third-party GUI clients][git_gui].
 An even better tool is the command line. It can be scary to use especially if
 you have little experience with it, but it's what I recommend you to start of
 with when learning Git. The command line is also what we're gonna use for this
-guide (sorry!).
+guide.
 
 So why not use a GUI client? There's nothing wrong with GUI clients, they are
 useful, too. But they may not support specific Git functions or it might be
@@ -105,8 +105,8 @@ probably it has more features than your previous client. Of course, certain
 buttons and layouts may be similar across clients, but most of the time, they
 won't be.
 
-If you learn Git through the command line, you'll be able to just open up a
-terminal application, and fire up the command. No need to open up another GUI
+If you learn Git through the command line, you'll be able to just open a
+terminal application, and fire up the command. No need to open another GUI
 client's manual or documentation website to find out what it can and can't do.
 
 Hopefully, I've convinced you that using the command line to interact with Git
@@ -124,37 +124,59 @@ guides from GitHub:
 
 Once that's done, we're ready to get started! We'll begin by working directly
 with the Project Unicorn repository. At the end of this tutorial series, you'd
-be able to add your contribution to the Project Unicorn repository.
+be able to add your contributions to the Project Unicorn repository.
 
 ### Cloning a repository
 
-The first task is to get the repository to your machine. We call this process
-_cloning_ a repo. Type this command in your terminal:
+The first task is to get the Projecty Unicorn repository to your machine. We
+call this process _cloning_ a repo. Type these command in your terminal:
 
 ```bash
 git clone git@github.com:projectunic0rn/pub.git
 cd pub
-pwd
+pwd # Outputs the path to our $PROJECT_ROOT
 ```
 
-> **TIP**: The `cd pub` command moves you inside the `pub/` directory. You can
-> verify this by running the `pwd` command.
+The first command will _clone_ the project to your machine. This tells Git to
+make a directory inside the directory where you executed the `clone` command and
+copy the repository there. The name of the directory will be the same as the
+remote repository's name, by default.
 
-When this is done, you now have a copy of the Project Unicorn website source
+When this is done, you now have a copy of the Project Unicorn web site source
 code. This copy should include a directory called `.git` which is used by Git to
-keep track of change history. You should know that what ever changes you
-introduce in this copy on your machine will not affect the repo hosted on
-GitHub.
+keep track of the repo's changes.
 
-We'll learn more on how to update the remote repo using your cloned repo later.
+You should know that whatever changes you introduce in this copy on your machine
+will not auto-save to the repo hosted on GitHub. We'll learn more on how to
+update the remote repo using your cloned repo later.
 
-> **NOTE**: In other tutorials, the first command you are commonly taught first
-> is `git init`. If you want Git to keep track of changes in a directory (either
-> it has files already or its empty doesn't matter), type this to your terminal:
+The next command (`cd pub`) will allow you to move inside the directory that Git
+created when it cloned the repo to your machine, i.e. `pub` (same as the remote
+repository's name).
+
+> **TIP**: You can provide the name of the directory you want the copy to be in
+> by adding it to the last part of the `clone` command. For example:
 >
 > ```bash
-> git init
+> git clone git@github.com:projectunic0rn/pub.git more-awesome-pub
 > ```
+>
+> Copies the repo to a newly created directory called `more-awesome-pub`.
+
+The last command (`pwd`) will output the path to the current working directory.
+In this guide, we refer to the root of the Pub repository as `$PROJECT_ROOT`.
+
+In most Git tutorials, the command you're commonly taught first is `git init`.
+If you want Git to track a project you did earlier or if you are starting fresh
+and you want to introduce Git from the start, you can type this command to your
+terminal:
+
+```bash
+git init
+```
+
+If it has files already or if it's empty doesn't matter. And don't worry if you
+accidentally `init`ed an existing repo bacause it won't overwrite anything.
 
 ### Checking the status
 
@@ -185,7 +207,7 @@ git status
 
 > **TIP**: The touch command basically creates new but empty file(s) with the
 > name(s) you provide it, e.g. `foo.txt`. It can also be used to update an
-> exisiting a directory or file's last modified property.
+> exisiting directory or file's last modified property.
 >
 > [The `touch` command](http://www.linfo.org/touch.html)
 
@@ -224,32 +246,114 @@ nothing to commit, working tree clean
 
 ### Branches in Git
 
-_TODO_
+Look at the last output of `git status`:
+
+```
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+```
+
+It tells us that our _branch_ is up to date with something called
+`origin/master`. When we use Git for developing our application, we would
+normally interact with at least one of these branches.
+
+When you create a new repo, Git will create a branch for you called `master`.
+When you run `git status` after cloning the `pub` repo, it tells you that you
+are "On branch master". The `master` branch is not a special branch. It's just
+the name the that Git authors decided to use when creating a new repository.
+
+When you want to save changes to Git, you are, in some ways, saving it to a
+branch. For every _save_ you do, Git can tracks the changes, who made those
+changes, when they were made, and some other information.
+
+You're probably thinking: _wow, so it's just like saving in a text editor (like
+Notepad) then?_ Not exactly. When you are working in Notepad, it doesn't care
+what lines of code you removed or what parts you added but only that you
+changed the file. Whereas Git knows what specific line of code you changed
+for every save you do.
+
+If you'd ever use [Google Docs][gdocs], you'd find that it has a feature called
+"Version History" to view the changes you made to a document. This is very
+similar to viewing a single branch in Git. Open one of your Google Docs files
+and you can inspect the specific additions and deletions performed for every
+version. You can even _checkout_ an old version and _branch off_ that version
+by making a copy of the document.
+
+[gdocs]: https://docs.google.com
+
+> [See what's changed in a file](https://support.google.com/docs/answer/190843)
 
 ### Updating the default branch
 
-When you clone the repository, you are always in the repository's default
-branch. For the Project Unicorn web site repo, it's called `master`. You can
-verify this by running:
+When you clone a repository, you are always in that repository's default branch.
+For the Project Unicorn web site repo, it's called `master`. On other repos, you
+might find the default branch to be called `dev` or something else. If you're
+not sure what branch you're currently using, you can run `git status`.
+
+Another way to check is to run `git branch`:
 
 ```bash
 $  git branch
-  refactor
 * master
-  update-deps
 ```
 
-The one with the asterisk before it is the branch currently checked out. To get
-the newly published changes in the remote repository's default branch, you can
-do a `pull`, which will download and merge the changes to your local
+The one with the asterisk before it is the branch currently checked out.
+
+If you've just cloned the repository and have been following along until now,
+this next part might seem unnecessary. But assume you cloned the repo and then
+took a long break just before this section and while you're taking a break,
+someone introduced changes to `pub`'s default branch. How do we get those
+updates in our local repo?
+
+To get the newly published changes in the remote repository's default branch,
+you can do a `pull`, which will download and merge the changes to your local
 repository's `dev` branch:
 
 ```bash
 git pull
 ```
 
-> **NOTE**: Run an `npm install` if there are changes to `package.json`'s
-> dependencies
+If your command is successful you'd be presented with something similar to this
+output:
+
+```bash
+Updating bc1c558..4c7224b
+Fast-forward
+ package-lock.json | 161 ++++++++++++++++++++++++++++++------------------------
+ package.json      |  12 ++--
+ 2 files changed, 96 insertions(+), 77 deletions(-)
+```
+
+You can see that it provided a summary of the changes that were added to your
+local repo. In this example. two files called `package.json` and
+`package-lock.json` were modfied while you were taking a break. You'd most likey
+see a different list of files. And it's also possible that there aren't any
+changes introduced, to which you'll see:
+
+```bash
+$  git pull
+Already up to date.
+```
+
+If you see any errors when you ran this command, you probably modified the same
+lines of the same file that is also modifed on the remote repo. The following
+shows what you'd see if you changed something in `package.json` that conflicts
+with the remote repo's `package.json`:
+
+```bash
+error: Your local changes to the following files would be overwritten by merge:
+        package.json
+Please commit your changes or stash them before you merge.
+Aborting
+Updating bc1c558..4c7224b
+```
+
+The output tells us that Git aborted the operation and nothing was updated. It
+also provided us with a tip on how we can fix this error. We haven't discussed
+"committing" and "stashing" yet because those commands have their own sections
+later in the guide.
 
 ### Create your feature branch
 
