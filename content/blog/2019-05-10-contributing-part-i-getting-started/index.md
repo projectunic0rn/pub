@@ -38,8 +38,8 @@ Installing Node.js will also install `npm`. When you install Git on Windows, you
 are also provided with _Git Bash_. It is recommended to use this software when
 interacting with Git.
 
-This guide will assume that you are using Git Bash if you are using Windows. For
-Linux and MacOS, the default terminal will do.
+This guide will assume that you are using Git Bash if you are using Windows. If
+you have Linux or MacOS, the default terminal will do.
 
 To verify your installations, enter the following in your terminal:
 
@@ -62,9 +62,12 @@ Git, according to it's website, is "a free and open source distributed version
 control system". In simpler terms, this awesome piece of technology allows us to
 have a history of the changes made our code. This is useful because if we
 introduce changes that made our app buggy, we can easily revert back to an
-earlier _snapshot_ and study how and why these changes caused those bugs.
+earlier _snapshot_. There are more benefits of using Git and they are well
+documented all over the web. Here's one article but feel free to search around:
 
-On the other hand, [GitHub][] is a service that offers hosting for anyone's
+> [Why Git](https://www.atlassian.com/git/tutorials/why-git)
+
+[GitHub][], on the other hand, is a service that offers hosting for anyone's
 code that is monitored by Git. It also has a bunch of collaboration tools for
 developers like an issue tracker, project task board and more. We use GitHub to
 access a friendlier interface for when we are inspecting a Git _repository_
@@ -140,7 +143,7 @@ pwd # Outputs the path to our $PROJECT_ROOT
 The first command will _clone_ the project to your machine. This tells Git to
 make a directory inside the directory where you executed the `clone` command and
 copy the repository there. The name of the directory will be the same as the
-remote repository's name, by default.
+remote repository's name by default.
 
 When this is done, you now have a copy of the Project Unicorn web site source
 code. This copy should include a directory called `.git` which is used by Git to
@@ -205,12 +208,6 @@ touch foo.txt
 git status
 ```
 
-> **TIP**: The touch command basically creates new but empty file(s) with the
-> name(s) you provide it, e.g. `foo.txt`. It can also be used to update an
-> exisiting directory or file's last modified property.
->
-> [The `touch` command](http://www.linfo.org/touch.html)
-
 The output would be:
 
 ```bash
@@ -225,7 +222,13 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Git knows you introduced a new file but the file is "untracked". It also
+> **TIP**: The touch command basically creates new but empty file(s) with the
+> name(s) you provide it, e.g. `foo.txt`. It can also be used to update an
+> exisiting directory or file's last modified property.
+>
+> [The `touch` command](http://www.linfo.org/touch.html)
+
+Git knows you introduced a new file but the file is _untracked_. It also
 provides instructions on what you can do with this new file. Don't worry for now
 on what some of these terms mean, we'll learn more about them later.
 
@@ -264,12 +267,12 @@ When you run `git status` after cloning the `pub` repo, it tells you that you
 are "On branch master". The `master` branch is not a special branch. It's just
 the name the that Git authors decided to use when creating a new repository.
 
-When you want to save changes to Git, you are, in some ways, saving it to a
+When you want to save changes to Git, you are, in some ways, _saving_ it to a
 branch. For every _save_ you do, Git can tracks the changes, who made those
 changes, when they were made, and some other information.
 
-You're probably thinking: _wow, so it's just like saving in a text editor (like
-Notepad) then?_ Not exactly. When you are working in Notepad, it doesn't care
+You're probably thinking: _wow, so it's just like saving in a text editor like
+Notepad, then?_ Not exactly. When you are working in Notepad, it doesn't care
 what lines of code you removed or what parts you added but only that you
 changed the file. Whereas Git knows what specific line of code you changed
 for every save you do.
@@ -287,12 +290,19 @@ by making a copy of the document.
 
 ### Updating the default branch
 
-When you clone a repository, you are always in that repository's default branch.
+When you clone a repository, you're always in that repository's default branch.
 For the Project Unicorn web site repo, it's called `master`. On other repos, you
-might find the default branch to be called `dev` or something else. If you're
-not sure what branch you're currently using, you can run `git status`.
+might find the default branch to be called `dev` or something else. To determine
+the default brach you can refer to the GitHub web site for that repository.
 
-Another way to check is to run `git branch`:
+> [Viewing branches in your repository](https://help.github.com/en/articles/viewing-branches-in-your-repository)
+
+Since we're focusing on learning Git through the command line, I'll provide
+you with some of the commands you can use if you're not sure what branch you're
+currently using. You already know the first command, i.e. `git status`. Run this
+immediately after cloning the repo.
+
+Another command you can use is `git branch`:
 
 ```bash
 $  git branch
@@ -315,7 +325,7 @@ repository's `dev` branch:
 git pull
 ```
 
-If your command is successful you'd be presented with something similar to this
+If your command is successful, you'd be presented with something similar to this
 output:
 
 ```bash
@@ -357,8 +367,8 @@ later in the guide.
 
 ### Create your feature branch
 
-Once an issue is assigned to you, make a new feature branch off the latest `dev`
-branch. You can do this by entering these commands in your terminal:
+Make a new feature branch off the latest `master` branch. You can do this by
+entering these commands in your terminal:
 
 ```bash
 git checkout dev
@@ -595,6 +605,14 @@ doing this, you can now commit the changes.
 
 Rebasing `master` to `other-branch` with conflicts would have a similar process
 for resolution, but the resulting history graph will be different.
+
+## Introducing `npm`
+
+_TODO_
+
+## Introducing Visual Studio Code
+
+_TODO_
 
 ## What's next?
 
