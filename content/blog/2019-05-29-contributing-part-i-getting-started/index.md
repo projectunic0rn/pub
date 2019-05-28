@@ -1,7 +1,7 @@
 ---
 title: 'Contributing Part I: Getting Started'
 author: rmjordas
-date: '2019-05-10'
+date: '2019-05-29'
 image: ./hero.jpg
 tags:
   - Project Unicorn
