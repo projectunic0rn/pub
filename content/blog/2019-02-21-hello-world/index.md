@@ -5,619 +5,86 @@ date: '2019-02-21'
 image: ./hero.jpg
 tags:
   - Project Unicorn
-  - contributing
 ---
 
-Welcome and thank you for your interest in this project. To get started
-publishing blog posts, fixing issues or adding new features, please read first
-the the instructions below.
+We're happy to announce the launch of the Project Unicorn web site! As part of
+this announcement, we're also showcasing some of the projects made by our
+awesome members.
 
-## Creating blog contents
+## Project Unicorn UI
 
-### Setup blog post directory
+> A frontend to streamline the starting and joining of projects on the project
+> unicorn slack team.
 
-Add a directory to [`content`][pub_content_dir] that follows this name template:
+[Live](https://projectunicorn.dev) |
+[Front-end repo](https://github.com/projectUnic0rn/project-unicorn-ui) |
+[Back-end repo](https://github.com/projectUnic0rn/project-unicorn-api) |
+[Blog Post](/blog/project-unicorn-ui)
 
-```
-YYYY-MM-DD-the-title-of-the-blog-post
-```
+### Core Features
 
-The name consist of the year (`YYYY`), the month (`MM`), the day (`DD`) and the
-title of the blog post where every character is lowercased and spaces and other
-characters are changed into dashes. For example:
+- Filtering on UI to view projects currently active on the slack team
+- Filtering on UI for members available to join a project
+- Ability to start/join a project through the UI
+- Integration with Slack API to act as the frontend notification system, and build out slash commands
+- Integration with GitHub API to automate setting up of GitHub project teams/repos
 
-```
-2012-12-12-the-end-of-the-world
-```
+### Screenshots
 
-This means the blog post is published on December 12, 2012 and its title is
-"The End of the World". **Please ensure that every word is separated only by a
-single dash (`-`)**.
+![Project Unicorn app landing page](./pup31.png)
 
-Inside this directory, create a new file called `index.md`. You can use the
-example file ([`index.md.example`][index_md_example]) as a base for
-your blog post.
+![Project Unicorn app landing page](./pup32.png)
 
-### Writing with Markdown
+![Project Unicorn app landing page](./pup33.png)
 
-Markdown is the markup language that we'll use to create blog posts. If you're
-not familiar with the syntax you can see the following links:
+## FoundIT
 
-- [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)
-- [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+> FoundIT allows users to post lost or found items in hope that it gets returned
+> back to its original owners.
 
-### Update blog post frontmatter
+[Live](https://foundit.herokuapp.com) |
+[Front-end repo](https://github.com/projectunic0rn/foundit-ui) |
+[Back-end repo](https://github.com/projectunic0rn/foundit-api)
 
-Inside `index.md.example` you will find a section at the top that starts and
-ends with three dashes:
+### Core Features
 
-```markdown
----
-title: The End of the World
-author: rmjordas
-date: '2012-12-12'
-image: ./hero.jpg
-tags:
-  - cute
-  - scary
----
-```
+- Posting of lost items
+- Searching for lost or found items
+- Form for lost and found items
 
-This section is called the _frontmatter_ and it contains the most essential
-information needed when creating the static page for a single blog post.
+### Screenshots
 
-- **`title`** - Title of your blog post, this will be the text shown inside the
-  hero image and it is included in the `<title>` of the HTML document for this
-  blog post.
-- **`author`** - A unique ID for the author of the blog post. Please refer to
-  [Add an author](#Add-an-author) section for instructions on how to create an
-  author entry.
-- **`date`** - The date when the blog post was published. This follows a special
-  format: `YYYY-MM-DDTHH:mm:sss+/-TT:TT` where hours (`HH`), minutes (`mm`),
-  seconds (`sss`), and timezone offset (`+/-TT:TT`) are optional.
-- **`image`** - Hero image for the blog post that contains the title of the blog
-  post positioned at the top of the page below the navigation.
-- **`tags`** - A list of words and/or phrases that can summarize the main topics
-  of the blog post.
+![Project Unicorn app landing page](./pup21.png)
 
-### Add images and other assets
+![Project Unicorn app landing page](./pup22.png)
 
-To include images to your blog post, simply place them in the directory you
-created and refer to them using Markdown syntax.
+## Mentrship
 
-```markdown
-## How to add images to your blog post
+> A mentoring platform to connect industry professionals with students.
 
-This is the syntax:
+[Live](https://www.mentrship.com) |
+[Front-end repo](https://github.com/projectunic0rn/mentorship-ui) |
+[Back-end repo](https://github.com/projectunic0rn/mentorship-services)
 
-![This is the alternative text](./my-image.jpg)
+### Core Features
 
-Some text here.
-```
+- Ability for student to find and request mentor based on industry
+- Ability for mentor to accept request
+- Ability to message chat between mentor and student
+- Ability to rate student and mentor based on experience
 
-#### Example
+### Screenshots
 
-```markdown
-![pu](https://avatars3.githubusercontent.com/u/41756078)
-```
+![Mentrship app landing page](./pup11.png)
 
-![pu](https://avatars3.githubusercontent.com/u/41756078)
+![Mentrship app dashboard page](./pup12.jpg)
 
-> **NOTE**: Some image formats may not be recognized by the image transformer
-> plugin, so it is best to stick to the common formats like: `jpg` (or `jpeg`),
-> `png`, `gif`, `svg`, etc.
+![Mentrship app contacts page](./pup13.jpg)
 
-You can also add a hero image to your blog post. Similar to the other images,
-you put this file inside the same directory but you add a reference to it on the
-frontmatter of your `index.md` file. In the example below, the banner image is
-reference in the `image` field. If you have not provided a value for this field,
-a default image will be used instead.
+That's it for now. Thank you for reading.
 
-```markdown
----
-title: The End of the World
-author: rmjordas
-date: '2012-12-12'
-image: ./hero.jpg
----
+If you're interested in teaming up with developers around the world to build and
+deploy meaningful software, you can apply to join the Project Unicorn slack
+using the form linked below.
 
-## The Year 2k12
-
-Text goes here
-```
-
-### Syntax highlighting
-
-To use syntax aware highlighting to your code blocks, insert the language name
-after the opening code block syntax (` ``` `):
-
-````
-
-```graphql
-query SiteMetadataQuery {
-  site {
-    siteMetadata {
-      title
-      description
-      url
-      twitter
-    }
-  }
-}
-```
-
-````
-
-You can view the [list of supported languages][prism_langs] in Prism's website.
-
-[prism_langs]: https://prismjs.com/#languages-list
-
-### Add an author
-
-You must be listed as an author before you can post. In the
-[`content`][pub_content_dir] directory, there is a file called
-[`author.yaml`][author_yaml]. Here you add an entry with these options:
-
-- **`id`** (Required) - A unique string value for this author entry. These are
-  the rules for this value:
-  - May only contain alphanumeric characters or hyphens
-  - Cannot have multiple consecutive hyphens
-  - Cannot begin or end with a hyphen
-  - Maximum is 39 characters
-- **`name`** (Required) - The author's display name
-- **`bio`** - Short description of the author
-- **`github`** - The author's GitHub username
-- **`twitter`** - The author's Twitter username
-- **`avatar`** - The path for the image the the author would like to use as
-  their avatar image. Please make sure to add the image file in the
-  [`content/assets`][pub_content_assets_dir] directory with the same file name
-  as the `id` above. For example if the author id is `rmjordas`, then the value
-  should be `assets/rmjordas.png`. If you don't provide a value for this option,
-  a default avatar image will be used.
-
-### Add a page
-
-You are not limited to just adding blog posts. If you like to have a landing
-page of sorts for your project or something, you can. So we can have pages for
-these paths: `/help`, `/grocerhub`, `/slack-invite`, etc.
-
-A page can be very simple and can be crammed into one file, e.g. `404.tsx`,
-`index.tsx` (this file creates Pub's landing page), `tags.tsx`, etc..
-
-For now, the process of adding pages is not as streamlined as there are a lot of
-considerations like: How can a user reach that page, or are we going to change
-the layout of pages to add a component that links to that page, i.e. navigation
-components, etc. It can potentially change the design of the website. Also,
-adding pages require that you know React, TypeScript and GraphQL.
-
-#### Simple pages
-
-If you want to add a simple page, just add a React component in the
-[pages](/src/pages) directory. If you want a `/help` page, you should name this
-file `help.tsx`. If you want a page on `/grocerhub/devs`, first create a new
-directory in `/src/pages` called "grocerhub" and inside that directory add
-`devs.tsx`.
-
-Consider this file created at `pages/` called `my-page.tsx`:
-
-```tsx
-import * as React from 'react';
-
-interface OwnProps {
-  name?: string;
-}
-
-type MyPageProps = OwnProps;
-
-const MyPage: React.FC<MyPageProps> = ({ name = 'Uny' }) => (
-  <h1>Welcome to {name}</h1>
-);
-
-export default MyPage;
-```
-
-Once you build your app, you can view this page on `/my-page`. This page
-displays a very basic page where there's only a heading element as its content.
-
-Most likely you would need to also show the top navigation and footer. These can
-be added by importing the `Layout` component. Wrap your content inside this
-component.
-
-To update the values of elements in the `<head />`, you should use the `Seo`
-component. You can put this anywhere the component heirarchy.
-
-```tsx
-import * as React from 'react';
-
-import { Layout, Seo } from '@components/shared';
-
-// ...
-
-const MyPage: React.FC<MyPageProps> = ({ name = 'Uny' }) => (
-  <React.Fragment>
-    <Seo title="My page" />
-
-    <Layout>
-      <h1>Welcome to {name}</h1>
-    </Layout>
-  </React.Fragment>
-);
-
-export default MyPage;
-```
-
-You would notice that we're using the default export in components. Although we
-can do named export, i.e. `export const MyPage = () => ();` on some components,
-Gatsby requires templates to use default export. Rather than use a mix of named
-and default exports, the project strictly enforces the rule that all components
-must use the default export syntax to avoid confusion.
-
-#### Advanced pages
-
-Once your component requires data from some source, e.g. the project's URL,
-the author of the blog post, etc., you must define the query that this component
-will perform on build.
-
-The most basic query you can add to your page is "static query". These could be
-data about the website, e.g. name, description, etc..
-
-```graphql
-query {
-  file(relativePath: { eq: "default-post-image.jpg" }) {
-    childImageSharp {
-      fluid(maxWidth: 1800) {
-        ...GatsbyImageSharpFluid
-      }
-    }
-  }
-}
-```
-
-The query above will get an image called `default-post.image.jpg`. Since this is
-defined to be _fluid_ image Gatsby will optimize this image by creating various
-versions. To use this you need to import a special element from `gatsby-image`
-called `Img` and pass the value of `data.file.childImageSharp.fluid` to the
-`fluid` attribute.
-
-```tsx
-import { graphql } from 'gatsby';
-import { Img, FluidObject } from 'gatsby-image';
-import * as React from 'react';
-
-interface SomeComponentProps {
-  data: {
-    file: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
-    };
-  };
-}
-
-export const defaultPostImageQuery = graphql`
-  query {
-    file(relativePath: { eq: "default-post-image.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1800) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`;
-
-const SomeComponent: React.FC<SomeComponentProps> = ({ data }) => (
-  <Img fluid={data.file.childImageSharp.fluid} />
-);
-
-export default SomeComponent;
-```
-
-Some queries are quite common that these were extracted to their own custom
-React hook. The above query is equivalent to using the `useDefaultPostImage`
-React hook:
-
-```tsx
-import { Img } from 'gatsby-image';
-import * as React from 'react';
-
-import { useDefaultAvatarImage } from '@hooks';
-
-const SomeComponent: React.FC = () => {
-  const defaultAvatarImage = useDefaultAvatarImage();
-
-  return <Img fluid={defaultAvatarImage.childImageSharp.fluid} />;
-};
-
-export default SomeComponent;
-```
-
-#### Even more advance pages
-
-When you need to display a list of something, say, a list of recent blog posts,
-the process is more involved. First you would define a _page template_ in the
-`templates/` directory. This component is similar to other pages you will make
-except for the format of the query it exports (we'll go into detail later).
-
-Next step is to tell Gatsby that you want to create this page. Gatsby does not
-care about components outside the `pages/` directory by default. You can either
-configure Gatsby to _watch_ a directory (e.g. `pages/`) or explicitly call a
-method to create this page.
-
-The Gatsby's Node API configuration file is located at
-`<rootDir>/gatsby-node.js` and this is where we'll tell Gatsby to create the
-pages. The snippet below will create a single page that can be accessed at
-`/blogpostlist`.
-
-```js
-const path = require('path');
-
-exports.createPages = ({ actions }) => {
-  actions.createPage({
-    path: '/blogpostlist',
-    component: path.resolve('./src/templates/blog.tsx'),
-    context: {
-      limit: 6,
-      skip: 0,
-    },
-  });
-};
-```
-
-The exported `createPages` anonymous function is passed an object when Gatsby
-builds the app. The method we need is inside the the `actions` field inside this
-object.
-
-> [The `createPage` Action](https://www.gatsbyjs.org/docs/actions/#createPage)
-
-Inside the exported `createPages` anonymous function, we call `graphql`
-from the destructured parameters, and pass it a template literal containing the
-a query. This query could contain
-
-```js
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
-
-  const loadBlogPosts = new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          nodes {
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-    `).then(({ errors, data }) => {
-      if (errors) {
-        reject(errors);
-      }
-    });
-
-    createPage({
-      path: '/blog',
-      component: template.blog,
-      context: { limit: 6, skip: 0 },
-    });
-
-    resolve();
-  });
-
-  return Promise.all([loadBlogPosts]);
-};
-```
-
-## Development
-
-> **NOTE**: This section is not yet finalized.
-
-### Requirements
-
-Ensure you have the following installed in your system:
-
-- Node.js
-- npm
-- git
-
-When you install Git on Windows, you are also provided with Git Bash. It is
-recommended to use this software when interacting with Git. This guide will
-assume that you are using Git Bash if you are using Windows. On Linux and Mac,
-the default terminal will do.
-
-To verify your installations, enter the following in your terminal:
-
-```console
-$  node -v;npm -v;git --version
-v8.12.0
-6.4.1
-git version 2.19.1.windows.1
-```
-
-You should see something similar to the output above.
-
-### Clone to your machine
-
-Open you terminal and clone the repository by typing:
-
-```bash
-git clone git@github.com:projectunic0rn/pub.git
-cd pub
-pwd # $PROJECT_ROOT
-```
-
-The first command will _clone_ the project to your machine. This means that you
-tell Git to make a directory in the directory where you executed the `clone`
-command and copy the repository there. If you have a dedicated directory for
-cloned repository, make sure you are running your commands inside that
-directory.
-
-The next command will allow you to move inside the directory that Git created,
-when it cloned the repo to your machine: `pub` (same as the repository's name).
-
-> **NOTE**: You can provide the name of the directory by adding it to the last
-> part of the `clone` command:
->
-> ```bash
-> git clone git@github.com:projectunic0rn/pub.git more-awesome-pub
-> ```
-
-The last command will output the path to the current working directory. In this
-guide, we refer to the root of the Pub repository as `$PROJECT_ROOT`.
-
-### Running `npm` scripts
-
-Before you can inspect the app in your browser, you have to first download some
-packages that this project requires. You can see a list of dependencies inside
-the file called [`package.json`][pub_package_json].
-
-The `npm` executable provides a command to download all the project's
-dependencies:
-
-```bash
-pwd # You must be in the $PROJECT_ROOT
-npm install
-```
-
-This will grab all the packages and put it inside a `node_modules` directory in
-the `$PROJECT_ROOT`.
-
-After that, you can now run the app by executing this command in you terminal
-
-```bash
-pwd # $PROJECT_ROOT
-npm run dev
-```
-
-Finally, open your browser to http://localhost:8000.
-
-### Other commands
-
-The project also specifies other `npm` scripts you can run when working with
-specific portions of the application:
-
-| Script             | Description                                                     |
-| ------------------ | --------------------------------------------------------------- |
-| `build`            | Creates static build for deployment                             |
-| `clean`            | Deletes the `.cache` and `public` directories                   |
-| `dev`              | Starts a development server                                     |
-| `dev:m`            | Starts a development server connected to LAN                    |
-| `format`           | Formats the JSON and markdown files according to Prettier rules |
-| `format:precommit` | Formats the staged files according to Prettier rules            |
-| `lint`             | Checks for lint errors                                          |
-| `lint:fix`         | Checks for lint errors and automatically fix them               |
-| `start`            | Serves the production build for testing                         |
-| `test`             | Run tests                                                       |
-| `typecheck`        | Runs TypeScript compiler to check source for type errors        |
-
-### Quick start
-
-These steps will guide you through contributing to this project:
-
-- Fork the repo
-- Clone your fork and install dependencies
-
-```bash
-git clone https://github.com/<your-github-username>/pub.git
-npm install
-```
-
-Make and commit your changes. Make sure the commands `npm run build` and
-`npm run test` are working.
-
-Send a pull request and include a short summary of your changes.
-
-> [About Pull Requests](https://help.github.com/articles/about-pull-requests/)
-
-### Environment Variables
-
-Environment variables can be added in an `.env` as key-value pairs following
-this syntax: `EXAMPLE_KEY="a value"` (See [`.env.example`][envexample]).
-
-> **WARNING**: You should **not** put sensitive values in `.env`. These
-> values are bundled together with the application and anyone can inspect them.
-
-#### Gatsby Telemetry
-
-Gatsby added [telemetry][gatsby_telemetry] when they release version 2.3.0. You
-can disable this by running:
-
-[gatsby_telemetry]: https://www.gatsbyjs.org/docs/telemetry/
-
-```bash
-gatsby telemetry --disable
-```
-
-Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` on the project
-`.env` file:
-
-```
-GATSBY_TELEMETRY_DISABLED=1
-```
-
-> **NOTE**: You might also need to restart the development server when you
-> change the `.env`.
-
-### Troubleshooting
-
-#### Commiting changes to Git fails and deletes my changes from my file system
-
-Not sure what is the exact cause of this but this could happen if you are
-running a local Gatsby development server, and you trigger the pre-commit hook
-(by running `git commit`). The pre-commit hook will process your changes and run
-type checks and some formatting. These actions probably overwhelms the Node.js
-process for some reason and deletes the changes along with other files.
-
-When this happens, you can still recover the deleted files that commited to Git,
-but **all** new changes will be lost (unless you have some program that tracks
-changes to files, e.g. Dropbox history, etc.).
-
-For _very large diffs_, it is advisable to shut down the Gatsby local
-development server first before commiting to Git.
-
-#### Everything runs slow when I'm editing with Visual Studio Code
-
-There is a TypeScript release that caused type checking to run 20x slower on
-projects that use Styled Components type definitions. To fix this, please make
-sure you that your editor is using the same TypeScript version as the project.
-Refer to the bottom right portion of the status bar when you have an open
-TypeScript file. To change this value, click the version value and pick "Use
-Workspace Version" on the dropdown.
-
-### Maintenance
-
-#### Dependencies
-
-Packages are pinned to a specific version, thus you might need to run an update
-every now and then. Run `npm oudated` to check which packages are not in their
-latest versions. You may choose to update all packages or just some: maybe those
-that release `MAJOR` or `MINOR` but not `PATCH` versions.
-
-If you do update, make sure to do checks to see if it broke something in the
-app. Run all the test suites to see if something fails, then generate a
-production build using `npm run build` and see if there are any build errors.
-You can delete Gatsby artifacts in `.cache` and `public` by running
-`npm run clean` and run the checks again if you're still having trouble.
-
-> **NOTE**: Don't forget to also commit changes in `package-lock.json`!
-
-When you updgrade the Node.js version, be sure to check if the Travis
-configuration matches the `MAJOR` version, i.e. `7`, `10`, `11`. You don't need
-to specify the `MINOR` and `PATCH` versions.
-
-```yaml
-# Update the value in this part of `travis.yml`
-node_js:
-  - '10'
-```
-
-[pub_repo]: https://github.com/projectunic0rn/pub/blob/master/.github/CONTRIBUTING.md
-[pub_content_dir]: https://github.com/projectunic0rn/pub/tree/master/content
-[index_md_example]: https://github.com/projectunic0rn/pub/blob/master/content/index.md.example
-[author_yaml]: https://github.com/projectunic0rn/pub/blob/master/content/author.yaml
-[pub_content_assets_dir]: https://github.com/projectunic0rn/pub/tree/master/content/assets
-[pub_package_json]: https://github.com/rmjordas/pub/blob/master/package.json
-[envexample]: https://github.com/projectunic0rn/pub/blob/master/.env.example
+> [**Apply to join**](https://forms.gle/wPFAPmUSyALMbjhF7) 👈
