@@ -63,7 +63,7 @@ module.exports = Object.freeze({
   manifestOptions: {
     /* eslint-disable @typescript-eslint/camelcase */
     name: 'Project Unicorn',
-    short_name: 'PU',
+    short_name: 'Project Unicorn',
     start_url: '/',
     background_color: '#ffffff',
     theme_color: '#ffffff',
