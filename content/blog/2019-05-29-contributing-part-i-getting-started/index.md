@@ -87,7 +87,7 @@ documentation:
 
 [signup]: https://help.github.com/articles/signing-up-for-a-new-github-account/
 
-### Git and the command line
+## Git and the command line
 
 If you are avoiding the command line, you can choose to use _only_ the GitHub
 website to interact with your repos. It's possible to update your code with just
@@ -123,7 +123,7 @@ client's manual or documentation website to find out what it can and can't do.
 Hopefully, I've convinced you that using the command line to interact with Git
 is _bueno_.
 
-### Authenticate your Git
+## Authenticate your Git
 
 To be able to interact with a remote repository, such as the Project Unicorn web
 site's repository on GitHub, you have to setup authentication. Follow these
@@ -133,7 +133,7 @@ guides from GitHub:
 >
 > [Why is Git always asking for my password?](https://help.github.com/articles/why-is-git-always-asking-for-my-password/)
 
-### Tasklist
+## Tasklist
 
 For this guide, your tasks are to:
 
@@ -141,7 +141,7 @@ For this guide, your tasks are to:
 - Update the list of author to include your information
 - Upload your changes to the repository hosted on GitHub
 
-### Cloning a repository
+## Cloning a repository
 
 The first task is to get the Project Unicorn web site repository to your
 machine. We call this process _cloning_ a repo. Type these command in your
@@ -199,7 +199,7 @@ It doesn't matter if the directory has files already or if it's empty, the
 outcome is the same: it turns that directory into a repository. And don't worry
 if you accidentally `init`ed an existing repo because it won't overwrite anything.
 
-### Checking the status
+## Checking the status
 
 When you want to know what changes Git can see right now, you'd use the
 `git status` command:
@@ -265,7 +265,7 @@ nothing to commit, working tree clean
 >
 > [The `rm` Command](http://www.linfo.org/rm.html)
 
-### Branches in Git
+## Branches in Git
 
 Look at the last output of `git status`:
 
@@ -459,7 +459,7 @@ descriptive names. For example, I used the branch name
 contains changes that adds a new blog post for introducing the project called
 "foo".
 
-### Make a commit
+## Make a commit
 
 To create a blog post in the Project Unicorn blog, you'll have to "register" as
 an author. We're not gonna write the blog post itself for now because this topic
@@ -616,7 +616,7 @@ commit message body.
 git commit -m "Add a new author entry: Jane Doe" -m "This change adds Jane Doe as a new author"
 ```
 
-### Publishing your branch
+## Publishing your branch
 
 We're now going to publish our topic branch to the remote repo even if the blog
 post we're working on is not yet completed. Publishing the branch is simply
@@ -642,7 +642,7 @@ you can usejust `git push` (without passing the other arguments).
 
 We're not gonna introduce any more changes to the topic branch for this article.
 
-### Keeping your topic branch up-to-date
+## Keeping your topic branch up-to-date
 
 There will be times when you are working on your topic branch, and some new
 changes are merged into the `master` branch. It's recommended to pull these
@@ -691,7 +691,7 @@ use `rebase` in your projects.
 
 > [Don't Be Scared of git rebase](https://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/)
 
-### Resolving merge conflicts
+## Resolving merge conflicts
 
 You may encounter conflicts when merging changes from the default branch to your
 topic branch. These conflicts happens when a specific part of the code is
