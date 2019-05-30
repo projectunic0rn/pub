@@ -83,7 +83,7 @@ const SocialIcon = styled.img.attrs({ alt: '' })`
 const anchorStyles = css`
   background: none;
   color: ${({ theme }) => theme.colors.baseinvert};
-  transition: 0.1.5s;
+  transition: 0.15s;
 
   &:visited {
     color: ${({ theme }) => theme.colors.baseinvert};
