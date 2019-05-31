@@ -1,4 +1,3 @@
-export { default as avatarTestimonial } from './avatar-testimonial.png';
 export { default as bgCurveDesktop } from './bg-curve-desktop.svg';
 export { default as bgCurveMobile } from './bg-curve-mobile.svg';
 export { default as connectedWorld } from './connected-world.svg';
@@ -8,7 +7,6 @@ export { default as facebookIcon } from './facebook.svg';
 export { default as githubIcon } from './github.svg';
 export { default as goodTeam } from './good-team.svg';
 export { default as iconArrow } from './icon-arrow.svg';
-export { default as iconQuotes } from './icon-quotes.svg';
 export { default as instagramIcon } from './instagram.svg';
 export { default as linkedinIcon } from './linkedin.svg';
 export { default as logo } from './logo.png';

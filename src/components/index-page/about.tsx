@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Card from './card';
+import { Testimonial } from './testimonial';
 import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
@@ -130,7 +130,7 @@ const About: React.FC = () => {
           <LinkImage />
         </Link>
 
-        <Card />
+        <Testimonial />
       </Text>
 
       <ImageWrapper>
