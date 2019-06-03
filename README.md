@@ -26,7 +26,7 @@ npm run build
 
 ## Documentation
 
-- [Contributing Guide](.github/CONTRIBUTING.md)
+- [Contributing Guide](https://projectunicorn.net/blog/tag/contributing/)
 - [Attribution Notice](NOTICE)
 
 ## License
