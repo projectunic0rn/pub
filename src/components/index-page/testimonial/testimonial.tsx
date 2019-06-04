@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   border-radius: 0.375em;
   box-shadow: 0 0.875em 1.75em ${({ theme }) => theme.colors.shadow};
   flex: 1;
-  margin: 3.125em 0;
+  margin: 3.125em 0 1em;
   padding: 1.5625em;
   max-width: 25em;
   width: 100%;
@@ -29,6 +29,7 @@ const Testimonial: React.FC = () => {
         autoplay
         dots
         infinite
+        arrows={false}
         vertical={false}
         slidesToScroll={1}
         slidesToShow={1}
