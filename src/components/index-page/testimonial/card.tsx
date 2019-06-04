@@ -6,9 +6,9 @@ import styled from '@styled-components';
 
 type CardProps = Content;
 
-const Title = styled.p`
+const Quote = styled.p`
   font-style: italic;
-  line-height: 2;
+  line-height: 1.7;
   margin: 0 0 1.5em 0;
 `;
 
@@ -38,16 +38,17 @@ const Text = styled.p`
   }
 `;
 
-const TextName = styled.span`
+const Author = styled.span`
   font-weight: 800;
 `;
 
-const TextDescription = styled.span`
+const Title = styled.span`
   font-size: 0.9em;
 `;
+
 const Card: React.FC<CardProps> = ({ author, avatar, quote, title }) => (
   <React.Fragment>
-    <Title>{quote}</Title>
+    <Quote>{quote}</Quote>
 
     <Footer>
       <AvatarWrapper>
@@ -55,8 +56,8 @@ const Card: React.FC<CardProps> = ({ author, avatar, quote, title }) => (
       </AvatarWrapper>
 
       <Text>
-        <TextName>{author}</TextName>
-        <TextDescription>{title}</TextDescription>
+        <Author>{author}</Author>
+        <Title>{title}</Title>
       </Text>
     </Footer>
   </React.Fragment>
