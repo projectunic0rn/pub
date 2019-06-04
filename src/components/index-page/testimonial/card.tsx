@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Content } from './content';
+import { defaultAvatarImage } from '@images';
 import styled from '@styled-components';
 
 type CardProps = Content;
@@ -50,7 +51,7 @@ const Card: React.FC<CardProps> = ({ author, avatar, quote, title }) => (
 
     <Footer>
       <AvatarWrapper>
-        <Avatar src={avatar} />
+        <Avatar src={avatar || defaultAvatarImage} />
       </AvatarWrapper>
 
       <Text>

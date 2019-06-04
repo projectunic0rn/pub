@@ -6,7 +6,7 @@ export interface Content {
   readonly quote: string | React.ReactNode;
   readonly author: string;
   readonly title: string;
-  readonly avatar: string;
+  readonly avatar?: string;
 }
 
 export const content: readonly Content[] = [
