@@ -7,8 +7,6 @@ import styled from '@styled-components';
 type CardProps = Content;
 
 const Quote = styled.p`
-  font-style: italic;
-  line-height: 1.7;
   margin: 0 0 1.5em 0;
 `;
 

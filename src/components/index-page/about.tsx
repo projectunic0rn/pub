@@ -45,6 +45,7 @@ const Wrapper = styled.section`
 const Text = styled.div`
   flex: 0 0 55%;
   order: 1;
+  width: 100%;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     order: 2;
