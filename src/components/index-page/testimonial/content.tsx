@@ -10,8 +10,8 @@ export interface Content {
   readonly quote: string | React.ReactNode;
   /** Name of the author of the quote. */
   readonly author: string;
-  /** Title to be displayed below the author's name. */
-  readonly title: string;
+  /** Optional title to be displayed below the author's name. */
+  readonly title?: string;
   /**
    * The image associated with the author of the quote. If not provided, a
    * default image will be used.

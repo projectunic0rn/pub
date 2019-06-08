@@ -46,18 +46,23 @@ const Title = styled.span`
   font-size: 0.9em;
 `;
 
-const Card: React.FC<CardProps> = ({ author, avatar, quote, title }) => (
+const Card: React.FC<CardProps> = ({
+  author,
+  avatar = defaultAvatarImage,
+  quote,
+  title,
+}) => (
   <React.Fragment>
     <Quote>{quote}</Quote>
 
     <Footer>
       <AvatarWrapper>
-        <Avatar src={avatar || defaultAvatarImage} />
+        <Avatar src={avatar} />
       </AvatarWrapper>
 
       <Text>
         <Author>{author}</Author>
-        <Title>{title}</Title>
+        {title && <Title>{title}</Title>}
       </Text>
     </Footer>
   </React.Fragment>
