@@ -33,4 +33,10 @@ export const content: readonly Content[] = [
     author: 'Damon Clark',
     title: 'Software Developer',
   },
+  {
+    quote:
+      "Project Unicorn is what I've been looking for for so long, and I'm so grateful to be a part of it.",
+    author: 'Aaron Garton',
+    title: 'Software Developer',
+  },
 ];
