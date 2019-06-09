@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { avatarRmjordas } from '../assets';
+import { avatarRmjordas, avatarRmoran } from '../assets';
 
 export interface Content {
   /**
@@ -38,5 +38,12 @@ export const content: readonly Content[] = [
       "Project Unicorn is what I've been looking for for so long, and I'm so grateful to be a part of it.",
     author: 'Aaron Garton',
     title: 'Software Developer',
+  },
+  {
+    quote:
+      'Project Unicorn has been an awesome opportunity to lead remote teams and build awesome software.',
+    author: 'Roy Moran',
+    title: 'Software Developer',
+    avatar: avatarRmoran,
   },
 ];
