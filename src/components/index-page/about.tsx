@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Card from './card';
+import { Testimonial } from './testimonial';
 import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
@@ -45,6 +45,7 @@ const Wrapper = styled.section`
 const Text = styled.div`
   flex: 0 0 55%;
   order: 1;
+  width: 100%;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
     order: 2;
@@ -130,7 +131,7 @@ const About: React.FC = () => {
           <LinkImage />
         </Link>
 
-        <Card />
+        <Testimonial />
       </Text>
 
       <ImageWrapper>

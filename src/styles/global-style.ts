@@ -1,4 +1,5 @@
 import { createGlobalStyle } from '@styled-components';
+import { slickSliderStyle } from './slick-slider-style';
 
 /** Application-wide default styling. */
 export const GlobalStyle = createGlobalStyle`
@@ -70,4 +71,6 @@ export const GlobalStyle = createGlobalStyle`
   .gatsby-resp-image-link {
     background:none;
   }
+
+  ${slickSliderStyle};
 `;
