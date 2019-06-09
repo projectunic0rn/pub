@@ -2,7 +2,7 @@
 title: Project Unicorn UI
 author: rmoran
 date: '2019-03-02'
-image: ./pu-blue.jpg
+image: ./hero.jpg
 tags:
   - Project Introduction
   - Project
