@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.section};
 `;
 
-const Answer = styled.p<AnswerProps>`
+const Answer = styled.div<AnswerProps>`
   color: ${({ theme }) => theme.colors.text};
   font-size: 0.9em;
   margin: 0.3125em 1.5625em 1.5625em;
@@ -106,7 +106,9 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
         height={isActive ? height : 0}
         aria-hidden={!isActive}
       >
-        <Answer isActive={isActive}>{qa.answer}</Answer>
+        <Answer isActive={isActive}>
+          {typeof qa.answer === 'string' ? <p>{qa.answer}</p> : qa.answer}
+        </Answer>
       </Inner>
     </Wrapper>
   );
