@@ -9,7 +9,7 @@ test('generates correct Facebook share URL', () => {
 
 test('generates correct LinkedIn share URL', () => {
   const url = 'https://example.website/blog/1';
-  let actual = makeShareUrl('linkedin', { url });
+  const actual = makeShareUrl('linkedin', { url });
 
   expect(actual.includes(`url=${encodeURIComponent(url)}`)).toBe(true);
 });
@@ -26,7 +26,7 @@ test('generates correct Twitter share URL', () => {
   const text = 'The quick brown fox';
   const via = 'twitteruser';
 
-  let actual = makeShareUrl('twitter', { url, text, via });
+  const actual = makeShareUrl('twitter', { url, text, via });
 
   expect(actual.includes(`url=${url}`)).toBe(true);
   expect(actual.includes(`text=${encodeURIComponent(text)}`)).toBe(true);
