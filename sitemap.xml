@@ -4,6 +4,7 @@
 <url> <loc>https://projectunicorn.net/blog/contributing-part-ii-publishing-blog-posts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/contributing-part-i-getting-started/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/project-unicorn-ui/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/project-unicorn-upwork/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/hello-world/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project-unicorn/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/contributing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -13,6 +14,8 @@
 <url> <loc>https://projectunicorn.net/blog/tag/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project-introduction/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/tag/upwork/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/tag/freelance/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmjordas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmoran/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
