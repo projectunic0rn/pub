@@ -1,7 +1,7 @@
 ---
 title: Project Unicorn + Upwork
 author: rmoran
-date: '2019-03-02'
+date: '2019-06-11'
 image: ./hero.jpg
 tags:
   - Upwork
