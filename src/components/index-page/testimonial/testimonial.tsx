@@ -27,6 +27,7 @@ const Testimonial: React.FC = () => {
     <Wrapper>
       <Slider
         autoplay
+        autoplaySpeed={5000}
         dots
         infinite
         arrows={false}

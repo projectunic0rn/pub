@@ -46,4 +46,10 @@ export const content: readonly Content[] = [
     title: 'Software Developer',
     avatar: avatarRmoran,
   },
+  {
+    quote:
+      'Project Unicorn is an excellent way to get experience working in a team environment without the pressure and costs of the working world. This allows people to learn from their more-experienced teammates while still contributing at their own pace.',
+    author: 'GreenWithMV',
+    title: 'Software Developer',
+  },
 ];
