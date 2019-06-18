@@ -73,6 +73,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: siteMetadata.siteUrl,
+        stripQueryString: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
         alias: {
@@ -97,6 +104,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-sharp',
+
     {
       resolve: 'gatsby-plugin-manifest',
       options: manifestOptions,
