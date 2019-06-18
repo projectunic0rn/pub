@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-import { Anchor } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from '@styled-components';
 
@@ -13,13 +13,13 @@ interface OwnProps {
   variant?: CtaButtonVariant;
 }
 
-type CtaButtonProps = OwnProps;
+type CtaButtonProps = OwnProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 interface ButtonProps {
   variant: CtaButtonVariant;
 }
 
-const Button = styled(Anchor)<ButtonProps>`
+const Button = styled(OutboundLink)<ButtonProps>`
   border-radius: 0.3125em;
   font-weight: 800;
   padding: 0.9375em 2.8125em;
@@ -60,18 +60,24 @@ const Button = styled(Anchor)<ButtonProps>`
 `;
 
 const CtaButton: React.FC<CtaButtonProps> = ({
+  children,
   content = 'Apply',
   variant = 'default',
+  target = '_blank',
+  ...anchorProps
 }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
     <Button
       href={`${siteMetadata.social.applicationForm}`}
-      content={content}
       title={`${siteMetadata.title} application form`}
       variant={variant}
-    />
+      target={target}
+      {...anchorProps}
+    >
+      {children || content}
+    </Button>
   );
 };
 

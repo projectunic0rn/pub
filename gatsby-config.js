@@ -114,6 +114,11 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: googleAnalyticsTrackingId,
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        sampleRate: 100,
+        siteSpeedSampleRate: 10,
       },
     },
   ],
