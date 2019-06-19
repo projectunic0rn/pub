@@ -4,7 +4,7 @@ import styled from '@styled-components';
 
 interface PageBodyProps {
   /** Content to be shown as the page body. */
-  body: string;
+  body?: string;
 }
 
 const Body = styled.div`
@@ -39,8 +39,11 @@ const Body = styled.div`
 `;
 
 /** Wrapper for a blog post's main content. */
-const PageBody: React.FC<PageBodyProps> = ({ body }) => (
-  <Body dangerouslySetInnerHTML={{ __html: body }} />
-);
+const PageBody: React.FC<PageBodyProps> = ({ body, children }) =>
+  body ? (
+    <Body dangerouslySetInnerHTML={{ __html: body }} />
+  ) : (
+    <Body>{children}</Body>
+  );
 
 export default PageBody;
