@@ -1,10 +1,24 @@
 import * as React from 'react';
 
 import { Content } from './content';
-import { defaultAvatarImage } from '@images';
+import { defaultAvatarImage } from '../assets';
 import styled from '@styled-components';
 
 type CardProps = Content;
+
+const Wrapper = styled.div`
+  background: ${({ theme }) => theme.colors.baseinvert};
+  border-radius: 0.375em;
+  flex: 1;
+  padding: 1.5625em;
+  max-width: 25em;
+  width: 100%;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    width: 95%;
+  }
+`;
 
 const Quote = styled.p`
   margin: 0 0 1.5em 0;
@@ -50,7 +64,7 @@ const Card: React.FC<CardProps> = ({
   quote,
   title,
 }) => (
-  <React.Fragment>
+  <Wrapper>
     <Quote>{quote}</Quote>
 
     <Footer>
@@ -63,7 +77,7 @@ const Card: React.FC<CardProps> = ({
         {title && <Title>{title}</Title>}
       </Text>
     </Footer>
-  </React.Fragment>
+  </Wrapper>
 );
 
 export default Card;

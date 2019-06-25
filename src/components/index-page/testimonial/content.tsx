@@ -35,7 +35,7 @@ export const content: readonly Content[] = [
   },
   {
     quote:
-      "Project Unicorn is what I've been looking for for so long, and I'm so grateful to be a part of it.",
+      "Project Unicorn has been the perfect online community to collaborate with developers. The information and knowledge I have gained from this community is invaluable - from improving my coding skills to learning how to work on projects with others - all of which I can put on my resume. Project Unicorn is what I've been looking for for so long, and I'm so grateful to be a part of it.",
     author: 'Aaron Garton',
     title: 'Software Developer',
   },

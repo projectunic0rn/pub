@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Testimonial } from './testimonial';
 import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
@@ -130,8 +129,6 @@ const About: React.FC = () => {
           See projects by members
           <LinkImage />
         </Link>
-
-        <Testimonial />
       </Text>
 
       <ImageWrapper>

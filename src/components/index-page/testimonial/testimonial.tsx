@@ -5,19 +5,19 @@ import Card from './card';
 import { content } from './content';
 import styled from '@styled-components';
 
-const Wrapper = styled.div`
-  background: ${({ theme }) => theme.colors.baseinvert};
-  border-radius: 0.375em;
-  box-shadow: 0 0.875em 1.75em ${({ theme }) => theme.colors.shadow};
-  flex: 1;
-  margin: 3.125em 0 1em;
-  padding: 1.5625em;
-  max-width: 25em;
+const Wrapper = styled.section`
+  background-color: ${({ theme }) => theme.colors.section};
+  padding: ${({ theme }) => theme.boxes.padding.section.medium};
   width: 100%;
 
-  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
-    width: 95%;
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
+`;
+
+const Heading = styled.h2`
+  text-align: center;
+  padding: 1em;
 `;
 
 const Testimonial: React.FC = () => {
@@ -25,6 +25,7 @@ const Testimonial: React.FC = () => {
 
   return (
     <Wrapper>
+      <Heading>Member Testimonials</Heading>
       <Slider
         autoplay
         autoplaySpeed={5000}
@@ -32,9 +33,20 @@ const Testimonial: React.FC = () => {
         infinite
         arrows={false}
         vertical={false}
-        slidesToScroll={1}
-        slidesToShow={1}
+        slidesToScroll={3}
+        slidesToShow={3}
         ref={(v) => (ref.current = v)}
+        responsive={[
+          {
+            breakpoint: 975,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true,
+            },
+          },
+        ]}
       >
         {content.map((v) => (
           <Card key={v.author} {...v} />
