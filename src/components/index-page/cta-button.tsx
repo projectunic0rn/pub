@@ -74,6 +74,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
       title={`${siteMetadata.title} application form`}
       variant={variant}
       target={target}
+      rel="noopener"
       {...anchorProps}
     >
       {children || content}
