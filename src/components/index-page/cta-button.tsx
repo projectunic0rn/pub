@@ -61,7 +61,7 @@ const Button = styled(OutboundLink)<ButtonProps>`
 
 const CtaButton: React.FC<CtaButtonProps> = ({
   children,
-  content = 'Apply',
+  content = 'Join Slack',
   variant = 'default',
   target = '_blank',
   ...anchorProps
@@ -70,8 +70,8 @@ const CtaButton: React.FC<CtaButtonProps> = ({
 
   return (
     <Button
-      href={`${siteMetadata.social.applicationForm}`}
-      title={`${siteMetadata.title} application form`}
+      href={`${siteMetadata.social.slackInvite}`}
+      title={`${siteMetadata.title} Slack invite link`}
       variant={variant}
       target={target}
       rel="noopener"
