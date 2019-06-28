@@ -54,7 +54,7 @@ const Form = styled.div`
 const Signup: React.FC = () => (
   <Wrapper>
     <Text>
-      <TextHeading>Apply to join our Slack group</TextHeading>
+      <TextHeading>Join our Slack group</TextHeading>
 
       <TextSubHeading>
         It only takes a few minutes to apply. We will consider your application

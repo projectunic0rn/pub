@@ -60,16 +60,16 @@ const Button = styled(Anchor)<ButtonProps>`
 `;
 
 const CtaButton: React.FC<CtaButtonProps> = ({
-  content = 'Apply',
+  content = 'Join Slack',
   variant = 'default',
 }) => {
   const siteMetadata = useSiteMetadata();
 
   return (
     <Button
-      href={`${siteMetadata.social.applicationForm}`}
+      href={`${siteMetadata.social.slackInvite}`}
       content={content}
-      title={`${siteMetadata.title} application form`}
+      title={`${siteMetadata.title} Slack invite link`}
       variant={variant}
     />
   );
