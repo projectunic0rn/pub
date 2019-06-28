@@ -56,8 +56,9 @@ module.exports = Object.freeze({
       reddit: 'projectUnicorn',
       /** The website's GitHub username. */
       github: 'projectunic0rn',
-      /** Google application form link. */
-      applicationForm: '//forms.gle/wPFAPmUSyALMbjhF7',
+      /** Slack invite link. */
+      slackInvite:
+        '//join.slack.com/t/project-unic0rn/shared_invite/enQtNjM5MzkwMjE2Mzg5LTNkOWVkNDQ0NTE3NWE1MmYzYjg5YjhiZTE1NTU0MTc3NzdmNmI3YTE5ZjZhYjgzNTA0ZDUyZjFmOTJlNTg5MGQ',
     },
   },
   manifestOptions: {

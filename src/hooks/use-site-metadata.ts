@@ -25,8 +25,8 @@ export interface SiteMetadata {
     reddit: string;
     /** The website's GitHub username. */
     github: string;
-    /** Google application form link. */
-    applicationForm: string;
+    /** Slack invite link. */
+    slackInvite: string;
   };
 }
 
@@ -52,7 +52,7 @@ const siteMetadataQuery = graphql`
           linkedin
           reddit
           github
-          applicationForm
+          slackInvite
         }
       }
     }
