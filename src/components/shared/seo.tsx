@@ -29,6 +29,8 @@ interface SeoProps {
   image?: string;
   /** Another additional information used when sharing. */
   pageType?: 'website' | 'article';
+  /** Publised date formatted as an ISO 8601 date. */
+  publishedAt?: string;
 }
 
 /**
@@ -46,9 +48,12 @@ const Seo: React.FC<SeoProps> = ({
   author,
   image,
   pageType = 'website',
+  publishedAt,
 }) => {
   const siteMetadata = useSiteMetadata();
   const metaDescription = description || siteMetadata.description;
+  const pageUrl = `${siteMetadata.siteUrl}/${urlSlug}`;
+  const pageImage = image || `${siteMetadata.siteUrl}/apple-touch-icon.png`;
 
   return (
     <Helmet
@@ -65,7 +70,7 @@ const Seo: React.FC<SeoProps> = ({
           name: 'description',
         },
         {
-          content: image || `${siteMetadata.siteUrl}/apple-touch-icon.png`,
+          content: pageImage,
           property: 'og:image',
         },
         {
@@ -73,7 +78,7 @@ const Seo: React.FC<SeoProps> = ({
           property: 'og:description',
         },
         {
-          content: `${siteMetadata.siteUrl}/${urlSlug}`,
+          content: pageUrl,
           property: 'og:url',
         },
         {
@@ -93,7 +98,15 @@ const Seo: React.FC<SeoProps> = ({
           property: 'og:type',
         },
         {
-          content: 'summary',
+          content: publishedAt,
+          property: 'article:published_time',
+        },
+        {
+          content: keywords[0] || siteMetadata.title,
+          property: 'article:tag',
+        },
+        {
+          content: 'summary_large_image',
           name: 'twitter:card',
         },
         {
@@ -107,6 +120,14 @@ const Seo: React.FC<SeoProps> = ({
         {
           content: title,
           name: 'twitter:title',
+        },
+        {
+          content: pageUrl,
+          name: 'twitter:url',
+        },
+        {
+          content: pageImage,
+          name: 'twitter:image',
         },
         {
           content: metaDescription,

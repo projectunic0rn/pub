@@ -4,7 +4,11 @@ import * as React from 'react';
 
 import { Hero, PostLinks, PostMeta, PostTags, Share } from '@components/blog';
 import { Container, Layout, PageBody, Seo } from '@components/shared';
-import { useDefaultAvatarImage, useDefaultPostImage } from '@hooks';
+import {
+  useDefaultAvatarImage,
+  useDefaultPostImage,
+  useSiteMetadata,
+} from '@hooks';
 
 export interface PostNode {
   id: string;
@@ -91,6 +95,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
 }) => {
   const defaultAvatarImage = useDefaultAvatarImage();
   const defaultPostImage = useDefaultPostImage();
+  const siteMetadata = useSiteMetadata();
   const post = data.markdownRemark;
   const { excerpt, frontmatter, fields } = post;
   const { title, tags, date, author, image } = frontmatter;
@@ -111,7 +116,10 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
         twitter={author.twitter}
         author={author.name}
         urlSlug={slug}
+        image={siteMetadata.siteUrl + image.childImageSharp.fluid.src}
         pageType="article"
+        publishedAt={new Date(date).toISOString()}
+        keywords={tags}
       />
 
       <Hero
