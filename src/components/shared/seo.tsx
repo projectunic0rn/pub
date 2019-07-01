@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { useSiteMetadata } from '@hooks';
+import { useDefaultPostImage, useSiteMetadata } from '@hooks';
 
 interface Meta {
   content: string;
@@ -50,10 +50,12 @@ const Seo: React.FC<SeoProps> = ({
   pageType = 'website',
   publishedAt,
 }) => {
+  const defaultPostImage = useDefaultPostImage();
   const siteMetadata = useSiteMetadata();
   const metaDescription = description || siteMetadata.description;
   const pageUrl = `${siteMetadata.siteUrl}/${urlSlug}`;
-  const pageImage = image || `${siteMetadata.siteUrl}/apple-touch-icon.png`;
+  const pageImage =
+    image || siteMetadata.siteUrl + defaultPostImage.childImageSharp.fluid.src;
 
   return (
     <Helmet
