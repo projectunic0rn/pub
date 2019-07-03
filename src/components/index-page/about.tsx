@@ -113,12 +113,12 @@ const About: React.FC = () => {
 
         <SubText>
           Never let location be an issue when finding someone to work with on a
-          project. The Project Unicorn community has members that are ready to
-          help.
+          project. Project Unicorn has a cool community of developers excited
+          about working together.
         </SubText>
 
         <SubText>
-          Work with awesome people on all parts of the world. Share, inspire,
+          Work with awesome people from all parts of the world. Share, inspire,
           and build your ideas!
         </SubText>
 
