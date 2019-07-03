@@ -57,9 +57,8 @@ const Signup: React.FC = () => (
       <TextHeading>Join our Slack group</TextHeading>
 
       <TextSubHeading>
-        It only takes a few minutes to apply. We will consider your application
-        to join the slack team. If you are accepted, expect an invite in less
-        than 24 hours.
+        It only takes a minute to sign in to your slack account. If you have any
+        questions, our members would be happy to help you.
       </TextSubHeading>
     </Text>
 
