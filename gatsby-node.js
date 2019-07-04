@@ -9,6 +9,7 @@ const template = {
   tag: path.resolve('./src/templates/tag.tsx'),
   post: path.resolve('./src/templates/post.tsx'),
   author: path.resolve('./src/templates/author.tsx'),
+  app: path.resolve('./src/templates/app.tsx'),
 };
 
 exports.onCreateNode = ({ node, actions }) => {
@@ -331,5 +332,14 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 
-  return Promise.all([loadBlogPosts, loadBlogTags, loadBlogAuthors]);
+  const loadApp = new Promise((resolve) => {
+    createPage({
+      path: '/app',
+      component: template.app,
+    });
+
+    resolve();
+  });
+
+  return Promise.all([loadBlogPosts, loadBlogTags, loadBlogAuthors, loadApp]);
 };
