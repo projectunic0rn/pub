@@ -65,7 +65,7 @@ module.exports = Object.freeze({
     /* eslint-disable @typescript-eslint/camelcase */
     name: 'Project Unicorn',
     short_name: 'Project Unicorn',
-    start_url: '/',
+    start_url: '/app/',
     background_color: '#ffffff',
     theme_color: '#ffffff',
     display: 'minimal-ui',
