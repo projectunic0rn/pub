@@ -16,10 +16,11 @@ const TermsPage: React.FC = () => {
   return (
     <Layout>
       <Seo
-        title="Terms and conditions"
+        title="Terms and Conditions"
         description={`Terms and condition page for the ${
           siteMetadata.title
         } website`}
+        urlSlug="terms/"
       />
 
       <Container>

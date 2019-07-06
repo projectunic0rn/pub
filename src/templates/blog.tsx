@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import { NavigationLink } from '@components/shared/navigation';
 import { Card, CardList, Pagination } from '@components/blog';
@@ -84,12 +83,13 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
 
   return (
     <Layout navLinks={navLinks}>
-      <Seo title="Blog" />
-
-      {!isFirstPage && (
-        <Helmet>
-          <title>{`Page ${currentPage} - ${siteMetadata.title}`}</title>
-        </Helmet>
+      {isFirstPage ? (
+        <Seo title="Blog" urlSlug="blog/" />
+      ) : (
+        <Seo
+          title={`Page ${currentPage} - ${siteMetadata.title}`}
+          urlSlug="blog/"
+        />
       )}
 
       <Container>

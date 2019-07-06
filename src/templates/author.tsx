@@ -1,10 +1,9 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import { AuthorMeta, Card, CardList, Pagination } from '@components/blog';
-import { Container, Layout } from '@components/shared';
+import { Container, Layout, Seo } from '@components/shared';
 import {
   useDefaultAvatarImage,
   useDefaultPostImage,
@@ -131,43 +130,17 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
   return (
     <Layout>
       {isFirstPage ? (
-        <Helmet>
-          <title>{`Author: "${authorName}" - ${siteMetadata.title}`}</title>
-
-          <meta
-            property="og:title"
-            content={`Author: "${authorName}" - ${siteMetadata.title}`}
-            name="title"
-            data-react-helmet="true"
-          />
-
-          <meta
-            property="og:url"
-            content={`${siteMetadata.siteUrl}/blog/author/${slug}/`}
-            data-react-helmet="true"
-          />
-        </Helmet>
+        <Seo
+          title={`Author: "${authorName}" - ${siteMetadata.title}`}
+          urlSlug={`blog/author/${slug}/`}
+        />
       ) : (
-        <Helmet>
-          <title>{`Author: "${authorName}" - Page ${currentPage} - ${
+        <Seo
+          title={`Author: "${authorName}" - Page ${currentPage} - ${
             siteMetadata.title
-          }`}</title>
-
-          <meta
-            property="og:title"
-            content={`Author: "${authorName}" - Page ${currentPage} - ${
-              siteMetadata.title
-            }`}
-            name="title"
-            data-react-helmet="true"
-          />
-
-          <meta
-            property="og:url"
-            content={`${siteMetadata.siteUrl}/blog/author/${slug}/`}
-            data-react-helmet="true"
-          />
-        </Helmet>
+          }`}
+          urlSlug={`blog/author/${slug}/`}
+        />
       )}
 
       <Container>

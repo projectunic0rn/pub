@@ -68,7 +68,7 @@ const TagsPage: React.FC<TagsPageProps> = ({
   },
 }) => (
   <Layout>
-    <Seo title="Tags" />
+    <Seo title="Tags" urlSlug="blog/tags/" />
 
     <Container>
       <PageTitle>Tags</PageTitle>

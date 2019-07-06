@@ -18,6 +18,7 @@ const PrivacyPage: React.FC = () => {
       <Seo
         title="Privacy Policy"
         description={`Privacy Policy for the ${siteMetadata.title} website`}
+        urlSlug="privacy/"
       />
 
       <Container>

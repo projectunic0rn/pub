@@ -1,10 +1,9 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 
 import { Card, CardList, Pagination } from '@components/blog';
-import { Container, Layout, PageTitle } from '@components/shared';
+import { Container, Layout, PageTitle, Seo } from '@components/shared';
 import { useDefaultPostImage, useSiteMetadata } from '@hooks';
 
 interface PostNode {
@@ -83,43 +82,17 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
   return (
     <Layout>
       {isFirstPage ? (
-        <Helmet>
-          <title>{`Tag: "${title}" - ${siteMetadata.title}`}</title>
-
-          <meta
-            property="og:title"
-            content={`Tag: "${title}" - ${siteMetadata.title}`}
-            name="title"
-            data-react-helmet="true"
-          />
-
-          <meta
-            property="og:url"
-            content={`${siteMetadata.siteUrl}/blog/tag/${slug}/`}
-            data-react-helmet="true"
-          />
-        </Helmet>
+        <Seo
+          title={`Tag: "${title}" - ${siteMetadata.title}`}
+          urlSlug={`blog/tag/${slug}/`}
+        />
       ) : (
-        <Helmet>
-          <title>{`Tag: "${title}" - Page ${currentPage} - ${
+        <Seo
+          title={`Tag: "${title}" - Page ${currentPage} - ${
             siteMetadata.title
-          }`}</title>
-
-          <meta
-            property="og:title"
-            content={`Tag: "${title}" - Page ${currentPage} - ${
-              siteMetadata.title
-            }`}
-            name="title"
-            data-react-helmet="true"
-          />
-
-          <meta
-            property="og:url"
-            content={`${siteMetadata.siteUrl}/blog/tag/${slug}/`}
-            data-react-helmet="true"
-          />
-        </Helmet>
+          }`}
+          urlSlug={`blog/tag/${slug}/`}
+        />
       )}
 
       <Container>
