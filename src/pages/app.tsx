@@ -13,7 +13,7 @@ const App: React.FC = () => (
   <Layout>
     <Seo title="App" urlSlug="app/" />
     <Container>
-      <Heading>Projects of the week</Heading>
+      <Heading>Projects of the week 🎉</Heading>
     </Container>
     <Featured />
   </Layout>
