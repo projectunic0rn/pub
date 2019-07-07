@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Layout, Seo, Container } from '@components/shared';
-import { Featured } from '@components/app';
+import { Featured, ProjectNav } from '@components/app';
 import styled from '@styled-components';
 
 const Heading = styled.h2`
@@ -16,6 +16,7 @@ const App: React.FC = () => (
       <Heading>Projects of the week 🎉</Heading>
     </Container>
     <Featured />
+    <ProjectNav />
   </Layout>
 );
 
