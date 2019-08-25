@@ -17,7 +17,10 @@
 ## Quick start
 
 ```bash
-# develop
+# Install packages
+npm run install
+
+# Start development server
 npm run dev
 
 # build
