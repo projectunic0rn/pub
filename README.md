@@ -18,7 +18,7 @@
 
 ```bash
 # Install packages
-npm run install
+npm install
 
 # Start development server
 npm run dev
