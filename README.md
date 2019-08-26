@@ -18,7 +18,10 @@
 
 ```bash
 # Install packages
-npm run install
+npm install
+
+# Create new .env file with contents of .env.example
+cp .env.example .env
 
 # Start development server
 npm run dev
