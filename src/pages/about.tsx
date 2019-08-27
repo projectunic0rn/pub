@@ -39,16 +39,6 @@ const AboutPage: React.FC = () => {
             skills or background to join our community and help build software
             they are passionate about with others.
           </p>
-
-          <h2>Contact Us</h2>
-
-          <p>
-            If you have any questions about this policy, please contact us at{' '}
-            <a href="mailto:projectunicorn10@gmail.com">
-              projectunicorn10@gmail.com
-            </a>
-            .
-          </p>
         </PageBody>
       </Container>
     </Layout>
