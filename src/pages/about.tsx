@@ -30,14 +30,14 @@ const AboutPage: React.FC = () => {
             meaningful software.
           </p>
           <p>
-            Our mission is to foster a community where creative individuals
-            including developers and designers can collaborate together to build
-            real world applications. By joining Project Unicorn we hope that we
-            can help improve your technical, communication, management and
-            leadership skills while working collaboratively with other members
-            of the community. Project Unicorn encourages everyone regardless of
-            skills or background to join our community and help build software
-            they are passionate about with others.
+            Our mission is to foster a community where creative individuals can
+            collaborate together to build real world applications. By joining
+            Project Unicorn we hope that we can help improve your technical,
+            communication, management and leadership skills while working
+            collaboratively with other members of the community. Project Unicorn
+            encourages everyone regardless of skills or background to join our
+            community and help build software they are passionate about with
+            others.
           </p>
         </PageBody>
       </Container>
