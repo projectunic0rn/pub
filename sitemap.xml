@@ -18,7 +18,9 @@
 <url> <loc>https://projectunicorn.net/blog/tag/project/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmoran/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmjordas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/contact/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/privacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/terms/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
