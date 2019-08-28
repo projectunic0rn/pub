@@ -24,6 +24,9 @@ module.exports = Object.freeze({
   postsPerFirstPage: 6,
   /** Number of posts to be shown on next blog post list pages. */
   postsPerPage: 6,
+  /** MailChimp API endpoint */
+  mailChimpAPI:
+    'https://gmail.us3.list-manage.com/subscribe/post?u=fe25209984fd03f765b2af825&amp;id=71fee7bcba',
   /**
    * Information about the website. Can be accessed by components by calling
    * the `useSiteMetadata` custom React hook.
