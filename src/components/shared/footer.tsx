@@ -119,14 +119,17 @@ const FormLabel = styled.label``;
 const FormInput = styled.input`
   margin-bottom: 1rem;
 `;
-const FormMsg = styled.span``;
 
 /** Footer displays information about the web site. */
 const Footer: React.FC = () => {
   const siteMetadata = useSiteMetadata();
   const [email, setEmail] = React.useState('');
   const [formMsg, setFormMsg] = React.useState('');
-  const formResponse = formMsg ? <FormMsg>{formMsg}</FormMsg> : '';
+  const formResponse = formMsg ? (
+    <div dangerouslySetInnerHTML={{ __html: formMsg }} />
+  ) : (
+    ''
+  );
 
   const handleInputChange = (e: any): void => {
     setEmail(e.target.value);
