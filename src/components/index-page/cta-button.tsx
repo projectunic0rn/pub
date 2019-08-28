@@ -92,7 +92,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
       {children || content}
     </Button>
   ) : (
-    <ButtonSubmit variant="secondary" type="submit" value={content} />
+    <ButtonSubmit variant={variant} type="submit" value={content} />
   );
 };
 
