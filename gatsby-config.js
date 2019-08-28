@@ -121,6 +121,13 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint:
+          'https://hotmail.us3.list-manage.com/subscribe/post?u=928cc5d794a65c387c897bbf0&amp;id=684f8b23b0',
+      },
+    },
   ],
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',

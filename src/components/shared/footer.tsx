@@ -1,5 +1,6 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
 
 import { Anchor } from '@components/shared';
 import {
@@ -11,6 +12,7 @@ import {
 } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from '@styled-components';
+import CtaButton from '../index-page/cta-button';
 
 const Wrapper = styled.footer`
   background: ${({ theme }) => theme.colors.base};
@@ -104,9 +106,42 @@ const StyledAnchor = styled(Anchor)`
   ${anchorStyles};
 `;
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
+    width: 100%;
+  }
+`;
+
+const FormLabel = styled.label``;
+const FormInput = styled.input`
+  margin-bottom: 1rem;
+`;
+const FormMsg = styled.span``;
+
 /** Footer displays information about the web site. */
 const Footer: React.FC = () => {
   const siteMetadata = useSiteMetadata();
+  const [email, setEmail] = React.useState('');
+  const [formMsg, setFormMsg] = React.useState('');
+  const formResponse = formMsg ? <FormMsg>{formMsg}</FormMsg> : '';
+
+  const handleInputChange = (e: any): void => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e: any): void => {
+    e.preventDefault();
+
+    addToMailchimp(email).then(
+      (data: any): void => {
+        setFormMsg(data.msg);
+        setEmail('');
+      },
+    );
+  };
 
   return (
     <Wrapper>
@@ -173,8 +208,18 @@ const Footer: React.FC = () => {
           </ListItem>
         </List>
       </Col>
-
       <Col>
+        <Form onSubmit={handleSubmit}>
+          <FormLabel htmlFor="email">Subscribe to our mailing list</FormLabel>
+          <FormInput
+            id="email"
+            type="text"
+            onChange={handleInputChange}
+            value={email}
+          />
+          <CtaButton type="input" content="Subscribe" />
+          {formResponse}
+        </Form>
         <SocialWrapper>
           <IconWrapper>
             <StyledAnchor
