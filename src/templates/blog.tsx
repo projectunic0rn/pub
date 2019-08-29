@@ -78,6 +78,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
       external: false,
       href: '/blog/tags',
       title: 'List of blog tags',
+      requiresAuthentication: false,
     },
   ];
 

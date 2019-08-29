@@ -5,12 +5,18 @@ import { Anchor } from '@components/shared';
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
+import NavButton from './buttons/nav-button';
+import dotIcon from '../../assets/images/dot.png';
 
 export interface NavigationLink {
   content: string;
   external: boolean;
   href: string;
   title?: string;
+  requiresAuthentication: boolean;
+  button?: boolean;
+  link?: boolean;
+  profileIcon?: boolean;
 }
 
 interface OwnProps {
@@ -67,9 +73,32 @@ const NavMenuItem = styled.li`
   }
 `;
 
-const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  const siteMetadata = useSiteMetadata();
+const ProfileIconContainer = styled.div`
+  cursor: pointer;
+  position: relative;
+`;
 
+const ProfileIcon = styled.img`
+  border-radius: 100%;
+  margin-bottom: -0.9em !important;
+`;
+
+const ProfileDot = styled.img`
+  position: absolute;
+  top: 1.5em;
+  right: -0.2em;
+`;
+const filterInvalidNavItems = (navItem: NavigationLink) => {
+  return navItem.requiresAuthentication === false;
+};
+
+const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
+  // TODO: Replace w/ variable to read user authentication status
+  const userAuthenticated = true;
+  const siteMetadata = useSiteMetadata();
+  const validNavItems = userAuthenticated
+    ? navLinks
+    : navLinks.filter(filterInvalidNavItems);
   return (
     <Nav>
       <Link to="/" title={`${siteMetadata.title}`}>
@@ -77,14 +106,32 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
       </Link>
 
       <NavMenu>
-        {navLinks.map((v) => (
+        {validNavItems.map((v: NavigationLink) => (
           <NavMenuItem key={v.href}>
-            {v.external ? (
-              <Anchor href={v.href} content={v.content} title={v.title} />
-            ) : (
-              <Link to={v.href} title={v.title}>
-                {v.content}
-              </Link>
+            {v.button && <NavButton>{v.content}</NavButton>}
+            {v.link &&
+              (v.external ? (
+                <Anchor href={v.href} content={v.content} title={v.title} />
+              ) : (
+                <Link to={v.href} title={v.title}>
+                  {v.content}
+                </Link>
+              ))}
+            {v.profileIcon && (
+              <ProfileIconContainer>
+                <ProfileIcon
+                  src={v.content}
+                  height={46}
+                  width={46}
+                  alt="profile image"
+                />
+                <ProfileDot
+                  src={dotIcon}
+                  height={16}
+                  width={16}
+                  alt="blue-dot"
+                />
+              </ProfileIconContainer>
             )}
           </NavMenuItem>
         ))}
