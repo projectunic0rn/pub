@@ -6,7 +6,7 @@ import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
-import profileImg from '../../assets/images/default.png';
+import profileImg from '../../images/default.png';
 
 interface OwnProps {
   navLinks?: NavigationLink[];

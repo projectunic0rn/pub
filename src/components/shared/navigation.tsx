@@ -6,7 +6,7 @@ import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 import NavButton from './buttons/nav-button';
-import dotIcon from '../../assets/images/dot.png';
+import dotIcon from '../../images/dot.png';
 
 export interface NavigationLink {
   content: string;
