@@ -1,7 +1,9 @@
+import { Link } from 'gatsby';
 import * as React from 'react';
-import styled, { css } from '@styled-components';
 
+import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
+import CtaButton from '@components/index-page/cta-button';
 import { useSiteMetadata } from '@hooks';
 
 const Wrapper = styled.section`
@@ -32,7 +34,18 @@ const FormLabel = styled.label`
 
 const FormInput = styled.input`
   max-width: 400px;
-  padding: 0.225em;
+  padding: 0.425em;
+`;
+
+const LinkWrapper = styled.div`
+  margin: 0.625em 0.125em;
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+`;
+
+const ButtonWrapper = styled.div`
+  padding: 1.825em 0.125em;
 `;
 
 /** Displays the Login page for the website. */
@@ -57,12 +70,25 @@ const LoginPage: React.FC = () => {
             type="text"
             placeholder="unicorn@projectunicorn.net"
           />
+
           <FormLabel htmlFor="password">Password</FormLabel>
           <FormInput
             id="password"
             type="password"
             placeholder="Your Password"
           />
+
+          <LinkWrapper>
+            <Link to="/forgotpassword/">Forgot password?</Link>
+          </LinkWrapper>
+
+          <LinkWrapper>
+            <Link to="/register/">New member? Sign Up!</Link>
+          </LinkWrapper>
+
+          <ButtonWrapper>
+            <CtaButton title="" href="" type="input" content="Sign In" />
+          </ButtonWrapper>
         </Form>
       </Wrapper>
     </Layout>
