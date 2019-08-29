@@ -6,6 +6,7 @@ import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
+import profileImg from '../../assets/images/default.png';
 
 interface OwnProps {
   navLinks?: NavigationLink[];
@@ -23,12 +24,40 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         external: false,
         href: '/blog',
         title: `${siteMetadata.title} blog`,
+        requiresAuthentication: false,
+        link: true,
       },
       {
         content: 'GitHub',
         external: true,
         href: `//github.com/${siteMetadata.social.github}`,
         title: `${siteMetadata.title} GitHub organization`,
+        requiresAuthentication: false,
+        link: true,
+      },
+      {
+        content: 'Projects',
+        external: false,
+        href: '/app',
+        title: `${siteMetadata.title} projects`,
+        requiresAuthentication: true,
+        link: true,
+      },
+      {
+        content: 'Start Project',
+        external: false,
+        href: '/projects',
+        title: `${siteMetadata.title} start project`,
+        requiresAuthentication: true,
+        button: true,
+      },
+      {
+        content: profileImg,
+        external: false,
+        href: '/blog',
+        title: `${siteMetadata.title} blog`,
+        requiresAuthentication: true,
+        profileIcon: true,
       },
     ];
   }
