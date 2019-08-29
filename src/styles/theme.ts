@@ -47,6 +47,7 @@ const boxes = {
     section: {
       medium: '4.6875em 3.4375em' as const,
       small: '2.8125em 1.5625em' as const,
+      smallTop: '1.171875em 3.4375em' as const,
     },
   },
 };
