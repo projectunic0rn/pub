@@ -30,6 +30,12 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         href: `//github.com/${siteMetadata.social.github}`,
         title: `${siteMetadata.title} GitHub organization`,
       },
+      {
+        content: 'Sign In',
+        external: false,
+        href: '/signin',
+        title: `${siteMetadata.title} sign in`,
+      },
     ];
   }
 
