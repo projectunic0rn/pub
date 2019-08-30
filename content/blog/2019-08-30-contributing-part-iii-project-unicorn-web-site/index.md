@@ -2,6 +2,7 @@
 title: 'Contributing Part III: Project Unicorn Web Site'
 author: rmjordas
 date: '2019-08-30'
+image: ./hero.jpg
 tags:
   - Project Unicorn
   - contributing
