@@ -1,0 +1,957 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:118.75%/1.58 'Raleway',sans-serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.73);font-family:'Raleway',sans-serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:2rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.51572rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.31951rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.87055rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;color:hsla(0,0%,0%,0.9);font-family:'Raleway',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.81225rem;line-height:1.1;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}ul{margin-left:1.58rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;list-style-position:outside;list-style-image:none;}ol{margin-left:1.58rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;font-size:1em;line-height:1.58rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;font-size:1rem;line-height:1.58rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}blockquote{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0.9875rem;padding-right:0;padding-top:0;margin-bottom:1.58rem;font-size:1.1487rem;line-height:1.58rem;border-left:0.3125rem solid #a4bbe1;color:hsla(0,0%,0%,0.65);font-style:italic;}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.58rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.58rem;}b{font-weight:800;}strong{font-weight:800;}dt{font-weight:800;}th{font-weight:800;}li{margin-bottom:calc(1.58rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.58rem;margin-bottom:calc(1.58rem / 2);margin-top:calc(1.58rem / 2);}li > ul{margin-left:1.58rem;margin-bottom:calc(1.58rem / 2);margin-top:calc(1.58rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.58rem / 2);}code{font-size:0.9em;line-height:1.58rem;}kbd{font-size:0.85rem;line-height:1.58rem;}samp{font-size:0.85rem;line-height:1.58rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.05333rem;padding-right:1.05333rem;padding-top:0.79rem;padding-bottom:calc(0.79rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}a{color:#5f8ddc;text-decoration:none;text-shadow:none;background-image:linear-gradient(to top, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0) 1px, #5f8ddc 1px, #5f8ddc 2px, hsla(0, 0%, 0%, 0) 2px);}a:hover,a:active{text-shadow:none;background-image:none;}h1,h2,h3,h4,h5,h6{margin-top:3.16rem;}li>ol,li>ul{margin-left:20px;margin-bottom:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.58rem;color:hsla(0,0%,0%,0.73);font-style:normal;font-weight:400;}blockquote cite:before{content:"— ";}@media only screen and (max-width:480px){html{font-size:106.25%;line-height:28px;}blockquote{border-left:0.3125rem solid #a4bbe1;color:hsla(0,0%,0%,0.59);padding-left:0.88875rem;font-style:italic;margin-left:-1.185rem;margin-right:0;}}a:visited{color:#5f8ddc;}</style><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=94263a925709572d0d68da97258d633d"/><style data-href="/styles.2f2933dc343b474e635f.css">code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::-moz-selection,code[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><style type="text/css">
+    .heading-anchor {
+      float: left;
+      padding-right: 4px;
+      margin-left: -20px;
+    }
+    h1 .heading-anchor svg,
+    h2 .heading-anchor svg,
+    h3 .heading-anchor svg,
+    h4 .heading-anchor svg,
+    h5 .heading-anchor svg,
+    h6 .heading-anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .heading-anchor svg,
+    h2:hover .heading-anchor svg,
+    h3:hover .heading-anchor svg,
+    h4:hover .heading-anchor svg,
+    h5:hover .heading-anchor svg,
+    h6:hover .heading-anchor svg,
+    h1 .heading-anchor:focus svg,
+    h2 .heading-anchor:focus svg,
+    h3 .heading-anchor:focus svg,
+    h4 .heading-anchor:focus svg,
+    h5 .heading-anchor:focus svg,
+    h6 .heading-anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var offset = element.offsetTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="canonical" href="https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site/" data-baseprotocol="https:" data-basehost="projectunicorn.net"/><style data-styled="ixbkYz grgPEY iZjjuy bGyTUK knXDcv jTMxtb edXSYI kHxVXB dAtSmM iEasaI elnuRv eAXmKT drQsvv dUYyrl dNRWRu iyUYFx gHBSer jXpqCH gsqJfN fFKVre VSXZh fNybFi gnCHbH fIeIgv ccZfY jCIdBt fhMXNE gRKCwZ bSgNW bwSLgw gOWwjK dEWool jMhhHe harPWy itMbes eJIUrs" data-styled-version="4.3.2">
+/* sc-component-id: container__Wrapper-ntpxnj-0 */
+.kHxVXB{margin:0 auto auto;width:100%;padding:4.6875em 3.4375em;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;} @media screen and (max-width:41.6875em){.kHxVXB{padding:2.8125em 1.5625em;}}
+/* sc-component-id: footer__Wrapper-sc-1s465n3-0 */
+.jCIdBt{background:hsla(0,0%,7%,1);color:hsla(0,100%,100%,1);padding:2.8125em 1.5625em;} @media screen and (min-width:60.9375em){.jCIdBt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:4.6875em 3.4375em;}}
+/* sc-component-id: footer__Col-sc-1s465n3-1 */
+.fhMXNE{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:0 0 25%;-ms-flex:0 0 25%;flex:0 0 25%;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;} @media screen and (max-width:60.9375em){.fhMXNE{-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;margin-bottom:1.25em;}}
+/* sc-component-id: footer__Logo-sc-1s465n3-2 */
+.gRKCwZ{-webkit-align-self:flex-start;-ms-flex-item-align:start;align-self:flex-start;margin:0;margin-bottom:2em;width:8em;} @media screen and (max-width:41.6875em){.gRKCwZ{min-width:8em;width:70%;}}
+/* sc-component-id: footer__Text-sc-1s465n3-3 */
+.bSgNW{margin-bottom:0.9375em;width:100%;}
+/* sc-component-id: footer__List-sc-1s465n3-4 */
+.bwSLgw{margin:0;}
+/* sc-component-id: footer__ListItem-sc-1s465n3-5 */
+.gOWwjK{list-style:none;margin-bottom:0.9375em;}
+/* sc-component-id: footer__SocialWrapper-sc-1s465n3-6 */
+@media screen and (max-width:60.9375em){.jMhhHe{margin:1.5625em auto 0 auto;}}
+/* sc-component-id: footer__IconWrapper-sc-1s465n3-7 */
+.harPWy{display:inline-block;height:2.7em;line-height:2.7em;margin:0 0.625em;text-align:center;width:2.7em;}
+/* sc-component-id: footer__SocialIcon-sc-1s465n3-8 */
+.eJIUrs{margin:0;}
+/* sc-component-id: footer__StyledLink-sc-1s465n3-9 */
+.dEWool{background:none;color:hsla(0,100%,100%,1);-webkit-transition:0.15s;transition:0.15s;} .dEWool:visited{color:hsla(0,100%,100%,1);} @media (hover:hover){.dEWool:hover{color:#a4bbe1;}}
+/* sc-component-id: footer__StyledAnchor-sc-1s465n3-10 */
+.itMbes{background:none;color:hsla(0,100%,100%,1);-webkit-transition:0.15s;transition:0.15s;} .itMbes:visited{color:hsla(0,100%,100%,1);} @media (hover:hover){.itMbes:hover{color:#a4bbe1;}}
+/* sc-component-id: navigation__Nav-sc-18hi4fs-0 */
+.ixbkYz{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:3.125em;} @media screen and (max-width:41.6875em){.ixbkYz{padding:1.5625em;}} .ixbkYz.ixbkYz a{background:none;color:hsla(0,0%,0%,0.73);-webkit-transition:0.2s;transition:0.2s;} @media (hover:hover){.ixbkYz.ixbkYz a:hover{color:#5f8ddc;}}
+/* sc-component-id: navigation__NavLogo-sc-18hi4fs-1 */
+.grgPEY{margin:0;width:8em;} @media screen and (max-width:41.6875em){.grgPEY{height:2.1875em;}}
+/* sc-component-id: navigation__NavMenu-sc-18hi4fs-2 */
+.iZjjuy{list-style:none;margin:0;}
+/* sc-component-id: navigation__NavMenuItem-sc-18hi4fs-3 */
+.bGyTUK{display:inline-block;font-weight:800;margin:0;padding-right:2.8125em;} .bGyTUK:last-child{padding:0;}
+/* sc-component-id: sc-global-2192343408 */
+@font-face{font-family:'Raleway';font-display:swap;font-style:normal;font-weight:400;src:local('Raleway'),local('Raleway-Regular'), url('/raleway-v13-latin-regular.woff2') format('woff2'), url('/raleway-v13-latin-regular.woff') format('woff');} @font-face{font-family:'Raleway';font-display:swap;font-style:italic;font-weight:400;src:local('Raleway Italic'),local('Raleway-Italic'), url('/raleway-v13-latin-italic.woff2') format('woff2'), url('/raleway-v13-latin-italic.woff') format('woff');} @font-face{font-family:'Raleway';font-display:swap;font-style:normal;font-weight:800;src:local('Raleway ExtraBold'),local('Raleway-ExtraBold'), url('/raleway-v13-latin-800.woff2') format('woff2'), url('/raleway-v13-latin-800.woff') format('woff');} @font-face{font-family:'slick';font-weight:normal;font-style:normal;src:url('/slick.eot');src:url('/slick.eot?#iefix') format('embedded-opentype'),url('/slick.woff') format('woff'),url('/slick.ttf') format('truetype'),url('/slick.svg#slick') format('svg');} html,body{height:100%;} footer{width:100%;} @media screen and (min-width:35em){html{margin-right:calc(-100vw + 100%);overflow-x:hidden;}} .visually-hidden{border:0;-webkit-clip:rect(0,0,0,0);clip:rect(0,0,0,0);height:0.0625rem;margin:-0.0625rem;overflow:hidden;position:absolute;padding:0;white-space:nowrap;width:0.0625rem;} .heading-anchor,.gatsby-resp-image-link{background:none;} .slick-slider{box-sizing:border-box;display:block;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent;} .slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);} .slick-list{display:block;margin:0;overflow:hidden;padding:0;position:relative;} .slick-list:focus{outline:none;} .slick-list.dragging{cursor:pointer;cursor:hand;} .slick-track{display:block;left:0;margin-left:auto;margin-right:auto;position:relative;top:0;} .slick-track:before,.slick-track:after{content:'';display:table;} .slick-track:after{clear:both;} .slick-loading .slick-track{visibility:hidden;} .slick-loading .slick-slide{visibility:hidden;} .slick-slide{display:none;float:left;height:100%;min-height:1px;} .slick-slide img{display:block;} .slick-slide.slick-loading img{display:none;} .slick-slide.dragging img{pointer-events:none;} [dir='rtl'] .slick-slide{float:right;} .slick-initialized .slick-slide{display:block;} .slick-vertical .slick-slide{border:1px solid transparent;display:block;height:auto;} .slick-arrow.slick-hidden{display:none;} .slick-loading .slick-list{background:#fff url('/ajax-loader.gif') center center no-repeat;} .slick-prev,.slick-next{background:transparent;border:none;color:transparent;cursor:pointer;display:block;font-size:0;height:20px;line-height:0;outline:none;padding:0;position:absolute;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%);width:20px;} .slick-prev:hover,.slick-next:hover,.slick-prev:focus,.slick-next:focus{color:transparent;outline:none;background:transparent;} .slick-prev:hover:before,.slick-next:hover:before,.slick-prev:focus:before,.slick-next:focus:before{opacity:1;} .slick-prev.slick-disabled:before,.slick-next.slick-disabled:before{opacity:0.25;} .slick-prev:before,.slick-next:before{color:white;font-family:'slick';font-size:20px;line-height:1;opacity:0.75;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;} .slick-prev{left:-25px;} [dir='rtl'] .slick-prev{right:-25px;left:auto;} .slick-prev:before{content:'←';} [dir='rtl'] .slick-prev:before{content:'→';} .slick-next{right:-25px;} [dir='rtl'] .slick-next{right:auto;left:-25px;} .slick-next:before{content:'→';} [dir='rtl'] .slick-next:before{content:'←';} .slick-dotted.slick-slider{margin-bottom:30px;} .slick-dots{bottom:-25px;display:block;list-style:none;margin:0;padding:0;position:absolute;text-align:center;width:100%;} .slick-dots li{cursor:pointer;display:inline-block;height:20px;margin:0 5px;padding:0;position:relative;width:20px;} .slick-dots li button{background:transparent;border:0;color:transparent;cursor:pointer;display:block;font-size:0;height:20px;line-height:0;outline:none;padding:5px;width:20px;} .slick-dots li button:hover,.slick-dots li button:focus{outline:none;} .slick-dots li button:hover:before,.slick-dots li button:focus:before{opacity:1;} .slick-dots li button:before{color:black;content:'•';font-family:'slick';font-size:6px;height:20px;left:0;line-height:20px;opacity:0.25;position:absolute;text-align:center;top:0;width:20px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;} .slick-dots li.slick-active button:before{color:black;opacity:0.75;}
+/* sc-component-id: social-icon__StyledAnchor-sc-15yxo91-0 */
+.dUYyrl{color:hsla(0,0%,100%,0.5);-webkit-text-decoration:none;text-decoration:none;background-image:none;margin-right:0.6em;-webkit-transition:0.2s;transition:0.2s;padding:0.2em;} @media (hover:hover){.dUYyrl:hover{color:white;cursor:pointer;}} .dUYyrl:visited{color:hsla(0,0%,100%,0.5);} .dUYyrl:last-child{margin-right:0;}
+/* sc-component-id: social-icon__SrOnly-sc-15yxo91-1 */
+.dNRWRu{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;-webkit-clip:rect(0,0,0,0);clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* sc-component-id: page-body__Body-sc-10woigz-0 */
+.gHBSer{margin:0 auto;max-width:650px;} .gHBSer h1,.gHBSer h2,.gHBSer h3{text-transform:capitalize;} .gHBSer a{-webkit-transition:0.2s;transition:0.2s;color:hsla(0,0%,7%,1);} @media (hover:hover){.gHBSer a:hover{color:#5f8ddc;}} .gHBSer pre{margin:0 0 1.5em 0;border-radius:2px;} .gHBSer pre span{background:inherit !important;}
+/* sc-component-id: avatar__Image-vlw4r0-0 */
+.iEasaI{min-height:4em;max-height:4em;min-width:4em;max-width:4em;border-radius:50%;margin-right:1.6em;}
+/* sc-component-id: hero__Wrapper-sc-19vaa23-0 */
+.knXDcv{position:relative;min-height:300px;}
+/* sc-component-id: hero__BgImg-sc-19vaa23-1 */
+.jTMxtb{position:absolute;top:0;left:0;width:100%;z-index:-1;min-height:300px;height:auto;} @media (min-width:35em){.jTMxtb{height:50vh;}} .jTMxtb > img{object-fit:cover !important;object-position:50% 50% !important;} .jTMxtb::before{content:'';background:rgba(0,0,0,0.25);position:absolute;top:0;left:0;right:0;bottom:0;height:100%;width:100%;z-index:1;}
+/* sc-component-id: hero__Title-sc-19vaa23-2 */
+.edXSYI{font-size:3em;text-transform:capitalize;font-weight:600;position:absolute;width:100%;max-width:650px;padding:0 1rem;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);text-align:center;color:white;margin-top:0;}
+/* sc-component-id: share__Wrapper-sc-56ik4p-0 */
+.fFKVre{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+/* sc-component-id: share__List-sc-56ik4p-1 */
+.fNybFi{max-width:650px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;margin:0 auto 1em auto;} .fNybFi svg path{-webkit-transition:0.2s;transition:0.2s;fill:hsla(0,0%,0%,0.73);opacity:0.7;} @media (hover:hover){.fNybFi a:hover{cursor:pointer;}.fNybFi a:hover svg path{fill:#5f8ddc;opacity:1;}}
+/* sc-component-id: share__Label-sc-56ik4p-2 */
+.VSXZh{font-weight:800;}
+/* sc-component-id: post-links__Wrapper-sc-1x8u7h3-0 */
+.gnCHbH{margin:-2em 0 0 0;padding:0 1.5em 2em;}
+/* sc-component-id: post-links__Box-sc-1x8u7h3-1 */
+.fIeIgv{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;margin:0 auto;width:100%;max-width:650px;} .fIeIgv a{background:transparent;color:hsla(0,0%,7%,1);padding:1em;border-radius:0.3125em;-webkit-text-decoration:none;text-decoration:none;-webkit-transition:0.2s;transition:0.2s;} @media (hover:hover){.fIeIgv a:hover{background:#5f8ddc;color:white;}}
+/* sc-component-id: post-links__NextLink-sc-1x8u7h3-3 */
+.ccZfY{margin-left:auto;-webkit-order:2;-ms-flex-order:2;order:2;}
+/* sc-component-id: post-meta__Wrapper-zs3sza-0 */
+.dAtSmM{margin:0 auto 2.4em;max-width:650px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+/* sc-component-id: post-meta__Body-zs3sza-1 */
+.elnuRv{-webkit-flex:1;-ms-flex:1;flex:1;color:hsla(0,0%,0%,0.73);}
+/* sc-component-id: post-meta__Header-zs3sza-2 */
+.eAXmKT{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;} .eAXmKT a{color:hsla(0,0%,7%,1);display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;} .eAXmKT svg{width:1em;font-size:24px;} .eAXmKT svg path{-webkit-transition:0.2s;transition:0.2s;fill:hsla(0,0%,0%,0.73);opacity:0.7;} @media (hover:hover){.eAXmKT svg:hover path{fill:#5f8ddc;opacity:1;}}
+/* sc-component-id: post-meta__AuthorLink-zs3sza-3 */
+.drQsvv{font-weight:600;font-size:1.2em;margin:0 0.8em 0 0;-webkit-text-decoration:none;text-decoration:none;display:inline-block;-webkit-transition:0.2s;transition:0.2s;background-image:none;} .drQsvv.drQsvv{color:hsla(0,0%,7%,1);} .drQsvv.drQsvv:hover{color:#5f8ddc;}
+/* sc-component-id: post-meta__Bio-zs3sza-4 */
+.iyUYFx{margin:0;}
+/* sc-component-id: post-tags__List-sc-3sbxxt-0 */
+.jXpqCH{width:100%;margin:0 auto 1em auto;max-width:650px;}
+/* sc-component-id: post-tags__Tag-sc-3sbxxt-1 */
+.gsqJfN{display:inline-block;margin:0 0.25em 0.25em 0;} .gsqJfN a{float:left;font-size:0.8em;-webkit-transition:0.2s;transition:0.2s;background:hsla(0,0%,95%,1);padding:0.5em;border-radius:2px;text-transform:capitalize;-webkit-text-decoration:none;text-decoration:none;color:hsla(0,0%,7%,1);border:1px solid hsla(0,0%,91%,1);} @media (hover:hover){.gsqJfN a:hover{background:hsla(0,0%,91%,1);color:hsla(0,0%,7%,1);}}</style><title data-react-helmet="true">Contributing Part III: Project Unicorn Web Site - Project Unicorn</title><meta data-react-helmet="true" content="Rodger Jordas" name="author"/><meta data-react-helmet="true" content="In this post, we&#x27;ll inspect the code that allows us to do the things we did on
+the previous post. All this is possible thanks to Gatsby. I won&#x27;t be
+examining…" name="description"/><meta data-react-helmet="true" content="https://projectunicorn.net/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/hero.jpg" property="og:image"/><meta data-react-helmet="true" content="In this post, we&#x27;ll inspect the code that allows us to do the things we did on
+the previous post. All this is possible thanks to Gatsby. I won&#x27;t be
+examining…" property="og:description"/><meta data-react-helmet="true" content="https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site/" property="og:url"/><meta data-react-helmet="true" content="en" property="og:locale"/><meta data-react-helmet="true" content="Project Unicorn" property="og:site_name"/><meta data-react-helmet="true" content="Contributing Part III: Project Unicorn Web Site" property="og:title"/><meta data-react-helmet="true" content="article" property="og:type"/><meta data-react-helmet="true" content="2019-08-30T00:00:00.000Z" property="article:published_time"/><meta data-react-helmet="true" content="Project Unicorn" property="article:tag"/><meta data-react-helmet="true" content="summary_large_image" name="twitter:card"/><meta data-react-helmet="true" content="@projectunicorn2" name="twitter:site"/><meta data-react-helmet="true" content="@projectunicorn2" name="twitter:creator"/><meta data-react-helmet="true" content="Contributing Part III: Project Unicorn Web Site" name="twitter:title"/><meta data-react-helmet="true" content="https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site/" name="twitter:url"/><meta data-react-helmet="true" content="https://projectunicorn.net/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/hero.jpg" name="twitter:image"/><meta data-react-helmet="true" content="In this post, we&#x27;ll inspect the code that allows us to do the things we did on
+the previous post. All this is possible thanks to Gatsby. I won&#x27;t be
+examining…" name="twitter:description"/><meta data-react-helmet="true" content="Project Unicorn, contributing" name="keywords"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=94263a925709572d0d68da97258d633d"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#ffffff"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=94263a925709572d0d68da97258d633d"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=94263a925709572d0d68da97258d633d"/><meta name="generator" content="Gatsby 2.10.5"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=94263a925709572d0d68da97258d633d"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=94263a925709572d0d68da97258d633d"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=94263a925709572d0d68da97258d633d"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=94263a925709572d0d68da97258d633d"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=94263a925709572d0d68da97258d633d"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><script>
+  
+  function gaOptout(){document.cookie=disableStr+'=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/',window[disableStr]=!0}var gaProperty='UA-135765468-1',disableStr='ga-disable-'+gaProperty;document.cookie.indexOf(disableStr+'=true')>-1&&(window[disableStr]=!0);
+  if(!(navigator.doNotTrack == "1" || window.doNotTrack == "1")) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-135765468-1', 'auto', {"sampleRate":100,"siteSpeedSampleRate":10});
+      ga('set', 'anonymizeIp', true);
+      
+      
+      }
+      </script><link as="script" rel="preload" href="/0-c8bf347138cf08c6f72a.js"/><link as="script" rel="preload" href="/component---src-templates-post-tsx-89fa5282254cc522c97d.js"/><link as="script" rel="preload" href="/2-0c0780ae189aed19cb53.js"/><link as="script" rel="preload" href="/1-2009c5543641c489ba0d.js"/><link as="script" rel="preload" href="/styles-253ee8c720eb55c510e3.js"/><link as="script" rel="preload" href="/app-91a56d47997847469730.js"/><link as="script" rel="preload" href="/webpack-runtime-d48dae40321175276672.js"/><link as="fetch" rel="preload" href="/page-data/blog/contributing-part-iii-project-unicorn-web-site/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><nav class="navigation__Nav-sc-18hi4fs-0 ixbkYz"><a title="Project Unicorn" href="/"><img src="/static/pu-fbe0dc62c96d0307e8e024a81be4b44f.svg" alt="Project Unicorn" class="navigation__NavLogo-sc-18hi4fs-1 grgPEY"/></a><ul class="navigation__NavMenu-sc-18hi4fs-2 iZjjuy"><li class="navigation__NavMenuItem-sc-18hi4fs-3 bGyTUK"><a title="Project Unicorn blog" href="/blog">Blog</a></li><li class="navigation__NavMenuItem-sc-18hi4fs-3 bGyTUK"><a rel="nofollow noopener noreferrer" target="_blank" href="//github.com/projectunic0rn" title="Project Unicorn GitHub organization">GitHub</a></li></ul></nav><section class="hero__Wrapper-sc-19vaa23-0 knXDcv"><div class="hero__BgImg-sc-19vaa23-1 jTMxtb gatsby-image-wrapper" style="position:relative;overflow:hidden"><div style="width:100%;padding-bottom:64.27962489343564%"></div><div title="Contributing Part III: Project Unicorn Web Site" style="background-color:#eeeeee;position:absolute;top:0;bottom:0;opacity:1;right:0;left:0;transition-delay:500ms"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFBv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAbKGQjREcP/EABsQAAICAwEAAAAAAAAAAAAAAAECAAMEERIT/9oACAEBAAEFAojP6QnS33FimS/P/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8BR//EABoQAAIDAQEAAAAAAAAAAAAAAAECABAhEUL/2gAIAQEABj8CjK4zyaJreT//xAAbEAADAAIDAAAAAAAAAAAAAAAAAREQMUFRYf/aAAgBAQABPyFESFv2Y8IVF5yScjSQzP/aAAwDAQACAAMAAAAQ4N//xAAWEQEBAQAAAAAAAAAAAAAAAAAAASH/2gAIAQMBAT8QtY//xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QSpR//8QAHBABAAMAAgMAAAAAAAAAAAAAAQARIUFREDGR/9oACAEBAAE/EBAFc0H068Zjd1O6jhLxBViunPHyObs1Mn//2Q==" title="Contributing Part III: Project Unicorn Web Site" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/dd9805a2c5ae79d6e0d37cabb592517b/f709c/hero.jpg 450w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/2b1a3/hero.jpg 900w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/hero.jpg 1800w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/b4a0b/hero.jpg 2700w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/2a223/hero.jpg 3600w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/e6902/hero.jpg 4692w" sizes="(max-width: 1800px) 100vw, 1800px" /><img loading="lazy" sizes="(max-width: 1800px) 100vw, 1800px" srcset="/static/dd9805a2c5ae79d6e0d37cabb592517b/f709c/hero.jpg 450w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/2b1a3/hero.jpg 900w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/hero.jpg 1800w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/b4a0b/hero.jpg 2700w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/2a223/hero.jpg 3600w,
+/static/dd9805a2c5ae79d6e0d37cabb592517b/e6902/hero.jpg 4692w" src="/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/hero.jpg" alt="" title="Contributing Part III: Project Unicorn Web Site" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><h1 class="hero__Title-sc-19vaa23-2 edXSYI">Contributing Part III: Project Unicorn Web Site</h1></section><section class="container__Wrapper-ntpxnj-0 kHxVXB"><div class="post-meta__Wrapper-zs3sza-0 dAtSmM"><div class="avatar__Image-vlw4r0-0 iEasaI gatsby-image-wrapper" style="position:relative;overflow:hidden"><div style="width:100%;padding-bottom:100%"></div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAFTUlEQVQ4yyWT2VOb5xXGPydp4mDjCiG0LyCBdskSSAgBAiQhgYTZJMAgwJilNlvMYghggyICw2IMxhuqje3Gxk6atJNk2qvkptPL3PSi1/0n+hf8+tm9OPPMed85z5nzPOcIu89f8Pjdn/8fb7/l2fd/5bkYR69ek3/7jidn79h/cUYu/yNzB39nbu8nsofPOBTr7j17zsHpS/ZF3H6aZ3F7B2FP/Dj80xv2TsTHR085evkNJ+++4+GrV8w/eEn07htqF8+onnqGK7OHpWUdT3ScgbkcG49esH7/kNmNLH9YWmFgcgZhN3/K3h9P+erwmI2DI/bzzzn+5oy+XB7b7CmVq3/D3LWERGumpNSFstyL3hFHZmygLNjJ1dkV2jODxFK9hLtSCJvHT9h+kv9AmBUJD07yjG49RpnJ4rn1BndmH7nJg622l6bhHRKTeeKjxzR0ZdFZIzSlx7kyMEhL3wCtIgq5o4dsPT7hPWbvHbJ9/Jj66U2U6WWsY/eQ2+uRGZzYI6M4wyM4Qv34Ihm89R2UOxtx+jqJ92aI9vQQ6+tH+PrhE97H3f37bOwfcDO7i65vCW3nPPqOGQpkGoZuf01mfovUtVmmlze5cWuN/sw4yfZxKpxX8EdbqGqOEkxcQcgePvyg3dz6JosbOYJjSyi7F9B23KKkPsXFYiWZtfu0jK/Qv7grNn/FSnaPG9O3mLhxgD3QhaexEW9TGH+sFeHLrV2WNndYuJOle+o2iq4ZjINZtIkpii43calYxQWpioJLEor0ZiojKSItaeqaOzB7kqjL6/CEEwRiLdS0dSKkBq/Rd32C8S/msffcRH11lfL+r1CHhzmvsxFMXsUVauHjj84hCALnL0pEctkH/OR3n/BpkRJrTSu+aDO+pEjoaQwTaE1wOdmFOj2DdfyIss7baGNjFBgc1Lb2s332D0zeei5ISoinR1jbOkamNiCRaSnW2/HEeumeW6d19i6CLdFKeTyOqqUP680HOCYeoY2PYer5EqnFz2cFUqb33vDjv//L05//xYuffuPk9S9cu7nK9ZkjinUOYjM5lr77jZ6jHxBMkUb04WakvkaMvUtYR3bRxIawj+yhctVRWFTCxRIDk7kTvv3nf8hM3qW2qZ3cziltPbMIBRIq++eJLu8TWD5AKK3y4xq7gyExhMQTRNXUhSaapqJvFXtDG8FQAGWZDZ24j3XJa3x2/gLnzn1EdUMHEo2RcxcKkTnEq3lfkxpF8DbF8E5t4Vt4gPP6HUpFYkUwjrQyhMzTRIlahVRpQF0RQGWq4pKkmIsSJQaLG5vfRYFcw3m5Hk1NAqNonlDfnaGsfYSK7glswwtYB76gvHMCY/QqpY0p5M5aJEoTcr0TdVklqlIvxQoTn35egFRexO8Vcj6+JEVu9qN3+xEcbUOioz0oA2E0DUl0sW508RTGRAZzYhhnahpP/zLO9knc4m56Yjew1Q1gqurCeDmJxZemMrqKu3EFpdGCEFx8ikcctaJjhJJK8W5FHRWBCIraGNpIJ8ZIL8ZwGnNsAGuz2CTUjTWUxhUdxiGa50pP4O5cQGMJi1PoEZKHvxLdeEtwagdzchCpXRzJVkmxO0CRqwpdfRuW+BDW2CAVoRSm6gSmQBsmfwLN5VqxeTWaQAKtJYTKWIYQWX9LPPcXmtdeE5o9wpIYpMjsosjk+EBcaLSKuRulU9wAew0Kqw+lPYBG1FbnCom61WNwX0FR5hRNK0coTw5g6x7H2TeNb2SNmtEspmgvhTojEoMZmcVLob5CzE1Iy+zI3ofJhcpWjcLlR10tEntb0ZirkWl1/A9W9/d5GR2yqAAAAABJRU5ErkJggg==" title="Rodger Jordas" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/ab240be8f505ebd9708c5bfe636f9248/5fc05/rmjordas.png 17w,
+/static/ab240be8f505ebd9708c5bfe636f9248/aafa4/rmjordas.png 34w,
+/static/ab240be8f505ebd9708c5bfe636f9248/6d6f1/rmjordas.png 68w,
+/static/ab240be8f505ebd9708c5bfe636f9248/150d1/rmjordas.png 102w,
+/static/ab240be8f505ebd9708c5bfe636f9248/f4899/rmjordas.png 136w,
+/static/ab240be8f505ebd9708c5bfe636f9248/7c0ed/rmjordas.png 200w" sizes="(max-width: 68px) 100vw, 68px" /><img loading="lazy" sizes="(max-width: 68px) 100vw, 68px" srcset="/static/ab240be8f505ebd9708c5bfe636f9248/5fc05/rmjordas.png 17w,
+/static/ab240be8f505ebd9708c5bfe636f9248/aafa4/rmjordas.png 34w,
+/static/ab240be8f505ebd9708c5bfe636f9248/6d6f1/rmjordas.png 68w,
+/static/ab240be8f505ebd9708c5bfe636f9248/150d1/rmjordas.png 102w,
+/static/ab240be8f505ebd9708c5bfe636f9248/f4899/rmjordas.png 136w,
+/static/ab240be8f505ebd9708c5bfe636f9248/7c0ed/rmjordas.png 200w" src="/static/ab240be8f505ebd9708c5bfe636f9248/6d6f1/rmjordas.png" alt="" title="Rodger Jordas" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><div class="post-meta__Body-zs3sza-1 elnuRv"><header class="post-meta__Header-zs3sza-2 eAXmKT"><a title="Posts by Rodger Jordas" class="post-meta__AuthorLink-zs3sza-3 drQsvv" href="/blog/author/rmjordas">Rodger Jordas</a><a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/rmjordas" title="Rodger Jordas on GitHub" class="social-icon__StyledAnchor-sc-15yxo91-0 dUYyrl"><svg xmlns="http://www.w3.org/2000/svg" color="inherit" width="28px" height="28px" viewBox="0 0 24 24" fill="white"><title>Rodger Jordas on GitHub</title><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg> <span class="social-icon__SrOnly-sc-15yxo91-1 dNRWRu">Rodger Jordas on GitHub</span></a></header><p class="post-meta__Bio-zs3sza-4 iyUYFx">Core Team Member at Project Unicorn</p>Published on <!-- -->August 30, 2019</div></div><div class="page-body__Body-sc-10woigz-0 gHBSer"><p>In this post, we'll inspect the code that allows us to do the things we did on
+the previous post. All this is possible thanks to <a href="https://www.gatsbyjs.org/" target="_blank" rel="nofollow noopener noreferrer">Gatsby</a>. I won't be
+examining every aspect of Gatsby in this article, just the ones use by this
+project.</p>
+<p>Please refer to Gatsby's excellent documentation for stuff that are not in here.</p>
+<blockquote>
+<p>This is part 3 of the Project Unicorn Contributing Guide series for
+documenting how to contribute to the Project Unicorn web site repository.</p>
+<p>This is the last part of the series.</p>
+</blockquote>
+<p>A friendly warning, this part covers advanced topics. This article serves as an
+overview of the source for the Project Unicorn web site.</p>
+<h2 id="Basics"><a href="#Basics" aria-label="Basics permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basics</h2>
+<p>In this section, we'll learn how to preview your blog post in the browser. This
+allows you see you post as if it's already published in the Project Unicorn web
+site.</p>
+<p>Even if you wrote the blog posts with correct Markdown syntax, sometimes you may
+need to preview the article itself to get a sense of how it may look when you
+publish it.</p>
+<h3 id="Preview-blog-posts"><a href="#Preview-blog-posts" aria-label="Preview blog posts permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preview blog posts</h3>
+<blockquote>
+<p><strong>NOTE</strong>: I'm assuming you already have a copy of the repository in your
+machine. Please read the first Part 1 if you forgot how to do that.</p>
+<p><a href="/blog/contributing-part-i-getting-started/">Contributing Part I: Getting Started</a></p>
+</blockquote>
+<p>The first thing we'll do is to get to know the <code>npm</code> command line interface (or
+CLI). <code>npm</code> is the package manager included with Node.js. It used to mean "Node
+Package Manager" because it's responsible for fetching node <em>modules</em> but now,
+it's just <code>npm</code>.</p>
+<blockquote>
+<p><strong>NOTE</strong>: They also insist to call it <code>npm</code> instead of <code>Npm</code> or <code>NPM</code>.</p>
+</blockquote>
+<p>To interact with <code>npm</code>, we have to open a terminal (or Git Bash on Windows) to
+provide it with commands. It similar to how we interact with Git. So here's your
+first command to try:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">help</span></code></pre></div>
+<p>This command will output how to use the <code>npm</code> CLI. We're almost ready to inspect
+our blog post, but for one more thing.</p>
+<h3 id="Running-npm-scripts"><a href="#Running-npm-scripts" aria-label="Running npm scripts permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running <code>npm</code> scripts</h3>
+<p>Before you can inspect the app in your browser, you have to first download some
+packages that this project requires. You can see a list of dependencies inside
+the file called <a href="https://github.com/projectunic0rn/pub/blob/master/package.json" target="_blank" rel="nofollow noopener noreferrer"><code>package.json</code></a> in <code>$PROJECT_ROOT</code>.</p>
+<p>There's a lot of dependencies listed but you don't need to know what every
+package does for now. You should notice though that there are two types of
+dependencies: <code>dependencies</code> and <code>devDependencies</code>. Packages that the app will
+directly use are inside the <code>dependencies</code> object and the ones that are for
+development, testing, formatting, etc. are in <code>devDependencies</code>.</p>
+<p>We need a way to get all those dependencies in our machine. The <code>npm</code> executable
+provides a command to download all the project's dependencies:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">pwd</span> <span class="token comment"># You must be in the $PROJECT_ROOT</span>
+<span class="token function">npm</span> <span class="token function">install</span></code></pre></div>
+<p>This will grab all the packages and put it inside <code>$PROJECT_ROOT/node_modules</code>.</p>
+<p>After that, you can now run the app by executing this command in you terminal</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">pwd</span> <span class="token comment"># $PROJECT_ROOT</span>
+<span class="token function">npm</span> start</code></pre></div>
+<p><strong>This command will fail</strong> and <code>npm</code> would tell you that "&#x3C;something> is not
+provided". For now, copy the file called
+<a href="https://github.com/projectunic0rn/pub/blob/master/.env.example" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/.env.example</code></a> to a new file called
+<code>$PROJECT_ROOT/.env</code>:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">cp</span> .env.example .env</code></pre></div>
+<p>What this file is for will be discussed later.</p>
+<p>Now when your re-run the script, it will print some output about the status of
+the build and after that, it will give you instruction on how preview it. By
+default the location is <a href="http://localhost:8000" target="_blank" rel="nofollow noopener noreferrer">http://localhost:8000</a>.</p>
+<p>Keep this local server running and you'll be able to view the updates
+immediately when you change your blog post.</p>
+<h3 id="Other-commands"><a href="#Other-commands" aria-label="Other commands permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other commands</h3>
+<p>The project also specifies other <code>npm</code> scripts you can run when working with
+specific portions of the application:</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build</code></td>
+<td>Outputs the static assets for deployment</td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>Wipes out the contents of the .cache and public directories</td>
+</tr>
+<tr>
+<td><code>dev</code></td>
+<td>Spawns a Gatsby development server</td>
+</tr>
+<tr>
+<td><code>dev:m</code></td>
+<td>Similar to <code>dev</code> but can preview changes on other devices in the same network</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>Runs the Prettier for Markdown and JSON files</td>
+</tr>
+<tr>
+<td><code>format:precommit</code></td>
+<td>Similar to <code>format</code> but with less arguments</td>
+</tr>
+<tr>
+<td><code>lint</code></td>
+<td>Runs ESLint to report lint errors</td>
+</tr>
+<tr>
+<td><code>lint:fix</code></td>
+<td>Runs ESLint to check and fix errors (if possible)</td>
+</tr>
+<tr>
+<td><code>start</code></td>
+<td>Serves the production build of the app</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Runs Jest to report results from unit tests</td>
+</tr>
+<tr>
+<td><code>typecheck</code></td>
+<td>Runs the TypeScript compiler to report type errors</td>
+</tr>
+</tbody>
+</table>
+<p>The one's you're most likely to use is <code>dev</code>, <code>test</code> and <code>clean</code>. The other
+scripts are mostly used to prepare the app for deployment or for some automated
+task like reporting errors before commiting changes.</p>
+<h3 id="Environment-variables"><a href="#Environment-variables" aria-label="Environment variables permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Environment variables</h3>
+<p>You may choose to provide the application some configuration via environment
+variables when you are running scripts.</p>
+<blockquote>
+<p><a href="https://www.gatsbyjs.org/docs/environment-variables/" target="_blank" rel="nofollow noopener noreferrer">Environment Variables</a></p>
+</blockquote>
+<p>Environment variables can be added in an <code>.env</code> file as key-value pairs
+following this syntax: <code>EXAMPLE_KEY="a value"</code> (See
+<a href="https://github.com/projectunic0rn/pub/blob/master/.env.example" target="_blank" rel="nofollow noopener noreferrer"><code>.env.example</code></a>). When you change something here, be sure to
+restart the development server.</p>
+<blockquote>
+<p><strong>WARNING</strong>: You should <strong>not</strong> put sensitive values in <code>.env</code>. These
+values are bundled together with the application and anyone can inspect them.</p>
+</blockquote>
+<h3 id="Add-new-directory-aliases"><a href="#Add-new-directory-aliases" aria-label="Add new directory aliases permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add new directory aliases</h3>
+<p>Most of the application source code lives in the <a href="https://github.com/projectunic0rn/pub/tree/master/src" target="_blank" rel="nofollow noopener noreferrer"><code>src</code></a> directory. This
+directory is aliased as <code>@</code>. So, for example, you want to import a method in the
+file called <code>my-util.ts</code> inside the <code>src</code> directory, you can simply declare it
+like:</p>
+<div class="gatsby-highlight" data-language="ts"><pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> someMethod <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/my-util'</span><span class="token punctuation">;</span></code></pre></div>
+<p>To view the list of aliases available for commonly accessed directories please
+refer to the TypeScript configuration file at
+<a href="https://github.com/projectunic0rn/pub/blob/master/tsconfig.json" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/tsconfig.json</code></a>.</p>
+<p>To add a directory, add an entry to the "<code>compilerOptions.paths</code>" object. The
+key for this entry will be the alias and the value is an array of paths relative
+to "<code>compilerOptions.baseUrl</code>".</p>
+<p>So if you want an alias for a directory called <code>$PROJECT_ROOT/src/stuff/</code>:</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token property">"paths"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ...</span>
+      <span class="token property">"@stuff/*"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"./src/stuff/*"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>NOTE</strong>: Don't forget to restart your development server and your editor/IDE.</p>
+</blockquote>
+<p>Now you can import any file inside <code>./src/stuff</code> by doing:</p>
+<div class="gatsby-highlight" data-language="ts"><pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> someMethod <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@stuff/file'</span><span class="token punctuation">;</span></code></pre></div>
+<blockquote>
+<p><a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html" target="_blank" rel="nofollow noopener noreferrer">tsconfig.json</a></p>
+</blockquote>
+<h2 id="Add-a-page"><a href="#Add-a-page" aria-label="Add a page permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add a page</h2>
+<p>Now we're done with the basics, we can talk about the "internals" of the Pub
+project.</p>
+<p>We've been focusing a lot on writing blog posts but we are not limited to that
+task. Gatsby might have gained a reputation for being a static generator, but it
+can also be used for building simple (not statically generated) React projects.
+You could also create a mix of the two to create a "hybrid app".</p>
+<blockquote>
+<p><a href="https://www.gatsbyjs.org/docs/building-apps-with-gatsby/#hybrid-app-pages" target="_blank" rel="nofollow noopener noreferrer">Hybrid app pages</a></p>
+</blockquote>
+<p>At the time of writing this article, the Pub project is considered to use only
+the static site generation features of Gatsby. But that might change in the
+future.</p>
+<p>Going back to page creation, if you like to have a landing page of sorts for
+your Project Unicorn project or a simple information page about something, you
+can do it with Gatsby. So if you want to, you can have pages for these paths:
+<code>/help</code>, <code>/grocerhub</code>, <code>/slack-invite</code>, <code>/whatever</code>, etc..</p>
+<p>A page can be very simple and can be crammed into one file. For example,
+<a href="https://github.com/projectunic0rn/pub/blob/master/src/pages/404.tsx" target="_blank" rel="nofollow noopener noreferrer"><code>@pages/404.tsx</code></a> and <a href="https://github.com/projectunic0rn/pub/blob/master/src/pages/about.tsx" target="_blank" rel="nofollow noopener noreferrer"><code>@pages/about.tsx</code></a> are basically
+just React components with content inlined. I consider these as "simple" pages
+and we'll talk more about them in a later section.</p>
+<p>For now, the process of adding pages is not as streamlined as there are a lot of
+considerations like: How can a user reach that page, or are we going to change
+the layout of pages to add a component that links to that page, i.e. navigation
+components, etc. It can potentially change the design of the website.</p>
+<h3 id="Prerequisites"><a href="#Prerequisites" aria-label="Prerequisites permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h3>
+<p>This article assumes you have some experience in the following technologies:</p>
+<ul>
+<li>JavaScript</li>
+<li>TypeScript</li>
+<li>React.js</li>
+<li>GraphQL</li>
+</ul>
+<p>But you don't need to be an expert at any of these to continue.</p>
+<h3 id="Simple-pages"><a href="#Simple-pages" aria-label="Simple pages permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple pages</h3>
+<p>If you want to add a simple page, just add a React component in the
+<a href="https://github.com/projectunic0rn/pub/tree/master/src/pages" target="_blank" rel="nofollow noopener noreferrer">@pages</a> directory. The <code>@pages</code> directory is significant for Gatsby. If
+you put a React component in this directory Gatsby will try to make a page that
+is available at <code>/&#x3C;filename></code>. So if you want a <code>/help</code> page, you should name
+this file <code>help.tsx</code>. If you want a page on <code>/grocerhub/devs</code>, first create a
+new directory in <code>@pages</code> called "grocerhub" and inside that directory add
+<code>devs.tsx</code>.</p>
+<p>Consider this file created at <code>pages/</code> called <code>my-page.tsx</code>:</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">OwnProps</span> <span class="token punctuation">{</span>
+  name<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> MyPageProps <span class="token operator">=</span> OwnProps<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> MyPage<span class="token punctuation">:</span> React<span class="token punctuation">.</span><span class="token constant">FC</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MyPageProps</span></span><span class="token punctuation">></span></span><span class="token plain-text"> = (</span><span class="token punctuation">{</span> name <span class="token operator">=</span> <span class="token string">'Project Unicorn'</span> <span class="token punctuation">}</span><span class="token plain-text">) => (
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Welcome to </span><span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+);
+
+export default MyPage;</span></code></pre></div>
+<p>Once you build your app, you can view this page on <code>/my-page</code>. This page
+displays a very basic page where there's only a heading element as its content.</p>
+<p>Most likely you would need to also show the top navigation and footer. These can
+be added by importing the <code>Layout</code> component. Wrap your content inside this
+component.</p>
+<p>To update the values of elements in the <code>&#x3C;head /></code> element, you should use the
+<code>Seo</code> component. You can put this anywhere the component hierarchy.</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Layout<span class="token punctuation">,</span> Seo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@components/shared'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ...</span>
+
+<span class="token keyword">const</span> MyPage<span class="token punctuation">:</span> React<span class="token punctuation">.</span><span class="token constant">FC</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MyPageProps</span></span><span class="token punctuation">></span></span><span class="token plain-text"> = (</span><span class="token punctuation">{</span> name <span class="token operator">=</span> <span class="token string">'Project Unicorn'</span> <span class="token punctuation">}</span><span class="token plain-text">) => (
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">React.Fragment</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Seo</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>My page<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Welcome to </span><span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">React.Fragment</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+);
+
+export default MyPage;</span></code></pre></div>
+<p>You would notice that we're using the default export syntax in components.
+Although we can use the named export syntax on some components, i.e.:</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">MyPage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>Gatsby requires templates to use default export. Rather than
+use a mix of named and default exports, this project strictly enforces the rule
+that all components must use the default export syntax to avoid confusion.</p>
+<h3 id="Advanced-pages"><a href="#Advanced-pages" aria-label="Advanced pages permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced pages</h3>
+<p>Once your component requires data from some source, you must define the query
+that this component will perform on build. The most basic query you can add to
+your page is "static query". These queries can be used to get an image path or
+data about the website, e.g. name, description, etc..</p>
+<div class="gatsby-highlight" data-language="graphql"><pre class="language-graphql"><code class="language-graphql"><span class="token keyword">query</span> <span class="token punctuation">{</span>
+  file<span class="token punctuation">(</span><span class="token attr-name">relativePath</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token attr-name">eq</span><span class="token punctuation">:</span> <span class="token string">"default-post-image.jpg"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    childImageSharp <span class="token punctuation">{</span>
+      fluid<span class="token punctuation">(</span><span class="token attr-name">maxWidth</span><span class="token punctuation">:</span> <span class="token number">1800</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span><span class="token fragment function">GatsbyImageSharpFluid</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The query above will get an image called <code>default-post.image.jpg</code>. If you'd
+notice there's no such file on the <code>$PROJECT_ROOT</code>. It's actually located in
+<a href="https://github.com/projectunic0rn/pub/tree/master/src/images" target="_blank" rel="nofollow noopener noreferrer"><code>@images</code></a>. Thanks to the <code>gatsby-source-filesystem</code> plugin, we
+allow the app to source from our local file system in the directories we
+specify.</p>
+<p>Since this is defined to be <em>fluid</em> image Gatsby will optimize this image by
+creating various versions. To use this you need to import a special element from
+<code>gatsby-image</code> called <code>Img</code> and pass the value of
+<code>data.file.childImageSharp.fluid</code> to the <code>fluid</code> attribute.</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'gatsby'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Img<span class="token punctuation">,</span> FluidObject <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'gatsby-image'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">SomeComponentProps</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    file<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      childImageSharp<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        fluid<span class="token punctuation">:</span> FluidObject<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> defaultPostImageQuery <span class="token operator">=</span> graphql<span class="token template-string"><span class="token string">`
+  query {
+    file(relativePath: { eq: "default-post-image.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/* A component for rending a fluid image. */</span>
+<span class="token keyword">const</span> SomeComponent<span class="token punctuation">:</span> React<span class="token punctuation">.</span><span class="token constant">FC</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SomeComponentProps</span></span><span class="token punctuation">></span></span><span class="token plain-text"> = ({ data }) => (
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Img</span></span> <span class="token attr-name">fluid</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>file<span class="token punctuation">.</span>childImageSharp<span class="token punctuation">.</span>fluid<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+);
+
+export default SomeComponent;</span></code></pre></div>
+<p>Some queries are quite common that these were extracted to their own custom
+React hook. The above query is equivalent to using the <code>useDefaultPostImage</code>
+React hook:</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> Img <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'gatsby-image'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useDefaultAvatarImage <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@hooks'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> SomeComponent<span class="token punctuation">:</span> React<span class="token punctuation">.</span><span class="token function-variable function">FC</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> defaultAvatarImage <span class="token operator">=</span> <span class="token function">useDefaultAvatarImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Img</span></span> <span class="token attr-name">fluid</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>defaultAvatarImage<span class="token punctuation">.</span>childImageSharp<span class="token punctuation">.</span>fluid<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> SomeComponent<span class="token punctuation">;</span></code></pre></div>
+<p>You're probably confused on why we'd ever need to do this instead of just
+importing the image directly.</p>
+<p>One of Gatsby well-know feature is called progressive image loading. If you
+happen upon reading something on Medium, you'd notice that sometimes images
+appear blurry at first, then it gets clearer until it displays the image
+clearly. This is similar to what Gatsby does with some of our images in the Pub
+web site.</p>
+<blockquote>
+<p><strong>NOTE</strong>: If have a great internet connection you might not see the blurring.</p>
+</blockquote>
+<p>Not only does it create blurry versions, it also makes versions of different
+sizes. This provide a better experience for folks who browser our app that are
+on slower speed and are typically on a mobile browser. Instead of loading an
+image larger that the display dimensions of the browser, Gatsby will use the
+most suitable size for that dimension.</p>
+<p>Don't go crazy with this and use it on each an one of the images inside the
+project. Sometimes it's fine just to use the OG <code>&#x3C;img /></code> element.</p>
+<h3 id="Even-more-advance-pages"><a href="#Even-more-advance-pages" aria-label="Even more advance pages permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Even more advance pages</h3>
+<p>When you need to display a list of something, say, a list of recent blog posts,
+the process is more involved. First you would define a <em>page template</em> in the
+<a href="https://github.com/projectunic0rn/pub/tree/master/src/templates" target="_blank" rel="nofollow noopener noreferrer"><code>@templates</code></a> directory. This component is similar to other
+pages you will make except for the format of the query it exports (we'll go into
+detail later).</p>
+<p>Consider this very basic template called <code>blog-post-list.tsx</code>:</p>
+<div class="gatsby-highlight" data-language="tsx"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">BlogPostListProps</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    allMarkdownRemark<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      nodes<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        frontmatter<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          title<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  pageContext<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    skip<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    limit<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    currentPage<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> blogPostListQuery <span class="token operator">=</span> graphql<span class="token template-string"><span class="token string">`
+  query($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
+      nodes {
+        frontmatter {
+          title
+        }
+      }
+    }
+  }
+`</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+ * Displays a list of the title of the most recent blog posts and a page number
+ * at the bottom.
+ */</span>
+<span class="token keyword">const</span> BlogPostList<span class="token punctuation">:</span> React<span class="token punctuation">.</span><span class="token constant">FC</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">BlogPostListProps</span></span><span class="token punctuation">></span></span><span class="token plain-text"> = ({ data, pageContext }) => (
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Blog posts</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+
+    </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>nodes<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> frontmatter <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>frontmatter<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">This is page number </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>pageContext<span class="token punctuation">.</span>currentPage<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+);
+
+export default BlogPostList;</span></code></pre></div>
+<p>What this displays is a page that lists the titles of the blog posts in our
+project and a page number at the bottom. The list is sorted with the most recent
+blog post at the top. It's also paginated thanks to the page context we will
+provide later when we are modifying the Gatsby Node API configuration file.</p>
+<p>Remember when you made you blog post in <code>$PROJECT_ROOT/content</code>? This is a known
+source directory because it is specified in the Gatsby configuration file. This
+is where we get our data for the blog posts. In other projects, you might see
+that they get their blog posts (and other sources) on an remote database or
+service.</p>
+<p>The <code>&#x3C;BlogPostList /></code> component does not care about where to get the data. It
+only cares that it is structured correctly.</p>
+<p>After creating the component, the next step is to tell Gatsby that you want to
+create this page. Gatsby does not know about components outside the <code>@pages</code>
+directory by default. You can either configure Gatsby to <em>watch</em> a directory or
+explicitly call a method to create this page.</p>
+<p>The Gatsby's Node API configuration file is located at
+<a href="https://github.com/projectunic0rn/pub/blob/master/gatsby-node.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/gatsby-node.js</code></a> and this is where we'll tell Gatsby
+to create the pages. The snippet below will create a single page that can be
+accessed at <code>/blogpostlist</code>.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">createPages</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+
+  actions<span class="token punctuation">.</span><span class="token function">createPage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    path<span class="token punctuation">:</span> <span class="token string">'/blogpostlist'</span><span class="token punctuation">,</span>
+    component<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'./src/templates/blog-post-list.tsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    context<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      limit<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+      skip<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
+<p>The exported <code>createPages</code> anonymous function is passed an object when Gatsby
+builds the app. The method we need is inside the the <code>actions</code> field inside this
+object.</p>
+<blockquote>
+<p><a href="https://www.gatsbyjs.org/docs/actions/#createPage" target="_blank" rel="nofollow noopener noreferrer">The <code>createPage</code> Action</a></p>
+</blockquote>
+<p>Inside the exported <code>createPages</code> anonymous function, we can also call the
+<code>graphql</code> method from the destructured parameters, and pass it a template
+literal containing the a query. This query could contain:</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">createPages</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> graphql<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> createPage <span class="token punctuation">}</span> <span class="token operator">=</span> actions<span class="token punctuation">;</span>
+
+  <span class="token comment">// This will query ALL the blog posts, create a page for the blog post index,</span>
+  <span class="token comment">// the individual blog posts, and the paginated blog post lists.</span>
+  <span class="token keyword">const</span> loadBlogPosts <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// this methods accepts a query string</span>
+    <span class="token function">graphql</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`
+      {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
+          nodes {
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    `</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> errors<span class="token punctuation">,</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>errors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// if there are errors, the build fails</span>
+        <span class="token function">reject</span><span class="token punctuation">(</span>errors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">const</span> nodes <span class="token operator">=</span> data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>nodes<span class="token punctuation">;</span>
+      <span class="token keyword">const</span> numPages <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>
+        nodes<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>postsPerFirstPage<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">/</span> postsPerPage<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// the first page doesn't need the page number in it's path if you want</span>
+      <span class="token function">createPage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        path<span class="token punctuation">:</span> <span class="token string">'/blogpostlist'</span><span class="token punctuation">,</span>
+        component<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'./src/templates/blog-post-list.tsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        context<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          limit<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+          skip<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+          currentPage<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// the next pages, i.e. /blogpostlist/2, /blogpostlist/3, ...</span>
+      Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token punctuation">{</span> length<span class="token punctuation">:</span> numPages <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">_<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token function">createPage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          path<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`/blogpostlist/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/`</span></span><span class="token punctuation">,</span>
+          component<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'./src/templates/blog-post-list.tsx'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          context<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            limit<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+            skip<span class="token punctuation">:</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">,</span>
+            currentPage<span class="token punctuation">:</span> i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+      <span class="token comment">// finally, create each individual blog posts</span>
+      nodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">(</span>_<span class="token punctuation">,</span> i<span class="token punctuation">,</span> a<span class="token punctuation">)</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token function">createPage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          <span class="token comment">// normally we would use a "slug" but we didn't create a field for that</span>
+          path<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`/blog/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+          <span class="token comment">// we need to create a new template for individual posts in the @templates directory</span>
+          <span class="token comment">// we didn't do that in this guide but you need a template that makes</span>
+          <span class="token comment">//  sense for each individual blog post</span>
+          component<span class="token punctuation">:</span> <span class="token string">'./src/templates/blog-post.tsx'</span><span class="token punctuation">,</span>
+          context<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token comment">// it's up to the individual post template to specify what it needs</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>loadBlogPosts<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
+<p>That's it for Gatsby.</p>
+<p>To be honest I didn't want to go deeper with the discussion because Gatsby
+already has excellent documentation.</p>
+<blockquote>
+<p><a href="https://www.gatsbyjs.org/docs/" target="_blank" rel="nofollow noopener noreferrer">Gatsby.js Documentation</a></p>
+</blockquote>
+<h2 id="Why-I-wrote-Pub-like-this"><a href="#Why-I-wrote-Pub-like-this" aria-label="Why I wrote Pub like this permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why I wrote "Pub" like this</h2>
+<p>This section explains why I decided to implement the <a href="https://github.com/projectunic0rn/pub" target="_blank" rel="nofollow noopener noreferrer">Pub</a> project like it
+currently is. Please keep in mind that I'm a beginner and some of my reasoning
+may be flawed. If you found something you want to correct please open an issue
+on Pub's GitHub repository and feel free to tag me with my GitHub username
+(<a href="https://github.com/rmjordas" target="_blank" rel="nofollow noopener noreferrer">@rmjordas</a>).</p>
+<h3 id="TypeScript-vs-JavaScript"><a href="#TypeScript-vs-JavaScript" aria-label="TypeScript vs JavaScript permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript vs JavaScript</h3>
+<p>Why not just use JavaScript to make everything simpler? Why add confusing types
+to this simple project?</p>
+<p>And my answer is the same to most questions in life: <em>Why not?</em></p>
+<p>But seriously, the reason I used TypeScript for this project is because I was
+part of an earlier team in Project Unicorn that used it too. So, I figured, "eh,
+why not?"</p>
+<p>That's it.</p>
+<h3 id="npm-vs-Yarn"><a href="#npm-vs-Yarn" aria-label="npm vs Yarn permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>npm</code> vs Yarn</h3>
+<p>For personal projects, the default package manager I use is Yarn. But here I
+used just plain old <code>npm</code>. I do this for projects that I think may have future
+collaborators as it makes the instructions simpler. <code>npm</code> is already available
+when you install Node.js, whereas Yarn would need to be download and installed
+separately.</p>
+<p>Ultimately, It doesn't really matter what package manager we use.</p>
+<h3 id="Gatsby-vs-Next-vs-pure-Webpack"><a href="#Gatsby-vs-Next-vs-pure-Webpack" aria-label="Gatsby vs Next vs pure Webpack permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gatsby vs Next vs pure Webpack</h3>
+<blockquote>
+<p><strong>TL;DR</strong>:</p>
+<ul>
+<li>Gatsby is hot right now</li>
+<li>Next.js is hot too but I learned Gatsby first</li>
+<li>SSR with Webpack is a nightmare I don't want to experience again</li>
+</ul>
+</blockquote>
+<h3 id="Constants-in-the-site-config-file"><a href="#Constants-in-the-site-config-file" aria-label="Constants in the site config file permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants in the site config file</h3>
+<p>Values that don't change often are located in a file called
+<a href="https://github.com/projectunic0rn/pub/blob/master/site.config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/site.config.js</code></a>. It contains the usernames for
+social accounts, some URLs, the web manifest values, etc.</p>
+<p>Adding a new constant or renaming an existing constant can mean changing it in a
+lot of places. For example, adding a new social account username would need
+changes in the following files:</p>
+<ul>
+<li><a href="https://github.com/projectunic0rn/pub/blob/master/site.config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/site.config.js</code></a></li>
+<li>type definitions in <a href="https://github.com/projectunic0rn/pub/blob/master/src/hooks/use-site-metadata.ts" target="_blank" rel="nofollow noopener noreferrer"><code>@hooks/use-site-metadata.ts</code></a></li>
+<li>GraphQL query string in <a href="https://github.com/projectunic0rn/pub/blob/master/src/hooks/use-site-metadata.ts" target="_blank" rel="nofollow noopener noreferrer"><code>@hooks/use-site-metadata.ts</code></a></li>
+<li>type definitions in component(s)</li>
+<li>usage themselves in components(s)</li>
+</ul>
+<p>You may have noticed duplicated lines like those in the site config file and
+the type definition of <code>useSiteMetadata</code> custom React hook. Unfortunately, it's
+just the way it is when using TypeScript with GraphQL. We need to define the
+type of the returned object from the GraphQL query. This duplication could be
+avoided probably by adding another dependency but it's still manageable for now.</p>
+<p>But you might be thinking, could we put some constants in
+<a href="https://github.com/projectunic0rn/pub/blob/master/site.config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/site.config.js</code></a> and other constants in the
+<a href="https://github.com/projectunic0rn/pub/tree/master/src" target="_blank" rel="nofollow noopener noreferrer"><code>src</code></a> itself (e.g. in <code>@components/constants.js</code> where it is <em>nearer</em> to
+it's usage). This avoids touching the custom React hook if that constant doesn't
+need to be queried by GraphQL and changing variable names only need to be
+updated in:</p>
+<ul>
+<li><code>@components/constants.js</code> (for example)</li>
+<li>usage themselves in components(s)</li>
+</ul>
+<p>So why not drop <a href="https://github.com/projectunic0rn/pub/blob/master/site.config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/site.config.js</code></a> and move the
+constants inside <a href="https://github.com/projectunic0rn/pub/tree/master/src" target="_blank" rel="nofollow noopener noreferrer"><code>src</code></a>? We can do that, but we can't take all constants
+because some are used by Gatsby and Gatsby plugins. We need to move some
+constants inside the Gatsby configuration file at
+<a href="https://github.com/projectunic0rn/pub/blob/master/gatsby-config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/gatsby-config.js</code></a> and inside the Gatsby Node API
+configuration file at <a href="https://github.com/projectunic0rn/pub/blob/master/gatsby-node.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/gatsby-node.js</code></a>.</p>
+<p>Now we have three places where constants are declared and this introduces
+confusion. We have to define what goes to where. I think it's simpler to just
+dump them in one file. So, my advice is to put it all in
+<a href="https://github.com/projectunic0rn/pub/blob/master/site.config.js" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/site.config.js</code></a> except maybe when you're working on
+a very large feature, I guess.</p>
+<p>Anyway, you'll know it when you need to break it up. Don't try to force it
+inside that one file.</p>
+<h3 id="Function-components-vs-class-components"><a href="#Function-components-vs-class-components" aria-label="Function components vs class components permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Function components vs class components</h3>
+<p>React <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank" rel="nofollow noopener noreferrer">introduced hooks</a> in version 16.8 and this description
+perfectly summarizes what it's all about:</p>
+<blockquote>
+<p>[Hooks] let you use state and other React features without writing a class.</p>
+</blockquote>
+<p>I encourage you to read about their motivations on why they added this feature
+to React. If you've worked with a lot of bigger React projects, you'll
+definitely appreciate what hooks offers.</p>
+<p>This project avoids introducing any class component. There are times when class
+components are necessary but they should be transformed to function components,
+as soon as it's possible to do so.</p>
+<p>React may decide to deprecate class component declarations in the future so I
+decided that for this project, all components should be declared as function
+components, that is, until Dan Abramov and the React developers introduce yet
+another way to declare components.</p>
+<h3 id="Styled-Components-vs-pure-CSS"><a href="#Styled-Components-vs-pure-CSS" aria-label="Styled Components vs pure CSS permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Styled Components vs pure CSS</h3>
+<p>I hate writing CSS. It's what makes me temporarily lose interest in whatever
+feature I am working. Sadly, CSS won't go away anytime soon. It's inevitable as
+much as I wish it otherwise.</p>
+<p>But hold up. This project has no <code>*.css</code> files anywhere. <em>What's up with that?</em></p>
+<p>Well, we don't write any styles in <code>.css</code> files but rather we let JavaScript
+write the CSS for us. Of course, we still need to express how we want to style
+our pages, for that we need the Styled Components library.</p>
+<p><em>Why on earth do we need JavaScript to write CSS for us?</em></p>
+<p>One reason is that browsers do not implement all features of the latest version
+of CSS. Google Chrome could support a feature whereas Microsoft Edge partially
+supports it through a <em>prefix</em> for a CSS rule. It's not fun to hunt down these
+prefixed CSS rules and add it to our stylesheets. Using Styled Components we
+only write the rules direct from the current specification and let it handle all
+the tedious prefix inclusion for browsers that need it.</p>
+<p>Another reason is to avoid thinking about the "cascade". The cascade is one of
+the best/worst thing about CSS. I don't like it because it can be the reason for
+bloated CSS files. It tends to produce unused styles in my projects—those rules
+that I might forget to remove when I "patch" the styles far down the cascade.</p>
+<p>With Styled Components, we can minimize this. We only add the styles directly to
+the component that uses them. There's no need to worry about the cascade because
+components are given uniquely generated class names to ensure they don't clash
+whatsoever. This fits well with React and how it addresses separation of
+concerns.</p>
+<p>There are a lot more to Styled Components and I encourage you to explore their
+<a href="https://styled-components.com" target="_blank" rel="nofollow noopener noreferrer">web site</a>.</p>
+<blockquote>
+<p><strong>NOTE</strong>: An alternative to using Styled Components is to use a pre-processor
+like, <a href="https://sass-lang.com/" target="_blank" rel="nofollow noopener noreferrer">Sass</a>. In fact, there's also a Gatsby plugin that allows us to use
+Sass files in our components. We can also utilize S/CSS modules to solve the
+specificity issues.</p>
+</blockquote>
+<h3 id="Pinning-dependencies-vs-version-ranges"><a href="#Pinning-dependencies-vs-version-ranges" aria-label="Pinning dependencies vs version ranges permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pinning dependencies vs version ranges</h3>
+<p><a href="https://github.com/projectunic0rn/pub/blob/master/package.json" target="_blank" rel="nofollow noopener noreferrer"><code>$PROJECT_ROOT/package.json</code></a>, contains the list of <code>npm</code> packages
+that this project depends on. You'd notice that I didn't add those tilde (<code>~</code>)
+or caret (<code>^</code>) characters.</p>
+<p>If you don't know, <code>npm</code> allows you to declare package versions as ranges and
+that's what those characters are for. Packages are encouraged to follow
+<a href="https://semver.org/" target="_blank" rel="nofollow noopener noreferrer">Semantic Versioning</a> (sometimes called "SemVer") when releasing new
+versions.</p>
+<p>Basically, there are three parts to the version number in a typical <code>npm</code>
+package: <code>MAJOR</code>, <code>MINOR</code> and <code>PATCH</code>:</p>
+<blockquote>
+<p><code>MAJOR.MINOR.PATCH</code></p>
+</blockquote>
+<p>From SemVer's website, these values are incremented if you:</p>
+<ul>
+<li><code>MAJOR</code> - make incompatible API changes</li>
+<li><code>MINOR</code> - add functionality in a backwards compatible manner</li>
+<li><code>PATCH</code> - make backwards compatible bug fixes</li>
+</ul>
+<p>A package version with a tilde, e.g. <code>~0.24.3</code> is considered to be
+"approximately equivalent to <code>0.24.3</code>" and any version with a <code>PATCH</code> value
+greater than or equal to <code>3</code> and with the same <code>MAJOR</code> and <code>MINOR</code> values is
+valid.</p>
+<p>Whereas a package version with a caret, e.g. <code>^0.24.3</code> is considered
+"compatible with <code>0.24.3</code>" and any <code>MINOR</code> value greater than or equal to <code>24</code>
+and with the same <code>MAJOR</code> value is valid (<code>PATCH</code> value can be anything).</p>
+<p>Some claim that pinning dependencies is a <em>must</em> because developers can possibly
+publish a "bad" release and it might break your project (even if it's considered
+to be a <code>PATCH</code> release). Others say don't bother because it's too tedious to
+maintain and it makes the Git history noisier.</p>
+<p>I've seen projects that use either version ranges or version pinning but it's
+more common to see those that use version ranges, probably because it's the
+default behavior when installing packages from the <code>npm</code> registry.</p>
+<p>Personally, I've never been comfortable with dependency versions that aren't
+explicitly declared. I'd rather update each package manually and potentially
+introduce noise to the Git history than let Node.js and <code>npm</code> decide what
+versions ranges it can use. But that's just me.</p>
+<h2 id="Troubleshooting-and-other-concerns"><a href="#Troubleshooting-and-other-concerns" aria-label="Troubleshooting and other concerns permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Troubleshooting and other concerns</h2>
+<h3 id="Running-the-dev-script-doesnt-work-It-say-something-is-not-provided"><a href="#Running-the-dev-script-doesnt-work-It-say-something-is-not-provided" aria-label="Running the dev script doesnt work It say something is not provided permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running the <code>dev</code> script doesn't work! It say "&#x3C;something> is not provided!"</h3>
+<p>Please read the "<a href="#Running-npm-scripts">Running <code>npm</code> scripts</a>" section.</p>
+<h3 id="How-do-I-disable-Gatsby-telemetry"><a href="#How-do-I-disable-Gatsby-telemetry" aria-label="How do I disable Gatsby telemetry permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I disable Gatsby telemetry</h3>
+<p>Gatsby added <a href="https://www.gatsbyjs.org/docs/telemetry/" target="_blank" rel="nofollow noopener noreferrer">telemetry</a> when they release version 2.3.0. You
+can disable this by running:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">gatsby telemetry --disable</code></pre></div>
+<p>Alternatively, you may set <code>GATSBY_TELEMETRY_DISABLED</code> to <code>1</code> on the project
+<code>.env</code> file:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">GATSBY_TELEMETRY_DISABLED=1</code></pre></div>
+<blockquote>
+<p><strong>NOTE</strong>: You might also need to restart the development server when you
+change the <code>.env</code>.</p>
+</blockquote>
+<h3 id="Commiting-changes-to-Git-fails-and-deletes-my-changes-from-my-file-system"><a href="#Commiting-changes-to-Git-fails-and-deletes-my-changes-from-my-file-system" aria-label="Commiting changes to Git fails and deletes my changes from my file system permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commiting changes to Git fails and deletes my changes from my file system</h3>
+<p>Not sure what is the exact cause of this but this could happen if you are
+running a local Gatsby development server, and you trigger the pre-commit hook
+(by running <code>git commit</code>). The pre-commit hook will process your changes and run
+type checks and some formatting. These actions probably overwhelms the Node.js
+process for some reason and deletes the changes along with other files.</p>
+<p>When this happens, you can still recover the deleted files that are committed to
+Git, but <strong>all</strong> new changes will be lost (unless you have some program that
+tracks changes to files, e.g. Dropbox history, etc.).</p>
+<p>For <em>very large diffs</em>, it is advisable to shut down the Gatsby local
+development server first before committing to Git.</p>
+<h3 id="Everything-runs-slow-when-Im-editing-with-Visual-Studio-Code"><a href="#Everything-runs-slow-when-Im-editing-with-Visual-Studio-Code" aria-label="Everything runs slow when Im editing with Visual Studio Code permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Everything runs slow when I'm editing with Visual Studio Code</h3>
+<p>There is a TypeScript release that caused type checking to run 20x slower on
+projects that use Styled Components type definitions. To fix this, please make
+sure you that your editor is using the same TypeScript version as the project.
+Refer to the bottom right portion of the status bar when you have an open
+TypeScript file. To change this value, click the version value and pick "Use
+Workspace Version" on the dropdown.</p>
+<h2 id="Maintenance"><a href="#Maintenance" aria-label="Maintenance permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maintenance</h2>
+<h3 id="Code-style-guide"><a href="#Code-style-guide" aria-label="Code style guide permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code style guide</h3>
+<p>I strongly believe that every project needs to have documentation on how to
+write code consistently. This section contains a possible style guide that Pub
+maintainers can adopt and improve on.</p>
+<p>To help cleaning up some common code style violations, we need a code formatter
+like <a href="https://prettier.io" target="_blank" rel="nofollow noopener noreferrer">Prettier</a>. It will format the code when you trigger an action like
+saving a file or committing changes to a Git repo. See this
+<a href="https://prettier.io/docs/en/editors.html" target="_blank" rel="nofollow noopener noreferrer">link</a> to check if your editor has support for Prettier.</p>
+<blockquote>
+<p><strong>TIP</strong>: If you're using Visual Studio Code (VSCode), you'll probably see
+Prettier as a recommended extension for this project.</p>
+</blockquote>
+<p>Also check if <a href="https://editorconfig.org/#download" target="_blank" rel="nofollow noopener noreferrer">EditorConfig</a> is available in
+your editor. This manages some of the auto-formatting the Prettier doesn't
+cover.</p>
+<p>What follows is my suggestion for a basic code style guide for the Pub project.</p>
+<ul>
+<li><strong>Print width</strong>: My laptop screen is quite small so I prefer to have 80
+characters at most in one line. If this is too narrow for you, we can make it
+120 characters. Of course there are some cases where the line will exceed
+these limits, e.g. long URLs, then that’s fine.</li>
+<li><strong>Tab width</strong>: Two (2) spaces per indentation-level is common in JavaScript
+projects.</li>
+<li><strong>Tabs</strong>: No. Use spaces.</li>
+<li><strong>Semicolons</strong>: You should always put semicolons at the end of your
+statements. This has the benefit of not having to memorize the rules for
+automatic semicolon insertion (ASI). Code that rely on ASI is <em>technically</em>
+erroneous code. Also, ECMA people are considering making semicolons mandatory
+in future ES versions.</li>
+<li><strong>Quotes</strong>: Use single quotes for JavaScript and CSS; Use double quotes for
+JSX and HTML.</li>
+<li><strong>Trailing commas</strong>: Always add trailing commas on multi-line statements, e.g.
+declaring an array of 20 items would most definitely be formatted to be a
+multi-line declaration. The last item should have a comma at the end. On
+single-line array and object declarations, the trailing comma is omitted. This
+makes diffing commits more accurately show the change introduced. Another
+benefit: Reordering items is easier since you don’t need to add a comma on the
+last item when you move it up.</li>
+<li><strong>Bracket spacing</strong>: Add spaces at the start and at the end of one-line object
+literals. For example, <code>const foo = { a: true };</code></li>
+<li><strong>JSX brackets</strong>: Put the closing angle bracket on the next line. See
+Prettier's example for <code>jsxBracketSameLine: false</code>.</li>
+<li><strong>Arrow Function Parentheses</strong>: Always add parenthesis on arrow functions even
+when it has only one parameter.</li>
+<li><strong>Filename</strong>: Files should have <code>npm</code> style (kebab-case) names, if possible.
+This also applies to JSX files. Although there is a convention in React, to
+have PascalCasing on JSX file names, we will let the extension <code>.tsx</code>
+determine if the file exports a component. If the file is not a component then
+we will use a <code>.ts</code> extension.</li>
+<li><strong>End of line</strong>: LF</li>
+<li><strong>Insert final newline</strong>: Please insert a single new line character at the end
+of each file.</li>
+</ul>
+<p><a href="https://prettier.io/docs/en/options.html" target="_blank" rel="nofollow noopener noreferrer">Prettier configuration docs</a></p>
+<p>It not much, but I believe it's a good starting point. I tried to include some
+rules from popular JavaScript style guides like Airbnb and Google but I feel I'm
+just copy pasting portions of their rules to this guides.</p>
+<p>In addition, it's probably too early to finalize a code style guide seeing that
+(at the time of writing) there's only one major feature present in the project,
+that is, the blog. With more features added, I'm sure these rules will be
+refined.</p>
+<h3 id="Dependencies"><a href="#Dependencies" aria-label="Dependencies permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dependencies</h3>
+<p>Packages are pinned to a specific version, thus you might need to run an update
+every now and then. Run <code>npm oudated</code> to check which packages are not in their
+latest versions. You may choose to update all packages or just some: maybe those
+that release <code>MAJOR</code> or <code>MINOR</code> but not <code>PATCH</code> versions.</p>
+<p>If you do update, make sure to do checks to see if it broke something in the
+app. Run all the test suites to see if something fails, then generate a
+production build using <code>npm run build</code> and see if there are any build errors.
+You can delete Gatsby artifacts in <code>.cache</code> and <code>public</code> by running
+<code>npm run clean</code> and run the checks again if you're still having trouble.</p>
+<blockquote>
+<p><strong>IMPORTANT</strong>: Don't forget to also commit changes in <code>package-lock.json</code>!</p>
+</blockquote>
+<p>When you upgrade the Node.js version, be sure to check if the Travis
+configuration matches the <code>MAJOR</code> version, i.e. <code>7</code>, <code>10</code>, <code>11</code>. You don't need
+to specify the <code>MINOR</code> and <code>PATCH</code> versions.</p>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Update the value in this part of `travis.yml`</span>
+<span class="token key atrule">node_js</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">'10'</span></code></pre></div>
+<h2 id="The-end"><a href="#The-end" aria-label="The end permalink" class="heading-anchor"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The end</h2>
+<p>Thanks for reading!</p>
+<p>If you find any errors please let me know by opening an issue on <a href="https://github.com/projectunic0rn/pub" target="_blank" rel="nofollow noopener noreferrer">Pub's GitHub
+repository</a> and tag me there with my GitHub username (<a href="https://github.com/rmjordas" target="_blank" rel="nofollow noopener noreferrer">@rmjordas</a>).</p></div><ul class="post-tags__List-sc-3sbxxt-0 jXpqCH"><li class="post-tags__Tag-sc-3sbxxt-1 gsqJfN"><a title="Posts tagged with Project Unicorn" href="/blog/tag/project-unicorn/">Project Unicorn</a></li><li class="post-tags__Tag-sc-3sbxxt-1 gsqJfN"><a title="Posts tagged with contributing" href="/blog/tag/contributing/">contributing</a></li></ul><div class="share__Wrapper-sc-56ik4p-0 fFKVre"><p class="share__Label-sc-56ik4p-2 VSXZh">Share this post</p><div class="share__List-sc-56ik4p-1 fNybFi"><a rel="nofollow noopener noreferrer" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site" title="Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Facebook" class="social-icon__StyledAnchor-sc-15yxo91-0 dUYyrl"><svg xmlns="http://www.w3.org/2000/svg" color="inherit" width="28px" height="28px" viewBox="0 0 24 24" fill="white"><title>Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Facebook</title><path fill="currentColor" d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294H9.689v-3.621h3.129V8.41c0-3.099 1.894-4.785 4.659-4.785 1.325 0 2.464.097 2.796.141v3.24h-1.921c-1.5 0-1.792.721-1.792 1.771v2.311h3.584l-.465 3.63H16.56V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .593 23.408 0 22.676 0"></path></svg> <span class="social-icon__SrOnly-sc-15yxo91-1 dNRWRu">Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Facebook</span></a><a rel="nofollow noopener noreferrer" target="_blank" href="https://twitter.com/intent/tweet?text=Contributing%20Part%20III%3A%20Project%20Unicorn%20Web%20Site&amp;url=https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site&amp;via=projectunicorn2" title="Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Twitter" class="social-icon__StyledAnchor-sc-15yxo91-0 dUYyrl"><svg xmlns="http://www.w3.org/2000/svg" color="inherit" width="28px" height="28px" viewBox="0 0 24 24" fill="white"><title>Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Twitter</title><path fill="currentColor" d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"></path></svg> <span class="social-icon__SrOnly-sc-15yxo91-1 dNRWRu">Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Twitter</span></a><a rel="nofollow noopener noreferrer" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fprojectunicorn.net%2Fblog%2Fcontributing-part-iii-project-unicorn-web-site" title="Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on LinkedIn" class="social-icon__StyledAnchor-sc-15yxo91-0 dUYyrl"><svg xmlns="http://www.w3.org/2000/svg" color="inherit" width="28px" height="28px" viewBox="0 0 24 24" fill="white"><title>Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on LinkedIn</title><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg> <span class="social-icon__SrOnly-sc-15yxo91-1 dNRWRu">Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on LinkedIn</span></a><a rel="nofollow noopener noreferrer" target="_blank" href="https://www.reddit.com/submit?url=https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site" title="Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Reddit" class="social-icon__StyledAnchor-sc-15yxo91-0 dUYyrl"><svg xmlns="http://www.w3.org/2000/svg" color="inherit" width="28px" height="28px" viewBox="0 0 24 24" fill="white"><title>Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Reddit</title><path fill="currentColor" d="M2.204 14.049c-.06.276-.091.56-.091.847 0 3.443 4.402 6.249 9.814 6.249 5.41 0 9.812-2.804 9.812-6.249 0-.274-.029-.546-.082-.809l-.015-.032c-.021-.055-.029-.11-.029-.165-.302-1.175-1.117-2.241-2.296-3.103-.045-.016-.088-.039-.126-.07-.026-.02-.045-.042-.067-.064-1.792-1.234-4.356-2.008-7.196-2.008-2.815 0-5.354.759-7.146 1.971-.014.018-.029.033-.049.049-.039.033-.084.06-.13.075-1.206.862-2.042 1.937-2.354 3.123 0 .058-.014.114-.037.171l-.008.015zm9.773 5.441c-1.794 0-3.057-.389-3.863-1.197-.173-.174-.173-.457 0-.632.176-.165.46-.165.635 0 .63.629 1.685.943 3.228.943 1.542 0 2.591-.3 3.219-.929.165-.164.45-.164.629 0 .165.18.165.465 0 .645-.809.808-2.065 1.198-3.862 1.198l.014-.028zm-3.606-7.573c-.914 0-1.677.765-1.677 1.677 0 .91.763 1.65 1.677 1.65s1.651-.74 1.651-1.65c0-.912-.739-1.677-1.651-1.677zm7.233 0c-.914 0-1.678.765-1.678 1.677 0 .91.764 1.65 1.678 1.65s1.651-.74 1.651-1.65c0-.912-.739-1.677-1.651-1.677zm4.548-1.595c1.037.833 1.8 1.821 2.189 2.904.45-.336.719-.864.719-1.449 0-1.002-.815-1.816-1.818-1.816-.399 0-.778.129-1.09.363v-.002zM2.711 9.963c-1.003 0-1.817.816-1.817 1.818 0 .543.239 1.048.644 1.389.401-1.079 1.172-2.053 2.213-2.876-.302-.21-.663-.329-1.039-.329v-.002zm9.217 12.079c-5.906 0-10.709-3.205-10.709-7.142 0-.275.023-.544.068-.809C.494 13.598 0 12.729 0 11.777c0-1.496 1.227-2.713 2.725-2.713.674 0 1.303.246 1.797.682 1.856-1.191 4.357-1.941 7.112-1.992l1.812-5.524.404.095s.016 0 .016.002l4.223.993c.344-.798 1.138-1.36 2.065-1.36 1.229 0 2.231 1.004 2.231 2.234 0 1.232-1.003 2.234-2.231 2.234s-2.23-1.004-2.23-2.23l-3.851-.912-1.467 4.477c2.65.105 5.047.854 6.844 2.021.494-.464 1.144-.719 1.833-.719 1.498 0 2.718 1.213 2.718 2.711 0 .987-.54 1.886-1.378 2.365.029.255.059.494.059.749-.015 3.938-4.806 7.143-10.72 7.143l-.034.009zm8.179-19.187c-.74 0-1.34.599-1.34 1.338 0 .738.6 1.34 1.34 1.34.732 0 1.33-.6 1.33-1.334 0-.733-.598-1.332-1.347-1.332l.017-.012z"></path></svg> <span class="social-icon__SrOnly-sc-15yxo91-1 dNRWRu">Share &quot;Contributing Part III: Project Unicorn Web Site&quot; on Reddit</span></a></div></div></section><div class="post-links__Wrapper-sc-1x8u7h3-0 gnCHbH"><div class="post-links__Box-sc-1x8u7h3-1 fIeIgv"><a title="Project Unicorn + Upwork" class="post-links__NextLink-sc-1x8u7h3-3 ccZfY" href="/blog/project-unicorn-upwork/">Next Post →</a></div></div><footer class="footer__Wrapper-sc-1s465n3-0 jCIdBt"><div class="footer__Col-sc-1s465n3-1 fhMXNE"><img src="/static/pu-alt-b8b311b61938e7cdfa9dc73b52a95d69.svg" alt="Project Unicorn" class="footer__Logo-sc-1s465n3-2 gRKCwZ"/><p class="footer__Text-sc-1s465n3-3 bSgNW">Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.</p></div><div class="footer__Col-sc-1s465n3-1 fhMXNE"><ul class="footer__List-sc-1s465n3-4 bwSLgw"><li class="footer__ListItem-sc-1s465n3-5 gOWwjK"><a title="Project Unicorn about page" class="footer__StyledLink-sc-1s465n3-9 dEWool" href="/about">About Us</a></li><li class="footer__ListItem-sc-1s465n3-5 gOWwjK"><a title="Project Unicorn blog" class="footer__StyledLink-sc-1s465n3-9 dEWool" href="/blog">Blog</a></li></ul></div><div class="footer__Col-sc-1s465n3-1 fhMXNE"><ul class="footer__List-sc-1s465n3-4 bwSLgw"><li class="footer__ListItem-sc-1s465n3-5 gOWwjK"><a title="Project Unicorn contact page" class="footer__StyledLink-sc-1s465n3-9 dEWool" href="/contact">Contact us</a></li><li class="footer__ListItem-sc-1s465n3-5 gOWwjK"><a title="Project Unicorn terms and conditions" class="footer__StyledLink-sc-1s465n3-9 dEWool" href="/terms">Terms</a></li><li class="footer__ListItem-sc-1s465n3-5 gOWwjK"><a title="Project Unicorn privacy policy" class="footer__StyledLink-sc-1s465n3-9 dEWool" href="/privacy">Privacy</a></li></ul></div><div class="footer__Col-sc-1s465n3-1 fhMXNE"><div class="footer__SocialWrapper-sc-1s465n3-6 jMhhHe"><span class="footer__IconWrapper-sc-1s465n3-7 harPWy"><a rel="nofollow noopener noreferrer" target="_blank" href="//www.instagram.com/projectunicorn1" title="Follow Project Unicorn on Instagram" class="footer__StyledAnchor-sc-1s465n3-10 itMbes"><img alt="" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+SW5zdGFncmFtIGljb248L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwQzguNzQgMCA4LjMzMy4wMTUgNy4wNTMuMDcyIDUuNzc1LjEzMiA0LjkwNS4zMzMgNC4xNC42M2MtLjc4OS4zMDYtMS40NTkuNzE3LTIuMTI2IDEuMzg0Uy45MzUgMy4zNS42MyA0LjE0Qy4zMzMgNC45MDUuMTMxIDUuNzc1LjA3MiA3LjA1My4wMTIgOC4zMzMgMCA4Ljc0IDAgMTJzLjAxNSAzLjY2Ny4wNzIgNC45NDdjLjA2IDEuMjc3LjI2MSAyLjE0OC41NTggMi45MTMuMzA2Ljc4OC43MTcgMS40NTkgMS4zODQgMi4xMjYuNjY3LjY2NiAxLjMzNiAxLjA3OSAyLjEyNiAxLjM4NC43NjYuMjk2IDEuNjM2LjQ5OSAyLjkxMy41NThDOC4zMzMgMjMuOTg4IDguNzQgMjQgMTIgMjRzMy42NjctLjAxNSA0Ljk0Ny0uMDcyYzEuMjc3LS4wNiAyLjE0OC0uMjYyIDIuOTEzLS41NTguNzg4LS4zMDYgMS40NTktLjcxOCAyLjEyNi0xLjM4NC42NjYtLjY2NyAxLjA3OS0xLjMzNSAxLjM4NC0yLjEyNi4yOTYtLjc2NS40OTktMS42MzYuNTU4LTIuOTEzLjA2LTEuMjguMDcyLTEuNjg3LjA3Mi00Ljk0N3MtLjAxNS0zLjY2Ny0uMDcyLTQuOTQ3Yy0uMDYtMS4yNzctLjI2Mi0yLjE0OS0uNTU4LTIuOTEzLS4zMDYtLjc4OS0uNzE4LTEuNDU5LTEuMzg0LTIuMTI2QzIxLjMxOSAxLjM0NyAyMC42NTEuOTM1IDE5Ljg2LjYzYy0uNzY1LS4yOTctMS42MzYtLjQ5OS0yLjkxMy0uNTU4QzE1LjY2Ny4wMTIgMTUuMjYgMCAxMiAwem0wIDIuMTZjMy4yMDMgMCAzLjU4NS4wMTYgNC44NS4wNzEgMS4xNy4wNTUgMS44MDUuMjQ5IDIuMjI3LjQxNS41NjIuMjE3Ljk2LjQ3NyAxLjM4Mi44OTYuNDE5LjQyLjY3OS44MTkuODk2IDEuMzgxLjE2NC40MjIuMzYgMS4wNTcuNDEzIDIuMjI3LjA1NyAxLjI2Ni4wNyAxLjY0Ni4wNyA0Ljg1cy0uMDE1IDMuNTg1LS4wNzQgNC44NWMtLjA2MSAxLjE3LS4yNTYgMS44MDUtLjQyMSAyLjIyNy0uMjI0LjU2Mi0uNDc5Ljk2LS44OTkgMS4zODItLjQxOS40MTktLjgyNC42NzktMS4zOC44OTYtLjQyLjE2NC0xLjA2NS4zNi0yLjIzNS40MTMtMS4yNzQuMDU3LTEuNjQ5LjA3LTQuODU5LjA3LTMuMjExIDAtMy41ODYtLjAxNS00Ljg1OS0uMDc0LTEuMTcxLS4wNjEtMS44MTYtLjI1Ni0yLjIzNi0uNDIxLS41NjktLjIyNC0uOTYtLjQ3OS0xLjM3OS0uODk5LS40MjEtLjQxOS0uNjktLjgyNC0uOS0xLjM4LS4xNjUtLjQyLS4zNTktMS4wNjUtLjQyLTIuMjM1LS4wNDUtMS4yNi0uMDYxLTEuNjQ5LS4wNjEtNC44NDQgMC0zLjE5Ni4wMTYtMy41ODYuMDYxLTQuODYxLjA2MS0xLjE3LjI1NS0xLjgxNC40Mi0yLjIzNC4yMS0uNTcuNDc5LS45Ni45LTEuMzgxLjQxOS0uNDE5LjgxLS42ODkgMS4zNzktLjg5OC40Mi0uMTY2IDEuMDUxLS4zNjEgMi4yMjEtLjQyMSAxLjI3NS0uMDQ1IDEuNjUtLjA2IDQuODU5LS4wNmwuMDQ1LjAzem0wIDMuNjc4Yy0zLjQwNSAwLTYuMTYyIDIuNzYtNi4xNjIgNi4xNjIgMCAzLjQwNSAyLjc2IDYuMTYyIDYuMTYyIDYuMTYyIDMuNDA1IDAgNi4xNjItMi43NiA2LjE2Mi02LjE2MiAwLTMuNDA1LTIuNzYtNi4xNjItNi4xNjItNi4xNjJ6TTEyIDE2Yy0yLjIxIDAtNC0xLjc5LTQtNHMxLjc5LTQgNC00IDQgMS43OSA0IDQtMS43OSA0LTQgNHptNy44NDYtMTAuNDA1YzAgLjc5NS0uNjQ2IDEuNDQtMS40NCAxLjQ0LS43OTUgMC0xLjQ0LS42NDYtMS40NC0xLjQ0IDAtLjc5NC42NDYtMS40MzkgMS40NC0xLjQzOS43OTMtLjAwMSAxLjQ0LjY0NSAxLjQ0IDEuNDM5eiIgZmlsbD0id2hpdGUiIC8+PC9zdmc+Cg==" class="footer__SocialIcon-sc-1s465n3-8 eJIUrs"/><span class="visually-hidden">Follow Project Unicorn on Instagram</span></a></span><span class="footer__IconWrapper-sc-1s465n3-7 harPWy"><a rel="nofollow noopener noreferrer" target="_blank" href="//twitter.com/@projectunicorn2" title="Follow Project Unicorn on Twitter" class="footer__StyledAnchor-sc-1s465n3-10 itMbes"><img alt="" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VHdpdHRlciBpY29uPC90aXRsZT48cGF0aCBkPSJNMjMuOTU0IDQuNTY5Yy0uODg1LjM4OS0xLjgzLjY1NC0yLjgyNS43NzUgMS4wMTQtLjYxMSAxLjc5NC0xLjU3NCAyLjE2My0yLjcyMy0uOTUxLjU1NS0yLjAwNS45NTktMy4xMjcgMS4xODQtLjg5Ni0uOTU5LTIuMTczLTEuNTU5LTMuNTkxLTEuNTU5LTIuNzE3IDAtNC45MiAyLjIwMy00LjkyIDQuOTE3IDAgLjM5LjA0NS43NjUuMTI3IDEuMTI0QzcuNjkxIDguMDk0IDQuMDY2IDYuMTMgMS42NCAzLjE2MWMtLjQyNy43MjItLjY2NiAxLjU2MS0uNjY2IDIuNDc1IDAgMS43MS44NyAzLjIxMyAyLjE4OCA0LjA5Ni0uODA3LS4wMjYtMS41NjYtLjI0OC0yLjIyOC0uNjE2di4wNjFjMCAyLjM4NSAxLjY5MyA0LjM3NCAzLjk0NiA0LjgyNy0uNDEzLjExMS0uODQ5LjE3MS0xLjI5Ni4xNzEtLjMxNCAwLS42MTUtLjAzLS45MTYtLjA4Ni42MzEgMS45NTMgMi40NDUgMy4zNzcgNC42MDQgMy40MTctMS42OCAxLjMxOS0zLjgwOSAyLjEwNS02LjEwMiAyLjEwNS0uMzkgMC0uNzc5LS4wMjMtMS4xNy0uMDY3IDIuMTg5IDEuMzk0IDQuNzY4IDIuMjA5IDcuNTU3IDIuMjA5IDkuMDU0IDAgMTMuOTk5LTcuNDk2IDEzLjk5OS0xMy45ODYgMC0uMjA5IDAtLjQyLS4wMTUtLjYzLjk2MS0uNjg5IDEuOC0xLjU2IDIuNDYtMi41NDhsLS4wNDctLjAyeiIgZmlsbD0id2hpdGUiIC8+PC9zdmc+Cg==" class="footer__SocialIcon-sc-1s465n3-8 eJIUrs"/></a></span><span class="footer__IconWrapper-sc-1s465n3-7 harPWy"><a rel="nofollow noopener noreferrer" target="_blank" href="//www.linkedin.com/company/proj-unicorn/about" title="Follow Project Unicorn on LinkedIn" class="footer__StyledAnchor-sc-1s465n3-10 itMbes"><img alt="" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TGlua2VkSW4gaWNvbjwvdGl0bGU+PHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTU0di01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzctMS44NTMgMC0yLjEzNiAxLjQ0NS0yLjEzNiAyLjkzOXY1LjY2N0g5LjM1MVY5aDMuNDE0djEuNTYxaC4wNDZjLjQ3Ny0uOSAxLjYzNy0xLjg1IDMuMzctMS44NSAzLjYwMSAwIDQuMjY3IDIuMzcgNC4yNjcgNS40NTV2Ni4yODZ6TTUuMzM3IDcuNDMzYy0xLjE0NCAwLTIuMDYzLS45MjYtMi4wNjMtMi4wNjUgMC0xLjEzOC45Mi0yLjA2MyAyLjA2My0yLjA2MyAxLjE0IDAgMi4wNjQuOTI1IDIuMDY0IDIuMDYzIDAgMS4xMzktLjkyNSAyLjA2NS0yLjA2NCAyLjA2NXptMS43ODIgMTMuMDE5SDMuNTU1VjloMy41NjR2MTEuNDUyek0yMi4yMjUgMEgxLjc3MUMuNzkyIDAgMCAuNzc0IDAgMS43Mjl2MjAuNTQyQzAgMjMuMjI3Ljc5MiAyNCAxLjc3MSAyNGgyMC40NTFDMjMuMiAyNCAyNCAyMy4yMjcgMjQgMjIuMjcxVjEuNzI5QzI0IC43NzQgMjMuMiAwIDIyLjIyMiAwaC4wMDN6IiBmaWxsPSJ3aGl0ZSIgLz48L3N2Zz4K" class="footer__SocialIcon-sc-1s465n3-8 eJIUrs"/></a></span><span class="footer__IconWrapper-sc-1s465n3-7 harPWy"><a rel="nofollow noopener noreferrer" target="_blank" href="//github.com/projectunic0rn" title="Follow Project Unicorn on GitHub" class="footer__StyledAnchor-sc-1s465n3-10 itMbes"><img alt="" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViIGljb248L3RpdGxlPjxwYXRoIGQ9Ik0xMiAuMjk3Yy02LjYzIDAtMTIgNS4zNzMtMTIgMTIgMCA1LjMwMyAzLjQzOCA5LjggOC4yMDUgMTEuMzg1LjYuMTEzLjgyLS4yNTguODItLjU3NyAwLS4yODUtLjAxLTEuMDQtLjAxNS0yLjA0LTMuMzM4LjcyNC00LjA0Mi0xLjYxLTQuMDQyLTEuNjFDNC40MjIgMTguMDcgMy42MzMgMTcuNyAzLjYzMyAxNy43Yy0xLjA4Ny0uNzQ0LjA4NC0uNzI5LjA4NC0uNzI5IDEuMjA1LjA4NCAxLjgzOCAxLjIzNiAxLjgzOCAxLjIzNiAxLjA3IDEuODM1IDIuODA5IDEuMzA1IDMuNDk1Ljk5OC4xMDgtLjc3Ni40MTctMS4zMDUuNzYtMS42MDUtMi42NjUtLjMtNS40NjYtMS4zMzItNS40NjYtNS45MyAwLTEuMzEuNDY1LTIuMzggMS4yMzUtMy4yMi0uMTM1LS4zMDMtLjU0LTEuNTIzLjEwNS0zLjE3NiAwIDAgMS4wMDUtLjMyMiAzLjMgMS4yMy45Ni0uMjY3IDEuOTgtLjM5OSAzLS40MDUgMS4wMi4wMDYgMi4wNC4xMzggMyAuNDA1IDIuMjgtMS41NTIgMy4yODUtMS4yMyAzLjI4NS0xLjIzLjY0NSAxLjY1My4yNCAyLjg3My4xMiAzLjE3Ni43NjUuODQgMS4yMyAxLjkxIDEuMjMgMy4yMiAwIDQuNjEtMi44MDUgNS42MjUtNS40NzUgNS45Mi40Mi4zNi44MSAxLjA5Ni44MSAyLjIyIDAgMS42MDYtLjAxNSAyLjg5Ni0uMDE1IDMuMjg2IDAgLjMxNS4yMS42OS44MjUuNTdDMjAuNTY1IDIyLjA5MiAyNCAxNy41OTIgMjQgMTIuMjk3YzAtNi42MjctNS4zNzMtMTItMTItMTIiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo=" class="footer__SocialIcon-sc-1s465n3-8 eJIUrs"/></a></span></div></div></footer></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/contributing-part-iii-project-unicorn-web-site/";window.webpackCompilationHash="fd7fb3f92b95b8ca0675";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-91a56d47997847469730.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-156e6983f9b5d06341bc.js"],"component---src-templates-blog-tsx":["/component---src-templates-blog-tsx-9071d16c4d8b77a8f5fa.js"],"component---src-templates-post-tsx":["/component---src-templates-post-tsx-89fa5282254cc522c97d.js"],"component---src-templates-tag-tsx":["/component---src-templates-tag-tsx-def819743ba7a5e58de3.js"],"component---src-templates-author-tsx":["/component---src-templates-author-tsx-a5f821f053dcdb50c095.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-65ed22218d0a8940cffa.js"],"component---src-pages-about-tsx":["/component---src-pages-about-tsx-d2d5cab5e3649f6c9d76.js"],"component---src-pages-blog-tags-tsx":["/component---src-pages-blog-tags-tsx-46fd0a895e766decd354.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-b007bba38d451604bad2.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-913f5beb3c270eba3231.js"],"component---src-pages-privacy-tsx":["/component---src-pages-privacy-tsx-dc7b48011d3da00172ae.js"],"component---src-pages-terms-tsx":["/component---src-pages-terms-tsx-5fd706d575e0bbb609d5.js"]};/*]]>*/</script><script src="/webpack-runtime-d48dae40321175276672.js" async=""></script><script src="/app-91a56d47997847469730.js" async=""></script><script src="/styles-253ee8c720eb55c510e3.js" async=""></script><script src="/1-2009c5543641c489ba0d.js" async=""></script><script src="/2-0c0780ae189aed19cb53.js" async=""></script><script src="/component---src-templates-post-tsx-89fa5282254cc522c97d.js" async=""></script><script src="/0-c8bf347138cf08c6f72a.js" async=""></script></body></html>
