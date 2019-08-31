@@ -38,12 +38,9 @@ const ButtonWrapper = styled.div`
 
 interface Props {
   heading: string;
-  children: object;
 }
 
-const Form = (props: Props) => {
-  const { heading, children } = props;
-
+const Form: React.FC<Props> = ({ heading, children }) => {
   return (
     <FormElement>
       <Heading>{heading}</Heading>
