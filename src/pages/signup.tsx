@@ -43,7 +43,7 @@ const SignUpPage: React.FC = () => {
         urlSlug="signup/"
       />
       <Wrapper>
-        <Form heading="Sign Up For An Account">
+        <Form heading="Sign Up To Join Project Unicorn">
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
             name="email"
