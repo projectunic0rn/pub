@@ -18,6 +18,7 @@
     "gatsby-image": "2.2.3",
     "gatsby-plugin-alias-imports": "1.0.5",
     "gatsby-plugin-canonical-urls": "2.1.0",
+    "gatsby-plugin-catch-links": "2.1.9",
     "gatsby-plugin-google-analytics": "2.1.0",
     "gatsby-plugin-mailchimp": "^5.1.2",
     "gatsby-plugin-manifest": "2.2.0",
