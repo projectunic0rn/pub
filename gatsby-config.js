@@ -98,6 +98,7 @@ module.exports = {
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
       },
     },
+    'gatsby-plugin-catch-links',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
