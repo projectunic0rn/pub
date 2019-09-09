@@ -99,7 +99,7 @@ Whether you’re a beginner who wants to move away from tutorials or that season
 
 If you would like to learn more about Project Unicorn then check out these related blog posts
 
-- [Project Unicorn UI](https://projectunicorn.net/blog/project-unicorn-ui/)
-- [Contributing Part I: Getting Started](https://projectunicorn.net/blog/contributing-part-i-getting-started/)
+- [Project Unicorn UI](/blog/project-unicorn-ui/)
+- [Contributing Part I: Getting Started](/blog/contributing-part-i-getting-started/)
 
 If you would like to receives important news and updates, you can **subscribe** to our mailing list (down in the footer).
