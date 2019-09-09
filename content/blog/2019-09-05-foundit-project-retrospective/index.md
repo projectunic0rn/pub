@@ -16,7 +16,7 @@ In this post I will talk about my experience building my new project [FoundIT](h
 
 ### FoundIT Overview
 
-[FoundIT](https://foundit.herokuapp.com) is a web application where users can post lost or found items online in hopes of returning it back to its rightful owner. Everybody hates that feeling of reaching into their pockets only to find out that their brand new iPhone X or Gucci wallet has gone missing. Millions of valuable personal items is lost everyday and the development team came up with the idea to create a dedicated website to help solve this issue.
+[FoundIT](https://foundit.herokuapp.com) is a web application where users can post lost or found items online in hopes of returning it back to its rightful owner. Everybody hates that feeling of reaching into their pockets only to find out that their brand new iPhone X or Gucci wallet has gone missing. Millions of valuable personal items are lost everyday and the development team came up with the idea to create a dedicated website to help solve this issue.
 
 ### Tech Stack
 
