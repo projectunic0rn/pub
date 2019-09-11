@@ -8,12 +8,12 @@ tags:
   - contributing
 ---
 
-In this post, we'll inspect the code that allows us to do the things we did on
+In this post, we'll inspect the code that allows us to do the things we did in
 the previous post. All this is possible thanks to [Gatsby][]. I won't be
 examining every aspect of Gatsby in this article, just the ones use by this
 project.
 
-Please refer to Gatsby's excellent documentation for stuff that are not in here.
+Please refer to Gatsby's excellent documentation for stuff that is not in here.
 
 [gatsby]: https://www.gatsbyjs.org/
 
@@ -28,8 +28,8 @@ overview of the source for the Project Unicorn web site.
 ## Basics
 
 In this section, we'll learn how to preview your blog post in the browser. This
-allows you see you post as if it's already published in the Project Unicorn web
-site.
+allows you to see your post as if it's already published in the Project Unicorn
+web site.
 
 Even if you wrote the blog posts with correct Markdown syntax, sometimes you may
 need to preview the article itself to get a sense of how it may look when you
@@ -42,7 +42,7 @@ publish it.
 >
 > [Contributing Part I: Getting Started](/blog/contributing-part-i-getting-started/)
 
-The first thing we'll do is to get to know the `npm` command line interface (or
+The first thing we'll do is to get to know the `npm` command-line interface (or
 CLI). `npm` is the package manager included with Node.js. It used to mean "Node
 Package Manager" because it's responsible for fetching node _modules_ but now,
 it's just `npm`.
@@ -80,9 +80,10 @@ pwd # You must be in the $PROJECT_ROOT
 npm install
 ```
 
-This will grab all the packages and put it inside `$PROJECT_ROOT/node_modules`.
+This will grab all the packages and put them inside
+`$PROJECT_ROOT/node_modules`.
 
-After that, you can now run the app by executing this command in you terminal
+After that, you can now run the app by executing this command in your terminal:
 
 ```bash
 pwd # $PROJECT_ROOT
@@ -100,8 +101,8 @@ cp .env.example .env
 
 What this file is for will be discussed later.
 
-Now when your re-run the script, it will print some output about the status of
-the build and after that, it will give you instruction on how preview it. By
+Now when you re-run the script, it will print some output about the status of
+the build and after that, it will give you instruction on how to preview it. By
 default the location is http://localhost:8000.
 
 Keep this local server running and you'll be able to view the updates
@@ -126,9 +127,9 @@ specific portions of the application:
 | `test`             | Runs Jest to report results from unit tests                                   |
 | `typecheck`        | Runs the TypeScript compiler to report type errors                            |
 
-The one's you're most likely to use is `dev`, `test` and `clean`. The other
+The ones you're most likely to use is `dev`, `test` and `clean`. The other
 scripts are mostly used to prepare the app for deployment or for some automated
-task like reporting errors before commiting changes.
+tasks like reporting errors before committing changes.
 
 ### Environment variables
 
@@ -214,9 +215,9 @@ can do it with Gatsby. So if you want to, you can have pages for these paths:
 `/help`, `/grocerhub`, `/slack-invite`, `/whatever`, etc..
 
 A page can be very simple and can be crammed into one file. For example,
-[`@pages/404.tsx`][404page] and [`@pages/about.tsx`][aboutpage] are basically
-just React components with content inlined. I consider these as "simple" pages
-and we'll talk more about them in a later section.
+[`@pages/404.tsx`][404page] and [`@pages/about.tsx`][aboutpage] are just React
+components with content inlined. I consider these as "simple" pages and we'll
+talk more about them in a later section.
 
 [404page]: https://github.com/projectunic0rn/pub/blob/master/src/pages/404.tsx
 [aboutpage]: https://github.com/projectunic0rn/pub/blob/master/src/pages/about.tsx
@@ -275,7 +276,7 @@ be added by importing the `Layout` component. Wrap your content inside this
 component.
 
 To update the values of elements in the `<head />` element, you should use the
-`Seo` component. You can put this anywhere the component hierarchy.
+`Seo` component. You can put this anywhere in the component hierarchy.
 
 ```tsx
 import * as React from 'react';
@@ -328,7 +329,7 @@ query {
 ```
 
 The query above will get an image called `default-post.image.jpg`. If you'd
-notice there's no such file on the `$PROJECT_ROOT`. It's actually located in
+notice there's no such file on the `$PROJECT_ROOT`. It's located in
 [`@images`][imagespath]. Thanks to the `gatsby-source-filesystem` plugin, we
 allow the app to source from our local file system in the directories we
 specify.
@@ -375,9 +376,8 @@ const SomeComponent: React.FC<SomeComponentProps> = ({ data }) => (
 export default SomeComponent;
 ```
 
-Some queries are quite common that these were extracted to their own custom
-React hook. The above query is equivalent to using the `useDefaultPostImage`
-React hook:
+Some queries are quite common that these were extracted as a custom React hook.
+The above query is equivalent to using the `useDefaultPostImage` React hook:
 
 ```tsx
 import { Img } from 'gatsby-image';
@@ -397,27 +397,28 @@ export default SomeComponent;
 You're probably confused on why we'd ever need to do this instead of just
 importing the image directly.
 
-One of Gatsby well-know feature is called progressive image loading. If you
+One of Gatsby's well-know feature is called progressive image loading. If you
 happen upon reading something on Medium, you'd notice that sometimes images
-appear blurry at first, then it gets clearer until it displays the image
-clearly. This is similar to what Gatsby does with some of our images in the Pub
+appear blurry at first, then it gets clearer until it displays the clearest
+version of the image. This is similar to what Gatsby does with some of our
+images in the Pub
 web site.
 
 > **NOTE**: If have a great internet connection you might not see the blurring.
 
 Not only does it create blurry versions, it also makes versions of different
-sizes. This provide a better experience for folks who browser our app that are
+sizes. This provides a better experience for folks who browser our app that are
 on slower speed and are typically on a mobile browser. Instead of loading an
-image larger that the display dimensions of the browser, Gatsby will use the
+image larger than the display dimensions of the browser, Gatsby will use the
 most suitable size for that dimension.
 
-Don't go crazy with this and use it on each an one of the images inside the
+Don't go crazy with this and use it on every one of the images inside the
 project. Sometimes it's fine just to use the OG `<img />` element.
 
 ### Even more advance pages
 
 When you need to display a list of something, say, a list of recent blog posts,
-the process is more involved. First you would define a _page template_ in the
+the process is more involved. First, you would define a _page template_ in the
 [`@templates`][templatespath] directory. This component is similar to other
 pages you will make except for the format of the query it exports (we'll go into
 detail later).
@@ -486,10 +487,10 @@ project and a page number at the bottom. The list is sorted with the most recent
 blog post at the top. It's also paginated thanks to the page context we will
 provide later when we are modifying the Gatsby Node API configuration file.
 
-Remember when you made you blog post in `$PROJECT_ROOT/content`? This is a known
+Remember when you made your blog post in `$PROJECT_ROOT/content`? This is a known
 source directory because it is specified in the Gatsby configuration file. This
 is where we get our data for the blog posts. In other projects, you might see
-that they get their blog posts (and other sources) on an remote database or
+that they get their blog posts (and other sources) on a remote database or
 service.
 
 The `<BlogPostList />` component does not care about where to get the data. It
@@ -523,14 +524,14 @@ exports.createPages = ({ actions }) => {
 ```
 
 The exported `createPages` anonymous function is passed an object when Gatsby
-builds the app. The method we need is inside the the `actions` field inside this
+builds the app. The method we need is inside the `actions` field inside this
 object.
 
 > [The `createPage` Action](https://www.gatsbyjs.org/docs/actions/#createPage)
 
 Inside the exported `createPages` anonymous function, we can also call the
 `graphql` method from the destructured parameters, and pass it a template
-literal containing the a query. This query could contain:
+literal containing the query. This query could contain:
 
 ```js
 exports.createPages = ({ graphql, actions }) => {
@@ -539,7 +540,7 @@ exports.createPages = ({ graphql, actions }) => {
   // This will query ALL the blog posts, create a page for the blog post index,
   // the individual blog posts, and the paginated blog post lists.
   const loadBlogPosts = new Promise((resolve, reject) => {
-    // this methods accepts a query string
+    // this method accepts a query string
     graphql(`
       {
         allMarkdownRemark(
@@ -564,7 +565,7 @@ exports.createPages = ({ graphql, actions }) => {
         nodes.slice(postsPerFirstPage).length / postsPerPage,
       );
 
-      // the first page doesn't need the page number in it's path if you want
+      // the first page doesn't need the page number in its path if you want
       createPage({
         path: '/blogpostlist',
         component: path.resolve('./src/templates/blog-post-list.tsx'),
@@ -647,7 +648,7 @@ collaborators as it makes the instructions simpler. `npm` is already available
 when you install Node.js, whereas Yarn would need to be download and installed
 separately.
 
-Ultimately, It doesn't really matter what package manager we use.
+Ultimately, It doesn't matter what package manager we use.
 
 ### Gatsby vs Next vs pure Webpack
 
@@ -682,7 +683,7 @@ avoided probably by adding another dependency but it's still manageable for now.
 But you might be thinking, could we put some constants in
 [`$PROJECT_ROOT/site.config.js`][siteconfig] and other constants in the
 [`src`][src] itself (e.g. in `@components/constants.js` where it is _nearer_ to
-it's usage). This avoids touching the custom React hook if that constant doesn't
+its usage). This avoids touching the custom React hook if that constant doesn't
 need to be queried by GraphQL and changing variable names only need to be
 updated in:
 
@@ -720,9 +721,9 @@ perfectly summarizes what it's all about:
 
 > [Hooks] let you use state and other React features without writing a class.
 
-I encourage you to read about their motivations on why they added this feature
+I encourage you to read about their motivations for why they added this feature
 to React. If you've worked with a lot of bigger React projects, you'll
-definitely appreciate what hooks offers.
+appreciate what hooks offers.
 
 This project avoids introducing any class component. There are times when class
 components are necessary but they should be transformed to function components,
@@ -750,8 +751,8 @@ _Why on earth do we need JavaScript to write CSS for us?_
 One reason is that browsers do not implement all features of the latest version
 of CSS. Google Chrome could support a feature whereas Microsoft Edge partially
 supports it through a _prefix_ for a CSS rule. It's not fun to hunt down these
-prefixed CSS rules and add it to our stylesheets. Using Styled Components we
-only write the rules direct from the current specification and let it handle all
+prefixed CSS rules and add it to our stylesheets. Using Styled Components, we
+can write rules directly from the current specification and let it handle all
 the tedious prefix inclusion for browsers that need it.
 
 Another reason is to avoid thinking about the "cascade". The cascade is one of
@@ -762,8 +763,8 @@ that I might forget to remove when I "patch" the styles far down the cascade.
 With Styled Components, we can minimize this. We only add the styles directly to
 the component that uses them. There's no need to worry about the cascade because
 components are given uniquely generated class names to ensure they don't clash
-whatsoever. This fits well with React and how it addresses separation of
-concerns.
+whatsoever. This fits well with React and how it addresses _separation of
+concerns_.
 
 There are a lot more to Styled Components and I encourage you to explore their
 [web site][styledcomponents].
@@ -771,9 +772,9 @@ There are a lot more to Styled Components and I encourage you to explore their
 [styledcomponents]: https://styled-components.com
 
 > **NOTE**: An alternative to using Styled Components is to use a pre-processor
-> like, [Sass][]. In fact, there's also a Gatsby plugin that allows us to use
-> Sass files in our components. We can also utilize S/CSS modules to solve the
-> specificity issues.
+> like, [Sass][]. There's also a Gatsby plugin that allows us to use Sass files
+> in our components. We can also utilize S/CSS modules to solve the specificity
+> issues.
 
 [sass]: https://sass-lang.com/
 
@@ -792,8 +793,8 @@ versions.
 
 [semver]: https://semver.org/
 
-Basically, there are three parts to the version number in a typical `npm`
-package: `MAJOR`, `MINOR` and `PATCH`:
+There are three parts to the version number in a typical `npm` package: `MAJOR`,
+`MINOR` and `PATCH`:
 
 > `MAJOR.MINOR.PATCH`
 
@@ -812,8 +813,8 @@ Whereas a package version with a caret, e.g. `^0.24.3` is considered
 "compatible with `0.24.3`" and any `MINOR` value greater than or equal to `24`
 and with the same `MAJOR` value is valid (`PATCH` value can be anything).
 
-Some claim that pinning dependencies is a _must_ because developers can possibly
-publish a "bad" release and it might break your project (even if it's considered
+Some claim that pinning dependencies is a _must_ because developers may publish
+a "bad" release and it might break your project (even if it's considered
 to be a `PATCH` release). Others say don't bother because it's too tedious to
 maintain and it makes the Git history noisier.
 
@@ -821,10 +822,10 @@ I've seen projects that use either version ranges or version pinning but it's
 more common to see those that use version ranges, probably because it's the
 default behavior when installing packages from the `npm` registry.
 
-Personally, I've never been comfortable with dependency versions that aren't
-explicitly declared. I'd rather update each package manually and potentially
-introduce noise to the Git history than let Node.js and `npm` decide what
-versions ranges it can use. But that's just me.
+I've never been comfortable with dependency versions that aren't explicitly
+declared. I'd rather update each package manually and potentially introduce
+noise to the Git history than let Node.js and `npm` decide what versions ranges
+it can use. But that's just me.
 
 ## Troubleshooting and other concerns
 
@@ -853,12 +854,12 @@ GATSBY_TELEMETRY_DISABLED=1
 > **NOTE**: You might also need to restart the development server when you
 > change the `.env`.
 
-### Commiting changes to Git fails and deletes my changes from my file system
+### Committing changes to Git fails and deletes my changes from my file system
 
 Not sure what is the exact cause of this but this could happen if you are
 running a local Gatsby development server, and you trigger the pre-commit hook
 (by running `git commit`). The pre-commit hook will process your changes and run
-type checks and some formatting. These actions probably overwhelms the Node.js
+type checks and some formatting. These actions probably overwhelm the Node.js
 process for some reason and deletes the changes along with other files.
 
 When this happens, you can still recover the deleted files that are committed to
@@ -872,10 +873,10 @@ development server first before committing to Git.
 
 There is a TypeScript release that caused type checking to run 20x slower on
 projects that use Styled Components type definitions. To fix this, please make
-sure you that your editor is using the same TypeScript version as the project.
-Refer to the bottom right portion of the status bar when you have an open
-TypeScript file. To change this value, click the version value and pick "Use
-Workspace Version" on the dropdown.
+sure that your editor is using the same TypeScript version as the project. Refer
+to the bottom right portion of the status bar when you have an open TypeScript
+file. To change this value, click the version value and pick "Use Workspace
+Version" on the dropdown.
 
 ## Maintenance
 
@@ -883,9 +884,9 @@ Workspace Version" on the dropdown.
 
 I strongly believe that every project needs to have documentation on how to
 write code consistently. This section contains a possible style guide that Pub
-maintainers can adopt and improve on.
+maintainers can adapt and improve on.
 
-To help cleaning up some common code style violations, we need a code formatter
+To help clean up some common code style violations, we need a code formatter
 like [Prettier][]. It will format the code when you trigger an action like
 saving a file or committing changes to a Git repo. See this
 [link][prettiereditor] to check if your editor has support for Prettier.
@@ -911,7 +912,7 @@ What follows is my suggestion for a basic code style guide for the Pub project.
 - **Tabs**: No. Use spaces.
 - **Semicolons**: You should always put semicolons at the end of your
   statements. This has the benefit of not having to memorize the rules for
-  automatic semicolon insertion (ASI). Code that rely on ASI is _technically_
+  automatic semicolon insertion (ASI). Code that relies on ASI is _technically_
   erroneous code. Also, ECMA people are considering making semicolons mandatory
   in future ES versions.
 - **Quotes**: Use single quotes for JavaScript and CSS; Use double quotes for
@@ -923,7 +924,7 @@ What follows is my suggestion for a basic code style guide for the Pub project.
   makes diffing commits more accurately show the change introduced. Another
   benefit: Reordering items is easier since you don’t need to add a comma on the
   last item when you move it up.
-- **Bracket spacing**: Add spaces at the start and at the end of one-line object
+- **Bracket spacing**: Add spaces at the start and the end of one-line object
   literals. For example, `const foo = { a: true };`
 - **JSX brackets**: Put the closing angle bracket on the next line. See
   Prettier's example for `jsxBracketSameLine: false`.
@@ -935,24 +936,23 @@ What follows is my suggestion for a basic code style guide for the Pub project.
   determine if the file exports a component. If the file is not a component then
   we will use a `.ts` extension.
 - **End of line**: LF
-- **Insert final newline**: Please insert a single new line character at the end
+- **Insert final newline**: Please insert a single newline character at the end
   of each file.
 
 [Prettier configuration docs](https://prettier.io/docs/en/options.html)
 
 It not much, but I believe it's a good starting point. I tried to include some
 rules from popular JavaScript style guides like Airbnb and Google but I feel I'm
-just copy pasting portions of their rules to this guides.
+just copy-pasting portions of their rules to this style guide.
 
-In addition, it's probably too early to finalize a code style guide seeing that
-(at the time of writing) there's only one major feature present in the project,
-that is, the blog. With more features added, I'm sure these rules will be
-refined.
+Besides, it's probably too early to finalize a code style guide seeing that (at
+the time of writing) there's only one major feature present in the project, that
+is, the blog. With more features added, I'm sure these rules will be refined.
 
 ### Dependencies
 
 Packages are pinned to a specific version, thus you might need to run an update
-every now and then. Run `npm oudated` to check which packages are not in their
+now and then. Run `npm outdated` to check which packages are not in their
 latest versions. You may choose to update all packages or just some: maybe those
 that release `MAJOR` or `MINOR` but not `PATCH` versions.
 
