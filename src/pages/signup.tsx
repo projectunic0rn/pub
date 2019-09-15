@@ -5,12 +5,13 @@ import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
 import CtaButton from '@components/index-page/cta-button';
 import { useSiteMetadata } from '@hooks';
-import Form, {
+import {
   FormLabel,
   FormInput,
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form';
+import { Form } from '@components/shared/form';
 import { useState } from 'react';
 
 const Wrapper = styled.section`
