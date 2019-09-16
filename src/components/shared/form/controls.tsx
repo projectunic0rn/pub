@@ -6,7 +6,6 @@ const FormLabel = styled.label`
   padding: 0.825em 0;
 `;
 const FormInput = styled.input`
-  max-width: 400px;
   padding: 0.425em;
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
@@ -16,7 +15,6 @@ const FormInput = styled.input`
   }
 `;
 const SelectInput = styled.select`
-  max-width: 400px;
   padding: 0.425em;
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
@@ -26,20 +24,22 @@ const SelectInput = styled.select`
     border-color: black;
   }
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
-    no-repeat right white;
-  background-position-x: 360px;
+    no-repeat 95% 50% white;
 `;
 const FormHint = styled.small`
   color: gray;
 `;
 const FormTextAreaHint = styled.small`
   color: black;
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+`;
+const TextAreaWrapper = styled.div`
   position: relative;
-  left: -55px;
-  bottom: 5px;
 `;
 const TextArea = styled.textarea`
-  width: 400px;
+  width: 100%;
   padding: 0.425em;
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
@@ -94,7 +94,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   const charLength = value.length;
 
   return (
-    <div>
+    <TextAreaWrapper>
       <TextArea
         onChange={(e) => onChange(e, charLength)}
         value={value}
@@ -105,7 +105,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
           {value.length}/{maxCharCount}
         </FormTextAreaHint>
       )}
-    </div>
+    </TextAreaWrapper>
   );
 };
 
