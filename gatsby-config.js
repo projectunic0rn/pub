@@ -1,5 +1,6 @@
 const {
   pathPrefix,
+  mailChimpAPI,
   manifestOptions,
   siteMetadata,
   googleAnalyticsTrackingId,
@@ -97,6 +98,7 @@ module.exports = {
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
       },
     },
+    'gatsby-plugin-catch-links',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
@@ -119,6 +121,12 @@ module.exports = {
         respectDNT: true,
         sampleRate: 100,
         siteSpeedSampleRate: 10,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: mailChimpAPI,
       },
     },
   ],
