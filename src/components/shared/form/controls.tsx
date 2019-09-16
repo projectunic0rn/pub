@@ -25,7 +25,7 @@ const SelectInput = styled.select`
   ​ :focus {
     border-color: black;
   }
-  ​background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
     no-repeat right white;
   background-position-x: 360px;
 `;
@@ -74,11 +74,7 @@ const FormSelectInput: React.FC<FormSelectInputProps> = ({
   ));
 
   return (
-    <SelectInput
-      name={name}
-      onChange={(e: any) => onChange(e)}
-      key={Math.random()}
-    >
+    <SelectInput name={name} onChange={(e: any) => onChange(e)}>
       {selectOptions}
     </SelectInput>
   );
@@ -88,25 +84,24 @@ interface FormTextAreaProps {
   value: string;
   displayCharCount: boolean;
   maxCharCount: number;
-  key: number;
 }
 const FormTextArea: React.FC<FormTextAreaProps> = ({
   onChange,
   value,
   displayCharCount,
   maxCharCount,
-  key,
 }) => {
+  const charLength = value.length;
+
   return (
     <div>
       <TextArea
-        onChange={(e) => onChange(e)}
+        onChange={(e) => onChange(e, charLength)}
         value={value}
         name={name}
-        key={key}
       />
       {displayCharCount && (
-        <FormTextAreaHint key={Math.random()}>
+        <FormTextAreaHint>
           {value.length}/{maxCharCount}
         </FormTextAreaHint>
       )}

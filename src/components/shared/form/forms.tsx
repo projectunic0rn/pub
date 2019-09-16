@@ -13,13 +13,11 @@ import CtaButton from '@components/index-page/cta-button';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
-​
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
-​
   @media screen and(max-width: ${({ theme }) => theme.sizes.width.medium}) {
     flex-direction: column;
   }
-​
+
   @media screen and(max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
@@ -67,11 +65,14 @@ const CreateProjectForm: React.FC = () => {
         </FormHint>
         ​<FormLabel htmlFor="description">Description</FormLabel>
         <FormTextArea
-          onChange={(e: any) => setDescription(e.target.value)}
+          onChange={(e: any, length: number) =>
+            length < 135
+              ? setDescription(e.target.value)
+              : setDescription(e.target.value.slice(0, 135))
+          }
           value={description}
-          displayCharCount={false}
+          displayCharCount={true}
           maxCharCount={135}
-          key={Math.random()}
         />
         <FormHint>Describe your project in a single tweet</FormHint>​
         <FormLabel htmlFor="project-type">Project Type</FormLabel>
