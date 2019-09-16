@@ -44,7 +44,7 @@ const Button = styled(OutboundLink)<ButtonProps>`
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     display: block;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
   }
 
   @media (hover: hover) {
