@@ -22,7 +22,7 @@ export class AuthService {
   private apiEndpoint: string;
 
   public constructor() {
-    this.apiEndpoint = process.env.API_ENDPOINT ? process.env.API_ENDPOINT : '';
+    this.apiEndpoint = process.env.API_ENDPOINT || '';
   }
 
   public async login(login: Login) {
