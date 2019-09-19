@@ -20,15 +20,13 @@ export class AuthService {
     'Content-Type': 'application/json; charset=utf-8',
   };
   private apiEndpoint: string;
-  private httpClient: HttpClient;
 
   public constructor() {
-    this.httpClient = new HttpClient();
     this.apiEndpoint = process.env.API_ENDPOINT ? process.env.API_ENDPOINT : '';
   }
 
   public async login(login: Login) {
-    return await this.httpClient.post(
+    return await HttpClient.post(
       `${this.apiEndpoint}/auth/login`,
       this.headers,
       login,
@@ -36,7 +34,7 @@ export class AuthService {
   }
 
   public async register(register: Register) {
-    return await this.httpClient.post(
+    return await HttpClient.post(
       `${this.apiEndpoint}/auth/register`,
       this.headers,
       register,

@@ -1,5 +1,5 @@
 export class HttpClient {
-  public async makeRequest(request: Request): Promise<any> {
+  public static async makeRequest(request: Request): Promise<unknown> {
     const response = await fetch(request);
 
     if (!response.ok && response.type) {
@@ -11,7 +11,7 @@ export class HttpClient {
     return text ? JSON.parse(text) : {};
   }
 
-  public async get(endpoint: string, headers = {}): Promise<any> {
+  public static async get(endpoint: string, headers = {}): Promise<unknown> {
     const request = new Request(endpoint, {
       body: null,
       headers,
@@ -19,14 +19,14 @@ export class HttpClient {
       mode: 'cors',
     });
 
-    return await this.makeRequest(request);
+    return await HttpClient.makeRequest(request);
   }
 
-  public async post(
+  public static async post(
     endpoint: string,
     headers = {},
     body: object = {},
-  ): Promise<any> {
+  ): Promise<unknown> {
     const request = new Request(endpoint, {
       body: JSON.stringify(body),
       headers,
@@ -34,14 +34,14 @@ export class HttpClient {
       mode: 'cors',
     });
 
-    return await this.makeRequest(request);
+    return await HttpClient.makeRequest(request);
   }
 
-  public async put(
+  public static async put(
     endpoint: string,
     headers = {},
     body: object = {},
-  ): Promise<any> {
+  ): Promise<unknown> {
     const request = new Request(endpoint, {
       body: JSON.stringify(body),
       headers,
@@ -49,10 +49,10 @@ export class HttpClient {
       mode: 'cors',
     });
 
-    return await this.makeRequest(request);
+    return await HttpClient.makeRequest(request);
   }
 
-  public async delete(endpoint: string, headers = {}): Promise<any> {
+  public static async delete(endpoint: string, headers = {}): Promise<unknown> {
     const request = new Request(endpoint, {
       body: null,
       headers,
@@ -60,6 +60,6 @@ export class HttpClient {
       mode: 'cors',
     });
 
-    return await this.makeRequest(request);
+    return await HttpClient.makeRequest(request);
   }
 }

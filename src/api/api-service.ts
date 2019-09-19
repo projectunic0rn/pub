@@ -18,15 +18,13 @@ export class ApiService {
   };
 
   private apiEndpoint: string;
-  private httpClient: HttpClient;
 
   public constructor() {
-    this.httpClient = new HttpClient();
     this.apiEndpoint = process.env.API_ENDPOINT ? process.env.API_ENDPOINT : '';
   }
 
   public async createProject(project: Project) {
-    return await this.httpClient.post(
+    return await HttpClient.post(
       `${this.apiEndpoint}/projects`,
       this.headers,
       project,
