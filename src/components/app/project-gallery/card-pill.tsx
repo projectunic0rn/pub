@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@styled-components';
 
 const Wrapper = styled.div`
-  color: ${({ theme }) => theme.colors.highlightDark};
+  color: white;
   border-radius: 0.3125em;
   font-size: 0.7em;
   display: inline-block;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   position: relative;
   cursor: pointer;
   transition: 0.2s;
+  background: #3f3d56;
 
   &:last-child {
     margin: 0;
@@ -26,17 +27,28 @@ const Wrapper = styled.div`
     left: 0;
     right: 0;
     border-radius: 0.3125em;
-    border: 0.0625em solid ${({ theme }) => theme.colors.highlightDark};
+  }
+
+  &:hover {
+    cursor: default;
   }
 
   @media (hover: hover) {
     &:hover {
-      color: ${({ theme }) => theme.colors.baseinvert};
-      background: ${({ theme }) => theme.colors.highlightDark};
     }
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-top: 5px;
   }
 `;
 
-const CardPill: React.FC = ({ children }) => <Wrapper>{children}</Wrapper>;
+interface CardPillProps {
+  title?: string;
+}
+
+const CardPill: React.FC<CardPillProps> = ({ children, title }) => (
+  <Wrapper title={title}>{children}</Wrapper>
+);
 
 export default CardPill;

@@ -1,75 +1,83 @@
 export interface Data {
   name: string;
-  imageUrl: string;
-  tags: string[];
+  technologies: string[];
   description: string;
-  stars: number;
   members: string[];
-}
-
-export interface Content {
-  [key: string]: Data[];
+  communicationPlatformUrl: string;
 }
 
 const allProjects = [
   {
     name: 'Project One',
-    imageUrl: '',
-    tags: ['Java', 'JavaScript', 'HTML', 'GraphQL'],
+    technologies: [
+      'Java',
+      'JavaScript',
+      'HTML',
+      'GraphQL',
+      'Django',
+      'Ruby on Rails',
+      'CSS',
+      'HTML5',
+      'CSS3',
+    ],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 1.2,
-    members: ['Kkm', 'Oussama', 'Roy'],
+    members: [
+      'Aaron Garton',
+      'Oussama',
+      'Roy',
+      'Kkm',
+      'Oussama',
+      'Roy',
+      'Kkm',
+      'Oussama',
+      'Roy',
+      'Kkm',
+      'Oussama',
+      'Roy',
+    ],
+    communicationPlatformUrl: 'https://slack.com/fw43rf',
   },
   {
     name: 'Mentrship',
-    imageUrl: '',
-    tags: ['JavaScript', 'HTML'],
+    technologies: ['JavaScript', 'HTML'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 4,
     members: ['Kkm', 'ruj', 'Roy'],
+    communicationPlatformUrl: 'https://slack.com/fw43rf',
   },
   {
     name: 'Travel Map',
-    imageUrl: '',
-    tags: ['JavaScript', 'CSS', 'HTML'],
+    technologies: ['JavaScript', 'CSS', 'HTML'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 3.4,
     members: ['Kkm', 'Oussama', 'Roy'],
+    communicationPlatformUrl: 'https://discordapp.com/5qwc',
   },
   {
     name: 'Project Two',
-    imageUrl: '',
-    tags: ['TypeScript', 'JavaScript', 'HTML', 'GraphQL'],
+    technologies: ['TypeScript', 'JavaScript', 'HTML', 'GraphQL'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 2,
     members: ['ruj', 'Oussama', 'Roy'],
+    communicationPlatformUrl: 'https://slack.com/68urujs',
   },
   {
     name: 'Grocerhub',
-    imageUrl: '',
-    tags: ['JavaScript', 'HTML', 'CSS'],
+    technologies: ['JavaScript', 'HTML', 'CSS'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 1,
     members: ['Kkm', 'ruj', 'Roy'],
+    communicationPlatformUrl: 'https://discordapp.com/37eh8d',
   },
   {
     name: 'Remote Hackaton',
-    imageUrl: '',
-    tags: ['JavaScript', 'HTML'],
+    technologies: ['JavaScript', 'HTML'],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate massa nec est posuere, eget lobortis turpis tristique.',
-    stars: 3.4,
     members: ['Kkm', 'Oussama', 'Roy'],
+    communicationPlatformUrl: 'https://discordapp.com/fw284rh',
   },
 ];
 
-export const content: Content = {
-  Trending: allProjects.filter((v) => v.name.includes('o')),
-  'A-Z': [...allProjects].sort((a, b) => a.name.localeCompare(b.name)),
-  Experience: allProjects.slice(0, 6),
-};
+export const content = allProjects;

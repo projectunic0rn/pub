@@ -15,3 +15,5 @@ export { default as puLogo } from './pu.svg';
 export { default as puAlt } from './pu-alt.svg';
 export { default as redditIcon } from './reddit.svg';
 export { default as twitterIcon } from './twitter.svg';
+export { default as slackIcon } from './slack.png';
+export { default as discordIcon } from './discord.png';
