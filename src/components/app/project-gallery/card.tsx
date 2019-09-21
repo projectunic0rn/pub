@@ -4,7 +4,7 @@ import { Data } from './content';
 import CardPill from './card-pill';
 import styled from '@styled-components';
 import { slackIcon, discordIcon } from '@images';
-import { JoinProjectButton, LeaveProjectButton } from '@components/app/buttons';
+import { ProjectButton } from '../buttons';
 
 interface CardProps {
   content: Data;
@@ -77,7 +77,6 @@ const Card: React.FC<CardProps> = ({ content }) => {
 
   const handleClick = () => {
     setHasMemberJoinedProject(!hasMemberJoinedProject);
-    console.log(hasMemberJoinedProject);
   };
 
   const communicationPlatforms = [
@@ -124,13 +123,9 @@ const Card: React.FC<CardProps> = ({ content }) => {
       )}
       <br />
       <br />
-      {hasMemberJoinedProject ? (
-        <LeaveProjectButton onClick={handleClick} />
-      ) : (
-        <span>
-          <JoinProjectButton onClick={handleClick} />
-        </span>
-      )}
+      <ProjectButton onClick={handleClick} active={hasMemberJoinedProject}>
+        {hasMemberJoinedProject ? 'Leave' : 'Join'}
+      </ProjectButton>
     </Wrapper>
   );
 };

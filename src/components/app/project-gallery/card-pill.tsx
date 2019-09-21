@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@styled-components';
 
 const Wrapper = styled.div`
-  color: white;
+  color: ${({ theme }) => theme.colors.baseinvert};
   border-radius: 0.3125em;
   font-size: 0.7em;
   display: inline-block;

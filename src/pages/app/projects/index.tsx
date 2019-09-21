@@ -5,7 +5,7 @@ import { ProjectGallery } from '@components/app';
 
 const App: React.FC = () => (
   <Layout>
-    <Seo title="App" urlSlug="app/" />
+    <Seo title="App" urlSlug="app/projects" />
     <ProjectGallery />
   </Layout>
 );
