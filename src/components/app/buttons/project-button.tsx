@@ -1,4 +1,4 @@
-import { Button } from '@components/shared';
+import { Button } from '@components/app/shared';
 import styled from '@styled-components';
 
 const ProjectButton = styled(Button)`
