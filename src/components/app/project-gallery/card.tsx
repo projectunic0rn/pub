@@ -60,7 +60,7 @@ const Card: React.FC<CardProps> = ({ content }) => {
   const getMembers = (members: string[]) => {
     return {
       displayable: members.map((v, i) => {
-        if (i < 5) return <CardPill key={v}>{v}</CardPill>;
+        if (i < 5) return <CardPill key={i}>{v}</CardPill>;
       }),
       other: members.length > 5 && members.slice(5, members.length),
     };
@@ -69,7 +69,7 @@ const Card: React.FC<CardProps> = ({ content }) => {
   const getTech = (tech: string[]) => {
     return {
       displayable: tech.map((v, i) => {
-        if (i < 5) return <Tech key={v}>{v}</Tech>;
+        if (i < 5) return <Tech key={i}>{v}</Tech>;
       }),
       other: tech.length > 5 && tech.slice(5, tech.length),
     };
