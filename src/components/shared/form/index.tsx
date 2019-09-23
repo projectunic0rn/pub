@@ -1,2 +1,3 @@
-export { Form, CreateProjectForm } from './forms';
+export { Form } from './forms';
+export { CreateProjectForm } from './createProject';
 export * from './controls';
