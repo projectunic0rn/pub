@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://projectunicorn.net/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/motivware-review/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/foundit-retrospective/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/project-unicorn-learnings/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/contributing-part-iii-project-unicorn-web-site/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -11,6 +12,7 @@
 <url> <loc>https://projectunicorn.net/blog/project-unicorn-ui/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/hello-world/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project-unicorn/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/tag/project-unicorn/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/retrospective/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/contributing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/upwork/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -21,6 +23,7 @@
 <url> <loc>https://projectunicorn.net/blog/tag/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project-introduction/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/tag/project/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/author/dclark/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rickyjw/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmoran/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmjordas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
