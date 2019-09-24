@@ -23,6 +23,12 @@ const colors = {
   alternate: constants.greenLight,
   /** Used for box shadows. */
   shadow: constants.shadow,
+  button: {
+    /** Button color */
+    secondary: constants.pinkLight,
+    /** Button active color */
+    secondaryHighlight: constants.pinkMedium,
+  },
 };
 
 const responsive = {

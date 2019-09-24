@@ -10,14 +10,14 @@ tags:
   - GitHub
 ---
 
-In this article we're going to introduce Git and GitHub, and learn some basic
+In this article, we're going to introduce Git and GitHub, and learn some basic
 commands that are useful when contributing to the Project Unicorn web site
 repository. If you're new to Git and GitHub, please read on. This will help you
 when you join and contribute to other Project Unicorn projects. Feel free to
 skip to the next part if you're already familiar with Git.
 
-At the end of this guide we'll have a local copy of the Project Unicorn web site
-repo which is update to include a new author entry.
+At the end of this guide, we'll have a local copy of the Project Unicorn web
+site repo which is updated to include a new author entry.
 
 > This is part 1 of the **Project Unicorn Contributing Guide series** that talks
 > about Git and GitHub and some of the common commands for interacting with a
@@ -29,7 +29,7 @@ repo which is update to include a new author entry.
 
 ## Requirements
 
-Before we start you need to ensure that you have the following installed in your
+Before we start you need to ensure that you have the following installed on your
 machine:
 
 - [Node.js](https://nodejs.org/en/)
@@ -41,7 +41,7 @@ are also provided with _Git Bash_. It is recommended to use this software when
 interacting with Git.
 
 This guide will assume that you are using Git Bash if you are using Windows. If
-you have Linux or MacOS, the default terminal will do.
+you have Linux or macOS, the default terminal will do.
 
 To verify your installations, enter the following in your terminal:
 
@@ -61,7 +61,7 @@ git version 2.21.0.windows.1
 
 ## Introducing Git and GitHub
 
-Git, according to it's website, is "a free and open source distributed version
+Git, according to its website, is "a free and open source distributed version
 control system". In simpler terms, we can use this software to allow us to have
 a history of the changes made our code. There are more benefits of using Git and
 they are well documented all over the web. Here's one article but feel free to
@@ -80,7 +80,7 @@ to access a friendlier interface for when we are inspecting a Git repo.
 [github]: https://github.com
 
 Since we have the Project Unicorn web site repo hosted on GitHub you have to
-make sure you have an account in GitHub. Please refer to the following
+make sure you have an account on GitHub. Please refer to the following
 documentation:
 
 > [Signing up for a new GitHub account][signup]
@@ -101,9 +101,8 @@ your changes. The Git website provides a
 [git_gui]: https://git-scm.com/downloads/guis
 
 An even better tool is the command line. It can be scary to use especially if
-you have little experience with it, but it's what I recommend you to start of
-with when learning Git. The command line is also what we're gonna use for this
-guide.
+you have little experience with it, but it's what I recommend you to start with
+when learning Git. The command line is also what we're gonna use for this guide.
 
 So why not use a GUI client? There's nothing wrong with GUI clients, they are
 useful, too. But they may not support specific Git functions or it might be
@@ -240,8 +239,8 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-> **TIP**: The `touch` command basically creates new but empty file(s) with the
-> name(s) you provide it, e.g. `foo.txt`. It can also be used to update an
+> **TIP**: The `touch` command creates new but empty file(s) with the name(s)
+> you provide it with, e.g. `foo.txt`. It can also be used to update an
 > existing directory or file's last modified property.
 >
 > [The `touch` command](http://www.linfo.org/touch.html)
@@ -284,7 +283,7 @@ output also tells us that our branch is up to date with something called
 When you create a new repo, Git will create a branch for you called `master`.
 When you run `git status` after cloning the `pub` repo, it tells you that you
 are "On branch master". The `master` branch is not a special branch. It's just
-the name the that Git authors decided to use when creating a new repository.
+the name that Git authors decided to use when creating a new repository.
 Same with `origin` as the default name for the remote repository when you clone
 repo.
 
@@ -303,7 +302,7 @@ If you'd ever use [Google Docs][gdocs], you'd find that it has a feature called
 "Version History" to view the changes you made to a document. This is very
 similar to viewing a single branch in Git. Open one of your Google Docs files
 and you can inspect the specific additions and deletions performed for every
-version (assuming it has any). You can even _checkout_ an old version and
+version (assuming it has any). You can even _check out_ an old version and
 _branch off_ that version by making a copy of the document.
 
 [gdocs]: https://docs.google.com
@@ -386,17 +385,17 @@ Updating bc1c558..4c7224b
 
 The output tells us that Git aborted the operation and nothing was updated. It
 also provided us with a tip on how we can fix this error. We haven't discussed
-"committing" and "stashing" yet because those commands have their own sections
+"committing" and "stashing" yet because those commands have their sections
 later in the guide.
 
 ### Create your topic branch
 
 Every team in Project Unicorn has different requirements. Your team lead is
 responsible for making sure the whole team will agree on whatever is needed for
-your project to fulfil these requirements, including the task of deciding the
+your project to fulfill these requirements, including the task of deciding the
 workflow for contributing to your respective repos.
 
-This section will provide a brief discussion to one type of workflow that is
+This section will provide a brief discussion of one type of workflow that is
 similar to the _GitHub flow_ and some of the common Git commands associated with
 it.
 
@@ -456,18 +455,18 @@ Your team could decide on a naming strategy for topic branches. If your's
 didn't decide on this, you should still try to give your topic branches
 descriptive names. For example, I used the branch name
 `add-blog-post-project-foo-intro` which tells me, at a glance, that this branch
-contains changes that adds a new blog post for introducing the project called
+contains changes that add a new blog post for introducing the project called
 "foo".
 
 ## Make a commit
 
 To create a blog post in the Project Unicorn blog, you'll have to "register" as
 an author. We're not gonna write the blog post itself for now because this topic
-has its own tutorial.
+has its tutorial.
 
 On the `$PROJECT_ROOT`, there's a directory called `content` and inside this
 directory is a file called `author.yaml`. Open the file in a text editor and add
-yourself as an author entry. You can use the following snippet as reference.
+yourself as an author entry. You can use the following snippet as a reference.
 The `id` can be the same as your GitHub username.
 
 ```yaml
@@ -505,8 +504,8 @@ After knowing what file(s) are introduced and/or modified, we can now proceed to
 _stage_ them. When we stage files, we're just preparing what goes into the next
 commit. When you work on larger features, you'll probably end up creating or
 modifying a lot of files. Some changes are highly related to each other and it
-is encouraged to group them together for the next commit. Doing this improves
-the repo's presentation of it's history.
+is encouraged to group them for the next commit. Doing this improves the repo's
+presentation of its history.
 
 Since your author entry is all the change that is introduced in this step, we
 can use the `git add` command to stage _all_ the changes:
@@ -517,7 +516,7 @@ git add .
 
 > **NOTE**: Don't forget to include the _dot_ (`.`) after `git add`!
 
-You can also choose include only a subset of changed files in your commit by
+You can also choose to include only a subset of changed files in your commit by
 providing the paths to these files instead of the dot (`.`). The snippet below
 contains files for example repository (`foo`):
 
@@ -607,7 +606,7 @@ inserted in this phrase:
 The contents of the commit message body supplements the title. Most devs advise
 that it should contain _why_ the changes were introduced instead of _what_
 changes were introduced. Don't think too much about this for now, you'll develop
-your own commit message style with enough practice.
+your commit message style with enough practice.
 
 Your command should be similar to the snippet below. You can leave out the
 commit message body.
@@ -634,11 +633,11 @@ git push -u origin add-blog-post-project-foo-intro
 This will create a remote version of your topic branch on `origin`. And because
 of the `-u` flag, it also sets up your local topic branch to track this new
 remote branch. This means, when someone else pushes a commit to your branch, Git
-will tell you about those changes it when you run `git status` so you can pull
-them to your local repo.
+will tell you about those changes when you run `git status` so you can pull them
+to your local repo.
 
 You only need to add the `-u` flag on your first push. For succeeding pushes,
-you can usejust `git push` (without passing the other arguments).
+you can just `git push` (without passing the other arguments).
 
 We're not gonna introduce any more changes to the topic branch for this article.
 
@@ -646,8 +645,8 @@ We're not gonna introduce any more changes to the topic branch for this article.
 
 There will be times when you are working on your topic branch, and some new
 changes are merged into the `master` branch. It's recommended to pull these
-changes to your topic branch as soon as you are able to, to minimize conflicts
-once you are ready to request a merge of your topic branch to `master`.
+changes to your topic branch as soon as you can, to minimize conflicts once you
+are ready to request a merge of your topic branch to `master`.
 
 This will not be a problem with our task right now, assuming you're the only one
 who's working on your blog post. But consider a dev who's tasked with
@@ -657,7 +656,7 @@ Let's say the patch changes the signature of some method or the values of some
 constants. If they continue committing to their branches without incorporating
 the fix, their implementation might not work on the `master` branch.
 
-Try to update the topic brach by entering these commands (it won't do anything
+Try to update the topic branch by entering these commands (it won't do anything
 if no one pushed commits to that remote `master` branch):
 
 ```bash
@@ -679,7 +678,7 @@ git checkout add-blog-post-project-foo-intro
 git pull --rebase origin master
 ```
 
-Checkout your topic branch first, and then run the next command. This will add
+Check out your topic branch first, and then run the next command. This will add
 new commits from the `master` branch to your local topic branch.
 
 Rebasing is somewhat a controversial topic. Some would argue that you should
@@ -694,10 +693,10 @@ use `rebase` in your projects.
 ## Resolving merge conflicts
 
 You may encounter conflicts when merging changes from the default branch to your
-topic branch. These conflicts happens when a specific part of the code is
+topic branch. These conflicts happen when a specific part of the code is
 changed in both branches. Consider the following example:
 
-In our blog post task, we modified the `author.yaml` file and committed it to our
+In our blogpost task, we modified the `author.yaml` file and committed it to our
 topic branch. But then another author entry was pushed to the `author.yaml` on
 the `origin/master` branch. You update your local default branch and try to
 merge it to your topic branch but you're presented with the following:
@@ -732,8 +731,8 @@ merge into your topic branch).
 
 To resolve this conflict, you have to choose which modification you want to
 retain. You have to remove the separators and include code that you want. You
-can chose one or both sections to include, or something totally different. In
-our case, we'll accept both changes.
+can chose one or both sections to include, or something different. In our case,
+we'll accept both changes.
 
 ```yaml
 # ...

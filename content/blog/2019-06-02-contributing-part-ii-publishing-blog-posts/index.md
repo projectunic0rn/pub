@@ -25,8 +25,8 @@ worked on. So for now, you'll be working on your code editor of choice.
 ## What to write about?
 
 If you don't have a topic to write about you can always refer to `pub`'s issue
-tracker and look for issues that are tagged with `blog request`. These issue are
-usually asking for articles to help members that are working on projects in
+tracker and look for issues that are tagged with `blog request`. These issues
+are usually asking for articles to help members that are working on projects in
 Project Unicorn.
 
 > [`pub` issue tracker](https://github.com/projectunic0rn/pub/issues?q=is%3Aissue+is%3Aopen+label%3A%22blog+request%22)
@@ -51,7 +51,7 @@ yourself, I guess.
 
 ## Clone to your machine
 
-Let's practice some of the Git stuff you learned on the previous article. Open
+Let's practice some of the Git stuff you learned in the previous article. Open
 your terminal and clone the Project Unicorn web site repository using the
 `git clone` command. Then use the `cd` command to go inside the `pub` directory
 on your machine.
@@ -77,10 +77,10 @@ and the `name` are required.
 - **`bio`** - Short description of the author
 - **`github`** - The author's GitHub username
 - **`twitter`** - The author's Twitter username
-- **`avatar`** - The path for the image the the author would like to use as
-  their avatar image. Please make sure to add the image file in the
+- **`avatar`** - The path for the image the author would like to use as their
+  avatar image. Please make sure to add the image file in the
   [`content/assets`][pub_content_assets_dir] directory with the same file name
-  as the `id` above. For example if the author id is `rmjordas`, then the value
+  as the `id` above. For example, if the author id is `rmjordas`, then the value
   should be `assets/rmjordas.png`. If you don't provide a value for this option,
   a default avatar image will be used.
 
@@ -89,7 +89,7 @@ and the `name` are required.
 > **NOTE**: Remember, these options are for author entries in
 > [`author.yaml`](https://github.com/projectunic0rn/pub/blob/master/content/author.yaml).
 
-## Task list
+## Tasklist
 
 For this guide, your tasks are to:
 
@@ -138,7 +138,7 @@ cp content/index.md.example content/blog/2012-12-12-your-directory/index.md
 >
 > [The `cp` Command](http://www.linfo.org/cp.html)
 
-### Update blog post frontmatter
+### Update blog post front matter
 
 Inside `index.md` you will find a section at the top that starts and ends with
 three dashes:
@@ -155,14 +155,14 @@ tags:
 ---
 ```
 
-This section is called the _frontmatter_ and it contains the most essential
+This section is called the _front matter_ and it contains the most essential
 information needed when creating the static page for a single blog post.
 
 - **`title`** - Title of your blog post, this will be the text shown inside the
   blog post banner image and it is included in the `<title>` of the HTML
   document for this blog post.
 - **`author`** - A unique ID for the author of the blog post. If you've been
-  following along, you should already done this. If not, please refer to
+  following along, you should have already done this. If not, please refer to
   "[Make A Commit][make_a_commit]" section on the blog post Contributing Part I:
   Getting Started for instructions on how to create an author entry.
 - **`date`** - The date when the blog post was published. This follows a special
@@ -193,7 +193,7 @@ The following shows example usage for the most commonly used Markdown syntax.
 We use headers to structure the hierarchy of information.
 
 > **NOTE**: Please **do not** put level 1 headers because it's already provided
-> inside the blog post banner via the `title` field in the frontmatter.
+> inside the blog post banner via the `title` field in the front matter.
 
 ```md
 # Level 1 Header
@@ -239,7 +239,7 @@ item.
   - Item 3
   - Item 4
 
-**Ordered list with ordered and unorded sub-lists**
+**Ordered list with ordered and unordered sub-lists**
 
 1. Item 1
 1. Item 2
@@ -281,7 +281,7 @@ a relative path to it.
 ```
 
 > **NOTE**: Some image formats may not be recognized by the image transformer
-> plugin, so it is best to stick to the common formats like: `jpg` (or `jpeg`),
+> plugin, so it is best to stick to the common formats like `jpg` (or `jpeg`),
 > `png`, `gif`, `svg`, etc.
 
 ```markdown
@@ -294,7 +294,7 @@ a relative path to it.
 
 ### Links
 
-Links allows us to navigate to pages that are internal or external to the
+Links allow us to navigate to pages that are internal or external to the
 Project Unicorn web site. There are a few ways to write links in your blog
 posts.
 
@@ -340,7 +340,7 @@ To link to other parts of the Project Unicorn web site use relative paths.
 Lastly, you can avoid breaking the flow of reading in your Markdown files by
 using a label instead of the full URL. This example provides the label called
 "references" which has the URL to the Project Unicorn web site repository and
-a optional title.
+an optional title.
 
 ```md
 Avoid breaking the flow by using a [reference][] instead of the full URL.
@@ -373,7 +373,7 @@ Avoid breaking the flow by using [a reference][ref] instead of the full URL.
 
 ### Blockquotes
 
-Use blockquote to include longer text that are quoted from some reference. You
+Use blockquote to include longer text that is quoted from some reference. You
 can also use it to insert tips, warning or other notices that may be useful for
 the readers.
 
@@ -536,7 +536,7 @@ In the next part, [**Contributing Part III: Project Unicorn Web Site**][c3],
 we'll discuss how you can view your blog post draft on the browser as if it's
 already published and see live-updates as you edit.
 
-[c3]: /blog/contributing-part-ii-publishing-blog-posts
+[c3]: /blog/contributing-part-iii-project-unicorn-web-site/
 
 We'll also talk about the internals of the Project Unicorn web site, especially,
 how to configure the [Gatsby][] framework.
