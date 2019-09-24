@@ -10,6 +10,7 @@ import {
 import styled from 'styled-components';
 
 const Heading = styled.h2``;
+
 const FormElement = styled.form`
   display: flex;
   flex-direction: column;
@@ -17,15 +18,18 @@ const FormElement = styled.form`
 
 interface FormProps {
   heading?: string;
+  handleSubmit?: any;
 }
-export const Form: React.FC<FormProps> = ({ heading, children }) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('submit');
-  };
 
+export const Form: React.FC<FormProps> = ({
+  heading,
+  handleSubmit,
+  children,
+}) => {
   return (
-    <FormElement onSubmit={handleSubmit}>
+    <FormElement
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+    >
       <Heading>{heading}</Heading>
       {children}
     </FormElement>
