@@ -39,6 +39,7 @@ export const CreateProjectForm: React.FC = () => {
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
     pRepo: { val: '', required: true },
+    pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
   });
 
@@ -52,10 +53,15 @@ export const CreateProjectForm: React.FC = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: any, val = '') => {
     const { name, value } = e.target;
     const state: any = formInputs;
+
     state[name].val = value;
+
+    if (name === 'pDesc') {
+      state[name].val = val;
+    }
 
     setFormInputs({ ...state });
   };
@@ -74,7 +80,7 @@ export const CreateProjectForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors = formValidation(formInputs);
-
+    console.log(formInputs);
     if (errors) {
       setFormErrors([...errors]);
       return;
@@ -82,8 +88,6 @@ export const CreateProjectForm: React.FC = () => {
 
     // make api call
   };
-
-  console.log(formErrors);
 
   return (
     <Wrapper>
@@ -137,7 +141,16 @@ export const CreateProjectForm: React.FC = () => {
           )}
           <FormHint>Share your project repo (GitHub, GitLib etc)</FormHint>​
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
-          <FormInput name="pLaunch" type="date" onChange={handleChange} />
+          <FormInput
+            name="pLaunch"
+            type="date"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            hasError={formErrors.includes('pLaunch')}
+          />
+          {formErrors.includes('pLaunch') && (
+            <ErrorMessage value="Project Launch" />
+          )}
           <FormHint>
             Keep you and your team accountable with a launch date
           </FormHint>
