@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
-import CtaButton from '@components/index-page/cta-button';
+import { Button } from '@components/app/shared';
 import { useSiteMetadata } from '@hooks';
 import Form, {
   FormLabel,
@@ -12,6 +12,7 @@ import Form, {
   ButtonWrapper,
 } from '@components/shared/form';
 import { useState } from 'react';
+import { AuthService } from '@/api/auth-service';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -26,6 +27,12 @@ const Wrapper = styled.section`
     padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
 `;
+
+function handleClick() {
+  const auth = new AuthService();
+  const response = auth.login;
+  console.log(response);
+}
 
 const SignInPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
@@ -67,7 +74,9 @@ const SignInPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <CtaButton title="Sign In" href="" type="input" content="Sign In" />
+            <Button onClick={handleClick} active={false}>
+              Sign In
+            </Button>
           </ButtonWrapper>
         </Form>
       </Wrapper>
