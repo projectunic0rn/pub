@@ -30,4 +30,11 @@ export class ApiService {
       project,
     );
   }
+
+  public async getProjectTypes() {
+    return await HttpClient.get(
+      `${this.apiEndpoint}/util/projecttypes`,
+      this.headers,
+    );
+  }
 }

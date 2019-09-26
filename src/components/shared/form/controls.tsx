@@ -17,7 +17,7 @@ const FormInput = styled.input<FormInputProps>`
     props.hasError ? '1px solid red' : '1px solid lightgray;'};
   background: ${(props) => (props.hasError ? '#fff1f4' : 'white;')};
 `;
-const SelectInput = styled.select`
+const SelectInput = styled.select<FormSelectInputProps>`
   padding: 0.425em;
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
@@ -28,6 +28,9 @@ const SelectInput = styled.select`
   }
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
     no-repeat 95% 50% white;
+  border: ${(props) =>
+    props.hasError ? '1px solid red' : '1px solid lightgray;'};
+  background: ${(props) => (props.hasError ? '#fff1f4' : 'white;')};
 `;
 const FormHint = styled.small`
   color: gray;
@@ -65,22 +68,39 @@ const ButtonWrapper = styled.div`
 `;
 
 interface FormSelectInputProps {
-  options: string[];
+  options: { id: string; type: string }[];
   name?: string;
   onChange: Function;
+  onBlur: Function;
+  hasError?: boolean;
 }
 
 const FormSelectInput: React.FC<FormSelectInputProps> = ({
   options,
   name,
   onChange,
+  onBlur,
+  hasError,
 }) => {
-  const selectOptions = options.map((option: string) => (
-    <option key={option}>{option}</option>
+  const selectOptions = options.map((option) => (
+    <option key={option.type} value={option.type}>
+      {option.type}
+    </option>
   ));
 
   return (
-    <SelectInput name={name} onChange={(e: any) => onChange(e)}>
+    <SelectInput
+      onBlur={(e) => {
+        onBlur(e);
+      }}
+      options={options}
+      name={name}
+      onChange={(e: any) => onChange(e)}
+      hasError={hasError}
+    >
+      <option key="0" value="">
+        Select a Project Type
+      </option>
       {selectOptions}
     </SelectInput>
   );

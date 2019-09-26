@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, ErrorMessage } from '../form';
 
 import {
@@ -12,6 +12,7 @@ import {
 import { formValidation } from '../../../utils';
 import styled from 'styled-components';
 import CtaButton from '@components/index-page/cta-button';
+import ServiceResolver from '../../../api/service-resolver';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -35,13 +36,19 @@ const Wrapper = styled.section`
 `;
 
 export const CreateProjectForm: React.FC = () => {
+  const api = new ServiceResolver().ApiResolver();
+
   const [formInputs, setFormInputs] = useState({
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
+    pTech: { val: ['JS'], required: true },
+    pType: { val: null, required: true },
     pRepo: { val: '', required: true },
     pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
   });
+
+  const [projectTypes, setProjectTypes] = useState<any>([]);
 
   // const [projectName, setProjectName] = useState('');
   // const [description, setDescription] = useState('');
@@ -53,10 +60,19 @@ export const CreateProjectForm: React.FC = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
+  useEffect(() => {
+    async function fetchProjectTypes() {
+      const projTypes: any = await api.getProjectTypes();
+
+      setProjectTypes([...projTypes.data]);
+    }
+
+    fetchProjectTypes();
+  }, []);
+
   const handleChange = (e: any, val = '') => {
     const { name, value } = e.target;
     const state: any = formInputs;
-
     state[name].val = value;
 
     if (name === 'pDesc') {
@@ -79,14 +95,27 @@ export const CreateProjectForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
     const errors = formValidation(formInputs);
-    console.log(formInputs);
-    if (errors) {
+    console.log(errors);
+    if (errors.length) {
       setFormErrors([...errors]);
       return;
     }
 
     // make api call
+    const formData = {
+      name: pName.val,
+      description: pDesc.val,
+      projectType: 1,
+      technologies: pTech.val,
+      projectRepo: pRepo.val,
+      launchDate: new Date(pLaunch.val),
+      communicationPlatform: pComm.val,
+    };
+
+    api.createProject(formData);
   };
 
   return (
@@ -124,9 +153,15 @@ export const CreateProjectForm: React.FC = () => {
           <FormHint>Describe your project in a single tweet</FormHint>​
           <FormLabel htmlFor="project-type">Project Type</FormLabel>
           <FormSelectInput
-            options={['Community', 'Healthcare']}
+            name="pType"
+            options={projectTypes}
             onChange={handleChange}
+            onBlur={handleBlur}
+            hasError={formErrors.includes('pType')}
           />
+          {formErrors.includes('pType') && (
+            <ErrorMessage value="Project Type" />
+          )}
           <FormHint>What category does your project belong to?</FormHint>​
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
           <FormInput
