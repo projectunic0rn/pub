@@ -1,13 +1,16 @@
 import * as React from 'react';
 
-import { Data } from './content';
 import CardPill from './card-pill';
 import styled from '@styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
+import { Project } from '@/api/types/project';
+import ServiceResolver from '@/api/service-resolver';
+import { ApiResponse } from '@/api/types/api-response';
 
 interface CardProps {
-  content: Data;
+  content: Project;
+  setApiError: Function;
 }
 
 const Wrapper = styled.div`
@@ -52,10 +55,36 @@ const Tech = styled.span`
   }
 `;
 
-const Card: React.FC<CardProps> = ({ content }) => {
+const Error = styled.span`
+  color: #cc0000;
+  float: right;
+  font-size: 14px;
+  position: absolute;
+  bottom: 5px;
+
+  @media screen and (max-width: 750px) {
+    bottom: 0;
+    position: inherit;
+    top: 20px;
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 768px) {
+    color: blue;
+    margin-top: -1000px;
+    bottom: 0;
+  }
+`;
+
+const Break = styled.span`
+  margin: 100px;
+`;
+
+const Card: React.FC<CardProps> = ({ content, setApiError }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
+  const [isJoining, setIsJoining] = React.useState<boolean>(false);
 
   const getMembers = (members: string[]) => {
     return {
@@ -75,8 +104,31 @@ const Card: React.FC<CardProps> = ({ content }) => {
     };
   };
 
-  const handleClick = () => {
-    setHasMemberJoinedProject(!hasMemberJoinedProject);
+  const handleClick = async (id: string) => {
+    const api = new ServiceResolver().ApiResolver();
+
+    try {
+      setIsJoining(true);
+
+      const response = hasMemberJoinedProject
+        ? ((await api.leaveProject(id)) as ApiResponse)
+        : ((await api.joinProject({
+            projectId: id,
+            userId: '',
+            isOwner: false,
+          })) as ApiResponse);
+
+      if (response.ok) {
+        setHasMemberJoinedProject(!hasMemberJoinedProject);
+        setApiError(false, 'Failed to join the project');
+      } else {
+        setApiError(true, response.data as string);
+      }
+    } catch (err) {
+      setApiError(true, err);
+    }
+
+    setIsJoining(false);
   };
 
   const communicationPlatforms = [
@@ -121,9 +173,14 @@ const Card: React.FC<CardProps> = ({ content }) => {
       {tech.other && (
         <Tech title={tech.other.join(', ')}>+{tech.other.length}</Tech>
       )}
+      <Break>&nbsp;</Break>
       <br />
       <br />
-      <ProjectButton onClick={handleClick} active={hasMemberJoinedProject}>
+      <ProjectButton
+        onClick={() => handleClick(content.id)}
+        active={hasMemberJoinedProject}
+        disabled={isJoining}
+      >
         {hasMemberJoinedProject ? 'Leave' : 'Join'}
       </ProjectButton>
     </Wrapper>
