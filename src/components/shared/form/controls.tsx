@@ -73,6 +73,7 @@ interface FormSelectInputProps {
   onChange: Function;
   onBlur: Function;
   hasError?: boolean;
+  placeholder: string;
 }
 
 const FormSelectInput: React.FC<FormSelectInputProps> = ({
@@ -81,6 +82,7 @@ const FormSelectInput: React.FC<FormSelectInputProps> = ({
   onChange,
   onBlur,
   hasError,
+  placeholder,
 }) => {
   const selectOptions = options.map((option) => (
     <option key={option.type} value={option.type}>
@@ -97,9 +99,10 @@ const FormSelectInput: React.FC<FormSelectInputProps> = ({
       name={name}
       onChange={(e: any) => onChange(e)}
       hasError={hasError}
+      placeholder={placeholder}
     >
       <option key="0" value="">
-        Select a Project Type
+        {placeholder}
       </option>
       {selectOptions}
     </SelectInput>

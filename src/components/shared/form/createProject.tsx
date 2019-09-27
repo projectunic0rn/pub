@@ -158,6 +158,7 @@ export const CreateProjectForm: React.FC = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             hasError={formErrors.includes('pType')}
+            placeholder="Select a Project Type"
           />
           {formErrors.includes('pType') && (
             <ErrorMessage value="Project Type" />
