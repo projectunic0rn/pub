@@ -7,10 +7,14 @@ import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse } from '@/api/types/api-response';
+import { ProjectTechnology } from '@/api/types/project-technology';
+import { ProjectUser } from '@/api/types/project-user';
+import { UserAuthHelper } from '@/helpers';
+import { Link } from 'gatsby';
 
 interface CardProps {
   content: Project;
-  setApiError: Function;
+  setMessage: Function;
 }
 
 const Wrapper = styled.div`
@@ -55,77 +59,91 @@ const Tech = styled.span`
   }
 `;
 
-const Error = styled.span`
-  color: #cc0000;
-  float: right;
-  font-size: 14px;
-  position: absolute;
-  bottom: 5px;
-
-  @media screen and (max-width: 750px) {
-    bottom: 0;
-    position: inherit;
-    top: 20px;
-    font-size: 12px;
-  }
-
-  @media screen and (max-width: 768px) {
-    color: blue;
-    margin-top: -1000px;
-    bottom: 0;
-  }
-`;
-
 const Break = styled.span`
   margin: 100px;
 `;
 
-const Card: React.FC<CardProps> = ({ content, setApiError }) => {
+const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
   const [isJoining, setIsJoining] = React.useState<boolean>(false);
 
-  const getMembers = (members: string[]) => {
+  const userId = UserAuthHelper.isUserAuthenticated()
+    ? UserAuthHelper.getUserId()
+    : null;
+  const username = 'Roy';
+
+  React.useEffect(() => {
+    setHasMemberJoinedProject(
+      content.projectUsers.find((u) => u.userId === userId) !== undefined,
+    );
+  }, []);
+
+  const getMembers = (members: ProjectUser[]) => {
     return {
       displayable: members.map((v, i) => {
-        if (i < 5) return <CardPill key={i}>{v}</CardPill>;
+        if (i < 5) return <CardPill key={i}>{v.username}</CardPill>;
       }),
       other: members.length > 5 && members.slice(5, members.length),
     };
   };
 
-  const getTech = (tech: string[]) => {
+  const getTech = (tech: ProjectTechnology[]) => {
     return {
       displayable: tech.map((v, i) => {
-        if (i < 5) return <Tech key={i}>{v}</Tech>;
+        if (i < 5) return <Tech key={i}>{v.name}</Tech>;
       }),
       other: tech.length > 5 && tech.slice(5, tech.length),
     };
   };
 
-  const handleClick = async (id: string) => {
+  const handleClick = async (project: Project) => {
     const api = new ServiceResolver().ApiResolver();
 
     try {
       setIsJoining(true);
+      let response;
 
-      const response = hasMemberJoinedProject
-        ? ((await api.leaveProject(id)) as ApiResponse)
-        : ((await api.joinProject({
-            projectId: id,
-            userId: '',
-            isOwner: false,
-          })) as ApiResponse);
+      if (hasMemberJoinedProject) {
+        const projectUser = project.projectUsers.find(
+          (u) => u.userId === userId,
+        ) as ProjectUser;
+
+        response = (await api.leaveProject(projectUser.id!)) as ApiResponse<
+          ProjectUser | string
+        >;
+
+        if (response.ok) {
+          const projectUserIndex = content.projectUsers.indexOf(projectUser);
+          content.projectUsers.splice(projectUserIndex, 1);
+        }
+      } else {
+        const isOwner =
+          project.projectUsers.find((u) => u.userId === userId) !== null;
+        const joinProjectResponseBody: ProjectUser = {
+          projectId: project.id,
+          isOwner,
+          userId,
+          username,
+        };
+
+        response = (await api.joinProject(
+          joinProjectResponseBody,
+        )) as ApiResponse<ProjectUser | string>;
+
+        if (response.ok) {
+          content.projectUsers.push(joinProjectResponseBody);
+        }
+      }
 
       if (response.ok) {
         setHasMemberJoinedProject(!hasMemberJoinedProject);
-        setApiError(false, 'Failed to join the project');
       } else {
-        setApiError(true, response.data as string);
+        setMessage(response.data as string);
       }
     } catch (err) {
-      setApiError(true, err);
+      setMessage(err);
     }
 
     setIsJoining(false);
@@ -145,8 +163,8 @@ const Card: React.FC<CardProps> = ({ content, setApiError }) => {
     content.communicationPlatformUrl.includes(p.name),
   );
 
-  const members = getMembers(content.members);
-  const tech = getTech(content.technologies);
+  const members = getMembers(content.projectUsers);
+  const tech = getTech(content.projectTechnologies);
   const CommunicationPlatformIcon = styled.img.attrs({
     src: communicationPlatform !== undefined && communicationPlatform.icon,
     alt: '',
@@ -156,11 +174,25 @@ const Card: React.FC<CardProps> = ({ content, setApiError }) => {
     left: 15px;
   `;
 
+  const CommunicationPlatformIconClickable = styled(CommunicationPlatformIcon)`
+    :hover {
+      cursor: pointer;
+    }
+  `;
+
   return (
     <Wrapper>
       <Title>
         {content.name}
-        <CommunicationPlatformIcon />
+        {hasMemberJoinedProject ? (
+          <CommunicationPlatformIconClickable
+            onClick={() =>
+              window.open(content.communicationPlatformUrl, '_blank')
+            }
+          />
+        ) : (
+          <CommunicationPlatformIcon />
+        )}
       </Title>
       {members.displayable}
       {members.other && (
@@ -176,13 +208,19 @@ const Card: React.FC<CardProps> = ({ content, setApiError }) => {
       <Break>&nbsp;</Break>
       <br />
       <br />
-      <ProjectButton
-        onClick={() => handleClick(content.id)}
-        active={hasMemberJoinedProject}
-        disabled={isJoining}
-      >
-        {hasMemberJoinedProject ? 'Leave' : 'Join'}
-      </ProjectButton>
+      {UserAuthHelper.isUserAuthenticated() ? (
+        <ProjectButton
+          onClick={() => handleClick(content)}
+          active={hasMemberJoinedProject}
+          disabled={isJoining}
+        >
+          {hasMemberJoinedProject ? 'Leave' : 'Join'}
+        </ProjectButton>
+      ) : (
+        <Link to="/signin">
+          <ProjectButton active={false}>Join</ProjectButton>
+        </Link>
+      )}
     </Wrapper>
   );
 };

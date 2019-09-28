@@ -51,9 +51,9 @@ const ProjectGallery: React.FC = () => {
   const [error, setError] = React.useState<string>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const setApiError = (isError: boolean, error: string) => {
-    setIsError(isError);
-    setError(error);
+  const setMessage = (message: string) => {
+    setIsError(message !== null && message !== '');
+    setError(message);
   };
 
   React.useEffect(() => {
@@ -61,13 +61,14 @@ const ProjectGallery: React.FC = () => {
       const api = new ServiceResolver().ApiResolver();
 
       try {
-        const response = (await api.getProjects()) as ApiResponse;
+        const response = (await api.getProjects()) as ApiResponse<
+          Project[] | string
+        >;
 
         if (response.ok) setProjects(response.data as Project[]);
         else setError(response.data as string);
 
         setIsError(!response.ok);
-        setApiError(true, 'Failed to load projects');
       } catch (err) {
         setIsError(true);
         setError(err);
@@ -84,13 +85,13 @@ const ProjectGallery: React.FC = () => {
       {isError && (
         <Message>
           {error}
-          <MessageCloseButton onClick={() => setApiError(false, '')}>
+          <MessageCloseButton onClick={() => setMessage('')}>
             &#10006;
           </MessageCloseButton>
         </Message>
       )}
       {isLoading && <Loader>Loading...</Loader>}
-      <Panel content={projects} setApiError={setApiError} />
+      <Panel content={projects} setMessage={setMessage} />
     </Wrapper>
   );
 };

@@ -1,4 +1,4 @@
-export interface ApiResponse {
+export interface ApiResponse<T> {
   ok: boolean;
-  data: unknown;
+  data: T;
 }

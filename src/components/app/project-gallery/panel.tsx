@@ -6,7 +6,7 @@ import { Project } from '@/api/types/project';
 
 interface PanelProps {
   content: Project[];
-  setApiError: Function;
+  setMessage: Function;
 }
 
 const Wrapper = styled.div`
@@ -14,10 +14,10 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Panel: React.FC<PanelProps> = ({ content = [], setApiError }) => (
+const Panel: React.FC<PanelProps> = ({ content = [], setMessage }) => (
   <Wrapper>
     {content.map((v) => (
-      <Card key={v.name} content={v} setApiError={setApiError} />
+      <Card key={v.name} content={v} setMessage={setMessage} />
     ))}
   </Wrapper>
 );
