@@ -88,17 +88,16 @@ const ProfileDot = styled.img`
   top: 1.5em;
   right: -0.2em;
 `;
+
 const filterInvalidNavItems = (navItem: NavigationLink) => {
-  return navItem.requiresAuthentication === false;
+  // TODO: Replace w/ variable to read user authentication status
+  const userAuthenticated = true;
+  return navItem.requiresAuthentication === userAuthenticated;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  // TODO: Replace w/ variable to read user authentication status
-  const userAuthenticated = true;
   const siteMetadata = useSiteMetadata();
-  const validNavItems = userAuthenticated
-    ? navLinks
-    : navLinks.filter(filterInvalidNavItems);
+  const validNavItems = navLinks.filter(filterInvalidNavItems);
   return (
     <Nav>
       <Link to="/" title={`${siteMetadata.title}`}>
@@ -108,7 +107,11 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
       <NavMenu>
         {validNavItems.map((v: NavigationLink) => (
           <NavMenuItem key={v.href}>
-            {v.button && <NavButton>{v.content}</NavButton>}
+            {v.button && (
+              <Link to={v.href} title={v.title}>
+                <NavButton>{v.content}</NavButton>{' '}
+              </Link>
+            )}
             {v.link &&
               (v.external ? (
                 <Anchor href={v.href} content={v.content} title={v.title} />

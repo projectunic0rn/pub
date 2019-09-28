@@ -27,7 +27,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const SignInPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState('');
@@ -36,12 +36,12 @@ const SignInPage: React.FC = () => {
   return (
     <Layout>
       <Seo
-        title={`Sign In`}
-        description={`Sign In page for ${siteMetadata.title} website`}
-        urlSlug="signin/"
+        title={`Log In`}
+        description={`Log In page for ${siteMetadata.title} website`}
+        urlSlug="login/"
       />
       <Wrapper>
-        <Form heading={`Sign In To ${siteMetadata.title}`}>
+        <Form heading={`Log In to ${siteMetadata.title}`}>
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
             name="email"
@@ -50,7 +50,7 @@ const SignInPage: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <FormLabel htmlFor="password">Confirm Password</FormLabel>
+          <FormLabel htmlFor="password">Password</FormLabel>
           <FormInput
             name="password"
             type="password"
@@ -67,7 +67,7 @@ const SignInPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <CtaButton title="Sign In" href="" type="input" content="Sign In" />
+            <CtaButton title="Log In" href="" type="input" content="Log In" />
           </ButtonWrapper>
         </Form>
       </Wrapper>
@@ -75,4 +75,4 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export default SignInPage;
+export default LoginPage;

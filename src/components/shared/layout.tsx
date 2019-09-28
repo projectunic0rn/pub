@@ -20,28 +20,20 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
   if (navLinks.length === 0) {
     navLinks = [
       {
-        content: 'Blog',
-        external: false,
-        href: '/blog',
-        title: `${siteMetadata.title} blog`,
-        requiresAuthentication: false,
-        link: true,
-      },
-      {
-        content: 'GitHub',
-        external: true,
-        href: `//github.com/${siteMetadata.social.github}`,
-        title: `${siteMetadata.title} GitHub organization`,
-        requiresAuthentication: false,
-        link: true,
-      },
-      {
         content: 'Projects',
         external: false,
-        href: '/app',
+        href: '/app/projects',
         title: `${siteMetadata.title} projects`,
-        requiresAuthentication: true,
+        requiresAuthentication: false,
         link: true,
+      },
+      {
+        content: 'Log In',
+        external: false,
+        href: '/login',
+        title: `${siteMetadata.title} Log In`,
+        requiresAuthentication: false,
+        button: true,
       },
       {
         content: 'Start Project',

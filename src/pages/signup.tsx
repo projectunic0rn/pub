@@ -77,7 +77,7 @@ const SignUpPage: React.FC = () => {
           />
 
           <LinkWrapper>
-            <Link to="/signin">Sign In</Link>
+            <Link to="/login">Sign In</Link>
           </LinkWrapper>
 
           <ButtonWrapper>
