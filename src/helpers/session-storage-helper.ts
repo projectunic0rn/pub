@@ -9,8 +9,8 @@ export default class SessionStorageHelper {
 
     if (storedJwt === null) {
       const emptyjwt = {
-        refreshToken: 'null',
-        token: 'null',
+        refreshToken: undefined,
+        token: undefined,
       };
 
       return emptyjwt;

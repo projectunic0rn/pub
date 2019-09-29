@@ -5,7 +5,7 @@ export default class UserAuthHelper {
   static isUserAuthenticated() {
     const jwt = SessionStorageHelper.getJwt();
 
-    return jwt !== null && jwt.token !== 'null';
+    return jwt && jwt.token;
   }
 
   static getMember() {

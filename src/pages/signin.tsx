@@ -27,11 +27,21 @@ const Wrapper = styled.section`
   }
 `;
 
+const Error = styled.p`
+  color: ${({ theme }) => theme.colors.messageText.red};
+  margin-bottom: 0;
+`;
+
 const SignInPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const message =
+    window !== undefined
+      ? new URL(window.location.href).searchParams.get('message')
+      : undefined;
 
   return (
     <Layout>
@@ -42,6 +52,8 @@ const SignInPage: React.FC = () => {
       />
       <Wrapper>
         <Form heading={`Sign In To ${siteMetadata.title}`}>
+          {message && <Error style={{ color: 'red' }}>{message}</Error>}
+          <span style={{ color: 'red' }} />
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
             name="email"

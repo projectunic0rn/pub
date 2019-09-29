@@ -25,10 +25,6 @@ export class AuthService {
     this.apiEndpoint = process.env.API_ENDPOINT || '';
   }
 
-  refreshJwtToken(jwtAuthToken: object): any {
-    return HttpClient.post('/sessions/refresh', jwtAuthToken);
-  }
-
   public async login(login: Login) {
     return await HttpClient.post(
       `${this.apiEndpoint}/auth/login`,

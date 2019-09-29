@@ -6,11 +6,11 @@ import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';
 import ServiceResolver from '@/api/service-resolver';
-import { ApiResponse } from '@/api/types/api-response';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
 import { Link } from 'gatsby';
+import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 
 interface CardProps {
   content: Project;
@@ -29,6 +29,10 @@ const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     width: calc(33.3333% - 2em);
     max-width: calc(33.3333% - 2em);
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.max}) {
+    color: green;
   }
 `;
 
@@ -111,7 +115,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         ) as ProjectUser;
 
         response = (await api.leaveProject(projectUser.id!)) as ApiResponse<
-          ProjectUser | string
+          ProjectUser | ErrorResponse
         >;
 
         if (response.ok) {
@@ -130,7 +134,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
 
         response = (await api.joinProject(
           joinProjectResponseBody,
-        )) as ApiResponse<ProjectUser | string>;
+        )) as ApiResponse<ProjectUser | ErrorResponse>;
 
         if (response.ok) {
           content.projectUsers.push(joinProjectResponseBody);
@@ -140,10 +144,10 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       if (response.ok) {
         setHasMemberJoinedProject(!hasMemberJoinedProject);
       } else {
-        setMessage(response.data as string);
+        setMessage((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      setMessage(err);
+      setMessage('Unable to perform the requested action at this time');
     }
 
     setIsJoining(false);
@@ -217,7 +221,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
           {hasMemberJoinedProject ? 'Leave' : 'Join'}
         </ProjectButton>
       ) : (
-        <Link to="/signin">
+        <Link to="/signin?message=You need to be signed in to join a project">
           <ProjectButton active={false}>Join</ProjectButton>
         </Link>
       )}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import Panel from './panel';
 import styled from '@styled-components';
 import { Project } from '@/api/types/project';
-import { ApiResponse } from '@/api/types/api-response';
+import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
 
 const Wrapper = styled.section`
@@ -23,7 +23,7 @@ const Loader = styled.span`
 `;
 
 const Message = styled.div`
-  background: #de1f1f;
+  background: ${({ theme }) => theme.colors.messageText.red};
   color: white;
   width: 100%;
   height: 35px;
@@ -37,7 +37,7 @@ const Message = styled.div`
 
 const MessageCloseButton = styled.span`
   position: absolute;
-  color: white;
+  color: ${({ theme }) => theme.colors.baseinvert};
   right: 15px;
 
   :hover {
@@ -62,16 +62,15 @@ const ProjectGallery: React.FC = () => {
 
       try {
         const response = (await api.getProjects()) as ApiResponse<
-          Project[] | string
+          Project[] | ErrorResponse
         >;
 
         if (response.ok) setProjects(response.data as Project[]);
-        else setError(response.data as string);
+        else setError((response.data as ErrorResponse).message);
 
         setIsError(!response.ok);
       } catch (err) {
-        setIsError(true);
-        setError(err);
+        setMessage('Failed to retrieve the list of projects');
       }
 
       setIsLoading(false);

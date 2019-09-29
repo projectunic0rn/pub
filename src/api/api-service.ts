@@ -1,11 +1,12 @@
 import { HttpClient } from './http-client';
 import { Project } from './types/project';
 import { ProjectUser } from './types/project-user';
+import { UserAuthHelper, SessionStorageHelper } from '@/helpers';
 
 export class ApiService {
   private headers = {
     Accept: 'application/json',
-    Authorization: `Bearer `,
+    Authorization: `Bearer ${SessionStorageHelper.getJwt().token}`,
     'Content-Type': 'application/json; charset=utf-8',
   };
 
