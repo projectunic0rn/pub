@@ -1,10 +1,10 @@
 export default class SessionStorageHelper {
-  static storeJwt(jsonWebToken: object) {
+  public static storeJwt(jsonWebToken: object) {
     const jwtData = this.stringifySessionData(jsonWebToken);
     localStorage.setItem('currentJwt', jwtData);
   }
 
-  static getJwt() {
+  public static getJwt() {
     const storedJwt = localStorage.getItem('currentJwt');
 
     if (storedJwt === null) {
@@ -25,15 +25,15 @@ export default class SessionStorageHelper {
     }
   }
 
-  static parseSessionData(data: string) {
+  public static parseSessionData(data: string) {
     return JSON.parse(data);
   }
 
-  static stringifySessionData(data: object) {
+  public static stringifySessionData(data: object) {
     return JSON.stringify(data);
   }
 
-  static deleteJwt() {
+  public static deleteJwt() {
     localStorage.removeItem('currentJwt');
   }
 }

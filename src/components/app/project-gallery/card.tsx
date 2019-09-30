@@ -114,7 +114,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
           (u) => u.userId === userId,
         ) as ProjectUser;
 
-        response = (await api.leaveProject(projectUser.id!)) as ApiResponse<
+        response = (await api.leaveProject(projectUser.id)) as ApiResponse<
           ProjectUser | ErrorResponse
         >;
 
@@ -126,6 +126,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         const isOwner =
           project.projectUsers.find((u) => u.userId === userId) !== null;
         const joinProjectResponseBody: ProjectUser = {
+          id: '',
           projectId: project.id,
           isOwner,
           userId,

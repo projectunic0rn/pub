@@ -37,11 +37,13 @@ const SignInPage: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  const message =
-    window !== undefined
-      ? new URL(window.location.href).searchParams.get('message')
-      : undefined;
+  React.useEffect(() => {
+    setMessage(new URL(window.location.href).searchParams.get(
+      'message',
+    ) as string);
+  }, []);
 
   return (
     <Layout>

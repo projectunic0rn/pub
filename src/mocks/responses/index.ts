@@ -1,2 +1,2 @@
-export { getProjects } from './getProjectsResponse';
-export { projectUser } from './projectUserResponse';
+export { getProjects } from './get-projects-response';
+export { projectUser } from './project-user-response';

@@ -1,8 +1,8 @@
 export default class JwtTokenHelper {
-  static JwtClaimType =
+  public static JwtClaimType =
     'http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata';
 
-  static getJwtObject(token: string, getMemberObject: boolean) {
+  public static getJwtObject(token: string, getMemberObject: boolean) {
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

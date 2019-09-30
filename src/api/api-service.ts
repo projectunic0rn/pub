@@ -1,7 +1,7 @@
 import { HttpClient } from './http-client';
 import { Project } from './types/project';
 import { ProjectUser } from './types/project-user';
-import { UserAuthHelper, SessionStorageHelper } from '@/helpers';
+import { SessionStorageHelper } from '@/helpers';
 
 export class ApiService {
   private headers = {
@@ -32,6 +32,7 @@ export class ApiService {
     return await HttpClient.post(
       `${this.apiEndpoint}/projectusers/`,
       this.headers,
+      projectUser,
     );
   }
 

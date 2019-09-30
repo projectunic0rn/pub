@@ -2,24 +2,24 @@ import SessionStorageHelper from './session-storage-helper';
 import JwtTokenHelper from './jwt-token-helper';
 
 export default class UserAuthHelper {
-  static isUserAuthenticated() {
+  public static isUserAuthenticated() {
     const jwt = SessionStorageHelper.getJwt();
 
     return jwt && jwt.token;
   }
 
-  static getMember() {
+  public static getMember() {
     return JwtTokenHelper.getJwtObject(
       SessionStorageHelper.getJwt().token,
       true,
     );
   }
 
-  static getUserId() {
+  public static getUserId() {
     return this.getMember().id;
   }
 
-  static getUsername() {
+  public static getUsername() {
     return this.getMember().username;
   }
 }
