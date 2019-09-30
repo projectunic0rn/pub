@@ -280,6 +280,7 @@ export const CreateProjectForm: React.FC = () => {
           {formErrors.includes('pTech') && (
             <ErrorMessage value="Technologies" />
           )}
+          <FormHint>Add the technologies used in your application</FormHint>
           <ButtonWrapper>
             <CtaButton title="Create" href="" type="input" content="Create" />
           </ButtonWrapper>

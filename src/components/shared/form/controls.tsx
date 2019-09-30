@@ -36,7 +36,7 @@ const FormHint = styled.small`
   color: gray;
 `;
 const FormTextAreaHint = styled.small`
-  color: black;
+  color: #bbbbbb;
   position: absolute;
   right: 0;
   bottom: -20px;
