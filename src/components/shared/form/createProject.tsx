@@ -54,7 +54,7 @@ export const CreateProjectForm: React.FC = () => {
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   const styles = {
-    control: (styles: any) => {
+    control: (styles: {}) => {
       return {
         ...styles,
         border: formErrors.includes('pTech')
@@ -63,17 +63,17 @@ export const CreateProjectForm: React.FC = () => {
         background: formErrors.includes('pTech') ? '#fff1f4' : 'white',
       };
     },
-    multiValue: (styles: any) => {
+    multiValue: (styles: {}) => {
       return {
         ...styles,
         backgroundColor: '#5f8ddc',
       };
     },
-    multiValueLabel: (styles: any) => ({
+    multiValueLabel: (styles: {}) => ({
       ...styles,
       color: 'white',
     }),
-    multiValueRemove: (styles: any) => ({
+    multiValueRemove: (styles: {}) => ({
       ...styles,
       color: 'white',
       ':hover': {
@@ -105,14 +105,16 @@ export const CreateProjectForm: React.FC = () => {
 
   const handleSelectChange = (e: any) => {
     let technologies = formInputs.pTech;
-    technologies = e ? e.map((tag: any) => ({ name: tag.value })) : [];
+    technologies = e
+      ? e.map((tag: { value: string }) => ({ name: tag.value }))
+      : [];
     setFormInputs({
       ...formInputs,
       pTech: { ...formInputs.pTech, val: technologies },
     });
   };
 
-  const handleChange = (e: any, val = '') => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, val = '') => {
     const { name, value } = e.target;
     const state: any = formInputs;
     state[name].val = value;
@@ -122,9 +124,9 @@ export const CreateProjectForm: React.FC = () => {
     setFormInputs({ ...state });
   };
 
-  const handleBlur = (e: any) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    const formErrorState: any = formErrors;
+    const formErrorState: string[] = formErrors;
     const formInputState: any = formInputs;
 
     if (formInputState[name].val) {
@@ -137,7 +139,7 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   const onInputChange = (e: any) => {
-    const formErrorState: any = formErrors;
+    const formErrorState: string[] = formErrors;
 
     if (formErrorState.indexOf('pTech') > 0 || formInputs.pTech.val.length) {
       if (formInputs.pTech.val.length) {
