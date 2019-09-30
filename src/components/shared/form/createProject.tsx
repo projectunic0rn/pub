@@ -85,22 +85,31 @@ export const CreateProjectForm: React.FC = () => {
 
   useEffect(() => {
     async function fetchProjectTypes() {
-      const projTypes: any = await api.getProjectTypes();
-      setProjectTypes([...projTypes.data]);
+      try {
+        const projTypes: any = await api.getProjectTypes();
+        setProjectTypes([...projTypes.data]);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchProjectTypes();
   }, []);
 
   const promiseOptions = async (inputValue: string) => {
-    const json = await fetch(
-      `https://api.stackexchange.com/2.2/tags?site=stackoverflow&key=*08t5pMLzA0X50xU9dNGbQ((&inname=${inputValue}`,
-    );
-    const data = await json.json();
-    return data.items.map((tag: { name: string }) => ({
-      value: tag.name,
-      label: tag.name,
-    }));
+    // const json = await fetch(
+    //   `https://api.stackexchange.com/2.2/tags?site=stackoverflow&key=*08t5pMLzA0X50xU9dNGbQ((&inname=${inputValue}`,
+    // );
+    // const data = await json.json();
+    try {
+      const data: any = await StackExchange.searchTags(inputValue);
+      return data.items.map((tag: { name: string }) => ({
+        value: tag.name,
+        label: tag.name,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSelectChange = (e: any) => {
@@ -138,7 +147,7 @@ export const CreateProjectForm: React.FC = () => {
     setFormErrors([...formErrorState]);
   };
 
-  const onInputChange = (e: any) => {
+  const handleAsyncSelectOnBlur = (e: any) => {
     const formErrorState: string[] = formErrors;
 
     if (formErrorState.indexOf('pTech') > 0 || formInputs.pTech.val.length) {
@@ -276,7 +285,7 @@ export const CreateProjectForm: React.FC = () => {
             isMulti
             onChange={handleSelectChange}
             styles={styles}
-            onBlur={(e: any) => onInputChange(e)}
+            onBlur={(e: any) => handleAsyncSelectOnBlur(e)}
             loadOptions={promiseOptions}
           />
           {formErrors.includes('pTech') && (
