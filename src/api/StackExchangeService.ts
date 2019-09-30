@@ -5,7 +5,7 @@ export default class StackExchangeService {
   private apiEndpoint: string = `https://api.stackexchange.com/${
     this.apiVersion
   }`;
-  private stackExchangeKey: string = '*08t5pMLzA0X50xU9dNGbQ((';
+  private stackExchangeKey: string = 'DmNUhvkCC4qooqkj6E6Dwg((';
 
   public async searchTags(searchTerm: string) {
     return await HttpClient.get(
