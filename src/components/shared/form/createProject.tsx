@@ -139,7 +139,7 @@ export const CreateProjectForm: React.FC = () => {
   const onInputChange = (e: any) => {
     const formErrorState: any = formErrors;
 
-    if (formErrorState.indexOf('pTech') > 0) {
+    if (formErrorState.indexOf('pTech') > 0 || formInputs.pTech.val.length) {
       if (formInputs.pTech.val.length) {
         formErrorState.splice(formErrorState.indexOf('pTech'), 1);
       }
