@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { Data } from './content';
 import Card from './card';
 import styled from '@styled-components';
+import { Project } from '@/api/types/project';
 
 interface PanelProps {
-  content: Data[];
+  content: Project[];
+  setMessage: Function;
 }
 
 const Wrapper = styled.div`
@@ -13,10 +14,10 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Panel: React.FC<PanelProps> = ({ content = [] }) => (
+const Panel: React.FC<PanelProps> = ({ content = [], setMessage }) => (
   <Wrapper>
     {content.map((v) => (
-      <Card key={v.name} content={v} />
+      <Card key={v.name} content={v} setMessage={setMessage} />
     ))}
   </Wrapper>
 );
