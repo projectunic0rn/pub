@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Form, ErrorMessage } from '../form';
+import _ from 'lodash';
+import { Form, ErrorMessage } from '@components/shared/form';
 import AsyncSelect from 'react-select/async';
 import {
   FormLabel,
@@ -13,27 +14,6 @@ import { formValidation } from '../../../utils';
 import styled from 'styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '../../../api/service-resolver';
-
-const colourStyles = {
-  multiValue: (styles: any) => {
-    return {
-      ...styles,
-      backgroundColor: '#5f8ddc',
-    };
-  },
-  multiValueLabel: (styles: any) => ({
-    ...styles,
-    color: 'white',
-  }),
-  multiValueRemove: (styles: any) => ({
-    ...styles,
-    color: 'white',
-    ':hover': {
-      backgroundColor: '#486ca8',
-      color: 'white',
-    },
-  }),
-};
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -63,8 +43,8 @@ export const CreateProjectForm: React.FC = () => {
   const [formInputs, setFormInputs] = useState({
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
-    pTech: { val: ['JS'], required: true },
-    pType: { val: null, required: true },
+    pTech: { val: [] as any, required: true },
+    pType: { val: '', required: true },
     pRepo: { val: '', required: true },
     pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
@@ -72,6 +52,36 @@ export const CreateProjectForm: React.FC = () => {
 
   const [projectTypes, setProjectTypes] = useState<any>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
+
+  const styles = {
+    control: (styles: any) => {
+      return {
+        ...styles,
+        border: formErrors.includes('pTech')
+          ? '1px solid red'
+          : '1px solid lightgray;',
+        background: formErrors.includes('pTech') ? '#fff1f4' : 'white',
+      };
+    },
+    multiValue: (styles: any) => {
+      return {
+        ...styles,
+        backgroundColor: '#5f8ddc',
+      };
+    },
+    multiValueLabel: (styles: any) => ({
+      ...styles,
+      color: 'white',
+    }),
+    multiValueRemove: (styles: any) => ({
+      ...styles,
+      color: 'white',
+      ':hover': {
+        backgroundColor: '#486ca8',
+        color: 'white',
+      },
+    }),
+  };
 
   useEffect(() => {
     async function fetchProjectTypes() {
@@ -83,11 +93,23 @@ export const CreateProjectForm: React.FC = () => {
   }, []);
 
   const promiseOptions = async (inputValue: string) => {
-    const searchTags: any = await StackExchange.searchTags(inputValue);
-    return searchTags.items.map((tag: { name: string }) => ({
+    const json = await fetch(
+      `https://api.stackexchange.com/2.2/tags?site=stackoverflow&key=*08t5pMLzA0X50xU9dNGbQ((&inname=${inputValue}`,
+    );
+    const data = await json.json();
+    return data.items.map((tag: { name: string }) => ({
       value: tag.name,
       label: tag.name,
     }));
+  };
+
+  const handleSelectChange = (e: any) => {
+    let technologies = formInputs.pTech;
+    technologies = e ? e.map((tag: any) => ({ name: tag.value })) : [];
+    setFormInputs({
+      ...formInputs,
+      pTech: { ...formInputs.pTech, val: technologies },
+    });
   };
 
   const handleChange = (e: any, val = '') => {
@@ -95,9 +117,7 @@ export const CreateProjectForm: React.FC = () => {
     const state: any = formInputs;
     state[name].val = value;
 
-    if (name === 'pDesc') {
-      state[name].val = val;
-    }
+    if (name === 'pDesc') state[name].val = val;
 
     setFormInputs({ ...state });
   };
@@ -109,8 +129,27 @@ export const CreateProjectForm: React.FC = () => {
 
     if (formInputState[name].val) {
       formErrorState.splice(formErrorState.indexOf(name), 1);
-      setFormErrors([...formErrorState]);
+    } else {
+      formErrorState.push(name);
     }
+
+    setFormErrors([...formErrorState]);
+  };
+
+  const onInputChange = (e: any) => {
+    const formErrorState: any = formErrors;
+
+    if (formErrorState.indexOf('pTech') > 0) {
+      if (formInputs.pTech.val.length) {
+        formErrorState.splice(formErrorState.indexOf('pTech'), 1);
+      }
+    } else {
+      if (!formInputs.pTech.val.length) {
+        formErrorState.push('pTech');
+      }
+    }
+
+    setFormErrors([...formErrorState]);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -119,23 +158,23 @@ export const CreateProjectForm: React.FC = () => {
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
     const errors = formValidation(formInputs);
 
-    if (errors.length) {
-      setFormErrors([...errors]);
-      return;
-    }
+    if (errors.length) return setFormErrors([...errors]);
 
-    // make api call
     const formData = {
       name: pName.val,
       description: pDesc.val,
-      projectType: 1,
+      projectType: pType.val,
       technologies: pTech.val,
       projectRepo: pRepo.val,
       launchDate: new Date(pLaunch.val),
       communicationPlatform: pComm.val,
     };
 
-    api.createProject(formData);
+    try {
+      api.createProject(formData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -228,12 +267,19 @@ export const CreateProjectForm: React.FC = () => {
             Where will you communicate? Share the invite link to your workspace
             (Slack, Discord, Gitter etc)
           </FormHint>
+          <FormLabel htmlFor="technologies">Technologies</FormLabel>
           <AsyncSelect
             cacheOptions
             defaultOptions
             isMulti
+            onChange={handleSelectChange}
+            styles={styles}
+            onBlur={(e: any) => onInputChange(e)}
             loadOptions={promiseOptions}
           />
+          {formErrors.includes('pTech') && (
+            <ErrorMessage value="Technologies" />
+          )}
           <ButtonWrapper>
             <CtaButton title="Create" href="" type="input" content="Create" />
           </ButtonWrapper>

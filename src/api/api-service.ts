@@ -3,8 +3,8 @@ import { HttpClient } from './http-client';
 export interface Project {
   name: string;
   description: string;
-  projectType: number;
-  technologies: string[];
+  projectType: string;
+  technologies: { name: string }[];
   projectRepo: string;
   launchDate: Date;
   communicationPlatform: string;
