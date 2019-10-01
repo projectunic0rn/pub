@@ -41,8 +41,8 @@ Copyright 2019 Project Unicorn
 
 The content of this repository is bound by the following licenses:
 
-- The computer software is licensed under the [MIT](LICENSE.md) license.
+- The computer software is licensed under the [MIT](LICENSE) license.
 - The blog articles in the [`/content`](/content) directory including their
   subdirectories thereon are licensed under the
-  [Creative Commons Attribution Share Alike 4.0 International (CC BY-SA 4.0)](/content/LICENSE.md)
+  [Creative Commons Attribution Share Alike 4.0 International (CC BY-SA 4.0)](/content/LICENSE)
   license.
