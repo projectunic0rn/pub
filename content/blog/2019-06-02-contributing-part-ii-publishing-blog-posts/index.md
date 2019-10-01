@@ -113,10 +113,10 @@ title of the blog post where every character is lowercased and spaces and other
 characters are changed into dashes. For example:
 
 ```
-2012-12-12-the-end-of-the-world
+2012-12-21-the-end-of-the-world
 ```
 
-This means the blog post is published on December 12, 2012 and its title is
+This means the blog post is published on December 21, 2012 and its title is
 "The End of the World".
 
 > **IMPORTANT**: Please ensure that every word is separated only by a single
@@ -131,7 +131,7 @@ created and use it as a base for your blog post. Remember to rename it to
 
 ```bash
 pwd # Make sure you're in $PROJECT_ROOT
-cp content/index.md.example content/blog/2012-12-12-your-directory/index.md
+cp content/index.md.example content/blog/2012-12-21-your-directory/index.md
 ```
 
 > **TIP**: We use `cp` to copy files and directories.
@@ -147,7 +147,7 @@ three dashes:
 ---
 title: The End of the World
 author: rmjordas
-date: '2012-12-12'
+date: '2012-12-21'
 image: ./hero.jpg
 tags:
   - cute
