@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
-import CtaButton from '@components/index-page/cta-button';
 import { useSiteMetadata } from '@hooks';
 import Form, {
   FormLabel,
