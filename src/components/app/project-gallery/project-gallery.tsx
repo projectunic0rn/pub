@@ -23,7 +23,7 @@ const Loader = styled.span`
 `;
 
 const Message = styled.div`
-  background: ${({ theme }) => theme.colors.messageText.red};
+  background: ${({ theme }) => theme.colors.alert.danger};
   color: white;
   width: 100%;
   height: 35px;
