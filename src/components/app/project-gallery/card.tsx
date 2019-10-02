@@ -11,6 +11,7 @@ import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
 import { Link } from 'gatsby';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+import { navigate } from '@reach/router';
 
 interface CardProps {
   content: Project;
@@ -29,10 +30,6 @@ const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     width: calc(33.3333% - 2em);
     max-width: calc(33.3333% - 2em);
-  }
-
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.max}) {
-    color: green;
   }
 `;
 
@@ -103,6 +100,12 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   };
 
   const handleClick = async (project: Project) => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      navigate('/signin', {
+        state: { message: 'You need to be signed it to join a project' },
+      });
+      return;
+    }
     const api = new ServiceResolver().ApiResolver();
 
     try {
@@ -212,19 +215,13 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       <Break>&nbsp;</Break>
       <br />
       <br />
-      {UserAuthHelper.isUserAuthenticated() ? (
-        <ProjectButton
-          onClick={() => handleClick(content)}
-          active={hasMemberJoinedProject}
-          disabled={isJoining}
-        >
-          {hasMemberJoinedProject ? 'Leave' : 'Join'}
-        </ProjectButton>
-      ) : (
-        <Link to="/signin?message=You need to be signed in to join a project">
-          <ProjectButton active={false}>Join</ProjectButton>
-        </Link>
-      )}
+      <ProjectButton
+        onClick={() => handleClick(content)}
+        active={hasMemberJoinedProject}
+        disabled={isJoining}
+      >
+        {hasMemberJoinedProject ? 'Leave' : 'Join'}
+      </ProjectButton>
     </Wrapper>
   );
 };

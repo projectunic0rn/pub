@@ -36,7 +36,15 @@ const Error = styled.p`
   margin-bottom: 0;
 `;
 
-const SignInPage: React.FC = () => {
+interface SignInPageProps {
+  location: {
+    state: {
+      message: string;
+    };
+  };
+}
+
+const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState('');
@@ -44,9 +52,9 @@ const SignInPage: React.FC = () => {
   const [message, setMessage] = useState('');
 
   React.useEffect(() => {
-    setMessage(new URL(window.location.href).searchParams.get(
-      'message',
-    ) as string);
+    if (location.state !== null) {
+      setMessage(location.state.message);
+    }
   }, []);
 
   const handleClick = async (e: React.SyntheticEvent) => {
