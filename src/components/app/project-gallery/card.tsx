@@ -9,7 +9,6 @@ import ServiceResolver from '@/api/service-resolver';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
-import { Link } from 'gatsby';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { navigate } from '@reach/router';
 

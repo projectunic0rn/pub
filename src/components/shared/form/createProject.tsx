@@ -9,15 +9,12 @@ import {
   FormSelectInput,
   ButtonWrapper,
 } from './controls';
-import { formValidation } from '../../../utils';
+import { formValidation } from '@/utils';
 import styled from '@styled-components';
 import CtaButton from '@components/index-page/cta-button';
-import ServiceResolver from '../../../api/service-resolver';
-import { Project } from '../../../api/types/project';
-
-interface Tag {
-  name: string;
-}
+import ServiceResolver from '@/api/service-resolver';
+import { Project } from '@/api/types/project';
+import { Tags, Item } from '@/api/types/stack-exchange';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -54,7 +51,7 @@ export const CreateProjectForm: React.FC = () => {
     pComm: { val: '', required: true },
   });
 
-  const [projectTypes, setProjectTypes] = useState<any>([]);
+  const [projectTypes, setProjectTypes] = useState<any>([]); // create ProjectTypes type
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   const styles = {
@@ -88,6 +85,18 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   useEffect(() => {
+    /*
+      import { navigate } from '@reach/router';
+
+        if (!UserAuthHelper.isUserAuthenticated()) {
+          navigate('/signin', {
+            state: { message: 'You need to be signed it to join a project' },
+          });
+          return;
+        }
+      }
+    */
+
     async function fetchProjectTypes() {
       try {
         const projTypes: any = await api.getProjectTypes();
@@ -102,10 +111,10 @@ export const CreateProjectForm: React.FC = () => {
 
   const promiseOptions = async (inputValue: string) => {
     try {
-      const data: any = await StackExchange.searchTags(inputValue);
-      return data.items.map((tag: Tag) => ({
-        value: tag.name,
-        label: tag.name,
+      const data = (await StackExchange.searchTags(inputValue)) as Tags;
+      return data.items.map((item: Item) => ({
+        value: item.name,
+        label: item.name,
       }));
     } catch (error) {
       console.log(error);
@@ -178,16 +187,14 @@ export const CreateProjectForm: React.FC = () => {
       projectType: pType.val,
       repositoryUrl: pRepo.val,
       communicationPlatformUrl: pComm.val,
-      communicationPlatform: pComm.val,
-      lookingForMembers: false,
+      communicationPlatform: pComm.val, // name of platform (slack/discord)
+      lookingForMembers: true,
       projectTechnologies: pTech.val,
       projectUsers: [
         {
-          id: 'string',
-          projectId: 'string',
-          userId: 'string',
+          userId: 'string', // UserAuthHelper.getUserId()
           isOwner: true,
-          username: 'string',
+          username: 'string', // UserAuthHelper.getUsername()
         },
       ],
     };
@@ -273,7 +280,7 @@ export const CreateProjectForm: React.FC = () => {
           </FormHint>
           ​
           <FormLabel htmlFor="communication-platform">
-            Communication Platform
+            Communication Platform Invitation Link
           </FormLabel>
           <FormInput
             name="pComm"
