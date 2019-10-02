@@ -33,7 +33,7 @@ const Wrapper = styled.section`
 `;
 
 const Error = styled.p`
-  color: ${({ theme }) => theme.colors.messageText.red};
+  color: ${({ theme }) => theme.colors.alert.danger};
   margin-bottom: 0;
 `;
 
@@ -71,7 +71,7 @@ const SignUpPage: React.FC = () => {
         SessionStorageHelper.storeJwt(response.data as JwtToken);
         setMessage('Signed Up');
       } else {
-        setMessage('Invalud email/password');
+        setMessage((response.data as ErrorResponse).message);
       }
     } catch (err) {
       setMessage('Invalid email/password');

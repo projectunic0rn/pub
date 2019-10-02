@@ -5,10 +5,10 @@ import { SignIn } from '@/api/types/sign-in';
 
 export class MockAuthService {
   public signIn(signIn: SignIn) {
-    return Promise.resolve(signInResponse);
+    return signInResponse;
   }
 
   public async signUp(signUp: SignUp) {
-    return Promise.resolve(signUpResponse);
+    return signUpResponse;
   }
 }

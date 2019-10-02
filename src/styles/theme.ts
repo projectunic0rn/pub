@@ -29,8 +29,8 @@ const colors = {
     /** Button active color */
     secondaryHighlight: constants.pinkMedium,
   },
-  messageText: {
-    red: constants.red,
+  alert: {
+    danger: constants.red,
   },
 };
 

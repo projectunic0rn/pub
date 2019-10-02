@@ -5,18 +5,18 @@ import { projectUser } from './responses';
 
 export class MockApiService {
   public async createProject(project: Project) {
-    return Promise.resolve({});
+    return {};
   }
 
   public async getProjects() {
-    return Promise.resolve(getProjects);
+    return getProjects;
   }
 
   public async joinProject() {
-    return Promise.resolve(projectUser);
+    return projectUser;
   }
 
   public async leaveProject() {
-    return Promise.resolve(projectUser);
+    return projectUser;
   }
 }
