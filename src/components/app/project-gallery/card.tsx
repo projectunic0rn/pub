@@ -114,9 +114,9 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
           (u) => u.userId === userId,
         ) as ProjectUser;
 
-        response = (await api.leaveProject(
-          projectUser.id as string,
-        )) as ApiResponse<ProjectUser | ErrorResponse>;
+        response = (await api.leaveProject(projectUser.id)) as ApiResponse<
+          ProjectUser | ErrorResponse
+        >;
 
         if (response.ok) {
           const projectUserIndex = content.projectUsers.indexOf(projectUser);
@@ -126,6 +126,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         const isOwner =
           project.projectUsers.find((u) => u.userId === userId) !== null;
         const joinProjectResponseBody: ProjectUser = {
+          id: '',
           projectId: project.id,
           isOwner,
           userId,

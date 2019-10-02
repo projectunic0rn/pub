@@ -1,6 +1,18 @@
 import { HttpClient } from './http-client';
-import { SignIn } from './types/sign-in';
-import { SignUp } from './types/sign-up';
+
+export interface Login {
+  username: string;
+  password: string;
+}
+
+export interface Register {
+  username: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+  local: string;
+  timezone: string;
+}
 
 export class AuthService {
   private headers = {
@@ -13,19 +25,19 @@ export class AuthService {
     this.apiEndpoint = process.env.API_ENDPOINT || '';
   }
 
-  public async signIn(signIn: SignIn) {
+  public async login(login: Login) {
     return await HttpClient.post(
       `${this.apiEndpoint}/auth/login`,
       this.headers,
-      signIn,
+      login,
     );
   }
 
-  public async signUp(signUp: SignUp) {
+  public async register(register: Register) {
     return await HttpClient.post(
       `${this.apiEndpoint}/auth/register`,
       this.headers,
-      signUp,
+      register,
     );
   }
 }

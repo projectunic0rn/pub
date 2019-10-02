@@ -1,7 +1,4 @@
-import { ApiResponse } from '@/api/types/responses';
-import { JwtToken } from '@/api/types/jwt-token';
-
-export const signInResponse: ApiResponse<JwtToken> = {
+export const loginResponse = {
   ok: true,
   data: {
     token:

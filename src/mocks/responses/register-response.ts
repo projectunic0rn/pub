@@ -1,4 +1,4 @@
-export const signUpResponse = {
+export const registerResponse = {
   ok: true,
   data: {
     token:

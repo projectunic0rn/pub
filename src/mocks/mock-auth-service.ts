@@ -1,14 +1,13 @@
-import { signUpResponse } from './responses/signup-response';
-import { signInResponse } from './responses/signin-response';
-import { SignUp } from '@/api/types/sign-up';
-import { SignIn } from '@/api/types/sign-in';
+import { Login, Register } from '@/api/auth-service';
+import { loginResponse } from './responses/login-response';
+import { registerResponse } from './responses/register-response';
 
 export class MockAuthService {
-  public signIn(signIn: SignIn) {
-    return Promise.resolve(signInResponse);
+  public login(login: Login) {
+    return Promise.resolve(loginResponse);
   }
 
-  public async signUp(signUp: SignUp) {
-    return Promise.resolve(signUpResponse);
+  public async register(register: Register) {
+    return Promise.resolve(registerResponse);
   }
 }

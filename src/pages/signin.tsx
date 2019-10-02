@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
+import CtaButton from '@components/index-page/cta-button';
 import { useSiteMetadata } from '@hooks';
 import Form, {
   FormLabel,
@@ -11,11 +12,6 @@ import Form, {
   ButtonWrapper,
 } from '@components/shared/form';
 import { useState } from 'react';
-import { Button } from '@components/app/shared';
-import ServiceResolver from '@/api/service-resolver';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { SessionStorageHelper } from '@/helpers';
-import { JwtToken } from '@/api/types/jwt-token';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -49,33 +45,6 @@ const SignInPage: React.FC = () => {
     ) as string);
   }, []);
 
-  const handleClick = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    if (email === '' || password === '') {
-      setMessage('Invalid email/password');
-    } else {
-      const auth = new ServiceResolver().AuthResolver();
-
-      try {
-        const response = (await auth.signIn({
-          email,
-          password,
-        })) as ApiResponse<JwtToken | ErrorResponse>;
-
-        if (response.ok) {
-          // TODO: redirect
-          SessionStorageHelper.storeJwt(response.data as JwtToken);
-          setMessage('Correct');
-        } else {
-          setMessage('Invalud email/password');
-        }
-      } catch (err) {
-        setMessage('Invalid email/password');
-      }
-    }
-  };
-
   return (
     <Layout>
       <Seo
@@ -85,7 +54,7 @@ const SignInPage: React.FC = () => {
       />
       <Wrapper>
         <Form heading={`Sign In To ${siteMetadata.title}`}>
-          {message && <Error>{message}</Error>}
+          {message && <Error style={{ color: 'red' }}>{message}</Error>}
           <span style={{ color: 'red' }} />
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
@@ -112,9 +81,7 @@ const SignInPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <Button onClick={handleClick} active={false}>
-              Sign In
-            </Button>
+            <CtaButton title="Sign In" href="" type="input" content="Sign In" />
           </ButtonWrapper>
         </Form>
       </Wrapper>

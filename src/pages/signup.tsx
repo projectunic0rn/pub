@@ -12,11 +12,6 @@ import Form, {
   ButtonWrapper,
 } from '@components/shared/form';
 import { useState } from 'react';
-import ServiceResolver from '@/api/service-resolver';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { Button } from '@components/app/shared';
-import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper } from '@/helpers';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -32,51 +27,13 @@ const Wrapper = styled.section`
   }
 `;
 
-const Error = styled.p`
-  color: ${({ theme }) => theme.colors.messageText.red};
-  margin-bottom: 0;
-`;
-
 const SignUpPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [message, setMessage] = useState('');
-
-  const handleClick = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    const auth = new ServiceResolver().AuthResolver();
-
-    try {
-      const locale =
-        typeof window.navigator !== 'undefined'
-          ? window.navigator.language
-          : 'en';
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const response = (await auth.signUp({
-        username,
-        email,
-        password,
-        passwordConfirmation,
-        locale,
-        timezone,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
-
-      if (response.ok) {
-        // TODO: redirect
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-        setMessage('Signed Up');
-      } else {
-        setMessage('Invalud email/password');
-      }
-    } catch (err) {
-      setMessage('Invalid email/password');
-    }
-  };
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
 
   return (
     <Layout>
@@ -87,7 +44,6 @@ const SignUpPage: React.FC = () => {
       />
       <Wrapper>
         <Form heading={`Sign Up To Join ${siteMetadata.title}`}>
-          {message && <Error>{message}</Error>}
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
             name="email"
@@ -109,7 +65,7 @@ const SignUpPage: React.FC = () => {
             name="password1"
             type="password"
             placeholder="Your Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword1(e.target.value)}
           />
 
           <FormLabel htmlFor="password">Confirm Password</FormLabel>
@@ -117,7 +73,7 @@ const SignUpPage: React.FC = () => {
             name="password2"
             type="password"
             placeholder="Confirm Your Password"
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            onChange={(e) => setPassword2(e.target.value)}
           />
 
           <LinkWrapper>
@@ -125,9 +81,13 @@ const SignUpPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <Button onClick={handleClick} active={false}>
-              Sign Up
-            </Button>
+            <CtaButton
+              title="Sign Up"
+              href=""
+              type="input"
+              content="Sign Up"
+              onClick={(e) => e.preventDefault()}
+            />
           </ButtonWrapper>
         </Form>
       </Wrapper>
