@@ -15,6 +15,10 @@ import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '../../../api/service-resolver';
 import { Project } from '../../../api/types/project';
 
+interface Tag {
+  name: string;
+}
+
 const FormWrapper = styled.div`
   width: 400px;
 
@@ -99,7 +103,7 @@ export const CreateProjectForm: React.FC = () => {
   const promiseOptions = async (inputValue: string) => {
     try {
       const data: any = await StackExchange.searchTags(inputValue);
-      return data.items.map((tag: { name: string }) => ({
+      return data.items.map((tag: Tag) => ({
         value: tag.name,
         label: tag.name,
       }));
@@ -284,7 +288,7 @@ export const CreateProjectForm: React.FC = () => {
           )}
           <FormHint>
             Where will you communicate? Share the invite link to your workspace
-            (Slack, Discord, Gitter etc)
+            (Slack or Discord)
           </FormHint>
           <FormLabel htmlFor="technologies">Technologies</FormLabel>
           <AsyncSelect

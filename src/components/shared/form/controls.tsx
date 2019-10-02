@@ -16,7 +16,7 @@ const FormInput = styled.input<FormInputProps>`
   box-shadow: 0 0 1px gray;
   border: ${(props) =>
     props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
-  background: ${(props) => (props.hasError ? '#fff1f4' : white)};
+  background: ${(props) => (props.hasError ? redLight : white)};
 `;
 const SelectInput = styled.select<FormSelectInputProps>`
   padding: 0.425em;
