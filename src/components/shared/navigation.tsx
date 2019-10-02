@@ -7,6 +7,7 @@ import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 import NavButton from './buttons/nav-button';
 import dotIcon from '../../images/dot.png';
+import { UserAuthHelper } from '@/helpers';
 
 export interface NavigationLink {
   content: string;
@@ -88,17 +89,16 @@ const ProfileDot = styled.img`
   top: 1.5em;
   right: -0.2em;
 `;
+
 const filterInvalidNavItems = (navItem: NavigationLink) => {
-  return navItem.requiresAuthentication === false;
+  const userAuthenticated = UserAuthHelper.isUserAuthenticated();
+  return navItem.requiresAuthentication === userAuthenticated;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   // TODO: Replace w/ variable to read user authentication status
-  const userAuthenticated = true;
   const siteMetadata = useSiteMetadata();
-  const validNavItems = userAuthenticated
-    ? navLinks
-    : navLinks.filter(filterInvalidNavItems);
+  const validNavItems = navLinks.filter(filterInvalidNavItems);
   return (
     <Nav>
       <Link to="/" title={`${siteMetadata.title}`}>
@@ -108,7 +108,11 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
       <NavMenu>
         {validNavItems.map((v: NavigationLink) => (
           <NavMenuItem key={v.href}>
-            {v.button && <NavButton>{v.content}</NavButton>}
+            {v.button && (
+              <Link to={v.href} title={v.title}>
+                <NavButton>{v.content}</NavButton>
+              </Link>
+            )}
             {v.link &&
               (v.external ? (
                 <Anchor href={v.href} content={v.content} title={v.title} />
@@ -129,7 +133,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                   src={dotIcon}
                   height={16}
                   width={16}
-                  alt="blue-dot"
+                  alt="blue dot"
                 />
               </ProfileIconContainer>
             )}

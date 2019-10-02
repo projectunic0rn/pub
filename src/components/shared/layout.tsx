@@ -6,7 +6,6 @@ import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { ThemeProvider } from '@styled-components';
 import { GlobalStyle, theme } from '@styles';
-import profileImg from '../../images/default.png';
 
 interface OwnProps {
   navLinks?: NavigationLink[];
@@ -20,25 +19,25 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
   if (navLinks.length === 0) {
     navLinks = [
       {
-        content: 'Blog',
+        content: 'Projects',
         external: false,
-        href: '/blog',
-        title: `${siteMetadata.title} blog`,
+        href: '/app/projects',
+        title: `${siteMetadata.title} projects`,
         requiresAuthentication: false,
         link: true,
       },
       {
-        content: 'GitHub',
-        external: true,
-        href: `//github.com/${siteMetadata.social.github}`,
-        title: `${siteMetadata.title} GitHub organization`,
+        content: 'Login',
+        external: false,
+        href: '/signin',
+        title: `${siteMetadata.title} login`,
         requiresAuthentication: false,
-        link: true,
+        button: true,
       },
       {
         content: 'Projects',
         external: false,
-        href: '/app',
+        href: '/app/projects',
         title: `${siteMetadata.title} projects`,
         requiresAuthentication: true,
         link: true,
@@ -46,18 +45,10 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
       {
         content: 'Start Project',
         external: false,
-        href: '/projects',
+        href: '/app/projects',
         title: `${siteMetadata.title} start project`,
         requiresAuthentication: true,
         button: true,
-      },
-      {
-        content: profileImg,
-        external: false,
-        href: '/blog',
-        title: `${siteMetadata.title} blog`,
-        requiresAuthentication: true,
-        profileIcon: true,
       },
     ];
   }
