@@ -5,21 +5,16 @@ import styled from '@styled-components';
 import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
+import { Loader } from '../shared';
 
 const Wrapper = styled.section`
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
   width: 100%;
+  min-height: 50vh;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
-`;
-
-const Loader = styled.span`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const Message = styled.div`
@@ -48,10 +43,10 @@ const MessageCloseButton = styled.span`
 const ProjectGallery: React.FC = () => {
   const [projects, setProjects] = React.useState<Project[]>([]);
   const [isError, setIsError] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
+  const [error, setError] = React.useState<string | null>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const setMessage = (message: string) => {
+  const setMessage = (message: string | null) => {
     setIsError(message !== null && message !== '');
     setError(message);
   };
@@ -66,11 +61,9 @@ const ProjectGallery: React.FC = () => {
         >;
 
         if (response.ok) setProjects(response.data as Project[]);
-        else setError((response.data as ErrorResponse).message);
-
-        setIsError(!response.ok);
+        else setMessage((response.data as ErrorResponse).message);
       } catch (err) {
-        setMessage('Failed to retrieve the list of projects');
+        setMessage('Failed to retrieve a list of projects');
       }
 
       setIsLoading(false);
@@ -84,13 +77,16 @@ const ProjectGallery: React.FC = () => {
       {isError && (
         <Message>
           {error}
-          <MessageCloseButton onClick={() => setMessage('')}>
+          <MessageCloseButton onClick={() => setMessage(null)}>
             &#10006;
           </MessageCloseButton>
         </Message>
       )}
-      {isLoading && <Loader>Loading...</Loader>}
-      <Panel content={projects} setMessage={setMessage} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Panel content={projects} setMessage={setMessage} />
+      )}
     </Wrapper>
   );
 };
