@@ -129,7 +129,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         const isOwner =
           project.projectUsers.find((u) => u.userId === userId) !== null;
         const joinProjectResponseBody: ProjectUser = {
-          projectId: project.id,
+          projectId: project.id as string,
           isOwner,
           userId,
           username,

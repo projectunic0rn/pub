@@ -172,7 +172,6 @@ export const CreateProjectForm: React.FC = () => {
     if (errors.length) return setFormErrors([...errors]);
 
     const formData: Project = {
-      id: '1',
       name: pName.val,
       description: pDesc.val,
       launchDate: new Date(pLaunch.val),
