@@ -43,6 +43,7 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         link: true,
       },
       {
+        // TODO: Update href once ricky PR #70 merged
         content: 'Start Project',
         external: false,
         href: '/app/projects',
