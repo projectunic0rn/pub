@@ -87,15 +87,15 @@ const SignInPage: React.FC = () => {
         <Form heading={`Sign In To ${siteMetadata.title}`}>
           {message && <Error>{message}</Error>}
           <span style={{ color: 'red' }} />
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="email-signin">Email</FormLabel>
           <FormInput
-            name="email"
+            name="email-signin"
             type="email"
             placeholder="unicorn@projectunicorn.net"
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <FormLabel htmlFor="password">Confirm Password</FormLabel>
+          <FormLabel htmlFor="password">Password</FormLabel>
           <FormInput
             name="password"
             type="password"
