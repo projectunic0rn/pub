@@ -1,19 +1,12 @@
 import { HttpClient } from './http-client';
-
-export interface Project {
-  name: string;
-  description: string;
-  projectType: string;
-  technologies: { name: string }[];
-  projectRepo: string;
-  launchDate: Date;
-  communicationPlatform: string;
-}
+import { Project } from './types/project';
+import { ProjectUser } from './types/project-user';
+import { SessionStorageHelper } from '@/helpers';
 
 export class ApiService {
   private headers = {
     Accept: 'application/json',
-    Authorization: `Bearer `,
+    Authorization: `Bearer ${SessionStorageHelper.getJwt().token}`,
     'Content-Type': 'application/json; charset=utf-8',
   };
 
@@ -32,8 +25,24 @@ export class ApiService {
   }
 
   public async getProjectTypes() {
-    return await HttpClient.get(
-      `${this.apiEndpoint}/util/projecttypes`,
+    return await HttpClient.get(`${this.apiEndpoint}/util/projecttypes`);
+  }
+
+  public async getProjects() {
+    return await HttpClient.get(`${this.apiEndpoint}/projects`);
+  }
+
+  public async joinProject(projectUser: ProjectUser) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/projectusers/`,
+      this.headers,
+      projectUser,
+    );
+  }
+
+  public async leaveProject(id: string) {
+    return await HttpClient.delete(
+      `${this.apiEndpoint}/projectusers/${id}`,
       this.headers,
     );
   }

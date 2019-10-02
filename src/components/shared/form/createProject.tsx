@@ -11,7 +11,7 @@ import {
   ButtonWrapper,
 } from './controls';
 import { formValidation } from '../../../utils';
-import styled from 'styled-components';
+import styled from '@styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '../../../api/service-resolver';
 
@@ -172,13 +172,25 @@ export const CreateProjectForm: React.FC = () => {
     if (errors.length) return setFormErrors([...errors]);
 
     const formData = {
+      id: '1',
       name: pName.val,
       description: pDesc.val,
-      projectType: pType.val,
-      technologies: pTech.val,
-      projectRepo: pRepo.val,
       launchDate: new Date(pLaunch.val),
+      projectType: pType.val,
+      repositoryUrl: pRepo.val,
+      communicationPlatformUrl: pComm.val,
       communicationPlatform: pComm.val,
+      lookingForMembers: false,
+      projectTechnologies: pTech.val,
+      projectUsers: [
+        {
+          id: 'string',
+          projectId: 'string',
+          userId: 'string',
+          isOwner: true,
+          username: 'string',
+        },
+      ],
     };
 
     try {

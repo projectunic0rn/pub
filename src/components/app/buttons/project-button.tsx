@@ -5,8 +5,8 @@ const ProjectButton = styled(Button)`
   background: ${({ active, theme }) =>
     active ? theme.colors.button.secondary : theme.colors.highlight};
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
   float: right;
 
   @media (hover: hover) {

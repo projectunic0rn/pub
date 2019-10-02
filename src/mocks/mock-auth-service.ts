@@ -1,6 +1,6 @@
 import { Login, Register } from '@/api/auth-service';
-import { loginResponse } from './responses/loginResponse';
-import { registerResponse } from './responses/registerResponse';
+import { loginResponse } from './responses/login-response';
+import { registerResponse } from './responses/register-response';
 
 export class MockAuthService {
   public login(login: Login) {

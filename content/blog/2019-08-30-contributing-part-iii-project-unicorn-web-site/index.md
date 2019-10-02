@@ -172,6 +172,7 @@ to "`compilerOptions.baseUrl`".
 So if you want an alias for a directory called `$PROJECT_ROOT/src/stuff/`:
 
 ```json
+// inside tsconfig.json
 {
   "compilerOptions": {
     // ...
@@ -181,6 +182,27 @@ So if you want an alias for a directory called `$PROJECT_ROOT/src/stuff/`:
     }
   }
 }
+```
+
+You should also add this directory to the Gatsby configuration file. It should
+be place inside the options for the `gatsby-plugin-alias-imports`:
+
+```javascript
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          // ...
+          '@stuff': 'src/stuff',
+        },
+      },
+    },
+  ],
+};
 ```
 
 > **NOTE**: Don't forget to restart your development server and your editor/IDE.
@@ -652,8 +674,6 @@ Ultimately, It doesn't matter what package manager we use.
 
 ### Gatsby vs Next vs pure Webpack
 
-> **TL;DR**:
->
 > - Gatsby is hot right now
 > - Next.js is hot too but I learned Gatsby first
 > - SSR with Webpack is a nightmare I don't want to experience again
@@ -844,15 +864,7 @@ can disable this by running:
 gatsby telemetry --disable
 ```
 
-Alternatively, you may set `GATSBY_TELEMETRY_DISABLED` to `1` on the project
-`.env` file:
-
-```
-GATSBY_TELEMETRY_DISABLED=1
-```
-
-> **NOTE**: You might also need to restart the development server when you
-> change the `.env`.
+Alternatively, you can add a new entry on your system's environment variables.
 
 ### Committing changes to Git fails and deletes my changes from my file system
 
@@ -908,7 +920,7 @@ What follows is my suggestion for a basic code style guide for the Pub project.
   120 characters. Of course there are some cases where the line will exceed
   these limits, e.g. long URLs, then that’s fine.
 - **Tab width**: Two (2) spaces per indentation-level is common in JavaScript
-  projects.
+  and TypeScript projects.
 - **Tabs**: No. Use spaces.
 - **Semicolons**: You should always put semicolons at the end of your
   statements. This has the benefit of not having to memorize the rules for
@@ -925,7 +937,7 @@ What follows is my suggestion for a basic code style guide for the Pub project.
   benefit: Reordering items is easier since you don’t need to add a comma on the
   last item when you move it up.
 - **Bracket spacing**: Add spaces at the start and the end of one-line object
-  literals. For example, `const foo = { a: true };`
+  literals. For example, `const foo: SomeType = { a: true };`
 - **JSX brackets**: Put the closing angle bracket on the next line. See
   Prettier's example for `jsxBracketSameLine: false`.
 - **Arrow Function Parentheses**: Always add parenthesis on arrow functions even

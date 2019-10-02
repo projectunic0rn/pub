@@ -1,13 +1,20 @@
 import * as React from 'react';
 
-import { Data } from './content';
 import CardPill from './card-pill';
 import styled from '@styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
+import { Project } from '@/api/types/project';
+import ServiceResolver from '@/api/service-resolver';
+import { ProjectTechnology } from '@/api/types/project-technology';
+import { ProjectUser } from '@/api/types/project-user';
+import { UserAuthHelper } from '@/helpers';
+import { Link } from 'gatsby';
+import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 
 interface CardProps {
-  content: Data;
+  content: Project;
+  setMessage: Function;
 }
 
 const Wrapper = styled.div`
@@ -22,6 +29,10 @@ const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     width: calc(33.3333% - 2em);
     max-width: calc(33.3333% - 2em);
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.max}) {
+    color: green;
   }
 `;
 
@@ -52,31 +63,95 @@ const Tech = styled.span`
   }
 `;
 
-const Card: React.FC<CardProps> = ({ content }) => {
+const Break = styled.span`
+  margin: 100px;
+`;
+
+const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
+  const [isJoining, setIsJoining] = React.useState<boolean>(false);
 
-  const getMembers = (members: string[]) => {
+  const userId = UserAuthHelper.isUserAuthenticated()
+    ? UserAuthHelper.getUserId()
+    : null;
+  const username = 'Roy';
+
+  React.useEffect(() => {
+    setHasMemberJoinedProject(
+      content.projectUsers.find((u) => u.userId === userId) !== undefined,
+    );
+  }, []);
+
+  const getMembers = (members: ProjectUser[]) => {
     return {
       displayable: members.map((v, i) => {
-        if (i < 5) return <CardPill key={i}>{v}</CardPill>;
+        if (i < 5) return <CardPill key={i}>{v.username}</CardPill>;
       }),
       other: members.length > 5 && members.slice(5, members.length),
     };
   };
 
-  const getTech = (tech: string[]) => {
+  const getTech = (tech: ProjectTechnology[]) => {
     return {
       displayable: tech.map((v, i) => {
-        if (i < 5) return <Tech key={i}>{v}</Tech>;
+        if (i < 5) return <Tech key={i}>{v.name}</Tech>;
       }),
       other: tech.length > 5 && tech.slice(5, tech.length),
     };
   };
 
-  const handleClick = () => {
-    setHasMemberJoinedProject(!hasMemberJoinedProject);
+  const handleClick = async (project: Project) => {
+    const api = new ServiceResolver().ApiResolver();
+
+    try {
+      setIsJoining(true);
+      let response;
+
+      if (hasMemberJoinedProject) {
+        const projectUser = project.projectUsers.find(
+          (u) => u.userId === userId,
+        ) as ProjectUser;
+
+        response = (await api.leaveProject(projectUser.id)) as ApiResponse<
+          ProjectUser | ErrorResponse
+        >;
+
+        if (response.ok) {
+          const projectUserIndex = content.projectUsers.indexOf(projectUser);
+          content.projectUsers.splice(projectUserIndex, 1);
+        }
+      } else {
+        const isOwner =
+          project.projectUsers.find((u) => u.userId === userId) !== null;
+        const joinProjectResponseBody: ProjectUser = {
+          id: '',
+          projectId: project.id,
+          isOwner,
+          userId,
+          username,
+        };
+
+        response = (await api.joinProject(
+          joinProjectResponseBody,
+        )) as ApiResponse<ProjectUser | ErrorResponse>;
+
+        if (response.ok) {
+          content.projectUsers.push(joinProjectResponseBody);
+        }
+      }
+
+      if (response.ok) {
+        setHasMemberJoinedProject(!hasMemberJoinedProject);
+      } else {
+        setMessage((response.data as ErrorResponse).message);
+      }
+    } catch (err) {
+      setMessage('Unable to perform the requested action at this time');
+    }
+
+    setIsJoining(false);
   };
 
   const communicationPlatforms = [
@@ -93,8 +168,8 @@ const Card: React.FC<CardProps> = ({ content }) => {
     content.communicationPlatformUrl.includes(p.name),
   );
 
-  const members = getMembers(content.members);
-  const tech = getTech(content.technologies);
+  const members = getMembers(content.projectUsers);
+  const tech = getTech(content.projectTechnologies);
   const CommunicationPlatformIcon = styled.img.attrs({
     src: communicationPlatform !== undefined && communicationPlatform.icon,
     alt: '',
@@ -104,11 +179,25 @@ const Card: React.FC<CardProps> = ({ content }) => {
     left: 15px;
   `;
 
+  const CommunicationPlatformIconClickable = styled(CommunicationPlatformIcon)`
+    :hover {
+      cursor: pointer;
+    }
+  `;
+
   return (
     <Wrapper>
       <Title>
         {content.name}
-        <CommunicationPlatformIcon />
+        {hasMemberJoinedProject ? (
+          <CommunicationPlatformIconClickable
+            onClick={() =>
+              window.open(content.communicationPlatformUrl, '_blank')
+            }
+          />
+        ) : (
+          <CommunicationPlatformIcon />
+        )}
       </Title>
       {members.displayable}
       {members.other && (
@@ -121,11 +210,22 @@ const Card: React.FC<CardProps> = ({ content }) => {
       {tech.other && (
         <Tech title={tech.other.join(', ')}>+{tech.other.length}</Tech>
       )}
+      <Break>&nbsp;</Break>
       <br />
       <br />
-      <ProjectButton onClick={handleClick} active={hasMemberJoinedProject}>
-        {hasMemberJoinedProject ? 'Leave' : 'Join'}
-      </ProjectButton>
+      {UserAuthHelper.isUserAuthenticated() ? (
+        <ProjectButton
+          onClick={() => handleClick(content)}
+          active={hasMemberJoinedProject}
+          disabled={isJoining}
+        >
+          {hasMemberJoinedProject ? 'Leave' : 'Join'}
+        </ProjectButton>
+      ) : (
+        <Link to="/signin?message=You need to be signed in to join a project">
+          <ProjectButton active={false}>Join</ProjectButton>
+        </Link>
+      )}
     </Wrapper>
   );
 };
