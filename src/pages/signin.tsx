@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
@@ -32,7 +32,7 @@ const Wrapper = styled.section`
 `;
 
 const Error = styled.p`
-  color: ${({ theme }) => theme.colors.messageText.red};
+  color: ${({ theme }) => theme.colors.alert.danger};
   margin-bottom: 0;
 `;
 
@@ -54,25 +54,25 @@ const SignInPage: React.FC = () => {
 
     if (email === '' || password === '') {
       setMessage('Invalid email/password');
-    } else {
-      const auth = new ServiceResolver().AuthResolver();
+      return;
+    }
 
-      try {
-        const response = (await auth.signIn({
-          email,
-          password,
-        })) as ApiResponse<JwtToken | ErrorResponse>;
+    const auth = new ServiceResolver().AuthResolver();
 
-        if (response.ok) {
-          // TODO: redirect
-          SessionStorageHelper.storeJwt(response.data as JwtToken);
-          setMessage('Correct');
-        } else {
-          setMessage('Invalud email/password');
-        }
-      } catch (err) {
-        setMessage('Invalid email/password');
+    try {
+      const response = (await auth.signIn({
+        email,
+        password,
+      })) as ApiResponse<JwtToken | ErrorResponse>;
+
+      if (response.ok) {
+        navigate('/app/projects');
+        SessionStorageHelper.storeJwt(response.data as JwtToken);
+      } else {
+        setMessage((response.data as ErrorResponse).message);
       }
+    } catch (err) {
+      setMessage('Invalid email/password');
     }
   };
 
