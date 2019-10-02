@@ -1,9 +1,8 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
-import CtaButton from '@components/index-page/cta-button';
 import { useSiteMetadata } from '@hooks';
 import {
   FormLabel,
@@ -13,6 +12,11 @@ import {
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
 import { useState } from 'react';
+import { Button } from '@components/app/shared';
+import ServiceResolver from '@/api/service-resolver';
+import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+import { SessionStorageHelper } from '@/helpers';
+import { JwtToken } from '@/api/types/jwt-token';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -29,11 +33,19 @@ const Wrapper = styled.section`
 `;
 
 const Error = styled.p`
-  color: ${({ theme }) => theme.colors.messageText.red};
+  color: ${({ theme }) => theme.colors.alert.danger};
   margin-bottom: 0;
 `;
 
-const SignInPage: React.FC = () => {
+interface SignInPageProps {
+  location: {
+    state: {
+      message: string;
+    };
+  };
+}
+
+const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState('');
@@ -41,10 +53,37 @@ const SignInPage: React.FC = () => {
   const [message, setMessage] = useState('');
 
   React.useEffect(() => {
-    setMessage(new URL(window.location.href).searchParams.get(
-      'message',
-    ) as string);
+    if (location.state !== null) {
+      setMessage(location.state.message);
+    }
   }, []);
+
+  const handleClick = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    if (email === '' || password === '') {
+      setMessage('Invalid email/password');
+      return;
+    }
+
+    const auth = new ServiceResolver().AuthResolver();
+
+    try {
+      const response = (await auth.signIn({
+        email,
+        password,
+      })) as ApiResponse<JwtToken | ErrorResponse>;
+
+      if (response.ok) {
+        navigate('/app/projects');
+        SessionStorageHelper.storeJwt(response.data as JwtToken);
+      } else {
+        setMessage((response.data as ErrorResponse).message);
+      }
+    } catch (err) {
+      setMessage('Invalid email/password');
+    }
+  };
 
   return (
     <Layout>
@@ -55,7 +94,7 @@ const SignInPage: React.FC = () => {
       />
       <Wrapper>
         <Form heading={`Sign In To ${siteMetadata.title}`}>
-          {message && <Error style={{ color: 'red' }}>{message}</Error>}
+          {message && <Error>{message}</Error>}
           <span style={{ color: 'red' }} />
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
@@ -82,7 +121,9 @@ const SignInPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <CtaButton title="Sign In" href="" type="input" content="Sign In" />
+            <Button onClick={handleClick} active={false}>
+              Sign In
+            </Button>
           </ButtonWrapper>
         </Form>
       </Wrapper>
