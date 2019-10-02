@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import _ from 'lodash';
 import { Form, ErrorMessage } from '@components/shared/form';
 import AsyncSelect from 'react-select/async';
 import {
@@ -14,6 +13,7 @@ import { formValidation } from '../../../utils';
 import styled from '@styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '../../../api/service-resolver';
+import { Project } from '../../../api/types/project';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -97,10 +97,6 @@ export const CreateProjectForm: React.FC = () => {
   }, []);
 
   const promiseOptions = async (inputValue: string) => {
-    // const json = await fetch(
-    //   `https://api.stackexchange.com/2.2/tags?site=stackoverflow&key=*08t5pMLzA0X50xU9dNGbQ((&inname=${inputValue}`,
-    // );
-    // const data = await json.json();
     try {
       const data: any = await StackExchange.searchTags(inputValue);
       return data.items.map((tag: { name: string }) => ({
@@ -171,7 +167,7 @@ export const CreateProjectForm: React.FC = () => {
 
     if (errors.length) return setFormErrors([...errors]);
 
-    const formData = {
+    const formData: Project = {
       id: '1',
       name: pName.val,
       description: pDesc.val,

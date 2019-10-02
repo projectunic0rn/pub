@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@styled-components';
+import { red, redLight, white, black } from '../../../styles/constants';
 
 interface FormInputProps {
   hasError?: boolean;
@@ -14,8 +15,8 @@ const FormInput = styled.input<FormInputProps>`
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
   border: ${(props) =>
-    props.hasError ? '1px solid red' : '1px solid lightgray;'};
-  background: ${(props) => (props.hasError ? '#fff1f4' : 'white;')};
+    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
+  background: ${(props) => (props.hasError ? '#fff1f4' : white)};
 `;
 const SelectInput = styled.select<FormSelectInputProps>`
   padding: 0.425em;
@@ -24,19 +25,19 @@ const SelectInput = styled.select<FormSelectInputProps>`
   border: 1px solid lightgray;
   appearance: none;
   ​ :focus {
-    border-color: black;
+    border-color: ${black};
   }
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
     no-repeat 95% 50% white;
   border: ${(props) =>
-    props.hasError ? '1px solid red' : '1px solid lightgray;'};
-  background: ${(props) => (props.hasError ? '#fff1f4' : 'white;')};
+    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
+  background: ${(props) => (props.hasError ? redLight : white)};
 `;
 const FormHint = styled.small`
   color: gray;
 `;
 const FormTextAreaHint = styled.small`
-  color: #bbbbbb;
+  color: lightgray;
   position: absolute;
   right: 0;
   bottom: -20px;
@@ -50,8 +51,8 @@ const TextArea = styled.textarea<FormTextAreaProps>`
   border-radius: 3px;
   box-shadow: 0 0 1px gray;
   border: ${(props) =>
-    props.hasError ? '1px solid red' : '1px solid lightgray;'};
-  background: ${(props) => (props.hasError ? '#fff1f4' : 'white;')};
+    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
+  background: ${(props) => (props.hasError ? redLight : white)};
 `;
 const LinkWrapper = styled.div`
   margin: 0.625em 0.125em;

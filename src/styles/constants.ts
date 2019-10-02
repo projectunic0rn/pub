@@ -19,3 +19,4 @@ export const primaryLighter = '#a4bbe1' as const;
 export const pinkLight = '#ff6584' as const;
 export const pinkMedium = '#e84450' as const;
 export const red = '#de1f1f' as const;
+export const redLight = '#fff1f4' as const;
