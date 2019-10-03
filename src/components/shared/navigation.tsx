@@ -90,8 +90,8 @@ const ProfileDot = styled.img`
 `;
 
 const filterInvalidNavItems = (navItem: NavigationLink) => {
-  const userAuthenticated = UserAuthHelper.isUserAuthenticated();
-  return navItem.requiresAuthentication === userAuthenticated;
+  // const userAuthenticated = UserAuthHelper.isUserAuthenticated();
+  return navItem.requiresAuthentication === false;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
