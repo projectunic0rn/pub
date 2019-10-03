@@ -1,36 +1,42 @@
 interface Props {
-  pName?: {
-    val: string;
-    required: boolean;
-  };
-  pDesc?: {
-    val: string;
-    required: boolean;
-  };
-  pRepo?: {
-    val: string;
-    required: boolean;
-  };
-  pType?: {
-    val: any;
-    required: boolean;
-  };
-  pTech?: {
-    val: any;
-    required: boolean;
-  };
-  pComm?: {
+  [index: string]: {
     val: string;
     required: boolean;
   };
 }
 
-export function formValidation(values: Props) {
-  // validation is only checking if input values are empty
-  const v: any = values;
+export class FormVal {
+  private isEmptyString = (str: string) => (str.length ? true : false);
 
-  return Object.keys(v).filter((input: string) => {
-    if (input === 'pTech') return !v[input].val.length && v[input].required;
-    return !v[input].val && v[input].required;
-  });
+  private isEmptyArray = (arr: string[]) => (arr.length ? true : false);
+
+  private isValidUrl = (str: string) => {
+    try {
+      new URL(str);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  public checkValidation(v: Props) {
+    return Object.keys(v).filter((input: string) => {
+      const { val, required } = v[input];
+
+      // check for empty array
+      if (Array.isArray(val) && required) {
+        return !this.isEmptyArray(val);
+      }
+
+      // check for valid url string
+      if (input === 'pRepo' || (input === 'pComm' && required)) {
+        return !this.isValidUrl(val);
+      }
+
+      // check for empty string
+      if (typeof val === 'string' && required) {
+        return !this.isEmptyString(val);
+      }
+    });
+  }
 }

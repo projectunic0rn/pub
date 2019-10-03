@@ -9,12 +9,12 @@ import {
   FormSelectInput,
   ButtonWrapper,
 } from './controls';
-import { formValidation } from '@/utils';
 import styled from '@styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tags, Item } from '@/api/types/stack-exchange';
+import { FormVal } from '@/utils/form-validation';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -40,6 +40,7 @@ const Wrapper = styled.section`
 export const CreateProjectForm: React.FC = () => {
   const api = new ServiceResolver().ApiResolver();
   const StackExchange = new ServiceResolver().StackExchangeResolver();
+  const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState({
     pName: { val: '', required: true },
@@ -146,11 +147,16 @@ export const CreateProjectForm: React.FC = () => {
     const { name } = e.target;
     const formErrorState: string[] = formErrors;
     const formInputState: any = formInputs;
+    const obj: any = {};
+    obj[name] = formInputState[name];
+    const errors = validation.checkValidation(obj);
 
-    if (formInputState[name].val) {
+    if (!errors.length) {
       formErrorState.splice(formErrorState.indexOf(name), 1);
     } else {
-      formErrorState.push(name);
+      if (!formErrorState.includes(name)) {
+        formErrorState.push(name);
+      }
     }
 
     setFormErrors([...formErrorState]);
@@ -176,7 +182,7 @@ export const CreateProjectForm: React.FC = () => {
     e.preventDefault();
 
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
-    const errors = formValidation(formInputs);
+    const errors = validation.checkValidation(formInputs);
 
     if (errors.length) return setFormErrors([...errors]);
 
