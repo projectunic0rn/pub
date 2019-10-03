@@ -2,8 +2,8 @@ import { MockApiService } from '@/mocks/mock-api-service';
 import { ApiService } from './api-service';
 import { MockAuthService } from '@/mocks/mock-auth-service';
 import { AuthService } from './auth-service';
-import StackExchangeService from './StackExchangeService';
-import MockStackExchangeService from '../mocks/MockStackExchangeService';
+import StackExchangeService from './stack-exchange-service';
+import MockStackExchangeService from '../mocks/mock-stack-exchange-service';
 
 export default class ServiceResolver {
   public ApiResolver() {
