@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, ErrorMessage } from '@components/shared/form';
 import AsyncSelect from 'react-select/async';
 import {
@@ -10,6 +10,7 @@ import {
   ButtonWrapper,
 } from './controls';
 import styled from '@styled-components';
+import { ThemeContext } from 'styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
@@ -19,13 +20,6 @@ import { FormVal } from '@/utils/form-validation';
 import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import {
-  red,
-  redLight,
-  white,
-  primaryLight,
-  primaryMedium,
-} from '@/styles/constants';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -72,6 +66,8 @@ const MessageCloseButton = styled.span`
 `;
 
 export const CreateProjectForm: React.FC = () => {
+  const theme = useContext(ThemeContext);
+
   const api = new ServiceResolver().ApiResolver();
   const StackExchange = new ServiceResolver().StackExchangeResolver();
   const validation = new FormVal();
@@ -96,27 +92,29 @@ export const CreateProjectForm: React.FC = () => {
       return {
         ...styles,
         border: formErrors.includes('pTech')
-          ? `1px solid ${red}`
-          : '1px solid lightgray;',
-        background: formErrors.includes('pTech') ? redLight : white,
+          ? `1px solid ${theme.colors.alert.danger}`
+          : `1px solid ${theme.colors.greyDark};`,
+        background: formErrors.includes('pTech')
+          ? theme.colors.input.errorBg
+          : theme.colors.baseinvert,
       };
     },
     multiValue: (styles: {}) => {
       return {
         ...styles,
-        backgroundColor: primaryLight,
+        backgroundColor: theme.colors.highlight,
       };
     },
     multiValueLabel: (styles: {}) => ({
       ...styles,
-      color: white,
+      color: theme.colors.baseinvert,
     }),
     multiValueRemove: (styles: {}) => ({
       ...styles,
-      color: white,
+      color: theme.colors.baseinvert,
       ':hover': {
-        backgroundColor: primaryMedium,
-        color: white,
+        backgroundColor: theme.colors.highlightDark,
+        color: theme.colors.baseinvert,
       },
     }),
   };
