@@ -95,7 +95,7 @@ const filterInvalidNavItems = (navItem: NavigationLink) => {
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
-  const [validNavItems, setValidNavItems] = useState();
+  const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
 
   useEffect(() => {
     setValidNavItems(navLinks.filter(filterInvalidNavItems));
