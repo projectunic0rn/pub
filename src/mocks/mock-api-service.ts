@@ -11,7 +11,7 @@ export class MockApiService {
   }
 
   public async getProjectTypes() {
-    return Promise.resolve(getProjectTypes);
+    return getProjectTypes;
   }
 
   public async getProjects() {

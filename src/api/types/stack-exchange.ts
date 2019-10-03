@@ -1,4 +1,4 @@
-export interface Tags {
+export interface Tag {
   items: Item[];
   has_more: boolean;
   quota_max: number;

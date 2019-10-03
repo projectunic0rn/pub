@@ -13,10 +13,10 @@ import styled from '@styled-components';
 import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
-import { Tags, Item } from '@/api/types/stack-exchange';
-import { ProjectTypes } from '@/api/types/project-types';
+import { Tag, Item } from '@/api/types/stack-exchange';
+import { ProjectType } from '@/api/types/project-types';
 import { FormVal } from '@/utils/form-validation';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import {
@@ -86,7 +86,7 @@ export const CreateProjectForm: React.FC = () => {
     pComm: { val: '', required: true },
   });
 
-  const [projectTypes, setProjectTypes] = useState<ProjectTypes[]>([]);
+  const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
@@ -137,13 +137,13 @@ export const CreateProjectForm: React.FC = () => {
     async function fetchProjectTypes() {
       try {
         const response = (await api.getProjectTypes()) as ApiResponse<
-          ProjectTypes[] | ErrorResponse
+          ProjectType[] | ErrorResponse
         >;
 
         if (!response.ok) setError((response.data as ErrorResponse).message);
 
         setIsError(!response.ok);
-        setProjectTypes(response.data as ProjectTypes[]);
+        setProjectTypes(response.data as ProjectType[]);
       } catch (error) {
         setMessage('Failed to get project types');
       }
@@ -154,7 +154,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const promiseOptions = async (inputValue: string) => {
     try {
-      const data = (await StackExchange.searchTags(inputValue)) as Tags;
+      const data = (await StackExchange.searchTags(inputValue)) as Tag;
       return data.items.map((item: Item) => ({
         value: item.name,
         label: item.name,
@@ -330,7 +330,7 @@ export const CreateProjectForm: React.FC = () => {
           {formErrors.includes('pRepo') && (
             <ErrorMessage value="Project Repo" />
           )}
-          <FormHint>Share your project repo (GitHub, GitLib etc)</FormHint>​
+          <FormHint>Share your project repo (GitHub, GitLab etc)</FormHint>​
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
           <FormInput
             name="pLaunch"
