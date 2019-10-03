@@ -10,7 +10,7 @@ import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 
 interface CardProps {
   content: Project;
