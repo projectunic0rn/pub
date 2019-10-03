@@ -14,9 +14,11 @@ import CtaButton from '@components/index-page/cta-button';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tags, Item } from '@/api/types/stack-exchange';
+import { ProjectTypes } from '@/api/types/project-types';
 import { FormVal } from '@/utils/form-validation';
 import { navigate } from '@reach/router';
 import { UserAuthHelper } from '@/helpers';
+import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -39,6 +41,29 @@ const Wrapper = styled.section`
   }
 `;
 
+const Message = styled.div`
+  background: ${({ theme }) => theme.colors.alert.danger};
+  color: white;
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+`;
+
+const MessageCloseButton = styled.span`
+  position: absolute;
+  color: ${({ theme }) => theme.colors.baseinvert};
+  right: 15px;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 export const CreateProjectForm: React.FC = () => {
   const api = new ServiceResolver().ApiResolver();
   const StackExchange = new ServiceResolver().StackExchangeResolver();
@@ -54,8 +79,10 @@ export const CreateProjectForm: React.FC = () => {
     pComm: { val: '', required: true },
   });
 
-  const [projectTypes, setProjectTypes] = useState<any>([]); // create ProjectTypes type
+  const [projectTypes, setProjectTypes] = useState<any>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [isError, setIsError] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
 
   const styles = {
     control: (styles: {}) => {
@@ -87,20 +114,31 @@ export const CreateProjectForm: React.FC = () => {
     }),
   };
 
+  const setMessage = (message: string) => {
+    setIsError(message !== null && message !== '');
+    setError(message);
+  };
+
   useEffect(() => {
-    if (!UserAuthHelper.isUserAuthenticated()) {
-      navigate('/signin', {
-        state: { message: 'You need to be signed it to create a new project' },
-      });
-      return;
-    }
+    // if (!UserAuthHelper.isUserAuthenticated()) {
+    //   navigate('/signin', {
+    //     state: { message: 'You need to be signed it to create a new project' },
+    //   });
+    //   return;
+    // }
 
     async function fetchProjectTypes() {
       try {
-        const projTypes: any = await api.getProjectTypes();
-        setProjectTypes([...projTypes.data]);
+        const response = (await api.getProjectTypes()) as ApiResponse<
+          ProjectTypes | ErrorResponse
+        >;
+
+        if (!response.ok) setError((response.data as ErrorResponse).message);
+
+        setIsError(!response.ok);
+        setProjectTypes(response.data);
       } catch (error) {
-        console.log(error);
+        setMessage('Failed to get project types');
       }
     }
 
@@ -115,7 +153,7 @@ export const CreateProjectForm: React.FC = () => {
         label: item.name,
       }));
     } catch (error) {
-      console.log(error);
+      setMessage('Failed to get tags');
     }
   };
 
@@ -180,7 +218,7 @@ export const CreateProjectForm: React.FC = () => {
     return platformName.search('slack') > 0 ? 'slack' : 'discord';
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
@@ -200,22 +238,37 @@ export const CreateProjectForm: React.FC = () => {
       projectTechnologies: pTech.val,
       projectUsers: [
         {
-          userId: 'string', // UserAuthHelper.getUserId()
+          userId: UserAuthHelper.getUserId(),
           isOwner: true,
-          username: 'string', // UserAuthHelper.getUsername()
+          username: UserAuthHelper.getUsername(),
         },
       ],
     };
 
     try {
-      api.createProject(formData);
-    } catch (error) {
-      console.log(error);
+      const response = (await api.createProject(formData)) as ApiResponse<
+        Project | ErrorResponse
+      >;
+
+      if (response.ok) navigate(`/app/projects}`);
+      else setError((response.data as ErrorResponse).message);
+
+      setIsError(!response.ok);
+    } catch (err) {
+      setMessage('Failed to create project');
     }
   };
 
   return (
     <Wrapper>
+      {isError && (
+        <Message>
+          {error}
+          <MessageCloseButton onClick={() => setMessage('')}>
+            &#10006;
+          </MessageCloseButton>
+        </Message>
+      )}
       <FormWrapper>
         <Form handleSubmit={handleSubmit} heading={'Create a New Project'}>
           <FormLabel htmlFor="project-name">Project Name</FormLabel>
