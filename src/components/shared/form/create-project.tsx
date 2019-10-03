@@ -19,6 +19,13 @@ import { FormVal } from '@/utils/form-validation';
 import { navigate } from '@reach/router';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+import {
+  red,
+  redLight,
+  white,
+  primaryLight,
+  primaryMedium,
+} from '@/styles/constants';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -89,27 +96,27 @@ export const CreateProjectForm: React.FC = () => {
       return {
         ...styles,
         border: formErrors.includes('pTech')
-          ? '1px solid red'
+          ? `1px solid ${red}`
           : '1px solid lightgray;',
-        background: formErrors.includes('pTech') ? '#fff1f4' : 'white',
+        background: formErrors.includes('pTech') ? redLight : white,
       };
     },
     multiValue: (styles: {}) => {
       return {
         ...styles,
-        backgroundColor: '#5f8ddc',
+        backgroundColor: primaryLight,
       };
     },
     multiValueLabel: (styles: {}) => ({
       ...styles,
-      color: 'white',
+      color: white,
     }),
     multiValueRemove: (styles: {}) => ({
       ...styles,
-      color: 'white',
+      color: white,
       ':hover': {
-        backgroundColor: '#486ca8',
-        color: 'white',
+        backgroundColor: primaryMedium,
+        color: white,
       },
     }),
   };
