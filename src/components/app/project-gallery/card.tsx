@@ -9,9 +9,8 @@ import ServiceResolver from '@/api/service-resolver';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
-import { Link } from 'gatsby';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 
 interface CardProps {
   content: Project;
@@ -73,7 +72,6 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
     : null;
-  const username = 'Roy';
 
   React.useEffect(() => {
     setHasMemberJoinedProject(
@@ -102,7 +100,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const handleClick = async (project: Project) => {
     if (!UserAuthHelper.isUserAuthenticated()) {
       navigate('/signin', {
-        state: { message: 'You need to be signed it to join a project' },
+        state: { message: 'You need to be signed in to join a project' },
       });
       return;
     }
@@ -129,10 +127,9 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         const isOwner =
           project.projectUsers.find((u) => u.userId === userId) !== null;
         const joinProjectResponseBody: ProjectUser = {
-          projectId: project.id,
+          projectId: project.id as string,
           isOwner,
           userId,
-          username,
         };
 
         response = (await api.joinProject(
@@ -140,6 +137,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
         )) as ApiResponse<ProjectUser | ErrorResponse>;
 
         if (response.ok) {
+          joinProjectResponseBody.username = (response.data as ProjectUser).username;
           content.projectUsers.push(joinProjectResponseBody);
         }
       }

@@ -112,10 +112,6 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
           />
 
           <LinkWrapper>
-            <Link to="/forgotpassword/">Forgot password?</Link>
-          </LinkWrapper>
-
-          <LinkWrapper>
             <Link to="/signup/">New member? Sign Up!</Link>
           </LinkWrapper>
 

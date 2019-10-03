@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
@@ -66,9 +66,8 @@ const SignUpPage: React.FC = () => {
       })) as ApiResponse<JwtToken | ErrorResponse>;
 
       if (response.ok) {
-        // TODO: redirect
         SessionStorageHelper.storeJwt(response.data as JwtToken);
-        setMessage('Signed Up');
+        navigate('/app/projects');
       } else {
         setMessage((response.data as ErrorResponse).message);
       }
