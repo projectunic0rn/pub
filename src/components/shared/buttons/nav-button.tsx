@@ -1,21 +1,19 @@
 import * as React from 'react';
 import styled from '@styled-components';
+import { Button } from '@components/app/shared';
 
-const Button = styled.button`
-  background-color: #5f8ddc;
-  border: none;
-  cursor: pointer;
-  color: white;
-  padding: 10px 1em;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 4px;
-  font-size: 16px;
+const NavMenuButton = styled(Button)`
+  background: ${({ theme }) => theme.colors.highlight};
+
+  @media (hover: hover) {
+    &:hover {
+      background: ${({ theme }) => theme.colors.highlightDark};
+    }
+  }
 `;
 
 const NavButton: React.FC = ({ children }) => {
-  return <Button>{children}</Button>;
+  return <NavMenuButton active={true}>{children}</NavMenuButton>;
 };
 
 export default NavButton;
