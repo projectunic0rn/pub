@@ -3,5 +3,5 @@ export interface ProjectUser {
   projectId?: string;
   userId: string;
   isOwner: boolean;
-  username: string;
+  username?: string;
 }

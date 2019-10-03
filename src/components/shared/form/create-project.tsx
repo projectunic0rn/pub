@@ -247,7 +247,6 @@ export const CreateProjectForm: React.FC = () => {
         {
           userId: UserAuthHelper.getUserId(),
           isOwner: true,
-          username: UserAuthHelper.getUsername(),
         },
       ],
     };
