@@ -15,6 +15,8 @@ import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tags, Item } from '@/api/types/stack-exchange';
 import { FormVal } from '@/utils/form-validation';
+import { navigate } from '@reach/router';
+import { UserAuthHelper } from '@/helpers';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -86,17 +88,12 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   useEffect(() => {
-    /*
-      import { navigate } from '@reach/router';
-
-        if (!UserAuthHelper.isUserAuthenticated()) {
-          navigate('/signin', {
-            state: { message: 'You need to be signed it to join a project' },
-          });
-          return;
-        }
-      }
-    */
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      navigate('/signin', {
+        state: { message: 'You need to be signed it to create a new project' },
+      });
+      return;
+    }
 
     async function fetchProjectTypes() {
       try {
