@@ -178,6 +178,11 @@ export const CreateProjectForm: React.FC = () => {
     setFormErrors([...formErrorState]);
   };
 
+  const getPlatformName = () => {
+    const platformName = formInputs['pComm'].val;
+    return platformName.search('slack') > 0 ? 'slack' : 'discord';
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -193,7 +198,7 @@ export const CreateProjectForm: React.FC = () => {
       projectType: pType.val,
       repositoryUrl: pRepo.val,
       communicationPlatformUrl: pComm.val,
-      communicationPlatform: pComm.val, // name of platform (slack/discord)
+      communicationPlatform: getPlatformName(),
       lookingForMembers: true,
       projectTechnologies: pTech.val,
       projectUsers: [

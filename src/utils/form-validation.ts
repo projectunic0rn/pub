@@ -10,9 +10,16 @@ export class FormVal {
 
   private isEmptyArray = (arr: string[]) => (arr.length ? true : false);
 
-  private isValidUrl = (str: string) => {
+  private isValidUrl = (input: string, url: string) => {
+    // project repo must be a Slack or Discord URL
+    if (input === 'pComm') {
+      if (!url.includes('slack') && !url.includes('discord')) {
+        return false;
+      }
+    }
+
     try {
-      new URL(str);
+      new URL(url);
       return true;
     } catch (e) {
       return false;
@@ -30,7 +37,7 @@ export class FormVal {
 
       // check for valid url string
       if (input === 'pRepo' || (input === 'pComm' && required)) {
-        return !this.isValidUrl(val);
+        return !this.isValidUrl(input, val);
       }
 
       // check for empty string
