@@ -79,7 +79,7 @@ export const CreateProjectForm: React.FC = () => {
     pComm: { val: '', required: true },
   });
 
-  const [projectTypes, setProjectTypes] = useState<any>([]);
+  const [projectTypes, setProjectTypes] = useState<ProjectTypes[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
@@ -130,13 +130,13 @@ export const CreateProjectForm: React.FC = () => {
     async function fetchProjectTypes() {
       try {
         const response = (await api.getProjectTypes()) as ApiResponse<
-          ProjectTypes | ErrorResponse
+          ProjectTypes[] | ErrorResponse
         >;
 
         if (!response.ok) setError((response.data as ErrorResponse).message);
 
         setIsError(!response.ok);
-        setProjectTypes(response.data);
+        setProjectTypes(response.data as ProjectTypes[]);
       } catch (error) {
         setMessage('Failed to get project types');
       }
