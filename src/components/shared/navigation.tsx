@@ -11,7 +11,6 @@ import { UserAuthHelper } from '@/helpers';
 
 export interface NavigationLink {
   content: string;
-  external: boolean;
   href: string;
   title?: string;
   requiresAuthentication: boolean;
@@ -113,14 +112,11 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                 <NavButton>{v.content}</NavButton>
               </Link>
             )}
-            {v.link &&
-              (v.external ? (
-                <Anchor href={v.href} content={v.content} title={v.title} />
-              ) : (
-                <Link to={v.href} title={v.title}>
-                  {v.content}
-                </Link>
-              ))}
+            {v.link && (
+              <Link to={v.href} title={v.title}>
+                {v.content}
+              </Link>
+            )}
             {v.profileIcon && (
               <ProfileIconContainer>
                 <ProfileIcon

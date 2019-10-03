@@ -20,7 +20,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
     navLinks = [
       {
         content: 'Projects',
-        external: false,
         href: '/app/projects',
         title: `${siteMetadata.title} projects`,
         requiresAuthentication: false,
@@ -28,7 +27,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
       },
       {
         content: 'Sign In',
-        external: false,
         href: '/signin',
         title: `${siteMetadata.title} login`,
         requiresAuthentication: false,
@@ -36,7 +34,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
       },
       {
         content: 'Projects',
-        external: false,
         href: '/app/projects',
         title: `${siteMetadata.title} projects`,
         requiresAuthentication: true,
@@ -45,7 +42,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
       {
         // TODO: Update href once ricky PR #70 merged
         content: 'Start Project',
-        external: false,
         href: '/app/projects',
         title: `${siteMetadata.title} start project`,
         requiresAuthentication: true,
