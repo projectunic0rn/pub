@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         link: true,
       },
       {
-        content: 'Login',
+        content: 'Sign In',
         external: false,
         href: '/signin',
         title: `${siteMetadata.title} login`,
