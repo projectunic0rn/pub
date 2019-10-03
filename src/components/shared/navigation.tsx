@@ -1,7 +1,6 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Anchor } from '@components/shared';
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
@@ -90,14 +89,18 @@ const ProfileDot = styled.img`
 `;
 
 const filterInvalidNavItems = (navItem: NavigationLink) => {
-  // const userAuthenticated = UserAuthHelper.isUserAuthenticated();
-  return navItem.requiresAuthentication === false;
+  const userAuthenticated = UserAuthHelper.isUserAuthenticated();
+  return navItem.requiresAuthentication === userAuthenticated;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  // TODO: Replace w/ variable to read user authentication status
   const siteMetadata = useSiteMetadata();
-  const validNavItems = navLinks.filter(filterInvalidNavItems);
+  const [validNavItems, setValidNavItems] = useState();
+
+  useEffect(() => {
+    setValidNavItems(navLinks.filter(filterInvalidNavItems));
+  });
+
   return (
     <Nav>
       <Link to="/" title={`${siteMetadata.title}`}>
