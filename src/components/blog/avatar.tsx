@@ -15,7 +15,7 @@ interface OwnProps {
 
 type AvatarProps = OwnProps & GatsbyImageProps;
 
-const Image = styled(Img).attrs({ small: false })<AvatarProps>`
+const Image = styled(Img).attrs(() => ({ small: false }))<AvatarProps>`
   min-height: 4em;
   max-height: 4em;
   min-width: 4em;

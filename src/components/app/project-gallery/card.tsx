@@ -170,10 +170,10 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
 
   const members = getMembers(content.projectUsers);
   const tech = getTech(content.projectTechnologies);
-  const CommunicationPlatformIcon = styled.img.attrs({
+  const CommunicationPlatformIcon = styled.img.attrs(() => ({
     src: communicationPlatform !== undefined && communicationPlatform.icon,
     alt: '',
-  })`
+  }))`
     position: relative;
     top: 35px;
     left: 15px;

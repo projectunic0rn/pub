@@ -42,7 +42,10 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+const NavLogo = styled.img.attrs(() => ({
+  src: puLogo,
+  alt: 'Project Unicorn',
+}))`
   margin: 0;
   width: 8em;
 

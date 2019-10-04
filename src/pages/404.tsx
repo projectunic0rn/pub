@@ -15,7 +15,7 @@ const Text = styled.p`
   }
 `;
 
-const Img = styled.img.attrs({ src: notFound, alt: '' })`
+const Img = styled.img.attrs(() => ({ src: notFound, alt: '' }))`
   width: 100%;
   max-height: 100%;
 `;

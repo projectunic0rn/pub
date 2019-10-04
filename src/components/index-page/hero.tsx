@@ -58,7 +58,7 @@ const ImageWrapper = styled.figure`
   }
 `;
 
-const Image = styled.img.attrs({ src: connectedWorld, alt: '' })`
+const Image = styled.img.attrs(() => ({ src: connectedWorld, alt: '' }))`
   width: 100%;
 `;
 

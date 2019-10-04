@@ -37,7 +37,7 @@ const Col = styled.div`
   }
 `;
 
-const Logo = styled.img.attrs({ src: puAlt, alt: 'Project Unicorn' })`
+const Logo = styled.img.attrs(() => ({ src: puAlt, alt: 'Project Unicorn' }))`
   align-self: flex-start;
   margin: 0;
   margin-bottom: 2em;
@@ -78,7 +78,7 @@ const IconWrapper = styled.span`
   width: 2.7em;
 `;
 
-const SocialIcon = styled.img.attrs({ alt: '' })`
+const SocialIcon = styled.img.attrs(() => ({ alt: '' }))`
   margin: 0;
 `;
 
