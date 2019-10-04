@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Content } from './content';
 import { defaultAvatarImage } from '../assets';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 type CardProps = Content;
 

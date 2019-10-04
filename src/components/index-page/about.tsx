@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.section`
   align-items: center;

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
 import { notFound } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Text = styled.p`
   text-align: center;

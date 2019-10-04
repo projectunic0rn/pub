@@ -11,7 +11,7 @@ import {
   githubIcon,
 } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled, { css } from '@styled-components';
+import styled, { css } from 'styled-components';
 import CtaButton from '../index-page/cta-button';
 
 const Wrapper = styled.footer`

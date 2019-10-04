@@ -2,7 +2,7 @@ import * as React from 'react';
 import Slider from 'react-slick';
 
 import { content } from './content';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import Card from './card';
 
 const Wrapper = styled.section`

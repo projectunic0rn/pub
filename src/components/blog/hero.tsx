@@ -1,7 +1,7 @@
 import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image';
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface BgImgProps {
   /** A CSS `height` value. */
@@ -62,7 +62,7 @@ const Title = styled.h1`
   font-weight: 600;
   position: absolute;
   width: 100%;
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
   padding: 0 1rem;
   top: 50%;
   left: 50%;

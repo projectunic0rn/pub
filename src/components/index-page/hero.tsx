@@ -3,7 +3,7 @@ import * as React from 'react';
 import CtaButton from './cta-button';
 import { connectedWorld } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.header`
   align-items: center;

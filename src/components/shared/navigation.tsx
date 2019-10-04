@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Anchor } from '@components/shared';
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 export interface NavigationLink {
   content: string;

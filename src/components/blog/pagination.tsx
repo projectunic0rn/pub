@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PaginationProps {
   /** Contains information about the page. */
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin: -2em auto 0;
   width: 100%;
-  max-width: ${({ theme }) => theme.sizes.maxWidth};
+  max-width: ${({ theme }) => theme.sizes.width.max};
   padding: 0 1.5em 2em;
 
   a {

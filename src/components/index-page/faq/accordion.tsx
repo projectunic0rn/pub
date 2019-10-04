@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Panel from './panel';
 import { Qa } from './qas';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface AccordionProps {
   qas: readonly Qa[];

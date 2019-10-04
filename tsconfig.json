@@ -27,7 +27,6 @@
       "@hooks": ["./src/hooks/index"],
       "@hooks/*": ["./src/hooks/*"],
       "@static/*": ["./static/*"],
-      "@styled-components": ["./src/styled-components"],
       "@/*": ["./src/*"]
     }
   },

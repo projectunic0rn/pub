@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PageBodyProps {
   /** Content to be shown as the page body. */
@@ -9,7 +9,7 @@ interface PageBodyProps {
 
 const Body = styled.div`
   margin: 0 auto;
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
 
   h1,
   h2,

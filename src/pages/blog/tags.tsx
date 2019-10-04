@@ -2,7 +2,7 @@ import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { slugify } from '@utils';
 
 interface Group {
@@ -32,7 +32,7 @@ export const pageQuery = graphql`
 const List = styled.ul`
   width: 100%;
   margin: 0 auto 1em auto;
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
 `;
 
 const Tag = styled.li`

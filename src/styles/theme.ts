@@ -1,36 +1,36 @@
-import * as constants from './constants';
+import * as colorNames from './color-names';
 
 const colors = {
   /** Off-black */
-  base: constants.blackOff,
+  base: colorNames.blackOff,
   /** Opposite of base. */
-  baseinvert: constants.white,
+  baseinvert: colorNames.white,
   /** Main color but darker. */
-  highlightDark: constants.primaryMedium,
+  highlightDark: colorNames.primaryMedium,
   /** Main color. */
-  highlight: constants.primaryLight,
+  highlight: colorNames.primaryLight,
   /** Main color but lighter. */
-  highlightLight: constants.primaryLighter,
+  highlightLight: colorNames.primaryLighter,
   /** Medium gray */
-  secondary: constants.greyMedium,
+  secondary: colorNames.greyMedium,
   /** Light gray */
-  tertiary: constants.greyLight,
+  tertiary: colorNames.greyLight,
   /** Alternate light gray */
-  text: constants.greyLightAlt,
+  text: colorNames.greyLightAlt,
   /** Light background for section. */
-  section: constants.blueLightAlt,
+  section: colorNames.blueLightAlt,
   /** Alternate color. */
-  alternate: constants.greenLight,
+  alternate: colorNames.greenLight,
   /** Used for box shadows. */
-  shadow: constants.shadow,
+  shadow: colorNames.shadow,
   button: {
     /** Button color */
-    secondary: constants.pinkLight,
+    secondary: colorNames.pinkLight,
     /** Button active color */
-    secondaryHighlight: constants.pinkMedium,
+    secondaryHighlight: colorNames.pinkMedium,
   },
   alert: {
-    danger: constants.red,
+    danger: colorNames.red,
   },
 };
 
@@ -41,8 +41,6 @@ const responsive = {
 };
 
 const sizes = {
-  maxWidth: '1050px' as const,
-  maxWidthCentered: '650px' as const,
   width: {
     max: '1050px' as const,
     maxCentered: '650px' as const,
@@ -68,9 +66,9 @@ export interface ThemeInterface {
   boxes: typeof boxes;
 }
 
-export const theme = Object.freeze<ThemeInterface>({
+export const theme = {
   colors,
   responsive,
   sizes,
   boxes,
-});
+};

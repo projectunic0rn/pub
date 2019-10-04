@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Panel from './panel';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';

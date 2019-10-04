@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Img, { GatsbyImageProps } from 'gatsby-image';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface OwnProps {
   /**

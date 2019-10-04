@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import CardPill from './card-pill';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';

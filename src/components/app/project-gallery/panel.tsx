@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Card from './card';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { Project } from '@/api/types/project';
 
 interface PanelProps {
