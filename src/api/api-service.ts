@@ -13,7 +13,7 @@ export class ApiService {
   private apiEndpoint: string;
 
   public constructor() {
-    this.apiEndpoint = process.env.API_ENDPOINT || '';
+    this.apiEndpoint = process.env.GATSBY_API_ENDPOINT || '';
   }
 
   public async createProject(project: Project) {
