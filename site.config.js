@@ -5,7 +5,7 @@ const path = require('path');
 const requiredKeys = {
   /**
    * Used by `gatsby-plugin-google-analytics`. This value is provided through
-   * the `.env` file located the root of the project.
+   * the `.env.*` file located the root of the project.
    */
   googleAnalyticsTrackingId: process.env.GA_TRACKING_ID,
 };
