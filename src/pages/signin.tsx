@@ -55,7 +55,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
     if (location.state !== null) {
       setMessage(location.state.message);
     }
-  }, []);
+  }, [location.state]);
 
   const handleClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();

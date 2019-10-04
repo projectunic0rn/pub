@@ -77,7 +77,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
-  }, []);
+  }, [content.projectUsers, userId]);
 
   const getMembers = (members: ProjectUser[]) => {
     return {

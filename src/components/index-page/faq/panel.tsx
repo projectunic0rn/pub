@@ -93,7 +93,7 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
     if (ref && ref.current) {
       setHeight(ref.current.scrollHeight);
     }
-  });
+  }, []);
 
   return (
     <Wrapper role="tabpanel" aria-expanded={isActive}>
