@@ -16,6 +16,9 @@ import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { SessionStorageHelper } from '@/helpers';
 import { JwtToken } from '@/api/types/jwt-token';
+import { MockAuthService } from '@/mocks/mock-auth-service';
+import { AuthService } from '@/api/auth-service';
+import { theme } from '@styles';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -47,17 +50,22 @@ interface SignInPageProps {
 const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
+
+  let auth: MockAuthService | AuthService;
 
   React.useEffect(() => {
+    auth = new ServiceResolver().AuthResolver();
+
     if (location.state !== null) {
       setMessage(location.state.message);
     }
-  }, []);
+  });
 
-  const handleClick = async (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (email === '' || password === '') {
@@ -65,22 +73,28 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
       return;
     }
 
-    const auth = new ServiceResolver().AuthResolver();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
 
-    try {
-      const response = (await auth.signIn({
-        email,
-        password,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
+      try {
+        const response = (await auth.signIn({
+          email,
+          password,
+        })) as ApiResponse<JwtToken | ErrorResponse>;
 
-      if (response.ok) {
-        navigate('/app/projects');
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-      } else {
-        setMessage((response.data as ErrorResponse).message);
+        if (response.ok) {
+          navigate('/app/projects');
+          SessionStorageHelper.storeJwt(response.data as JwtToken);
+        } else {
+          setMessage((response.data as ErrorResponse).message);
+        }
+      } catch (err) {
+        console.log(err);
+
+        setMessage('Invalid email/password');
       }
-    } catch (err) {
-      setMessage('Invalid email/password');
+
+      setIsSigningIn(false);
     }
   };
 
@@ -92,9 +106,11 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
         urlSlug="signin/"
       />
       <Wrapper>
-        <Form heading={`Sign In To ${siteMetadata.title}`}>
+        <Form
+          heading={`Sign In To ${siteMetadata.title}`}
+          handleSubmit={handleSubmit}
+        >
           {message && <Error>{message}</Error>}
-          <span style={{ color: 'red' }} />
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
             name="email"
@@ -116,7 +132,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <Button onClick={handleClick} active={false}>
+            <Button active={false} disabled={isSigningIn}>
               Sign In
             </Button>
           </ButtonWrapper>

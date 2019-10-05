@@ -38,11 +38,14 @@ const ButtonWrapper = styled.div`
 
 interface Props {
   heading: string;
+  handleSubmit: Function;
 }
 
-const Form: React.FC<Props> = ({ heading, children }) => {
+const Form: React.FC<Props> = ({ handleSubmit, heading, children }) => {
   return (
-    <FormElement>
+    <FormElement
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+    >
       <Heading>{heading}</Heading>
       {children}
     </FormElement>
