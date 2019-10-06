@@ -22,7 +22,7 @@ const Message = styled.div`
   color: white;
   width: 100%;
   height: 35px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 5px;

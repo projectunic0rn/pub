@@ -8,6 +8,7 @@ const ProjectButton = styled(Button)`
   bottom: 30px;
   right: 30px;
   float: right;
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'hand')};
 
   @media (hover: hover) {
     &:hover {
