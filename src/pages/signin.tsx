@@ -18,7 +18,6 @@ import { SessionStorageHelper } from '@/helpers';
 import { JwtToken } from '@/api/types/jwt-token';
 import { MockAuthService } from '@/mocks/mock-auth-service';
 import { AuthService } from '@/api/auth-service';
-import { theme } from '@styles';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
