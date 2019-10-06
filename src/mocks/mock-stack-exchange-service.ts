@@ -1,4 +1,4 @@
-import { searchTags } from './responses/searchTags';
+import { searchTags } from './responses/search-tags';
 
 export default class MockStackExchangeService {
   public async searchTags() {
