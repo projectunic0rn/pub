@@ -68,8 +68,6 @@ const MessageCloseButton = styled.span`
 
 export const CreateProjectForm: React.FC = () => {
   const theme = useContext(ThemeContext);
-
-  const api = new ServiceResolver().ApiResolver();
   const StackExchange = new ServiceResolver().StackExchangeResolver();
   const validation = new FormVal();
 
@@ -126,12 +124,14 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   useEffect(() => {
-    // if (!UserAuthHelper.isUserAuthenticated()) {
-    //   navigate('/signin', {
-    //     state: { message: 'You need to be signed it to create a new project' },
-    //   });
-    //   return;
-    // }
+    const api = new ServiceResolver().ApiResolver();
+
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      navigate('/signin', {
+        state: { message: 'You need to be signed it to create a new project' },
+      });
+      return;
+    }
 
     async function fetchProjectTypes() {
       try {
@@ -226,6 +226,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const api = new ServiceResolver().ApiResolver();
 
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
     const errors = validation.checkValidation(formInputs);
