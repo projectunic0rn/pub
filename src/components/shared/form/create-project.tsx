@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Form, ErrorMessage } from '@components/shared/form';
+import Form from '@components/shared/form';
+import { ErrorMessage } from '@components/shared/form/error-msg';
 import AsyncSelect from 'react-select/async';
 import {
   FormLabel,

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { CreateProjectForm } from '@components/shared/form';
+import { CreateProjectForm } from '@components/shared/form/index';
 
 const CreateProjectPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
