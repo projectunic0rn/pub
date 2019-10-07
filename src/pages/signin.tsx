@@ -54,22 +54,21 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
-
-  let auth: MockAuthService | AuthService;
+  const [auth, setAuth] = useState<MockAuthService | AuthService>();
 
   React.useEffect(() => {
-    auth = new ServiceResolver().AuthResolver();
+    setAuth(new ServiceResolver().AuthResolver());
 
     if (location.state !== null) {
       setMessage(location.state.message);
     }
-  });
+  }, []);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      setMessage('Invalid email/password');
+      setMessage('Invalid email or password');
       return;
     }
 
@@ -77,7 +76,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
       setIsSigningIn(true);
 
       try {
-        const response = (await auth.signIn({
+        const response = (await (auth as MockAuthService | AuthService).signIn({
           email,
           password,
         })) as ApiResponse<JwtToken | ErrorResponse>;
@@ -91,7 +90,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
       } catch (err) {
         console.log(err);
 
-        setMessage('Invalid email/password');
+        setMessage('Invalid email or password');
       }
 
       setIsSigningIn(false);
@@ -102,7 +101,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
     <Layout>
       <Seo
         title={`Sign In`}
-        description={`Sign In page for ${siteMetadata.title} website`}
+        description={`Sign In Page For ${siteMetadata.title}`}
         urlSlug="signin/"
       />
       <Wrapper>
@@ -116,7 +115,10 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
             name="email"
             type="email"
             placeholder="unicorn@projectunicorn.net"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setMessage('');
+            }}
           />
 
           <FormLabel htmlFor="password">Confirm Password</FormLabel>
@@ -124,7 +126,10 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
             name="password"
             type="password"
             placeholder="Your Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setMessage('');
+            }}
           />
 
           <LinkWrapper>

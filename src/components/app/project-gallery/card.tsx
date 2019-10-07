@@ -144,6 +144,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
 
     if (response.ok) {
       joinProjectResponseBody.username = (response.data as ProjectUser).username;
+      joinProjectResponseBody.id = (response.data as ProjectUser).id;
       content.projectUsers.push(joinProjectResponseBody);
     }
 
@@ -165,17 +166,19 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     if (!isJoining) {
       setIsJoining(true);
 
-      try {
-        if (hasMemberJoinedProject) {
-          leaveProject(project);
-        } else {
-          joinProject(project);
+      setTimeout(() => {
+        try {
+          if (hasMemberJoinedProject) {
+            leaveProject(project);
+          } else {
+            joinProject(project);
+          }
+        } catch (err) {
+          setMessage('Unable to perform the requested action at this time');
         }
-      } catch (err) {
-        setMessage('Unable to perform the requested action at this time');
-      }
 
-      setIsJoining(false);
+        setIsJoining(false);
+      }, 500);
     }
   };
   const communicationPlatforms = [

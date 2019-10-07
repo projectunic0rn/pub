@@ -16,9 +16,10 @@ import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper } from '@/helpers';
+import { SessionStorageHelper, UserAuthHelper } from '@/helpers';
 import { MockAuthService } from '@/mocks/mock-auth-service';
 import { AuthService } from '@/api/auth-service';
+import { ProjectUser } from '@/api/types/project-user';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -48,11 +49,18 @@ const SignUpPage: React.FC = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [isSigningUp, setIsSigningUp] = useState<boolean>(false);
-
-  let auth: MockAuthService | AuthService;
+  const [auth, setAuth] = useState<MockAuthService | AuthService>();
 
   React.useEffect(() => {
-    auth = new ServiceResolver().AuthResolver();
+    setAuth(new ServiceResolver().AuthResolver());
+
+    const s: ProjectUser = {
+      userId: (undefined as unknown) as string,
+      username: 'unicorn91',
+      isOwner: false,
+    };
+    console.log(s.userId as string);
+    console.log(UserAuthHelper.getUserId());
   }, []);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -67,7 +75,7 @@ const SignUpPage: React.FC = () => {
             ? window.navigator.language
             : 'en';
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const response = (await auth.signUp({
+        const response = (await (auth as MockAuthService | AuthService).signUp({
           username,
           email,
           password,
@@ -94,7 +102,7 @@ const SignUpPage: React.FC = () => {
     <Layout>
       <Seo
         title={`Sign Up`}
-        description={`Sign Up page for ${siteMetadata.title} website`}
+        description={`Sign Up Page For ${siteMetadata.title}`}
         urlSlug="signup/"
       />
       <Wrapper>

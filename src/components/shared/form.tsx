@@ -16,7 +16,7 @@ const FormLabel = styled.label`
 const FormInput = styled.input`
   max-width: 400px;
   padding: 0.425em;
-  border-radius: 0;
+  border-radius: 0 !important;
   box-shadow: none;
   border: 1px solid gray;
 
