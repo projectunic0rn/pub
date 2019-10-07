@@ -4,12 +4,13 @@ import * as React from 'react';
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import Form, {
+import {
   FormLabel,
   FormInput,
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form';
+import Form from '@components/shared/form';
 import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
