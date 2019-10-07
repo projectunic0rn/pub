@@ -9,8 +9,8 @@ import {
   FormInput,
   LinkWrapper,
   ButtonWrapper,
-} from '@components/shared/form';
-import Form from '@components/shared/form';
+} from '@components/shared/form/controls';
+import { Form } from '@components/shared/form';
 import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
@@ -53,14 +53,6 @@ const SignUpPage: React.FC = () => {
 
   React.useEffect(() => {
     setAuth(new ServiceResolver().AuthResolver());
-
-    const s: ProjectUser = {
-      userId: (undefined as unknown) as string,
-      username: 'unicorn91',
-      isOwner: false,
-    };
-    console.log(s.userId as string);
-    console.log(UserAuthHelper.getUserId());
   }, []);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
