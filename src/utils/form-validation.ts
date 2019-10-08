@@ -26,6 +26,40 @@ export class FormVal {
     }
   };
 
+  private isValidUsername = (str: string) => {
+    /*
+      Validation:
+
+      username is 4-20 characters long
+      only letters and numbers
+      no _ or . at the beginning
+      no _ or . at the end
+      no __ or _. or ._ or .. inside
+    */
+
+    const regex = /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i;
+    return regex.test(str);
+  };
+
+  private isValidEmail = (str: string) => {
+    /*
+      source
+      https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    */
+
+    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    return regex.test(str.toLowerCase());
+  };
+
+  private isValidPassword = (password: string, confirmPassword: string) => {
+    const regex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/i;
+    return regex.test(password.toLowerCase());
+  };
+
+  private isPasswordMatch = (confirmPassword: string, password: string) => {
+    return confirmPassword === password;
+  };
+
   public checkValidation(v: Props) {
     return Object.keys(v).filter((input: string) => {
       const { val, required } = v[input];
@@ -43,6 +77,33 @@ export class FormVal {
       // check for empty string
       if (typeof val === 'string' && required) {
         return !this.isEmptyString(val);
+      }
+    });
+  }
+
+  public userSignUp(v: Props) {
+    console.log(v);
+    return Object.keys(v).filter((input: string) => {
+      const { val, required } = v[input];
+
+      // check valid username
+      if (input === 'username' && required) {
+        return !this.isValidUsername(val);
+      }
+
+      // check for valid email
+      if (input === 'email' && required) {
+        return !this.isValidEmail(val);
+      }
+
+      // check password
+      if (input === 'password' && required) {
+        return !this.isValidPassword(val, v['confirmPassword'].val);
+      }
+
+      // check confirmPassword
+      if (input === 'confirmPassword' && required) {
+        return !this.isPasswordMatch(val, v['password'].val);
       }
     });
   }
