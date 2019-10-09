@@ -9,7 +9,7 @@ const Button = styled.button<ButtonProps>`
     active ? theme.colors.button.secondary : theme.colors.highlight};
   color: ${({ theme }) => theme.colors.baseinvert};
   border-radius: 0.2em;
-  padding: 3px 25px;
+  padding: 7px 25px;
   border: none;
   transition: 0.15s;
   opacity: ${(props) => (props.disabled ? '0.75' : '1')};

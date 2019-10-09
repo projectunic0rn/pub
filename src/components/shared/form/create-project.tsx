@@ -12,7 +12,7 @@ import {
 } from './controls';
 import styled from '@styled-components';
 import { ThemeContext } from 'styled-components';
-import CtaButton from '@components/index-page/cta-button';
+import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tag, Item } from '@/api/types/stack-exchange';
@@ -256,7 +256,7 @@ export const CreateProjectForm: React.FC = () => {
         Project | ErrorResponse
       >;
 
-      if (response.ok) navigate(`/app/projects}`);
+      if (response.ok) navigate(`/app/projects`);
       else setError((response.data as ErrorResponse).message);
 
       setIsError(!response.ok);
@@ -287,7 +287,7 @@ export const CreateProjectForm: React.FC = () => {
             hasError={formErrors.includes('pName')}
           />
           {formErrors.includes('pName') && (
-            <ErrorMessage value="Project Name" />
+            <ErrorMessage value="Project Name Required" />
           )}
           <FormHint>
             Make your project name simple, specific and memorable
@@ -303,7 +303,7 @@ export const CreateProjectForm: React.FC = () => {
             hasError={formErrors.includes('pDesc')}
           />
           {formErrors.includes('pDesc') && (
-            <ErrorMessage value="Project Description" />
+            <ErrorMessage value="Project Description Required" />
           )}
           <FormHint>Describe your project in a single tweet</FormHint>​
           <FormLabel htmlFor="project-type">Project Type</FormLabel>
@@ -316,7 +316,7 @@ export const CreateProjectForm: React.FC = () => {
             placeholder="Select a Project Type"
           />
           {formErrors.includes('pType') && (
-            <ErrorMessage value="Project Type" />
+            <ErrorMessage value="Project Type Required" />
           )}
           <FormHint>What category does your project belong to?</FormHint>​
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
@@ -328,7 +328,7 @@ export const CreateProjectForm: React.FC = () => {
             hasError={formErrors.includes('pRepo')}
           />
           {formErrors.includes('pRepo') && (
-            <ErrorMessage value="Project Repo" />
+            <ErrorMessage value="Project Repo Required" />
           )}
           <FormHint>Share your project repo (GitHub, GitLab etc)</FormHint>​
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
@@ -340,7 +340,7 @@ export const CreateProjectForm: React.FC = () => {
             hasError={formErrors.includes('pLaunch')}
           />
           {formErrors.includes('pLaunch') && (
-            <ErrorMessage value="Project Launch" />
+            <ErrorMessage value="Launch Date Required" />
           )}
           <FormHint>
             Keep you and your team accountable with a launch date
@@ -357,7 +357,7 @@ export const CreateProjectForm: React.FC = () => {
             hasError={formErrors.includes('pComm')}
           />
           {formErrors.includes('pComm') && (
-            <ErrorMessage value="Communication Platform" />
+            <ErrorMessage value="Communication Platform link must be Slack or Discord" />
           )}
           <FormHint>
             Where will you communicate? Share the invite link to your workspace
@@ -374,11 +374,11 @@ export const CreateProjectForm: React.FC = () => {
             loadOptions={promiseOptions}
           />
           {formErrors.includes('pTech') && (
-            <ErrorMessage value="Technologies" />
+            <ErrorMessage value="At least one technology required" />
           )}
           <FormHint>Add the technologies used in your application</FormHint>
           <ButtonWrapper>
-            <CtaButton title="Create" href="" type="input" content="Create" />
+            <Button active={false}>Sign Up</Button>
           </ButtonWrapper>
         </Form>
       </FormWrapper>

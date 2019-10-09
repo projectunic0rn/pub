@@ -11,5 +11,5 @@ const ErrorMsg = styled.span`
 `;
 
 export const ErrorMessage: React.FC<Props> = ({ value }) => {
-  return <ErrorMsg>{value} field required</ErrorMsg>;
+  return <ErrorMsg>{value}</ErrorMsg>;
 };
