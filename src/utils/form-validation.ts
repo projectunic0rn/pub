@@ -27,8 +27,6 @@ export class FormVal {
   };
 
   private isValidUsername = (str: string) => {
-    console.log(str);
-    console.log(str.length ? true : false);
     return str.length ? true : false;
   };
 
