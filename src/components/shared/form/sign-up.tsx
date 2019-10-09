@@ -20,6 +20,7 @@ import { MockAuthService } from '@/mocks/mock-auth-service';
 import { ApiService } from '@/api/api-service';
 import { AuthService } from '@/api/auth-service';
 import { FormVal } from '@/utils/form-validation';
+import { Username } from '@/api/types/username';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -85,7 +86,7 @@ export const SignUpForm: React.FC = () => {
 
     const errors = validation.userSignUp(formInputs);
 
-    if (errors.length) setFormErrors([...errors]);
+    if (errors.length) return setFormErrors([...errors]);
     setFormErrors([]);
 
     try {
@@ -116,8 +117,8 @@ export const SignUpForm: React.FC = () => {
 
   const displayErrorMessages = () => {
     return formErrors.map((err: string) => {
-      if (err === 'email') <li key={err}>Invalid email</li>;
-      if (err === 'username') <li key={err}>Invalid username</li>;
+      if (err === 'email') return <li key={err}>Invalid email</li>;
+      if (err === 'username') return <li key={err}>Invalid username</li>;
       if (err === 'password')
         return (
           <li key={err}>
@@ -133,7 +134,8 @@ export const SignUpForm: React.FC = () => {
             </ul>
           </li>
         );
-      if (err === 'confirmPassword') <li key={err}>Passwords do not match</li>;
+      if (err === 'confirmPassword')
+        return <li key={err}>Passwords do not match</li>;
     });
   };
 
@@ -144,11 +146,13 @@ export const SignUpForm: React.FC = () => {
 
     if (value) {
       setIsLoading(true);
-
+      const username: Username = {
+        username: value,
+      };
       try {
         const response = (await (api as
           | MockApiService
-          | ApiService).validateUsername(value)) as ApiResponse<
+          | ApiService).validateUsername(username)) as ApiResponse<
           UserValidation | ErrorResponse
         >;
 
