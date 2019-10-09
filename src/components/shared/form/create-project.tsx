@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Form from '@components/shared/form';
+import { Form } from '@components/shared/form';
 import { ErrorMessage } from '@components/shared/form/error-msg';
 import AsyncSelect from 'react-select/async';
 import {
@@ -203,7 +203,7 @@ export const CreateProjectForm: React.FC = () => {
     setFormErrors([...formErrorState]);
   };
 
-  const handleAsyncSelectOnBlur = (e: any) => {
+  const handleAsyncSelectOnBlur = () => {
     const formErrorState: string[] = formErrors;
 
     if (formErrorState.indexOf('pTech') > 0 || formInputs.pTech.val.length) {
@@ -370,7 +370,7 @@ export const CreateProjectForm: React.FC = () => {
             isMulti
             onChange={handleSelectChange}
             styles={styles}
-            onBlur={(e: any) => handleAsyncSelectOnBlur(e)}
+            onBlur={handleAsyncSelectOnBlur}
             loadOptions={promiseOptions}
           />
           {formErrors.includes('pTech') && (

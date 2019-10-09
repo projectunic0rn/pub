@@ -8,7 +8,7 @@ import {
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form';
-import Form from '@components/shared/form';
+import { Form } from '@components/shared/form';
 import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';

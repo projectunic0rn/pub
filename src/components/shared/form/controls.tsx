@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@styled-components';
-import { red, redLight, white, black } from '../../../styles/constants';
+import {
+  red,
+  redLight,
+  white,
+  black,
+  greyLighter,
+} from '../../../styles/constants';
 
 interface FormInputProps {
   hasError?: boolean;
@@ -10,56 +16,75 @@ const FormLabel = styled.label`
   font-weight: 800;
   padding: 0.825em 0;
 `;
+
 const FormInput = styled.input<FormInputProps>`
+  max-width: 400px;
   padding: 0.425em;
+  border-radius: 0;
+  box-shadow: none;
   border-radius: 3px;
-  box-shadow: 0 0 1px gray;
+  box-shadow: 0 0 1px ${greyLighter};
   border: ${(props) =>
-    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
+    props.hasError ? `1px solid ${red}` : `1px solid ${greyLighter};`};
   background: ${(props) => (props.hasError ? redLight : white)};
+
+  :focus {
+    border-color: ${(props) =>
+      props.hasError ? red : props.theme.colors.base};
+  }
 `;
+
 const SelectInput = styled.select<FormSelectInputProps>`
   padding: 0.425em;
   border-radius: 3px;
-  box-shadow: 0 0 1px gray;
-  border: 1px solid lightgray;
+  box-shadow: 0 0 1px ${greyLighter};
   appearance: none;
-  ​ :focus {
+  border: ${(props) =>
+    props.hasError ? `1px solid ${red}` : `1px solid ${greyLighter};`};
+  background: ${(props) => (props.hasError ? redLight : white)};
+
+  :focus {
     border-color: ${black};
   }
-  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
-    no-repeat 95% 50% white;
-  border: ${(props) =>
-    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
-  background: ${(props) => (props.hasError ? redLight : white)};
 `;
+
 const FormHint = styled.small`
-  color: gray;
+  color: ${({ theme }) => theme.colors.greyDark};
 `;
+
 const FormTextAreaHint = styled.small`
-  color: lightgray;
+  color: ${greyLighter};
   position: absolute;
   right: 0;
   bottom: -20px;
 `;
+
 const TextAreaWrapper = styled.div`
   position: relative;
 `;
+
 const TextArea = styled.textarea<FormTextAreaProps>`
   width: 100%;
   padding: 0.425em;
   border-radius: 3px;
-  box-shadow: 0 0 1px gray;
+  box-shadow: 0 0 1px ${greyLighter};
   border: ${(props) =>
-    props.hasError ? `1px solid ${red}` : '1px solid lightgray;'};
+    props.hasError ? `1px solid ${red}` : `1px solid ${greyLighter};`};
   background: ${(props) => (props.hasError ? redLight : white)};
+
+  :focus {
+    border-color: ${(props) =>
+      props.hasError ? red : props.theme.colors.base};
+  }
 `;
+
 const LinkWrapper = styled.div`
   margin: 0.625em 0.125em;
   display: flex;
   flex-direction: column;
   max-width: fit-content;
 `;
+
 const ButtonWrapper = styled.div`
   padding: 1.825em 0.125em;
 
@@ -98,7 +123,7 @@ const FormSelectInput: React.FC<FormSelectInputProps> = ({
       }}
       options={options}
       name={name}
-      onChange={(e: any) => onChange(e)}
+      onChange={(e) => onChange(e)}
       hasError={hasError}
       placeholder={placeholder}
     >
@@ -129,18 +154,16 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   hasError,
 }) => {
-  const charLength = value.length;
-
-  const checkLength = (e: any) => {
-    return e.target.value.length < 135
-      ? e.target.value
-      : e.target.value.slice(0, 135);
+  const checkLength = (e: React.FormEvent<HTMLInputElement>) => {
+    return e.currentTarget.value.length < 135
+      ? e.currentTarget.value
+      : e.currentTarget.value.slice(0, 135);
   };
 
   return (
     <TextAreaWrapper>
       <TextArea
-        onChange={(e) => onChange(e, checkLength(e))}
+        onChange={(e: any) => onChange(e, checkLength(e))}
         value={value}
         name={name}
         onBlur={(e) => onBlur(e)}

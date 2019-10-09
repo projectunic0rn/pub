@@ -10,7 +10,7 @@ import {
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form/controls';
-import Form from '@components/shared/form';
+import { Form } from '@components/shared/form';
 import { useState } from 'react';
 import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';

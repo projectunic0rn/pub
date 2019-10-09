@@ -69,7 +69,9 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
-  const [isJoining, setIsJoining] = React.useState<boolean>(false);
+  const [hasRequestBeenMade, setHasRequestBeenMade] = React.useState<boolean>(
+    false,
+  );
 
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
@@ -111,6 +113,8 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   };
 
   const leaveProject = async (project: Project) => {
+    setHasRequestBeenMade(true);
+
     const projectUser = project.projectUsers.find(
       (u) => u.userId === userId,
     ) as ProjectUser;
@@ -129,9 +133,12 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     } else {
       setMessage((response.data as ErrorResponse).message);
     }
+
+    setHasRequestBeenMade(false);
   };
 
   const joinProject = async (project: Project) => {
+    setHasRequestBeenMade(true);
     const joinProjectResponseBody: ProjectUser = {
       projectId: project.id as string,
       isOwner: false,
@@ -153,6 +160,8 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     } else {
       setMessage((response.data as ErrorResponse).message);
     }
+
+    setHasRequestBeenMade(false);
   };
 
   const handleClick = async (project: Project) => {
@@ -163,24 +172,19 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       return;
     }
 
-    if (!isJoining) {
-      setIsJoining(true);
-
-      setTimeout(() => {
-        try {
-          if (hasMemberJoinedProject) {
-            leaveProject(project);
-          } else {
-            joinProject(project);
-          }
-        } catch (err) {
-          setMessage('Unable to perform the requested action at this time');
+    if (!hasRequestBeenMade) {
+      try {
+        if (hasMemberJoinedProject) {
+          leaveProject(project);
+        } else {
+          joinProject(project);
         }
-
-        setIsJoining(false);
-      }, 500);
+      } catch (err) {
+        setMessage('Unable to perform the requested action at this time');
+      }
     }
   };
+
   const communicationPlatforms = [
     {
       name: 'slack',
@@ -243,7 +247,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       <ProjectButton
         onClick={() => handleClick(content)}
         active={hasMemberJoinedProject}
-        disabled={isJoining}
+        disabled={hasRequestBeenMade}
       >
         {hasMemberJoinedProject ? 'Leave' : 'Join'}
       </ProjectButton>
