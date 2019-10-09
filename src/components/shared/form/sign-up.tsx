@@ -20,6 +20,7 @@ import { MockAuthService } from '@/mocks/mock-auth-service';
 import { ApiService } from '@/api/api-service';
 import { AuthService } from '@/api/auth-service';
 import { FormVal } from '@/utils/form-validation';
+import { Username } from '@/api/types/username';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -145,11 +146,13 @@ export const SignUpForm: React.FC = () => {
 
     if (value) {
       setIsLoading(true);
-
+      const username: Username = {
+        username: value,
+      };
       try {
         const response = (await (api as
           | MockApiService
-          | ApiService).validateUsername(value)) as ApiResponse<
+          | ApiService).validateUsername(username)) as ApiResponse<
           UserValidation | ErrorResponse
         >;
 
