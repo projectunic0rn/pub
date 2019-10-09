@@ -87,6 +87,7 @@ export const SignUpForm: React.FC = () => {
     const errors = validation.userSignUp(formInputs);
 
     if (errors.length) return setFormErrors([...errors]);
+    setFormErrors([]);
 
     try {
       const locale =
@@ -185,19 +186,15 @@ export const SignUpForm: React.FC = () => {
   return (
     <Wrapper>
       <Form heading={`Sign Up`} handleSubmit={handleSubmit}>
-        {message ||
-          (formErrors && (
-            <Error>
-              {message}
-              {displayErrorMessages()}
-            </Error>
-          ))}
+        {formErrors && <Error>{displayErrorMessages()}</Error>}
+        {message && <Error>{message}</Error>}
         <FormLabel htmlFor="email">Email</FormLabel>
         <FormInput
           name="email"
           type="email"
           placeholder="unicorn@projectunicorn.net"
           onChange={(e) => handleChange(e)}
+          hasError={formErrors.includes('email')}
         />
 
         <FormLabel htmlFor="username">Username</FormLabel>
@@ -206,6 +203,7 @@ export const SignUpForm: React.FC = () => {
           type="text"
           placeholder="unicorn21"
           onChange={(e) => checkUsername(e)}
+          hasError={formErrors.includes('username')}
         />
         <UsernameCheck isValid={usernameAvailablity.valid}>
           {isLoading ? 'checking...' : usernameAvailablity.reason}
@@ -216,6 +214,10 @@ export const SignUpForm: React.FC = () => {
           type="password"
           placeholder="Your Password"
           onChange={(e) => handleChange(e)}
+          hasError={
+            formErrors.includes('password') ||
+            formErrors.includes('confirmPassword')
+          }
         />
 
         <FormLabel htmlFor="password">Confirm Password</FormLabel>
@@ -224,6 +226,10 @@ export const SignUpForm: React.FC = () => {
           type="password"
           placeholder="Confirm Your Password"
           onChange={(e) => handleChange(e)}
+          hasError={
+            formErrors.includes('password') ||
+            formErrors.includes('confirmPassword')
+          }
         />
 
         <LinkWrapper>
