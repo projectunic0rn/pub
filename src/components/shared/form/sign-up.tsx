@@ -1,6 +1,5 @@
 import { Link, navigate } from 'gatsby';
 import * as React from 'react';
-
 import styled from '@styled-components';
 import {
   FormLabel,
@@ -86,7 +85,7 @@ export const SignUpForm: React.FC = () => {
 
     const errors = validation.userSignUp(formInputs);
 
-    if (errors.length) return setFormErrors([...errors]);
+    if (errors.length) setFormErrors([...errors]);
     setFormErrors([]);
 
     try {
@@ -117,8 +116,8 @@ export const SignUpForm: React.FC = () => {
 
   const displayErrorMessages = () => {
     return formErrors.map((err: string) => {
-      if (err === 'email') return <li key={err}>Invalid email</li>;
-      if (err === 'username') return <li key={err}>Invalid username</li>;
+      if (err === 'email') <li key={err}>Invalid email</li>;
+      if (err === 'username') <li key={err}>Invalid username</li>;
       if (err === 'password')
         return (
           <li key={err}>
@@ -134,8 +133,7 @@ export const SignUpForm: React.FC = () => {
             </ul>
           </li>
         );
-      if (err === 'confirmPassword')
-        return <li key={err}>Passwords do not match</li>;
+      if (err === 'confirmPassword') <li key={err}>Passwords do not match</li>;
     });
   };
 
@@ -162,22 +160,6 @@ export const SignUpForm: React.FC = () => {
       } catch (error) {
         setMessage('Failed to validate username');
       }
-
-      // *** TESTING PURPOSES ONLY - WILL BE REMOVED BEFORE DEPLOYMENT ***
-      //
-      // const response = await fetch(
-      //   `https://pub-api-test.azurewebsites.net/api/util/${value}/`,
-      //   {
-      //     method: 'POST',
-      //     mode: 'cors',
-      //   }
-      // );
-
-      // const data = await response.json();
-      // console.log(data);
-      // setIsLoading(false);
-      // setUsernameAvailability(data.data);
-      // setFormInputs({ ...state });
     } else {
       setUsernameAvailability({ valid: false, reason: '' });
     }
