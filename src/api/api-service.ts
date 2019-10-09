@@ -46,4 +46,8 @@ export class ApiService {
       this.headers,
     );
   }
+
+  public async validateUsername(username: string) {
+    return await HttpClient.post(`${this.apiEndpoint}/util/${username}`);
+  }
 }
