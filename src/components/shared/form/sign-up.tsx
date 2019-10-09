@@ -85,7 +85,7 @@ export const SignUpForm: React.FC = () => {
 
     const errors = validation.userSignUp(formInputs);
 
-    if (errors.length) setFormErrors([...errors]);
+    if (errors.length) return setFormErrors([...errors]);
     setFormErrors([]);
 
     try {
@@ -116,8 +116,8 @@ export const SignUpForm: React.FC = () => {
 
   const displayErrorMessages = () => {
     return formErrors.map((err: string) => {
-      if (err === 'email') <li key={err}>Invalid email</li>;
-      if (err === 'username') <li key={err}>Invalid username</li>;
+      if (err === 'email') return <li key={err}>Invalid email</li>;
+      if (err === 'username') return <li key={err}>Invalid username</li>;
       if (err === 'password')
         return (
           <li key={err}>
@@ -133,7 +133,8 @@ export const SignUpForm: React.FC = () => {
             </ul>
           </li>
         );
-      if (err === 'confirmPassword') <li key={err}>Passwords do not match</li>;
+      if (err === 'confirmPassword')
+        return <li key={err}>Passwords do not match</li>;
     });
   };
 
