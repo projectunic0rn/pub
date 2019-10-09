@@ -16,7 +16,7 @@ const FormLabel = styled.label`
 const FormInput = styled.input`
   max-width: 400px;
   padding: 0.425em;
-  border-radius: 0;
+  border-radius: 0 !important;
   box-shadow: none;
   border: 1px solid gray;
 
@@ -38,11 +38,14 @@ const ButtonWrapper = styled.div`
 
 interface Props {
   heading: string;
+  handleSubmit: Function;
 }
 
-const Form: React.FC<Props> = ({ heading, children }) => {
+const Form: React.FC<Props> = ({ handleSubmit, heading, children }) => {
   return (
-    <FormElement>
+    <FormElement
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+    >
       <Heading>{heading}</Heading>
       {children}
     </FormElement>

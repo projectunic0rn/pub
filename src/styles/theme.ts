@@ -23,11 +23,17 @@ const colors = {
   alternate: constants.greenLight,
   /** Used for box shadows. */
   shadow: constants.shadow,
+  /** Used for form hints */
+  greyDark: constants.greyDark,
   button: {
     /** Button color */
     secondary: constants.pinkLight,
     /** Button active color */
     secondaryHighlight: constants.pinkMedium,
+  },
+  input: {
+    /* Input error background color */
+    errorBg: constants.redLight,
   },
   alert: {
     danger: constants.red,

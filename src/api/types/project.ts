@@ -2,7 +2,7 @@ import { ProjectTechnology } from './project-technology';
 import { ProjectUser } from './project-user';
 
 export interface Project {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   launchDate: Date;

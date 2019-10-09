@@ -1,21 +1,25 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import Form, {
+import {
   FormLabel,
   FormInput,
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form';
+import Form from '@components/shared/form';
 import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper } from '@/helpers';
+import { SessionStorageHelper, UserAuthHelper } from '@/helpers';
+import { MockAuthService } from '@/mocks/mock-auth-service';
+import { AuthService } from '@/api/auth-service';
+import { ProjectUser } from '@/api/types/project-user';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -39,41 +43,58 @@ const Error = styled.p`
 const SignUpPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [isSigningUp, setIsSigningUp] = useState<boolean>(false);
+  const [auth, setAuth] = useState<MockAuthService | AuthService>();
 
-  const handleClick = async (e: React.SyntheticEvent) => {
+  React.useEffect(() => {
+    setAuth(new ServiceResolver().AuthResolver());
+
+    const s: ProjectUser = {
+      userId: (undefined as unknown) as string,
+      username: 'unicorn91',
+      isOwner: false,
+    };
+    console.log(s.userId as string);
+    console.log(UserAuthHelper.getUserId());
+  }, []);
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    const auth = new ServiceResolver().AuthResolver();
+    if (!isSigningUp) {
+      setIsSigningUp(true);
 
-    try {
-      const locale =
-        typeof window.navigator !== 'undefined'
-          ? window.navigator.language
-          : 'en';
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const response = (await auth.signUp({
-        username,
-        email,
-        password,
-        passwordConfirmation,
-        locale,
-        timezone,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
+      try {
+        const locale =
+          typeof window.navigator !== 'undefined'
+            ? window.navigator.language
+            : 'en';
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const response = (await (auth as MockAuthService | AuthService).signUp({
+          username,
+          email,
+          password,
+          passwordConfirmation,
+          locale,
+          timezone,
+        })) as ApiResponse<JwtToken | ErrorResponse>;
 
-      if (response.ok) {
-        // TODO: redirect
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-        setMessage('Signed Up');
-      } else {
-        setMessage((response.data as ErrorResponse).message);
+        if (response.ok) {
+          SessionStorageHelper.storeJwt(response.data as JwtToken);
+          navigate('/app/projects');
+        } else {
+          setMessage((response.data as ErrorResponse).message);
+        }
+      } catch (err) {
+        setMessage('Sign up failed');
       }
-    } catch (err) {
-      setMessage('Invalid email/password');
+
+      setIsSigningUp(false);
     }
   };
 
@@ -81,11 +102,14 @@ const SignUpPage: React.FC = () => {
     <Layout>
       <Seo
         title={`Sign Up`}
-        description={`Sign Up page for ${siteMetadata.title} website`}
+        description={`Sign Up Page For ${siteMetadata.title}`}
         urlSlug="signup/"
       />
       <Wrapper>
-        <Form heading={`Sign Up To Join ${siteMetadata.title}`}>
+        <Form
+          heading={`Sign Up To Join ${siteMetadata.title}`}
+          handleSubmit={handleSubmit}
+        >
           {message && <Error>{message}</Error>}
           <FormLabel htmlFor="email">Email</FormLabel>
           <FormInput
@@ -124,9 +148,7 @@ const SignUpPage: React.FC = () => {
           </LinkWrapper>
 
           <ButtonWrapper>
-            <Button onClick={handleClick} active={false}>
-              Sign Up
-            </Button>
+            <Button active={false}>Sign Up</Button>
           </ButtonWrapper>
         </Form>
       </Wrapper>

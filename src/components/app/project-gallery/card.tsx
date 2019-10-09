@@ -9,8 +9,10 @@ import ServiceResolver from '@/api/service-resolver';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
-import { Link } from 'gatsby';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+import { navigate } from 'gatsby';
+import { MockApiService } from '@/mocks/mock-api-service';
+import { ApiService } from '@/api/api-service';
 
 interface CardProps {
   content: Project;
@@ -29,10 +31,6 @@ const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     width: calc(33.3333% - 2em);
     max-width: calc(33.3333% - 2em);
-  }
-
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.max}) {
-    color: green;
   }
 `;
 
@@ -76,13 +74,15 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
     : null;
-  const username = 'Roy';
+  let api: MockApiService | ApiService;
 
   React.useEffect(() => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
-  }, []);
+
+    api = new ServiceResolver().ApiResolver();
+  });
 
   const getMembers = (members: ProjectUser[]) => {
     return {
@@ -102,57 +102,85 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     };
   };
 
-  const handleClick = async (project: Project) => {
-    const api = new ServiceResolver().ApiResolver();
-
-    try {
-      setIsJoining(true);
-      let response;
-
-      if (hasMemberJoinedProject) {
-        const projectUser = project.projectUsers.find(
-          (u) => u.userId === userId,
-        ) as ProjectUser;
-
-        response = (await api.leaveProject(
-          projectUser.id as string,
-        )) as ApiResponse<ProjectUser | ErrorResponse>;
-
-        if (response.ok) {
-          const projectUserIndex = content.projectUsers.indexOf(projectUser);
-          content.projectUsers.splice(projectUserIndex, 1);
-        }
-      } else {
-        const isOwner =
-          project.projectUsers.find((u) => u.userId === userId) !== null;
-        const joinProjectResponseBody: ProjectUser = {
-          projectId: project.id,
-          isOwner,
-          userId,
-          username,
-        };
-
-        response = (await api.joinProject(
-          joinProjectResponseBody,
-        )) as ApiResponse<ProjectUser | ErrorResponse>;
-
-        if (response.ok) {
-          content.projectUsers.push(joinProjectResponseBody);
-        }
-      }
-
-      if (response.ok) {
-        setHasMemberJoinedProject(!hasMemberJoinedProject);
-      } else {
-        setMessage((response.data as ErrorResponse).message);
-      }
-    } catch (err) {
-      setMessage('Unable to perform the requested action at this time');
-    }
-
-    setIsJoining(false);
+  const getMemberList = (members: ProjectUser[]) => {
+    return members.map((m) => m.username).join(', ');
   };
 
+  const getTechList = (tech: ProjectTechnology[]) => {
+    return tech.map((t) => t.name).join(', ');
+  };
+
+  const leaveProject = async (project: Project) => {
+    const projectUser = project.projectUsers.find(
+      (u) => u.userId === userId,
+    ) as ProjectUser;
+
+    const response = (await api.leaveProject(
+      projectUser.id as string,
+    )) as ApiResponse<ProjectUser | ErrorResponse>;
+
+    if (response.ok) {
+      const projectUserIndex = content.projectUsers.indexOf(projectUser);
+      content.projectUsers.splice(projectUserIndex, 1);
+    }
+
+    if (response.ok) {
+      setHasMemberJoinedProject(!hasMemberJoinedProject);
+    } else {
+      setMessage((response.data as ErrorResponse).message);
+    }
+  };
+
+  const joinProject = async (project: Project) => {
+    const joinProjectResponseBody: ProjectUser = {
+      projectId: project.id as string,
+      isOwner: false,
+      userId,
+    };
+
+    const response = (await api.joinProject(
+      joinProjectResponseBody,
+    )) as ApiResponse<ProjectUser | ErrorResponse>;
+
+    if (response.ok) {
+      joinProjectResponseBody.username = (response.data as ProjectUser).username;
+      joinProjectResponseBody.id = (response.data as ProjectUser).id;
+      content.projectUsers.push(joinProjectResponseBody);
+    }
+
+    if (response.ok) {
+      setHasMemberJoinedProject(!hasMemberJoinedProject);
+    } else {
+      setMessage((response.data as ErrorResponse).message);
+    }
+  };
+
+  const handleClick = async (project: Project) => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      navigate('/signin', {
+        state: { message: 'You need to be signed in to join a project' },
+      });
+      return;
+    }
+
+    if (!isJoining) {
+      setIsJoining(true);
+
+      setTimeout(() => {
+        try {
+          if (hasMemberJoinedProject) {
+            leaveProject(project);
+          } else {
+            joinProject(project);
+          }
+        } catch (err) {
+          setMessage('Unable to perform the requested action at this time');
+        }
+
+        setIsJoining(false);
+      }, 500);
+    }
+  };
   const communicationPlatforms = [
     {
       name: 'slack',
@@ -200,31 +228,25 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       </Title>
       {members.displayable}
       {members.other && (
-        <CardPill title={members.other.join(', ')}>
+        <CardPill title={getMemberList(members.other)}>
           +{members.other.length}
         </CardPill>
       )}
       <Description>{content.description}</Description>
       {tech.displayable}
       {tech.other && (
-        <Tech title={tech.other.join(', ')}>+{tech.other.length}</Tech>
+        <Tech title={getTechList(tech.other)}>+{tech.other.length}</Tech>
       )}
       <Break>&nbsp;</Break>
       <br />
       <br />
-      {UserAuthHelper.isUserAuthenticated() ? (
-        <ProjectButton
-          onClick={() => handleClick(content)}
-          active={hasMemberJoinedProject}
-          disabled={isJoining}
-        >
-          {hasMemberJoinedProject ? 'Leave' : 'Join'}
-        </ProjectButton>
-      ) : (
-        <Link to="/signin?message=You need to be signed in to join a project">
-          <ProjectButton active={false}>Join</ProjectButton>
-        </Link>
-      )}
+      <ProjectButton
+        onClick={() => handleClick(content)}
+        active={hasMemberJoinedProject}
+        disabled={isJoining}
+      >
+        {hasMemberJoinedProject ? 'Leave' : 'Join'}
+      </ProjectButton>
     </Wrapper>
   );
 };

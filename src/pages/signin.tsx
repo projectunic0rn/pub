@@ -4,18 +4,21 @@ import * as React from 'react';
 import styled from '@styled-components';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import Form, {
+import {
   FormLabel,
   FormInput,
   LinkWrapper,
   ButtonWrapper,
-} from '@components/shared/form';
+} from '@components/shared/form/controls';
+import Form from '@components/shared/form';
 import { useState } from 'react';
 import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { SessionStorageHelper } from '@/helpers';
 import { JwtToken } from '@/api/types/jwt-token';
+import { MockAuthService } from '@/mocks/mock-auth-service';
+import { AuthService } from '@/api/auth-service';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -36,43 +39,61 @@ const Error = styled.p`
   margin-bottom: 0;
 `;
 
-const SignInPage: React.FC = () => {
+interface SignInPageProps {
+  location: {
+    state: {
+      message: string;
+    };
+  };
+}
+
+const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
+  const [auth, setAuth] = useState<MockAuthService | AuthService>();
 
   React.useEffect(() => {
-    setMessage(new URL(window.location.href).searchParams.get(
-      'message',
-    ) as string);
+    setAuth(new ServiceResolver().AuthResolver());
+
+    if (location.state !== null) {
+      setMessage(location.state.message);
+    }
   }, []);
 
-  const handleClick = async (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      setMessage('Invalid email/password');
+      setMessage('Invalid email or password');
       return;
     }
 
-    const auth = new ServiceResolver().AuthResolver();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
 
-    try {
-      const response = (await auth.signIn({
-        email,
-        password,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
+      try {
+        const response = (await (auth as MockAuthService | AuthService).signIn({
+          email,
+          password,
+        })) as ApiResponse<JwtToken | ErrorResponse>;
 
-      if (response.ok) {
-        navigate('/app/projects');
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-      } else {
-        setMessage((response.data as ErrorResponse).message);
+        if (response.ok) {
+          navigate('/app/projects');
+          SessionStorageHelper.storeJwt(response.data as JwtToken);
+        } else {
+          setMessage((response.data as ErrorResponse).message);
+        }
+      } catch (err) {
+        console.log(err);
+
+        setMessage('Invalid email or password');
       }
-    } catch (err) {
-      setMessage('Invalid email/password');
+
+      setIsSigningIn(false);
     }
   };
 
@@ -80,19 +101,24 @@ const SignInPage: React.FC = () => {
     <Layout>
       <Seo
         title={`Sign In`}
-        description={`Sign In page for ${siteMetadata.title} website`}
+        description={`Sign In Page For ${siteMetadata.title}`}
         urlSlug="signin/"
       />
       <Wrapper>
-        <Form heading={`Sign In To ${siteMetadata.title}`}>
+        <Form
+          heading={`Sign In To ${siteMetadata.title}`}
+          handleSubmit={handleSubmit}
+        >
           {message && <Error>{message}</Error>}
-          <span style={{ color: 'red' }} />
           <FormLabel htmlFor="email-signin">Email</FormLabel>
           <FormInput
             name="email-signin"
             type="email"
             placeholder="unicorn@projectunicorn.net"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setMessage('');
+            }}
           />
 
           <FormLabel htmlFor="password">Password</FormLabel>
@@ -100,19 +126,18 @@ const SignInPage: React.FC = () => {
             name="password"
             type="password"
             placeholder="Your Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setMessage('');
+            }}
           />
-
-          <LinkWrapper>
-            <Link to="/forgotpassword/">Forgot password?</Link>
-          </LinkWrapper>
 
           <LinkWrapper>
             <Link to="/signup/">New member? Sign Up!</Link>
           </LinkWrapper>
 
           <ButtonWrapper>
-            <Button onClick={handleClick} active={false}>
+            <Button active={false} disabled={isSigningIn}>
               Sign In
             </Button>
           </ButtonWrapper>

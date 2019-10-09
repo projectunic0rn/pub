@@ -1,7 +1,7 @@
 export interface ProjectUser {
   id?: string;
-  projectId: string;
+  projectId?: string;
   userId: string;
   isOwner: boolean;
-  username: string;
+  username?: string;
 }
