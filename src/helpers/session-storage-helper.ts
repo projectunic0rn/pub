@@ -1,18 +1,18 @@
+import { JwtToken } from '@/api/types/jwt-token';
+
 export default class SessionStorageHelper {
   public static storeJwt(jsonWebToken: object) {
     const jwtData = this.stringifySessionData(jsonWebToken);
     localStorage.setItem('currentJwt', jwtData);
   }
 
-  public static getJwt() {
+  public static getJwt(): JwtToken {
     const storedJwt = localStorage.getItem('currentJwt');
+    const emptyjwt: JwtToken = {
+      token: undefined,
+    };
 
     if (storedJwt === null) {
-      const emptyjwt = {
-        refreshToken: undefined,
-        token: undefined,
-      };
-
       return emptyjwt;
     }
 
@@ -21,7 +21,7 @@ export default class SessionStorageHelper {
 
       return currentJwt;
     } catch (err) {
-      return null;
+      return emptyjwt;
     }
   }
 
