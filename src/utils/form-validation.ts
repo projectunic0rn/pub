@@ -27,18 +27,9 @@ export class FormVal {
   };
 
   private isValidUsername = (str: string) => {
-    /*
-      Validation:
-
-      username is 4-20 characters long
-      only letters and numbers
-      no _ or . at the beginning
-      no _ or . at the end
-      no __ or _. or ._ or .. inside
-    */
-
-    const regex = /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i;
-    return regex.test(str);
+    console.log(str);
+    console.log(str.length ? true : false);
+    return str.length ? true : false;
   };
 
   private isValidEmail = (str: string) => {
@@ -82,7 +73,6 @@ export class FormVal {
   }
 
   public userSignUp(v: Props) {
-    console.log(v);
     return Object.keys(v).filter((input: string) => {
       const { val, required } = v[input];
 

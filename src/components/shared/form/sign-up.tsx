@@ -12,14 +12,14 @@ import Form from '@components/shared/form';
 import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-// import { Button } from '@components/app/shared';
+import { UserValidation } from '@/api/types/user-validation';
+import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
 import { SessionStorageHelper, UserAuthHelper } from '@/helpers';
 import { MockAuthService } from '@/mocks/mock-auth-service';
 import { AuthService } from '@/api/auth-service';
 import { ProjectUser } from '@/api/types/project-user';
 import { FormVal } from '@/utils/form-validation';
-import CtaButton from '@components/index-page/cta-button';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -35,16 +35,18 @@ const Wrapper = styled.section`
   }
 `;
 
-const Error = styled.p`
+const Error = styled.ul`
   color: ${({ theme }) => theme.colors.alert.danger};
-  margin-bottom: 0;
+  margin: 0;
 
-  ul {
+  li {
     margin: 0;
-    li {
-      list-style: none;
-    }
+    list-style: none;
   }
+`;
+
+const UsernameCheck = styled.small<{ isValid: boolean }>`
+  color: ${(props) => (props.isValid ? '' : 'red')};
 `;
 
 export const SignUpForm: React.FC = () => {
@@ -58,8 +60,12 @@ export const SignUpForm: React.FC = () => {
   });
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string | UserValidation>();
   const [auth, setAuth] = useState<MockAuthService | AuthService>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [usernameAvailablity, setUsernameAvailability] = useState<
+    UserValidation
+  >({ valid: false, reason: '' });
 
   React.useEffect(() => {
     setAuth(new ServiceResolver().AuthResolver());
@@ -123,21 +129,58 @@ export const SignUpForm: React.FC = () => {
   };
 
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    const response = await fetch(
-      `https://pub-api-test.azurewebsites.net/api/util/${e.target.value}/`,
-    );
-    console.log(response);
+    const api = new ServiceResolver().ApiResolver();
+    const { name, value } = e.target;
+    const state: any = formInputs;
+    state[name].val = value;
+
+    if (value) {
+      setIsLoading(true);
+
+      try {
+        const response = (await api.validateUsername(value)) as ApiResponse<
+          UserValidation | ErrorResponse
+        >;
+
+        if (!response.ok) setMessage(response.data as UserValidation);
+
+        setIsLoading(false);
+        setUsernameAvailability(response.data as UserValidation);
+        setFormInputs({ ...state });
+      } catch (error) {
+        setMessage('Failed to validate username');
+      }
+
+      // *** TESTING PURPOSES ONLY - WILL BE REMOVED BEFORE DEPLOYMENT ***
+      //
+      // const response = await fetch(
+      //   `https://pub-api-test.azurewebsites.net/api/util/${value}/`,
+      //   {
+      //     method: 'POST',
+      //     mode: 'cors',
+      //   }
+      // );
+
+      // const data = await response.json();
+      // console.log(data);
+      // setIsLoading(false);
+      // setUsernameAvailability(data.data);
+      // setFormInputs({ ...state });
+    } else {
+      setUsernameAvailability({ valid: false, reason: '' });
+    }
   };
 
   return (
     <Wrapper>
       <Form heading={`Sign Up`} handleSubmit={handleSubmit}>
-        {formErrors.length && (
-          <Error>
-            <ul>{displayErrorMessages()}</ul>
-          </Error>
-        )}
+        {message ||
+          (formErrors && (
+            <Error>
+              {message}
+              {displayErrorMessages()}
+            </Error>
+          ))}
         <FormLabel htmlFor="email">Email</FormLabel>
         <FormInput
           name="email"
@@ -153,7 +196,9 @@ export const SignUpForm: React.FC = () => {
           placeholder="unicorn21"
           onChange={(e) => checkUsername(e)}
         />
-
+        <UsernameCheck isValid={usernameAvailablity.valid}>
+          {isLoading ? 'checking...' : usernameAvailablity.reason}
+        </UsernameCheck>
         <FormLabel htmlFor="password">Password</FormLabel>
         <FormInput
           name="password"
@@ -175,7 +220,7 @@ export const SignUpForm: React.FC = () => {
         </LinkWrapper>
 
         <ButtonWrapper>
-          <CtaButton title="Create" href="" type="input" content="Create" />
+          <Button active={false}>Sign Up</Button>
         </ButtonWrapper>
       </Form>
     </Wrapper>
