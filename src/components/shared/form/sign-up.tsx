@@ -16,9 +16,10 @@ import { UserValidation } from '@/api/types/user-validation';
 import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
 import { SessionStorageHelper, UserAuthHelper } from '@/helpers';
+import { MockApiService } from '@/mocks/mock-api-service';
 import { MockAuthService } from '@/mocks/mock-auth-service';
+import { ApiService } from '@/api/api-service';
 import { AuthService } from '@/api/auth-service';
-import { ProjectUser } from '@/api/types/project-user';
 import { FormVal } from '@/utils/form-validation';
 
 const Wrapper = styled.section`
@@ -41,7 +42,6 @@ const Error = styled.ul`
 
   li {
     margin: 0;
-    list-style: none;
   }
 `;
 
@@ -61,6 +61,7 @@ export const SignUpForm: React.FC = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [message, setMessage] = useState<string | UserValidation>();
+  const [api, setApi] = useState<MockApiService | ApiService>();
   const [auth, setAuth] = useState<MockAuthService | AuthService>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [usernameAvailablity, setUsernameAvailability] = useState<
@@ -69,12 +70,7 @@ export const SignUpForm: React.FC = () => {
 
   React.useEffect(() => {
     setAuth(new ServiceResolver().AuthResolver());
-
-    const s: ProjectUser = {
-      userId: (undefined as unknown) as string,
-      username: 'unicorn91',
-      isOwner: false,
-    };
+    setApi(new ServiceResolver().ApiResolver());
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,14 +118,27 @@ export const SignUpForm: React.FC = () => {
     return formErrors.map((err: string) => {
       if (err === 'email') return <li key={err}>Invalid email</li>;
       if (err === 'username') return <li key={err}>Invalid username</li>;
-      if (err === 'password') return <li key={err}>Invalid password</li>;
+      if (err === 'password')
+        return (
+          <li key={err}>
+            Password must contain:
+            <ul>
+              <li>six characters or more</li>
+              <li>
+                has at least one lowercase and one uppercase alphabetical
+                character
+              </li>
+              <li>or has at least one lowercase and one numeric character</li>
+              <li>or has at least one uppercase and one numeric character</li>
+            </ul>
+          </li>
+        );
       if (err === 'confirmPassword')
         return <li key={err}>Passwords do not match</li>;
     });
   };
 
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const api = new ServiceResolver().ApiResolver();
     const { name, value } = e.target;
     const state: any = formInputs;
     state[name].val = value;
@@ -138,7 +147,9 @@ export const SignUpForm: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const response = (await api.validateUsername(value)) as ApiResponse<
+        const response = (await (api as
+          | MockApiService
+          | ApiService).validateUsername(value)) as ApiResponse<
           UserValidation | ErrorResponse
         >;
 

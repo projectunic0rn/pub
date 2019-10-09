@@ -48,6 +48,6 @@ export class ApiService {
   }
 
   public async validateUsername(username: string) {
-    return await HttpClient.get(`${this.apiEndpoint}/util/${username}`);
+    return await HttpClient.post(`${this.apiEndpoint}/util/${username}`);
   }
 }
