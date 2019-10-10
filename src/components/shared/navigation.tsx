@@ -10,7 +10,6 @@ export interface NavigationLink {
   button?: boolean;
   link?: boolean;
   profileIcon?: boolean;
-  signOutLink?: boolean;
 }
 
 interface OwnProps {

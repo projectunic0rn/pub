@@ -10,7 +10,6 @@ import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
 import SessionStorageHelper from '@/helpers/session-storage-helper';
 import { navigate } from 'gatsby';
-import { slide as Menu } from 'react-burger-menu';
 import { NavigationLink } from './navigation';
 
 interface OwnProps {
@@ -90,7 +89,6 @@ const filterInvalidNavItems = (navItem: NavigationLink) => {
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
-  const SessionHelperApi = new SessionStorageHelper();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
 
   useEffect(() => {
@@ -98,10 +96,8 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   }, []);
 
   const handleSignOut = () => {
-    const token = SessionHelperApi.deleteJWT();
-    if (token) {
-      navigate('/');
-    }
+    SessionStorageHelper.deleteJwt();
+    navigate('/');
   };
 
   return (

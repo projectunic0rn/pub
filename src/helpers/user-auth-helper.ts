@@ -11,7 +11,7 @@ export default class UserAuthHelper {
   public static getMember() {
     const token = SessionStorageHelper.getJwt().token;
     if (!!token) {
-      return JwtTokenHelper.getJwtObject(token, true);
+      return JwtTokenHelper.getJwtObject(token);
     }
   }
 

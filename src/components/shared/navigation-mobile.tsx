@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
-import NavButton from './buttons/nav-button';
 import NavSignOutButton from './buttons/nav-signout-button';
 import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
@@ -74,10 +73,8 @@ const NavigationMobile: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   }, []);
 
   const handleSignOut = () => {
-    const token = SessionHelperApi.deleteJWT();
-    if (token) {
-      navigate('/');
-    }
+    SessionStorageHelper.deleteJwt();
+    navigate('/');
   };
 
   return (
