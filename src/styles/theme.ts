@@ -54,6 +54,7 @@ const sizes = {
     maxCentered: '650px' as const,
     medium: '60.9375em' as const,
     small: '41.6875em' as const,
+    smallest: '31.6875em' as const,
   },
 };
 

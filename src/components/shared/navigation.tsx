@@ -51,7 +51,8 @@ const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
   margin: 0;
   width: 8em;
 
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.smallest}) {
+    width: 6em;
     height: 2.1875em;
   }
 `;
@@ -67,6 +68,9 @@ const NavMenuItem = styled.li`
   margin: 0;
   padding-right: 2.8125em;
 
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.smallest}) {
+    padding-right: 0.8em;
+  }
   &:last-child {
     padding: 0;
   }

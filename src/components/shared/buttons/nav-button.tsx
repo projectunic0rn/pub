@@ -10,6 +10,9 @@ const NavMenuButton = styled(Button)`
       background: ${({ theme }) => theme.colors.highlightDark};
     }
   }
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.smallest}) {
+    padding: 2px 6px;
+  }
 `;
 
 const NavButton: React.FC = ({ children }) => {
