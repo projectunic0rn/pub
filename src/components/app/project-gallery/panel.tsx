@@ -12,6 +12,7 @@ interface PanelProps {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Panel: React.FC<PanelProps> = ({ content = [], setMessage }) => (

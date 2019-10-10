@@ -33,13 +33,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         button: true,
       },
       {
-        content: 'Projects',
-        href: '/app/projects',
-        title: `${siteMetadata.title} projects`,
-        requiresAuthentication: true,
-        link: true,
-      },
-      {
         content: 'Start Project',
         href: '/app/projects/create',
         title: `${siteMetadata.title} start project`,
