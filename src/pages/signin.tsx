@@ -10,7 +10,7 @@ import {
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form/controls';
-import Form from '@components/shared/form';
+import { Form } from '@components/shared/form';
 import { useState } from 'react';
 import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';
@@ -110,9 +110,9 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
           handleSubmit={handleSubmit}
         >
           {message && <Error>{message}</Error>}
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="email-signin">Email</FormLabel>
           <FormInput
-            name="email"
+            name="email-signin"
             type="email"
             placeholder="unicorn@projectunicorn.net"
             onChange={(e) => {
@@ -121,7 +121,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
             }}
           />
 
-          <FormLabel htmlFor="password">Confirm Password</FormLabel>
+          <FormLabel htmlFor="password">Password</FormLabel>
           <FormInput
             name="password"
             type="password"
