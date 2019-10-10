@@ -25,6 +25,15 @@ export default class SessionStorageHelper {
     }
   }
 
+  public deleteJWT() {
+    const storedJwt = localStorage.getItem('currentJwt');
+
+    if (storedJwt !== null) {
+      SessionStorageHelper.deleteJwt();
+      return storedJwt;
+    }
+  }
+
   public static parseSessionData(data: string) {
     return JSON.parse(data);
   }

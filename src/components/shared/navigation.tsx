@@ -5,8 +5,11 @@ import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 import NavButton from './buttons/nav-button';
+import NavSignOutButton from './buttons/nav-signout-button';
 import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
+import SessionStorageHelper from '@/helpers/session-storage-helper';
+import { navigate } from 'gatsby';
 
 export interface NavigationLink {
   content: string;
@@ -16,6 +19,7 @@ export interface NavigationLink {
   button?: boolean;
   link?: boolean;
   profileIcon?: boolean;
+  signOutLink?: boolean;
 }
 
 interface OwnProps {
@@ -95,11 +99,19 @@ const filterInvalidNavItems = (navItem: NavigationLink) => {
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
+  const SessionHelperApi = new SessionStorageHelper();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
 
   useEffect(() => {
     setValidNavItems(navLinks.filter(filterInvalidNavItems));
   }, []);
+
+  const handleSignOut = () => {
+    const token = SessionHelperApi.deleteJWT();
+    if (token) {
+      navigate('/');
+    }
+  };
 
   return (
     <Nav>
@@ -108,12 +120,21 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
       </Link>
 
       <NavMenu>
+        <NavMenuItem>
+          <Link to="/app/projects" title={`Projects - ${siteMetadata.title}`}>
+            Projects
+          </Link>
+        </NavMenuItem>
         {validNavItems.map((v: NavigationLink) => (
           <NavMenuItem key={v.href}>
-            {v.button && (
+            {v.button && !v.signOutLink ? (
               <Link to={v.href} title={v.title}>
                 <NavButton>{v.content}</NavButton>
               </Link>
+            ) : (
+              <NavSignOutButton onClick={handleSignOut}>
+                {v.content}
+              </NavSignOutButton>
             )}
             {v.link && (
               <Link to={v.href} title={v.title}>

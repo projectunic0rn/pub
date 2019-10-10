@@ -19,13 +19,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
   if (navLinks.length === 0) {
     navLinks = [
       {
-        content: 'Projects',
-        href: '/app/projects',
-        title: `${siteMetadata.title} projects`,
-        requiresAuthentication: false,
-        link: true,
-      },
-      {
         content: 'Sign In',
         href: '/signin',
         title: `${siteMetadata.title} login`,
@@ -33,18 +26,19 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         button: true,
       },
       {
-        content: 'Projects',
-        href: '/app/projects',
-        title: `${siteMetadata.title} projects`,
-        requiresAuthentication: true,
-        link: true,
-      },
-      {
         content: 'Start Project',
         href: '/app/projects/create',
         title: `${siteMetadata.title} start project`,
         requiresAuthentication: true,
         button: true,
+      },
+      {
+        content: 'Sign Out',
+        href: '/signout',
+        title: `${siteMetadata.title} logout`,
+        requiresAuthentication: true,
+        button: true,
+        signOutLink: true,
       },
     ];
   }
