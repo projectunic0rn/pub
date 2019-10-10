@@ -103,7 +103,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
 
   useEffect(() => {
     setValidNavItems(navLinks.filter(filterInvalidNavItems));
-  }, []);
+  }, [navLinks]);
 
   return (
     <Nav>

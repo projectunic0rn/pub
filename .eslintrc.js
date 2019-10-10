@@ -18,7 +18,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['react-hooks', '@typescript-eslint', 'react'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -29,6 +29,8 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   overrides: [
     {
