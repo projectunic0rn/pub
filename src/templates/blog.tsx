@@ -75,9 +75,9 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
   const navLinks: NavigationLink[] = [
     {
       content: 'Tags',
-      external: false,
       href: '/blog/tags',
       title: 'List of blog tags',
+      requiresAuthentication: false,
     },
   ];
 

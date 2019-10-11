@@ -2,6 +2,7 @@ import { HttpClient } from './http-client';
 import { Project } from './types/project';
 import { ProjectUser } from './types/project-user';
 import { SessionStorageHelper } from '@/helpers';
+import { Username } from './types/username';
 
 export class ApiService {
   private headers = {
@@ -13,7 +14,7 @@ export class ApiService {
   private apiEndpoint: string;
 
   public constructor() {
-    this.apiEndpoint = process.env.API_ENDPOINT || '';
+    this.apiEndpoint = process.env.GATSBY_API_ENDPOINT || '';
   }
 
   public async createProject(project: Project) {
@@ -24,8 +25,15 @@ export class ApiService {
     );
   }
 
+  public async getProjectTypes() {
+    return await HttpClient.get(
+      `${this.apiEndpoint}/util/projecttypes`,
+      this.headers,
+    );
+  }
+
   public async getProjects() {
-    return await HttpClient.get(`${this.apiEndpoint}/projects`);
+    return await HttpClient.get(`${this.apiEndpoint}/projects`, this.headers);
   }
 
   public async joinProject(projectUser: ProjectUser) {
@@ -40,6 +48,14 @@ export class ApiService {
     return await HttpClient.delete(
       `${this.apiEndpoint}/projectusers/${id}`,
       this.headers,
+    );
+  }
+
+  public async validateUsername(username: Username) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/util`,
+      this.headers,
+      username,
     );
   }
 }

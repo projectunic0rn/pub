@@ -22,7 +22,7 @@ const Message = styled.div`
   color: white;
   width: 100%;
   height: 35px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 5px;
@@ -59,9 +59,13 @@ const ProjectGallery: React.FC = () => {
         const response = (await api.getProjects()) as ApiResponse<
           Project[] | ErrorResponse
         >;
-
-        if (response.ok) setProjects(response.data as Project[]);
-        else setMessage((response.data as ErrorResponse).message);
+        if (response.ok) {
+          const projects = response.data as Project[];
+          const projectsLookingForMembers = projects.filter(
+            (project) => project.lookingForMembers == true,
+          );
+          setProjects(projectsLookingForMembers);
+        } else setMessage((response.data as ErrorResponse).message);
       } catch (err) {
         setMessage('Failed to retrieve a list of projects');
       }

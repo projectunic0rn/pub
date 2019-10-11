@@ -5,14 +5,14 @@ export default class UserAuthHelper {
   public static isUserAuthenticated() {
     const jwt = SessionStorageHelper.getJwt();
 
-    return jwt && jwt.token;
+    return !!jwt.token;
   }
 
   public static getMember() {
-    return JwtTokenHelper.getJwtObject(
-      SessionStorageHelper.getJwt().token,
-      true,
-    );
+    const token = SessionStorageHelper.getJwt().token;
+    if (!!token) {
+      return JwtTokenHelper.getJwtObject(token, true);
+    }
   }
 
   public static getUserId() {

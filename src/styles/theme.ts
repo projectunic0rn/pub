@@ -23,11 +23,17 @@ const colors = {
   alternate: colorNames.greenLight,
   /** Used for box shadows. */
   shadow: colorNames.shadow,
+  /** Used for form hints */
+  greyDark: colorNames.greyDark,
   button: {
     /** Button color */
     secondary: colorNames.pinkLight,
     /** Button active color */
     secondaryHighlight: colorNames.pinkMedium,
+  },
+  input: {
+    /* Input error background color */
+    errorBg: colorNames.redLight,
   },
   alert: {
     danger: colorNames.red,
@@ -46,6 +52,7 @@ const sizes = {
     maxCentered: '650px' as const,
     medium: '60.9375em' as const,
     small: '41.6875em' as const,
+    smallest: '31.6875em' as const,
   },
 };
 
