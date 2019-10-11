@@ -12,8 +12,12 @@ const NavMenuButton = styled(Button)`
   }
 `;
 
-const NavButton: React.FC = ({ children }) => {
-  return <NavMenuButton active={true}>{children}</NavMenuButton>;
+const NavButton: React.FC<{ onClick?: Function }> = ({ onClick, children }) => {
+  return (
+    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')} active={true}>
+      {children}
+    </NavMenuButton>
+  );
 };
 
 export default NavButton;

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
-import NavSignOutButton from './buttons/nav-signout-button';
+import NavButton from './buttons/nav-button';
 import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
 import SessionStorageHelper from '@/helpers/session-storage-helper';
@@ -65,7 +65,6 @@ const filterInvalidNavItems = (navItem: NavigationLink) => {
 
 const NavigationMobile: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
-  const SessionHelperApi = new SessionStorageHelper();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
 
   useEffect(() => {
@@ -117,9 +116,7 @@ const NavigationMobile: React.FC<NavigationProps> = ({ navLinks = [] }) => {
           ))}
           {UserAuthHelper.isUserAuthenticated() && (
             <NavMenuItem>
-              <NavSignOutButton onClick={handleSignOut}>
-                Sign Out
-              </NavSignOutButton>
+              <NavButton onClick={handleSignOut}>Sign Out</NavButton>
             </NavMenuItem>
           )}
         </NavMenu>

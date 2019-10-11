@@ -5,7 +5,6 @@ import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from '@styled-components';
 import NavButton from './buttons/nav-button';
-import NavSignOutButton from './buttons/nav-signout-button';
 import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
 import SessionStorageHelper from '@/helpers/session-storage-helper';
@@ -139,9 +138,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
         ))}
         {UserAuthHelper.isUserAuthenticated() && (
           <NavMenuItem>
-            <NavSignOutButton onClick={handleSignOut}>
-              Sign Out
-            </NavSignOutButton>
+            <NavButton onClick={handleSignOut}>Sign Out</NavButton>
           </NavMenuItem>
         )}
       </NavMenu>
