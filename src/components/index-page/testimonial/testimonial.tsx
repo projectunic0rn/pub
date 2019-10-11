@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 
 import Card from './card';
 import { content } from './content';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};

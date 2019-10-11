@@ -1,4 +1,4 @@
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Loader = styled.span`
   border: 6px solid ${({ theme }) => theme.colors.highlightDark};

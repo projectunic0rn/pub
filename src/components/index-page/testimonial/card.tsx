@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Content } from './content';
 import { defaultAvatarImage } from '../assets';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 type CardProps = Content;
 
@@ -34,7 +34,7 @@ const AvatarWrapper = styled.figure`
   margin: 0 1.125em 0 0.5625em;
 `;
 
-const Avatar = styled.img.attrs({ alt: '' })`
+const Avatar = styled.img.attrs(() => ({ alt: '' }))`
   border-radius: 50%;
   display: block;
   height: 3.125em;

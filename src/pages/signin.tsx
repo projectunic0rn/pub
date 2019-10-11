@@ -1,7 +1,7 @@
 import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import {

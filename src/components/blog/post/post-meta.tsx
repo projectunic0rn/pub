@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Avatar } from '@components/blog';
 import { SocialIcon } from '@components/shared';
 import { Author } from '@templates/post';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PostMetaProps {
   /** The published date for a blog post. */
@@ -15,7 +15,7 @@ interface PostMetaProps {
 
 const Wrapper = styled.div`
   margin: 0 auto 2.4em;
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
   display: flex;
   justify-content: center;
   align-items: center;

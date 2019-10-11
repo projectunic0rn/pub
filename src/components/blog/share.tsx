@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SocialIcon } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { makeShareUrl } from '@utils';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface ShareProps {
   /** Contains information about a blog post. */
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 `;
 
 const List = styled.div`
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
   display: flex;
   flex-direction: row;
   margin: 0 auto 1em auto;

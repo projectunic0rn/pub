@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.section`
   margin: 0 auto auto;

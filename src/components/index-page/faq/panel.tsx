@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Qa } from './qas';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PanelProps {
   qa: Qa;

@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 import { PostNode } from '@templates/post';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PostLinksProps {
   /** The prefix for the paths to be used in the next and previous links. */
@@ -23,7 +23,7 @@ const Box = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   width: 100%;
-  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.width.maxCentered};
 
   a {
     background: transparent;

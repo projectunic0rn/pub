@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { puLogo } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import NavButton from './buttons/nav-button';
 import dotIcon from '../../images/dot.png';
 import { UserAuthHelper } from '@/helpers';
@@ -47,7 +47,10 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+const NavLogo = styled.img.attrs(() => ({
+  src: puLogo,
+  alt: 'Project Unicorn',
+}))`
   margin: 0;
   width: 8em;
 
