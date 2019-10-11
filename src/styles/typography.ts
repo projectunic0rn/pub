@@ -1,7 +1,7 @@
 import Typography from 'typography';
 import oceanBeachTheme from 'typography-theme-ocean-beach';
 
-import { transparent } from './color-names';
+import { transparent } from './constants';
 import { theme } from './theme';
 import { borderStyle } from '@utils';
 

@@ -6,7 +6,7 @@ import {
   white,
   black,
   greyLighter,
-} from '../../../styles/color-names';
+} from '../../../styles/constants';
 
 interface FormInputProps {
   hasError?: boolean;

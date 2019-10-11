@@ -1,42 +1,42 @@
-import * as colorNames from './color-names';
+import * as constants from './constants';
 
 const colors = {
   /** Off-black */
-  base: colorNames.blackOff,
+  base: constants.blackOff,
   /** Opposite of base. */
-  baseinvert: colorNames.white,
+  baseinvert: constants.white,
   /** Main color but darker. */
-  highlightDark: colorNames.primaryMedium,
+  highlightDark: constants.primaryMedium,
   /** Main color. */
-  highlight: colorNames.primaryLight,
+  highlight: constants.primaryLight,
   /** Main color but lighter. */
-  highlightLight: colorNames.primaryLighter,
+  highlightLight: constants.primaryLighter,
   /** Medium gray */
-  secondary: colorNames.greyMedium,
+  secondary: constants.greyMedium,
   /** Light gray */
-  tertiary: colorNames.greyLight,
+  tertiary: constants.greyLight,
   /** Alternate light gray */
-  text: colorNames.greyLightAlt,
+  text: constants.greyLightAlt,
   /** Light background for section. */
-  section: colorNames.blueLightAlt,
+  section: constants.blueLightAlt,
   /** Alternate color. */
-  alternate: colorNames.greenLight,
+  alternate: constants.greenLight,
   /** Used for box shadows. */
-  shadow: colorNames.shadow,
+  shadow: constants.shadow,
   /** Used for form hints */
-  greyDark: colorNames.greyDark,
+  greyDark: constants.greyDark,
   button: {
     /** Button color */
-    secondary: colorNames.pinkLight,
+    secondary: constants.pinkLight,
     /** Button active color */
-    secondaryHighlight: colorNames.pinkMedium,
+    secondaryHighlight: constants.pinkMedium,
   },
   input: {
     /* Input error background color */
-    errorBg: colorNames.redLight,
+    errorBg: constants.redLight,
   },
   alert: {
-    danger: colorNames.red,
+    danger: constants.red,
   },
 };
 
