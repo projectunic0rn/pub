@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import NavigationDesktop from './navigation-desktop';
-import NavigationMobile from './navigation-mobile';
+import { UserAuthHelper } from '@/helpers';
+import SessionStorageHelper from '@/helpers/session-storage-helper';
+import { navigate } from 'gatsby';
+import styled from '@styled-components';
+import { puLogo } from '@images';
+import { Link } from 'gatsby';
+import NavButton from './buttons/nav-button';
+import dotIcon from '../../images/dot.png';
+import { useSiteMetadata } from '@hooks';
+import { slide as Menu } from 'react-burger-menu';
+import HamburgerMenuStyles from '@/styles/hamburger-menu';
 
 export interface NavigationLink {
   content: string;
@@ -18,21 +27,126 @@ interface OwnProps {
 
 type NavigationProps = OwnProps;
 
-const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window;
+/**
+ * Desktop Navigation Components
+ */
 
-    return {
-      width,
-      height,
-    };
+const Nav = styled.nav`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 3.125em;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: 1.5625em;
+  }
+
+  && a {
+    background: none;
+    color: ${({ theme }) => theme.colors.text};
+    transition: 0.2s;
+
+    @media (hover: hover) {
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
+    }
+  }
+`;
+
+const NavLogo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+  margin: 0;
+  width: 8em;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    height: 2.1875em;
+  }
+`;
+
+const NavMenu = styled.ul`
+  list-style: none;
+  margin: 0;
+`;
+
+const NavMenuItem = styled.li`
+  display: inline-block;
+  font-weight: 800;
+  margin: 0;
+  padding-right: 2.8125em;
+
+  &:last-child {
+    padding: 0;
+  }
+`;
+
+/**
+ * Mobile Navigation Components
+ */
+
+const NavMobile = styled.div`
+  padding: 3rem;
+  outline: none;
+`;
+
+const NavLogoMobile = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+  height: 70px;
+  display: block;
+  margin: 0 auto;
+`;
+
+const NavMenuMobile = styled.ul`
+  margin: 4rem 0 0 0;
+  list-style: none;
+`;
+
+const NavMenuItemMobile = styled.li`
+  a {
+    text-decoration: none;
+  }
+  font-size: 24px;
+`;
+
+const ProfileIconContainer = styled.div`
+  cursor: pointer;
+  position: relative;
+`;
+
+const ProfileIcon = styled.img`
+  border-radius: 100%;
+  margin-bottom: -0.9em !important;
+`;
+
+const ProfileDot = styled.img`
+  position: absolute;
+  top: 1.5em;
+  right: -0.2em;
+`;
+
+const filterInvalidNavItems = (navItem: NavigationLink) => {
+  const userAuthenticated = UserAuthHelper.isUserAuthenticated();
+  return navItem.requiresAuthentication === userAuthenticated;
+};
+
+const handleSignOut = () => {
+  SessionStorageHelper.deleteJwt();
+  navigate('/');
+};
+
+const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
+  const siteMetadata = useSiteMetadata();
+  const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
+
+  const getWindowDimensions = (): number => {
+    return typeof window !== `undefined` ? window.innerWidth : 0;
   };
 
-  const [windowDimensions, setWindowDimensions] = useState(
+  const [windowDimensions, setWindowDimensions] = useState<number>(
     getWindowDimensions(),
   );
 
   useEffect(() => {
+    setValidNavItems(navLinks.filter(filterInvalidNavItems));
+
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
@@ -43,10 +157,96 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
 
   return (
     <nav>
-      {windowDimensions.width <= 750 ? (
-        <NavigationMobile navLinks={navLinks} />
+      {windowDimensions <= 750 ? (
+        <Menu styles={HamburgerMenuStyles} width={'100%'} right>
+          <NavMobile>
+            <Link to="/" title={`${siteMetadata.title}`}>
+              <NavLogoMobile />
+            </Link>
+
+            <NavMenuMobile>
+              {validNavItems.map((v: NavigationLink) => (
+                <NavMenuItemMobile key={v.href}>
+                  {v.button && (
+                    <Link to={v.href} title={v.title}>
+                      {v.content}
+                    </Link>
+                  )}
+                  {v.link && (
+                    <Link to={v.href} title={v.title}>
+                      {v.content}
+                    </Link>
+                  )}
+                  {v.profileIcon && (
+                    <ProfileIconContainer>
+                      <ProfileIcon
+                        src={v.content}
+                        height={46}
+                        width={46}
+                        alt="profile image"
+                      />
+                      <ProfileDot
+                        src={dotIcon}
+                        height={16}
+                        width={16}
+                        alt="blue dot"
+                      />
+                    </ProfileIconContainer>
+                  )}
+                </NavMenuItemMobile>
+              ))}
+              {UserAuthHelper.isUserAuthenticated() && (
+                <NavMenuItemMobile>
+                  <NavButton onClick={handleSignOut}>Sign Out</NavButton>
+                </NavMenuItemMobile>
+              )}
+            </NavMenuMobile>
+          </NavMobile>
+        </Menu>
       ) : (
-        <NavigationDesktop navLinks={navLinks} />
+        <Nav>
+          <Link to="/" title={`${siteMetadata.title}`}>
+            <NavLogo />
+          </Link>
+
+          <NavMenu>
+            {validNavItems.map((v: NavigationLink) => (
+              <NavMenuItem key={v.href}>
+                {v.button && (
+                  <Link to={v.href} title={v.title}>
+                    <NavButton>{v.content}</NavButton>
+                  </Link>
+                )}
+                {v.link && (
+                  <Link to={v.href} title={v.title}>
+                    {v.content}
+                  </Link>
+                )}
+                {v.profileIcon && (
+                  <ProfileIconContainer>
+                    <ProfileIcon
+                      src={v.content}
+                      height={46}
+                      width={46}
+                      alt="profile image"
+                    />
+                    <ProfileDot
+                      src={dotIcon}
+                      height={16}
+                      width={16}
+                      alt="blue dot"
+                    />
+                  </ProfileIconContainer>
+                )}
+              </NavMenuItem>
+            ))}
+            {UserAuthHelper.isUserAuthenticated() && (
+              <NavMenuItem>
+                <NavButton onClick={handleSignOut}>Sign Out</NavButton>
+              </NavMenuItem>
+            )}
+          </NavMenu>
+        </Nav>
       )}
     </nav>
   );
