@@ -3,10 +3,10 @@ import * as constants from './constants';
 const hamburgerMenuStyles = {
   bmBurgerButton: {
     position: 'fixed',
-    width: '36px',
-    height: '30px',
-    left: '36px',
-    top: '36px',
+    width: '20px',
+    height: '20px',
+    right: '36px',
+    top: '43px',
   },
   bmBurgerBars: {
     background: '#373a47',

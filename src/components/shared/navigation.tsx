@@ -27,11 +27,25 @@ interface OwnProps {
 
 type NavigationProps = OwnProps;
 
+const Nav = styled.nav`
+  @media screen and (max-width: 750px) {
+    background: ${({ theme }) => theme.colors.baseinvert};
+    position: fixed;
+    display: flex;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.39);
+    padding: 1.5625em;
+  }
+`;
+
 /**
  * Desktop Navigation Components
  */
 
-const Nav = styled.nav`
+const NavWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -89,9 +103,9 @@ const NavMobile = styled.div`
 `;
 
 const NavLogoMobile = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
-  height: 70px;
-  display: block;
-  margin: 0 auto;
+  height: 42px;
+  margin: 0;
+  align-self: center;
 `;
 
 const NavMenuMobile = styled.ul`
@@ -156,55 +170,60 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   }, []);
 
   return (
-    <nav>
+    <Nav>
       {windowDimensions <= 750 ? (
-        <Menu styles={HamburgerMenuStyles} width={'100%'} right>
-          <NavMobile>
-            <Link to="/" title={`${siteMetadata.title}`}>
-              <NavLogoMobile />
-            </Link>
+        <React.Fragment>
+          <Link to="/" title={`${siteMetadata.title}`}>
+            <NavLogoMobile />
+          </Link>
+          <Menu styles={HamburgerMenuStyles} width={'100%'} right>
+            <NavMobile>
+              <Link to="/" title={`${siteMetadata.title}`}>
+                <NavLogoMobile />
+              </Link>
 
-            <NavMenuMobile>
-              {validNavItems.map((v: NavigationLink) => (
-                <NavMenuItemMobile key={v.href}>
-                  {v.button && (
-                    <Link to={v.href} title={v.title}>
-                      {v.content}
-                    </Link>
-                  )}
-                  {v.link && (
-                    <Link to={v.href} title={v.title}>
-                      {v.content}
-                    </Link>
-                  )}
-                  {v.profileIcon && (
-                    <ProfileIconContainer>
-                      <ProfileIcon
-                        src={v.content}
-                        height={46}
-                        width={46}
-                        alt="profile image"
-                      />
-                      <ProfileDot
-                        src={dotIcon}
-                        height={16}
-                        width={16}
-                        alt="blue dot"
-                      />
-                    </ProfileIconContainer>
-                  )}
-                </NavMenuItemMobile>
-              ))}
-              {UserAuthHelper.isUserAuthenticated() && (
-                <NavMenuItemMobile>
-                  <NavButton onClick={handleSignOut}>Sign Out</NavButton>
-                </NavMenuItemMobile>
-              )}
-            </NavMenuMobile>
-          </NavMobile>
-        </Menu>
+              <NavMenuMobile>
+                {validNavItems.map((v: NavigationLink) => (
+                  <NavMenuItemMobile key={v.href}>
+                    {v.button && (
+                      <Link to={v.href} title={v.title}>
+                        {v.content}
+                      </Link>
+                    )}
+                    {v.link && (
+                      <Link to={v.href} title={v.title}>
+                        {v.content}
+                      </Link>
+                    )}
+                    {v.profileIcon && (
+                      <ProfileIconContainer>
+                        <ProfileIcon
+                          src={v.content}
+                          height={46}
+                          width={46}
+                          alt="profile image"
+                        />
+                        <ProfileDot
+                          src={dotIcon}
+                          height={16}
+                          width={16}
+                          alt="blue dot"
+                        />
+                      </ProfileIconContainer>
+                    )}
+                  </NavMenuItemMobile>
+                ))}
+                {UserAuthHelper.isUserAuthenticated() && (
+                  <NavMenuItemMobile>
+                    <NavButton onClick={handleSignOut}>Sign Out</NavButton>
+                  </NavMenuItemMobile>
+                )}
+              </NavMenuMobile>
+            </NavMobile>
+          </Menu>
+        </React.Fragment>
       ) : (
-        <Nav>
+        <NavWrapper>
           <Link to="/" title={`${siteMetadata.title}`}>
             <NavLogo />
           </Link>
@@ -246,9 +265,9 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
               </NavMenuItem>
             )}
           </NavMenu>
-        </Nav>
+        </NavWrapper>
       )}
-    </nav>
+    </Nav>
   );
 };
 
