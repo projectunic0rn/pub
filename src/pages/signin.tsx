@@ -1,7 +1,7 @@
 import { Link, navigate } from 'gatsby';
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import {
@@ -62,7 +62,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
     if (location.state !== null) {
       setMessage(location.state.message);
     }
-  }, []);
+  }, [location.state]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();

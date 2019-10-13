@@ -4,7 +4,7 @@ import Navigation, { NavigationLink } from './navigation';
 import Footer from './footer';
 import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { ThemeProvider } from '@styled-components';
+import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
 
 interface OwnProps {
@@ -31,13 +31,6 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         title: `${siteMetadata.title} login`,
         requiresAuthentication: false,
         button: true,
-      },
-      {
-        content: 'Projects',
-        href: '/app/projects',
-        title: `${siteMetadata.title} projects`,
-        requiresAuthentication: true,
-        link: true,
       },
       {
         content: 'Start Project',

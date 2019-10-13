@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
 import { notFound } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Text = styled.p`
   text-align: center;
@@ -15,7 +15,7 @@ const Text = styled.p`
   }
 `;
 
-const Img = styled.img.attrs({ src: notFound, alt: '' })`
+const Img = styled.img.attrs(() => ({ src: notFound, alt: '' }))`
   width: 100%;
   max-height: 100%;
 `;

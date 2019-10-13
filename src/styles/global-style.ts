@@ -1,4 +1,4 @@
-import { createGlobalStyle } from '@styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { slickSliderStyle } from './slick-slider-style';
 
 /** Application-wide default styling. */

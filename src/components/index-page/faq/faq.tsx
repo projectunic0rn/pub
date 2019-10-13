@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Accordion from './accordion';
 import { qas } from './qas';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   align-items: center;

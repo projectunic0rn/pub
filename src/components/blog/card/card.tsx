@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import * as React from 'react';
 
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PostProps {
   featured: boolean;

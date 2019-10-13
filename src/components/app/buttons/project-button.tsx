@@ -1,5 +1,5 @@
 import { Button } from '@components/app/shared';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const ProjectButton = styled(Button)`
   background: ${({ active, theme }) =>

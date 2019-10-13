@@ -10,7 +10,7 @@ import {
   FormSelectInput,
   ButtonWrapper,
 } from './controls';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { ThemeContext } from 'styled-components';
 import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';

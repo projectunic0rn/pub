@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { Button } from '@components/app/shared';
 
 interface OwnProps {
@@ -13,6 +13,9 @@ const NavMenuButton = styled(Button)`
     &:hover {
       background: ${({ theme }) => theme.colors.highlightDark};
     }
+  }
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.smallest}) {
+    padding: 2px 6px;
   }
 `;
 

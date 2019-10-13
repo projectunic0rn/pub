@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 import { useSiteMetadata } from '@hooks';
-import styled, { css } from '@styled-components';
+import styled, { css } from 'styled-components';
 
 type CtaButtonVariant = 'default' | 'secondary';
 type CtaButtonType = 'button' | 'input';

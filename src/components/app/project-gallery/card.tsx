@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import CardPill from './card-pill';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';
@@ -84,7 +84,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     );
 
     api = new ServiceResolver().ApiResolver();
-  });
+  }, [content.projectUsers, userId]);
 
   const getMembers = (members: ProjectUser[]) => {
     return {
@@ -201,10 +201,10 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
 
   const members = getMembers(content.projectUsers);
   const tech = getTech(content.projectTechnologies);
-  const CommunicationPlatformIcon = styled.img.attrs({
+  const CommunicationPlatformIcon = styled.img.attrs(() => ({
     src: communicationPlatform !== undefined && communicationPlatform.icon,
     alt: '',
-  })`
+  }))`
     position: relative;
     top: 35px;
     left: 15px;

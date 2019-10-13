@@ -91,7 +91,6 @@ module.exports = {
           '@styles': 'src/styles',
           '@templates': 'src/templates',
           '@utils': 'src/utils',
-          '@styled-components': 'src/styled-components',
           '@hooks': 'src/hooks',
           '@static': 'static',
         },

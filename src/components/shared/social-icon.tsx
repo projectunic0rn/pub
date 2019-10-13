@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Anchor, SvgIcon } from '@components/shared';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 export type SocialName =
   | 'facebook'

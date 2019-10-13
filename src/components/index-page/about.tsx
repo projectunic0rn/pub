@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.section`
   align-items: center;
@@ -80,7 +80,7 @@ const Link = styled(Anchor)`
   }
 `;
 
-const LinkImage = styled.img.attrs({ src: iconArrow, alt: '' })`
+const LinkImage = styled.img.attrs(() => ({ src: iconArrow, alt: '' }))`
   display: inline-block;
   height: 1.4375em;
   margin: 0;
@@ -98,7 +98,7 @@ const ImageWrapper = styled.figure`
   }
 `;
 
-const Image = styled.img.attrs({ src: goodTeam, alt: '' })`
+const Image = styled.img.attrs(() => ({ src: goodTeam, alt: '' }))`
   width: 100%;
 `;
 

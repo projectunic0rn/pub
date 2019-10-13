@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Qa } from './qas';
-import styled from '@styled-components';
+import styled from 'styled-components';
 
 interface PanelProps {
   qa: Qa;
@@ -93,7 +93,7 @@ const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
     if (ref && ref.current) {
       setHeight(ref.current.scrollHeight);
     }
-  });
+  }, []);
 
   return (
     <Wrapper role="tabpanel" aria-expanded={isActive}>
