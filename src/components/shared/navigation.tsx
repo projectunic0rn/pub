@@ -149,6 +149,7 @@ const handleSignOut = () => {
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
+  const [userAuthenticated, isUserAuthenticated] = useState<boolean>(false);
 
   const getWindowDimensions = (): number => {
     return typeof window !== `undefined` ? window.innerWidth : 0;
@@ -160,6 +161,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
 
   useEffect(() => {
     setValidNavItems(navLinks.filter(filterInvalidNavItems));
+    isUserAuthenticated(UserAuthHelper.isUserAuthenticated());
 
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
@@ -168,6 +170,8 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  console.log(userAuthenticated);
 
   return (
     <Nav>
@@ -213,7 +217,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                     )}
                   </NavMenuItemMobile>
                 ))}
-                {UserAuthHelper.isUserAuthenticated() && (
+                {userAuthenticated && (
                   <NavMenuItemMobile>
                     <NavButton onClick={handleSignOut}>Sign Out</NavButton>
                   </NavMenuItemMobile>
@@ -259,7 +263,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                 )}
               </NavMenuItem>
             ))}
-            {UserAuthHelper.isUserAuthenticated() && (
+            {userAuthenticated && (
               <NavMenuItem>
                 <NavButton onClick={handleSignOut}>Sign Out</NavButton>
               </NavMenuItem>
