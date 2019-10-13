@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserAuthHelper } from '@/helpers';
 import SessionStorageHelper from '@/helpers/session-storage-helper';
 import { navigate } from 'gatsby';
-import styled from '@styled-components';
+import styled from 'styled-components';
 import { puLogo } from '@images';
 import { Link } from 'gatsby';
 import NavButton from './buttons/nav-button';
@@ -169,7 +169,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [navLinks]);
 
   console.log(userAuthenticated);
 
