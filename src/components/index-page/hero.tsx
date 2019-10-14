@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
         <SubHeading>{siteMetadata.description}</SubHeading>
 
         <FormWrapper>
-          <CtaButton />
+          <CtaButton content="Sign Up" href="/signup" target="" />
         </FormWrapper>
       </Text>
 

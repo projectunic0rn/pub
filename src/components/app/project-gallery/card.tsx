@@ -82,9 +82,11 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
-
-    api = new ServiceResolver().ApiResolver();
   }, [content.projectUsers, userId]);
+
+  React.useEffect(() => {
+    api = new ServiceResolver().ApiResolver();
+  });
 
   const getMembers = (members: ProjectUser[]) => {
     return {
