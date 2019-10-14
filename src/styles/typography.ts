@@ -23,7 +23,7 @@ oceanBeachTheme.overrideThemeStyles = () => ({
   a: {
     color: highlightColor,
     textShadow: 'none',
-    backgroundImage: anchorBgImg,
+    backgroundImage: 'none',
   },
   'a:visited': {
     color: highlightColor,

@@ -2,6 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Button } from '@components/app/shared';
 
+interface OwnProps {
+  onClick?: Function;
+}
+
 const NavMenuButton = styled(Button)`
   background: ${({ theme }) => theme.colors.highlight};
 
@@ -15,8 +19,12 @@ const NavMenuButton = styled(Button)`
   }
 `;
 
-const NavButton: React.FC = ({ children }) => {
-  return <NavMenuButton active={true}>{children}</NavMenuButton>;
+const NavButton: React.FC<OwnProps> = ({ onClick, children }) => {
+  return (
+    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')} active={true}>
+      {children}
+    </NavMenuButton>
+  );
 };
 
 export default NavButton;

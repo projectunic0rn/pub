@@ -40,6 +40,7 @@
     "gatsby-transformer-yaml": "2.2.13",
     "prismjs": "1.17.1",
     "prop-types": "15.7.2",
+    "react-burger-menu": "^2.6.11",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-helmet": "5.2.1",
