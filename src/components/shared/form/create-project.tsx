@@ -378,7 +378,7 @@ export const CreateProjectForm: React.FC = () => {
           )}
           <FormHint>Add the technologies used in your application</FormHint>
           <ButtonWrapper>
-            <Button active={false}>Sign Up</Button>
+            <Button active={false}>Create</Button>
           </ButtonWrapper>
         </Form>
       </FormWrapper>
