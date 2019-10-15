@@ -49,10 +49,19 @@ const UsernameCheck = styled.small<{ isValid: boolean }>`
   color: ${(props) => (props.isValid ? '' : 'red')};
 `;
 
+interface InputValue {
+  val: string;
+  required: boolean;
+}
+
+interface FormInput {
+  [key: string]: InputValue;
+}
+
 export const SignUpForm: React.FC = () => {
   const validation = new FormVal();
 
-  const [formInputs, setFormInputs] = useState({
+  const [formInputs, setFormInputs] = useState<FormInput>({
     email: { val: '', required: true },
     username: { val: '', required: true },
     password: { val: '', required: true },
@@ -75,7 +84,7 @@ export const SignUpForm: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const state: any = formInputs;
+    const state = formInputs;
     state[name].val = value;
 
     setFormInputs({ ...state });
@@ -142,7 +151,7 @@ export const SignUpForm: React.FC = () => {
 
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const state: any = formInputs;
+    const state = formInputs;
     state[name].val = value;
 
     if (value) {

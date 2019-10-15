@@ -154,7 +154,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   hasError,
 }) => {
-  const checkLength = (e: React.FormEvent<HTMLInputElement>) => {
+  const checkLength = (e: React.FormEvent<HTMLTextAreaElement>) => {
     return e.currentTarget.value.length < 135
       ? e.currentTarget.value
       : e.currentTarget.value.slice(0, 135);
@@ -163,7 +163,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   return (
     <TextAreaWrapper>
       <TextArea
-        onChange={(e: any) => onChange(e, checkLength(e))}
+        onChange={(e) => onChange(e, checkLength(e))}
         value={value}
         name={name}
         onBlur={(e) => onBlur(e)}

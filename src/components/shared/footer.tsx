@@ -131,19 +131,17 @@ const Footer: React.FC = () => {
     ''
   );
 
-  const handleInputChange = (e: any): void => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    addToMailchimp(email).then(
-      (data: any): void => {
-        setFormMsg(data.msg);
-        setEmail('');
-      },
-    );
+    addToMailchimp(email).then((data) => {
+      setFormMsg(data.msg);
+      setEmail('');
+    });
   };
 
   return (

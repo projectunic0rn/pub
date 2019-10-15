@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Form } from '@components/shared/form';
 import { ErrorMessage } from '@components/shared/form/error-msg';
 import AsyncSelect from 'react-select/async';
+import { ValueType } from 'react-select/src/types';
 import {
   FormLabel,
   FormInput,
@@ -21,6 +22,11 @@ import { FormVal } from '@/utils/form-validation';
 import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+
+interface OptionType {
+  label: string;
+  value: string;
+}
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -154,20 +160,30 @@ export const CreateProjectForm: React.FC = () => {
   const promiseOptions = async (inputValue: string) => {
     try {
       const data = (await StackExchange.searchTags(inputValue)) as Tag;
-      return data.items.map((item: Item) => ({
+      const options: OptionType[] = data.items.map((item: Item) => ({
         value: item.name,
         label: item.name,
       }));
+
+      return options;
     } catch (error) {
       setMessage('Failed to get tags');
     }
   };
 
-  const handleSelectChange = (e: any) => {
-    let technologies = formInputs.pTech;
-    technologies = e
-      ? e.map((tag: { value: string }) => ({ name: tag.value }))
-      : [];
+  const handleSelectChange = (e: ValueType<OptionType>) => {
+    let technologies: OptionType[];
+
+    if (e === null || e === undefined) {
+      technologies = [];
+    } else if (Array.isArray(e)) {
+      technologies = e;
+    } else {
+      return;
+    }
+
+    technologies.map((v) => ({ name: v.value }));
+
     setFormInputs({
       ...formInputs,
       pTech: { ...formInputs.pTech, val: technologies },
