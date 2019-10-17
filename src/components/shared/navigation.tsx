@@ -171,8 +171,6 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [navLinks]);
 
-  console.log(userAuthenticated);
-
   return (
     <Nav>
       {windowDimensions <= 750 ? (
