@@ -12,7 +12,6 @@ import {
 } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from 'styled-components';
-import CtaButton from '../index-page/cta-button';
 import { Button } from '@components/app/shared';
 
 const Wrapper = styled.footer`

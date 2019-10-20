@@ -45,6 +45,7 @@ const ProjectGallery: React.FC = () => {
   const [isError, setIsError] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const api = new ServiceResolver().ApiResolver();
 
   const setMessage = (message: string | null) => {
     setIsError(message !== null && message !== '');
@@ -53,8 +54,6 @@ const ProjectGallery: React.FC = () => {
 
   React.useEffect(() => {
     async function fetchContent() {
-      const api = new ServiceResolver().ApiResolver();
-
       try {
         const response = (await api.getProjects()) as ApiResponse<
           Project[] | ErrorResponse
@@ -74,7 +73,7 @@ const ProjectGallery: React.FC = () => {
     }
 
     fetchContent();
-  }, []);
+  }, [api]);
 
   return (
     <Wrapper>
@@ -89,7 +88,7 @@ const ProjectGallery: React.FC = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <Panel content={projects} setMessage={setMessage} />
+        <Panel content={projects} setMessage={setMessage} api={api} />
       )}
     </Wrapper>
   );
