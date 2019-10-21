@@ -6,6 +6,8 @@ import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
 import { Loader } from '../shared';
+import { ApiService } from '@/api/api-service';
+import { MockApiService } from '@/mocks/mock-api-service';
 
 const Wrapper = styled.section`
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
@@ -45,7 +47,9 @@ const ProjectGallery: React.FC = () => {
   const [isError, setIsError] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const api = new ServiceResolver().ApiResolver();
+  const [api, setApi] = React.useState<ApiService | MockApiService>(
+    new MockApiService(),
+  );
 
   const setMessage = (message: string | null) => {
     setIsError(message !== null && message !== '');
@@ -53,6 +57,8 @@ const ProjectGallery: React.FC = () => {
   };
 
   React.useEffect(() => {
+    setApi(new ServiceResolver().ApiResolver());
+
     async function fetchContent() {
       try {
         const response = (await api.getProjects()) as ApiResponse<
