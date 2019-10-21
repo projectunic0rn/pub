@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';
-import ServiceResolver from '@/api/service-resolver';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
@@ -17,6 +16,7 @@ import { ApiService } from '@/api/api-service';
 interface CardProps {
   content: Project;
   setMessage: Function;
+  api: ApiService | MockApiService;
 }
 
 const Wrapper = styled.div`
@@ -65,7 +65,7 @@ const Break = styled.span`
   margin: 100px;
 `;
 
-const Card: React.FC<CardProps> = ({ content, setMessage }) => {
+const Card: React.FC<CardProps> = ({ content, setMessage, api }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
@@ -76,14 +76,11 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
     : null;
-  let api: MockApiService | ApiService;
 
   React.useEffect(() => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
-
-    api = new ServiceResolver().ApiResolver();
   }, [content.projectUsers, userId]);
 
   const getMembers = (members: ProjectUser[]) => {

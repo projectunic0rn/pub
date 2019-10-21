@@ -37,7 +37,7 @@ const Nav = styled.nav`
     height: 100px;
     z-index: 1;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.39);
-    padding: 1.5625em;
+    padding: 0;
   }
 `;
 

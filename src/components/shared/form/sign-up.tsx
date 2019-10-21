@@ -14,7 +14,7 @@ import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { UserValidation } from '@/api/types/user-validation';
 import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper, UserAuthHelper } from '@/helpers';
+import { SessionStorageHelper } from '@/helpers';
 import { MockApiService } from '@/mocks/mock-api-service';
 import { MockAuthService } from '@/mocks/mock-auth-service';
 import { ApiService } from '@/api/api-service';
