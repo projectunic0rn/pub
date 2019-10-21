@@ -79,7 +79,7 @@ const ProjectGallery: React.FC = () => {
     }
 
     fetchContent();
-  }, [api]);
+  }, []);
 
   return (
     <Wrapper>
