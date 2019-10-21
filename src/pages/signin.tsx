@@ -88,8 +88,6 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
           setMessage((response.data as ErrorResponse).message);
         }
       } catch (err) {
-        console.log(err);
-
         setMessage('Invalid email or password');
       }
 
