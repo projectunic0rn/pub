@@ -58,4 +58,8 @@ export class ApiService {
       username,
     );
   }
+
+  public updateAuthHeader(token: string) {
+    this.headers['Authorization'] = `Bearer ${token}`;
+  }
 }

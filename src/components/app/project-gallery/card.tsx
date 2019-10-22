@@ -10,13 +10,11 @@ import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { navigate } from 'gatsby';
-import { MockApiService } from '@/mocks/mock-api-service';
-import { ApiService } from '@/api/api-service';
+import ServiceResolver from '@/api/service-resolver';
 
 interface CardProps {
   content: Project;
   setMessage: Function;
-  api: ApiService | MockApiService;
 }
 
 const Wrapper = styled.div`
@@ -65,7 +63,7 @@ const Break = styled.span`
   margin: 100px;
 `;
 
-const Card: React.FC<CardProps> = ({ content, setMessage, api }) => {
+const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
     false,
   );
@@ -110,6 +108,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage, api }) => {
   };
 
   const leaveProject = async (project: Project) => {
+    const api = ServiceResolver.apiResolver();
     setHasRequestBeenMade(true);
 
     const projectUser = project.projectUsers.find(
@@ -135,6 +134,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage, api }) => {
   };
 
   const joinProject = async (project: Project) => {
+    const api = ServiceResolver.apiResolver();
     setHasRequestBeenMade(true);
     const joinProjectResponseBody: ProjectUser = {
       projectId: project.id as string,

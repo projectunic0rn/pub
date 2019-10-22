@@ -1,9 +1,12 @@
 import { JwtToken } from '@/api/types/jwt-token';
+import ServiceResolver from '@/api/service-resolver';
+import { ApiService } from '@/api/api-service';
 
 export default class SessionStorageHelper {
   public static storeJwt(jsonWebToken: object) {
     const jwtData = this.stringifySessionData(jsonWebToken);
     localStorage.setItem('currentJwt', jwtData);
+    this.updateAuthorizationHeader(this.getJwt().token);
   }
 
   public static getJwt(): JwtToken {
@@ -35,5 +38,13 @@ export default class SessionStorageHelper {
 
   public static deleteJwt() {
     localStorage.removeItem('currentJwt');
+    this.updateAuthorizationHeader(this.getJwt().token);
+  }
+
+  public static updateAuthorizationHeader(token?: string) {
+    const api = ServiceResolver.apiResolver();
+    if (api instanceof ApiService) {
+      api.updateAuthHeader(token || '');
+    }
   }
 }

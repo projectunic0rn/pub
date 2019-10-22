@@ -15,10 +15,6 @@ import { UserValidation } from '@/api/types/user-validation';
 import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
 import { SessionStorageHelper } from '@/helpers';
-import { MockApiService } from '@/mocks/mock-api-service';
-import { MockAuthService } from '@/mocks/mock-auth-service';
-import { ApiService } from '@/api/api-service';
-import { AuthService } from '@/api/auth-service';
 import { FormVal } from '@/utils/form-validation';
 import { Username } from '@/api/types/username';
 
@@ -61,17 +57,10 @@ export const SignUpForm: React.FC = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [message, setMessage] = useState<string | UserValidation>();
-  const [api, setApi] = useState<MockApiService | ApiService>();
-  const [auth, setAuth] = useState<MockAuthService | AuthService>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [usernameAvailablity, setUsernameAvailability] = useState<
     UserValidation
   >({ valid: false, reason: '' });
-
-  React.useEffect(() => {
-    setAuth(new ServiceResolver().AuthResolver());
-    setApi(new ServiceResolver().ApiResolver());
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -83,7 +72,7 @@ export const SignUpForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const auth = ServiceResolver.authResolver();
     const errors = validation.userSignUp(formInputs);
 
     if (errors.length) return setFormErrors([...errors]);
@@ -93,9 +82,9 @@ export const SignUpForm: React.FC = () => {
       const locale =
         typeof window.navigator !== 'undefined'
           ? window.navigator.language
-          : 'en';
+          : 'en-US';
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const response = (await (auth as MockAuthService | AuthService).signUp({
+      const response = (await auth.signUp({
         username: formInputs.username.val,
         email: formInputs.email.val,
         password: formInputs.password.val,
@@ -141,6 +130,7 @@ export const SignUpForm: React.FC = () => {
   };
 
   const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const api = ServiceResolver.apiResolver();
     const { name, value } = e.target;
     const state: any = formInputs;
     state[name].val = value;
@@ -151,9 +141,7 @@ export const SignUpForm: React.FC = () => {
         username: value,
       };
       try {
-        const response = (await (api as
-          | MockApiService
-          | ApiService).validateUsername(username)) as ApiResponse<
+        const response = (await api.validateUsername(username)) as ApiResponse<
           UserValidation | ErrorResponse
         >;
 
