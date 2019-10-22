@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import CtaButton from './cta-button';
 import { connectedWorld } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
+import CtaButton from './cta-button';
+import { Link } from 'gatsby';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -73,7 +74,9 @@ const Hero: React.FC = () => {
         <SubHeading>{siteMetadata.description}</SubHeading>
 
         <FormWrapper>
-          <CtaButton />
+          <Link to="/signup">
+            <CtaButton href="/signup">Sign Up</CtaButton>
+          </Link>
         </FormWrapper>
       </Text>
 

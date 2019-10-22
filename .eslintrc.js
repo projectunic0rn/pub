@@ -32,6 +32,7 @@ module.exports = {
     // '@typescript-eslint/no-explicit-any': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'no-console': 'error',
   },
   overrides: [
     {

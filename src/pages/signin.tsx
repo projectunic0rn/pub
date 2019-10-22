@@ -54,11 +54,8 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
-  const [auth, setAuth] = useState<MockAuthService | AuthService>();
 
   React.useEffect(() => {
-    setAuth(new ServiceResolver().AuthResolver());
-
     if (location.state !== null) {
       setMessage(location.state.message);
     }
@@ -66,6 +63,7 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const auth = ServiceResolver.authResolver();
 
     if (email === '' || password === '') {
       setMessage('Invalid email or password');
@@ -76,20 +74,18 @@ const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
       setIsSigningIn(true);
 
       try {
-        const response = (await (auth as MockAuthService | AuthService).signIn({
+        const response = (await auth.signIn({
           email,
           password,
         })) as ApiResponse<JwtToken | ErrorResponse>;
 
         if (response.ok) {
-          navigate('/app/projects');
           SessionStorageHelper.storeJwt(response.data as JwtToken);
+          navigate('/app/projects');
         } else {
           setMessage((response.data as ErrorResponse).message);
         }
       } catch (err) {
-        console.log(err);
-
         setMessage('Invalid email or password');
       }
 

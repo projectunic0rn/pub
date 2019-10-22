@@ -5,14 +5,12 @@ import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '../buttons';
 import { Project } from '@/api/types/project';
-import ServiceResolver from '@/api/service-resolver';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { navigate } from 'gatsby';
-import { MockApiService } from '@/mocks/mock-api-service';
-import { ApiService } from '@/api/api-service';
+import ServiceResolver from '@/api/service-resolver';
 
 interface CardProps {
   content: Project;
@@ -76,14 +74,11 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
     : null;
-  let api: MockApiService | ApiService;
 
   React.useEffect(() => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
-
-    api = new ServiceResolver().ApiResolver();
   }, [content.projectUsers, userId]);
 
   const getMembers = (members: ProjectUser[]) => {
@@ -113,6 +108,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   };
 
   const leaveProject = async (project: Project) => {
+    const api = ServiceResolver.apiResolver();
     setHasRequestBeenMade(true);
 
     const projectUser = project.projectUsers.find(
@@ -138,6 +134,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
   };
 
   const joinProject = async (project: Project) => {
+    const api = ServiceResolver.apiResolver();
     setHasRequestBeenMade(true);
     const joinProjectResponseBody: ProjectUser = {
       projectId: project.id as string,

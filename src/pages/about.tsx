@@ -12,7 +12,6 @@ import { useSiteMetadata } from '@hooks';
 /** Displays the About page for the website. */
 const AboutPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
-  console.log(siteMetadata);
   return (
     <Layout>
       <Seo

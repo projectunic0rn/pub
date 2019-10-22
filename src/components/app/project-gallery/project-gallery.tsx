@@ -52,9 +52,9 @@ const ProjectGallery: React.FC = () => {
   };
 
   React.useEffect(() => {
-    async function fetchContent() {
-      const api = new ServiceResolver().ApiResolver();
+    const api = ServiceResolver.apiResolver();
 
+    async function fetchContent() {
       try {
         const response = (await api.getProjects()) as ApiResponse<
           Project[] | ErrorResponse

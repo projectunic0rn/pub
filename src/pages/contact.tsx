@@ -12,7 +12,6 @@ import { useSiteMetadata } from '@hooks';
 /** Displays the Contact page for the website. */
 const ContactPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
-  console.log(siteMetadata);
   return (
     <Layout>
       <Seo

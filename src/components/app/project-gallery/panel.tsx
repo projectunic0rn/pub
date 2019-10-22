@@ -3,6 +3,8 @@ import * as React from 'react';
 import Card from './card';
 import styled from 'styled-components';
 import { Project } from '@/api/types/project';
+import { ApiService } from '@/api/api-service';
+import { MockApiService } from '@/mocks/mock-api-service';
 
 interface PanelProps {
   content: Project[];

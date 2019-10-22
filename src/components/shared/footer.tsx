@@ -12,7 +12,7 @@ import {
 } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from 'styled-components';
-import CtaButton from '../index-page/cta-button';
+import { Button } from '@components/app/shared';
 
 const Wrapper = styled.footer`
   background: ${({ theme }) => theme.colors.base};
@@ -75,11 +75,13 @@ const IconWrapper = styled.span`
   line-height: 2.7em;
   margin: 0 0.625em;
   text-align: center;
-  width: 2.7em;
+  width: 2em;
 `;
 
 const SocialIcon = styled.img.attrs(() => ({ alt: '' }))`
   margin: 0;
+  width: 25px;
+  height: 25px;
 `;
 
 const anchorStyles = css`
@@ -205,7 +207,7 @@ const Footer: React.FC = () => {
             onChange={handleInputChange}
             value={email}
           />
-          <CtaButton type="input" content="Subscribe" />
+          <Button active={false}>Subscribe</Button>
           {formResponse}
         </Form>
         <SocialWrapper>
