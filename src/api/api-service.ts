@@ -61,6 +61,5 @@ export class ApiService {
 
   public updateAuthHeader(token: string) {
     this.headers['Authorization'] = `Bearer ${token}`;
-    return;
   }
 }
