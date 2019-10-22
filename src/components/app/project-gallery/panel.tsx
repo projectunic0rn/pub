@@ -9,7 +9,6 @@ import { MockApiService } from '@/mocks/mock-api-service';
 interface PanelProps {
   content: Project[];
   setMessage: Function;
-  api: ApiService | MockApiService;
 }
 
 const Wrapper = styled.div`
@@ -18,10 +17,10 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Panel: React.FC<PanelProps> = ({ content = [], setMessage, api }) => (
+const Panel: React.FC<PanelProps> = ({ content = [], setMessage }) => (
   <Wrapper>
     {content.map((v) => (
-      <Card key={v.name} content={v} setMessage={setMessage} api={api} />
+      <Card key={v.name} content={v} setMessage={setMessage} />
     ))}
   </Wrapper>
 );

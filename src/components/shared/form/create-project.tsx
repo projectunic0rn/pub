@@ -68,7 +68,7 @@ const MessageCloseButton = styled.span`
 
 export const CreateProjectForm: React.FC = () => {
   const theme = useContext(ThemeContext);
-  const StackExchange = new ServiceResolver().StackExchangeResolver();
+  const stackExchange = ServiceResolver.stackExchangeResolver();
   const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState({
@@ -124,7 +124,7 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   useEffect(() => {
-    const api = new ServiceResolver().ApiResolver();
+    const api = ServiceResolver.apiResolver();
 
     if (!UserAuthHelper.isUserAuthenticated()) {
       navigate('/signin', {
@@ -153,7 +153,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const promiseOptions = async (inputValue: string) => {
     try {
-      const data = (await StackExchange.searchTags(inputValue)) as Tag;
+      const data = (await stackExchange.searchTags(inputValue)) as Tag;
       return data.items.map((item: Item) => ({
         value: item.name,
         label: item.name,
@@ -226,7 +226,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const api = new ServiceResolver().ApiResolver();
+    const api = ServiceResolver.apiResolver();
 
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
     const errors = validation.checkValidation(formInputs);
