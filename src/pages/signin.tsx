@@ -17,8 +17,6 @@ import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { SessionStorageHelper } from '@/helpers';
 import { JwtToken } from '@/api/types/jwt-token';
-import { MockAuthService } from '@/mocks/mock-auth-service';
-import { AuthService } from '@/api/auth-service';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
