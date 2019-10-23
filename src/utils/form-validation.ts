@@ -1,97 +1,68 @@
-interface Props {
+import {
+  isEmptyArray,
+  isValidUrl,
+  isEmptyString,
+  isValidEmail,
+  isValidPassword,
+  isPasswordMatch,
+  isValidUsername,
+} from './validation-utils';
+import { ProjectTechnology } from '@/api/types/project-technology';
+
+export interface Props<T = string> {
   [index: string]: {
-    val: string;
+    val: T;
     required: boolean;
   };
 }
 
+type CreateProjectTypes = string | ProjectTechnology[];
+
 export class FormVal {
-  private isEmptyString = (str: string) => (str.length ? true : false);
-
-  private isEmptyArray = (arr: string[]) => (arr.length ? true : false);
-
-  private isValidUrl = (input: string, url: string) => {
-    // project repo must be a Slack or Discord URL
-    if (input === 'pComm') {
-      if (!url.includes('slack') && !url.includes('discord')) {
-        return false;
-      }
-    }
-
-    try {
-      new URL(url);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
-
-  private isValidUsername = (str: string) => {
-    return str.length ? true : false;
-  };
-
-  private isValidEmail = (str: string) => {
-    /*
-      source
-      https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
-    */
-
-    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    return regex.test(str.toLowerCase());
-  };
-
-  private isValidPassword = (password: string, confirmPassword: string) => {
-    const regex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/i;
-    return regex.test(password.toLowerCase());
-  };
-
-  private isPasswordMatch = (confirmPassword: string, password: string) => {
-    return confirmPassword === password;
-  };
-
-  public checkValidation(v: Props) {
-    return Object.keys(v).filter((input: string) => {
+  public checkValidation(v: Props<CreateProjectTypes>) {
+    return Object.keys(v).filter((input) => {
       const { val, required } = v[input];
 
-      // check for empty array
-      if (Array.isArray(val) && required) {
-        return !this.isEmptyArray(val);
+      if (typeof val === 'string') {
+        if (input == 'pRepo' && required) {
+          return !isValidUrl(val, ['github', 'gitlab', 'bitbucket', 'azure']);
+        }
+
+        if (input === 'pComm' && required) {
+          return !isValidUrl(val, ['discord', 'slack']);
+        }
+
+        if (typeof val === 'string' && required) {
+          return isEmptyString(val);
+        }
       }
 
-      // check for valid url string
-      if (input === 'pRepo' || (input === 'pComm' && required)) {
-        return !this.isValidUrl(input, val);
-      }
-
-      // check for empty string
-      if (typeof val === 'string' && required) {
-        return !this.isEmptyString(val);
+      if (Array.isArray(val)) {
+        if (required) {
+          return isEmptyArray(val);
+        }
       }
     });
   }
 
   public userSignUp(v: Props) {
-    return Object.keys(v).filter((input: string) => {
+    return Object.keys(v).filter((input) => {
       const { val, required } = v[input];
 
-      // check valid username
       if (input === 'username' && required) {
-        return !this.isValidUsername(val);
+        return !isValidUsername(val);
       }
 
-      // check for valid email
       if (input === 'email' && required) {
-        return !this.isValidEmail(val);
+        return !isValidEmail(val);
       }
 
-      // check password
       if (input === 'password' && required) {
-        return !this.isValidPassword(val, v['confirmPassword'].val);
+        return !isValidPassword(val);
       }
 
-      // check confirmPassword
       if (input === 'confirmPassword' && required) {
-        return !this.isPasswordMatch(val, v['password'].val);
+        return !isPasswordMatch(val, v['password'].val);
       }
     });
   }

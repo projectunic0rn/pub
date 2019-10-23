@@ -18,10 +18,11 @@ import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tag, Item } from '@/api/types/stack-exchange';
 import { ProjectType } from '@/api/types/project-types';
-import { FormVal } from '@/utils/form-validation';
+import { FormVal, Props } from '@/utils/form-validation';
 import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
+import { ProjectTechnology } from '@/api/types/project-technology';
 
 interface OptionType {
   label: string;
@@ -72,15 +73,33 @@ const MessageCloseButton = styled.span`
   }
 `;
 
+interface FormValue<T = string> {
+  val: T;
+  required: boolean;
+}
+
+type FormInputIndexPropType = string | ProjectTechnology[];
+
+interface FormInput {
+  pName: FormValue;
+  pDesc: FormValue;
+  pTech: FormValue<ProjectTechnology[]>;
+  pType: FormValue;
+  pRepo: FormValue;
+  pLaunch: FormValue;
+  pComm: FormValue;
+  [key: string]: FormValue<FormInputIndexPropType>;
+}
+
 export const CreateProjectForm: React.FC = () => {
   const theme = useContext(ThemeContext);
   const stackExchange = ServiceResolver.stackExchangeResolver();
   const validation = new FormVal();
 
-  const [formInputs, setFormInputs] = useState({
+  const [formInputs, setFormInputs] = useState<FormInput>({
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
-    pTech: { val: [] as any, required: true },
+    pTech: { val: [], required: true },
     pType: { val: '', required: true },
     pRepo: { val: '', required: true },
     pLaunch: { val: '', required: true },
@@ -172,17 +191,13 @@ export const CreateProjectForm: React.FC = () => {
   };
 
   const handleSelectChange = (e: ValueType<OptionType>) => {
-    let technologies: OptionType[];
+    let technologies: ProjectTechnology[];
 
-    if (e === null || e === undefined) {
-      technologies = [];
-    } else if (Array.isArray(e)) {
-      technologies = e;
+    if (Array.isArray(e)) {
+      technologies = e.map((v) => ({ name: v.value, projectId: '' }));
     } else {
-      return;
+      technologies = [];
     }
-
-    technologies.map((v) => ({ name: v.value }));
 
     setFormInputs({
       ...formInputs,
@@ -192,7 +207,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, val = '') => {
     const { name, value } = e.target;
-    const state: any = formInputs;
+    const state = formInputs;
     state[name].val = value;
 
     if (name === 'pDesc') state[name].val = val;
@@ -203,8 +218,8 @@ export const CreateProjectForm: React.FC = () => {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
     const formErrorState: string[] = formErrors;
-    const formInputState: any = formInputs;
-    const obj: any = {};
+    const formInputState = formInputs;
+    const obj: Props<FormInputIndexPropType> = {};
     obj[name] = formInputState[name];
     const errors = validation.checkValidation(obj);
 
