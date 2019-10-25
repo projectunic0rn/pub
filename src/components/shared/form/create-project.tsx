@@ -299,7 +299,7 @@ export const CreateProjectForm: React.FC = () => {
             onBlur={handleBlur}
             value={formInputs['pDesc'].val}
             displayCharCount={true}
-            maxCharCount={135}
+            maxCharCount={280}
             hasError={formErrors.includes('pDesc')}
           />
           {formErrors.includes('pDesc') && (

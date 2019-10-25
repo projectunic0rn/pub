@@ -155,9 +155,9 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   hasError,
 }) => {
   const checkLength = (e: React.FormEvent<HTMLInputElement>) => {
-    return e.currentTarget.value.length < 135
+    return maxCharCount && e.currentTarget.value.length < maxCharCount
       ? e.currentTarget.value
-      : e.currentTarget.value.slice(0, 135);
+      : e.currentTarget.value.slice(0, maxCharCount);
   };
 
   return (
