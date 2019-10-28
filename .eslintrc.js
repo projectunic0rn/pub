@@ -29,7 +29,8 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    // '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any':
+      process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'no-console': 'error',
