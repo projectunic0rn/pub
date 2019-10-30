@@ -194,11 +194,12 @@ const Footer: React.FC = () => {
       </Col>
       <Col>
         <Form onSubmit={handleSubmit}>
-          <FormLabel htmlFor="email">
-            Subscribe to our mailing list to access the latest content!
+          <FormLabel htmlFor="email-mailing-list">
+            Collaborate with developers, and get projects delivered straight to
+            your inbox.
           </FormLabel>
           <FormInput
-            id="email"
+            id="email-mailing-list"
             type="text"
             onChange={handleInputChange}
             value={email}
