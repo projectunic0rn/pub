@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { SignUpForm } from '../components/shared/form/sign-up';
+import { SignUpForm } from '../components/shared/form';
 
 const SignUpPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();

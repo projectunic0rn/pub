@@ -160,11 +160,6 @@ const Footer: React.FC = () => {
               About Us
             </StyledLink>
           </ListItem>
-          <ListItem>
-            <StyledLink to="/blog" title={`${siteMetadata.title} blog`}>
-              Blog
-            </StyledLink>
-          </ListItem>
         </List>
       </Col>
 
@@ -200,7 +195,9 @@ const Footer: React.FC = () => {
       </Col>
       <Col>
         <Form onSubmit={handleSubmit}>
-          <FormLabel htmlFor="email">Subscribe to our mailing list</FormLabel>
+          <FormLabel htmlFor="email">
+            Subscribe to our mailing list to access the latest content!
+          </FormLabel>
           <FormInput
             id="email"
             type="text"
