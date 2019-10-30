@@ -160,11 +160,6 @@ const Footer: React.FC = () => {
               About Us
             </StyledLink>
           </ListItem>
-        </List>
-      </Col>
-
-      <Col>
-        <List>
           <ListItem>
             <StyledLink
               to="/contact"
@@ -173,7 +168,11 @@ const Footer: React.FC = () => {
               Contact us
             </StyledLink>
           </ListItem>
+        </List>
+      </Col>
 
+      <Col>
+        <List>
           <ListItem>
             <StyledLink
               to="/terms"
