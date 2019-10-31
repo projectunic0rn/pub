@@ -79,6 +79,41 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
       title: 'List of blog tags',
       requiresAuthentication: false,
     },
+    {
+      content: 'Blog',
+      href: '/blog',
+      title: `${siteMetadata.title} blog`,
+      requiresAuthentication: false,
+      link: true,
+    },
+    {
+      content: 'Projects',
+      href: '/app/projects',
+      title: `${siteMetadata.title} projects`,
+      requiresAuthentication: false,
+      link: true,
+    },
+    {
+      content: 'Projects',
+      href: '/app/projects',
+      title: `${siteMetadata.title} projects`,
+      requiresAuthentication: true,
+      link: true,
+    },
+    {
+      content: 'Sign In',
+      href: '/signin',
+      title: `${siteMetadata.title} login`,
+      requiresAuthentication: false,
+      button: true,
+    },
+    {
+      content: 'Start Project',
+      href: '/app/projects/create',
+      title: `${siteMetadata.title} start project`,
+      requiresAuthentication: true,
+      button: true,
+    },
   ];
 
   return (
