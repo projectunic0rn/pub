@@ -297,7 +297,7 @@ export const getProjects: ApiResponse<Project[]> = {
       launchDate: new Date(),
       projectType: 'Developer Tools',
       repositoryUrl: 'https://github.com/projectunic0rn/remote-hackathon',
-      communicationPlatformUrl: '',
+      communicationPlatformUrl: 'https://discord.gg',
       lookingForMembers: true,
       communicationPlatform: 'slack',
       projectTechnologies: [
