@@ -161,11 +161,8 @@ const Footer: React.FC = () => {
             </StyledLink>
           </ListItem>
           <ListItem>
-            <StyledLink
-              to="/contact"
-              title={`${siteMetadata.title} contact page`}
-            >
-              Contact us
+            <StyledLink to="/blog" title={`${siteMetadata.title} blog`}>
+              Blog
             </StyledLink>
           </ListItem>
         </List>
@@ -173,6 +170,14 @@ const Footer: React.FC = () => {
 
       <Col>
         <List>
+          <ListItem>
+            <StyledLink
+              to="/contact"
+              title={`${siteMetadata.title} contact page`}
+            >
+              Contact us
+            </StyledLink>
+          </ListItem>
           <ListItem>
             <StyledLink
               to="/terms"
