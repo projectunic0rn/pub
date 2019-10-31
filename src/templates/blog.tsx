@@ -87,6 +87,13 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ data, pageContext }) => {
       link: true,
     },
     {
+      content: 'Blog',
+      href: '/blog',
+      title: `${siteMetadata.title} blog`,
+      requiresAuthentication: true,
+      link: true,
+    },
+    {
       content: 'Projects',
       href: '/app/projects',
       title: `${siteMetadata.title} projects`,
