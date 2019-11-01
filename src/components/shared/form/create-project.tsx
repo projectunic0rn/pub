@@ -110,6 +110,7 @@ export const CreateProjectForm: React.FC = () => {
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>('');
+  const [isCreatingProject, setIsCreatingProject] = useState<boolean>(false);
 
   const styles = {
     control: (styles: {}) => {
@@ -282,17 +283,23 @@ export const CreateProjectForm: React.FC = () => {
       ],
     };
 
-    try {
-      const response = (await api.createProject(formData)) as ApiResponse<
-        Project | ErrorResponse
-      >;
+    if (!isCreatingProject) {
+      setIsCreatingProject(true);
 
-      if (response.ok) navigate(`/app/projects`);
-      else setError((response.data as ErrorResponse).message);
+      try {
+        const response = (await api.createProject(formData)) as ApiResponse<
+          Project | ErrorResponse
+        >;
 
-      setIsError(!response.ok);
-    } catch (err) {
-      setMessage('Failed to create project');
+        if (response.ok) navigate(`/app/projects`);
+        else setError((response.data as ErrorResponse).message);
+
+        setIsError(!response.ok);
+      } catch (err) {
+        setMessage('Failed to create project');
+      }
+
+      setIsCreatingProject(false);
     }
   };
 
@@ -409,7 +416,9 @@ export const CreateProjectForm: React.FC = () => {
           )}
           <FormHint>Add the technologies used in your application</FormHint>
           <ButtonWrapper>
-            <Button active={false}>Create</Button>
+            <Button active={false} disabled={isCreatingProject}>
+              Create
+            </Button>
           </ButtonWrapper>
         </Form>
       </FormWrapper>
