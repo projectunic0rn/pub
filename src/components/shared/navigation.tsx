@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { puLogo } from '@images';
 import { Link } from 'gatsby';
 import NavButton from './buttons/nav-button';
-import dotIcon from '../../images/dot.png';
+import dotIcon from '@images/dot.png';
 import { useSiteMetadata } from '@hooks';
 import { slide as Menu } from 'react-burger-menu';
 import HamburgerMenuStyles from '@/styles/hamburger-menu';
