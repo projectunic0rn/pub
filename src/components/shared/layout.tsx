@@ -19,6 +19,20 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
   if (navLinks.length === 0) {
     navLinks = [
       {
+        content: 'Blog',
+        href: '/blog',
+        title: `${siteMetadata.title} blog`,
+        requiresAuthentication: false,
+        link: true,
+      },
+      {
+        content: 'Blog',
+        href: '/blog',
+        title: `${siteMetadata.title} blog`,
+        requiresAuthentication: true,
+        link: true,
+      },
+      {
         content: 'Projects',
         href: '/app/projects',
         title: `${siteMetadata.title} projects`,

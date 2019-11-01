@@ -32,6 +32,7 @@ const Nav = styled.nav`
     background: ${({ theme }) => theme.colors.baseinvert};
     position: fixed;
     display: flex;
+    align-items: center;
     top: 0;
     width: 100%;
     height: 100px;
@@ -104,7 +105,7 @@ const NavMobile = styled.div`
 
 const NavLogoMobile = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
   height: 42px;
-  margin: 0;
+  margin: 0 0 0 1.5625em;
   align-self: center;
 `;
 
