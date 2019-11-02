@@ -3,11 +3,11 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Navigation from '../navigation';
 import Header from '../header';
-import { StaticQuery } from 'gatsby';
+import * as Gatsby from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@/styles';
 
-test('Header', () => {
+test('Test 1', () => {
   const { getByTestId } = render(
     <ThemeProvider theme={theme}>
       <Header />
@@ -49,7 +49,18 @@ const navLinks = [
   },
 ];
 
-test('Displays the correct title', () => {
+const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
+useStaticQuery.mockImplementation(() => ({
+  site: {
+    siteMetadata: {
+      author: 'Florian',
+      description: 'My description',
+      title: 'My Title',
+    },
+  },
+}));
+
+test('Test 2', () => {
   const { getByTestId } = render(
     <ThemeProvider theme={theme}>
       <Navigation navLinks={navLinks} />

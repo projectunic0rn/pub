@@ -148,7 +148,7 @@ const handleSignOut = () => {
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  // const siteMetadata = useSiteMetadata();
+  const siteMetadata = useSiteMetadata();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
   const [userAuthenticated, isUserAuthenticated] = useState<boolean>(false);
 
