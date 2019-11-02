@@ -148,7 +148,7 @@ const handleSignOut = () => {
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  const siteMetadata = useSiteMetadata();
+  // const siteMetadata = useSiteMetadata();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
   const [userAuthenticated, isUserAuthenticated] = useState<boolean>(false);
 
@@ -173,15 +173,15 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   }, [navLinks]);
 
   return (
-    <Nav>
+    <Nav data-testid="nav">
       {windowDimensions <= 750 ? (
         <React.Fragment>
-          <Link to="/" title={`${siteMetadata.title}`}>
+          <Link to="/">
             <NavLogoMobile />
           </Link>
           <Menu styles={HamburgerMenuStyles} width={'100%'} right>
             <NavMobile>
-              <Link to="/" title={`${siteMetadata.title}`}>
+              <Link to="/">
                 <NavLogoMobile />
               </Link>
 
@@ -227,7 +227,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
         </React.Fragment>
       ) : (
         <NavWrapper>
-          <Link to="/" title={`${siteMetadata.title}`}>
+          <Link to="/">
             <NavLogo />
           </Link>
 

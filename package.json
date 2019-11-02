@@ -10,7 +10,7 @@
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
     "start": "gatsby serve",
-    "test": "jest",
+    "test": "jest --verbose",
     "typecheck": "tsc"
   },
   "dependencies": {
