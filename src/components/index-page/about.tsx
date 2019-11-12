@@ -123,7 +123,7 @@ const About: React.FC = () => {
         </SubText>
 
         <Link
-          href="/app/projects"
+          href={`${siteMetadata.appUrl}`}
           external={false}
           title={`${siteMetadata.title} projects`}
         >
