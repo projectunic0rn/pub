@@ -178,7 +178,6 @@ const Footer: React.FC = () => {
               Contact us
             </StyledLink>
           </ListItem>
-
           <ListItem>
             <StyledLink
               to="/terms"
@@ -200,9 +199,12 @@ const Footer: React.FC = () => {
       </Col>
       <Col>
         <Form onSubmit={handleSubmit}>
-          <FormLabel htmlFor="email">Subscribe to our mailing list</FormLabel>
+          <FormLabel htmlFor="email-mailing-list">
+            Connect with like-minded developers, and discover new projects right
+            from your inbox
+          </FormLabel>
           <FormInput
-            id="email"
+            id="email-mailing-list"
             type="text"
             onChange={handleInputChange}
             value={email}

@@ -104,7 +104,7 @@ export const SignUpForm: React.FC = () => {
 
       if (response.ok) {
         SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/app/projects');
+        navigate('/app/projects/');
       } else {
         setMessage((response.data as ErrorResponse).message);
       }

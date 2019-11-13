@@ -43,7 +43,7 @@ module.exports = Object.freeze({
     /** The url of the website. */
     siteUrl: 'https://projectunicorn.net',
     /** The url of the app. */
-    appUrl: 'https://projectunicorn.dev',
+    appUrl: 'https://projectunicorn.net/app',
     logo: path.resolve(__dirname, 'src/images/logo.png'),
     /** Contains the project's social handles. */
     social: {
