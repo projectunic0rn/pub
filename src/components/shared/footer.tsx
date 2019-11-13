@@ -200,8 +200,8 @@ const Footer: React.FC = () => {
       <Col>
         <Form onSubmit={handleSubmit}>
           <FormLabel htmlFor="email-mailing-list">
-            Collaborate with developers, and get projects delivered straight to
-            your inbox.
+            Connect with like-minded developers, and discover new projects right
+            from your inbox
           </FormLabel>
           <FormInput
             id="email-mailing-list"
