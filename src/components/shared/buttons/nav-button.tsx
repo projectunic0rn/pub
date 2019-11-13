@@ -1,9 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from '@components/shared/buttons';
+import { Button } from './button';
 
 interface OwnProps {
   onClick?: Function;
+  dataTestId: string;
 }
 
 const NavMenuButton = styled(Button)`
@@ -19,9 +20,12 @@ const NavMenuButton = styled(Button)`
   }
 `;
 
-const NavButton: React.FC<OwnProps> = ({ onClick, children }) => {
+const NavButton: React.FC<OwnProps> = ({ dataTestId, onClick, children }) => {
   return (
-    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')}>
+    <NavMenuButton
+      data-testid={dataTestId}
+      onClick={(e: any) => (onClick ? onClick(e) : '')}
+    >
       {children}
     </NavMenuButton>
   );

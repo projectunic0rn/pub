@@ -2,6 +2,7 @@ declare module '*.jpg';
 declare module '*.png';
 declare module '*.ico';
 declare module '*.svg';
+declare module 'react-test-renderer';
 
 declare module 'gatsby-plugin-mailchimp' {
   interface Field {

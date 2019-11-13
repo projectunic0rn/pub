@@ -5,7 +5,7 @@ import Footer from './footer';
 import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, theme } from '@styles';
+import { GlobalStyle, theme } from '@/styles';
 
 interface OwnProps {
   navLinks?: NavigationLink[];

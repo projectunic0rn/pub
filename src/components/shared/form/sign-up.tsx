@@ -14,7 +14,7 @@ import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { UserValidation } from '@/api/types/user-validation';
 import { JwtToken } from '@/api/types/jwt-token';
 import { SessionStorageHelper } from '@/helpers';
-import { FormVal } from '@/utils/form-validation';
+import { FormVal } from '@utils/form-validation';
 import { Username } from '@/api/types/username';
 import { ApiButton } from '../buttons/api-button';
 

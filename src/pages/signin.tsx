@@ -4,6 +4,7 @@ import { useSiteMetadata } from '@hooks';
 import { SignInForm } from '../components/shared/form';
 
 interface SignInPageProps {
+  path?: string;
   location: {
     state: {
       message: string;
