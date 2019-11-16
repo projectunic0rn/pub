@@ -1,31 +1,11 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  wait,
-  waitForDomChange,
-  waitForElement,
-} from '@testing-library/react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Navigation from '../navigation';
 import SignInPage from '../../../pages/signin';
 import * as Gatsby from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@/styles';
-import { act } from 'react-dom/test-utils';
-// import { AuthService } from '../../../api/auth-service';
-
-// jest.mock('../../../api/auth-service', async () => {
-//   return await new Promise(resolve => {
-//     return {
-//       ok: true,
-//       data: {
-//         token:
-//           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoie1wiaWRcIjpcIjA4ZDczZDUwLTZmZjMtNTk0ZS0xMDE0LTA1OWI5ZjZkOTMxN1wifSIsImV4cCI6MTU2OTUzNjkyMCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.ecVEHUiLjw41kZa6-vbjVatd9RdiNr9QLNxRelqZyhQ',
-//       },
-//     }
-//   })
-// })
 
 const navLinks = [
   {
@@ -72,16 +52,46 @@ const navLinks = [
   },
 ];
 
-const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
-useStaticQuery.mockImplementation(() => ({
-  site: {
-    siteMetadata: {
-      author: 'Florian',
-      description: 'My description',
-      title: 'My Title',
+beforeEach(() => {
+  /*
+   ** "useStaticQuery" is mock data used for the <SignInPage> component.
+   ** Inside the <SignInPage> component, it performs a graphql query that we need to mock or else the test will run with errors because there
+   ** would be missing data.
+   */
+  const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
+  useStaticQuery.mockImplementation(() => ({
+    site: {
+      siteMetadata: {
+        title: 'Project Unicorn',
+        tag: 'Build something awesome.',
+        description:
+          'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
+        siteUrl: 'https://projectunicorn.net',
+        appUrl: 'https://projectunicorn.dev',
+        social: {
+          facebook: '',
+          instagram: 'projectunicorn1',
+          twitter: '@projectunicorn2',
+          linkedin: 'proj-unicorn',
+          reddit: 'projectUnicorn',
+          github: 'projectunic0rn',
+          slackInvite:
+            '//join.slack.com/t/project-unic0rn/shared_invite/enQtNjM5MzkwMjE2Mzg5LTNkOWVkNDQ0NTE3NWE1MmYzYjg5YjhiZTE1NTU0MTc3NzdmNmI3YTE5ZjZhYjgzNTA0ZDUyZjFmOTJlNTg5MGQ',
+        },
+      },
     },
-  },
-}));
+    file: {
+      childImageSharp: {
+        fluid: {
+          src:
+            '/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/default-post-image.jpg',
+          srcSet:
+            '/static/dd9805a2c5ae79d6e0d37cabb592517b/f709c/default-post-image.jpg 450w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/2b1a3/default-post-image.jpg 900w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/default-post-image.jpg 1800w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/b4a0b/default-post-image.jpg 2700w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/2a223/default-post-image.jpg 3600w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/e6902/default-post-image.jpg 4692w',
+        },
+      },
+    },
+  }));
+});
 
 describe('Navigation Bar', () => {
   test('Blog link is being rendered', () => {
@@ -91,7 +101,7 @@ describe('Navigation Bar', () => {
       </ThemeProvider>,
     );
 
-    expect(getByTestId('Blog')).toHaveAttribute('href', '/blog');
+    expect(getByTestId('Blog')).toHaveAttribute('href', '/blogd');
   });
 
   test('Projects link is being rendered', () => {
@@ -104,59 +114,7 @@ describe('Navigation Bar', () => {
     expect(getByTestId('Projects')).toHaveAttribute('href', '/app/projects');
   });
 
-  /*
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   *********************************************************************************************************************************************************************
-   */
-
-  test('Sign In button is being rendered when user is not authenticated', async () => {
-    /*
-     ** This is mock data used for the <SignInPage> component.
-     ** Inside the <SignInPage> component, it performs a graphql query that we need to mock or else the test will run with errors because there
-     ** would be missing data.
-     */
-    const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
-    useStaticQuery.mockImplementation(() => ({
-      site: {
-        siteMetadata: {
-          title: 'Project Unicorn',
-          tag: 'Build something awesome.',
-          description:
-            'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
-          siteUrl: 'https://projectunicorn.net',
-          appUrl: 'https://projectunicorn.dev',
-          social: {
-            facebook: '',
-            instagram: 'projectunicorn1',
-            twitter: '@projectunicorn2',
-            linkedin: 'proj-unicorn',
-            reddit: 'projectUnicorn',
-            github: 'projectunic0rn',
-            slackInvite:
-              '//join.slack.com/t/project-unic0rn/shared_invite/enQtNjM5MzkwMjE2Mzg5LTNkOWVkNDQ0NTE3NWE1MmYzYjg5YjhiZTE1NTU0MTc3NzdmNmI3YTE5ZjZhYjgzNTA0ZDUyZjFmOTJlNTg5MGQ',
-          },
-        },
-      },
-      file: {
-        childImageSharp: {
-          fluid: {
-            src:
-              '/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/default-post-image.jpg',
-            srcSet:
-              '/static/dd9805a2c5ae79d6e0d37cabb592517b/f709c/default-post-image.jpg 450w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/2b1a3/default-post-image.jpg 900w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/fb184/default-post-image.jpg 1800w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/b4a0b/default-post-image.jpg 2700w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/2a223/default-post-image.jpg 3600w,\n/static/dd9805a2c5ae79d6e0d37cabb592517b/e6902/default-post-image.jpg 4692w',
-          },
-        },
-      },
-    }));
-
+  test('Sign Out button is being rendered when user is authenticated', async () => {
     /*
      ** RUNNING OUR TESTS
      ** We will begin to write our tests in the code below
@@ -213,15 +171,20 @@ describe('Navigation Bar', () => {
     expect(errorMessage).not.toBeInTheDocument();
     expect(getByTestId('signout')).toBeInTheDocument();
   });
+
+  test('Sign In button is being rendered when user is not authenticated', async () => {
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <SignInPage location={{ state: { message: 'HELLO!' } }} />
+      </ThemeProvider>,
+    );
+
+    expect(getByTestId('signin')).toBeInTheDocument();
+  });
 });
 
 /*
-  IMPORTANT
-  - module filename and mock filename must be the same
-
-  - onChange not working?
+https://jestjs.io/docs
+https://github.com/testing-library/jest-dom
+https://github.com/testing-library/react-testing-library
 */
-
-// manual-mocks (https://jestjs.io/docs/en/manual-mocks)
-// api-async (https://testing-library.com/docs/dom-testing-library/api-async)
-// mocks explained (https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c)
