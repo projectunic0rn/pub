@@ -104,8 +104,8 @@ const ProjectGallery: React.FC = () => {
         <FeedbackForm
           handleSendClick={handleSendClick}
           handleCancelClick={handleCancelClick}
-          handleChange={(e: React.ChangeEvent) =>
-            setFeedback(e.target.nodeValue || '')
+          handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setFeedback(e.target.value)
           }
           value={feedback}
         />
