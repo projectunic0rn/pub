@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Form } from '@components/shared/form';
-import { ErrorMessage } from '@components/shared/form/error-msg';
+import { ErrorMessage } from '@components/shared/messages';
 import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
 import {
@@ -13,7 +13,6 @@ import {
 } from './controls';
 import styled from 'styled-components';
 import { ThemeContext } from 'styled-components';
-import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tag, Item } from '@/api/types/stack-exchange';
@@ -23,6 +22,8 @@ import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { ProjectTechnology } from '@/api/types/project-technology';
+import { ApiButton } from '../buttons';
+import { Alert, CloseButton } from '..';
 
 interface OptionType {
   label: string;
@@ -47,29 +48,6 @@ const Wrapper = styled.section`
 
   @media screen and(max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.small};
-  }
-`;
-
-const Message = styled.div`
-  background: ${({ theme }) => theme.colors.alert.danger};
-  color: white;
-  width: 100%;
-  height: 35px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-  text-align: center;
-  font-size: 16px;
-`;
-
-const MessageCloseButton = styled.span`
-  position: absolute;
-  color: ${({ theme }) => theme.colors.baseinvert};
-  right: 15px;
-
-  :hover {
-    cursor: pointer;
   }
 `;
 
@@ -108,8 +86,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [isError, setIsError] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
+  const [error, setError] = React.useState<string | null>(null);
 
   const styles = {
     control: (styles: {}) => {
@@ -143,11 +120,6 @@ export const CreateProjectForm: React.FC = () => {
     }),
   };
 
-  const setMessage = (message: string) => {
-    setIsError(message !== null && message !== '');
-    setError(message);
-  };
-
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
 
@@ -165,11 +137,9 @@ export const CreateProjectForm: React.FC = () => {
         >;
 
         if (!response.ok) setError((response.data as ErrorResponse).message);
-
-        setIsError(!response.ok);
         setProjectTypes(response.data as ProjectType[]);
       } catch (error) {
-        setMessage('Failed to get project types');
+        setError('Failed to get project types');
       }
     }
 
@@ -186,7 +156,7 @@ export const CreateProjectForm: React.FC = () => {
 
       return options;
     } catch (error) {
-      setMessage('Failed to get tags');
+      setError('Failed to get tags');
     }
   };
 
@@ -255,8 +225,7 @@ export const CreateProjectForm: React.FC = () => {
     return platformName.search('slack') > 0 ? 'slack' : 'discord';
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleClick = async () => {
     const api = ServiceResolver.apiResolver();
 
     const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
@@ -289,25 +258,21 @@ export const CreateProjectForm: React.FC = () => {
 
       if (response.ok) navigate(`/app/projects`);
       else setError((response.data as ErrorResponse).message);
-
-      setIsError(!response.ok);
     } catch (err) {
-      setMessage('Failed to create project');
+      setError('Failed to create project');
     }
   };
 
   return (
     <Wrapper>
-      {isError && (
-        <Message>
+      {error !== null && (
+        <Alert type="danger">
           {error}
-          <MessageCloseButton onClick={() => setMessage('')}>
-            &#10006;
-          </MessageCloseButton>
-        </Message>
+          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+        </Alert>
       )}
       <FormWrapper>
-        <Form handleSubmit={handleSubmit} heading={'Create a New Project'}>
+        <Form heading={'Create a New Project'}>
           <FormLabel htmlFor="project-name">Project Name</FormLabel>
           <FormInput
             name="pName"
@@ -409,7 +374,9 @@ export const CreateProjectForm: React.FC = () => {
           )}
           <FormHint>Add the technologies used in your application</FormHint>
           <ButtonWrapper>
-            <Button active={false}>Create</Button>
+            <ApiButton handleClick={handleClick} statusText="Creating...">
+              Create
+            </ApiButton>
           </ButtonWrapper>
         </Form>
       </FormWrapper>

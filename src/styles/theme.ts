@@ -37,6 +37,7 @@ const colors = {
   },
   alert: {
     danger: constants.red,
+    success: constants.greenLight,
   },
 };
 

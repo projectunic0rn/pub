@@ -3,6 +3,7 @@ import { Project } from './types/project';
 import { ProjectUser } from './types/project-user';
 import { SessionStorageHelper } from '@/helpers';
 import { Username } from './types/username';
+import { Feedback } from './types/feedback';
 
 export class ApiService {
   private headers = {
@@ -61,5 +62,13 @@ export class ApiService {
 
   public updateAuthHeader(token: string) {
     this.headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  public async sendFeedback(feedback: Feedback) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/util/send-feedback`,
+      this.headers,
+      feedback,
+    );
   }
 }

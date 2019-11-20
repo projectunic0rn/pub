@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from '@components/app/shared';
+import { Button } from '@components/shared/buttons';
 
 interface OwnProps {
   onClick?: Function;

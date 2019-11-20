@@ -2,8 +2,9 @@ import { Project } from '@/api/types/project';
 
 import { getProjects } from './responses';
 import { projectUser } from './responses';
-import { getProjectTypes } from './responses/get-project-types';
-import { validateUser } from './responses/validate-user';
+import { getProjectTypes } from './responses';
+import { validateUser } from './responses';
+import { feedback } from './responses';
 
 export class MockApiService {
   public async createProject(project: Project) {
@@ -28,5 +29,9 @@ export class MockApiService {
 
   public async validateUsername() {
     return validateUser;
+  }
+
+  public async sendFeedback() {
+    return feedback;
   }
 }

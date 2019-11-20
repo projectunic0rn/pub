@@ -6,6 +6,11 @@ import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
 import { Loader } from '../shared';
+import { Alert } from '@components/shared';
+import { CloseButton } from '@components/shared/alerts';
+import { FeedbackForm } from '@components/shared/form';
+import { Feedback } from '@/api/types/feedback';
+import { FeedbackButton } from '@components/shared/buttons';
 
 const Wrapper = styled.section`
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
@@ -17,38 +22,41 @@ const Wrapper = styled.section`
   }
 `;
 
-const Message = styled.div`
-  background: ${({ theme }) => theme.colors.alert.danger};
-  color: white;
-  width: 100%;
-  height: 35px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 5px;
-  text-align: center;
-  font-size: 16px;
-`;
-
-const MessageCloseButton = styled.span`
-  position: absolute;
-  color: ${({ theme }) => theme.colors.baseinvert};
-  right: 15px;
-
-  :hover {
-    cursor: pointer;
-  }
-`;
-
 const ProjectGallery: React.FC = () => {
   const [projects, setProjects] = React.useState<Project[]>([]);
-  const [isError, setIsError] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string | null>('');
+  const [error, setError] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const setMessage = (message: string | null) => {
-    setIsError(message !== null && message !== '');
-    setError(message);
+  const [success, setSuccess] = React.useState<string | null>('');
+  const [feedback, setFeedback] = React.useState<string>('');
+  const [showFeedbackForm, setShowFeedbackForm] = React.useState<boolean>(
+    false,
+  );
+
+  const handleSendClick = async () => {
+    setError(null);
+
+    const api = ServiceResolver.apiResolver();
+
+    try {
+      const response = (await api.sendFeedback({ feedback })) as ApiResponse<
+        Feedback | ErrorResponse
+      >;
+
+      if (response.ok) {
+        setShowFeedbackForm(false);
+        setSuccess('Feedback sent successfully');
+      } else {
+        setError('Failed to send feedback');
+      }
+    } catch (err) {
+      setError('Failed to send feedback');
+    }
+  };
+
+  const handleCancelClick = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setShowFeedbackForm(false);
   };
 
   React.useEffect(() => {
@@ -65,9 +73,9 @@ const ProjectGallery: React.FC = () => {
             (project) => project.lookingForMembers == true,
           );
           setProjects(projectsLookingForMembers);
-        } else setMessage((response.data as ErrorResponse).message);
+        } else setError((response.data as ErrorResponse).message);
       } catch (err) {
-        setMessage('Failed to retrieve a list of projects');
+        setError('Failed to retrieve a list of projects');
       }
 
       setIsLoading(false);
@@ -78,18 +86,42 @@ const ProjectGallery: React.FC = () => {
 
   return (
     <Wrapper>
-      {isError && (
-        <Message>
-          {error}
-          <MessageCloseButton onClick={() => setMessage(null)}>
-            &#10006;
-          </MessageCloseButton>
-        </Message>
+      {success && (
+        <Alert type="success">
+          {success}{' '}
+          <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
+        </Alert>
       )}
+
+      {error && (
+        <Alert type="danger">
+          {error}{' '}
+          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+        </Alert>
+      )}
+
+      {showFeedbackForm ? (
+        <FeedbackForm
+          handleSendClick={handleSendClick}
+          handleCancelClick={handleCancelClick}
+          handleChange={(e: React.ChangeEvent) =>
+            setFeedback(e.target.nodeValue || '')
+          }
+          value={feedback}
+        />
+      ) : (
+        <FeedbackButton
+          active={false}
+          onClick={() => setShowFeedbackForm(!showFeedbackForm)}
+        >
+          💡 Got feedback?
+        </FeedbackButton>
+      )}
+
       {isLoading ? (
         <Loader />
       ) : (
-        <Panel content={projects} setMessage={setMessage} />
+        <Panel content={projects} setError={setError} />
       )}
     </Wrapper>
   );
