@@ -6,8 +6,7 @@ import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
 import { Loader } from '../shared';
-import { Alert } from '@components/shared';
-import { CloseButton } from '@components/shared/alerts';
+import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { FeedbackForm } from '@components/shared/form';
 import { Feedback } from '@/api/types/feedback';
 import { FeedbackButton } from '@components/shared/buttons';
@@ -87,17 +86,17 @@ const ProjectGallery: React.FC = () => {
   return (
     <Wrapper>
       {success && (
-        <Alert type="success">
+        <Ribbon type="success">
           {success}{' '}
           <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
-        </Alert>
+        </Ribbon>
       )}
 
       {error && (
-        <Alert type="danger">
+        <Ribbon type="danger">
           {error}{' '}
           <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Alert>
+        </Ribbon>
       )}
 
       {showFeedbackForm ? (
@@ -110,10 +109,7 @@ const ProjectGallery: React.FC = () => {
           value={feedback}
         />
       ) : (
-        <FeedbackButton
-          active={false}
-          onClick={() => setShowFeedbackForm(!showFeedbackForm)}
-        >
+        <FeedbackButton onClick={() => setShowFeedbackForm(true)}>
           💡 Got feedback?
         </FeedbackButton>
       )}

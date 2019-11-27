@@ -1,14 +1,17 @@
 import { Project } from '@/api/types/project';
 
-import { getProjects } from './responses';
-import { projectUser } from './responses';
-import { getProjectTypes } from './responses';
-import { validateUser } from './responses';
-import { feedback } from './responses';
+import {
+  getProjects,
+  projectUser,
+  getProjectTypes,
+  validateUser,
+  feedback,
+  createProject,
+} from './responses';
 
 export class MockApiService {
   public async createProject(project: Project) {
-    return {};
+    return createProject;
   }
 
   public async getProjectTypes() {

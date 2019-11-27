@@ -7,5 +7,5 @@ export { default as Seo } from './seo';
 export { default as SocialIcon } from './social-icon';
 export { default as SvgIcon } from './svg-icon';
 export { ErrorMessage, SuccessMessage } from './messages';
-export { Alert, CloseButton } from './alerts';
+export { Ribbon, CloseButton } from './ribbons';
 export * from './page';

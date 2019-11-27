@@ -1,15 +1,9 @@
-import { Button } from './button';
 import styled from 'styled-components';
+import { SecondaryButton } from './secondary-button';
 
-export const FeedbackButton = styled(Button)`
-  background: #e3e3e3;
-  color: black;
+export const FeedbackButton = styled(SecondaryButton)`
   position: absolute;
+  top: 150px;
   right: 75px;
-  top: 140px;
-  box-shadow: 0 0 3px gray;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.greyDark};
-  }
+  z-index: 999;
 `;

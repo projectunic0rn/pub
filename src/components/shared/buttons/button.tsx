@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-  active?: boolean;
+  right?: boolean;
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -12,7 +12,7 @@ export const Button = styled.button<ButtonProps>`
   border: none;
   transition: 0.15s;
   opacity: ${(props) => (props.disabled ? '0.75' : '1')};
-  align-items: right;
+  float: ${(props) => props.right && 'right'};
 
   @media (hover: hover) {
     &:hover {

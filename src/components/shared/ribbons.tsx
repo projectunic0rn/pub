@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import { theme } from '@styles';
 
-interface AlertProps {
+interface RibbonProps {
   type: string;
 }
 
-const alertColors: any = {
+const ribbonColors: any = {
   success: theme.colors.alert.success,
   danger: theme.colors.alert.danger,
 };
 
-export const Alert = styled.div`
-  background: ${(p: AlertProps) => alertColors[p.type]};
+export const Ribbon = styled.div`
+  background: ${(p: RibbonProps) => ribbonColors[p.type]};
   color: white;
   width: 100%;
   height: 35px;

@@ -17,13 +17,13 @@ import ServiceResolver from '@/api/service-resolver';
 import { Project } from '@/api/types/project';
 import { Tag, Item } from '@/api/types/stack-exchange';
 import { ProjectType } from '@/api/types/project-types';
-import { FormVal, Props } from '@/utils/form-validation';
+import { FormVal, Props } from '@utils/form-validation';
 import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ApiButton } from '../buttons';
-import { Alert, CloseButton } from '..';
+import { Ribbon, CloseButton } from '..';
 
 interface OptionType {
   label: string;
@@ -266,10 +266,10 @@ export const CreateProjectForm: React.FC = () => {
   return (
     <Wrapper>
       {error !== null && (
-        <Alert type="danger">
+        <Ribbon type="danger">
           {error}
           <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Alert>
+        </Ribbon>
       )}
       <FormWrapper>
         <Form heading={'Create a New Project'}>

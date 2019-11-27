@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextArea } from './controls';
 import styled from 'styled-components';
-import { CancelButton } from '../buttons';
 import { ApiButton } from '../buttons';
+import { SecondaryButton } from '../buttons/secondary-button';
 
 interface OwnProps {
   handleSendClick: Function;
@@ -15,14 +15,16 @@ const Feedback = styled.div`
   width: 400px;
   height: 200px;
   background: white;
+  position: fixed !important;
   color: gray;
-  border: 1px solid gray;
   box-shadow: 0 0 10px #eee;
+  border: 1px solid lightgray;
   padding: 5px;
   border-radius: 10px;
   position: absolute;
   right: 75px;
   z-index: 999;
+  flex-direction: row;
 `;
 
 const ButtonArea = styled.div`
@@ -35,6 +37,7 @@ const FeedbackFormTextArea = styled(TextArea)`
   outline: none;
   box-shadow: none;
   resize: none;
+  color: #aaa;
 `;
 
 export const FeedbackForm: React.FC<OwnProps> = ({
@@ -57,7 +60,12 @@ export const FeedbackForm: React.FC<OwnProps> = ({
         <ApiButton handleClick={handleSendClick} statusText="Sending...">
           Send
         </ApiButton>
-        <CancelButton onClick={handleCancelClick} />
+        <SecondaryButton
+          style={{ float: 'right' }}
+          onClick={(e: React.SyntheticEvent) => handleCancelClick(e)}
+        >
+          Cancel
+        </SecondaryButton>
       </ButtonArea>
     </Feedback>
   );

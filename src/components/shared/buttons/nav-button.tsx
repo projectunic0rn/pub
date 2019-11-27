@@ -21,7 +21,7 @@ const NavMenuButton = styled(Button)`
 
 const NavButton: React.FC<OwnProps> = ({ onClick, children }) => {
   return (
-    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')} active={true}>
+    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')}>
       {children}
     </NavMenuButton>
   );
