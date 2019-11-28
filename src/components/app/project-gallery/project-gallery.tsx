@@ -83,6 +83,10 @@ const ProjectGallery: React.FC = () => {
     fetchContent();
   }, []);
 
+  const handleDocumentClick = (e: any) => {
+    if (!e.target.className.includes('feedback')) setShowFeedbackForm(false);
+  };
+
   return (
     <Wrapper>
       {success && (
@@ -109,7 +113,12 @@ const ProjectGallery: React.FC = () => {
           value={feedback}
         />
       ) : (
-        <FeedbackButton onClick={() => setShowFeedbackForm(true)}>
+        <FeedbackButton
+          onClick={() => {
+            setShowFeedbackForm(true);
+            document.addEventListener('click', (e) => handleDocumentClick(e));
+          }}
+        >
           💡 Got feedback?
         </FeedbackButton>
       )}
