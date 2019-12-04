@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from '@components/app/shared';
+import { Button } from '@components/shared/buttons';
 
 interface OwnProps {
   onClick?: Function;
@@ -21,7 +21,7 @@ const NavMenuButton = styled(Button)`
 
 const NavButton: React.FC<OwnProps> = ({ onClick, children }) => {
   return (
-    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')} active={true}>
+    <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')}>
       {children}
     </NavMenuButton>
   );

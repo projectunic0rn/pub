@@ -27,9 +27,11 @@ const colors = {
   greyDark: constants.greyDark,
   button: {
     /** Button color */
-    secondary: constants.pinkLight,
+    active: constants.pinkLight,
     /** Button active color */
-    secondaryHighlight: constants.pinkMedium,
+    activeHighlight: constants.pinkMedium,
+    secondary: constants.greyLightSecondary,
+    secondaryHighlight: constants.greyLight,
   },
   input: {
     /* Input error background color */
@@ -37,6 +39,7 @@ const colors = {
   },
   alert: {
     danger: constants.red,
+    success: constants.greenLight,
   },
 };
 

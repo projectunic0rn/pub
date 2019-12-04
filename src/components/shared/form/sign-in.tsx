@@ -11,11 +11,11 @@ import {
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
 import { useState } from 'react';
-import { Button } from '@components/app/shared';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { SessionStorageHelper } from '@/helpers';
 import { JwtToken } from '@/api/types/jwt-token';
+import { ApiButton } from '../buttons/api-button';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -50,7 +50,6 @@ export const SignInForm: React.FC<SignInFormProps> = ({ location }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
-  const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
 
   React.useEffect(() => {
     if (location.state !== null) {
@@ -58,8 +57,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ location }) => {
     }
   }, [location.state]);
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handleClick = async () => {
     const auth = ServiceResolver.authResolver();
 
     if (email === '' || password === '') {
@@ -67,35 +65,26 @@ export const SignInForm: React.FC<SignInFormProps> = ({ location }) => {
       return;
     }
 
-    if (!isSigningIn) {
-      setIsSigningIn(true);
+    try {
+      const response = (await auth.signIn({
+        email,
+        password,
+      })) as ApiResponse<JwtToken | ErrorResponse>;
 
-      try {
-        const response = (await auth.signIn({
-          email,
-          password,
-        })) as ApiResponse<JwtToken | ErrorResponse>;
-
-        if (response.ok) {
-          SessionStorageHelper.storeJwt(response.data as JwtToken);
-          navigate('/app/projects/');
-        } else {
-          setMessage((response.data as ErrorResponse).message);
-        }
-      } catch (err) {
-        setMessage('Invalid email or password');
+      if (response.ok) {
+        SessionStorageHelper.storeJwt(response.data as JwtToken);
+        navigate('/app/projects/');
+      } else {
+        setMessage((response.data as ErrorResponse).message);
       }
-
-      setIsSigningIn(false);
+    } catch (err) {
+      setMessage('Invalid email or password');
     }
   };
 
   return (
     <Wrapper>
-      <Form
-        heading={`Sign In To ${siteMetadata.title}`}
-        handleSubmit={handleSubmit}
-      >
+      <Form heading={`Sign In To ${siteMetadata.title}`}>
         {message && <Error>{message}</Error>}
         <FormLabel htmlFor="email-signin">Email</FormLabel>
         <FormInput
@@ -124,9 +113,9 @@ export const SignInForm: React.FC<SignInFormProps> = ({ location }) => {
         </LinkWrapper>
 
         <ButtonWrapper>
-          <Button active={false} disabled={isSigningIn}>
+          <ApiButton handleClick={handleClick} statusText="Signing In...">
             Sign In
-          </Button>
+          </ApiButton>
         </ButtonWrapper>
       </Form>
     </Wrapper>

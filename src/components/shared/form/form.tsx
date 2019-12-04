@@ -9,14 +9,19 @@ const FormElement = styled.form`
 `;
 
 interface Props {
-  heading: string;
-  handleSubmit: Function;
+  heading?: string;
+  handleSubmit?: Function;
 }
 
 export const Form: React.FC<Props> = ({ handleSubmit, heading, children }) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit && handleSubmit(e);
+  };
+
   return (
     <FormElement
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleFormSubmit(e)}
     >
       <Heading>{heading}</Heading>
       {children}

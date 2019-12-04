@@ -12,11 +12,11 @@ import { useState } from 'react';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { UserValidation } from '@/api/types/user-validation';
-import { Button } from '@components/app/shared';
 import { JwtToken } from '@/api/types/jwt-token';
 import { SessionStorageHelper } from '@/helpers';
 import { FormVal } from '@/utils/form-validation';
 import { Username } from '@/api/types/username';
+import { ApiButton } from '../buttons/api-button';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -79,8 +79,7 @@ export const SignUpForm: React.FC = () => {
     setFormInputs({ ...state });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleClick = async () => {
     const auth = ServiceResolver.authResolver();
     const errors = validation.userSignUp(formInputs);
 
@@ -169,7 +168,7 @@ export const SignUpForm: React.FC = () => {
 
   return (
     <Wrapper>
-      <Form heading={`Sign Up`} handleSubmit={handleSubmit}>
+      <Form heading={`Sign Up`}>
         {formErrors && <Error>{displayErrorMessages()}</Error>}
         {message && <Error>{message}</Error>}
         <FormLabel htmlFor="email">Email</FormLabel>
@@ -221,7 +220,9 @@ export const SignUpForm: React.FC = () => {
         </LinkWrapper>
 
         <ButtonWrapper>
-          <Button active={false}>Sign Up</Button>
+          <ApiButton handleClick={handleClick} statusText="Signing Up...">
+            Sign Up
+          </ApiButton>
         </ButtonWrapper>
       </Form>
     </Wrapper>

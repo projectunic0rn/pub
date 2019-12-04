@@ -63,7 +63,7 @@ const TextAreaWrapper = styled.div`
   position: relative;
 `;
 
-const TextArea = styled.textarea<FormTextAreaProps>`
+export const TextArea = styled.textarea<FormTextAreaProps>`
   width: 100%;
   padding: 0.425em;
   border-radius: 3px;
@@ -139,6 +139,7 @@ interface FormTextAreaProps {
   onChange: Function;
   onBlur: Function;
   value: string;
+  placeholder?: string;
   displayCharCount?: boolean;
   maxCharCount?: number;
   name: string;
@@ -149,6 +150,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   onChange,
   onBlur,
   value,
+  placeholder,
   displayCharCount,
   maxCharCount,
   name,
@@ -165,6 +167,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
       <TextArea
         onChange={(e) => onChange(e, checkLength(e))}
         value={value}
+        placeholder={placeholder}
         name={name}
         onBlur={(e) => onBlur(e)}
         hasError={hasError}

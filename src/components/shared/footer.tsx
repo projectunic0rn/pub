@@ -12,7 +12,7 @@ import {
 } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled, { css } from 'styled-components';
-import { Button } from '@components/app/shared';
+import { Button } from '@components/shared/buttons';
 
 const Wrapper = styled.footer`
   background: ${({ theme }) => theme.colors.base};
@@ -209,7 +209,7 @@ const Footer: React.FC = () => {
             onChange={handleInputChange}
             value={email}
           />
-          <Button active={false}>Subscribe</Button>
+          <Button>Subscribe</Button>
           {formResponse}
         </Form>
         <SocialWrapper>

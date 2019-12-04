@@ -6,7 +6,7 @@ import { Project } from '@/api/types/project';
 
 interface PanelProps {
   content: Project[];
-  setMessage: Function;
+  setError: Function;
 }
 
 const Wrapper = styled.div`
@@ -15,10 +15,10 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Panel: React.FC<PanelProps> = ({ content = [], setMessage }) => (
+const Panel: React.FC<PanelProps> = ({ content = [], setError }) => (
   <Wrapper>
     {content.map((v) => (
-      <Card key={v.name} content={v} setMessage={setMessage} />
+      <Card key={v.name} content={v} setError={setError} />
     ))}
   </Wrapper>
 );

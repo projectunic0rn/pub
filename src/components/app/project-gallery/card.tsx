@@ -3,7 +3,7 @@ import * as React from 'react';
 import CardPill from './card-pill';
 import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
-import { ProjectButton } from '../buttons';
+import { ProjectButton } from '@components/shared/buttons';
 import { Project } from '@/api/types/project';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { ProjectUser } from '@/api/types/project-user';
@@ -14,7 +14,7 @@ import ServiceResolver from '@/api/service-resolver';
 
 interface CardProps {
   content: Project;
-  setMessage: Function;
+  setError: Function;
 }
 
 const Wrapper = styled.div`
@@ -63,11 +63,8 @@ const Break = styled.span`
   margin: 100px;
 `;
 
-const Card: React.FC<CardProps> = ({ content, setMessage }) => {
+const Card: React.FC<CardProps> = ({ content, setError }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
-    false,
-  );
-  const [hasRequestBeenMade, setHasRequestBeenMade] = React.useState<boolean>(
     false,
   );
 
@@ -107,9 +104,19 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     return tech.map((t) => t.name).join(', ');
   };
 
+  const redirectToSignIn = () => {
+    navigate('/signin', {
+      state: { message: 'You need to be signed in to join a project' },
+    });
+  };
+
   const leaveProject = async (project: Project) => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      redirectToSignIn();
+      return;
+    }
+
     const api = ServiceResolver.apiResolver();
-    setHasRequestBeenMade(true);
 
     const projectUser = project.projectUsers.find(
       (u) => u.userId === userId,
@@ -127,15 +134,17 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     if (response.ok) {
       setHasMemberJoinedProject(!hasMemberJoinedProject);
     } else {
-      setMessage((response.data as ErrorResponse).message);
+      setError((response.data as ErrorResponse).message);
     }
-
-    setHasRequestBeenMade(false);
   };
 
   const joinProject = async (project: Project) => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      redirectToSignIn();
+      return;
+    }
+
     const api = ServiceResolver.apiResolver();
-    setHasRequestBeenMade(true);
     const joinProjectResponseBody: ProjectUser = {
       projectId: project.id as string,
       isOwner: false,
@@ -155,30 +164,7 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
     if (response.ok) {
       setHasMemberJoinedProject(!hasMemberJoinedProject);
     } else {
-      setMessage((response.data as ErrorResponse).message);
-    }
-
-    setHasRequestBeenMade(false);
-  };
-
-  const handleClick = async (project: Project) => {
-    if (!UserAuthHelper.isUserAuthenticated()) {
-      navigate('/signin', {
-        state: { message: 'You need to be signed in to join a project' },
-      });
-      return;
-    }
-
-    if (!hasRequestBeenMade) {
-      try {
-        if (hasMemberJoinedProject) {
-          leaveProject(project);
-        } else {
-          joinProject(project);
-        }
-      } catch (err) {
-        setMessage('Unable to perform the requested action at this time');
-      }
+      setError((response.data as ErrorResponse).message);
     }
   };
 
@@ -241,10 +227,13 @@ const Card: React.FC<CardProps> = ({ content, setMessage }) => {
       <Break>&nbsp;</Break>
       <br />
       <br />
+
       <ProjectButton
-        onClick={() => handleClick(content)}
-        active={hasMemberJoinedProject}
-        disabled={hasRequestBeenMade}
+        handleClick={() =>
+          hasMemberJoinedProject ? leaveProject(content) : joinProject(content)
+        }
+        statusText={hasMemberJoinedProject ? 'Leaving...' : 'Joining...'}
+        joined={hasMemberJoinedProject}
       >
         {hasMemberJoinedProject ? 'Leave' : 'Join'}
       </ProjectButton>
