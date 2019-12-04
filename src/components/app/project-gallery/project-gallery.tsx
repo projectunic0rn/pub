@@ -38,9 +38,9 @@ const ProjectGallery: React.FC = () => {
     const api = ServiceResolver.apiResolver();
 
     try {
-      const response = (await api.sendFeedback({ feedback })) as ApiResponse<
-        Feedback | ErrorResponse
-      >;
+      const response = (await api.sendFeedback({
+        content: feedback,
+      })) as ApiResponse<Feedback | ErrorResponse>;
 
       if (response.ok) {
         setShowFeedbackForm(false);
