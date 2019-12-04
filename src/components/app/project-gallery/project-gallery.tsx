@@ -45,6 +45,7 @@ const ProjectGallery: React.FC = () => {
       if (response.ok) {
         setShowFeedbackForm(false);
         setSuccess('Feedback sent successfully');
+        setFeedback('');
       } else {
         setError('Failed to send feedback');
       }
