@@ -1,3 +1,3 @@
 export interface Feedback {
-  feedback: string;
+  content: string;
 }
