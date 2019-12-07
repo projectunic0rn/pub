@@ -50,7 +50,7 @@ module.exports = Object.freeze({
       /** The website's Facebook username, */
       facebook: '',
       /** The website's Instagram username. */
-      instagram: 'projectunicorn1',
+      instagram: 'projectunic0rn',
       /** The website's Twitter username. */
       twitter: '@projectunicorn2',
       /** The website's LinkedIn username. */
