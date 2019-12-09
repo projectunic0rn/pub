@@ -5,5 +5,5 @@ export const FeedbackButton = styled(SecondaryButton)`
   position: absolute;
   top: 150px;
   right: 75px;
-  z-index: 999;
+  z-index: 1;
 `;

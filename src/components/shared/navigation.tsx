@@ -101,6 +101,7 @@ const NavMenuItem = styled.li`
 const NavMobile = styled.div`
   padding: 3rem;
   outline: none;
+  z-index: 999;
 `;
 
 const NavLogoMobile = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
@@ -112,6 +113,7 @@ const NavLogoMobile = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
 const NavMenuMobile = styled.ul`
   margin: 4rem 0 0 0;
   list-style: none;
+  z-index: 999;
 `;
 
 const NavMenuItemMobile = styled.li`

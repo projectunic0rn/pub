@@ -12,8 +12,8 @@ interface OwnProps {
 }
 
 const Feedback = styled.div`
-  width: 400px;
-  height: 200px;
+  max-width: 400px;
+  max-height: 200px;
   background: white;
   position: fixed !important;
   color: gray;
@@ -23,7 +23,7 @@ const Feedback = styled.div`
   border-radius: 10px;
   position: absolute;
   right: 75px;
-  z-index: 999;
+  z-index: 2;
   flex-direction: row;
 `;
 
