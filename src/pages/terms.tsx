@@ -44,8 +44,8 @@ const TermsPage: React.FC = () => {
           <p>
             If you have any questions about this terms and conditions, please
             contact us at{' '}
-            <a href="mailto:projectunicorn10@gmail.com">
-              projectunicorn10@gmail.com
+            <a href={`mailto:${siteMetadata.contactEmail}`}>
+              {siteMetadata.contactEmail}
             </a>
             .
           </p>

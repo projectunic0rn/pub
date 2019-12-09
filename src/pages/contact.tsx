@@ -26,8 +26,8 @@ const ContactPage: React.FC = () => {
           <p>
             If you have any questions or would like to share any feedback, write
             us an email at&nbsp;
-            <a href="mailto:projectunicorn10@gmail.com">
-              projectunicorn10@gmail.com
+            <a href={`mailto:${siteMetadata.contactEmail}`}>
+              {siteMetadata.contactEmail}
             </a>
             .
           </p>
