@@ -45,6 +45,8 @@ module.exports = Object.freeze({
     /** The url of the app. */
     appUrl: 'https://projectunicorn.net/app',
     logo: path.resolve(__dirname, 'src/images/logo.png'),
+    /*Email displayed on static pages */
+    contactEmail: 'team@projectunicorn.dev',
     /** Contains the project's social handles. */
     social: {
       /** The website's Facebook username, */
