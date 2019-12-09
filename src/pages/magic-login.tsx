@@ -42,6 +42,7 @@ const MagicLoginPage: React.FC = () => {
         }
       } catch (err) {
         // TODO: Log error
+        setMessage('Invalid credentials');
       }
     }, 600);
   };
