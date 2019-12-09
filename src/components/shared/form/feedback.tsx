@@ -12,8 +12,8 @@ interface OwnProps {
 }
 
 const Feedback = styled.div`
-  max-width: 400px;
-  max-height: 200px;
+  width: 400px;
+  height: 200px;
   background: white;
   position: fixed !important;
   color: gray;
@@ -25,6 +25,11 @@ const Feedback = styled.div`
   right: 75px;
   z-index: 2;
   flex-direction: row;
+
+  @media screen and (max-width: 520px) {
+    width: 300px;
+    right: 8vw;
+  }
 `;
 
 const ButtonArea = styled.div`
