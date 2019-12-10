@@ -13,6 +13,8 @@ export interface SiteMetadata {
   appUrl: string;
   /*Email displayed on static pages */
   contactEmail: string;
+  /* Contact email for Roy */
+  royEmail: string;
   /** Contains the project's social handles. */
   social: {
     /** The website's Facebook username, */
@@ -48,6 +50,7 @@ const siteMetadataQuery = graphql`
         siteUrl
         appUrl
         contactEmail
+        royEmail
         social {
           facebook
           instagram

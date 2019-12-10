@@ -161,6 +161,14 @@ const Footer: React.FC = () => {
             </StyledLink>
           </ListItem>
           <ListItem>
+            <StyledLink
+              to="/sponsor"
+              title={`${siteMetadata.title} sponsor page`}
+            >
+              Sponsor
+            </StyledLink>
+          </ListItem>
+          <ListItem>
             <StyledLink to="/blog" title={`${siteMetadata.title} blog`}>
               Blog
             </StyledLink>

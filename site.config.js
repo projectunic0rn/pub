@@ -47,6 +47,8 @@ module.exports = Object.freeze({
     logo: path.resolve(__dirname, 'src/images/logo.png'),
     /*Email displayed on static pages */
     contactEmail: 'team@projectunicorn.dev',
+    /*Email displayed on static pages */
+    royEmail: 'roy.moran@projectunicorn.dev',
     /** Contains the project's social handles. */
     social: {
       /** The website's Facebook username, */
