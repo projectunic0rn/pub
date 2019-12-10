@@ -37,5 +37,6 @@
 <url> <loc>https://projectunicorn.net/privacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/signin/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/signup/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/sponsor/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/terms/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
