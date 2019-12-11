@@ -38,7 +38,9 @@ const SponsorPage: React.FC = () => {
             <a href={`mailto:${siteMetadata.royEmail}`}>
               {siteMetadata.royEmail}
             </a>
-            .
+            . Sponsorships are one of the ways Project Unicorn helps support
+            operational costs while providing value to engineers with highly
+            relevant opportunities.
           </p>
         </PageBody>
       </Container>
