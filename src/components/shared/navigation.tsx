@@ -217,7 +217,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                 {userAuthenticated && (
                   <NavMenuItemMobile>
                     <NavButton dataTestId="signout" onClick={handleSignOut}>
-                      Sign Out!
+                      Sign Out
                     </NavButton>
                   </NavMenuItemMobile>
                 )}
@@ -265,7 +265,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
             {userAuthenticated && (
               <NavMenuItem>
                 <NavButton dataTestId="signout" onClick={handleSignOut}>
-                  Sign Out!
+                  Sign Out
                 </NavButton>
               </NavMenuItem>
             )}
