@@ -101,7 +101,7 @@ describe('Navigation Bar', () => {
       </ThemeProvider>,
     );
 
-    expect(getByTestId('Blog')).toHaveAttribute('href', '/blogd');
+    expect(getByTestId('Blog')).toHaveAttribute('href', '/blog');
   });
 
   test('Projects link is being rendered', () => {
@@ -127,7 +127,7 @@ describe('Navigation Bar', () => {
     ** I am using React-Testing-Library's query selectors (getByTestId, getByPlaceholderText, debug) to select our DOM elements.
     */
 
-    const { getByTestId, getByPlaceholderText, debug } = render(
+    const { getByTestId, getByPlaceholderText } = render(
       <ThemeProvider theme={theme}>
         <SignInPage location={{ state: { message: 'HELLO!' } }} />
       </ThemeProvider>,

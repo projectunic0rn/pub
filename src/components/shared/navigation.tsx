@@ -7,7 +7,6 @@ import { puLogo } from '@images';
 import { Link } from 'gatsby';
 import NavButton from './buttons/nav-button';
 import dotIcon from '@images/dot.png';
-import { useSiteMetadata } from '@hooks';
 import { slide as Menu } from 'react-burger-menu';
 import HamburgerMenuStyles from '@/styles/hamburger-menu';
 
@@ -148,7 +147,6 @@ const handleSignOut = () => {
 };
 
 const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
-  const siteMetadata = useSiteMetadata();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
   const [userAuthenticated, isUserAuthenticated] = useState<boolean>(false);
 
