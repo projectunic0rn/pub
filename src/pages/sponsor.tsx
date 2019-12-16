@@ -30,11 +30,11 @@ const SponsorPage: React.FC = () => {
             practitioners that build applications from idea to production with
             many of the developers experienced in working across the stack,
             developing for various platforms, and deploying to multiple cloud
-            platforms.
+            environments.
           </p>
           <p>
             If you would like to reach engineers with your product/service or
-            hiring opportunity reach out to me directly at&nbsp;
+            hiring opportunity get in touch with me directly at&nbsp;
             <a href={`mailto:${siteMetadata.royEmail}`}>
               {siteMetadata.royEmail}
             </a>
