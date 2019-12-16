@@ -110,6 +110,22 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: manifestOptions,
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: siteMetadata.siteUrl,
+        sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
+        resolveEnv: () => process.env.GATSBY_ACTIVE_ENV || 'next',
+        env: {
+          next: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          release: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+        },
+      },
+    },
     'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-google-analytics',
