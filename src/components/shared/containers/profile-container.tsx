@@ -1,14 +1,7 @@
 import React from 'react';
 import { BaseContainer } from './base-container';
-import { Link } from 'gatsby';
-import { Button } from '../buttons';
 import DefaultImage from '@images/default-avatar-image.png';
-import {
-  ContainerSidePanel,
-  Summary,
-  ButtonContainer,
-  Image,
-} from '../side-panels';
+import { ContainerSidePanel, Summary, Image } from '../side-panels';
 import { MainContent } from './main-content';
 import { FormLabel } from '../form';
 import { User } from '@/api/types/user';
@@ -16,7 +9,6 @@ import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { Loader } from '@components/shared';
 import { Ribbon, CloseButton, TechPill } from '..';
-import { UserAuthHelper } from '@/helpers';
 import { Wrapper } from '../page';
 
 interface ProfileContainerProps {
@@ -71,14 +63,6 @@ export const ProfileContainer: React.FC<ProfileContainerProps> = ({ id }) => {
               <Image src={DefaultImage} />
               <Summary>{user && user.username}</Summary>
             </Summary>
-            {UserAuthHelper.isUserAuthenticated() &&
-              UserAuthHelper.getUserId() === id && (
-                <ButtonContainer>
-                  <Link to="/settings">
-                    <Button>Edit Profile</Button>
-                  </Link>
-                </ButtonContainer>
-              )}
           </ContainerSidePanel>
           <MainContent>
             <FormLabel>Bio</FormLabel>
