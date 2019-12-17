@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const CardPillWrapper = styled.div`
   color: ${({ theme }) => theme.colors.baseinvert};
   border-radius: 0.3125em;
   font-size: 0.7em;
@@ -47,8 +47,25 @@ interface CardPillProps {
   title?: string;
 }
 
-const CardPill: React.FC<CardPillProps> = ({ children, title }) => (
-  <Wrapper title={title}>{children}</Wrapper>
+export const CardPill: React.FC<CardPillProps> = ({ children, title }) => (
+  <CardPillWrapper title={title}>{children}</CardPillWrapper>
 );
 
-export default CardPill;
+export const TechPill = styled.span`
+  background: ${({ theme }) => theme.colors.highlight};
+  color: ${({ theme }) => theme.colors.baseinvert};
+  border-radius: 0.3125em;
+  font-size: 0.7em;
+  display: inline-block;
+  padding: 0.4em 1.25em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+
+  :hover {
+    cursor: default;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-top: 5px;
+  }
+`;

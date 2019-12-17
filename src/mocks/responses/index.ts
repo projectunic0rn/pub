@@ -4,3 +4,4 @@ export { feedback } from './feedback';
 export { validateUser } from './validate-user';
 export { getProjectTypes } from './get-project-types';
 export { createProject } from './create-project';
+export { user } from './user';

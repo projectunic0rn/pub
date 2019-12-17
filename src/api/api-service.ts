@@ -71,4 +71,11 @@ export class ApiService {
       feedback,
     );
   }
+
+  public async getUser(id: string) {
+    return await HttpClient.get(
+      `${this.apiEndpoint}/users/${id}`,
+      this.headers,
+    );
+  }
 }

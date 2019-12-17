@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Loader = styled.span`
+export const Loader = styled.span`
   border: 6px solid ${({ theme }) => theme.colors.highlightDark};
   border-radius: 100%;
   border-top: 6px solid ${({ theme }) => theme.colors.highlight};
@@ -31,5 +31,3 @@ const Loader = styled.span`
     }
   }
 `;
-
-export default Loader;

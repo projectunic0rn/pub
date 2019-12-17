@@ -1,25 +1,14 @@
 import * as React from 'react';
 
 import Panel from './panel';
-import styled from 'styled-components';
 import { Project } from '@/api/types/project';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import ServiceResolver from '@/api/service-resolver';
-import { Loader } from '../shared';
+import { Loader, Wrapper } from '@components/shared';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { FeedbackForm } from '@components/shared/form';
 import { Feedback } from '@/api/types/feedback';
 import { FeedbackButton } from '@components/shared/buttons';
-
-const Wrapper = styled.section`
-  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
-  width: 100%;
-  min-height: 50vh;
-
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
-    padding: ${({ theme }) => theme.boxes.padding.section.small};
-  }
-`;
 
 const ProjectGallery: React.FC = () => {
   const [projects, setProjects] = React.useState<Project[]>([]);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import CardPill from './card-pill';
+import { CardPill } from '@components/shared';
 import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '@components/shared/buttons';
@@ -11,6 +11,7 @@ import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { navigate } from 'gatsby';
 import ServiceResolver from '@/api/service-resolver';
+import { TechPill } from '@components/shared';
 
 interface CardProps {
   content: Project;
@@ -39,24 +40,6 @@ const Title = styled.h3`
 const Description = styled.p`
   margin: 1em 0 1em 0;
   font-size: 16px;
-`;
-
-const Tech = styled.span`
-  background: white;
-  color: black;
-  border-radius: 0.3125em;
-  font-size: 0.7em;
-  display: inline-block;
-  padding: 0.2em 0.625em;
-  margin-right: 0.5em;
-
-  :hover {
-    cursor: default;
-  }
-
-  @media screen and (max-width: 480px) {
-    margin-top: 5px;
-  }
 `;
 
 const Break = styled.span`
@@ -90,7 +73,7 @@ const Card: React.FC<CardProps> = ({ content, setError }) => {
   const getTech = (tech: ProjectTechnology[]) => {
     return {
       displayable: tech.map((v, i) => {
-        if (i < 5) return <Tech key={i}>{v.name}</Tech>;
+        if (i < 5) return <TechPill key={i}>{v.name}</TechPill>;
       }),
       other: tech.length > 5 && tech.slice(5, tech.length),
     };
@@ -222,7 +205,9 @@ const Card: React.FC<CardProps> = ({ content, setError }) => {
       <Description>{content.description}</Description>
       {tech.displayable}
       {tech.other && (
-        <Tech title={getTechList(tech.other)}>+{tech.other.length}</Tech>
+        <TechPill title={getTechList(tech.other)}>
+          +{tech.other.length}
+        </TechPill>
       )}
       <Break>&nbsp;</Break>
       <br />

@@ -7,6 +7,7 @@ import {
   validateUser,
   feedback,
   createProject,
+  user,
 } from './responses';
 
 export class MockApiService {
@@ -36,5 +37,9 @@ export class MockApiService {
 
   public async sendFeedback() {
     return feedback;
+  }
+
+  public async getUser(id: string) {
+    return user;
   }
 }
