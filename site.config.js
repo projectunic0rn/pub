@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: `.env.${process.env.GATSBY_ACTIVE_ENV || 'next'}`,
+});
 
 const path = require('path');
 
@@ -19,7 +21,7 @@ Object.entries(requiredKeys).forEach(([k, v]) => {
 module.exports = Object.freeze({
   ...requiredKeys,
   /** Used by Gatsby when creating production build of the website. */
-  pathPrefix: '/',
+  pathPrefix: process.env.BUILD_PATH_PREFIX,
   /** Number of posts to be shown on the first page of the blog index page. */
   postsPerFirstPage: 6,
   /** Number of posts to be shown on next blog post list pages. */
@@ -41,9 +43,9 @@ module.exports = Object.freeze({
     description:
       'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
     /** The url of the website. */
-    siteUrl: 'https://projectunicorn.net',
+    siteUrl: process.env.BUILD_SITE_URL,
     /** The url of the app. */
-    appUrl: 'https://projectunicorn.net/app',
+    appUrl: process.env.BUILD_APP_URL,
     logo: path.resolve(__dirname, 'src/images/logo.png'),
     /*Email displayed on static pages */
     contactEmail: 'team@projectunicorn.dev',
