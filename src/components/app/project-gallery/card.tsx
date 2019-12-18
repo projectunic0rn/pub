@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { CardPill } from '@components/shared';
 import styled from 'styled-components';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '@components/shared/buttons';
@@ -11,7 +10,7 @@ import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { navigate } from 'gatsby';
 import ServiceResolver from '@/api/service-resolver';
-import { TechPill } from '@components/shared';
+import { CardTechPill, CardUsernamePill } from '@components/shared';
 
 interface CardProps {
   content: Project;
@@ -64,7 +63,8 @@ const Card: React.FC<CardProps> = ({ content, setError }) => {
   const getMembers = (members: ProjectUser[]) => {
     return {
       displayable: members.map((v, i) => {
-        if (i < 5) return <CardPill key={i}>{v.username}</CardPill>;
+        if (i < 5)
+          return <CardUsernamePill key={i}>{v.username}</CardUsernamePill>;
       }),
       other: members.length > 5 && members.slice(5, members.length),
     };
@@ -73,7 +73,7 @@ const Card: React.FC<CardProps> = ({ content, setError }) => {
   const getTech = (tech: ProjectTechnology[]) => {
     return {
       displayable: tech.map((v, i) => {
-        if (i < 5) return <TechPill key={i}>{v.name}</TechPill>;
+        if (i < 5) return <CardTechPill key={i}>{v.name}</CardTechPill>;
       }),
       other: tech.length > 5 && tech.slice(5, tech.length),
     };
@@ -198,16 +198,16 @@ const Card: React.FC<CardProps> = ({ content, setError }) => {
       </Title>
       {members.displayable}
       {members.other && (
-        <CardPill title={getMemberList(members.other)}>
+        <CardUsernamePill title={getMemberList(members.other)}>
           +{members.other.length}
-        </CardPill>
+        </CardUsernamePill>
       )}
       <Description>{content.description}</Description>
       {tech.displayable}
       {tech.other && (
-        <TechPill title={getTechList(tech.other)}>
+        <CardTechPill title={getTechList(tech.other)}>
           +{tech.other.length}
-        </TechPill>
+        </CardTechPill>
       )}
       <Break>&nbsp;</Break>
       <br />

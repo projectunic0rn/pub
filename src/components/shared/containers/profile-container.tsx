@@ -8,7 +8,7 @@ import { User } from '@/api/types/user';
 import ServiceResolver from '@/api/service-resolver';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { Loader } from '@components/shared';
-import { Ribbon, CloseButton, TechPill } from '..';
+import { Ribbon, CloseButton, ProfileTechPill } from '..';
 import { Wrapper } from '../page';
 
 interface ProfileContainerProps {
@@ -72,7 +72,9 @@ export const ProfileContainer: React.FC<ProfileContainerProps> = ({ id }) => {
             <FormLabel>Technologies</FormLabel>
             <br />
             {user &&
-              user.technologies.map((t) => <TechPill key={t}>{t}</TechPill>)}
+              user.technologies.map((t) => (
+                <ProfileTechPill key={t}>{t}</ProfileTechPill>
+              ))}
           </MainContent>
         </BaseContainer>
       )}

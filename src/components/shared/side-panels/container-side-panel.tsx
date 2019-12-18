@@ -13,8 +13,8 @@ export const Summary = styled.div`
 `;
 
 export const Image = styled.img`
-  max-width: 128px;
-  max-height: 128px;
+  width: 128px;
+  height: auto;
   border-radius: 100px;
   margin-bottom: 0;
 `;

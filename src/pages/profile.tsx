@@ -9,14 +9,18 @@ import { navigate } from 'gatsby';
 const ProfilePage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
-  if (location.pathname === '/profile') {
-    if (UserAuthHelper.isUserAuthenticated()) {
-      const userId = UserAuthHelper.getUserId();
-      navigate(`/profile/${userId}`);
-    } else {
-      navigate('/404');
+  React.useEffect(() => {
+    if (location.pathname === '/profile/') {
+      if (UserAuthHelper.isUserAuthenticated()) {
+        const userId = UserAuthHelper.getUserId();
+        navigate(`/profile/${userId}`);
+      } else {
+        navigate('/signin', {
+          state: { message: 'You need to be signed in' },
+        });
+      }
     }
-  }
+  }, []);
 
   return (
     <Layout>

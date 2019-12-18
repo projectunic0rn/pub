@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const CardPillWrapper = styled.div`
+const CardUsernamePillWrapper = styled.div`
   color: ${({ theme }) => theme.colors.baseinvert};
   border-radius: 0.3125em;
   font-size: 0.7em;
@@ -43,21 +43,21 @@ const CardPillWrapper = styled.div`
   }
 `;
 
-interface CardPillProps {
+interface CardUsernamePillProps {
   title?: string;
 }
 
-export const CardPill: React.FC<CardPillProps> = ({ children, title }) => (
-  <CardPillWrapper title={title}>{children}</CardPillWrapper>
+export const CardUsernamePill: React.FC<CardUsernamePillProps> = ({
+  children,
+  title,
+}) => (
+  <CardUsernamePillWrapper title={title}>{children}</CardUsernamePillWrapper>
 );
 
-export const TechPill = styled.span`
-  background: ${({ theme }) => theme.colors.highlight};
-  color: ${({ theme }) => theme.colors.baseinvert};
+const TechPill = styled.span`
   border-radius: 0.3125em;
   font-size: 0.7em;
   display: inline-block;
-  padding: 0.4em 1.25em;
   margin-right: 0.5em;
   margin-bottom: 0.5em;
 
@@ -68,4 +68,16 @@ export const TechPill = styled.span`
   @media screen and (max-width: 480px) {
     margin-top: 5px;
   }
+`;
+
+export const CardTechPill = styled(TechPill)`
+  background: ${({ theme }) => theme.colors.baseinvert};
+  color: ${({ theme }) => theme.colors.base};
+  padding: 0.2em 0.625em;
+`;
+
+export const ProfileTechPill = styled(TechPill)`
+  background: ${({ theme }) => theme.colors.highlight};
+  color: ${({ theme }) => theme.colors.baseinvert};
+  padding: 0.4em 1.25em;
 `;
