@@ -8,4 +8,6 @@ export { default as SocialIcon } from './social-icon';
 export { default as SvgIcon } from './svg-icon';
 export { ErrorMessage, SuccessMessage } from './messages';
 export { Ribbon, CloseButton } from './ribbons';
+export { CardUsernamePill, CardTechPill, ProfileTechPill } from './pills';
+export { Loader } from './loader';
 export * from './page';
