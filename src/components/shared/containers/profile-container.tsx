@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseContainer } from './base-container';
-import DefaultImage from '@images/default-avatar-image.png';
+import DefaultImage from '@images/default.png';
 import { ContainerSidePanel, Summary, Image } from '../side-panels';
 import { MainContent } from './main-content';
 import { FormLabel } from '../form';
@@ -60,7 +60,7 @@ export const ProfileContainer: React.FC<ProfileContainerProps> = ({ id }) => {
         <BaseContainer>
           <ContainerSidePanel style={{ padding: '20px ' }}>
             <Summary>
-              <Image src={DefaultImage} />
+              <Image src={(user && user.profilePictureUrl) || DefaultImage} />
               <Summary>{user && user.username}</Summary>
             </Summary>
           </ContainerSidePanel>

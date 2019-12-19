@@ -6,7 +6,7 @@ export const user: ApiResponse<User> = {
   data: {
     id: '04200724-b54c-4fc1-84c7-187475f2f68d',
     username: 'unicorn92',
-    profileImageUrl: 'https://github.com',
+    profilePictureUrl: '',
     bio:
       'I am a specialized unicorn developer who is well experienced in HTML, CSS, Python, PHP, React, JavaScript, and TypeScript. I am open to learning new tech and languages.',
     technologies: [
