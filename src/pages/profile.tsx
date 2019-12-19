@@ -27,7 +27,7 @@ const ProfilePage: React.FC = () => {
       <Seo
         title={`Profile`}
         description={`Profile Page For ${siteMetadata.title}`}
-        urlSlug="signin/"
+        urlSlug="profile/"
       />
       <Router>
         <ProfileContainer path="profile/:id" />
