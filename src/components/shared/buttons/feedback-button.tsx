@@ -3,7 +3,7 @@ import { SecondaryButton } from './secondary-button';
 
 export const FeedbackButton = styled(SecondaryButton)`
   position: absolute;
-  top: 150px;
+  top: 7em;
   right: 75px;
-  z-index: 999;
+  z-index: 1;
 `;

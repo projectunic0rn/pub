@@ -23,8 +23,13 @@ const Feedback = styled.div`
   border-radius: 10px;
   position: absolute;
   right: 75px;
-  z-index: 999;
+  z-index: 2;
   flex-direction: row;
+
+  @media screen and (max-width: 520px) {
+    width: 300px;
+    right: 8vw;
+  }
 `;
 
 const ButtonArea = styled.div`

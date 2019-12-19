@@ -74,7 +74,10 @@ const ProjectGallery: React.FC = () => {
   }, []);
 
   const handleDocumentClick = (e: any) => {
-    if (!e.target.className.includes('feedback')) setShowFeedbackForm(false);
+    if (!e.target.className.includes('feedback')) {
+      setShowFeedbackForm(false);
+      document.removeEventListener('click', handleDocumentClick);
+    }
   };
 
   return (

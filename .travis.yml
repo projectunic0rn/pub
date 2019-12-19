@@ -1,27 +1,40 @@
 language: node_js
 
 node_js:
-  - '10'
   - '12'
 
 cache: npm
 
-install:
-  - npm ci
-  - npm run build
+jobs:
+  include:
+    - stage: test
+      script: npm run typecheck
+    - #
+      script: npm run lint
+    - #
+      script: npm test
 
-script:
-  - npm run typecheck
-  - npm run lint
-  - npm test
+    - stage: build_and_deploy_next
+      if: branch = master
+      script: GATSBY_ACTIVE_ENV=next npm run build
+      deploy:
+        provider: surge
+        project: public/
+        domain: projectunicorn-next.surge.sh
+        skip_cleanup: true
+        on:
+          branch: master
 
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  target-branch: gh-pages
-  keep-history: true
-  local-dir: public/
-  on:
-    branch: master
-    node_js: '10'
+    - stage: build_and_deploy_tagged_release
+      if: tag IS present
+      before_script: if [[ ! -z "$PROD_URL" ]]; then echo "$PROD_URL" > static/CNAME; else false; fi
+      script: GATSBY_ACTIVE_ENV=release npm run build
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        target-branch: gh-pages
+        keep-history: true
+        local-dir: public/
+        on:
+          tags: true
