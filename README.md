@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./.github/logo.png" alt="Project Unicorn">
+  <img src="https://sharedstorage2.blob.core.windows.net/pub/main-logo.png" alt="Project Unicorn">
 </p>
 
 <p align="center">
