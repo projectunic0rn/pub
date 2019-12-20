@@ -144,6 +144,10 @@ module.exports = {
         endpoint: mailChimpAPI,
       },
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/profile/*`] },
+    },
   ],
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
