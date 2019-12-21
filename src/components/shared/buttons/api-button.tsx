@@ -17,12 +17,12 @@ export const ApiButton: React.FC<ApiButtonProps> = ({
 }) => {
   const [requestMade, setRequestMade] = React.useState<boolean>(false);
 
-  const handleButtonClick = (e: SyntheticEvent) => {
+  const handleButtonClick = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (!requestMade) {
       setRequestMade(true);
-      handleClick();
+      await handleClick();
       setRequestMade(false);
     }
   };
