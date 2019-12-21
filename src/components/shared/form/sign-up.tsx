@@ -108,8 +108,7 @@ export const SignUpForm: React.FC = () => {
         setMessage((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      // TODO: update logic to read exception from api response
-      setMessage('Email is already registered');
+      setMessage('Failed to sign up. Please try again');
     }
   };
 
