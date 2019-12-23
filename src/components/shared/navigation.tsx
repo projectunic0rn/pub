@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { puLogo } from '@images';
 import { Link } from 'gatsby';
 import NavButton from './buttons/nav-button';
-import dotIcon from '../../images/dot.png';
 import { useSiteMetadata } from '@hooks';
 import { slide as Menu } from 'react-burger-menu';
 import HamburgerMenuStyles from '@/styles/hamburger-menu';
@@ -156,12 +155,6 @@ const ProfileIcon = styled.img`
   margin-bottom: -0.9em !important;
 `;
 
-const ProfileDot = styled.img`
-  position: absolute;
-  top: 1.5em;
-  right: -0.2em;
-`;
-
 const filterInvalidNavItems = (navItem: NavigationLink) => {
   const userAuthenticated = UserAuthHelper.isUserAuthenticated();
   return navItem.requiresAuthentication === userAuthenticated;
@@ -232,26 +225,24 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                       </Link>
                     )}
                     {v.profileIcon && (
-                      <ProfileIconContainer>
-                        <ProfileIcon
-                          src={v.content}
-                          height={46}
-                          width={46}
-                          alt="profile image"
-                        />
-                        <ProfileDot
-                          src={dotIcon}
-                          height={16}
-                          width={16}
-                          alt="blue dot"
-                        />
-                      </ProfileIconContainer>
+                      <React.Fragment>
+                        <Link
+                          to={`/profile/${UserAuthHelper.getUserId()}`}
+                          onClick={() =>
+                            navigate(`/profile/${UserAuthHelper.getUserId()}`)
+                          }
+                        >
+                          Profile
+                        </Link>
+                      </React.Fragment>
                     )}
                   </NavMenuItemMobile>
                 ))}
                 {userAuthenticated && (
-                  <NavMenuItemMobile>
-                    <NavButton onClick={handleSignOut}>Sign Out</NavButton>
+                  <NavMenuItemMobile onClick={handleSignOut}>
+                    <Link to="/" onClick={handleSignOut}>
+                      Sign Out
+                    </Link>
                   </NavMenuItemMobile>
                 )}
               </NavMenuMobile>
