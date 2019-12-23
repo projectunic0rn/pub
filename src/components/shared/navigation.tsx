@@ -226,12 +226,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                     )}
                     {v.profileIcon && (
                       <React.Fragment>
-                        <Link
-                          to={`/profile/${UserAuthHelper.getUserId()}`}
-                          onClick={() =>
-                            navigate(`/profile/${UserAuthHelper.getUserId()}`)
-                          }
-                        >
+                        <Link to={`/profile/${UserAuthHelper.getUserId()}`}>
                           Profile
                         </Link>
                       </React.Fragment>
@@ -239,7 +234,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                   </NavMenuItemMobile>
                 ))}
                 {userAuthenticated && (
-                  <NavMenuItemMobile onClick={handleSignOut}>
+                  <NavMenuItemMobile>
                     <Link to="/" onClick={handleSignOut}>
                       Sign Out
                     </Link>
