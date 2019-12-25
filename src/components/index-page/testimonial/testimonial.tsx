@@ -25,7 +25,7 @@ const Testimonial: React.FC = () => {
 
   return (
     <Wrapper>
-      <Heading>Member Testimonials</Heading>
+      <Heading>What developers say...</Heading>
       <Slider
         autoplay
         autoplaySpeed={5000}
