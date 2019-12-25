@@ -211,7 +211,7 @@ export const SignUpForm: React.FC = () => {
         />
 
         <LinkWrapper>
-          <Link to="/signin">Already a memeber? Sign In</Link>
+          <Link to="/signin">Already a member? Sign In</Link>
         </LinkWrapper>
 
         <ButtonWrapper>
