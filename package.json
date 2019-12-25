@@ -3,13 +3,13 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
-    "dev": "gatsby develop",
-    "dev:m": "gatsby develop -H 0.0.0.0 -p 8000",
+    "dev": "gatsby develop --open",
+    "dev:m": "gatsby develop -H 0.0.0.0 -p 8000 --open",
     "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{json,md}\"",
     "format:precommit": "prettier --write",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
-    "start": "gatsby serve",
+    "start": "gatsby serve --open",
     "test": "jest",
     "typecheck": "tsc"
   },
