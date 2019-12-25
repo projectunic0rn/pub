@@ -20,13 +20,10 @@ import { ApiButton } from '../buttons/api-button';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
-
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
-
   @media screen and(max-width: ${({ theme }) => theme.sizes.width.medium}) {
     flex-direction: column;
   }
-
   @media screen and(max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.small};
   }
@@ -35,7 +32,6 @@ const Wrapper = styled.section`
 const Error = styled.ul`
   color: ${({ theme }) => theme.colors.alert.danger};
   margin: 0;
-
   li {
     margin: 0;
   }
