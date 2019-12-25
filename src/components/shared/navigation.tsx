@@ -6,13 +6,12 @@ import styled from 'styled-components';
 import { puLogo } from '@images';
 import { Link } from 'gatsby';
 import NavButton from './buttons/nav-button';
-import dotIcon from '../../images/dot.png';
 import { useSiteMetadata } from '@hooks';
 import { slide as Menu } from 'react-burger-menu';
 import HamburgerMenuStyles from '@/styles/hamburger-menu';
 
 export interface NavigationLink {
-  content: string;
+  content?: string;
   href: string;
   title?: string;
   requiresAuthentication: boolean;
@@ -94,6 +93,31 @@ const NavMenuItem = styled.li`
   }
 `;
 
+const NavMenuDropDown = styled.div`
+  display: block;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  position: absolute;
+  width: 150px;
+  z-index: 2;
+  margin-top: 10px;
+  right: 0;
+`;
+
+const NavMenuDropDownItem = styled.li`
+  position: relative;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  transition: background 0.2s;
+  margin: 0;
+  font-weight: normal;
+
+  :hover {
+    background: #e3e3e3;
+  }
+`;
+
 /**
  * Mobile Navigation Components
  */
@@ -131,12 +155,6 @@ const ProfileIcon = styled.img`
   margin-bottom: -0.9em !important;
 `;
 
-const ProfileDot = styled.img`
-  position: absolute;
-  top: 1.5em;
-  right: -0.2em;
-`;
-
 const filterInvalidNavItems = (navItem: NavigationLink) => {
   const userAuthenticated = UserAuthHelper.isUserAuthenticated();
   return navItem.requiresAuthentication === userAuthenticated;
@@ -151,6 +169,7 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
   const siteMetadata = useSiteMetadata();
   const [validNavItems, setValidNavItems] = useState<NavigationLink[]>([]);
   const [userAuthenticated, isUserAuthenticated] = useState<boolean>(false);
+  const [showProfileMenu, setShowProfileMenu] = useState<boolean>(false);
 
   const getWindowDimensions = (): number => {
     return typeof window !== `undefined` ? window.innerWidth : 0;
@@ -171,6 +190,13 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [navLinks]);
+
+  const handleDocumentClick = (e: any) => {
+    if (!e.target.className.match(/(NavMenuDropDown|ProfileIcon)/)) {
+      setShowProfileMenu(false);
+      document.removeEventListener('click', handleDocumentClick);
+    }
+  };
 
   return (
     <Nav>
@@ -199,26 +225,19 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                       </Link>
                     )}
                     {v.profileIcon && (
-                      <ProfileIconContainer>
-                        <ProfileIcon
-                          src={v.content}
-                          height={46}
-                          width={46}
-                          alt="profile image"
-                        />
-                        <ProfileDot
-                          src={dotIcon}
-                          height={16}
-                          width={16}
-                          alt="blue dot"
-                        />
-                      </ProfileIconContainer>
+                      <React.Fragment>
+                        <Link to={`/profile/${UserAuthHelper.getUserId()}`}>
+                          Profile
+                        </Link>
+                      </React.Fragment>
                     )}
                   </NavMenuItemMobile>
                 ))}
                 {userAuthenticated && (
                   <NavMenuItemMobile>
-                    <NavButton onClick={handleSignOut}>Sign Out</NavButton>
+                    <Link to="/" onClick={handleSignOut}>
+                      Sign Out
+                    </Link>
                   </NavMenuItemMobile>
                 )}
               </NavMenuMobile>
@@ -245,28 +264,36 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
                   </Link>
                 )}
                 {v.profileIcon && (
-                  <ProfileIconContainer>
+                  <ProfileIconContainer
+                    onClick={() => {
+                      setShowProfileMenu(!showProfileMenu);
+                      document.addEventListener('click', handleDocumentClick);
+                    }}
+                  >
                     <ProfileIcon
                       src={v.content}
                       height={46}
                       width={46}
                       alt="profile image"
                     />
-                    <ProfileDot
-                      src={dotIcon}
-                      height={16}
-                      width={16}
-                      alt="blue dot"
-                    />
+                    {showProfileMenu && (
+                      <NavMenuDropDown>
+                        <NavMenuDropDownItem
+                          onClick={() => {
+                            navigate(`/profile/${UserAuthHelper.getUserId()}`);
+                          }}
+                        >
+                          Profile
+                        </NavMenuDropDownItem>
+                        <NavMenuDropDownItem onClick={handleSignOut}>
+                          Sign Out
+                        </NavMenuDropDownItem>
+                      </NavMenuDropDown>
+                    )}
                   </ProfileIconContainer>
                 )}
               </NavMenuItem>
             ))}
-            {userAuthenticated && (
-              <NavMenuItem>
-                <NavButton onClick={handleSignOut}>Sign Out</NavButton>
-              </NavMenuItem>
-            )}
           </NavMenu>
         </NavWrapper>
       )}

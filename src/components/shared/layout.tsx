@@ -6,6 +6,7 @@ import { Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
+import ProfileImage from '@images/default.png';
 
 interface OwnProps {
   navLinks?: NavigationLink[];
@@ -59,6 +60,14 @@ const Layout: React.FC<LayoutProps> = ({ children, navLinks = [] }) => {
         title: `${siteMetadata.title} start project`,
         requiresAuthentication: true,
         button: true,
+      },
+      {
+        href: '',
+        title: 'My profile',
+        requiresAuthentication: true,
+        button: false,
+        profileIcon: true,
+        content: ProfileImage,
       },
     ];
   }

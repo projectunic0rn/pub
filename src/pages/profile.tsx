@@ -10,7 +10,7 @@ const ProfilePage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
 
   React.useEffect(() => {
-    if (location.pathname === '/profile/') {
+    if (location.pathname.startsWith('/profile')) {
       if (UserAuthHelper.isUserAuthenticated()) {
         const userId = UserAuthHelper.getUserId();
         navigate(`/profile/${userId}`);
