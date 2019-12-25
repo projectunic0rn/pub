@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { signUpResponse } from './responses/signup-response';
 import { signInResponse } from './responses/signin-response';
 import { SignUp } from '@/api/types/sign-up';
