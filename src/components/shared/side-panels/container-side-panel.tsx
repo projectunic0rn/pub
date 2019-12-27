@@ -28,3 +28,16 @@ export const ButtonContainer = styled.div`
   text-align: center;
   margin-top: 20px;
 `;
+
+export const MenuItemContainer = styled.div`
+  margin-top: 20px;
+`;
+
+export const MenuItem = styled.div`
+  color: ${({ theme }) => theme.colors.highlight};
+  padding: 5px 15px;
+  :hover {
+    background: ${({ theme }) => theme.colors.shadow};
+    cursor: pointer;
+  }
+`;

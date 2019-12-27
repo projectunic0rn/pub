@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { BaseContainer } from './base-container';
 import DefaultImage from '@images/default.png';
 import { ContainerSidePanel, Summary, Image } from '../side-panels';
@@ -10,6 +11,8 @@ import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { Loader } from '@components/shared';
 import { Ribbon, CloseButton, ProfileTechPill } from '..';
 import { Wrapper } from '../page';
+import { UserAuthHelper } from '@/helpers';
+import { Button } from '../buttons';
 
 interface ProfileContainerProps {
   id?: string;
@@ -59,10 +62,20 @@ export const ProfileContainer: React.FC<ProfileContainerProps> = ({ id }) => {
       {!isLoading && user && (
         <BaseContainer>
           <ContainerSidePanel style={{ padding: '20px ' }}>
-            <Summary>
-              <Image src={(user && user.profilePictureUrl) || DefaultImage} />
-              <Summary>{user && user.username}</Summary>
-            </Summary>
+            <React.Fragment>
+              <Summary>
+                <Image src={(user && user.profilePictureUrl) || DefaultImage} />
+                <Summary>{user && user.username}</Summary>
+              </Summary>
+              {UserAuthHelper.isUserAuthenticated() && (
+                <React.Fragment>
+                  <br />
+                  <Link to="/settings">
+                    <Button>Edit Profile</Button>
+                  </Link>
+                </React.Fragment>
+              )}
+            </React.Fragment>
           </ContainerSidePanel>
           <MainContent>
             <FormLabel>Bio</FormLabel>

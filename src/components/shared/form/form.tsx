@@ -23,7 +23,7 @@ export const Form: React.FC<Props> = ({ handleSubmit, heading, children }) => {
     <FormElement
       onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleFormSubmit(e)}
     >
-      <Heading>{heading}</Heading>
+      {heading && <Heading>{heading}</Heading>}
       {children}
     </FormElement>
   );

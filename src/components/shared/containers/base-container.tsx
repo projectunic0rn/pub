@@ -7,6 +7,17 @@ export const BaseContainerHtml = styled.div`
   margin: 0 auto 50px auto;
 `;
 
-export const BaseContainer: React.FC = ({ children }) => {
-  return <BaseContainerHtml>{children}</BaseContainerHtml>;
+interface BaseContainerProps {
+  border?: boolean;
+}
+
+export const BaseContainer: React.FC<BaseContainerProps> = ({
+  border,
+  children,
+}) => {
+  return (
+    <BaseContainerHtml style={{ border: `${border && '1px solid lightgray'}` }}>
+      {children}
+    </BaseContainerHtml>
+  );
 };

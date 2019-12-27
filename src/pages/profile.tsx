@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Router } from '@reach/router';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { ProfileContainer } from '@components/shared/containers/profile-container';
+import { ProfileContainer } from '@components/shared/containers';
 import { UserAuthHelper } from '@/helpers';
 import { navigate } from 'gatsby';
 
