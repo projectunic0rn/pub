@@ -191,8 +191,12 @@ const Navigation: React.FC<NavigationProps> = ({ navLinks = [] }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [navLinks]);
 
-  const handleDocumentClick = (e: any) => {
-    if (!e.target.className.match(/(NavMenuDropDown|ProfileIcon)/)) {
+  const handleDocumentClick = (e: MouseEvent) => {
+    if (
+      !(e.target as HTMLElement).className.match(
+        /(NavMenuDropDown|ProfileIcon)/,
+      )
+    ) {
       setShowProfileMenu(false);
       document.removeEventListener('click', handleDocumentClick);
     }
