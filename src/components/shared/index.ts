@@ -4,7 +4,7 @@ export { default as Footer } from './footer';
 export { default as Seo } from './seo';
 export { default as SocialIcon } from './social-icon';
 export { default as SvgIcon } from './svg-icon';
-export { ErrorMessage, SuccessMessage } from './messages';
+export { default as Message } from './message';
 export { Ribbon, CloseButton } from './ribbons';
 export { CardUsernamePill, CardTechPill, ProfileTechPill } from './pills';
 export { Loader } from './loader';

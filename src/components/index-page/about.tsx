@@ -1,6 +1,6 @@
+import { Link } from 'gatsby';
 import * as React from 'react';
 
-import { Anchor } from '@components/shared';
 import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
@@ -65,7 +65,7 @@ const SubText = styled.p`
   }
 `;
 
-const Link = styled(Anchor)`
+const StyledLink = styled(Link)`
   align-items: center;
   background: none;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.alternate};
@@ -84,7 +84,7 @@ const LinkImage = styled.img.attrs(() => ({ src: iconArrow, alt: '' }))`
   display: inline-block;
   height: 1.4375em;
   margin: 0;
-  padding: 0 0.4em;
+  padding: 0 0 0 0.4em;
 `;
 
 const ImageWrapper = styled.figure`
@@ -122,14 +122,10 @@ const About: React.FC = () => {
           and build your ideas!
         </SubText>
 
-        <Link
-          href={`${siteMetadata.appUrl}/projects`}
-          external={false}
-          title={`${siteMetadata.title} projects`}
-        >
+        <StyledLink to="/app/projects" title={`${siteMetadata.title} projects`}>
           See projects by members
           <LinkImage />
-        </Link>
+        </StyledLink>
       </Text>
 
       <ImageWrapper>
