@@ -36,9 +36,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
 
-    @media screen and (max-width: 750px) {
-      padding-top: 3rem;
-    }
+    /* overflow-y: auto; */
   }
 
   footer {
