@@ -1,0 +1,341 @@
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'),
+    url('/raleway-v13-latin-regular.woff2') format('woff2'),
+    url('/raleway-v13-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  font-style: italic;
+  font-weight: 400;
+  src: local('Raleway Italic'), local('Raleway-Italic'),
+    url('/raleway-v13-latin-italic.woff2') format('woff2'),
+    url('/raleway-v13-latin-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 800;
+  src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
+    url('/raleway-v13-latin-800.woff2') format('woff2'),
+    url('/raleway-v13-latin-800.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'slick';
+  font-weight: normal;
+  font-style: normal;
+
+  src: url('/slick.eot');
+  src: url('/slick.eot?#iefix') format('embedded-opentype'),
+    url('/slick.woff') format('woff'), url('/slick.ttf') format('truetype'),
+    url('/slick.svg#slick') format('svg');
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+body {
+  height: 100%;
+}
+
+footer {
+  width: 100%;
+}
+
+@media screen and (min-width: 35em) {
+  html {
+    margin-right: calc(-100vw + 100%);
+    overflow-x: hidden;
+  }
+}
+
+#main {
+  padding-top: 5.79852632em;
+}
+
+/**
+ * Only display content to screen readers.
+ *
+ * See:
+ *   - https://a11yproject.com/posts/how-to-hide-content/
+ *   - https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
+ */
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  overflow: hidden;
+  position: absolute;
+  padding: 0;
+  white-space: nowrap;
+  width: 0.0625rem;
+}
+
+.heading-anchor,
+.gatsby-resp-image-link {
+  background: none;
+}
+
+/* ========================================================================== */
+
+.slick-slider {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  user-select: none;
+
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-list {
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.slick-list:focus {
+  outline: none;
+}
+
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-track {
+  display: block;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 0;
+}
+
+.slick:before,
+.slick:after {
+  content: '';
+  display: table;
+}
+
+.slick:after {
+  clear: both;
+}
+
+.slick-loading .slick-track,
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+.slick-slide img {
+  display: block;
+}
+
+.slick-slide.slick-loading img {
+  display: none;
+}
+
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+
+[dir='rtl'] .slick-slide {
+  float: right;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+.slick-vertical .slick-slide {
+  border: 1px solid transparent;
+  display: block;
+  height: auto;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+.slick-loading .slick-list {
+  background: #fff url('/ajax-loader.gif') center center no-repeat;
+}
+
+.slick-rev,
+.slick-next {
+  background: transparent;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  font-size: 0;
+  height: 20px;
+  line-height: 0;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 20px;
+}
+
+.slick-prev:hover,
+.slick-prev:focus {
+  color: transparent;
+  outline: none;
+  background: transparent;
+}
+
+.slick-prev:hover:before,
+.slick-prev:focus:before {
+  opacity: 1;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.25;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: white;
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -25px;
+}
+
+[dir='rtl'] .slick-prev {
+  right: -25px;
+  left: auto;
+}
+
+.slick-prev:before {
+  content: '←';
+}
+
+[dir='rtl'] .slick-prev:before {
+  content: '→';
+}
+
+.slick-next {
+  right: -25px;
+}
+
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: -25px;
+}
+
+.slick-next:before {
+  content: '→';
+}
+
+[dir='rtl'] .slick-next:before {
+  content: '←';
+}
+
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  bottom: -25px;
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.slick-dots li {
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  position: relative;
+  width: 20px;
+}
+
+.slick-dots li button {
+  background: transparent;
+  border: 0;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  font-size: 0;
+  height: 20px;
+  line-height: 0;
+  outline: none;
+  padding: 5px;
+  width: 20px;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:hover {
+  outline: none;
+}
+
+.slick-dots li button:hover:before,
+.slick-dots li button:hover:before {
+  opacity: 1;
+}
+
+.slick-dots li button:before {
+  color: black;
+  content: '•';
+  font-family: 'slick';
+  font-size: 6px;
+  height: 20px;
+  left: 0;
+  line-height: 20px;
+  opacity: 0.25;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black;
+  opacity: 0.75;
+}

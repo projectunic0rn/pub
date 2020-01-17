@@ -14,7 +14,7 @@ import {
   Sidebar,
 } from '@components/shared';
 import { UserAuthHelper, SessionStorageHelper } from '@helpers';
-import { GlobalStyle, theme } from '@styles';
+import { theme } from '@styles';
 
 interface OwnProps {
   navItems?: NavItem[];
@@ -96,7 +96,6 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
 
   return (
     <Fragment>
-      <GlobalStyle />
       <Seo title="Home" />
 
       <ThemeProvider theme={theme}>

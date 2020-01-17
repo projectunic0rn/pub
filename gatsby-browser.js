@@ -1,4 +1,5 @@
 require('prismjs/themes/prism.css');
+require('./src/styles/global.css');
 
 exports.shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
   if (prevRouterProps.location.pathname === routerProps.location.pathname) {
