@@ -21,7 +21,7 @@ const Feedback = styled.div`
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 10px;
-  /* position: absolute; */
+  position: absolute;
   right: 75px;
   z-index: 2;
   flex-direction: row;
