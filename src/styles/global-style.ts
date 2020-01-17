@@ -33,10 +33,13 @@ export const GlobalStyle = createGlobalStyle`
         url('/raleway-v13-latin-800.woff') format('woff');
   }
 
-  html, body {
-    height: 100%;
+  html {
+    scroll-behavior: smooth;
+  }
 
-    /* overflow-y: auto; */
+  body {
+    height: 100%;
+    overflow: auto;
   }
 
   footer {
