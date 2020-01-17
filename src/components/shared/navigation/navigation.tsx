@@ -14,9 +14,15 @@ type NavigationProps = OwnProps;
 
 const Wrapper = styled.div`
   align-items: center;
+  background: ${({ theme }) => theme.colors.baseinvert};
   display: flex;
   justify-content: space-between;
-  padding: 3.125em;
+  left: 0;
+  padding: 1.6em 3.125em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: 1.5625em;

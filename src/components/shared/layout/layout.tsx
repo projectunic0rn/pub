@@ -1,5 +1,5 @@
 import { navigate } from 'gatsby';
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, Fragment, Reducer, useEffect, useReducer } from 'react';
 import OffCanvas from 'react-aria-offcanvas';
 import { ThemeProvider } from 'styled-components';
 
@@ -22,11 +22,44 @@ interface OwnProps {
 
 type LayoutProps = OwnProps;
 
-const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
-  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+interface NavState {
+  isSidebarOpen: boolean;
+}
 
-  const setOpen = (v: boolean) => () => setIsOpen(v);
+interface AuthState {
+  isUserAuthenticated: boolean;
+}
+
+type LayoutState = NavState & AuthState;
+
+const AUTH_IS = 'AUTH_IS' as const;
+const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE' as const;
+
+interface LayoutAction<T = typeof AUTH_IS | typeof SIDEBAR_TOGGLE> {
+  type: T;
+  payload: NavState | AuthState;
+}
+
+const initialState: LayoutState = {
+  isSidebarOpen: false,
+  isUserAuthenticated: false,
+};
+
+const reducer: Reducer<LayoutState, LayoutAction> = (state, action) => {
+  switch (action.type) {
+    case AUTH_IS:
+    case SIDEBAR_TOGGLE:
+      return { ...state, ...action.payload };
+    default:
+      throw new Error('unknown action type');
+  }
+};
+
+const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const setOpen = (isSidebarOpen: boolean) => () =>
+    dispatch({ type: SIDEBAR_TOGGLE, payload: { isSidebarOpen } });
 
   const signOut = () => {
     SessionStorageHelper.deleteJwt();
@@ -34,10 +67,12 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
   };
 
   useEffect(() => {
-    setIsUserAuthenticated(UserAuthHelper.isUserAuthenticated());
+    const isUserAuthenticated = UserAuthHelper.isUserAuthenticated();
+
+    dispatch({ type: AUTH_IS, payload: { isUserAuthenticated } });
   }, []);
 
-  if (isUserAuthenticated) {
+  if (state.isUserAuthenticated) {
     navItems.push({
       item: <NavButton onClick={signOut}>Sign Out</NavButton>,
       key: '/signout',
@@ -50,9 +85,9 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
       case Show.Always:
         return true;
       case Show.AuthOnly:
-        return isUserAuthenticated;
+        return state.isUserAuthenticated;
       case Show.GuestOnly:
-        return !isUserAuthenticated;
+        return !state.isUserAuthenticated;
       case Show.Never:
       default:
         return false;
@@ -69,7 +104,7 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
           <div id="main">
             <Navigation
               navItems={navItems}
-              isSidebarOpen={isOpen}
+              isSidebarOpen={state.isSidebarOpen}
               openSidebar={setOpen(true)}
             />
 
@@ -79,13 +114,12 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
           </div>
 
           <OffCanvas
-            isOpen={isOpen}
+            isOpen={state.isSidebarOpen}
             height="100%"
             position="right"
             mainContainerSelector="#main"
             onClose={setOpen(false)}
             labelledby="menu-button"
-            lockBodyAfterOpen={false}
           >
             <Sidebar navItems={navItems} />
           </OffCanvas>

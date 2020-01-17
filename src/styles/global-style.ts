@@ -35,11 +35,11 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    overflow-y: auto;
   }
 
   body {
     height: 100%;
-    overflow: auto;
   }
 
   footer {
@@ -51,6 +51,10 @@ export const GlobalStyle = createGlobalStyle`
       margin-right: calc(-100vw + 100%);
       overflow-x: hidden;
     }
+  }
+
+  #main {
+    padding-top: 5.79852632em;
   }
 
   /**
