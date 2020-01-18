@@ -5,14 +5,17 @@ import Brand from './brand';
 import { NavItem } from './nav-item';
 
 interface OwnProps {
+  isAtTop: boolean;
+  isVisible: boolean;
   isSidebarOpen: boolean;
   navItems?: NavItem[];
   openSidebar: () => void;
 }
 
 type NavigationProps = OwnProps;
+type WrapperProps = Pick<NavigationProps, 'isAtTop' | 'isVisible'>;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<WrapperProps>`
   align-items: center;
   background: ${({ theme }) => theme.colors.baseinvert};
   display: flex;
@@ -23,6 +26,13 @@ const Wrapper = styled.div`
   right: 0;
   top: 0;
   z-index: 1000;
+
+  box-shadow: ${({ isAtTop, theme }) =>
+    isAtTop ? 0 : `0 0.1rem 2rem ${theme.colors.shadow}`};
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  transition: all 0.2s
+    ${({ isVisible }) => (isVisible ? 'ease-out' : 'ease-in')};
+  transform: ${({ isVisible }) => (isVisible ? 'none' : 'translate(0, -100%)')};
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: 1.5625em;
@@ -83,12 +93,14 @@ const MenuButton = styled.button`
 `;
 
 const Navigation: FC<NavigationProps> = ({
+  isAtTop,
+  isVisible,
   isSidebarOpen,
   navItems = [],
   openSidebar,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper isAtTop={isAtTop} isVisible={isAtTop || isVisible}>
       <Brand />
 
       <Menu>
