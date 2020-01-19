@@ -39,6 +39,13 @@ const Dropdown = styled.div`
   z-index: 2;
   margin-top: 10px;
   right: 0;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.medium}) {
+    display: initial;
+    left: 0;
+    margin-top: 50px;
+    right: initial;
+  }
 `;
 
 const DropdownItem = styled.div`
