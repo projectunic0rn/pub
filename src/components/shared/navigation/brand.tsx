@@ -5,14 +5,7 @@ import styled from 'styled-components';
 import { useSiteMetadata } from '@hooks';
 import { puLogo } from '@images';
 
-interface OwnProps {
-  to?: string;
-  title?: string;
-}
-
-type BrandProps = OwnProps;
-
-const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
+const Logo = styled.img.attrs({ src: puLogo })`
   margin: 0;
   width: 8em;
 
@@ -21,12 +14,12 @@ const Logo = styled.img.attrs({ src: puLogo, alt: 'Project Unicorn' })`
   }
 `;
 
-const Brand: FC<BrandProps> = ({ to = '/', title }) => {
+const Brand: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
-    <Link to={to} title={`${title || siteMetadata.title}`}>
-      <Logo />
+    <Link to="/" title={siteMetadata.title}>
+      <Logo alt={siteMetadata.title} />
     </Link>
   );
 };
