@@ -15,13 +15,12 @@ const Feedback = styled.div`
   width: 400px;
   height: 200px;
   background: white;
-  position: fixed !important;
+  position: absolute;
   color: gray;
   box-shadow: 0 0 10px #eee;
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 10px;
-  position: absolute;
   right: 75px;
   z-index: 2;
   flex-direction: row;
