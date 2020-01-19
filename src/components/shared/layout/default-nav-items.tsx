@@ -1,9 +1,16 @@
 import { Link, navigate } from 'gatsby';
 import React from 'react';
 
-import { NavButton, NavItem, Show } from '../navigation';
+import { NavButton, NavItem, Show, Profile } from '../navigation';
+import { SessionStorageHelper } from '@helpers';
+import { defaultProfileImage } from '@images';
 
 const handleNavigate = (to: string) => () => navigate(to);
+
+const signOut = () => {
+  SessionStorageHelper.deleteJwt();
+  navigate('/');
+};
 
 export const defaultNavItems: NavItem[] = [
   {
@@ -28,6 +35,11 @@ export const defaultNavItems: NavItem[] = [
       </NavButton>
     ),
     key: '/app/projects/create',
+    show: Show.AuthOnly,
+  },
+  {
+    item: <Profile content={defaultProfileImage} signOut={signOut} />,
+    key: '/signout',
     show: Show.AuthOnly,
   },
 ];

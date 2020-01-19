@@ -1,4 +1,3 @@
-import { navigate } from 'gatsby';
 import React, { FC, Fragment, Reducer, useEffect, useReducer } from 'react';
 import OffCanvas from 'react-aria-offcanvas';
 import { ThemeProvider } from 'styled-components';
@@ -7,13 +6,12 @@ import { defaultNavItems } from './default-nav-items';
 import {
   Seo,
   Navigation,
-  NavButton,
   NavItem,
   Show,
   Footer,
   Sidebar,
 } from '@components/shared';
-import { UserAuthHelper, SessionStorageHelper } from '@helpers';
+import { UserAuthHelper } from '@helpers';
 import { useScrollPosition } from '@hooks';
 import { theme } from '@styles';
 
@@ -97,24 +95,11 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
   const setOpen = (isSidebarOpen: boolean) => () =>
     dispatch({ type: SIDEBAR_TOGGLE, payload: { isSidebarOpen } });
 
-  const signOut = () => {
-    SessionStorageHelper.deleteJwt();
-    navigate('/');
-  };
-
   useEffect(() => {
     const isUserAuthenticated = UserAuthHelper.isUserAuthenticated();
 
     dispatch({ type: AUTH_IS, payload: { isUserAuthenticated } });
   }, []);
-
-  if (state.isUserAuthenticated) {
-    navItems.push({
-      item: <NavButton onClick={signOut}>Sign Out</NavButton>,
-      key: '/signout',
-      show: Show.AuthOnly,
-    });
-  }
 
   navItems = navItems.filter(({ show }) => {
     switch (show) {

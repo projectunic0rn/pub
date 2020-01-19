@@ -1,6 +1,7 @@
 export { default as bgCurveDesktop } from './bg-curve-desktop.svg';
 export { default as bgCurveMobile } from './bg-curve-mobile.svg';
 export { default as connectedWorld } from './connected-world.svg';
+export { default as defaultProfileImage } from './default.png';
 export { default as defaultAvatarImage } from './default-avatar-image.png';
 export { default as defaultPostImage } from './default-post-image.jpg';
 export { default as facebookIcon } from './facebook.svg';
