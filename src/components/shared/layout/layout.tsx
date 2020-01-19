@@ -129,9 +129,7 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
               isSidebarOpen={state.isSidebarOpen}
               openSidebar={setOpen(true)}
             />
-
             {children}
-
             <Footer />
           </div>
 

@@ -39,7 +39,7 @@ export const defaultNavItems: NavItem[] = [
   },
   {
     item: <Profile content={defaultProfileImage} signOut={signOut} />,
-    key: '/signout',
+    key: 'user-avatar-dropdown',
     show: Show.AuthOnly,
   },
 ];

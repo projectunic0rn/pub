@@ -1,5 +1,5 @@
 import { navigate } from 'gatsby';
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import styled from 'styled-components';
 
 import { UserAuthHelper } from '@helpers';
@@ -48,15 +48,29 @@ const DropdownItem = styled.div`
   transition: background 0.2s;
   margin: 0;
   font-weight: normal;
-  :hover {
-    background: #e3e3e3;
+
+  @media (hover: hover) {
+    &:hover {
+      background: #e3e3e3;
+    }
   }
 `;
 
 const Profile: FC<ProfileProps> = ({ content, isOnline = false, signOut }) => {
-  const [expand, setExpand] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const toggle = () => setExpand((expand) => !expand);
+  const close = () => {
+    setExpanded(false);
+    document.removeEventListener('click', close);
+  };
+
+  const setRef = (ref: HTMLDivElement | null) => {
+    dropdownRef.current = ref;
+    document.addEventListener('click', close);
+  };
+
+  const toggle = () => setExpanded((expanded) => !expanded);
   const goToProfile = () => navigate(`/profile/${UserAuthHelper.getUserId()}`);
 
   return (
@@ -64,8 +78,8 @@ const Profile: FC<ProfileProps> = ({ content, isOnline = false, signOut }) => {
       <Icon src={content} height={46} width={46} alt="profile image" />
       {isOnline && <Dot src={dotIcon} height={16} width={16} alt="blue dot" />}
 
-      {expand ? (
-        <Dropdown>
+      {expanded ? (
+        <Dropdown onBlur={close} ref={setRef}>
           <DropdownItem onClick={goToProfile}>Profile</DropdownItem>
           <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
         </Dropdown>
