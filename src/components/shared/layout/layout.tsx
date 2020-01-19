@@ -1,4 +1,10 @@
-import React, { FC, Fragment, Reducer, useEffect, useReducer } from 'react';
+import React, {
+  FC,
+  Fragment,
+  Reducer,
+  useLayoutEffect,
+  useReducer,
+} from 'react';
 import OffCanvas from 'react-aria-offcanvas';
 import { ThemeProvider } from 'styled-components';
 
@@ -95,7 +101,7 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
   const setOpen = (isSidebarOpen: boolean) => () =>
     dispatch({ type: SIDEBAR_TOGGLE, payload: { isSidebarOpen } });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const isUserAuthenticated = UserAuthHelper.isUserAuthenticated();
 
     dispatch({ type: AUTH_IS, payload: { isUserAuthenticated } });
