@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://projectunicorn.net/sitemap.xml
+Host: https://projectunicorn.net
