@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
 import Panel from './panel';
 import { Project } from '@/api/types/project';
@@ -8,7 +9,23 @@ import { Loader, Wrapper } from '@components/shared';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { FeedbackForm } from '@components/shared/form';
 import { Feedback } from '@/api/types/feedback';
-import { FeedbackButton } from '@components/shared/buttons';
+import { SecondaryButton } from '@components/shared/buttons';
+
+const FeedbackWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: flex-end;
+  min-height: inherit;
+  padding-bottom: 0;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+`;
+
+const FeedbackButton = styled(SecondaryButton)`
+  margin: 0 1rem;
+`;
 
 const ProjectGallery: React.FC = () => {
   const [projects, setProjects] = React.useState<Project[]>([]);
@@ -80,48 +97,56 @@ const ProjectGallery: React.FC = () => {
     }
   };
 
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFeedback(e.target.value);
+
+  const handleFeedbackButtonOnClick = () => {
+    setShowFeedbackForm(true);
+    document.addEventListener('click', handleDocumentClick);
+  };
+
   return (
-    <Wrapper>
-      {success && (
-        <Ribbon type="success">
-          {success}{' '}
-          <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
+    <Fragment>
+      <FeedbackWrapper>
+        {showFeedbackForm && (
+          <FeedbackForm
+            handleSendClick={handleSendClick}
+            handleCancelClick={handleCancelClick}
+            handleChange={handleFormChange}
+            value={feedback}
+          />
+        )}
 
-      {error && (
-        <Ribbon type="danger">
-          {error}{' '}
-          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
-
-      {showFeedbackForm ? (
-        <FeedbackForm
-          handleSendClick={handleSendClick}
-          handleCancelClick={handleCancelClick}
-          handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setFeedback(e.target.value)
-          }
-          value={feedback}
-        />
-      ) : (
         <FeedbackButton
-          onClick={() => {
-            setShowFeedbackForm(true);
-            document.addEventListener('click', (e) => handleDocumentClick(e));
-          }}
+          disabled={showFeedbackForm}
+          onClick={handleFeedbackButtonOnClick}
         >
           💡 Got feedback?
         </FeedbackButton>
-      )}
+      </FeedbackWrapper>
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Panel content={projects} setError={setError} />
-      )}
-    </Wrapper>
+      <Wrapper>
+        {success && (
+          <Ribbon type="success">
+            {success}{' '}
+            <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+
+        {error && (
+          <Ribbon type="danger">
+            {error}{' '}
+            <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Panel content={projects} setError={setError} />
+        )}
+      </Wrapper>
+    </Fragment>
   );
 };
 
