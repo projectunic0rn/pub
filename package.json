@@ -12,7 +12,7 @@
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
     "start": "gatsby serve --open",
-    "test": "jest",
+    "test": "jest --coverage",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -79,7 +79,7 @@
     "eslint-plugin-react-hooks": "2.3.0",
     "husky": "4.0.10",
     "identity-obj-proxy": "3.0.0",
-    "jest": "24.9.0",
+    "jest": "^24.9.0",
     "lint-staged": "10.0.0",
     "prettier": "1.19.1",
     "react-is": "16.12.0",

@@ -5,6 +5,11 @@ node_js:
 
 cache: npm
 
+before_install:
+# install codecov to send code
+# coverage reports
+- npm install codecov -g
+
 jobs:
   include:
     - stage: test
@@ -38,3 +43,6 @@ jobs:
         local-dir: public/
         on:
           tags: true
+
+after_success:
+  - codecov
