@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { useSiteMetadata } from '@hooks';
-import styled from 'styled-components';
 
 interface PaginationProps {
   /** Contains information about the page. */
@@ -73,7 +73,7 @@ const PageIndicator = styled.span`
  * Displays a page indicator to show the current page compared to the total page
  * and links to the next and previous page.
  */
-const Pagination: React.FC<PaginationProps> = ({ context, prefix }) => {
+const Pagination: FC<PaginationProps> = ({ context, prefix }) => {
   const siteMetadata = useSiteMetadata();
   const { numPages, currentPage = 1 } = context;
   const isFirst = currentPage === 1;

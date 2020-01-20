@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -16,6 +15,6 @@ const List = styled.ul`
 `;
 
 /** Displays a list of `Card`s. */
-const CardList: React.FC = ({ children }) => <List>{children}</List>;
+const CardList: FC = ({ children }) => <List>{children}</List>;
 
 export default CardList;

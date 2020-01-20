@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { FC, useLayoutEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 import { Qa } from './qas';
-import styled from 'styled-components';
 
 interface PanelProps {
   qa: Qa;
@@ -84,12 +84,12 @@ const Inner = styled.div<InnerProps>`
   will-change: height;
 `;
 
-const Panel: React.FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
-  const [height, setHeight] = React.useState(0);
-  const ref = React.useRef<HTMLDivElement | null>(null);
+const Panel: FC<PanelProps> = ({ qa, activeTab, index, activateTab }) => {
+  const [height, setHeight] = useState(0);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isActive = activeTab === index;
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (ref && ref.current) {
       setHeight(ref.current.scrollHeight);
     }

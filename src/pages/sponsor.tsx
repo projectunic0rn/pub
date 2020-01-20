@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import {
   Container,
@@ -10,7 +10,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 /** Displays the Sponsors page for the website. */
-const SponsorPage: React.FC = () => {
+const SponsorPage: FC = () => {
   const siteMetadata = useSiteMetadata();
   return (
     <Layout>

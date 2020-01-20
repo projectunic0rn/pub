@@ -1,8 +1,8 @@
-import * as React from 'react';
-
-import { SocialIcon } from '@components/shared';
-import { Avatar } from '@components/blog';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import { Avatar } from '@components/blog';
+import { SocialIcon } from '@components/shared';
 import { Author } from '@templates/author';
 
 interface AuthorMetaProps {
@@ -44,7 +44,7 @@ const Name = styled.h2`
 `;
 
 /** Displays details about an author. */
-const AuthorMeta: React.FC<AuthorMetaProps> = ({
+const AuthorMeta: FC<AuthorMetaProps> = ({
   author: { avatar, name, bio, github, twitter },
 }) => (
   <Wrapper>

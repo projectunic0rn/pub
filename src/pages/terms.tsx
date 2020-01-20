@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import {
   Container,
@@ -10,7 +10,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 /** Displays the Terms and Conditions pages for the website. */
-const TermsPage: React.FC = () => {
+const TermsPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

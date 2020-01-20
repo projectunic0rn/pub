@@ -1,8 +1,6 @@
-import { JwtToken } from '@/api/types/jwt-token';
-import ServiceResolver from '@/api/service-resolver';
-import { ApiService } from '@/api/api-service';
+import { ApiService, JwtToken, ServiceResolver } from '@api';
 
-export default class SessionStorageHelper {
+export class SessionStorageHelper {
   public static storeJwt(jsonWebToken: object) {
     const jwtData = this.stringifySessionData(jsonWebToken);
     localStorage.setItem('currentJwt', jwtData);

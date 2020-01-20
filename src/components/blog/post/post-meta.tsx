@@ -1,10 +1,10 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { Avatar } from '@components/blog';
 import { SocialIcon } from '@components/shared';
 import { Author } from '@templates/post';
-import styled from 'styled-components';
 
 interface PostMetaProps {
   /** The published date for a blog post. */
@@ -77,7 +77,7 @@ const Bio = styled.p`
 `;
 
 /** Displays details about a blog post. */
-const PostMeta: React.FC<PostMetaProps> = ({
+const PostMeta: FC<PostMetaProps> = ({
   date,
   author: { avatar, bio, id, name, github, twitter },
 }) => (

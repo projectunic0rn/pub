@@ -1,7 +1,6 @@
 import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface PostProps {
@@ -99,7 +98,7 @@ const Excerpt = styled.p`
 `;
 
 /** Shows a blog post's condensed details. */
-const Card: React.FC<CardProps> = ({
+const Card: FC<CardProps> = ({
   slug,
   title,
   publishDate,

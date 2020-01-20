@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 type MessageVariant = 'error' | 'success' | 'default';
@@ -26,7 +26,7 @@ const Wrapper = styled.span<WrapperProps>`
   font-size: 14px;
 `;
 
-const Message: React.FC<MessageProps> = ({ value, variant = 'default' }) => (
+const Message: FC<MessageProps> = ({ value, variant = 'default' }) => (
   <Wrapper variant={variant}>{value}</Wrapper>
 );
 

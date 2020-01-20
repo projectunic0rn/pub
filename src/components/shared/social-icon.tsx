@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { FC, SVGProps } from 'react';
+import styled from 'styled-components';
 
 import { Anchor, SvgIcon } from '@components/shared';
-import styled from 'styled-components';
 
 export type SocialName =
   | 'facebook'
@@ -41,7 +41,7 @@ interface OwnProps {
   title?: string;
 }
 
-type SocialIconProps = OwnProps & React.SVGProps<SVGSVGElement>;
+type SocialIconProps = OwnProps & SVGProps<SVGSVGElement>;
 
 const StyledAnchor = styled(Anchor)`
   color: hsla(0, 0%, 100%, 0.5);
@@ -79,7 +79,7 @@ const SrOnly = styled.span`
 `;
 
 /** Displays an icon for a website that can be shared to. */
-const SocialIcon: React.FC<SocialIconProps> = ({
+const SocialIcon: FC<SocialIconProps> = ({
   socialName,
   href,
   title,

@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface PageBodyProps {
@@ -39,7 +38,7 @@ const Body = styled.div`
 `;
 
 /** Wrapper for a blog post's main content. */
-const PageBody: React.FC<PageBodyProps> = ({ body, children }) =>
+const PageBody: FC<PageBodyProps> = ({ body, children }) =>
   body ? (
     <Body dangerouslySetInnerHTML={{ __html: body }} />
   ) : (

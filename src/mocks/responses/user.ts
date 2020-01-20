@@ -1,5 +1,4 @@
-import { User } from '@/api/types/user';
-import { ApiResponse } from '@/api/types/responses';
+import { ApiResponse, User } from '@api';
 
 export const user: ApiResponse<User> = {
   ok: true,

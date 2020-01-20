@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { FC, FormEvent } from 'react';
 import styled from 'styled-components';
-import {
-  red,
-  redLight,
-  white,
-  black,
-  greyLighter,
-} from '../../../styles/constants';
+
+import { red, redLight, white, black, greyLighter } from '@styles/constants';
 
 interface FormInputProps {
   hasError?: boolean;
@@ -102,7 +97,7 @@ interface FormSelectInputProps {
   placeholder: string;
 }
 
-const FormSelectInput: React.FC<FormSelectInputProps> = ({
+const FormSelectInput: FC<FormSelectInputProps> = ({
   options,
   name,
   onChange,
@@ -146,7 +141,7 @@ interface FormTextAreaProps {
   hasError?: boolean;
 }
 
-const FormTextArea: React.FC<FormTextAreaProps> = ({
+const FormTextArea: FC<FormTextAreaProps> = ({
   onChange,
   onBlur,
   value,
@@ -156,7 +151,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   hasError,
 }) => {
-  const checkLength = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const checkLength = (e: FormEvent<HTMLTextAreaElement>) => {
     return maxCharCount && e.currentTarget.value.length < maxCharCount
       ? e.currentTarget.value
       : e.currentTarget.value.slice(0, maxCharCount);

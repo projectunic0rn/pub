@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Project } from '@/api/types/project';
+import { Project } from '@api/types/project';
 
 import {
   getProjects,

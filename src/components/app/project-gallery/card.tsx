@@ -1,16 +1,19 @@
-import * as React from 'react';
-
+import { navigate } from 'gatsby';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import {
+  ApiResponse,
+  ErrorResponse,
+  ProjectTechnology,
+  ProjectUser,
+  Project,
+  ServiceResolver,
+} from '@api';
 import { slackIcon, discordIcon } from '@images';
 import { ProjectButton } from '@components/shared/buttons';
-import { Project } from '@/api/types/project';
-import { ProjectTechnology } from '@/api/types/project-technology';
-import { ProjectUser } from '@/api/types/project-user';
-import { UserAuthHelper } from '@/helpers';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { navigate } from 'gatsby';
-import ServiceResolver from '@/api/service-resolver';
 import { CardTechPill, CardUsernamePill } from '@components/shared';
+import { UserAuthHelper } from '@helpers';
 
 interface CardProps {
   content: Project;
@@ -45,16 +48,14 @@ const Break = styled.span`
   margin: 100px;
 `;
 
-const Card: React.FC<CardProps> = ({ content, setError }) => {
-  const [hasMemberJoinedProject, setHasMemberJoinedProject] = React.useState(
-    false,
-  );
+const Card: FC<CardProps> = ({ content, setError }) => {
+  const [hasMemberJoinedProject, setHasMemberJoinedProject] = useState(false);
 
   const userId = UserAuthHelper.isUserAuthenticated()
     ? UserAuthHelper.getUserId()
     : null;
 
-  React.useEffect(() => {
+  useEffect(() => {
     setHasMemberJoinedProject(
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );

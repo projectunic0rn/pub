@@ -1,15 +1,25 @@
-import React, { Fragment } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  Fragment,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 
 import Panel from './panel';
-import { Project } from '@/api/types/project';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import ServiceResolver from '@/api/service-resolver';
-import { Loader, Wrapper } from '@components/shared';
-import { CloseButton, Ribbon } from '@components/shared/ribbons';
-import { FeedbackForm } from '@components/shared/form';
-import { Feedback } from '@/api/types/feedback';
+import {
+  ApiResponse,
+  ErrorResponse,
+  Feedback,
+  Project,
+  ServiceResolver,
+} from '@api';
 import { SecondaryButton } from '@components/shared/buttons';
+import { FeedbackForm } from '@components/shared/form';
+import { CloseButton, Ribbon } from '@components/shared/ribbons';
+import { Loader, Wrapper } from '@components/shared';
 
 const FeedbackWrapper = styled(Wrapper)`
   display: flex;
@@ -27,16 +37,14 @@ const FeedbackButton = styled(SecondaryButton)`
   margin: 0 1rem;
 `;
 
-const ProjectGallery: React.FC = () => {
-  const [projects, setProjects] = React.useState<Project[]>([]);
-  const [error, setError] = React.useState<string | null>(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+const ProjectGallery: FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [success, setSuccess] = React.useState<string | null>('');
-  const [feedback, setFeedback] = React.useState<string>('');
-  const [showFeedbackForm, setShowFeedbackForm] = React.useState<boolean>(
-    false,
-  );
+  const [success, setSuccess] = useState<string | null>('');
+  const [feedback, setFeedback] = useState<string>('');
+  const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
 
   const handleSendClick = async () => {
     setError(null);
@@ -60,12 +68,12 @@ const ProjectGallery: React.FC = () => {
     }
   };
 
-  const handleCancelClick = (e: React.SyntheticEvent) => {
+  const handleCancelClick = (e: SyntheticEvent) => {
     e.preventDefault();
     setShowFeedbackForm(false);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const api = ServiceResolver.apiResolver();
 
     async function fetchContent() {
@@ -97,7 +105,7 @@ const ProjectGallery: React.FC = () => {
     }
   };
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) =>
     setFeedback(e.target.value);
 
   const handleFeedbackButtonOnClick = () => {

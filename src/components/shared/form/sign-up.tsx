@@ -1,6 +1,16 @@
 import { Link, navigate } from 'gatsby';
-import * as React from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
+
+import { ApiButton } from '../buttons/api-button';
+import {
+  ApiResponse,
+  ErrorResponse,
+  ServiceResolver,
+  UserValidation,
+  Username,
+  JwtToken,
+} from '@api';
 import {
   FormLabel,
   FormInput,
@@ -8,15 +18,8 @@ import {
   ButtonWrapper,
 } from '@components/shared/form';
 import { Form } from '@components/shared/form';
-import { useState } from 'react';
-import ServiceResolver from '@/api/service-resolver';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { UserValidation } from '@/api/types/user-validation';
-import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper } from '@/helpers';
-import { FormVal } from '@/utils/form-validation';
-import { Username } from '@/api/types/username';
-import { ApiButton } from '../buttons/api-button';
+import { SessionStorageHelper } from '@helpers';
+import { FormVal } from '@utils';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -50,7 +53,7 @@ interface FormInput {
   [key: string]: InputValue;
 }
 
-export const SignUpForm: React.FC = () => {
+export const SignUpForm: FC = () => {
   const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState<FormInput>({
@@ -67,7 +70,7 @@ export const SignUpForm: React.FC = () => {
     UserValidation
   >({ valid: false, reason: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const state = formInputs;
     state[name].val = value;
@@ -132,7 +135,7 @@ export const SignUpForm: React.FC = () => {
     });
   };
 
-  const checkUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkUsername = async (e: ChangeEvent<HTMLInputElement>) => {
     const api = ServiceResolver.apiResolver();
     const { name, value } = e.target;
     const state = formInputs;
