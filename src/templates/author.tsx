@@ -136,9 +136,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
         />
       ) : (
         <Seo
-          title={`Author: "${authorName}" - Page ${currentPage} - ${
-            siteMetadata.title
-          }`}
+          title={`Author: "${authorName}" - Page ${currentPage} - ${siteMetadata.title}`}
           urlSlug={`blog/author/${slug}/`}
         />
       )}

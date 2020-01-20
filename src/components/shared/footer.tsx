@@ -245,9 +245,7 @@ const Footer: React.FC = () => {
 
           <IconWrapper>
             <StyledAnchor
-              href={`//www.linkedin.com/company/${
-                siteMetadata.social.linkedin
-              }/about`}
+              href={`//www.linkedin.com/company/${siteMetadata.social.linkedin}/about`}
               title={`Follow ${siteMetadata.title} on LinkedIn`}
             >
               <SocialIcon src={linkedinIcon} />
