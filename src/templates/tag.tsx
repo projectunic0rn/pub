@@ -88,9 +88,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
         />
       ) : (
         <Seo
-          title={`Tag: "${title}" - Page ${currentPage} - ${
-            siteMetadata.title
-          }`}
+          title={`Tag: "${title}" - Page ${currentPage} - ${siteMetadata.title}`}
           urlSlug={`blog/tag/${slug}/`}
         />
       )}

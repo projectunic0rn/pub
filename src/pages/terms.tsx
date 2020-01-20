@@ -17,9 +17,7 @@ const TermsPage: React.FC = () => {
     <Layout>
       <Seo
         title="Terms and Conditions"
-        description={`Terms and condition page for the ${
-          siteMetadata.title
-        } website`}
+        description={`Terms and condition page for the ${siteMetadata.title} website`}
         urlSlug="terms/"
       />
 

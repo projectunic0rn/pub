@@ -1,8 +1,10 @@
 import React from 'react';
-import { TextArea } from './controls';
 import styled from 'styled-components';
+
+import { TextArea } from './controls';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
+import { noop } from '@utils';
 
 interface OwnProps {
   handleSendClick: Function;
@@ -54,7 +56,7 @@ export const FeedbackForm: React.FC<OwnProps> = ({
     <Feedback>
       <FeedbackFormTextArea
         onChange={(e: React.ChangeEvent) => handleChange(e)}
-        onBlur={() => {}}
+        onBlur={noop}
         value={value}
         name="feedback"
         placeholder="Feedback about this page?"
