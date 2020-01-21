@@ -13,6 +13,7 @@
     "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
     "start": "gatsby serve --open",
     "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch",
     "typecheck": "tsc"
   },
   "dependencies": {
