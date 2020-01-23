@@ -16,8 +16,9 @@ jobs:
       script: npm run typecheck
     - #
       script: npm run lint
-    - #
-      script: npm test
+    - # run codecov job only after
+      # coverage report is generated
+      script: npm test && codecov
 
     - stage: build_and_deploy_next
       if: branch = master
@@ -43,6 +44,3 @@ jobs:
         local-dir: public/
         on:
           tags: true
-
-after_success:
-  - codecov
