@@ -6,7 +6,9 @@
   <a href="https://travis-ci.com/projectunic0rn/pub">
     <img src="https://travis-ci.com/projectunic0rn/pub.svg" alt="Travis CI">
   </a>
-
+  <a href="https://codecov.io/gh/projectunic0rn/pub">
+    <img src="https://codecov.io/gh/projectunic0rn/pub/branch/master/graph/badge.svg" />
+  </a>
   <a href="https://projectunicorn.net/">
     <img src="https://img.shields.io/badge/website-https://projectunicorn.net/-blue.svg" alt="Project Unicorn Blog">
   </a>

@@ -4,6 +4,8 @@ require('dotenv').config({
 
 const path = require('path');
 
+const pkg = require('./package.json');
+
 const requiredKeys = {
   /**
    * Used by `gatsby-plugin-google-analytics`. This value is provided through
@@ -37,6 +39,8 @@ module.exports = Object.freeze({
     /** The name of the website. */
     title: 'Project Unicorn',
     titleShort: 'PU',
+    /** Release version of website. */
+    version: pkg.version,
     /** Text to be shown in the landing page heading. */
     tag: 'Build something awesome.',
     /** The description of the website. */

@@ -117,7 +117,7 @@ const TagTemplate: FC<TagTemplateProps> = ({ data, pageContext }) => {
         </CardList>
       </Container>
 
-      <Pagination prefix="tag" context={pageContext} />
+      <Pagination prefix={`blog/tag/${slug}`} context={pageContext} />
     </Layout>
   );
 };
