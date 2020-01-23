@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-
-import { useSiteMetadata } from '@hooks';
+import React, { AnchorHTMLAttributes, FC } from 'react';
 import styled from 'styled-components';
+
 import ButtonTemplate from './button-template';
+import { useSiteMetadata } from '@hooks';
 
 type CtaButtonVariant = 'default' | 'secondary';
 type CtaButtonType = 'button' | 'input';
@@ -17,7 +17,7 @@ interface OwnProps {
   type?: CtaButtonType;
 }
 
-type CtaButtonProps = OwnProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type CtaButtonProps = OwnProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 interface ButtonProps {
   variant: CtaButtonVariant;
@@ -31,7 +31,7 @@ const ButtonSubmit = styled.input<ButtonProps>`
   ${ButtonTemplate}
 `;
 
-const CtaButton: React.FC<CtaButtonProps> = ({
+const CtaButton: FC<CtaButtonProps> = ({
   children,
   content = 'Join Slack',
   variant = 'default',

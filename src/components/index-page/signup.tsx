@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import CtaButton from './cta-button';
-import styled from 'styled-components';
 
 const Wrapper = styled.section`
   align-items: center;
@@ -51,7 +51,7 @@ const Form = styled.div`
 `;
 
 /** Sign up contains the last sales pitch and a call-to-action button. */
-const Signup: React.FC = () => (
+const Signup: FC = () => (
   <Wrapper>
     <Text>
       <TextHeading>Join our Slack group</TextHeading>

@@ -1,6 +1,6 @@
 import { searchTags } from './responses/search-tags';
 
-export default class MockStackExchangeService {
+export class MockStackExchangeService {
   public async searchTags() {
     return searchTags;
   }

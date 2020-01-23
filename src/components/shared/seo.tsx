@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import Helmet from 'react-helmet';
 
 import { useDefaultPostImage, useSiteMetadata } from '@hooks';
@@ -37,7 +37,7 @@ interface SeoProps {
  * Updates the contents of the `head` element for the page that this component
  * was inserted.
  */
-const Seo: React.FC<SeoProps> = ({
+const Seo: FC<SeoProps> = ({
   title,
   urlSlug = '',
   description,

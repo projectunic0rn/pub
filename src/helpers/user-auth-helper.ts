@@ -1,7 +1,7 @@
-import SessionStorageHelper from './session-storage-helper';
-import JwtTokenHelper from './jwt-token-helper';
+import { SessionStorageHelper } from './session-storage-helper';
+import { JwtTokenHelper } from './jwt-token-helper';
 
-export default class UserAuthHelper {
+export class UserAuthHelper {
   public static isUserAuthenticated() {
     const jwt = SessionStorageHelper.getJwt();
 

@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
 import { slugify } from '@utils';
 
 interface PostTagsProps {
@@ -41,7 +41,7 @@ const Tag = styled.li`
 `;
 
 /** Displays a row of tags for the current blog post. */
-const PostTags: React.FC<PostTagsProps> = ({ tags }) => (
+const PostTags: FC<PostTagsProps> = ({ tags }) => (
   <List>
     {tags.map((tag) => (
       <Tag key={tag}>

@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import { Location } from '@reach/router';
+import React, { FC, Fragment, useState } from 'react';
 import { navigate } from 'gatsby';
+
+import { ApiResponse, ErrorResponse, JwtToken, ServiceResolver } from '@api';
 import {
   Container,
   Layout,
@@ -8,14 +11,10 @@ import {
   Seo,
 } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import ServiceResolver from '@/api/service-resolver';
-import { Location } from '@reach/router';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { JwtToken } from '@/api/types/jwt-token';
-import { SessionStorageHelper } from '@/helpers';
+import { SessionStorageHelper } from '@helpers';
 
 /** Page allows members to login via magic link method */
-const MagicLoginPage: React.FC = () => {
+const MagicLoginPage: FC = () => {
   const [message, setMessage] = useState<string>('Logging in...');
   const siteMetadata = useSiteMetadata();
 
@@ -55,7 +54,7 @@ const MagicLoginPage: React.FC = () => {
       <Location>
         {({ location }) => {
           handleLogin(new URLSearchParams(location.search).get('token'));
-          return <React.Fragment />;
+          return <Fragment />;
         }}
       </Location>
       <Seo

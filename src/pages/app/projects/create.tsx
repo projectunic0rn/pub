@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { Layout, Seo } from '@components/shared';
-import { useSiteMetadata } from '@hooks';
 import { CreateProjectForm } from '@components/shared/form';
+import { useSiteMetadata } from '@hooks';
 
-const CreateProjectPage: React.FC = () => {
+const CreateProjectPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

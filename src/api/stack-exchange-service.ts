@@ -1,6 +1,6 @@
 import { HttpClient } from './http-client';
 
-export default class StackExchangeService {
+export class StackExchangeService {
   private apiVersion = '2.2';
   private apiEndpoint = `https://api.stackexchange.com/${this.apiVersion}`;
   private stackExchangeKey = 'DmNUhvkCC4qooqkj6E6Dwg((';

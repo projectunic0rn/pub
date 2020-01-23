@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { Content } from './content';
 import { defaultAvatarImage } from '../assets';
-import styled from 'styled-components';
 
 type CardProps = Content;
 
@@ -58,7 +58,7 @@ const Title = styled.span`
   font-size: 0.9em;
 `;
 
-const Card: React.FC<CardProps> = ({
+const Card: FC<CardProps> = ({
   author,
   avatar = defaultAvatarImage,
   quote,

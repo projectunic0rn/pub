@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -14,6 +13,6 @@ const Wrapper = styled.section`
 `;
 
 /** Display the main content of the page. */
-const Container: React.FC = ({ children }) => <Wrapper>{children}</Wrapper>;
+const Container: FC = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 export default Container;

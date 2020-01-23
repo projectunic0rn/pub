@@ -1,5 +1,4 @@
-import { ApiResponse } from '@/api/types/responses';
-import { Feedback } from '@/api/types/feedback';
+import { ApiResponse, Feedback } from '@api';
 
 export const feedback: ApiResponse<Feedback> = {
   ok: true,

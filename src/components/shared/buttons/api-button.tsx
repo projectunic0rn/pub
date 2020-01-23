@@ -1,7 +1,7 @@
-import React, { SyntheticEvent } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
+import styled from 'styled-components';
 
 import { Button } from './button';
-import styled from 'styled-components';
 
 interface ApiButtonProps {
   handleClick: Function;
@@ -10,12 +10,12 @@ interface ApiButtonProps {
 
 export const ApiButtonHtml = styled(Button)``;
 
-export const ApiButton: React.FC<ApiButtonProps> = ({
+export const ApiButton: FC<ApiButtonProps> = ({
   children,
   handleClick,
   statusText,
 }) => {
-  const [requestMade, setRequestMade] = React.useState<boolean>(false);
+  const [requestMade, setRequestMade] = useState<boolean>(false);
 
   const handleButtonClick = async (e: SyntheticEvent) => {
     e.preventDefault();

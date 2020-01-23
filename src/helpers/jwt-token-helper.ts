@@ -1,4 +1,4 @@
-export default class JwtTokenHelper {
+export class JwtTokenHelper {
   public static JwtClaimType =
     'http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata';
 

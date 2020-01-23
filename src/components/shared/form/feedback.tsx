@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 import { TextArea } from './controls';
@@ -46,7 +46,7 @@ const FeedbackFormTextArea = styled(TextArea)`
   color: #aaa;
 `;
 
-export const FeedbackForm: React.FC<OwnProps> = ({
+export const FeedbackForm: FC<OwnProps> = ({
   handleSendClick,
   handleCancelClick,
   handleChange,
@@ -55,7 +55,7 @@ export const FeedbackForm: React.FC<OwnProps> = ({
   return (
     <Feedback>
       <FeedbackFormTextArea
-        onChange={(e: React.ChangeEvent) => handleChange(e)}
+        onChange={(e: ChangeEvent) => handleChange(e)}
         onBlur={noop}
         value={value}
         name="feedback"
@@ -68,7 +68,7 @@ export const FeedbackForm: React.FC<OwnProps> = ({
         </ApiButton>
         <SecondaryButton
           style={{ float: 'right' }}
-          onClick={(e: React.SyntheticEvent) => handleCancelClick(e)}
+          onClick={(e: SyntheticEvent) => handleCancelClick(e)}
         >
           Cancel
         </SecondaryButton>

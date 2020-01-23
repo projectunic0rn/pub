@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 
 export interface Qa {
-  readonly question: string | React.ReactNode;
-  readonly answer: string | React.ReactNode;
+  readonly question: string | ReactNode;
+  readonly answer: string | ReactNode;
 }
 
 export const qas: readonly Qa[] = [

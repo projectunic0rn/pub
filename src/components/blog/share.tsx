@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { SocialIcon } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { makeShareUrl } from '@utils';
-import styled from 'styled-components';
 
 interface ShareProps {
   /** Contains information about a blog post. */
@@ -56,7 +56,7 @@ const Label = styled.p`
 `;
 
 /** Displays icons that link to social sites' share endpoints. */
-const Share: React.FC<ShareProps> = ({ post }) => {
+const Share: FC<ShareProps> = ({ post }) => {
   const { social, siteUrl } = useSiteMetadata();
   const twitterHandle = social.twitter.replace('@', '');
   const postUrl = `${siteUrl}/blog/${post.slug}`;

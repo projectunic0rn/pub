@@ -1,6 +1,5 @@
 import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image';
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface BgImgProps {
@@ -76,7 +75,7 @@ const Title = styled.h1`
  * Displays the hero image as a background and the blog post title as the
  * foreground.
  */
-const Hero: React.FC<HeroProps> = ({ height, fluid, title }) => (
+const Hero: FC<HeroProps> = ({ height, fluid, title }) => (
   <Wrapper>
     <BgImg
       height={height}

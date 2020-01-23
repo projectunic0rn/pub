@@ -1,4 +1,5 @@
 import 'styled-components';
+
 import { ThemeInterface } from '@styles';
 
 declare module 'styled-components' {

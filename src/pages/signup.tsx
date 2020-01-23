@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { Layout, Seo } from '@components/shared';
-import { useSiteMetadata } from '@hooks';
-import { SignUpForm } from '../components/shared/form';
+import React, { FC } from 'react';
 
-const SignUpPage: React.FC = () => {
+import { Layout, Seo } from '@components/shared';
+import { SignUpForm } from '@components/shared/form';
+import { useSiteMetadata } from '@hooks';
+
+const SignUpPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

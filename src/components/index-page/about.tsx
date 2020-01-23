@@ -1,9 +1,9 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
-
-import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
-import { useSiteMetadata } from '@hooks';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import { useSiteMetadata } from '@hooks';
+import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 
 const Wrapper = styled.section`
   align-items: center;
@@ -103,7 +103,7 @@ const Image = styled.img.attrs(() => ({ src: goodTeam, alt: '' }))`
 `;
 
 /** About section details more information about the web site. */
-const About: React.FC = () => {
+const About: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

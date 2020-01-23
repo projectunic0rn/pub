@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC, useState } from 'react';
+import styled from 'styled-components';
 
 import Panel from './panel';
 import { Qa } from './qas';
-import styled from 'styled-components';
 
 interface AccordionProps {
   qas: readonly Qa[];
@@ -13,8 +13,8 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Accordion: React.FC<AccordionProps> = ({ qas }) => {
-  const [activeTab, setActiveTab] = React.useState(0);
+const Accordion: FC<AccordionProps> = ({ qas }) => {
+  const [activeTab, setActiveTab] = useState(0);
 
   const activateTab = (index: number) => () =>
     setActiveTab(activeTab === index ? -1 : index);

@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+
+import { SignInForm } from '@components/shared/form';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { SignInForm } from '../components/shared/form';
 
 interface SignInPageProps {
   location: {
@@ -11,7 +12,7 @@ interface SignInPageProps {
   };
 }
 
-const SignInPage: React.FC<SignInPageProps> = ({ location }) => {
+const SignInPage: FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
   return (

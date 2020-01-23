@@ -1,8 +1,30 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Form } from '@components/shared/form';
-import { Message } from '@components/shared';
+import { navigate } from 'gatsby';
+import React, {
+  ChangeEvent,
+  FC,
+  FocusEvent,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
+import styled, { ThemeContext } from 'styled-components';
+
+import { ApiButton } from '../buttons';
+import { Ribbon, CloseButton } from '../ribbons';
+import {
+  ServiceResolver,
+  Project,
+  Tag,
+  Item,
+  ProjectType,
+  ProjectTechnology,
+  ApiResponse,
+  ErrorResponse,
+} from '@api';
+import { Form } from '@components/shared/form';
+import { Message } from '@components/shared';
 import {
   FormLabel,
   FormInput,
@@ -11,19 +33,8 @@ import {
   FormSelectInput,
   ButtonWrapper,
 } from './controls';
-import styled from 'styled-components';
-import { ThemeContext } from 'styled-components';
-import ServiceResolver from '@/api/service-resolver';
-import { Project } from '@/api/types/project';
-import { Tag, Item } from '@/api/types/stack-exchange';
-import { ProjectType } from '@/api/types/project-types';
-import { FormVal, Props } from '@utils/form-validation';
-import { navigate } from 'gatsby';
-import { UserAuthHelper } from '@/helpers';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { ProjectTechnology } from '@/api/types/project-technology';
-import { ApiButton } from '../buttons';
-import { Ribbon, CloseButton } from '..';
+import { UserAuthHelper } from '@helpers';
+import { FormVal, Props } from '@utils';
 
 interface OptionType {
   label: string;
@@ -69,7 +80,7 @@ interface FormInput {
   [key: string]: FormValue<FormInputIndexPropType>;
 }
 
-export const CreateProjectForm: React.FC = () => {
+export const CreateProjectForm: FC = () => {
   const theme = useContext(ThemeContext);
   const stackExchange = ServiceResolver.stackExchangeResolver();
   const validation = new FormVal();
@@ -86,7 +97,7 @@ export const CreateProjectForm: React.FC = () => {
 
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [error, setError] = React.useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const styles = {
     control: (styles: {}) => {
@@ -175,7 +186,7 @@ export const CreateProjectForm: React.FC = () => {
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, val = '') => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
     const { name, value } = e.target;
     const state = formInputs;
     state[name].val = value;
@@ -185,7 +196,7 @@ export const CreateProjectForm: React.FC = () => {
     setFormInputs({ ...state });
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
     const formErrorState: string[] = formErrors;
     const formInputState = formInputs;

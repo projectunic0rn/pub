@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import Helmet from 'react-helmet';
 
 import { Hero, About, Signup, Faq, Testimonial } from '@components/index-page';
@@ -6,7 +6,7 @@ import { Layout } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 
 /** The website's landing page. */
-const IndexPage: React.FC = () => {
+const IndexPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

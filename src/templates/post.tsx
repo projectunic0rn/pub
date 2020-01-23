@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { Hero, PostLinks, PostMeta, PostTags, Share } from '@components/blog';
 import { Container, Layout, PageBody, Seo } from '@components/shared';
@@ -89,10 +89,7 @@ export const pageQuery = graphql`
 `;
 
 /** Used by Gatsby to display a single blog post. */
-const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
-  data,
-  pageContext,
-}) => {
+const BlogPostTemplate: FC<BlogPostTemplateProps> = ({ data, pageContext }) => {
   const defaultAvatarImage = useDefaultAvatarImage();
   const defaultPostImage = useDefaultPostImage();
   const siteMetadata = useSiteMetadata();

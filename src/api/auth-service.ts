@@ -1,6 +1,5 @@
 import { HttpClient } from './http-client';
-import { SignIn } from './types/sign-in';
-import { SignUp } from './types/sign-up';
+import { SignIn, SignUp } from './types';
 
 export class AuthService {
   private headers = {

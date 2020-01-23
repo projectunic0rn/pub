@@ -1,10 +1,10 @@
-import * as React from 'react';
-
-import { connectedWorld } from '@images';
-import { useSiteMetadata } from '@hooks';
-import styled from 'styled-components';
-import CtaButton from './cta-button';
 import { Link } from 'gatsby';
+import React, { FC } from 'react';
+import styled from 'styled-components';
+
+import CtaButton from './cta-button';
+import { useSiteMetadata } from '@hooks';
+import { connectedWorld } from '@images';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -64,7 +64,7 @@ const Image = styled.img.attrs(() => ({ src: connectedWorld, alt: '' }))`
 `;
 
 /** Hero contains the web site's tag line and a call-to-action button. */
-const Hero: React.FC = () => {
+const Hero: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
