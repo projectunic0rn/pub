@@ -14,7 +14,7 @@ test('Footer displays app version.', () => {
   );
 
   // Act
-  // throws if 0 or more than 1 element is not
+  // throws if 0 or more than 1 element is
   // found and returns if only one instance found
   const appVersionTextNode = getByText(appVersion);
 
