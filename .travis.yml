@@ -18,7 +18,8 @@ jobs:
       script: npm run lint
     - # run codecov job only after
       # coverage report is generated
-      script: npm test && codecov
+      script: npm test
+      after_script: codecov
 
     - stage: build_and_deploy_next
       if: branch = master
