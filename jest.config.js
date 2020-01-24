@@ -7,6 +7,16 @@ module.exports = {
     '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/file-mock.js',
+    '^@components/(.*)': '<rootDir>/src/components/$1',
+    '^@hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '^@hooks': '<rootDir>/src/hooks/index',
+    '^@utils/(.*)': '<rootDir>/src/utils/$1',
+    '^@utils': '<rootDir>/src/utils/index',
+    '^@styles': '<rootDir>/src/styles/index',
+    '^@images': '<rootDir>/src/images/index',
+    '^@helpers': '<rootDir>/src/helpers/index',
+    '^@api': '<rootDir>/src/api/index',
+    '^@mocks': '<rootDir>/src/mocks/index',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testPathIgnorePatterns: ['node_modules', '.cache'],
@@ -21,10 +31,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      branches: 2.94,
-      functions: 2.94,
-      lines: 2.94,
-      statements: 2.94,
+      branches: 6,
+      functions: 8,
+      lines: 17,
+      statements: 16,
     },
   },
 };

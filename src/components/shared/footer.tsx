@@ -122,6 +122,10 @@ const FormInput = styled.input`
   margin-bottom: 1rem;
 `;
 
+const AppVersion = styled.div`
+  align-self: flex-end;
+`;
+
 /** Footer displays information about the web site. */
 const Footer: FC = () => {
   const siteMetadata = useSiteMetadata();
@@ -261,6 +265,7 @@ const Footer: FC = () => {
             </StyledAnchor>
           </IconWrapper>
         </SocialWrapper>
+        <AppVersion>v{siteMetadata.version}</AppVersion>
       </Col>
     </Wrapper>
   );

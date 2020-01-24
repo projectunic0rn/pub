@@ -9,6 +9,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noUnusedLocals": false,
+    "resolveJsonModule": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
