@@ -24,6 +24,7 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   setupFiles: ['<rootDir>/loadershim.js'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
