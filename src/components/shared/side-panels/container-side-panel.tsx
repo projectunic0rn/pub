@@ -13,7 +13,6 @@ export const Summary = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 128px;
   height: auto;
   border-radius: 100px;
   margin-bottom: 0;

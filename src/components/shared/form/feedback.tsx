@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextArea } from './controls';
+import { FormTextArea } from './controls';
 import styled from 'styled-components';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
@@ -36,7 +36,7 @@ const ButtonArea = styled.div`
   padding: 5px;
 `;
 
-const FeedbackFormTextArea = styled(TextArea)`
+const FeedbackFormTextArea = styled(FormTextArea)`
   height: 130px;
   border: none;
   outline: none;

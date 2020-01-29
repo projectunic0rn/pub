@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { SettingsContainer } from '@components/shared/containers';
 import { UserAuthHelper } from '@/helpers';
 import { navigate } from 'gatsby';
+import { AccountSettings } from '@components/shared/containers';
 
 const SettingsPage: React.FC = () => {
   const siteMetadata = useSiteMetadata();
@@ -25,7 +25,7 @@ const SettingsPage: React.FC = () => {
         description={`Account Settings Page For ${siteMetadata.title}`}
         urlSlug="settings/"
       />
-      <SettingsContainer />
+      <AccountSettings />
     </Layout>
   );
 };
