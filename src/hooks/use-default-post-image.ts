@@ -21,6 +21,8 @@ const defaultPostImageQuery = graphql`
   }
 `;
 
+export type DefaultPostImage = { childImageSharp: { fluid: FluidObject } };
+
 export const useDefaultPostImage = () => {
   const { file }: DefaultImage = useStaticQuery(defaultPostImageQuery);
 
