@@ -18,7 +18,7 @@ const Wrapper = styled.div<WrapperProps>`
   margin-bottom: ${({ hasMargin = false }) => (hasMargin ? '1em' : 0)};
 `;
 
-const Pill = styled.div`
+const Pill = styled.div.attrs({ 'data-testid': 'project-card-pill' })`
   background: ${({ theme }) => theme.colors.baseinvert};
   border-radius: 0.3125em;
   box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};

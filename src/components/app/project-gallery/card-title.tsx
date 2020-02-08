@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
 
 import { slackIcon, discordIcon } from '@images';
-import { noop } from '@utils';
 
 type CardTitleProps = {
   name: string;
@@ -60,24 +59,33 @@ const CardTitle: FC<CardTitleProps> = ({
   communicationPlatformUrl,
   clickable = false,
 }) => {
-  const handleClick = () => {
-    window.open(communicationPlatformUrl, '_blank');
-  };
+  const IconWrapper: FC = ({ children }) =>
+    clickable ? (
+      <a
+        href={communicationPlatformUrl}
+        title={`Communication platform link for ${name}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    ) : (
+      <Fragment>{children}</Fragment>
+    );
 
   return (
     <Wrapper>
-      {name}{' '}
+      {name}
       {communicationPlatformUrl ? (
-        <span>
+        <IconWrapper>
           <Icon
             src={
               communicationPlatforms.find(({ name }) =>
-                communicationPlatformUrl.includes(name),
+                communicationPlatformUrl?.includes(name),
               )?.icon
             }
-            onClick={clickable ? handleClick : noop}
           />
-        </span>
+        </IconWrapper>
       ) : null}
     </Wrapper>
   );
