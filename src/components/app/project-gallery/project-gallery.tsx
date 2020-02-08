@@ -26,6 +26,7 @@ const FeedbackWrapper = styled(Wrapper)`
   justify-content: flex-end;
   min-height: inherit;
   padding-bottom: 0;
+  margin-top: 1em;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
     padding-bottom: 0;
@@ -34,7 +35,8 @@ const FeedbackWrapper = styled(Wrapper)`
 `;
 
 const FeedbackButton = styled(SecondaryButton)`
-  margin: 0 1rem;
+  margin-right: ${({ disabled }) => (disabled ? '1em' : 0)};
+  box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
 `;
 
 const ProjectGallery: FC = () => {
