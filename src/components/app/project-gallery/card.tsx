@@ -2,50 +2,40 @@ import { navigate } from 'gatsby';
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import CardButton from './card-button';
+import CardTags from './card-tags';
+import CardTitle from './card-title';
 import {
   ApiResponse,
   ErrorResponse,
-  ProjectTechnology,
   ProjectUser,
   Project,
   ServiceResolver,
 } from '@api';
-import { slackIcon, discordIcon } from '@images';
-import { ProjectButton } from '@components/shared/buttons';
-import { CardTechPill, CardUsernamePill } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 
-interface CardProps {
+type CardProps = {
   content: Project;
   setError: Function;
-}
+};
 
 const Wrapper = styled.div`
-  flex-grow: 1;
-  width: 95%;
+  display: flex;
   background-color: ${({ theme }) => theme.colors.section};
-  margin: 1em;
   border-radius: 0.3125em;
-  padding: 0 1.5em 1.5em 1.5em;
-  position: relative;
-
-  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
-    width: calc(33.3333% - 2em);
-    max-width: calc(33.3333% - 2em);
-  }
-`;
-
-const Title = styled.h3`
-  margin: 0 0 1em;
+  padding: 1.5em;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
 `;
 
 const Description = styled.p`
-  margin: 1em 0 1em 0;
-  font-size: 16px;
+  margin: 0 0 1em;
+  font-size: 1em;
 `;
 
-const Break = styled.span`
-  margin: 100px;
+const Spacer = styled.div`
+  flex: 1;
 `;
 
 const Card: FC<CardProps> = ({ content, setError }) => {
@@ -60,33 +50,6 @@ const Card: FC<CardProps> = ({ content, setError }) => {
       content.projectUsers.find((u) => u.userId === userId) !== undefined,
     );
   }, [content.projectUsers, userId]);
-
-  const getMembers = (members: ProjectUser[]) => {
-    return {
-      displayable: members.map((v, i) => {
-        if (i < 5)
-          return <CardUsernamePill key={i}>{v.username}</CardUsernamePill>;
-      }),
-      other: members.length > 5 && members.slice(5, members.length),
-    };
-  };
-
-  const getTech = (tech: ProjectTechnology[]) => {
-    return {
-      displayable: tech.map((v, i) => {
-        if (i < 5) return <CardTechPill key={i}>{v.name}</CardTechPill>;
-      }),
-      other: tech.length > 5 && tech.slice(5, tech.length),
-    };
-  };
-
-  const getMemberList = (members: ProjectUser[]) => {
-    return members.map((m) => m.username).join(', ');
-  };
-
-  const getTechList = (tech: ProjectTechnology[]) => {
-    return tech.map((t) => t.name).join(', ');
-  };
 
   const redirectToSignIn = () => {
     navigate('/signin', {
@@ -152,77 +115,34 @@ const Card: FC<CardProps> = ({ content, setError }) => {
     }
   };
 
-  const communicationPlatforms = [
-    {
-      name: 'slack',
-      icon: slackIcon,
-    },
-    {
-      name: 'discord',
-      icon: discordIcon,
-    },
-  ];
-  const communicationPlatform = communicationPlatforms.find((p) =>
-    content.communicationPlatformUrl.includes(p.name),
-  );
-
-  const members = getMembers(content.projectUsers);
-  const tech = getTech(content.projectTechnologies);
-  const CommunicationPlatformIcon = styled.img.attrs(() => ({
-    src: communicationPlatform !== undefined && communicationPlatform.icon,
-    alt: '',
-  }))`
-    position: relative;
-    top: 35px;
-    left: 15px;
-  `;
-
-  const CommunicationPlatformIconClickable = styled(CommunicationPlatformIcon)`
-    :hover {
-      cursor: pointer;
-    }
-  `;
-
   return (
     <Wrapper>
-      <Title>
-        {content.name}
-        {hasMemberJoinedProject ? (
-          <CommunicationPlatformIconClickable
-            onClick={() =>
-              window.open(content.communicationPlatformUrl, '_blank')
-            }
-          />
-        ) : (
-          <CommunicationPlatformIcon />
-        )}
-      </Title>
-      {members.displayable}
-      {members.other && (
-        <CardUsernamePill title={getMemberList(members.other)}>
-          +{members.other.length}
-        </CardUsernamePill>
-      )}
-      <Description>{content.description}</Description>
-      {tech.displayable}
-      {tech.other && (
-        <CardTechPill title={getTechList(tech.other)}>
-          +{tech.other.length}
-        </CardTechPill>
-      )}
-      <Break>&nbsp;</Break>
-      <br />
-      <br />
+      <CardTitle
+        name={content.name}
+        clickable={hasMemberJoinedProject}
+        communicationPlatformUrl={content.communicationPlatformUrl}
+      />
 
-      <ProjectButton
-        handleClick={() =>
+      <Description>{content.description}</Description>
+
+      <CardTags
+        items={content.projectTechnologies.map(({ projectId, name }) => ({
+          key: `${projectId}-${name}-tag`,
+          text: name,
+        }))}
+      />
+
+      <Spacer />
+
+      <CardButton
+        onClick={() =>
           hasMemberJoinedProject ? leaveProject(content) : joinProject(content)
         }
         statusText={hasMemberJoinedProject ? 'Leaving...' : 'Joining...'}
         joined={hasMemberJoinedProject}
       >
         {hasMemberJoinedProject ? 'Leave' : 'Join'}
-      </ProjectButton>
+      </CardButton>
     </Wrapper>
   );
 };
