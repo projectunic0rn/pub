@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-type MessageVariant = 'error' | 'success' | 'default';
+export type MessageVariant = 'error' | 'success' | 'default';
 
 interface MessageProps {
   value: string;
