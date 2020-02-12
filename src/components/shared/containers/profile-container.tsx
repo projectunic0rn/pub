@@ -60,23 +60,28 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
         <BaseContainer>
           <ContainerSidePanel style={{ padding: '20px ' }}>
             <Summary>
-              <Image
-                src={(user && user.profilePictureUrl) || defaultProfileImage}
-              />
-              <Summary>{user && user.username}</Summary>
+              <Image src={user.profilePictureUrl || defaultProfileImage} />
+              <Summary>{user.username}</Summary>
             </Summary>
           </ContainerSidePanel>
           <MainContent>
-            <FormLabel>Bio</FormLabel>
-            <br />
-            <p>{user && user.bio}</p>
+            {user.bio && (
+              <React.Fragment>
+                <FormLabel>Bio</FormLabel>
+                <br />
+                <p>{user.bio}</p>
+              </React.Fragment>
+            )}
 
-            <FormLabel>Technologies</FormLabel>
-            <br />
-            {user &&
-              user.technologies.map((t) => (
-                <ProfileTechPill key={t}>{t}</ProfileTechPill>
-              ))}
+            {user.technologies && (
+              <React.Fragment>
+                <FormLabel>Technologies</FormLabel>
+                <br />
+                {user.technologies.map((t) => (
+                  <ProfileTechPill key={t}>{t}</ProfileTechPill>
+                ))}
+              </React.Fragment>
+            )}
           </MainContent>
         </BaseContainer>
       )}
