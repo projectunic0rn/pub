@@ -7,7 +7,7 @@ import {
   isPasswordMatch,
   isValidUsername,
 } from './validation-utils';
-import { ProjectTechnology } from '@/api/types/project-technology';
+import { ProjectTechnology } from '@api';
 
 export interface Props<T = string> {
   [index: string]: {

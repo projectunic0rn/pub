@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface TabsProps {
@@ -37,11 +36,7 @@ const TabItem = styled.li`
   }
 `;
 
-const Tabs: React.FC<TabsProps> = ({
-  tabTitles,
-  activeTab,
-  handleTabOnClick,
-}) => {
+const Tabs: FC<TabsProps> = ({ tabTitles, activeTab, handleTabOnClick }) => {
   return (
     <Wrapper>
       {tabTitles.map((v, i) => (

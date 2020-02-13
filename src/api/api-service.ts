@@ -1,10 +1,7 @@
 import { HttpClient } from './http-client';
-import { Project } from './types/project';
-import { ProjectUser } from './types/project-user';
-import { SessionStorageHelper } from '@/helpers';
-import { Username } from './types/username';
-import { Feedback } from './types/feedback';
 import { User } from './types/user';
+import { Feedback, ProjectUser, Project, Username } from './types';
+import { SessionStorageHelper } from '@helpers';
 
 export class ApiService {
   private headers = {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { AnchorHTMLAttributes, FC } from 'react';
 
 interface OwnProps {
   /**
@@ -13,13 +13,13 @@ interface OwnProps {
   content?: string;
 }
 
-type AnchorProps = OwnProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type AnchorProps = OwnProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 /**
  * Wrapper for a plain anchor element that sets the `rel` and `target`
  * attributes for external links.
  */
-const Anchor: React.FC<AnchorProps> = ({
+const Anchor: FC<AnchorProps> = ({
   external = true,
   content,
   children,

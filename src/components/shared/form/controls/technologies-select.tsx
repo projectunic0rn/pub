@@ -3,7 +3,7 @@ import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
 import { ProjectTechnology } from '@/api/types/project-technology';
 import { theme } from '@styles';
-import ServiceResolver from '@/api/service-resolver';
+import { ServiceResolver } from '@/api/service-resolver';
 import { Tag, Item } from '@/api/types/stack-exchange';
 
 interface FormValue<T = string> {
@@ -49,17 +49,6 @@ export const TechnologiesSelect: React.FC<TechnologiesSelectProps> = ({
   setTechnologies,
 }) => {
   const styles = {
-    // control: (styles: {}) => {
-    //   return {
-    //     ...styles,
-    //     border: formErrors.includes('pTech')
-    //       ? `1px solid ${theme.colors.alert.danger}`
-    //       : `1px solid ${theme.colors.greyDark};`,
-    //     background: formErrors.includes('pTech')
-    //       ? theme.colors.input.errorBg
-    //       : theme.colors.baseinvert,
-    //   };
-    // },
     multiValue: (styles: {}) => {
       return {
         ...styles,

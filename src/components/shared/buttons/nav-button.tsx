@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
 import { Button } from '@components/shared/buttons';
 
 interface OwnProps {
@@ -19,7 +20,7 @@ const NavMenuButton = styled(Button)`
   }
 `;
 
-const NavButton: React.FC<OwnProps> = ({ onClick, children }) => {
+const NavButton: FC<OwnProps> = ({ onClick, children }) => {
   return (
     <NavMenuButton onClick={(e) => (onClick ? onClick(e) : '')}>
       {children}

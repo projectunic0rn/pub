@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 import { avatarRmjordas, avatarRmoran } from '../assets';
 
@@ -7,7 +7,7 @@ export interface Content {
    * The quote can either be a plain string or a React node. Use a React node to
    * be able to use `em`, `strong`, etc..
    */
-  readonly quote: string | React.ReactNode;
+  readonly quote: string | ReactNode;
   /** Name of the author of the quote. */
   readonly author: string;
   /** Optional title to be displayed below the author's name. */

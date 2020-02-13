@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import {
   Container,
@@ -10,16 +10,14 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 /** Displays the Terms and Conditions pages for the website. */
-const TermsPage: React.FC = () => {
+const TermsPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
     <Layout>
       <Seo
         title="Terms and Conditions"
-        description={`Terms and condition page for the ${
-          siteMetadata.title
-        } website`}
+        description={`Terms and condition page for the ${siteMetadata.title} website`}
         urlSlug="terms/"
       />
 

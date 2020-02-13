@@ -1,8 +1,8 @@
 import { graphql, Link } from 'gatsby';
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
-import styled from 'styled-components';
 import { slugify } from '@utils';
 
 interface Group {
@@ -62,7 +62,7 @@ const Tag = styled.li`
 `;
 
 /** Displays the tags used by blog posts. */
-const TagsPage: React.FC<TagsPageProps> = ({
+const TagsPage: FC<TagsPageProps> = ({
   data: {
     allMarkdownRemark: { group },
   },

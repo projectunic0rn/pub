@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface CardProps {
@@ -34,7 +33,7 @@ const Preview = styled.img`
   object-fit: cover;
 `;
 
-const Card: React.FC<CardProps> = ({ i }) => (
+const Card: FC<CardProps> = ({ i }) => (
   <Wrapper>
     <Inner>
       <Preview src={`//picsum.photos/300?random=${i}`} alt="" />

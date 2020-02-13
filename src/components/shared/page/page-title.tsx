@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 type Size = 'tiny' | 'small' | 'default';
@@ -50,9 +49,8 @@ const Title = styled.h1<TitleProps>`
 `;
 
 /** Wrapper for a page title. */
-const PageTitle: React.FC<PageTitleProps> = ({
-  children,
-  size = 'default',
-}) => <Title size={size}>{children}</Title>;
+const PageTitle: FC<PageTitleProps> = ({ children, size = 'default' }) => (
+  <Title size={size}>{children}</Title>
+);
 
 export default PageTitle;

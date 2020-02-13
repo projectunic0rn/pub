@@ -1,5 +1,4 @@
-import { ApiResponse } from '@/api/types/responses';
-import { Project } from '@/api/types/project';
+import { ApiResponse, Project } from '@api';
 
 export const getProjects: ApiResponse<Project[]> = {
   ok: true,

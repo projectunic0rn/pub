@@ -1,6 +1,5 @@
-import * as React from 'react';
 import Img, { GatsbyImageProps } from 'gatsby-image';
-
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface OwnProps {
@@ -26,7 +25,7 @@ const Image = styled(Img).attrs(() => ({ small: false }))<AvatarProps>`
 `;
 
 /** Displays an avatar image. */
-const Avatar: React.FC<AvatarProps> = ({
+const Avatar: FC<AvatarProps> = ({
   alignment = 'horizontal',
   ...avatarProps
 }) => <Image alignment={alignment} {...avatarProps} />;

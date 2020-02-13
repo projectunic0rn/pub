@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const CardUsernamePillWrapper = styled.div`
@@ -47,7 +47,7 @@ interface CardUsernamePillProps {
   title?: string;
 }
 
-export const CardUsernamePill: React.FC<CardUsernamePillProps> = ({
+export const CardUsernamePill: FC<CardUsernamePillProps> = ({
   children,
   title,
 }) => (

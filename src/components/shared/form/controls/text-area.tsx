@@ -30,7 +30,7 @@ const TextArea = styled.textarea<FormTextAreaProps>`
 
 interface FormTextAreaProps {
   onChange: Function;
-  onBlur: Function;
+  onBlur?: Function;
   value: string;
   placeholder?: string;
   displayCharCount?: boolean;
@@ -64,7 +64,7 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
         value={value}
         placeholder={placeholder}
         name={name}
-        onBlur={(e) => onBlur(e)}
+        onBlur={(e) => onBlur && onBlur(e)}
         hasError={hasError}
         rows={rows}
       />

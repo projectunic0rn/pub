@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import Card from './card';
-import styled from 'styled-components';
-import { Project } from '@/api/types/project';
+import { Project } from '@api';
 
 interface PanelProps {
   content: Project[];
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
 `;
 
-const Panel: React.FC<PanelProps> = ({ content = [], setError }) => (
+const Panel: FC<PanelProps> = ({ content = [], setError }) => (
   <Wrapper>
     {content.map((v) => (
       <Card key={v.name} content={v} setError={setError} />

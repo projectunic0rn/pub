@@ -4,15 +4,15 @@ import { MainContent } from './main-content';
 import DefaultImage from '@images/default.png';
 import { ContainerSidePanel, Image } from '../side-panels';
 import {
-  Form,
   FormLabel,
   FormInput,
   FormTextArea,
   ButtonWrapper,
   TechnologiesSelect,
-} from '../form';
+} from '../form/controls';
+import { Form } from '../form';
 import { ApiButton } from '../buttons';
-import ServiceResolver from '@/api/service-resolver';
+import { ServiceResolver } from '@/api/service-resolver';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
 import { User } from '@/api/types/user';
@@ -120,8 +120,7 @@ export const AccountSettings: React.FC = () => {
               setBio(e.target.value)
             }
             value={bio}
-            onBlur={() => {}}
-            rows={3}
+            rows={5}
           >
             {bio}
           </FormTextArea>

@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { Card, CardList, Pagination } from '@components/blog';
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
@@ -71,7 +71,7 @@ export const tagQuery = graphql`
 `;
 
 /** Used by Gatsby to display the list of tags used in blog posts. */
-const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
+const TagTemplate: FC<TagTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
   const defaultPostImage = useDefaultPostImage();
   const { nodes } = data.allMarkdownRemark;
@@ -88,9 +88,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
         />
       ) : (
         <Seo
-          title={`Tag: "${title}" - Page ${currentPage} - ${
-            siteMetadata.title
-          }`}
+          title={`Tag: "${title}" - Page ${currentPage} - ${siteMetadata.title}`}
           urlSlug={`blog/tag/${slug}/`}
         />
       )}
@@ -119,7 +117,7 @@ const TagTemplate: React.FC<TagTemplateProps> = ({ data, pageContext }) => {
         </CardList>
       </Container>
 
-      <Pagination prefix="tag" context={pageContext} />
+      <Pagination prefix={`blog/tag/${slug}`} context={pageContext} />
     </Layout>
   );
 };

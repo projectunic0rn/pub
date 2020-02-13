@@ -1,15 +1,16 @@
-import * as React from 'react';
 import { Router } from '@reach/router';
-import { Layout, Seo } from '@components/shared';
-import { useSiteMetadata } from '@hooks';
-import { ProfileContainer } from '@components/shared/containers';
-import { UserAuthHelper } from '@/helpers';
 import { navigate } from 'gatsby';
+import React, { FC, useEffect } from 'react';
 
-const ProfilePage: React.FC = () => {
+import { Layout, Seo } from '@components/shared';
+import { ProfileContainer } from '@components/shared/containers';
+import { UserAuthHelper } from '@helpers';
+import { useSiteMetadata } from '@hooks';
+
+const ProfilePage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.pathname.startsWith('/profile')) {
       if (UserAuthHelper.isUserAuthenticated()) {
         const userId = UserAuthHelper.getUserId();

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { FC, useRef } from 'react';
 import Slider from 'react-slick';
-
-import { content } from './content';
 import styled from 'styled-components';
+
 import Card from './card';
+import { content } from './content';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.highlightDark};
@@ -17,8 +17,8 @@ const Wrapper = styled.section`
   }
 `;
 
-const Featured: React.FC = () => {
-  const ref = React.useRef<Slider | null>(null);
+const Featured: FC = () => {
+  const ref = useRef<Slider | null>(null);
 
   return (
     <Wrapper>

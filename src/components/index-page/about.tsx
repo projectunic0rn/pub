@@ -1,9 +1,9 @@
-import * as React from 'react';
-
-import { Anchor } from '@components/shared';
-import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
-import { useSiteMetadata } from '@hooks';
+import { Link } from 'gatsby';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import { useSiteMetadata } from '@hooks';
+import { iconArrow, goodTeam, bgCurveDesktop, bgCurveMobile } from '@images';
 
 const Wrapper = styled.section`
   align-items: center;
@@ -65,7 +65,7 @@ const SubText = styled.p`
   }
 `;
 
-const Link = styled(Anchor)`
+const StyledLink = styled(Link)`
   align-items: center;
   background: none;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.colors.alternate};
@@ -84,7 +84,7 @@ const LinkImage = styled.img.attrs(() => ({ src: iconArrow, alt: '' }))`
   display: inline-block;
   height: 1.4375em;
   margin: 0;
-  padding: 0 0.4em;
+  padding: 0 0 0 0.4em;
 `;
 
 const ImageWrapper = styled.figure`
@@ -103,7 +103,7 @@ const Image = styled.img.attrs(() => ({ src: goodTeam, alt: '' }))`
 `;
 
 /** About section details more information about the web site. */
-const About: React.FC = () => {
+const About: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (
@@ -122,14 +122,10 @@ const About: React.FC = () => {
           and build your ideas!
         </SubText>
 
-        <Link
-          href={`${siteMetadata.appUrl}/projects`}
-          external={false}
-          title={`${siteMetadata.title} projects`}
-        >
+        <StyledLink to="/app/projects" title={`${siteMetadata.title} projects`}>
           See projects by members
           <LinkImage />
-        </Link>
+        </StyledLink>
       </Text>
 
       <ImageWrapper>

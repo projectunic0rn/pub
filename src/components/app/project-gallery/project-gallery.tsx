@@ -1,25 +1,50 @@
-import * as React from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  Fragment,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from 'react';
+import styled from 'styled-components';
 
 import Panel from './panel';
-import { Project } from '@/api/types/project';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import ServiceResolver from '@/api/service-resolver';
-import { Loader, Wrapper } from '@components/shared';
-import { CloseButton, Ribbon } from '@components/shared/ribbons';
+import {
+  ApiResponse,
+  ErrorResponse,
+  Feedback,
+  Project,
+  ServiceResolver,
+} from '@api';
+import { SecondaryButton } from '@components/shared/buttons';
 import { FeedbackForm } from '@components/shared/form';
-import { Feedback } from '@/api/types/feedback';
-import { FeedbackButton } from '@components/shared/buttons';
+import { CloseButton, Ribbon } from '@components/shared/ribbons';
+import { Loader, Wrapper } from '@components/shared';
 
-const ProjectGallery: React.FC = () => {
-  const [projects, setProjects] = React.useState<Project[]>([]);
-  const [error, setError] = React.useState<string | null>(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+const FeedbackWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: flex-end;
+  min-height: inherit;
+  padding-bottom: 0;
 
-  const [success, setSuccess] = React.useState<string | null>('');
-  const [feedback, setFeedback] = React.useState<string>('');
-  const [showFeedbackForm, setShowFeedbackForm] = React.useState<boolean>(
-    false,
-  );
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+`;
+
+const FeedbackButton = styled(SecondaryButton)`
+  margin: 0 1rem;
+`;
+
+const ProjectGallery: FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [success, setSuccess] = useState<string | null>('');
+  const [feedback, setFeedback] = useState<string>('');
+  const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
 
   const handleSendClick = async () => {
     setError(null);
@@ -43,12 +68,12 @@ const ProjectGallery: React.FC = () => {
     }
   };
 
-  const handleCancelClick = (e: React.SyntheticEvent) => {
+  const handleCancelClick = (e: SyntheticEvent) => {
     e.preventDefault();
     setShowFeedbackForm(false);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const api = ServiceResolver.apiResolver();
 
     async function fetchContent() {
@@ -73,55 +98,63 @@ const ProjectGallery: React.FC = () => {
     fetchContent();
   }, []);
 
-  const handleDocumentClick = (e: any) => {
-    if (!e.target.className.includes('feedback')) {
+  const handleDocumentClick = (e: MouseEvent) => {
+    if (!(e.target as HTMLElement).className.includes('feedback')) {
       setShowFeedbackForm(false);
       document.removeEventListener('click', handleDocumentClick);
     }
   };
 
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setFeedback(e.target.value);
+
+  const handleFeedbackButtonOnClick = () => {
+    setShowFeedbackForm(true);
+    document.addEventListener('click', handleDocumentClick);
+  };
+
   return (
-    <Wrapper>
-      {success && (
-        <Ribbon type="success">
-          {success}{' '}
-          <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
+    <Fragment>
+      <FeedbackWrapper>
+        {showFeedbackForm && (
+          <FeedbackForm
+            handleSendClick={handleSendClick}
+            handleCancelClick={handleCancelClick}
+            handleChange={handleFormChange}
+            value={feedback}
+          />
+        )}
 
-      {error && (
-        <Ribbon type="danger">
-          {error}{' '}
-          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
-
-      {showFeedbackForm ? (
-        <FeedbackForm
-          handleSendClick={handleSendClick}
-          handleCancelClick={handleCancelClick}
-          handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setFeedback(e.target.value)
-          }
-          value={feedback}
-        />
-      ) : (
         <FeedbackButton
-          onClick={() => {
-            setShowFeedbackForm(true);
-            document.addEventListener('click', (e) => handleDocumentClick(e));
-          }}
+          disabled={showFeedbackForm}
+          onClick={handleFeedbackButtonOnClick}
         >
           💡 Got feedback?
         </FeedbackButton>
-      )}
+      </FeedbackWrapper>
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Panel content={projects} setError={setError} />
-      )}
-    </Wrapper>
+      <Wrapper>
+        {success && (
+          <Ribbon type="success">
+            {success}{' '}
+            <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+
+        {error && (
+          <Ribbon type="danger">
+            {error}{' '}
+            <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Panel content={projects} setError={setError} />
+        )}
+      </Wrapper>
+    </Fragment>
   );
 };
 

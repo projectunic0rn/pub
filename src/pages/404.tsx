@@ -1,10 +1,10 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { Container, Layout, PageTitle, Seo } from '@components/shared';
 import { notFound } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled from 'styled-components';
 
 const Text = styled.p`
   text-align: center;
@@ -21,7 +21,7 @@ const Img = styled.img.attrs(() => ({ src: notFound, alt: '' }))`
 `;
 
 /** Displays a generic page for pages that are not found. */
-const NotFoundPage: React.FC = () => {
+const NotFoundPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

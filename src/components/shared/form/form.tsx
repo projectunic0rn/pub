@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, FormEvent } from 'react';
 import styled from 'styled-components';
 
 const Heading = styled.h2``;
@@ -13,15 +13,15 @@ interface Props {
   handleSubmit?: Function;
 }
 
-export const Form: React.FC<Props> = ({ handleSubmit, heading, children }) => {
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export const Form: FC<Props> = ({ handleSubmit, heading, children }) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleSubmit && handleSubmit(e);
   };
 
   return (
     <FormElement
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleFormSubmit(e)}
+      onSubmit={(e: FormEvent<HTMLFormElement>) => handleFormSubmit(e)}
     >
       {heading && <Heading>{heading}</Heading>}
       {children}

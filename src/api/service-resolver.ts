@@ -1,11 +1,13 @@
-import { MockApiService } from '@/mocks/mock-api-service';
 import { ApiService } from './api-service';
-import { MockAuthService } from '@/mocks/mock-auth-service';
 import { AuthService } from './auth-service';
-import StackExchangeService from './stack-exchange-service';
-import MockStackExchangeService from '../mocks/mock-stack-exchange-service';
+import { StackExchangeService } from './stack-exchange-service';
+import {
+  MockApiService,
+  MockAuthService,
+  MockStackExchangeService,
+} from '@mocks';
 
-export default class ServiceResolver {
+export class ServiceResolver {
   private static apiServiceInstance?: MockApiService | ApiService;
   private static authServiceInstance?: MockAuthService | AuthService;
   private static stackExchangeServiceInstance?:

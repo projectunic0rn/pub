@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import {
   Container,
@@ -10,7 +10,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 /** Displays the Privacy Policy pages for the website. */
-const PrivacyPage: React.FC = () => {
+const PrivacyPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
   return (

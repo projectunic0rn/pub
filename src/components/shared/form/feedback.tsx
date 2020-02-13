@@ -1,8 +1,10 @@
-import React from 'react';
-import { FormTextArea } from './controls';
+import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
 import styled from 'styled-components';
+
+import { FormTextArea } from './controls';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
+import { noop } from '@utils';
 
 interface OwnProps {
   handleSendClick: Function;
@@ -15,13 +17,12 @@ const Feedback = styled.div`
   width: 400px;
   height: 200px;
   background: white;
-  position: fixed !important;
+  position: absolute;
   color: gray;
   box-shadow: 0 0 10px #eee;
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 10px;
-  position: absolute;
   right: 75px;
   z-index: 2;
   flex-direction: row;
@@ -45,7 +46,7 @@ const FeedbackFormTextArea = styled(FormTextArea)`
   color: #aaa;
 `;
 
-export const FeedbackForm: React.FC<OwnProps> = ({
+export const FeedbackForm: FC<OwnProps> = ({
   handleSendClick,
   handleCancelClick,
   handleChange,
@@ -54,8 +55,8 @@ export const FeedbackForm: React.FC<OwnProps> = ({
   return (
     <Feedback>
       <FeedbackFormTextArea
-        onChange={(e: React.ChangeEvent) => handleChange(e)}
-        onBlur={() => {}}
+        onChange={(e: ChangeEvent) => handleChange(e)}
+        onBlur={noop}
         value={value}
         name="feedback"
         placeholder="Feedback about this page?"
@@ -67,7 +68,7 @@ export const FeedbackForm: React.FC<OwnProps> = ({
         </ApiButton>
         <SecondaryButton
           style={{ float: 'right' }}
-          onClick={(e: React.SyntheticEvent) => handleCancelClick(e)}
+          onClick={(e: SyntheticEvent) => handleCancelClick(e)}
         >
           Cancel
         </SecondaryButton>

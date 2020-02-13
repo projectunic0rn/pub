@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { PostNode } from '@templates/post';
-import styled from 'styled-components';
 
 interface PostLinksProps {
   /** The prefix for the paths to be used in the next and previous links. */
@@ -53,7 +53,7 @@ const NextLink = styled(Link)`
 `;
 
 /** Displays links to the next and previous blog post. */
-const PostLinks: React.FC<PostLinksProps> = ({ prefix, previous, next }) => {
+const PostLinks: FC<PostLinksProps> = ({ prefix, previous, next }) => {
   const linkPrefix = prefix ? `${prefix}/` : '';
 
   return (

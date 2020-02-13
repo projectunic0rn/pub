@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import { AuthorMeta, Card, CardList, Pagination } from '@components/blog';
 import { Container, Layout, Seo } from '@components/shared';
@@ -109,10 +109,7 @@ export const authorQuery = graphql`
 `;
 
 /** Used by Gatsby to display the list of blog posts by author. */
-const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
-  data,
-  pageContext,
-}) => {
+const AuthorTemplate: FC<AuthorTemplateProps> = ({ data, pageContext }) => {
   const siteMetadata = useSiteMetadata();
   const defaultAvatarImage = useDefaultAvatarImage();
   const defaultPostImage = useDefaultPostImage();
@@ -136,9 +133,7 @@ const AuthorTemplate: React.FC<AuthorTemplateProps> = ({
         />
       ) : (
         <Seo
-          title={`Author: "${authorName}" - Page ${currentPage} - ${
-            siteMetadata.title
-          }`}
+          title={`Author: "${authorName}" - Page ${currentPage} - ${siteMetadata.title}`}
           urlSlug={`blog/author/${slug}/`}
         />
       )}

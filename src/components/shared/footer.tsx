@@ -1,8 +1,10 @@
 import { Link } from 'gatsby';
-import * as React from 'react';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import styled, { css } from 'styled-components';
 
 import { Anchor } from '@components/shared';
+import { Button } from '@components/shared/buttons';
 import {
   puAlt,
   instagramIcon,
@@ -11,8 +13,6 @@ import {
   githubIcon,
 } from '@images';
 import { useSiteMetadata } from '@hooks';
-import styled, { css } from 'styled-components';
-import { Button } from '@components/shared/buttons';
 
 const Wrapper = styled.footer`
   background: ${({ theme }) => theme.colors.base};
@@ -122,22 +122,26 @@ const FormInput = styled.input`
   margin-bottom: 1rem;
 `;
 
+const AppVersion = styled.div`
+  align-self: flex-end;
+`;
+
 /** Footer displays information about the web site. */
-const Footer: React.FC = () => {
+const Footer: FC = () => {
   const siteMetadata = useSiteMetadata();
-  const [email, setEmail] = React.useState('');
-  const [formMsg, setFormMsg] = React.useState('');
+  const [email, setEmail] = useState('');
+  const [formMsg, setFormMsg] = useState('');
   const formResponse = formMsg ? (
     <div dangerouslySetInnerHTML={{ __html: formMsg }} />
   ) : (
     ''
   );
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     addToMailchimp(email).then((data) => {
@@ -245,9 +249,7 @@ const Footer: React.FC = () => {
 
           <IconWrapper>
             <StyledAnchor
-              href={`//www.linkedin.com/company/${
-                siteMetadata.social.linkedin
-              }/about`}
+              href={`//www.linkedin.com/company/${siteMetadata.social.linkedin}/about`}
               title={`Follow ${siteMetadata.title} on LinkedIn`}
             >
               <SocialIcon src={linkedinIcon} />
@@ -263,6 +265,7 @@ const Footer: React.FC = () => {
             </StyledAnchor>
           </IconWrapper>
         </SocialWrapper>
+        <AppVersion>v{siteMetadata.version}</AppVersion>
       </Col>
     </Wrapper>
   );

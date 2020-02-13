@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import {
   Container,
@@ -10,7 +10,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 
 /** Displays the About page for the website. */
-const AboutPage: React.FC = () => {
+const AboutPage: FC = () => {
   const siteMetadata = useSiteMetadata();
   return (
     <Layout>

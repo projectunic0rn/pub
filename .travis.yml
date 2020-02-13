@@ -5,14 +5,21 @@ node_js:
 
 cache: npm
 
+before_install:
+# install codecov to send code
+# coverage reports
+- npm install codecov -g
+
 jobs:
   include:
     - stage: test
       script: npm run typecheck
     - #
       script: npm run lint
-    - #
+    - # run codecov job only after
+      # coverage report is generated
       script: npm test
+      after_script: codecov
 
     - stage: build_and_deploy_next
       if: branch = master

@@ -1,7 +1,9 @@
 import { Link, navigate } from 'gatsby';
-import * as React from 'react';
-
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { ApiButton } from '../buttons/api-button';
+import { ApiResponse, ErrorResponse, JwtToken, ServiceResolver } from '@api';
 import { useSiteMetadata } from '@hooks';
 import {
   FormLabel,
@@ -10,12 +12,7 @@ import {
   ButtonWrapper,
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
-import { useState } from 'react';
-import ServiceResolver from '@/api/service-resolver';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { SessionStorageHelper } from '@/helpers';
-import { JwtToken } from '@/api/types/jwt-token';
-import { ApiButton } from '../buttons/api-button';
+import { SessionStorageHelper } from '@helpers';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -44,14 +41,14 @@ interface SignInFormProps {
   };
 }
 
-export const SignInForm: React.FC<SignInFormProps> = ({ location }) => {
+export const SignInForm: FC<SignInFormProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.state !== null) {
       setMessage(location.state.message);
     }

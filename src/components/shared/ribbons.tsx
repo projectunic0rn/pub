@@ -1,11 +1,16 @@
 import styled from 'styled-components';
+
 import { theme } from '@styles';
 
 interface RibbonProps {
   type: string;
 }
 
-const ribbonColors: any = {
+interface RibbonColors {
+  [key: string]: string;
+}
+
+const ribbonColors: RibbonColors = {
   success: theme.colors.alert.success,
   danger: theme.colors.alert.danger,
 };

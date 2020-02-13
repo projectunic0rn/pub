@@ -5,10 +5,25 @@ const { postsPerFirstPage, postsPerPage } = require('./site.config');
 
 /** Paths to available templates. */
 const template = {
-  blog: path.resolve('./src/templates/blog.tsx'),
+  blog: path.resolve('./src/templates/blog/blog.tsx'),
   tag: path.resolve('./src/templates/tag.tsx'),
   post: path.resolve('./src/templates/post.tsx'),
   author: path.resolve('./src/templates/author.tsx'),
+};
+
+exports.sourceNodes = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type AuthorYaml implements Node {
+      id: String!
+      name: String!
+      bio: String!
+      github: String!
+      twitter: String
+    }
+  `;
+
+  createTypes(typeDefs);
 };
 
 exports.onCreateNode = ({ node, actions }) => {

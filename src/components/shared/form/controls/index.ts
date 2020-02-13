@@ -1,8 +1,8 @@
-export { ButtonWrapper } from './ButtonWrapper';
-export { FormHint } from './FormHint';
-export { FormInput } from './FormInput';
-export { FormLabel } from './FormLabel';
-export { FormSelectInput } from './FormSelectInput';
-export { LinkWrapper } from './LinkWrapper';
-export { TechnologiesSelect } from './TechnologiesSelect';
-export { FormTextArea } from './TextArea';
+export { ButtonWrapper } from './button-wrapper';
+export { FormHint } from './form-hint';
+export { FormInput } from './form-input';
+export { FormLabel } from './form-label';
+export { FormSelectInput } from './form-select-input';
+export { LinkWrapper } from './link-wrapper';
+export { TechnologiesSelect } from './technologies-select';
+export { FormTextArea } from './text-area';

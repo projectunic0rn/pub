@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import Accordion from './accordion';
 import { qas } from './qas';
-import styled from 'styled-components';
 
 const Wrapper = styled.div`
   align-items: center;
@@ -19,7 +19,7 @@ const Heading = styled.h2`
   padding: 1em;
 `;
 
-const Faq: React.FC = () => (
+const Faq: FC = () => (
   <Wrapper>
     <Heading>Frequently Asked Questions</Heading>
     <Accordion qas={qas} />
