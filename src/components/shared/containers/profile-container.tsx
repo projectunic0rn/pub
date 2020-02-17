@@ -63,7 +63,8 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               <Image
                 src={user.profilePictureUrl || defaultProfileImage}
                 alt="Profile Picture"
-              />              <Summary>{user.username}</Summary>
+              />
+              <Summary>{user.username}</Summary>
             </Summary>
           </ContainerSidePanel>
           <MainContent>
