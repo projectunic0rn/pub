@@ -60,8 +60,10 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
         <BaseContainer>
           <ContainerSidePanel style={{ padding: '20px ' }}>
             <Summary>
-              <Image src={user.profilePictureUrl || defaultProfileImage} />
-              <Summary>{user.username}</Summary>
+              <Image
+                src={user.profilePictureUrl || defaultProfileImage}
+                alt="Profile Picture"
+              />              <Summary>{user.username}</Summary>
             </Summary>
           </ContainerSidePanel>
           <MainContent>
@@ -78,7 +80,9 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                 <FormLabel>Technologies</FormLabel>
                 <br />
                 {user.technologies.map((t) => (
-                  <ProfileTechPill key={t}>{t}</ProfileTechPill>
+                  <ProfileTechPill data-testid="technology" key={t}>
+                    {t}
+                  </ProfileTechPill>
                 ))}
               </React.Fragment>
             )}
