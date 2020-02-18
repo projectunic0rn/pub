@@ -81,8 +81,8 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                 <FormLabel>Technologies</FormLabel>
                 <br />
                 {user.technologies.map((t) => (
-                  <ProfileTechPill data-testid="technology" key={t}>
-                    {t}
+                  <ProfileTechPill data-testid="technology" key={t.name}>
+                    {t.name}
                   </ProfileTechPill>
                 ))}
               </React.Fragment>
