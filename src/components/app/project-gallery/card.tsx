@@ -12,6 +12,7 @@ import {
   Project,
   ServiceResolver,
 } from '@api';
+import { SocialIcon } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 
 type CardProps = {
@@ -36,6 +37,25 @@ const Description = styled.p`
 
 const Spacer = styled.div`
   flex: 1;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  span {
+    line-height: 2.5;
+  }
+
+  span svg {
+    vertical-align: middle;
+    margin-right: 0.3em;
+
+    path {
+      fill: ${({ theme }) => theme.colors.text};
+    }
+  }
 `;
 
 const Card: FC<CardProps> = ({ content, setError }) => {
@@ -115,6 +135,8 @@ const Card: FC<CardProps> = ({ content, setError }) => {
     }
   };
 
+  const memberCount = content.projectUsers.length;
+
   return (
     <Wrapper>
       <CardTitle
@@ -134,15 +156,39 @@ const Card: FC<CardProps> = ({ content, setError }) => {
 
       <Spacer />
 
-      <CardButton
-        onClick={() =>
-          hasMemberJoinedProject ? leaveProject(content) : joinProject(content)
-        }
-        statusText={hasMemberJoinedProject ? 'Leaving...' : 'Joining...'}
-        joined={hasMemberJoinedProject}
-      >
-        {hasMemberJoinedProject ? 'Leave' : 'Join'}
-      </CardButton>
+      <Footer>
+        {memberCount > 0 ? (
+          <span>
+            <SocialIcon
+              socialName={
+                memberCount >= 3
+                  ? 'userThree'
+                  : memberCount === 2
+                  ? 'userTwo'
+                  : 'userOne'
+              }
+              href=""
+              viewBox="0 0 640 512"
+              fontSize="1em"
+            />{' '}
+            {content.projectUsers.length} Member{memberCount === 1 ? '' : 's'}
+          </span>
+        ) : (
+          <Spacer />
+        )}
+
+        <CardButton
+          onClick={() =>
+            hasMemberJoinedProject
+              ? leaveProject(content)
+              : joinProject(content)
+          }
+          statusText={hasMemberJoinedProject ? 'Leaving...' : 'Joining...'}
+          joined={hasMemberJoinedProject}
+        >
+          {hasMemberJoinedProject ? 'Leave' : 'Join'}
+        </CardButton>
+      </Footer>
     </Wrapper>
   );
 };
