@@ -37,7 +37,8 @@ const Wrapper = styled.h3`
 const Icon = styled.img.attrs(() => ({
   alt: '',
 }))<IconProps>`
-  filter: grayscale(100%);
+  filter: ${({ clickable = false }) =>
+    clickable ? 'grayscale(0%)' : 'grayscale(100%)'};
   margin: 0 0 -0.06em;
   position: relative;
   left: 0.35em;
@@ -47,8 +48,6 @@ const Icon = styled.img.attrs(() => ({
 
   @media (hover: hover) {
     &:hover {
-      filter: ${({ clickable = false }) =>
-        clickable ? 'grayscale(0%)' : 'grayscale(100%)'};
       cursor: ${({ clickable = false }) => (clickable ? 'pointer' : 'default')};
     }
   }
@@ -84,6 +83,7 @@ const CardTitle: FC<CardTitleProps> = ({
                 communicationPlatformUrl?.includes(name),
               )?.icon
             }
+            clickable={clickable}
           />
         </IconWrapper>
       ) : null}
