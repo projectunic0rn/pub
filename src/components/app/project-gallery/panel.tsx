@@ -10,9 +10,20 @@ interface PanelProps {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: repeat(1fr);
+  grid-template-rows: 8fr;
+  gap: 1.5em 1.5em;
+  margin-bottom: 2em;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.medium}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Panel: FC<PanelProps> = ({ content = [], setError }) => (
