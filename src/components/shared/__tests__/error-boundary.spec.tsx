@@ -10,7 +10,7 @@ const ThrowError = () => {
   throw new Error('test/error-code');
 };
 
-test('renders children if there are no expections', () => {
+test('renders children if there are no exceptions', () => {
   const { getByText, queryByText } = render(
     <ErrorBoundary onError={jest.fn()} component={<ErrorComponent />}>
       yey!
