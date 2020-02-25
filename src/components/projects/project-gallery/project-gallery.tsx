@@ -93,7 +93,9 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
             (project) => project.lookingForMembers == true,
           );
           setProjects(projectsLookingForMembers);
-        } else setError((response.data as ErrorResponse).message);
+        } else {
+          setError((response.data as ErrorResponse).message);
+        }
       } catch (err) {
         setError('Failed to retrieve a list of projects');
       }

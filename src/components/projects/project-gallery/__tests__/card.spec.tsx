@@ -11,7 +11,6 @@ test('display project details', () => {
     {
       isOwner: true,
       userId: 'abc-123',
-      username: 'Han Solo',
     },
     {
       isOwner: false,
