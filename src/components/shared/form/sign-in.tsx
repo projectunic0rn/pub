@@ -70,7 +70,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
 
       if (response.ok) {
         SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/app/projects/');
+        navigate('/projects/');
       } else {
         setMessage((response.data as ErrorResponse).message);
       }

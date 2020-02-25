@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 import React, {
   ChangeEvent,
   FC,
@@ -19,7 +20,11 @@ import {
 import { SecondaryButton } from '@components/shared/buttons';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
-import { Loader, Wrapper } from '@components/shared';
+import { Loader, Seo, Wrapper } from '@components/shared';
+
+type OwnProps = {};
+
+type ProjectGalleryProps = OwnProps & RouteComponentProps;
 
 const FeedbackWrapper = styled(Wrapper)`
   display: flex;
@@ -39,7 +44,7 @@ const FeedbackButton = styled(SecondaryButton)`
   box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
 `;
 
-const ProjectGallery: FC = () => {
+const ProjectGallery: FC<ProjectGalleryProps> = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -117,6 +122,8 @@ const ProjectGallery: FC = () => {
 
   return (
     <Fragment>
+      <Seo title="App" urlSlug="projects" />
+
       <FeedbackWrapper>
         {showFeedbackForm && (
           <FeedbackForm

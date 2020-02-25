@@ -19,8 +19,8 @@ export const defaultNavItems: NavItem[] = [
     show: Show.Always,
   },
   {
-    item: <Link to="/app/projects">Projects</Link>,
-    key: '/app/projects',
+    item: <Link to="/projects">Projects</Link>,
+    key: '/projects',
     show: Show.Always,
   },
   {
@@ -30,11 +30,11 @@ export const defaultNavItems: NavItem[] = [
   },
   {
     item: (
-      <NavButton onClick={handleNavigate('/app/projects/create')}>
+      <NavButton onClick={handleNavigate('/projects/create')}>
         Start Project
       </NavButton>
     ),
-    key: '/app/projects/create',
+    key: '/projects/create',
     show: Show.AuthOnly,
   },
   {

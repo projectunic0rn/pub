@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
 import React, {
   ChangeEvent,
@@ -24,7 +25,7 @@ import {
   ErrorResponse,
 } from '@api';
 import { Form } from '@components/shared/form';
-import { Message } from '@components/shared';
+import { Message, Seo } from '@components/shared';
 import {
   FormLabel,
   FormInput,
@@ -40,6 +41,9 @@ interface OptionType {
   label: string;
   value: string;
 }
+
+type OwnProps = {};
+type CreateProjectFormProps = OwnProps & RouteComponentProps;
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -80,7 +84,7 @@ interface FormInput {
   [key: string]: FormValue<FormInputIndexPropType>;
 }
 
-export const CreateProjectForm: FC = () => {
+export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const theme = useContext(ThemeContext);
   const stackExchange = ServiceResolver.stackExchangeResolver();
   const validation = new FormVal();
@@ -267,8 +271,11 @@ export const CreateProjectForm: FC = () => {
         Project | ErrorResponse
       >;
 
-      if (response.ok) navigate(`/app/projects`);
-      else setError((response.data as ErrorResponse).message);
+      if (response.ok) {
+        navigate(`/projects`);
+      } else {
+        setError((response.data as ErrorResponse).message);
+      }
     } catch (err) {
       setError('Failed to create project');
     }
@@ -276,6 +283,8 @@ export const CreateProjectForm: FC = () => {
 
   return (
     <Wrapper>
+      <Seo title={`Create a Project`} urlSlug="project/create/" />
+
       {error !== null && (
         <Ribbon type="danger">
           {error}
