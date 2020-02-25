@@ -23,7 +23,6 @@ import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Seo, Wrapper } from '@components/shared';
 
 type OwnProps = {};
-
 type ProjectGalleryProps = OwnProps & RouteComponentProps;
 
 const FeedbackWrapper = styled(Wrapper)`
@@ -122,7 +121,7 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
 
   return (
     <Fragment>
-      <Seo title="App" urlSlug="projects" />
+      <Seo title="Projects" urlSlug="projects" />
 
       <FeedbackWrapper>
         {showFeedbackForm && (

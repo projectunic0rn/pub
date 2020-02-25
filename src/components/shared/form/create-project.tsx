@@ -283,7 +283,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
   return (
     <Wrapper>
-      <Seo title={`Create a Project`} urlSlug="project/create/" />
+      <Seo title="Create A New Project" urlSlug="project/create/" />
 
       {error !== null && (
         <Ribbon type="danger">
