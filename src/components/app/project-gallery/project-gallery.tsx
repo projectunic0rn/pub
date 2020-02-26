@@ -20,6 +20,7 @@ import { SecondaryButton } from '@components/shared/buttons';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Wrapper } from '@components/shared';
+import { getNavigatorInfo } from '@utils/browser-utils';
 
 const FeedbackWrapper = styled(Wrapper)`
   display: flex;
@@ -52,10 +53,17 @@ const ProjectGallery: FC = () => {
     setError(null);
 
     const api = ServiceResolver.apiResolver();
-
+    const navigatorInfo = getNavigatorInfo();
+    let additionalFeedbackInfo = 'Browser info:\n';
+    for (const [key, value] of Object.entries(navigatorInfo)) {
+      additionalFeedbackInfo = additionalFeedbackInfo.concat(
+        `${key}: ${value}\n`,
+      );
+    }
+    const feedbackInfo = `${feedback}\n\n\n\n${additionalFeedbackInfo}`;
     try {
       const response = (await api.sendFeedback({
-        content: feedback,
+        content: feedbackInfo,
       })) as ApiResponse<Feedback | ErrorResponse>;
 
       if (response.ok) {
