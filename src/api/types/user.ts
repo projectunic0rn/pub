@@ -1,4 +1,5 @@
 import { Project } from './project';
+import { UserTechnology } from './user-technology';
 
 export interface User {
   id?: string;
@@ -8,6 +9,6 @@ export interface User {
   profilePictureUrl?: string;
   gitHubUsername?: string;
   bio: string;
-  technologies?: string[];
-  projects?: Project[];
+  technologies: UserTechnology[];
+  projects: Project[];
 }

@@ -68,6 +68,7 @@ describe('styleLengths', () => {
   test('return correct unit depending on input type', () => {
     const expected = '10px';
 
+    expect(styleLengths()).toBe('0px');
     expect(styleLengths(10)).toBe(expected);
     expect(styleLengths('10px')).toBe(expected);
     expect(styleLengths(10, 'px')).toBe(expected);

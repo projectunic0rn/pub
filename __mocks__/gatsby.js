@@ -4,6 +4,11 @@ const pkg = require('../package.json');
 
 const mockUseStaticQueryImplementation = () => {
   return {
+    file: {
+      childImageSharp: {
+        fluid: { aspectRatio: 1, src: '', srcSet: '', sizes: '' },
+      },
+    },
     site: {
       googleAnalyticsTrackingId: 'UA-123456789-0',
       /** Used by Gatsby when creating production build of the website. */

@@ -24,17 +24,22 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   setupFiles: ['<rootDir>/loadershim.js'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
     'scripts/**/*.{js,jsx,ts,tsx}',
+    '!src/**/index.ts',
+    '!src/**/*.d.ts',
+    '!src/**/types/*.ts',
+    '!src/mocks/**/*.{ts,tsx}',
   ],
   coverageThreshold: {
     global: {
-      branches: 6,
-      functions: 8,
-      lines: 17,
-      statements: 16,
+      branches: 19,
+      functions: 19,
+      lines: 24,
+      statements: 24,
     },
   },
 };

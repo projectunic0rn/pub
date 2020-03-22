@@ -9,7 +9,9 @@ import OffCanvas from 'react-aria-offcanvas';
 import { ThemeProvider } from 'styled-components';
 
 import { defaultNavItems } from './default-nav-items';
+import ErrorComponent from './error-component';
 import {
+  ErrorBoundary,
   Seo,
   Navigation,
   NavItem,
@@ -135,7 +137,15 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
               isSidebarOpen={state.isSidebarOpen}
               openSidebar={setOpen(true)}
             />
-            {children}
+
+            <ErrorBoundary
+              // eslint-disable-next-line no-console
+              onError={console.error}
+              component={<ErrorComponent />}
+            >
+              {children}
+            </ErrorBoundary>
+
             <Footer />
           </div>
 

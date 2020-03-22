@@ -62,9 +62,10 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
           <ContainerSidePanel style={{ padding: '20px ' }}>
             <Summary>
               <Image
-                src={(user && user.profilePictureUrl) || defaultProfileImage}
+                src={user.profilePictureUrl || defaultProfileImage}
+                alt="Profile Picture"
               />
-              <Summary>{user && user.username}</Summary>
+              <Summary>{user.username}</Summary>
             </Summary>
             {UserAuthHelper.isUserAuthenticated() && (
               <React.Fragment>
@@ -76,17 +77,25 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
             )}
           </ContainerSidePanel>
           <MainContent>
-            <FormLabel>Bio</FormLabel>
-            <br />
-            <p>{user && user.bio}</p>
+            {user.bio && (
+              <React.Fragment>
+                <FormLabel>Bio</FormLabel>
+                <br />
+                <p>{user.bio}</p>
+              </React.Fragment>
+            )}
 
-            <FormLabel>Technologies</FormLabel>
-            <br />
-            {user &&
-              user.technologies &&
-              user.technologies.map((t) => (
-                <ProfileTechPill key={t}>{t}</ProfileTechPill>
-              ))}
+            {user.technologies && (
+              <React.Fragment>
+                <FormLabel>Technologies</FormLabel>
+                <br />
+                {user.technologies.map((t) => (
+                  <ProfileTechPill data-testid="technology" key={t.name}>
+                    {t.name}
+                  </ProfileTechPill>
+                ))}
+              </React.Fragment>
+            )}
           </MainContent>
         </BaseContainer>
       )}
