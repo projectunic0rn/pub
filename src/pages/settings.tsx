@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { Layout, Seo } from '@components/shared';
-import { useSiteMetadata } from '@hooks';
-import { UserAuthHelper } from '@helpers';
 import { navigate } from 'gatsby';
-import { AccountSettings } from '@components/shared/containers';
+import React, { FC, useEffect } from 'react';
 
-const SettingsPage: React.FC = () => {
+import { Layout, Seo } from '@components/shared';
+import { AccountSettings } from '@components/shared/containers';
+import { UserAuthHelper } from '@helpers';
+import { useSiteMetadata } from '@hooks';
+
+const SettingsPage: FC = () => {
   const siteMetadata = useSiteMetadata();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!UserAuthHelper.isUserAuthenticated()) {
       navigate('/signin', {
         state: {

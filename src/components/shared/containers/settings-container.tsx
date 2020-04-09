@@ -1,18 +1,19 @@
-import React from 'react';
-import { BaseContainer } from './base-container';
-import { Loader } from '@components/shared';
-import { Ribbon, CloseButton } from '..';
-import { Wrapper } from '../page';
+import React, { FC } from 'react';
 
-interface SettingsContainerProps {
+import { BaseContainer } from './base-container';
+import { Ribbon, CloseButton } from '../ribbons';
+import { Wrapper } from '../page';
+import { Loader } from '@components/shared';
+
+type SettingsContainerProps = {
   error: string | null | undefined;
   isLoading: boolean;
   setError: Function;
   success: string | null | undefined;
   setSuccess: Function;
-}
+};
 
-export const SettingsContainer: React.FC<SettingsContainerProps> = ({
+export const SettingsContainer: FC<SettingsContainerProps> = ({
   children,
   error,
   setError,
@@ -23,12 +24,14 @@ export const SettingsContainer: React.FC<SettingsContainerProps> = ({
   return (
     <Wrapper>
       {isLoading && <Loader />}
+
       {error && (
         <Ribbon type="danger">
           {error}{' '}
           <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
         </Ribbon>
       )}
+
       {success && (
         <Ribbon type="success">
           {success}{' '}

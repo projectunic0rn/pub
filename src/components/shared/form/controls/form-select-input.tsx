@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
 import { greyLighter, red, redLight, white, black } from '@styles/constants';
 
-interface FormSelectInputProps {
-  options: { id: string; type: string }[];
+type FormSelectInputOption = {
+  id: string;
+  type: string;
+};
+
+type FormSelectInputProps = {
+  options: FormSelectInputOption[];
   name?: string;
   onChange: Function;
   onBlur: Function;
   hasError?: boolean;
   placeholder: string;
-}
+};
 
 export const SelectInput = styled.select<FormSelectInputProps>`
   padding: 0.425em;
@@ -25,16 +31,7 @@ export const SelectInput = styled.select<FormSelectInputProps>`
   }
 `;
 
-interface FormSelectInputProps {
-  options: { id: string; type: string }[];
-  name?: string;
-  onChange: Function;
-  onBlur: Function;
-  hasError?: boolean;
-  placeholder: string;
-}
-
-export const FormSelectInput: React.FC<FormSelectInputProps> = ({
+export const FormSelectInput: FC<FormSelectInputProps> = ({
   options,
   name,
   onChange,

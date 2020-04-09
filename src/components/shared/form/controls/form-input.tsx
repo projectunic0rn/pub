@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import { greyLighter, red, redLight, white } from '@styles/constants';
 
-interface FormInputProps {
+type FormInputProps = {
   hasError?: boolean;
-}
+};
 
 export const FormInput = styled.input<FormInputProps>`
   max-width: 400px;

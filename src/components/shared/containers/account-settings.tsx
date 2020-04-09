@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
-import { MenuItem } from '../side-panels/container-side-panel';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+
 import { MainContent } from './main-content';
-import DefaultImage from '@images/default.png';
-import { ContainerSidePanel, Image } from '../side-panels';
+import { SettingsContainer } from './settings-container';
+import { ApiButton } from '../buttons';
+import { Form } from '../form';
 import {
   FormLabel,
   FormInput,
@@ -10,30 +11,36 @@ import {
   ButtonWrapper,
   TechnologiesSelect,
 } from '../form/controls';
-import { Form } from '../form';
-import { ApiButton } from '../buttons';
-import { ServiceResolver } from '@api';
+import { MenuItem } from '../side-panels/container-side-panel';
+import { ContainerSidePanel, Image } from '../side-panels';
+import {
+  ApiResponse,
+  ErrorResponse,
+  ServiceResolver,
+  User,
+  Username,
+  UserTechnology,
+  UserValidation,
+} from '@api';
 import { UserAuthHelper } from '@helpers';
-import { ApiResponse, ErrorResponse } from '@api/types/responses';
-import { User, UserTechnology, UserValidation, Username } from '@api/types';
-import { SettingsContainer } from './settings-container';
+import { defaultProfileImage } from '@images';
 
 export const AccountSettings: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [user, setUser] = useState<User>();
-  const [username, setUsername] = useState<string>('');
+  const [username, setUsername] = useState('');
   const [usernameAvailablity, setUsernameAvailability] = useState<
     UserValidation
   >({ valid: true, reason: '' });
-  const [bio, setBio] = useState<string>('');
-  const [technologies, setTechnologies] = useState<UserTechnology[]>();
+  const [bio, setBio] = useState('');
+  const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
+
+  const api = ServiceResolver.apiResolver();
 
   useEffect(() => {
-    const api = ServiceResolver.apiResolver();
-
     const fetchContent = async () => {
       try {
         const userId = UserAuthHelper.getUserId();
@@ -46,7 +53,7 @@ export const AccountSettings: FC = () => {
           setUser(user);
           setUsername(user.username);
           setBio(user.bio);
-          setTechnologies(user.technologies);
+          setTechnologies(user.technologies ?? []);
         } else {
           setError((response.data as ErrorResponse).message);
         }
@@ -58,7 +65,7 @@ export const AccountSettings: FC = () => {
     };
 
     fetchContent();
-  }, []);
+  }, [api]);
 
   const handleClick = async () => {
     const api = ServiceResolver.apiResolver();
@@ -121,7 +128,7 @@ export const AccountSettings: FC = () => {
       <MainContent>
         <Form>
           <Image
-            src={(user && user.profilePictureUrl) || DefaultImage}
+            src={(user && user.profilePictureUrl) || defaultProfileImage}
             width="64"
             height="64"
           />
@@ -145,7 +152,7 @@ export const AccountSettings: FC = () => {
           <FormTextArea
             name="bio"
             id="bio"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setBio(e.target.value)
             }
             value={bio}
@@ -161,7 +168,7 @@ export const AccountSettings: FC = () => {
               name="technologies"
               id="technologies"
               setError={setError}
-              initialValues={technologies?.map((t) => t.name)}
+              initialValues={technologies}
               setTechnologies={setTechnologies}
             />
           )}

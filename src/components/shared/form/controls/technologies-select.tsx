@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
-import { ProjectTechnology } from '@api/types/project-technology';
-import { theme } from '@styles';
-import { ServiceResolver } from '@api';
-import { Tag, Item } from '@api/types/stack-exchange';
 
-interface FormValue<T = string> {
+import {
+  Item,
+  ProjectTechnology,
+  ServiceResolver,
+  Tag,
+  UserTechnology,
+} from '@api';
+import { theme } from '@styles';
+
+type FormValue<T = string> = {
   val: T;
   required: boolean;
-}
+};
 
 type FormInputIndexPropType = string | ProjectTechnology[];
 
-interface FormInput {
+type FormInput = {
   pName: FormValue;
   pDesc: FormValue;
   pTech: FormValue<ProjectTechnology[]>;
@@ -22,26 +27,26 @@ interface FormInput {
   pLaunch: FormValue;
   pComm: FormValue;
   [key: string]: FormValue<FormInputIndexPropType>;
-}
+};
 
-interface TechnologiesSelectProps {
+type TechnologiesSelectProps = {
   setFormInputs?: Function;
   formInputs?: FormInput;
   formErrors?: string[];
   setFormErrors?: Function;
   setError: Function;
-  initialValues?: string[];
+  initialValues?: UserTechnology[];
   setTechnologies: Function;
   name?: string;
   id?: string;
-}
+};
 
-interface OptionType {
+type OptionType = {
   label: string;
   value: string;
-}
+};
 
-export const TechnologiesSelect: React.FC<TechnologiesSelectProps> = ({
+export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
   setFormInputs,
   formInputs,
   formErrors,
@@ -132,8 +137,8 @@ export const TechnologiesSelect: React.FC<TechnologiesSelectProps> = ({
   let defaultValue: OptionType[] = [];
 
   if (initialValues)
-    defaultValue = initialValues.map((v) => {
-      return { type: v, value: v, label: v };
+    defaultValue = initialValues.map(({ name }) => {
+      return { type: name, value: name, label: name };
     });
 
   return (

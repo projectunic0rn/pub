@@ -11,4 +11,5 @@ export * from './sign-up';
 export * from './stack-exchange';
 export * from './user-validation';
 export * from './user';
+export * from './user-technology';
 export * from './username';

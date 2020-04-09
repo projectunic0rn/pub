@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent, useState, Fragment } from 'react';
 import styled from 'styled-components';
 
-import { FormTextArea } from './controls';
+import { TextArea } from './controls2';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
 import { noop } from '@utils';
@@ -33,7 +33,7 @@ const ButtonArea = styled.div`
   padding: 5px;
 `;
 
-const FeedbackFormTextArea = styled(FormTextArea)`
+const FeedbackFormTextArea = styled(TextArea)`
   height: 130px;
   border: none;
   outline: none;

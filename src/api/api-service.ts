@@ -1,6 +1,5 @@
 import { HttpClient } from './http-client';
-import { User } from './types/user';
-import { Feedback, ProjectUser, Project, Username } from './types';
+import { Feedback, ProjectUser, Project, User, Username } from './types';
 import { SessionStorageHelper } from '@helpers';
 
 export class ApiService {

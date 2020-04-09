@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FC, FormEvent } from 'react';
 import styled from 'styled-components';
+
 import { greyLighter, red, redLight, white } from '@styles/constants';
 
 const FormTextAreaHint = styled.small`
@@ -10,7 +11,7 @@ const FormTextAreaHint = styled.small`
 `;
 
 const TextAreaWrapper = styled.div`
-  position: relative;
+  padding: 0.3125em 0.3125em 0 0.3125em;
 `;
 
 const TextArea = styled.textarea<FormTextAreaProps>`
@@ -28,7 +29,7 @@ const TextArea = styled.textarea<FormTextAreaProps>`
   }
 `;
 
-interface FormTextAreaProps {
+type FormTextAreaProps = {
   onChange: Function;
   onBlur?: Function;
   value: string;
@@ -39,9 +40,9 @@ interface FormTextAreaProps {
   hasError?: boolean;
   rows?: number;
   id?: string;
-}
+};
 
-export const FormTextArea: React.FC<FormTextAreaProps> = ({
+export const FormTextArea: FC<FormTextAreaProps> = ({
   onChange,
   onBlur,
   value,
@@ -53,7 +54,7 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
   rows,
   id,
 }) => {
-  const checkLength = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const checkLength = (e: FormEvent<HTMLTextAreaElement>) => {
     return maxCharCount && e.currentTarget.value.length < maxCharCount
       ? e.currentTarget.value
       : e.currentTarget.value.slice(0, maxCharCount);

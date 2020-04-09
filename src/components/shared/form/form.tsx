@@ -8,12 +8,12 @@ const FormElement = styled.form`
   flex-direction: column;
 `;
 
-interface Props {
+type FormProps = {
   heading?: string;
   handleSubmit?: Function;
-}
+};
 
-export const Form: FC<Props> = ({ handleSubmit, heading, children }) => {
+export const Form: FC<FormProps> = ({ handleSubmit, heading, children }) => {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleSubmit && handleSubmit(e);

@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Form } from '@components/shared/form';
+import { navigate } from 'gatsby';
+import React, { ChangeEvent, FC, FocusEvent, useState, useEffect } from 'react';
+import { ValueType } from 'react-select/src/types';
+import styled from 'styled-components';
+
 import {
   FormLabel,
   FormInput,
@@ -9,18 +12,20 @@ import {
   ButtonWrapper,
   TechnologiesSelect,
 } from './controls';
-import styled from 'styled-components';
-import { ValueType } from 'react-select/src/types';
-import { ServiceResolver } from '@api';
-import { Project } from '@api/types/project';
-import { ProjectType } from '@api/types/project-types';
-import { FormVal, Props } from '@utils/form-validation';
-import { navigate } from 'gatsby';
-import { UserAuthHelper } from '@helpers';
-import { ApiResponse, ErrorResponse } from '@api/types/responses';
-import { ProjectTechnology } from '@api/types/project-technology';
 import { ApiButton } from '../buttons';
-import { Ribbon, CloseButton, Message } from '..';
+import { Ribbon, CloseButton } from '../ribbons';
+import Message from '../message';
+import {
+  ApiResponse,
+  ErrorResponse,
+  Project,
+  ProjectTechnology,
+  ProjectType,
+  ServiceResolver,
+} from '@api';
+import { Form } from '@components/shared/form';
+import { FormVal, Props } from '@utils';
+import { UserAuthHelper } from '@helpers';
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -66,7 +71,7 @@ interface FormInput {
   [key: string]: FormValue<FormInputIndexPropType>;
 }
 
-export const CreateProjectForm: React.FC = () => {
+export const CreateProjectForm: FC = () => {
   const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState<FormInput>({
@@ -109,7 +114,7 @@ export const CreateProjectForm: React.FC = () => {
     fetchProjectTypes();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, val = '') => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
     const { name, value } = e.target;
     const state = formInputs;
     state[name].val = value;
@@ -130,7 +135,7 @@ export const CreateProjectForm: React.FC = () => {
     });
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
     const formErrorState: string[] = formErrors;
     const formInputState = formInputs;

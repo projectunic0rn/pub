@@ -1,26 +1,28 @@
-import React, { FC, useEffect, useState } from 'react';
+import { Link } from 'gatsby';
+import React, { FC, Fragment, useEffect, useState } from 'react';
+
 import { BaseContainer } from './base-container';
 import { MainContent } from './main-content';
-import { Wrapper } from '../page';
+import { Button } from '../buttons';
 import { FormLabel } from '../form';
+import { Wrapper } from '../page';
+import { ProfileTechPill } from '../pills';
+import { Ribbon, CloseButton } from '../ribbons';
 import { ContainerSidePanel, Summary, Image } from '../side-panels';
 import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
-import { Ribbon, CloseButton, ProfileTechPill } from '..';
-import { defaultProfileImage } from '@images';
-import { Button } from '../buttons';
-import { Link } from 'gatsby';
 import { UserAuthHelper } from '@helpers';
+import { defaultProfileImage } from '@images';
 
-interface ProfileContainerProps {
+type ProfileContainerProps = {
   id?: string;
   path: string;
-}
+};
 
 export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   const [user, setUser] = useState<User>();
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -68,25 +70,25 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               <Summary>{user.username}</Summary>
             </Summary>
             {UserAuthHelper.isUserAuthenticated() && (
-              <React.Fragment>
+              <Fragment>
                 <br />
                 <Link to="/settings">
                   <Button>Edit Profile</Button>
                 </Link>
-              </React.Fragment>
+              </Fragment>
             )}
           </ContainerSidePanel>
           <MainContent>
             {user.bio && (
-              <React.Fragment>
+              <Fragment>
                 <FormLabel>Bio</FormLabel>
                 <br />
                 <p>{user.bio}</p>
-              </React.Fragment>
+              </Fragment>
             )}
 
             {user.technologies && (
-              <React.Fragment>
+              <Fragment>
                 <FormLabel>Technologies</FormLabel>
                 <br />
                 {user.technologies.map((t) => (
@@ -94,7 +96,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                     {t.name}
                   </ProfileTechPill>
                 ))}
-              </React.Fragment>
+              </Fragment>
             )}
           </MainContent>
         </BaseContainer>
