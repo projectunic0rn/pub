@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const ContainerSidePanel = styled.div`
   flex: 1;
   border-right: 1px solid lightgray;
+  padding-top: 2em;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    display: none;
+  }
 `;
 
 export const Summary = styled.div`

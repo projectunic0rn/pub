@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { Ribbon, CloseButton } from '../ribbons';
-import { Wrapper } from '../page';
 import { Loader } from '@components/shared';
 
 type SettingsContainerProps = {
@@ -12,6 +12,16 @@ type SettingsContainerProps = {
   success: string | null | undefined;
   setSuccess: Function;
 };
+
+const Wrapper = styled.div`
+  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
+  width: 100%;
+  min-height: 50vh;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: 0;
+  }
+`;
 
 export const SettingsContainer: FC<SettingsContainerProps> = ({
   children,
@@ -39,7 +49,7 @@ export const SettingsContainer: FC<SettingsContainerProps> = ({
         </Ribbon>
       )}
 
-      {!isLoading && <BaseContainer border={true}>{children}</BaseContainer>}
+      {!isLoading && <BaseContainer>{children}</BaseContainer>}
     </Wrapper>
   );
 };

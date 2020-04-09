@@ -122,7 +122,7 @@ export const AccountSettings: FC = () => {
       setSuccess={setSuccess}
       isLoading={isLoading}
     >
-      <ContainerSidePanel style={{ paddingTop: 32 }}>
+      <ContainerSidePanel>
         <MenuItem>General</MenuItem>
       </ContainerSidePanel>
       <MainContent>
@@ -172,6 +172,7 @@ export const AccountSettings: FC = () => {
               setTechnologies={setTechnologies}
             />
           )}
+
           <ButtonWrapper>
             <ApiButton handleClick={handleClick} statusText="Saving">
               Save

@@ -6,6 +6,7 @@ const Heading = styled.h2``;
 const FormElement = styled.form`
   display: flex;
   flex-direction: column;
+  margin: 0;
 `;
 
 type FormProps = {

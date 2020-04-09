@@ -3,18 +3,16 @@ import styled from 'styled-components';
 
 export const BaseContainerHtml = styled.div`
   display: flex;
-  width: 60%;
-  margin: 0 auto 50px auto;
+  border: none;
+  margin: 0 auto;
+  width: 90%;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    border: 1px solid lightgray;
+    width: 60%;
+  }
 `;
 
-type BaseContainerProps = {
-  border?: boolean;
-};
-
-export const BaseContainer: FC<BaseContainerProps> = ({ border, children }) => {
-  return (
-    <BaseContainerHtml style={{ border: `${border && '1px solid lightgray'}` }}>
-      {children}
-    </BaseContainerHtml>
-  );
-};
+export const BaseContainer: FC = ({ children }) => (
+  <BaseContainerHtml>{children}</BaseContainerHtml>
+);
