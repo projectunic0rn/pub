@@ -34,7 +34,14 @@ export function getScrollPosition({
 }
 
 export function getNavigatorInfo(): NavigatorInfo {
-  const navigatorInfo: NavigatorInfo = {
+  let navigatorInfo: NavigatorInfo = {
+    userAgent: '',
+  };
+
+  if (typeof window === 'undefined') {
+    return navigatorInfo;
+  }
+  navigatorInfo = {
     userAgent: window.navigator['userAgent'],
   };
 
