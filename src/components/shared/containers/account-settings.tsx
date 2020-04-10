@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { MenuItem } from '../side-panels/container-side-panel';
 import { MainContent } from './main-content';
 import DefaultImage from '@images/default.png';
@@ -15,27 +15,22 @@ import { ApiButton } from '../buttons';
 import { ServiceResolver } from '@/api/service-resolver';
 import { UserAuthHelper } from '@/helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { User } from '@/api/types/user';
+import { User, UserTechnology } from '@/api/types';
 import { SettingsContainer } from './settings-container';
 
-interface OptionType {
-  label: string;
-  value: string;
-}
+export const AccountSettings: FC = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-export const AccountSettings: React.FC = () => {
-  const [error, setError] = React.useState<string | null>(null);
-  const [success, setSuccess] = React.useState<string | null>();
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [user, setUser] = useState<User>();
+  const [username, setUsername] = useState<string>('');
+  const [bio, setBio] = useState<string>('');
+  const [technologies, setTechnologies] = useState<UserTechnology[]>();
 
-  const [user, setUser] = React.useState<User>();
-  const [username, setUsername] = React.useState<string>('');
-  const [bio, setBio] = React.useState<string>('');
-  const [technologies, setTechnologies] = React.useState<string[]>();
+  useEffect(() => {
+    const api = ServiceResolver.apiResolver();
 
-  const api = ServiceResolver.apiResolver();
-
-  React.useEffect(() => {
     const fetchContent = async () => {
       try {
         const userId = UserAuthHelper.getUserId();
@@ -60,17 +55,20 @@ export const AccountSettings: React.FC = () => {
     };
 
     fetchContent();
-  }, [api]);
+  }, []);
 
   const handleClick = async () => {
+    const api = ServiceResolver.apiResolver();
+
     try {
-      const user: User = {
+      const updatedUser: User = {
         id: UserAuthHelper.getUserId(),
         username,
         bio,
         technologies,
+        projects: user?.projects,
       };
-      const response = (await api.editUser(user)) as ApiResponse<
+      const response = (await api.editUser(updatedUser)) as ApiResponse<
         User | ErrorResponse
       >;
 
@@ -130,7 +128,7 @@ export const AccountSettings: React.FC = () => {
           {user && user.technologies && (
             <TechnologiesSelect
               setError={setError}
-              initialValues={technologies}
+              initialValues={technologies?.map((t) => t.name)}
               setTechnologies={setTechnologies}
             />
           )}
