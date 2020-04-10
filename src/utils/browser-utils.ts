@@ -10,6 +10,10 @@ export interface ScrollPosition {
   y: number;
 }
 
+export interface NavigatorInfo {
+  userAgent: string;
+}
+
 export const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
@@ -27,4 +31,19 @@ export function getScrollPosition({
   return useWindow
     ? { x: window.scrollX, y: window.scrollY }
     : { x: position.left, y: position.top };
+}
+
+export function getNavigatorInfo(): NavigatorInfo {
+  let navigatorInfo: NavigatorInfo = {
+    userAgent: '',
+  };
+
+  if (typeof window === 'undefined') {
+    return navigatorInfo;
+  }
+  navigatorInfo = {
+    userAgent: window.navigator['userAgent'],
+  };
+
+  return navigatorInfo;
 }
