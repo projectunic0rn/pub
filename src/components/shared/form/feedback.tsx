@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import { TextArea } from './controls2';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
-import { noop } from '@utils';
-import { getNavigatorInfo } from '@utils/browser-utils';
-import { Ribbon, CloseButton } from '@components/shared';
+import { noop, getNavigatorInfo } from '@utils';
+import { Ribbon, CloseButton, Wrapper } from '@components/shared';
 import { ApiResponse, ErrorResponse, Feedback, ServiceResolver } from '@api';
 
 const FeedbackContainer = styled.div`
@@ -42,16 +41,16 @@ const FeedbackFormTextArea = styled(TextArea)`
   color: #aaa;
 `;
 
-const FeedbackButtonWrapper = styled.div`
+const FeedbackButtonWrapper = styled(Wrapper)`
   display: flex;
-  cursor: pointer;
   justify-content: flex-end;
-  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
+  min-height: inherit;
   padding-bottom: 0;
+  margin-top: 1em;
 
   @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
-    padding: ${({ theme }) => theme.boxes.padding.section.small};
     padding-bottom: 0;
+    padding-top: 0;
   }
 `;
 
@@ -116,8 +115,8 @@ export const FeedbackForm: FC = () => {
 
   return (
     <Fragment>
-      {showFeedbackForm && (
-        <Fragment>
+      <FeedbackButtonWrapper>
+        {showFeedbackForm && (
           <FeedbackContainer>
             <FeedbackFormTextArea
               onChange={handleChange}
@@ -139,9 +138,8 @@ export const FeedbackForm: FC = () => {
               </SecondaryButton>
             </ButtonArea>
           </FeedbackContainer>
-        </Fragment>
-      )}
-      <FeedbackButtonWrapper>
+        )}
+
         <FeedbackButton
           disabled={showFeedbackForm}
           onClick={handleFeedbackButtonOnClick}
