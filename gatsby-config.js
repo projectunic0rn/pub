@@ -95,7 +95,6 @@ module.exports = {
           '@templates': 'src/templates',
           '@utils': 'src/utils',
           '@static': 'static',
-          '@': 'src',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
       },
