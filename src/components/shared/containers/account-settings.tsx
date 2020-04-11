@@ -15,7 +15,7 @@ import { ApiButton } from '../buttons';
 import { ServiceResolver } from '@api';
 import { UserAuthHelper } from '@helpers';
 import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { User, UserTechnology } from '@/api/types';
+import { User, UserTechnology, UserValidation, Username } from '@/api/types';
 import { SettingsContainer } from './settings-container';
 
 export const AccountSettings: FC = () => {
@@ -25,6 +25,9 @@ export const AccountSettings: FC = () => {
 
   const [user, setUser] = useState<User>();
   const [username, setUsername] = useState<string>('');
+  const [usernameAvailablity, setUsernameAvailability] = useState<
+    UserValidation
+  >({ valid: true, reason: '' });
   const [bio, setBio] = useState<string>('');
   const [technologies, setTechnologies] = useState<UserTechnology[]>();
 
@@ -82,6 +85,28 @@ export const AccountSettings: FC = () => {
     }
   };
 
+  const handleUsernameChange = async (username: string) => {
+    const api = ServiceResolver.apiResolver();
+    const u: Username = {
+      username,
+    };
+    setUsername(username);
+    setUsernameAvailability({ valid: true, reason: 'checking...' });
+    try {
+      const response = (await api.validateUsername(u)) as ApiResponse<
+        UserValidation | ErrorResponse
+      >;
+      if (response.ok) {
+        setUsernameAvailability(response.data as UserValidation);
+      }
+    } catch {
+      setUsernameAvailability({
+        valid: false,
+        reason: 'Failed to validate username',
+      });
+    }
+  };
+
   return (
     <SettingsContainer
       error={error}
@@ -100,20 +125,26 @@ export const AccountSettings: FC = () => {
             width="64"
             height="64"
           />
-          <FormLabel html-for="username">Username</FormLabel>
+          <FormLabel htmlFor="username">Username</FormLabel>
           <FormInput
             type="text"
             name="username"
+            id="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => handleUsernameChange(e.target.value)}
+            hasError={!usernameAvailablity.valid}
           />
+          {usernameAvailablity.reason != '' && (
+            <div>{usernameAvailablity.reason}</div>
+          )}
           <br />
           <br />
 
-          <FormLabel>Bio</FormLabel>
+          <FormLabel htmlFor="bio">Bio</FormLabel>
 
           <FormTextArea
             name="bio"
+            id="bio"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setBio(e.target.value)
             }
@@ -124,9 +155,11 @@ export const AccountSettings: FC = () => {
           </FormTextArea>
           <br />
 
-          <FormLabel>Technologies</FormLabel>
+          <FormLabel htmlFor="technologies">Technologies</FormLabel>
           {user && user.technologies && (
             <TechnologiesSelect
+              name="technologies"
+              id="technologies"
               setError={setError}
               initialValues={technologies?.map((t) => t.name)}
               setTechnologies={setTechnologies}

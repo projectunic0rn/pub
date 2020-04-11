@@ -32,6 +32,8 @@ interface TechnologiesSelectProps {
   setError: Function;
   initialValues?: string[];
   setTechnologies: Function;
+  name?: string;
+  id?: string;
 }
 
 interface OptionType {
@@ -47,6 +49,8 @@ export const TechnologiesSelect: React.FC<TechnologiesSelectProps> = ({
   setError,
   initialValues,
   setTechnologies,
+  name,
+  id,
 }) => {
   const styles = {
     multiValue: (styles: {}) => {
@@ -142,6 +146,8 @@ export const TechnologiesSelect: React.FC<TechnologiesSelectProps> = ({
       onBlur={handleAsyncSelectOnBlur}
       loadOptions={promiseOptions}
       defaultValue={defaultValue}
+      name={name}
+      id={id}
     />
   );
 };

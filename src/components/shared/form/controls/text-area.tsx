@@ -38,6 +38,7 @@ interface FormTextAreaProps {
   name: string;
   hasError?: boolean;
   rows?: number;
+  id?: string;
 }
 
 export const FormTextArea: React.FC<FormTextAreaProps> = ({
@@ -50,6 +51,7 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   hasError,
   rows,
+  id,
 }) => {
   const checkLength = (e: React.FormEvent<HTMLTextAreaElement>) => {
     return maxCharCount && e.currentTarget.value.length < maxCharCount
@@ -67,6 +69,7 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
         onBlur={(e) => onBlur && onBlur(e)}
         hasError={hasError}
         rows={rows}
+        id={id}
       />
       {displayCharCount && (
         <FormTextAreaHint>
