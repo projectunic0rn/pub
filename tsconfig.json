@@ -33,8 +33,7 @@
       "@templates/*": ["./src/templates/*"],
       "@utils": ["./src/utils/index"],
       "@utils/*": ["./src/utils/*"],
-      "@static/*": ["./static/*"],
-      "@/*": ["./src/*"]
+      "@static/*": ["./static/*"]
     }
   },
   "exclude": ["node_modules", "public", ".cache"]
