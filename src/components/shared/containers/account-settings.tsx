@@ -14,8 +14,8 @@ import { Form } from '../form';
 import { ApiButton } from '../buttons';
 import { ServiceResolver } from '@api';
 import { UserAuthHelper } from '@helpers';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { User, UserTechnology, UserValidation, Username } from '@/api/types';
+import { ApiResponse, ErrorResponse } from '@api/types/responses';
+import { User, UserTechnology, UserValidation, Username } from '@api/types';
 import { SettingsContainer } from './settings-container';
 
 export const AccountSettings: FC = () => {

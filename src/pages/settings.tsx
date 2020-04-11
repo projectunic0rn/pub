@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
-import { UserAuthHelper } from '@/helpers';
+import { UserAuthHelper } from '@helpers';
 import { navigate } from 'gatsby';
 import { AccountSettings } from '@components/shared/containers';
 

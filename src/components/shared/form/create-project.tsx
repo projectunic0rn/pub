@@ -12,13 +12,13 @@ import {
 import styled from 'styled-components';
 import { ValueType } from 'react-select/src/types';
 import { ServiceResolver } from '@api';
-import { Project } from '@/api/types/project';
-import { ProjectType } from '@/api/types/project-types';
+import { Project } from '@api/types/project';
+import { ProjectType } from '@api/types/project-types';
 import { FormVal, Props } from '@utils/form-validation';
 import { navigate } from 'gatsby';
 import { UserAuthHelper } from '@helpers';
-import { ApiResponse, ErrorResponse } from '@/api/types/responses';
-import { ProjectTechnology } from '@/api/types/project-technology';
+import { ApiResponse, ErrorResponse } from '@api/types/responses';
+import { ProjectTechnology } from '@api/types/project-technology';
 import { ApiButton } from '../buttons';
 import { Ribbon, CloseButton, Message } from '..';
 

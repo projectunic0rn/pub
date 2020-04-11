@@ -10,7 +10,7 @@ import {
   createProject,
   user,
 } from './responses';
-import { User } from '@/api/types/user';
+import { User } from '@api/types/user';
 
 export class MockApiService {
   public async createProject(project: Project) {
