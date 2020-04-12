@@ -1,5 +1,5 @@
 import { HttpClient } from './http-client';
-import { Feedback, ProjectUser, Project, Username } from './types';
+import { Feedback, ProjectUser, Project, User, Username } from './types';
 import { SessionStorageHelper } from '@helpers';
 
 export class ApiService {
@@ -73,6 +73,14 @@ export class ApiService {
     return await HttpClient.get(
       `${this.apiEndpoint}/users/${id}`,
       this.headers,
+    );
+  }
+
+  public async editUser(user: User) {
+    return await HttpClient.put(
+      `${this.apiEndpoint}/users`,
+      this.headers,
+      user,
     );
   }
 }

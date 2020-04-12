@@ -1,6 +1,7 @@
 export * from './feedback';
 export * from './jwt-token';
 export * from './project-technology';
+export * from './user-technology';
 export * from './project-types';
 export * from './project-user';
 export * from './project';
@@ -10,4 +11,5 @@ export * from './sign-up';
 export * from './stack-exchange';
 export * from './user-validation';
 export * from './user';
+export * from './user-technology';
 export * from './username';
