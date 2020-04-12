@@ -38,9 +38,9 @@ export const AccountSettings: FC = () => {
   const [bio, setBio] = useState('');
   const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
 
-  const api = ServiceResolver.apiResolver();
-
   useEffect(() => {
+    const api = ServiceResolver.apiResolver();
+
     const fetchContent = async () => {
       try {
         const userId = UserAuthHelper.getUserId();
@@ -65,7 +65,7 @@ export const AccountSettings: FC = () => {
     };
 
     fetchContent();
-  }, [api]);
+  }, []);
 
   const handleClick = async () => {
     const api = ServiceResolver.apiResolver();

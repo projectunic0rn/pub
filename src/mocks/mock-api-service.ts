@@ -44,7 +44,7 @@ export class MockApiService {
     return user;
   }
 
-  public async editUser(user: User) {
+  public async editUser(_user: User) {
     return user;
   }
 }
