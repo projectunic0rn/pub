@@ -1,4 +1,4 @@
-import { render, getByRole } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
 import Hero from '../hero';
 import { MockThemeProvider } from '@mocks';
