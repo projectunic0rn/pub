@@ -1,14 +1,14 @@
 import { Link } from 'gatsby';
 import React, { FC, Fragment, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { MainContent } from './main-content';
 import { Button } from '../buttons';
 import { FormLabel } from '../form';
-import { Wrapper } from '../page';
 import { ProfileTechPill } from '../pills';
 import { Ribbon, CloseButton } from '../ribbons';
-import { ContainerSidePanel, Summary, Image } from '../side-panels';
+import { ContainerSidePanel, Summary } from '../side-panels';
 import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
@@ -18,6 +18,22 @@ type ProfileContainerProps = {
   id?: string;
   path: string;
 };
+
+const Image = styled.img`
+  border-radius: 100px;
+  max-width: 50%;
+  margin-bottom: 0;
+`;
+
+const Wrapper = styled.div`
+  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
+  width: 100%;
+  min-height: 50vh;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: 0;
+  }
+`;
 
 export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   const [user, setUser] = useState<User>();

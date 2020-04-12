@@ -3,13 +3,12 @@ import styled from 'styled-components';
 
 export const BaseContainerHtml = styled.div`
   display: flex;
-  border: none;
+  flex-direction: column;
   margin: 0 auto;
-  width: 90%;
 
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     border: 1px solid lightgray;
-    width: 60%;
+    flex-direction: row;
   }
 `;
 
