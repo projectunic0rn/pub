@@ -35,8 +35,8 @@ const SponsorPage: FC = () => {
           <p>
             If you would like to reach engineers with your product/service or
             hiring opportunity get in touch with me directly at&nbsp;
-            <a href={`mailto:${siteMetadata.royEmail}`}>
-              {siteMetadata.royEmail}
+            <a href={`mailto:${siteMetadata.contactEmail}`}>
+              {siteMetadata.contactEmail}
             </a>
             . Sponsorships are one of the ways Project Unicorn helps support
             operational costs while providing value to engineers with highly

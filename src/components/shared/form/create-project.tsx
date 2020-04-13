@@ -1,31 +1,9 @@
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
-import React, {
-  ChangeEvent,
-  FC,
-  FocusEvent,
-  useState,
-  useEffect,
-  useContext,
-} from 'react';
-import AsyncSelect from 'react-select/async';
+import React, { ChangeEvent, FC, FocusEvent, useState, useEffect } from 'react';
 import { ValueType } from 'react-select/src/types';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 
-import { ApiButton } from '../buttons';
-import { Ribbon, CloseButton } from '../ribbons';
-import {
-  ServiceResolver,
-  Project,
-  Tag,
-  Item,
-  ProjectType,
-  ProjectTechnology,
-  ApiResponse,
-  ErrorResponse,
-} from '@api';
-import { Form } from '@components/shared/form';
-import { Message, Seo } from '@components/shared';
 import {
   FormLabel,
   FormInput,
@@ -33,14 +11,23 @@ import {
   FormTextArea,
   FormSelectInput,
   ButtonWrapper,
+  TechnologiesSelect,
 } from './controls';
-import { UserAuthHelper } from '@helpers';
+import { ApiButton } from '../buttons';
+import { Ribbon, CloseButton } from '../ribbons';
+import Message from '../message';
+import {
+  ApiResponse,
+  ErrorResponse,
+  Project,
+  ProjectTechnology,
+  ProjectType,
+  ServiceResolver,
+} from '@api';
+import { Seo } from '@components/shared';
+import { Form } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
-
-interface OptionType {
-  label: string;
-  value: string;
-}
+import { UserAuthHelper } from '@helpers';
 
 type OwnProps = {};
 type CreateProjectFormProps = OwnProps & RouteComponentProps;
@@ -71,6 +58,11 @@ interface FormValue<T = string> {
   required: boolean;
 }
 
+interface OptionType {
+  label: string;
+  value: string;
+}
+
 type FormInputIndexPropType = string | ProjectTechnology[];
 
 interface FormInput {
@@ -85,8 +77,6 @@ interface FormInput {
 }
 
 export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
-  const theme = useContext(ThemeContext);
-  const stackExchange = ServiceResolver.stackExchangeResolver();
   const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState<FormInput>({
@@ -102,38 +92,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-
-  const styles = {
-    control: (styles: {}) => {
-      return {
-        ...styles,
-        border: formErrors.includes('pTech')
-          ? `1px solid ${theme.colors.alert.danger}`
-          : `1px solid ${theme.colors.greyDark};`,
-        background: formErrors.includes('pTech')
-          ? theme.colors.input.errorBg
-          : theme.colors.baseinvert,
-      };
-    },
-    multiValue: (styles: {}) => {
-      return {
-        ...styles,
-        backgroundColor: theme.colors.highlight,
-      };
-    },
-    multiValueLabel: (styles: {}) => ({
-      ...styles,
-      color: theme.colors.baseinvert,
-    }),
-    multiValueRemove: (styles: {}) => ({
-      ...styles,
-      color: theme.colors.baseinvert,
-      ':hover': {
-        backgroundColor: theme.colors.highlightDark,
-        color: theme.colors.baseinvert,
-      },
-    }),
-  };
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -161,35 +119,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     fetchProjectTypes();
   }, []);
 
-  const promiseOptions = async (inputValue: string) => {
-    try {
-      const data = (await stackExchange.searchTags(inputValue)) as Tag;
-      const options: OptionType[] = data.items.map((item: Item) => ({
-        value: item.name,
-        label: item.name,
-      }));
-
-      return options;
-    } catch (error) {
-      setError('Failed to get tags');
-    }
-  };
-
-  const handleSelectChange = (e: ValueType<OptionType>) => {
-    let technologies: ProjectTechnology[];
-
-    if (Array.isArray(e)) {
-      technologies = e.map((v) => ({ name: v.value, projectId: '' }));
-    } else {
-      technologies = [];
-    }
-
-    setFormInputs({
-      ...formInputs,
-      pTech: { ...formInputs.pTech, val: technologies },
-    });
-  };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
     const { name, value } = e.target;
     const state = formInputs;
@@ -198,6 +127,17 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     if (name === 'pDesc') state[name].val = val;
 
     setFormInputs({ ...state });
+  };
+
+  const handleSelectChange = (e: ValueType<OptionType>) => {
+    const technologies: ProjectTechnology[] = Array.isArray(e)
+      ? e.map((v) => ({ name: v, projectId: '' }))
+      : [];
+
+    setFormInputs({
+      ...formInputs,
+      pTech: { ...formInputs.pTech, val: technologies },
+    });
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
@@ -213,22 +153,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     } else {
       if (!formErrorState.includes(name)) {
         formErrorState.push(name);
-      }
-    }
-
-    setFormErrors([...formErrorState]);
-  };
-
-  const handleAsyncSelectOnBlur = () => {
-    const formErrorState: string[] = formErrors;
-
-    if (formErrorState.indexOf('pTech') > 0 || formInputs.pTech.val.length) {
-      if (formInputs.pTech.val.length) {
-        formErrorState.splice(formErrorState.indexOf('pTech'), 1);
-      }
-    } else {
-      if (!formInputs.pTech.val.length) {
-        formErrorState.push('pTech');
       }
     }
 
@@ -383,14 +307,9 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
             (Slack or Discord)
           </FormHint>
           <FormLabel htmlFor="technologies">Technologies</FormLabel>
-          <AsyncSelect
-            cacheOptions
-            defaultOptions
-            isMulti
-            onChange={handleSelectChange}
-            styles={styles}
-            onBlur={handleAsyncSelectOnBlur}
-            loadOptions={promiseOptions}
+          <TechnologiesSelect
+            setError={setError}
+            setTechnologies={handleSelectChange}
           />
           {formErrors.includes('pTech') && (
             <Message variant="error" value="At least one technology required" />

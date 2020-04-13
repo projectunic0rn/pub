@@ -36,7 +36,7 @@ describe('profile container', () => {
       getAllByTestId('technology'),
     );
     // Assert
-    expect(profileTechnology.length).toBe(apiTechnologiesData.length);
+    expect(profileTechnology.length).toBe(apiTechnologiesData?.length);
   });
 
   test('displays user bio returned by api', async () => {
