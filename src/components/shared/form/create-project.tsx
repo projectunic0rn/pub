@@ -220,6 +220,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormLabel htmlFor="project-name">Project Name</FormLabel>
           <FormInput
             name="pName"
+            id="project-name"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -235,6 +236,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           ​<FormLabel htmlFor="description">Description</FormLabel>
           <FormTextArea
             name="pDesc"
+            id="description"
             onChange={handleChange}
             onBlur={handleBlur}
             value={formInputs['pDesc'].val}
@@ -249,6 +251,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormLabel htmlFor="project-type">Project Type</FormLabel>
           <FormSelectInput
             name="pType"
+            id="project-type"
             options={projectTypes}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -262,6 +265,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
           <FormInput
             name="pRepo"
+            id="project-repo"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -274,6 +278,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
           <FormInput
             name="pLaunch"
+            id="launch-date"
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -291,6 +296,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           </FormLabel>
           <FormInput
             name="pComm"
+            id="communication-platform"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -308,6 +314,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           </FormHint>
           <FormLabel htmlFor="technologies">Technologies</FormLabel>
           <TechnologiesSelect
+            id="technologies"
             setError={setError}
             setTechnologies={handleSelectChange}
           />
