@@ -11,8 +11,6 @@ export interface SiteMetadata {
   description: string;
   /** The url of the website. */
   siteUrl: string;
-  /** The url of the app. */
-  appUrl: string;
   /*Email displayed on static pages */
   contactEmail: string;
   /* Contact email for Roy */
@@ -51,7 +49,6 @@ const siteMetadataQuery = graphql`
         tag
         description
         siteUrl
-        appUrl
         contactEmail
         royEmail
         social {

@@ -70,7 +70,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
 
       if (response.ok) {
         SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/app/projects/');
+        navigate('/projects/');
       } else {
         setMessage((response.data as ErrorResponse).message);
       }
@@ -86,6 +86,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
         <FormLabel htmlFor="email-signin">Email</FormLabel>
         <FormInput
           name="email-signin"
+          id="email-signin"
           type="email"
           placeholder="unicorn@projectunicorn.net"
           onChange={(e) => {
@@ -97,6 +98,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
         <FormLabel htmlFor="password">Password</FormLabel>
         <FormInput
           name="password"
+          id="password"
           type="password"
           placeholder="Your Password"
           onChange={(e) => {

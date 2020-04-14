@@ -15,6 +15,7 @@ type FormSelectInputProps = {
   onBlur: Function;
   hasError?: boolean;
   placeholder: string;
+  id: string;
 };
 
 export const SelectInput = styled.select<FormSelectInputProps>`
@@ -38,6 +39,7 @@ export const FormSelectInput: FC<FormSelectInputProps> = ({
   onBlur,
   hasError,
   placeholder,
+  id,
 }) => {
   const selectOptions = options.map((option) => (
     <option key={option.type} value={option.type}>
@@ -47,6 +49,7 @@ export const FormSelectInput: FC<FormSelectInputProps> = ({
 
   return (
     <SelectInput
+      id={id}
       onBlur={(e) => {
         onBlur(e);
       }}

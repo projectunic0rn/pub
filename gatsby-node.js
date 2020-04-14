@@ -45,7 +45,21 @@ exports.onCreateNode = ({ node, actions }) => {
 };
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+
+  const redirects = [
+    { fromPath: '/app/projects', toPath: '/projects' },
+    { fromPath: '/app/projects/create', toPath: '/projects/create' },
+  ];
+
+  for (const { fromPath, toPath } of redirects) {
+    createRedirect({
+      fromPath,
+      redirectInBrowser: true,
+      isPermanent: true,
+      toPath,
+    });
+  }
 
   /**
    * **Creates the blog index page, blog post pages and paginated list of blog posts.**

@@ -74,7 +74,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: siteMetadata.siteUrl,
         stripQueryString: true,
@@ -147,8 +147,8 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/profile/*`] },
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: { prefixes: ['/profile/*', '/projects/*'] },
     },
   ],
   mapping: {

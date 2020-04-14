@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 import React, { FC, Fragment, useState, useEffect } from 'react';
 
 import Panel from './panel';
@@ -6,7 +7,10 @@ import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Wrapper } from '@components/shared';
 
-const ProjectGallery: FC = () => {
+type OwnProps = {};
+type ProjectGalleryProps = OwnProps & RouteComponentProps;
+
+const ProjectGallery: FC<ProjectGalleryProps> = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
