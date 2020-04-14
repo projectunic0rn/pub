@@ -1,4 +1,4 @@
-import { act, fireEvent, render, wait } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 
 import { MockThemeProvider } from '@mocks';
@@ -23,17 +23,15 @@ test('shows email and password inputs', () => {
 test('shows message when email or password is invalid', async () => {
   expect.assertions(1);
 
-  const { getByText } = render(
+  const { getByText, findByText } = render(
     <MockThemeProvider>
       <SignInForm location={{ state: { message: '' } }} />
     </MockThemeProvider>,
   );
 
-  act(() => {
-    fireEvent.click(getByText(/sign in/i, { selector: 'button' }));
-  });
+  fireEvent.click(getByText(/sign in/i, { selector: 'button' }));
 
-  await wait(() =>
-    expect(getByText(/invalid email or password/i)).toBeInTheDocument(),
-  );
+  const message = await findByText(/invalid email or password/i);
+
+  expect(message).toBeInTheDocument();
 });
