@@ -1,25 +1,44 @@
-import React, { FC, useEffect, useState } from 'react';
+import { Link } from 'gatsby';
+import React, { FC, Fragment, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { MainContent } from './main-content';
-import { Wrapper } from '../page';
+import { Button } from '../buttons';
 import { FormLabel } from '../form';
-import { ContainerSidePanel, Summary, Image } from '../side-panels';
 import { ProfileTechPill } from '../pills';
 import { Ribbon, CloseButton } from '../ribbons';
+import { ContainerSidePanel, Summary } from '../side-panels';
 import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
+import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
 
-interface ProfileContainerProps {
+type ProfileContainerProps = {
   id?: string;
   path: string;
-}
+};
+
+const Image = styled.img`
+  border-radius: 100px;
+  max-width: 50%;
+  margin-bottom: 0;
+`;
+
+const Wrapper = styled.div`
+  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
+  width: 100%;
+  min-height: 50vh;
+
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: 0;
+  }
+`;
 
 export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   const [user, setUser] = useState<User>();
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -66,18 +85,26 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               />
               <Summary>{user.username}</Summary>
             </Summary>
+            {UserAuthHelper.isUserAuthenticated() && (
+              <Fragment>
+                <br />
+                <Link to="/settings">
+                  <Button>Edit Profile</Button>
+                </Link>
+              </Fragment>
+            )}
           </ContainerSidePanel>
           <MainContent>
             {user.bio && (
-              <React.Fragment>
+              <Fragment>
                 <FormLabel>Bio</FormLabel>
                 <br />
                 <p>{user.bio}</p>
-              </React.Fragment>
+              </Fragment>
             )}
 
             {user.technologies && (
-              <React.Fragment>
+              <Fragment>
                 <FormLabel>Technologies</FormLabel>
                 <br />
                 {user.technologies.map((t) => (
@@ -85,7 +112,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                     {t.name}
                   </ProfileTechPill>
                 ))}
-              </React.Fragment>
+              </Fragment>
             )}
           </MainContent>
         </BaseContainer>

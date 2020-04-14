@@ -5,7 +5,7 @@ import Card from './card';
 import { Project } from '@api';
 
 interface PanelProps {
-  content: Project[];
+  content?: Project[];
   setError: Function;
 }
 

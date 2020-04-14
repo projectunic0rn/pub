@@ -102,7 +102,7 @@ export const SignUpForm: FC = () => {
 
       if (response.ok) {
         SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/app/projects/');
+        navigate('/projects/');
       } else {
         setMessage((response.data as ErrorResponse).message);
       }
@@ -172,6 +172,7 @@ export const SignUpForm: FC = () => {
         <FormLabel htmlFor="email">Email</FormLabel>
         <FormInput
           name="email"
+          id="email"
           type="email"
           placeholder="unicorn@projectunicorn.net"
           onChange={(e) => handleChange(e)}
@@ -181,6 +182,7 @@ export const SignUpForm: FC = () => {
         <FormLabel htmlFor="username">Username</FormLabel>
         <FormInput
           name="username"
+          id="username"
           type="text"
           placeholder="unicorn21"
           onChange={(e) => checkUsername(e)}
@@ -192,6 +194,7 @@ export const SignUpForm: FC = () => {
         <FormLabel htmlFor="password">Password</FormLabel>
         <FormInput
           name="password"
+          id="password"
           type="password"
           placeholder="Your Password"
           onChange={(e) => handleChange(e)}
@@ -201,9 +204,10 @@ export const SignUpForm: FC = () => {
           }
         />
 
-        <FormLabel htmlFor="password">Confirm Password</FormLabel>
+        <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
         <FormInput
           name="confirmPassword"
+          id="confirmPassword"
           type="password"
           placeholder="Confirm Your Password"
           onChange={(e) => handleChange(e)}

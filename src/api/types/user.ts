@@ -4,8 +4,11 @@ import { UserTechnology } from './user-technology';
 export interface User {
   id?: string;
   username: string;
-  profilePictureUrl: string;
+  email?: string;
+  lookingForProject?: boolean;
+  profilePictureUrl?: string;
+  gitHubUsername?: string;
   bio: string;
-  technologies: UserTechnology[];
-  projects: Project[];
+  technologies?: UserTechnology[];
+  projects?: Project[];
 }

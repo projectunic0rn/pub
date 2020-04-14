@@ -1,19 +1,14 @@
-import React, { ChangeEvent, FC, SyntheticEvent } from 'react';
+import React, { FC, SyntheticEvent, useState, Fragment } from 'react';
 import styled from 'styled-components';
 
-import { TextArea } from './controls';
+import { TextArea } from './controls2';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
-import { noop } from '@utils';
+import { noop, getNavigatorInfo } from '@utils';
+import { Ribbon, CloseButton, Wrapper } from '@components/shared';
+import { ApiResponse, ErrorResponse, Feedback, ServiceResolver } from '@api';
 
-interface OwnProps {
-  handleSendClick: Function;
-  handleCancelClick: Function;
-  handleChange: Function;
-  value: string;
-}
-
-const Feedback = styled.div`
+const FeedbackContainer = styled.div`
   width: 400px;
   height: 200px;
   background: white;
@@ -46,34 +41,126 @@ const FeedbackFormTextArea = styled(TextArea)`
   color: #aaa;
 `;
 
-export const FeedbackForm: FC<OwnProps> = ({
-  handleSendClick,
-  handleCancelClick,
-  handleChange,
-  value,
-}) => {
-  return (
-    <Feedback>
-      <FeedbackFormTextArea
-        onChange={(e: ChangeEvent) => handleChange(e)}
-        onBlur={noop}
-        value={value}
-        name="feedback"
-        placeholder="Feedback about this page?"
-      />
+const FeedbackButtonWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: flex-end;
+  min-height: inherit;
+  padding-bottom: 0;
+  margin-top: 1em;
 
-      <ButtonArea>
-        <ApiButton handleClick={handleSendClick} statusText="Sending...">
-          Send
-        </ApiButton>
-        <SecondaryButton
-          style={{ float: 'right' }}
-          onClick={(e: SyntheticEvent) => handleCancelClick(e)}
+  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+`;
+
+const FeedbackButton = styled(SecondaryButton)`
+  margin-right: ${({ disabled }) => (disabled ? '1em' : 0)};
+  box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
+`;
+
+export const FeedbackForm: FC = () => {
+  const [feedback, setFeedback] = useState<string>('');
+  const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>('');
+
+  const handleSendClick = async () => {
+    setError(null);
+
+    const api = ServiceResolver.apiResolver();
+    const navigatorInfo = getNavigatorInfo();
+    let additionalFeedbackInfo = 'Additional info:\n';
+    for (const [key, value] of Object.entries(navigatorInfo)) {
+      additionalFeedbackInfo = additionalFeedbackInfo.concat(
+        `${key}: ${value}\n`,
+      );
+    }
+    const feedbackInfo = `${feedback}\n\n\n\n${additionalFeedbackInfo}`;
+    try {
+      const response = (await api.sendFeedback({
+        content: feedbackInfo,
+      })) as ApiResponse<Feedback | ErrorResponse>;
+
+      if (response.ok) {
+        setSuccess('Feedback sent successfully');
+        setFeedback('');
+      } else {
+        setError('Failed to send feedback');
+      }
+    } catch (err) {
+      setError('Failed to send feedback');
+    }
+  };
+
+  const handleCancelClick = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setShowFeedbackForm(false);
+  };
+
+  const handleDocumentClick = (e: MouseEvent) => {
+    if (!(e.target as HTMLElement).className.includes('feedback')) {
+      setShowFeedbackForm(false);
+      document.removeEventListener('click', handleDocumentClick);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setFeedback(e.target.value);
+
+  const handleFeedbackButtonOnClick = () => {
+    setShowFeedbackForm(true);
+    document.addEventListener('click', handleDocumentClick);
+  };
+
+  return (
+    <Fragment>
+      <FeedbackButtonWrapper>
+        {showFeedbackForm && (
+          <FeedbackContainer>
+            <FeedbackFormTextArea
+              onChange={handleChange}
+              onBlur={noop}
+              value={feedback}
+              name="feedback"
+              placeholder="Feedback about this page?"
+            />
+
+            <ButtonArea>
+              <ApiButton handleClick={handleSendClick} statusText="Sending...">
+                Send
+              </ApiButton>
+              <SecondaryButton
+                style={{ float: 'right' }}
+                onClick={(e: SyntheticEvent) => handleCancelClick(e)}
+              >
+                Cancel
+              </SecondaryButton>
+            </ButtonArea>
+          </FeedbackContainer>
+        )}
+
+        <FeedbackButton
+          disabled={showFeedbackForm}
+          onClick={handleFeedbackButtonOnClick}
         >
-          Cancel
-        </SecondaryButton>
-      </ButtonArea>
-    </Feedback>
+          💡 Got feedback?
+        </FeedbackButton>
+      </FeedbackButtonWrapper>
+      {success && (
+        <Ribbon type="success">
+          {success}{' '}
+          <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
+        </Ribbon>
+      )}
+
+      {error && (
+        <Ribbon type="danger">
+          {error}{' '}
+          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+        </Ribbon>
+      )}
+    </Fragment>
   );
 };
 

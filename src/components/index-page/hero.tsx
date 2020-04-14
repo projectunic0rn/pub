@@ -2,9 +2,9 @@ import { Link } from 'gatsby';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import CtaButton from './cta-button';
 import { useSiteMetadata } from '@hooks';
 import { connectedWorld } from '@images';
+import ButtonTemplate from './button-template';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -46,8 +46,6 @@ const SubHeading = styled.p`
   text-align: start;
 `;
 
-const FormWrapper = styled.div``;
-
 const ImageWrapper = styled.figure`
   flex: 0 0 45%;
   margin: 0;
@@ -63,6 +61,10 @@ const Image = styled.img.attrs(() => ({ src: connectedWorld, alt: '' }))`
   width: 100%;
 `;
 
+const Button = styled.button`
+  ${ButtonTemplate}
+`;
+
 /** Hero contains the web site's tag line and a call-to-action button. */
 const Hero: FC = () => {
   const siteMetadata = useSiteMetadata();
@@ -73,11 +75,9 @@ const Hero: FC = () => {
         <Heading>{siteMetadata.tag}</Heading>
         <SubHeading>{siteMetadata.description}</SubHeading>
 
-        <FormWrapper>
-          <Link to="/signup">
-            <CtaButton href="/signup">Sign Up</CtaButton>
-          </Link>
-        </FormWrapper>
+        <Link to="/signup">
+          <Button variant="default">Sign Up</Button>
+        </Link>
       </Text>
 
       <ImageWrapper>

@@ -37,8 +37,6 @@ const mockUseStaticQueryImplementation = () => {
           'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
         /** The url of the website. */
         siteUrl: 'http://localhost:8000',
-        /** The url of the app. */
-        appUrl: 'http://localhost:8000/app',
         logo: 'src/images/logo.png',
         /*Email displayed on static pages */
         contactEmail: 'team@projectunicorn.dev',
@@ -67,7 +65,7 @@ const mockUseStaticQueryImplementation = () => {
         /* eslint-disable @typescript-eslint/camelcase */
         name: 'Project Unicorn',
         short_name: 'Project Unicorn',
-        start_url: '/app/projects',
+        start_url: '/projects',
         background_color: '#ffffff',
         theme_color: '#ffffff',
         display: 'minimal-ui',

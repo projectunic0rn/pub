@@ -74,7 +74,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: siteMetadata.siteUrl,
         stripQueryString: true,
@@ -95,7 +95,6 @@ module.exports = {
           '@templates': 'src/templates',
           '@utils': 'src/utils',
           '@static': 'static',
-          '@': 'src',
         },
         extensions: ['ts', 'tsx', 'png', 'jpg', 'jpeg', 'gif'],
       },
@@ -148,8 +147,8 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/profile/*`] },
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: { prefixes: ['/profile/*', '/projects/*'] },
     },
   ],
   mapping: {
