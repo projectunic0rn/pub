@@ -24,6 +24,12 @@ import {
 } from '@api';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
+import { ValueType } from 'react-select/src/types';
+
+interface OptionType {
+  label: string;
+  value: string;
+}
 
 export const AccountSettings: FC = () => {
   const [error, setError] = useState<string | null>(null);
@@ -72,7 +78,7 @@ export const AccountSettings: FC = () => {
 
     try {
       const updatedUser: User = {
-        id: UserAuthHelper.getUserId(),
+        id: user?.id,
         username,
         bio,
         technologies,
@@ -112,6 +118,22 @@ export const AccountSettings: FC = () => {
         reason: 'Failed to validate username',
       });
     }
+  };
+
+  const handleSelectChange = (e: ValueType<OptionType>) => {
+    const userId = user?.id === undefined ? '' : user.id;
+    const updatedTechnologies: UserTechnology[] = Array.isArray(e)
+      ? e.map((v) => {
+          const userTech = technologies.find((t) => t.name == v);
+          if (userTech == undefined) {
+            return { name: v, userId, id: '' };
+          } else {
+            return { name: v, userId, id: userTech.id };
+          }
+        })
+      : [];
+
+    setTechnologies(updatedTechnologies);
   };
 
   return (
@@ -169,7 +191,7 @@ export const AccountSettings: FC = () => {
               id="technologies"
               setError={setError}
               initialValues={technologies}
-              setTechnologies={setTechnologies}
+              setTechnologies={handleSelectChange}
             />
           )}
 
