@@ -81,4 +81,24 @@ describe('test account settings component', () => {
     // Assert
     expect(banner).toBeDefined();
   });
+
+  test('username is updated successfully', async () => {
+    // Arrange
+    const { getByLabelText } = render(
+      <MockThemeProvider>
+        <AccountSettings />
+      </MockThemeProvider>,
+    );
+    // Act
+    const usernameInput = await waitForElement(() =>
+      getByLabelText('Username'),
+    );
+    fireEvent.change(usernameInput, { target: { value: 'newUsername' } });
+    const updatedUsername = await waitForElement(() =>
+      getByLabelText('Username'),
+    );
+    const inputElemenet = updatedUsername as HTMLInputElement;
+    // Assert
+    expect(inputElemenet.value).toBe('newUsername');
+  });
 });
