@@ -2,12 +2,27 @@ import { render } from '@testing-library/react';
 import React from 'react';
 
 import Card from '../card';
-import { Project } from '@api';
+import { Project, ProjectUser } from '@api';
 import { MockThemeProvider } from '@mocks';
 import { noop } from '@utils';
 
-test('show display project details', () => {
-  const content: Project = {
+test('display project details', () => {
+  const projectUsers: ProjectUser[] = [
+    {
+      isOwner: true,
+      userId: 'abc-123',
+    },
+    {
+      isOwner: false,
+      userId: 'bcd-234',
+    },
+    {
+      isOwner: false,
+      userId: 'cde-345',
+    },
+  ];
+
+  const project: Project = {
     name: 'Grocerhub',
     description: 'Grocery list application',
     launchDate: new Date(),
@@ -53,11 +68,13 @@ test('show display project details', () => {
     projectUsers: [],
   };
 
-  const { getByText, getAllByTestId } = render(
+  const card = (content = project) => (
     <MockThemeProvider>
       <Card content={content} setError={noop} />
-    </MockThemeProvider>,
+    </MockThemeProvider>
   );
+
+  const { getAllByTestId, getByText, rerender, queryByText } = render(card());
 
   expect(getByText(/grocerhub/i)).toBeInTheDocument();
   expect(getByText(/grocery/i)).toBeInTheDocument();
@@ -76,4 +93,16 @@ test('show display project details', () => {
       '+3',
     ]),
   );
+
+  expect(queryByText(/members?/i)).toBeNull();
+
+  project.projectUsers = projectUsers.filter((v) => v.isOwner);
+  rerender(card(project));
+
+  expect(getByText(/1 member/i)).toBeInTheDocument();
+
+  project.projectUsers = projectUsers.filter((v) => !v.isOwner);
+  rerender(card(project));
+
+  expect(getByText(/2 members/i)).toBeInTheDocument();
 });

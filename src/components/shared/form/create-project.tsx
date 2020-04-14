@@ -1,3 +1,4 @@
+import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
 import React, { ChangeEvent, FC, FocusEvent, useState, useEffect } from 'react';
 import { ValueType } from 'react-select/src/types';
@@ -23,9 +24,13 @@ import {
   ProjectType,
   ServiceResolver,
 } from '@api';
+import { Seo } from '@components/shared';
 import { Form } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
+
+type OwnProps = {};
+type CreateProjectFormProps = OwnProps & RouteComponentProps;
 
 const FormWrapper = styled.div`
   width: 400px;
@@ -71,7 +76,7 @@ interface FormInput {
   [key: string]: FormValue<FormInputIndexPropType>;
 }
 
-export const CreateProjectForm: FC = () => {
+export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const validation = new FormVal();
 
   const [formInputs, setFormInputs] = useState<FormInput>({
@@ -190,8 +195,11 @@ export const CreateProjectForm: FC = () => {
         Project | ErrorResponse
       >;
 
-      if (response.ok) navigate(`/app/projects`);
-      else setError((response.data as ErrorResponse).message);
+      if (response.ok) {
+        navigate(`/projects`);
+      } else {
+        setError((response.data as ErrorResponse).message);
+      }
     } catch (err) {
       setError('Failed to create project');
     }
@@ -199,6 +207,8 @@ export const CreateProjectForm: FC = () => {
 
   return (
     <Wrapper>
+      <Seo title="Create A New Project" urlSlug="project/create/" />
+
       {error !== null && (
         <Ribbon type="danger">
           {error}
@@ -210,6 +220,7 @@ export const CreateProjectForm: FC = () => {
           <FormLabel htmlFor="project-name">Project Name</FormLabel>
           <FormInput
             name="pName"
+            id="project-name"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -225,6 +236,7 @@ export const CreateProjectForm: FC = () => {
           ​<FormLabel htmlFor="description">Description</FormLabel>
           <FormTextArea
             name="pDesc"
+            id="description"
             onChange={handleChange}
             onBlur={handleBlur}
             value={formInputs['pDesc'].val}
@@ -239,6 +251,7 @@ export const CreateProjectForm: FC = () => {
           <FormLabel htmlFor="project-type">Project Type</FormLabel>
           <FormSelectInput
             name="pType"
+            id="project-type"
             options={projectTypes}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -252,6 +265,7 @@ export const CreateProjectForm: FC = () => {
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
           <FormInput
             name="pRepo"
+            id="project-repo"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -264,6 +278,7 @@ export const CreateProjectForm: FC = () => {
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
           <FormInput
             name="pLaunch"
+            id="launch-date"
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -281,6 +296,7 @@ export const CreateProjectForm: FC = () => {
           </FormLabel>
           <FormInput
             name="pComm"
+            id="communication-platform"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -298,6 +314,7 @@ export const CreateProjectForm: FC = () => {
           </FormHint>
           <FormLabel htmlFor="technologies">Technologies</FormLabel>
           <TechnologiesSelect
+            id="technologies"
             setError={setError}
             setTechnologies={handleSelectChange}
           />

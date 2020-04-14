@@ -48,8 +48,6 @@ module.exports = Object.freeze({
       'Project Unicorn is a place for developers to discover software projects and team up with other developers to build and ship them.',
     /** The url of the website. */
     siteUrl: process.env.BUILD_SITE_URL,
-    /** The url of the app. */
-    appUrl: process.env.BUILD_APP_URL,
     logo: path.resolve(__dirname, 'src/images/logo.png'),
     /*Email displayed on static pages */
     contactEmail: 'team@projectunicorn.dev',
@@ -78,7 +76,7 @@ module.exports = Object.freeze({
     /* eslint-disable @typescript-eslint/camelcase */
     name: 'Project Unicorn',
     short_name: 'Project Unicorn',
-    start_url: '/app/projects',
+    start_url: '/projects',
     background_color: '#ffffff',
     theme_color: '#ffffff',
     display: 'minimal-ui',

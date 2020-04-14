@@ -122,7 +122,7 @@ const About: FC = () => {
           and build your ideas!
         </SubText>
 
-        <StyledLink to="/app/projects" title={`${siteMetadata.title} projects`}>
+        <StyledLink to="/projects" title={`${siteMetadata.title} projects`}>
           See projects by members
           <LinkImage />
         </StyledLink>
