@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 import { Hero, About, Signup, Faq, Testimonial } from '@components/index-page';
 import { Layout } from '@components/shared';
