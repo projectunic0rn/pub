@@ -1,4 +1,9 @@
-import { render, waitForElement, fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForElement,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react';
 import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { AccountSettings } from '../containers';
@@ -80,5 +85,21 @@ describe('test account settings component', () => {
     const banner = await waitForElement(() => getByText('Settings saved'));
     // Assert
     expect(banner).toBeDefined();
+  });
+
+  test('username is updated successfully', async () => {
+    // Arrange
+    const { getByLabelText } = render(
+      <MockThemeProvider>
+        <AccountSettings />
+      </MockThemeProvider>,
+    );
+    // Act
+    const usernameInput = await waitFor(() => getByLabelText('Username'));
+    fireEvent.change(usernameInput, { target: { value: 'newUsername' } });
+    const updatedUsername = await waitFor(() => getByLabelText('Username'));
+    const inputElemenet = updatedUsername as HTMLInputElement;
+    // Assert
+    expect(inputElemenet.value).toBe('newUsername');
   });
 });
