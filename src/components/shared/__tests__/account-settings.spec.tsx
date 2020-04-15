@@ -1,4 +1,9 @@
-import { render, waitForElement, fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForElement,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react';
 import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { AccountSettings } from '../containers';
@@ -90,13 +95,9 @@ describe('test account settings component', () => {
       </MockThemeProvider>,
     );
     // Act
-    const usernameInput = await waitForElement(() =>
-      getByLabelText('Username'),
-    );
+    const usernameInput = await waitFor(() => getByLabelText('Username'));
     fireEvent.change(usernameInput, { target: { value: 'newUsername' } });
-    const updatedUsername = await waitForElement(() =>
-      getByLabelText('Username'),
-    );
+    const updatedUsername = await waitFor(() => getByLabelText('Username'));
     const inputElemenet = updatedUsername as HTMLInputElement;
     // Assert
     expect(inputElemenet.value).toBe('newUsername');
