@@ -28,6 +28,7 @@ const Image = styled.img`
 const Wrapper = styled.div`
   margin: 0 auto;
   padding: 0;
+  min-height: 50vh;
 
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
