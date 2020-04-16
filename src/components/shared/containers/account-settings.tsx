@@ -1,5 +1,11 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-
+import React, {
+  ChangeEvent,
+  FC,
+  useEffect,
+  useState,
+  useCallback,
+} from 'react';
+import { debounce } from 'lodash';
 import { MainContent } from './main-content';
 import { SettingsContainer } from './settings-container';
 import { ApiButton } from '../buttons';
@@ -25,11 +31,16 @@ import {
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
 import { ValueType } from 'react-select/src/types';
+import styled from 'styled-components';
 
 interface OptionType {
   label: string;
   value: string;
 }
+
+const UsernameCheck = styled.small<{ isValid: boolean }>`
+  color: ${(props) => (props.isValid ? '' : 'red')};
+`;
 
 export const AccountSettings: FC = () => {
   const [error, setError] = useState<string | null>(null);
@@ -78,11 +89,10 @@ export const AccountSettings: FC = () => {
 
     try {
       const updatedUser: User = {
-        id: user?.id,
+        ...user,
         username,
         bio,
         technologies,
-        projects: user?.projects,
       };
       const response = (await api.editUser(updatedUser)) as ApiResponse<
         User | ErrorResponse
@@ -98,13 +108,20 @@ export const AccountSettings: FC = () => {
     }
   };
 
-  const handleUsernameChange = async (username: string) => {
+  const handleUsernamValidation = async (
+    username: string,
+    currentUser: User | undefined,
+  ) => {
     const api = ServiceResolver.apiResolver();
     const u: Username = {
       username,
     };
-    setUsername(username);
-    setUsernameAvailability({ valid: true, reason: 'checking...' });
+
+    if (username == currentUser?.username) {
+      setUsernameAvailability({ valid: true, reason: '' });
+      return;
+    }
+
     try {
       const response = (await api.validateUsername(u)) as ApiResponse<
         UserValidation | ErrorResponse
@@ -120,13 +137,24 @@ export const AccountSettings: FC = () => {
     }
   };
 
+  const debouncedUsernameValidation = useCallback(
+    debounce(handleUsernamValidation, 450),
+    [],
+  );
+
+  const handleUsernameChange = (username: string) => {
+    setUsername(username);
+    setUsernameAvailability({ valid: true, reason: 'checking...' });
+    debouncedUsernameValidation(username, user);
+  };
+
   const handleSelectChange = (e: ValueType<OptionType>) => {
     const userId = user?.id === undefined ? '' : user.id;
     const updatedTechnologies: UserTechnology[] = Array.isArray(e)
       ? e.map((v) => {
           const userTech = technologies.find((t) => t.name == v);
           if (userTech == undefined) {
-            return { name: v, userId, id: '' };
+            return { name: v, userId };
           } else {
             return { name: v, userId, id: userTech.id };
           }
@@ -163,8 +191,10 @@ export const AccountSettings: FC = () => {
             onChange={(e) => handleUsernameChange(e.target.value)}
             hasError={!usernameAvailablity.valid}
           />
-          {usernameAvailablity.reason != '' && (
-            <div>{usernameAvailablity.reason}</div>
+          {usernameAvailablity.reason != '' && username != user?.username && (
+            <UsernameCheck isValid={usernameAvailablity.valid}>
+              {usernameAvailablity.reason}
+            </UsernameCheck>
           )}
           <br />
           <br />
