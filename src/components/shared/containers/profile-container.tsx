@@ -20,18 +20,17 @@ type ProfileContainerProps = {
 };
 
 const Image = styled.img`
-  border-radius: 100px;
-  max-width: 50%;
+  border-radius: 50%;
+  max-width: 40%;
   margin-bottom: 0;
 `;
 
 const Wrapper = styled.div`
-  padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
-  width: 100%;
-  min-height: 50vh;
+  margin: 0 auto;
+  padding: 0;
 
-  @media screen and (max-width: ${({ theme }) => theme.sizes.width.small}) {
-    padding: 0;
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
   }
 `;
 
@@ -77,28 +76,24 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
 
       {!isLoading && user && (
         <BaseContainer>
-          <ContainerSidePanel style={{ padding: '20px ' }}>
+          <ContainerSidePanel>
             <Summary>
               <Image
                 src={user.profilePictureUrl || defaultProfileImage}
                 alt="Profile Picture"
               />
               <Summary>{user.username}</Summary>
+              {UserAuthHelper.isUserAuthenticated() && (
+                <Button as={Link} to="/settings">
+                  Edit Profile
+                </Button>
+              )}
             </Summary>
-            {UserAuthHelper.isUserAuthenticated() && (
-              <Fragment>
-                <br />
-                <Link to="/settings">
-                  <Button>Edit Profile</Button>
-                </Link>
-              </Fragment>
-            )}
           </ContainerSidePanel>
           <MainContent>
             {user.bio && (
               <Fragment>
                 <FormLabel>Bio</FormLabel>
-                <br />
                 <p>{user.bio}</p>
               </Fragment>
             )}
@@ -106,12 +101,13 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
             {user.technologies && (
               <Fragment>
                 <FormLabel>Technologies</FormLabel>
-                <br />
-                {user.technologies.map((t) => (
-                  <ProfileTechPill data-testid="technology" key={t.name}>
-                    {t.name}
-                  </ProfileTechPill>
-                ))}
+                <div style={{ marginTop: '0.4em' }}>
+                  {user.technologies.map((t) => (
+                    <ProfileTechPill data-testid="technology" key={t.name}>
+                      {t.name}
+                    </ProfileTechPill>
+                  ))}
+                </div>
               </Fragment>
             )}
           </MainContent>
