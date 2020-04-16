@@ -49,7 +49,7 @@ export const SettingsContainer: FC<SettingsContainerProps> = ({
         </Ribbon>
       )}
 
-      {!isLoading && <BaseContainer>{children}</BaseContainer>}
+      {!isLoading && <BaseContainer hasBorder>{children}</BaseContainer>}
     </Wrapper>
   );
 };

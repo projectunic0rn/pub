@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const ContainerSidePanel = styled.div`
-  flex: 1;
-  border-right: 1px solid lightgray;
+  flex: 0.3;
+  border: none;
   padding-top: 2em;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    border-right: 1px solid lightgray;
+  }
 `;
 
 export const Summary = styled.div`
   color: black;
   text-align: center;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 1em;
 `;
 
 export const Image = styled.img`
