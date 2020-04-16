@@ -98,8 +98,24 @@ describe('test account settings component', () => {
     const usernameInput = await waitFor(() => getByLabelText('Username'));
     fireEvent.change(usernameInput, { target: { value: 'newUsername' } });
     const updatedUsername = await waitFor(() => getByLabelText('Username'));
-    const inputElemenet = updatedUsername as HTMLInputElement;
+    const inputElement = updatedUsername as HTMLInputElement;
     // Assert
-    expect(inputElemenet.value).toBe('newUsername');
+    expect(inputElement.value).toBe('newUsername');
+  });
+
+  test('bio is updated successfully', async () => {
+    // Arrange
+    const { getByLabelText } = render(
+      <MockThemeProvider>
+        <AccountSettings />
+      </MockThemeProvider>,
+    );
+    // Act
+    const bioInput = await waitFor(() => getByLabelText('Bio'));
+    fireEvent.change(bioInput, { target: { value: 'new bio' } });
+    const updatedUsername = await waitFor(() => getByLabelText('Bio'));
+    const inputElement = updatedUsername as HTMLInputElement;
+    // Assert
+    expect(inputElement.value).toBe('new bio');
   });
 });
