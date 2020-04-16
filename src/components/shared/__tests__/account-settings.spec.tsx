@@ -114,7 +114,7 @@ describe('test account settings component', () => {
     const bioInput = await waitFor(() => getByLabelText('Bio'));
     fireEvent.change(bioInput, { target: { value: 'new bio' } });
     const updatedUsername = await waitFor(() => getByLabelText('Bio'));
-    const inputElement = updatedUsername as HTMLInputElement;
+    const inputElement = updatedUsername as HTMLTextAreaElement;
     // Assert
     expect(inputElement.value).toBe('new bio');
   });
