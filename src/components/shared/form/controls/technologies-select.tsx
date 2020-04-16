@@ -80,14 +80,15 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
   const stackExchange = ServiceResolver.stackExchangeResolver();
 
   const handleSelectChange = (e: ValueType<OptionType>) => {
-    let technologies: ProjectTechnology[];
+    let technologies: string[];
 
     if (Array.isArray(e)) {
-      technologies = e.map((v) => ({ name: v.value, projectId: '' }));
-      setTechnologies(e.map((v) => v.value));
+      technologies = e.map((v) => v.value);
     } else {
       technologies = [];
     }
+
+    setTechnologies(technologies);
 
     if (formInputs && setFormInputs) {
       setFormInputs({
