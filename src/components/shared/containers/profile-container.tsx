@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { MainContent } from './main-content';
-import { Button } from '../buttons';
 import { FormLabel } from '../form';
 import { ProfileTechPill } from '../pills';
 import { Ribbon, CloseButton } from '../ribbons';
@@ -13,6 +12,8 @@ import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
+import ButtonTemplate from '@components/index-page/button-template';
+import { Button } from '../buttons';
 
 type ProfileContainerProps = {
   id?: string;
@@ -85,9 +86,9 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               />
               <Summary>{user.username}</Summary>
               {UserAuthHelper.isUserAuthenticated() && (
-                <Button as={Link} to="/settings">
-                  Edit Profile
-                </Button>
+                <Link to="/settings">
+                  <Button>Edit Profile</Button>
+                </Link>
               )}
             </Summary>
           </ContainerSidePanel>
