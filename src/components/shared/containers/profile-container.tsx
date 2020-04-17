@@ -13,6 +13,7 @@ import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
 import ButtonTemplate from '@components/index-page/button-template';
+import { Button } from '../buttons';
 
 type ProfileContainerProps = {
   id?: string;
@@ -33,10 +34,6 @@ const Wrapper = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
   }
-`;
-
-const Button = styled.button`
-  ${ButtonTemplate}
 `;
 
 export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
@@ -90,7 +87,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               <Summary>{user.username}</Summary>
               {UserAuthHelper.isUserAuthenticated() && (
                 <Link to="/settings">
-                  <Button variant="default">Edit Profile</Button>
+                  <Button>Edit Profile</Button>
                 </Link>
               )}
             </Summary>
