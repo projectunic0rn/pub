@@ -74,22 +74,18 @@ export const FeedbackForm: FC = () => {
     // Add Browser Info
     const navigatorInfo = getNavigatorInfo();
     for (const [key, value] of Object.entries(navigatorInfo)) {
-      additionalFeedbackInfo = additionalFeedbackInfo.concat(
-        `${key}: ${value}\n`,
-      );
+      additionalFeedbackInfo += `${key}: ${value}\n`;
     }
 
     // Add App Version
-    additionalFeedbackInfo = additionalFeedbackInfo.concat(
-      `app version: v${siteMetadata.version}\n`,
-    );
+    additionalFeedbackInfo = additionalFeedbackInfo += `app version: v${siteMetadata.version}\n`;
+
     // Add user info if available
     const username = UserAuthHelper.isUserAuthenticated()
       ? UserAuthHelper.getUserId()
       : 'anonymous user';
-    additionalFeedbackInfo = additionalFeedbackInfo.concat(
-      `userId: ${username}\n`,
-    );
+    additionalFeedbackInfo += `userId: ${username}\n`;
+
     return additionalFeedbackInfo;
   };
 
