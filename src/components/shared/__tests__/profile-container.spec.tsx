@@ -1,5 +1,5 @@
 import { ProfileContainer } from '@components/shared/containers';
-import { render, waitForElement } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { user } from '@mocks/responses';
@@ -14,9 +14,7 @@ describe('profile container', () => {
       </MockThemeProvider>,
     );
     // Act
-    const profileUsername = await waitForElement(() =>
-      getByText(apiUsernameData),
-    );
+    const profileUsername = await waitFor(() => getByText(apiUsernameData));
     // Assert
     expect(profileUsername).toBeVisible();
     expect(profileUsername).toHaveTextContent(apiUsernameData);
@@ -32,9 +30,7 @@ describe('profile container', () => {
       </MockThemeProvider>,
     );
     // Act
-    const profileTechnology = await waitForElement(() =>
-      getAllByTestId('technology'),
-    );
+    const profileTechnology = await waitFor(() => getAllByTestId('technology'));
     // Assert
     expect(profileTechnology.length).toBe(apiTechnologiesData?.length);
   });
@@ -48,7 +44,7 @@ describe('profile container', () => {
       </MockThemeProvider>,
     );
     // Act
-    const profileBio = await waitForElement(() => getByText(apiBioData));
+    const profileBio = await waitFor(() => getByText(apiBioData));
     // Assert
     expect(profileBio).toBeVisible();
     expect(profileBio).toHaveTextContent(apiBioData);
@@ -63,9 +59,7 @@ describe('profile container', () => {
       </MockThemeProvider>,
     );
     // Act
-    const profilePictureAltText = await waitForElement(() =>
-      getByAltText(altText),
-    );
+    const profilePictureAltText = await waitFor(() => getByAltText(altText));
 
     // Assert
     expect(profilePictureAltText).toBeVisible();

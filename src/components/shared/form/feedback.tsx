@@ -7,6 +7,8 @@ import { SecondaryButton } from '../buttons/secondary-button';
 import { noop, getNavigatorInfo } from '@utils';
 import { Ribbon, CloseButton, Wrapper } from '@components/shared';
 import { ApiResponse, ErrorResponse, Feedback, ServiceResolver } from '@api';
+import { UserAuthHelper } from '@helpers';
+import { useSiteMetadata } from '@hooks';
 
 const FeedbackContainer = styled.div`
   width: 400px;
@@ -60,23 +62,38 @@ const FeedbackButton = styled(SecondaryButton)`
 `;
 
 export const FeedbackForm: FC = () => {
+  const siteMetadata = useSiteMetadata();
   const [feedback, setFeedback] = useState<string>('');
   const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>('');
 
+  const buildFeedbackInfo = () => {
+    let additionalFeedbackInfo = 'Additional info:\n';
+
+    // Add Browser Info
+    const navigatorInfo = getNavigatorInfo();
+    for (const [key, value] of Object.entries(navigatorInfo)) {
+      additionalFeedbackInfo += `${key}: ${value}\n`;
+    }
+
+    // Add App Version
+    additionalFeedbackInfo = additionalFeedbackInfo += `app version: v${siteMetadata.version}\n`;
+
+    // Add user info if available
+    const username = UserAuthHelper.isUserAuthenticated()
+      ? UserAuthHelper.getUserId()
+      : 'anonymous user';
+    additionalFeedbackInfo += `userId: ${username}\n`;
+
+    return additionalFeedbackInfo;
+  };
+
   const handleSendClick = async () => {
     setError(null);
 
     const api = ServiceResolver.apiResolver();
-    const navigatorInfo = getNavigatorInfo();
-    let additionalFeedbackInfo = 'Additional info:\n';
-    for (const [key, value] of Object.entries(navigatorInfo)) {
-      additionalFeedbackInfo = additionalFeedbackInfo.concat(
-        `${key}: ${value}\n`,
-      );
-    }
-    const feedbackInfo = `${feedback}\n\n\n\n${additionalFeedbackInfo}`;
+    const feedbackInfo = `${feedback}\n\n\n\n${buildFeedbackInfo()}`;
     try {
       const response = (await api.sendFeedback({
         content: feedbackInfo,

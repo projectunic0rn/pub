@@ -1,9 +1,4 @@
-import {
-  render,
-  waitForElement,
-  fireEvent,
-  waitFor,
-} from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { AccountSettings } from '../containers';
@@ -32,7 +27,7 @@ describe('test account settings component', () => {
       </MockThemeProvider>,
     );
     // Act
-    const text = await waitForElement(() => getByLabelText('Username'));
+    const text = await waitFor(() => getByLabelText('Username'));
     // Assert
     expect(text).toBeDefined();
     expect(text).toBeVisible();
@@ -46,7 +41,7 @@ describe('test account settings component', () => {
       </MockThemeProvider>,
     );
     // Act
-    const text = await waitForElement(() => getByLabelText('Bio'));
+    const text = await waitFor(() => getByLabelText('Bio'));
     // Assert
     expect(text).toBeDefined();
     expect(text).toBeVisible();
@@ -60,7 +55,7 @@ describe('test account settings component', () => {
       </MockThemeProvider>,
     );
     // Act
-    const text = await waitForElement(() => getByLabelText('Technologies'));
+    const text = await waitFor(() => getByLabelText('Technologies'));
     // Assert
     expect(text).toBeDefined();
     expect(text).toBeVisible();
@@ -80,9 +75,9 @@ describe('test account settings component', () => {
       </MockThemeProvider>,
     );
     // Act
-    const saveButton = await waitForElement(() => getByText('Save'));
+    const saveButton = await waitFor(() => getByText('Save'));
     fireEvent.click(saveButton);
-    const banner = await waitForElement(() => getByText('Settings saved'));
+    const banner = await waitFor(() => getByText('Settings saved'));
     // Assert
     expect(banner).toBeDefined();
   });
