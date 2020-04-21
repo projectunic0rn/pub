@@ -68,7 +68,7 @@ export const FeedbackForm: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>('');
 
-  const BuildFeedbackInfo = () => {
+  const buildFeedbackInfo = () => {
     let additionalFeedbackInfo = 'Additional info:\n';
 
     // Add Browser Info
@@ -97,7 +97,7 @@ export const FeedbackForm: FC = () => {
     setError(null);
 
     const api = ServiceResolver.apiResolver();
-    const feedbackInfo = `${feedback}\n\n\n\n${BuildFeedbackInfo()}`;
+    const feedbackInfo = `${feedback}\n\n\n\n${buildFeedbackInfo()}`;
     try {
       const response = (await api.sendFeedback({
         content: feedbackInfo,

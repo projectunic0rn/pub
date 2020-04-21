@@ -1,5 +1,5 @@
 import { FeedbackForm } from '@components/shared/form';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MockThemeProvider } from '@mocks';
 
@@ -61,5 +61,42 @@ describe('feedback form', () => {
     );
     // Assert
     expect(feedbackTextArea).toBeDefined();
+  });
+
+  test('user should be notified of succesful feedback submission', async () => {
+    // Arrange
+    const { getByText, queryByPlaceholderText } = render(
+      <MockThemeProvider>
+        <FeedbackForm />
+      </MockThemeProvider>,
+    );
+    // Act
+    const feedbackByButton = getByText('💡 Got feedback?');
+    fireEvent.click(feedbackByButton);
+    const feedbackTextArea = queryByPlaceholderText(
+      'Feedback about this page?',
+    );
+    // Assert
+    expect(feedbackTextArea).toBeDefined();
+  });
+
+  test('feedback submission api called succesfully on feedback submission', async () => {
+    // Arrange
+    const { getByText, getByPlaceholderText } = render(
+      <MockThemeProvider>
+        <FeedbackForm />
+      </MockThemeProvider>,
+    );
+    // Act
+    const feedbackByButton = getByText('💡 Got feedback?');
+    fireEvent.click(feedbackByButton);
+    const feedbackTextArea = getByPlaceholderText('Feedback about this page?');
+    fireEvent.change(feedbackTextArea, { target: { value: 'test feedback' } });
+    const sendFeedbackButton = getByText('Send');
+    fireEvent.click(sendFeedbackButton);
+    const banner = await waitFor(() => getByText('Feedback sent successfully'));
+
+    // Assert
+    expect(banner).toBeDefined();
   });
 });
