@@ -18,8 +18,4 @@ export class UserAuthHelper {
   public static getUserId() {
     return this.getMember().id;
   }
-
-  public static getUsername() {
-    return this.getMember().username;
-  }
 }
