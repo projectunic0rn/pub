@@ -58,6 +58,13 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
   id,
 }) => {
   const styles = {
+    container: (styles: {}) => {
+      return {
+        ...styles,
+        width: '100%',
+        marginRight: '15px',
+      };
+    },
     multiValue: (styles: {}) => {
       return {
         ...styles,
