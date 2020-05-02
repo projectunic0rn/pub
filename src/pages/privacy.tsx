@@ -26,13 +26,13 @@ const PrivacyPage: FC = () => {
         <PageBody>
           <p>
             We do not share personal information with third-parties nor do we
-            store information we collect about your visit to this blog for use
-            other than to analyze content performance through the use of
+            store information we collect about your visit to this web site for
+            use other than to analyze content performance through the use of
             cookies, which you can turn off at any time by modifying your
             Internet browser&apos;s settings. We are not responsible for the
-            republishing of the content found on this blog on other web sites or
-            media without our permission. This privacy policy is subject to
-            change without notice.
+            republishing of the content found on this web site on other web
+            sites or media without our permission. This privacy policy is
+            subject to change without notice.
           </p>
 
           <h2>Contact Us</h2>
