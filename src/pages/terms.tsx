@@ -27,7 +27,7 @@ const TermsPage: FC = () => {
         <PageBody>
           <p>
             All content provided on this website is for informational purposes
-            only. The owner of this blog makes no representations as to the
+            only. The owner of this web site makes no representations as to the
             accuracy or completeness of any information on this site or found by
             following any link on this site. The owner will not be liable for
             any errors or omissions in this information nor for the availability
