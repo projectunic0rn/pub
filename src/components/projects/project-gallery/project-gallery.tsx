@@ -5,7 +5,7 @@ import Panel from './panel';
 import { ApiResponse, ErrorResponse, Project, ServiceResolver } from '@api';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
-import { Loader, Wrapper } from '@components/shared';
+import { Loader, Seo, Wrapper } from '@components/shared';
 
 type OwnProps = {};
 type ProjectGalleryProps = OwnProps & RouteComponentProps;
@@ -44,6 +44,8 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
 
   return (
     <Fragment>
+      <Seo title="Projects" />
+
       <FeedbackForm />
 
       <Wrapper>
