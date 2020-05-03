@@ -1,7 +1,9 @@
-require('prismjs/themes/prism.css');
-require('./src/styles/global.css');
+import React from 'react';
+import { AuthProvider } from '@contexts';
+import './src/styles/global.css';
+import 'prismjs/themes/prism.css';
 
-exports.shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
+export const shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
   if (prevRouterProps.location.pathname === routerProps.location.pathname) {
     return false;
   }
@@ -10,3 +12,7 @@ exports.shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
 
   return false;
 };
+
+export const wrapRootElement = ({ element }) => (
+  <AuthProvider>{element}</AuthProvider>
+);

@@ -55,6 +55,7 @@ export const AccountSettings: FC = () => {
   const [bio, setBio] = useState('');
   const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
 
+  // TODO: Read authentication state via Auth Context
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
 

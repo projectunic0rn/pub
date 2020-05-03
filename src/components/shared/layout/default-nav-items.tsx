@@ -2,15 +2,10 @@ import { Link, navigate } from 'gatsby';
 import React from 'react';
 
 import { NavButton, NavItem, Show, Profile } from '../navigation';
-import { SessionStorageHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
+import { noop } from '@utils';
 
 const handleNavigate = (to: string) => () => navigate(to);
-
-const signOut = () => {
-  SessionStorageHelper.deleteJwt();
-  navigate('/');
-};
 
 export const defaultNavItems: NavItem[] = [
   {
@@ -38,7 +33,8 @@ export const defaultNavItems: NavItem[] = [
     show: Show.AuthOnly,
   },
   {
-    item: <Profile content={defaultProfileImage} signOut={signOut} />,
+    // item gets redefined in navigation
+    item: <Profile content={defaultProfileImage} signOut={noop} />,
     key: 'user-avatar-dropdown',
     show: Show.AuthOnly,
   },

@@ -109,6 +109,14 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
     dispatch({ type: AUTH_IS, payload: { isUserAuthenticated } });
   }, []);
 
+  // TODO: Possibly mutation to be added to useEffects
+  /*
+    https://reactjs.org/docs/hooks-reference.html#useeffect
+    Mutations, subscriptions, timers, logging, and other side effects are
+    not allowed inside the main body of a function component (referred to
+    as React’s render phase). Doing so will lead to confusing bugs and
+    inconsistencies in the UI.
+  */
   navItems = navItems.filter(({ show }) => {
     switch (show) {
       case Show.Always:

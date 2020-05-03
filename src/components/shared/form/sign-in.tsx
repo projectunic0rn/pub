@@ -1,9 +1,9 @@
 import { Link, navigate } from 'gatsby';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import { ApiButton } from '../buttons/api-button';
-import { ApiResponse, ErrorResponse, JwtToken, ServiceResolver } from '@api';
+import { ApiResponse, ErrorResponse, JwtToken } from '@api';
 import { useSiteMetadata } from '@hooks';
 import {
   FormLabel,
@@ -12,7 +12,7 @@ import {
   ButtonWrapper,
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
-import { SessionStorageHelper } from '@helpers';
+import { AuthContext } from '@contexts';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -43,7 +43,7 @@ interface SignInFormProps {
 
 export const SignInForm: FC<SignInFormProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
-
+  const authContext = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
@@ -55,21 +55,18 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
   }, [location.state]);
 
   const handleClick = async () => {
-    const auth = ServiceResolver.authResolver();
-
     if (email === '' || password === '') {
       setMessage('Invalid email or password');
       return;
     }
 
     try {
-      const response = (await auth.signIn({
+      const response = (await authContext.signIn?.({
         email,
         password,
       })) as ApiResponse<JwtToken | ErrorResponse>;
 
       if (response.ok) {
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
         navigate('/projects/');
       } else {
         setMessage((response.data as ErrorResponse).message);
