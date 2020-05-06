@@ -30,7 +30,7 @@ export const AuthContext = React.createContext(defaultAuthContextState);
 export const AuthConsumer = AuthContext.Consumer;
 
 export const AuthProvider: FC = (props) => {
-  const [authContextState, setAuthContextState] = useState<AuthContextState>(
+  const [authContextState, setAuthContextState] = useState(
     defaultAuthContextState,
   );
 
