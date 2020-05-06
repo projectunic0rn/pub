@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import { navigate } from 'gatsby';
+import React, { FC, useContext } from 'react';
 import styled from 'styled-components';
 
 import Brand from './brand';
 import { NavItem } from './nav-item';
+import { Profile } from '.';
+import { AuthContext } from '@contexts';
 
 interface OwnProps {
   isAtTop: boolean;
@@ -99,10 +102,29 @@ const Navigation: FC<NavigationProps> = ({
   navItems = [],
   openSidebar,
 }) => {
+  const authContext = useContext(AuthContext);
+
+  const signOut = () => {
+    if (authContext.signOut == undefined) {
+      return;
+    }
+    authContext.signOut();
+    navigate('/');
+  };
+
+  const setAvatar = (avatar: string) => {
+    navItems.map((navItem) => {
+      if (navItem.key == 'user-avatar-dropdown') {
+        navItem.item = <Profile content={avatar} signOut={signOut} />;
+      }
+    });
+  };
+
+  setAvatar(authContext.avatar);
+
   return (
     <Wrapper isAtTop={isAtTop} isVisible={isAtTop || isVisible}>
       <Brand />
-
       <Menu>
         {navItems.map(({ item, key }) => (
           <MenuItem key={'menubar' + key}>{item}</MenuItem>

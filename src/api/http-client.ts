@@ -2,6 +2,8 @@ export class HttpClient {
   public static async makeRequest(request: Request): Promise<unknown> {
     const response = await fetch(request);
 
+    // TODO: If 401 - sign out user with
+    // message that session has expired.
     if (!response.ok && response.type) {
       throw new Error(response.statusText);
     }

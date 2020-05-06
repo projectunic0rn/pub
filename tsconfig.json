@@ -17,6 +17,8 @@
       "@api/*": ["./src/api/*"],
       "@components": ["./src/components/index"],
       "@components/*": ["./src/components/*"],
+      "@contexts": ["./src/contexts/index"],
+      "@contexts/*": ["./src/contexts/*"],
       "@helpers": ["./src/helpers/index"],
       "@helpers/*": ["./src/helpers/*"],
       "@hooks": ["./src/hooks/index"],
