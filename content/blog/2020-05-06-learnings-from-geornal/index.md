@@ -2,7 +2,7 @@
 title: 'Learnings from Geornal'
 author: rmoran
 date: '2020-05-06'
-image: ./hero.jpg
+image: ./hero.png
 tags:
   - Geornal
   - Project Learnings
