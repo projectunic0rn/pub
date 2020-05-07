@@ -84,7 +84,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     pDesc: { val: '', required: true },
     pTech: { val: [], required: true },
     pType: { val: '', required: true },
-    pRepo: { val: '', required: true },
+    pRepo: { val: '', required: false },
     pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
   });
@@ -233,7 +233,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormHint>
             Make your project name simple, specific and memorable
           </FormHint>
-          ​<FormLabel htmlFor="description">Description</FormLabel>
+          <FormLabel htmlFor="description">Description</FormLabel>
           <FormTextArea
             name="pDesc"
             id="description"
@@ -247,7 +247,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           {formErrors.includes('pDesc') && (
             <Message variant="error" value="Project Description Required" />
           )}
-          <FormHint>Describe your project in a single tweet</FormHint>​
+          <FormHint>Describe your project in a single tweet</FormHint>
           <FormLabel htmlFor="project-type">Project Type</FormLabel>
           <FormSelectInput
             name="pType"
@@ -261,7 +261,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           {formErrors.includes('pType') && (
             <Message variant="error" value="Project Type Required" />
           )}
-          <FormHint>What category does your project belong to?</FormHint>​
+          <FormHint>What category does your project belong to?</FormHint>
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
           <FormInput
             name="pRepo"
@@ -274,7 +274,9 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           {formErrors.includes('pRepo') && (
             <Message variant="error" value="Project Repo Required" />
           )}
-          <FormHint>Share your project repo (GitHub, GitLab etc)</FormHint>​
+          <FormHint>
+            Share your project repo (GitHub, GitLab etc), optional
+          </FormHint>
           <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
           <FormInput
             name="pLaunch"
@@ -290,7 +292,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <FormHint>
             Keep you and your team accountable with a launch date
           </FormHint>
-          ​
+
           <FormLabel htmlFor="communication-platform">
             Communication Platform Invitation Link
           </FormLabel>
