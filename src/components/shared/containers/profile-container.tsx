@@ -12,7 +12,6 @@ import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
-import ButtonTemplate from '@components/index-page/button-template';
 import { Button } from '../buttons';
 
 type ProfileContainerProps = {

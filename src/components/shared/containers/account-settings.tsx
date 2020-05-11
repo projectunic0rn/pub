@@ -1,21 +1,22 @@
 import React, {
-  ChangeEvent,
   FC,
   useEffect,
   useState,
   useCallback,
+  FormEvent,
+  ChangeEvent,
 } from 'react';
 import { debounce } from 'lodash';
+import * as yup from 'yup';
 import { MainContent } from './main-content';
 import { SettingsContainer } from './settings-container';
-import { ApiButton } from '../buttons';
+import { Button } from '@components/shared/buttons';
 import { Form } from '../form';
 import {
-  FormLabel,
   FormInput,
-  FormTextArea,
   ButtonWrapper,
   TechnologiesSelect,
+  FormTextArea,
 } from '../form/controls';
 import { MenuItem } from '../side-panels/container-side-panel';
 import { ContainerSidePanel, Image } from '../side-panels';
@@ -28,65 +29,70 @@ import {
   UserTechnology,
   UserValidation,
 } from '@api';
-import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
+import { Formik } from 'formik';
+import { messages } from '../../../const';
+import { hasError, customHandleBlur } from '@utils';
 
 interface OptionType {
   label: string;
   value: string;
 }
 
+interface FormValues {
+  username: string;
+  bio: string;
+  technologies: UserTechnology[];
+}
+
+interface AccountSettingsProps {
+  isLoading: boolean;
+  user?: User;
+}
+
 const UsernameCheck = styled.small<{ isValid: boolean }>`
   color: ${(props) => (props.isValid ? '' : 'red')};
 `;
 
-export const AccountSettings: FC = () => {
+export const AccountSettings: FC<AccountSettingsProps> = ({
+  isLoading,
+  user,
+}) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [user, setUser] = useState<User>();
-  const [username, setUsername] = useState('');
   const [usernameAvailablity, setUsernameAvailability] = useState<
     UserValidation
   >({ valid: true, reason: '' });
-  const [bio, setBio] = useState('');
   const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
 
-  // TODO: Read authentication state via Auth Context
+  const initialValues: FormValues = {
+    username: user ? user.username : '',
+    bio: user ? user.bio : '',
+    technologies: [],
+  };
+
+  const validationSchema = yup.object().shape({
+    username: yup.string().required(messages.validation.required),
+    bio: yup.string().required(messages.validation.required),
+    technologies: yup.array().required(messages.validation.required),
+  });
+
+  let focusedElements: Array<string> = [];
+
   useEffect(() => {
+    if (user && user.technologies) {
+      setTechnologies(user.technologies);
+      initialValues.technologies = user.technologies;
+    }
+  }, [initialValues.technologies, user]);
+
+  const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
+    setSubmitting(true);
+
     const api = ServiceResolver.apiResolver();
-
-    const fetchContent = async () => {
-      try {
-        const userId = UserAuthHelper.getUserId();
-        const response = (await api.getUser(userId)) as ApiResponse<
-          User | ErrorResponse
-        >;
-
-        if (response.ok) {
-          const user = response.data as User;
-          setUser(user);
-          setUsername(user.username);
-          setBio(user.bio);
-          setTechnologies(user.technologies ?? []);
-        } else {
-          setError((response.data as ErrorResponse).message);
-        }
-      } catch {
-        setError('Failed to get user information');
-      }
-
-      setIsLoading(false);
-    };
-
-    fetchContent();
-  }, []);
-
-  const handleClick = async () => {
-    const api = ServiceResolver.apiResolver();
+    const { username, bio, technologies } = values;
 
     try {
       const updatedUser: User = {
@@ -95,18 +101,18 @@ export const AccountSettings: FC = () => {
         bio,
         technologies,
       };
+
       const response = (await api.editUser(updatedUser)) as ApiResponse<
         User | ErrorResponse
       >;
 
-      if (response.ok) {
-        setSuccess('Settings saved');
-      } else {
-        setError((response.data as ErrorResponse).message);
-      }
+      if (response.ok) setSuccess('Settings saved');
+      else setError((response.data as ErrorResponse).message);
     } catch (err) {
       setError('Failed to save settings. Please try again');
     }
+
+    setSubmitting(false);
   };
 
   const handleUsernamValidation = async (
@@ -118,8 +124,9 @@ export const AccountSettings: FC = () => {
       username,
     };
 
-    if (username == currentUser?.username) {
+    if (username === currentUser?.username) {
       setUsernameAvailability({ valid: true, reason: '' });
+
       return;
     }
 
@@ -143,26 +150,27 @@ export const AccountSettings: FC = () => {
     [],
   );
 
-  const handleUsernameChange = (username: string) => {
-    setUsername(username);
-    setUsernameAvailability({ valid: true, reason: 'checking...' });
+  const checkUsername = (username: string) => {
+    setUsernameAvailability({ valid: true, reason: 'Checking...' });
     debouncedUsernameValidation(username, user);
   };
 
-  const handleSelectChange = (e: ValueType<OptionType>) => {
-    const userId = user?.id === undefined ? '' : user.id;
+  const handleSelectChange = (e: ValueType<OptionType>, values: FormValues) => {
+    const userId = user?.id ? user.id : '';
     const updatedTechnologies: UserTechnology[] = Array.isArray(e)
       ? e.map((v) => {
-          const userTech = technologies.find((t) => t.name == v);
-          if (userTech == undefined) {
-            return { name: v, userId };
-          } else {
-            return { name: v, userId, id: userTech.id };
-          }
+          const userTech = technologies.find(
+            (t: UserTechnology) => t.name === v,
+          );
+
+          return userTech
+            ? { name: v, userId, id: userTech.id }
+            : { name: v, userId };
         })
       : [];
 
     setTechnologies(updatedTechnologies);
+    values.technologies = updatedTechnologies;
   };
 
   return (
@@ -176,62 +184,104 @@ export const AccountSettings: FC = () => {
       <ContainerSidePanel>
         <MenuItem>General</MenuItem>
       </ContainerSidePanel>
+
       <MainContent>
-        <Form>
-          <Image
-            src={(user && user.profilePictureUrl) || defaultProfileImage}
-            width="64"
-            height="64"
-          />
-          <FormLabel htmlFor="username">Username</FormLabel>
-          <FormInput
-            type="text"
-            name="username"
-            id="username"
-            value={username}
-            onChange={(e) => handleUsernameChange(e.target.value)}
-            hasError={!usernameAvailablity.valid}
-          />
-          {usernameAvailablity.reason != '' && username != user?.username && (
-            <UsernameCheck isValid={usernameAvailablity.valid}>
-              {usernameAvailablity.reason}
-            </UsernameCheck>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            makeApiCall(values, setSubmitting);
+          }}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            values,
+            errors,
+          }) => (
+            <Form
+              onSubmit={(e: FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
+            >
+              <Image
+                src={(user && user.profilePictureUrl) || defaultProfileImage}
+                width="64"
+                height="64"
+              />
+              <FormInput
+                label="Username"
+                name="username"
+                id="username"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  checkUsername(e.target.value);
+                  handleChange(e);
+                }}
+                onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                hasError={hasError(errors, focusedElements, 'username')}
+              />
+              <UsernameCheck isValid={usernameAvailablity.valid}>
+                {values.username &&
+                  (isLoading
+                    ? 'Checking username...'
+                    : usernameAvailablity.reason)}
+              </UsernameCheck>
+              <br />
+              <br />
+
+              <FormTextArea
+                label="Bio"
+                name="bio"
+                id="bio"
+                rows={5}
+                value={values.bio}
+                onChange={handleChange}
+                onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                hasError={hasError(errors, focusedElements, 'bio')}
+              />
+              <br />
+
+              {user && user.technologies && (
+                <TechnologiesSelect
+                  label="Technologies"
+                  name="technologies"
+                  setError={setError}
+                  initialValues={technologies}
+                  setTechnologies={(e: ValueType<OptionType>) =>
+                    handleSelectChange(e, values)
+                  }
+                  handleBlur={handleBlur}
+                  hasError={hasError(errors, focusedElements, 'technologies')}
+                />
+              )}
+
+              <ButtonWrapper>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={() => {
+                    setSuccess(null);
+                    setError(null);
+
+                    focusedElements =
+                      Object.keys(errors).length > 0
+                        ? [...Object.keys(errors)]
+                        : [...Object.keys(values)];
+                  }}
+                >
+                  {isSubmitting ? 'Saving...' : 'Save'}
+                </Button>
+              </ButtonWrapper>
+            </Form>
           )}
-          <br />
-          <br />
-
-          <FormLabel htmlFor="bio">Bio</FormLabel>
-
-          <FormTextArea
-            name="bio"
-            id="bio"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setBio(e.target.value)
-            }
-            value={bio}
-            rows={5}
-          >
-            {bio}
-          </FormTextArea>
-          <br />
-
-          <FormLabel htmlFor="technologies">Technologies</FormLabel>
-          {user && user.technologies && (
-            <TechnologiesSelect
-              name="technologies"
-              id="technologies"
-              setError={setError}
-              initialValues={technologies}
-              setTechnologies={handleSelectChange}
-            />
-          )}
-
-          <ButtonWrapper>
-            <ApiButton handleClick={handleClick} statusText="Saving">
-              Save
-            </ApiButton>
-          </ButtonWrapper>
-        </Form>
+        </Formik>
       </MainContent>
     </SettingsContainer>
   );

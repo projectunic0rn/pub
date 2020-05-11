@@ -1,21 +1,21 @@
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
-import React, { ChangeEvent, FC, FocusEvent, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, FocusEvent } from 'react';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import {
-  FormLabel,
   FormInput,
-  FormHint,
   FormTextArea,
   FormSelectInput,
   ButtonWrapper,
   TechnologiesSelect,
 } from './controls';
-import { ApiButton } from '../buttons';
+import { Button } from '../buttons';
 import { Ribbon, CloseButton } from '../ribbons';
-import Message from '../message';
+import { messages } from '../../../const';
 import {
   ApiResponse,
   ErrorResponse,
@@ -25,9 +25,9 @@ import {
   ServiceResolver,
 } from '@api';
 import { Seo } from '@components/shared';
-import { Form } from '@components/shared/form';
-import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
+import { Form } from './form';
+import { customHandleBlur, hasError } from '@utils/form-validation';
 
 type OwnProps = {};
 type CreateProjectFormProps = OwnProps & RouteComponentProps;
@@ -63,6 +63,16 @@ interface OptionType {
   value: string;
 }
 
+interface FormValues {
+  name: string;
+  description: string;
+  launchDate: string;
+  projectType: ProjectType;
+  repositoryUrl: string;
+  communicationPlatformUrl: string;
+  technologies: Array<ProjectTechnology>;
+}
+
 type FormInputIndexPropType = string | ProjectTechnology[];
 
 interface FormInput {
@@ -77,21 +87,36 @@ interface FormInput {
 }
 
 export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
-  const validation = new FormVal();
-
-  const [formInputs, setFormInputs] = useState<FormInput>({
-    pName: { val: '', required: true },
-    pDesc: { val: '', required: true },
-    pTech: { val: [], required: true },
-    pType: { val: '', required: true },
-    pRepo: { val: '', required: false },
-    pLaunch: { val: '', required: true },
-    pComm: { val: '', required: true },
-  });
-
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
-  const [formErrors, setFormErrors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  let focusedElements: Array<string> = [];
+
+  const initialValues: FormValues = {
+    name: '',
+    description: '',
+    launchDate: '',
+    projectType: { id: '', type: '' },
+    repositoryUrl: '',
+    communicationPlatformUrl: '',
+    technologies: [],
+  };
+
+  const validationSchema = yup.object().shape({
+    name: yup.string().required(messages.validation.required),
+    description: yup.string().required(messages.validation.required),
+    launchDate: yup.string().required(messages.validation.required),
+    projectType: yup.string().required(messages.validation.required),
+    repositoryUrl: yup
+      .string()
+      .required(messages.validation.required)
+      .url(messages.validation.url),
+    communicationPlatformUrl: yup
+      .string()
+      .required(messages.validation.required)
+      .url(messages.validation.url),
+    technologies: yup.array().required(messages.validation.required),
+  });
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -109,79 +134,58 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           ProjectType[] | ErrorResponse
         >;
 
-        if (!response.ok) setError((response.data as ErrorResponse).message);
-        setProjectTypes(response.data as ProjectType[]);
+        if (response.ok) {
+          const data = response.data as ProjectType[];
+
+          setProjectTypes(data);
+          initialValues.projectType = data[0];
+        } else setError((response.data as ErrorResponse).message);
       } catch (error) {
         setError('Failed to get project types');
       }
     }
 
     fetchProjectTypes();
-  }, []);
+  });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
-    const { name, value } = e.target;
-    const state = formInputs;
-    state[name].val = value;
-
-    if (name === 'pDesc') state[name].val = val;
-
-    setFormInputs({ ...state });
-  };
-
-  const handleSelectChange = (e: ValueType<OptionType>) => {
+  const handleSelectChange = (e: ValueType<OptionType>, values: FormValues) => {
     const technologies: ProjectTechnology[] = Array.isArray(e)
       ? e.map((v) => ({ name: v, projectId: '' }))
       : [];
 
-    setFormInputs({
-      ...formInputs,
-      pTech: { ...formInputs.pTech, val: technologies },
-    });
+    values.technologies = technologies;
   };
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const { name } = e.target;
-    const formErrorState: string[] = formErrors;
-    const formInputState = formInputs;
-    const obj: Props<FormInputIndexPropType> = {};
-    obj[name] = formInputState[name];
-    const errors = validation.checkValidation(obj);
+  const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
+    setSubmitting(true);
 
-    if (!errors.length) {
-      formErrorState.splice(formErrorState.indexOf(name), 1);
-    } else {
-      if (!formErrorState.includes(name)) {
-        formErrorState.push(name);
-      }
-    }
-
-    setFormErrors([...formErrorState]);
-  };
-
-  const getPlatformName = () => {
-    const platformName = formInputs['pComm'].val;
-    return platformName.search('slack') > 0 ? 'slack' : 'discord';
-  };
-
-  const handleClick = async () => {
     const api = ServiceResolver.apiResolver();
+    const {
+      name,
+      description,
+      launchDate,
+      projectType,
+      repositoryUrl,
+      communicationPlatformUrl,
+      technologies,
+    } = values;
 
-    const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
-    const errors = validation.checkValidation(formInputs);
-
-    if (errors.length) return setFormErrors([...errors]);
+    const communicationPlatform = communicationPlatformUrl.startsWith(
+      'https://slack',
+    )
+      ? 'slack'
+      : 'discord';
 
     const formData: Project = {
-      name: pName.val,
-      description: pDesc.val,
-      launchDate: new Date(pLaunch.val),
-      projectType: pType.val,
-      repositoryUrl: pRepo.val,
-      communicationPlatformUrl: pComm.val,
-      communicationPlatform: getPlatformName(),
+      name,
+      description,
+      launchDate: new Date(launchDate),
+      projectType: projectType.type,
+      repositoryUrl,
+      communicationPlatformUrl,
+      communicationPlatform,
       lookingForMembers: true,
-      projectTechnologies: pTech.val,
+      projectTechnologies: technologies,
       projectUsers: [
         {
           userId: UserAuthHelper.getUserId(),
@@ -215,121 +219,127 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
         </Ribbon>
       )}
-      <FormWrapper>
-        <Form heading={'Create a New Project'}>
-          <FormLabel htmlFor="project-name">Project Name</FormLabel>
-          <FormInput
-            name="pName"
-            id="project-name"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={formInputs['pName'].val}
-            hasError={formErrors.includes('pName')}
-          />
-          {formErrors.includes('pName') && (
-            <Message variant="error" value="Project Name Required" />
-          )}
-          <FormHint>
-            Make your project name simple, specific and memorable
-          </FormHint>
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <FormTextArea
-            name="pDesc"
-            id="description"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={formInputs['pDesc'].val}
-            displayCharCount={true}
-            maxCharCount={280}
-            hasError={formErrors.includes('pDesc')}
-          />
-          {formErrors.includes('pDesc') && (
-            <Message variant="error" value="Project Description Required" />
-          )}
-          <FormHint>Describe your project in a single tweet</FormHint>
-          <FormLabel htmlFor="project-type">Project Type</FormLabel>
-          <FormSelectInput
-            name="pType"
-            id="project-type"
-            options={projectTypes}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pType')}
-            placeholder="Select a Project Type"
-          />
-          {formErrors.includes('pType') && (
-            <Message variant="error" value="Project Type Required" />
-          )}
-          <FormHint>What category does your project belong to?</FormHint>
-          <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
-          <FormInput
-            name="pRepo"
-            id="project-repo"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pRepo')}
-          />
-          {formErrors.includes('pRepo') && (
-            <Message variant="error" value="Project Repo Required" />
-          )}
-          <FormHint>
-            Share your project repo (GitHub, GitLab etc), optional
-          </FormHint>
-          <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
-          <FormInput
-            name="pLaunch"
-            id="launch-date"
-            type="date"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pLaunch')}
-          />
-          {formErrors.includes('pLaunch') && (
-            <Message variant="error" value="Launch Date Required" />
-          )}
-          <FormHint>
-            Keep you and your team accountable with a launch date
-          </FormHint>
 
-          <FormLabel htmlFor="communication-platform">
-            Communication Platform Invitation Link
-          </FormLabel>
-          <FormInput
-            name="pComm"
-            id="communication-platform"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pComm')}
-          />
-          {formErrors.includes('pComm') && (
-            <Message
-              variant="error"
-              value="Communication Platform link must be Slack or Discord"
-            />
+      <FormWrapper>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) =>
+            makeApiCall(values, setSubmitting)
+          }
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            values,
+            errors,
+          }) => (
+            <Form
+              heading={'Create a New Project'}
+              onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
+            >
+              <FormInput
+                label="Project Name"
+                name="name"
+                hint="Make your project name simple, specific and memorable"
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                hasError={hasError(errors, focusedElements, 'name')}
+              />
+              <FormTextArea
+                name="description"
+                label="Description"
+                hint="Describe your project in a single tweet"
+                displayCharCount={true}
+                maxCharCount={280}
+                value={values.description}
+                onChange={handleChange}
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                hasError={hasError(errors, focusedElements, 'description')}
+              />
+              <FormSelectInput
+                name="projectType"
+                label="Project Type"
+                hint="What category does your project belong to?"
+                options={projectTypes}
+                onChange={handleChange}
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                hasError={hasError(errors, focusedElements, 'projectType')}
+              />
+              <FormInput
+                label="Project Repo"
+                name="repositoryUrl"
+                hint="Share your project repo (GitHub, GitLab etc), optional"
+                hasError={hasError(errors, focusedElements, 'repositoryUrl')}
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+              />
+              <FormInput
+                type="date"
+                label="Launch Date"
+                name="launchDate"
+                hint="Keep you and your team accountable with a launch date"
+                hasError={hasError(errors, focusedElements, 'launchDate')}
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+              />
+              <FormInput
+                label="Communication Platform Invitation Link"
+                name="communicationPlatformUrl"
+                hint="Where will you communicate? Share the invite link to your
+                workspace (Discord or Slack)"
+                hasError={hasError(
+                  errors,
+                  focusedElements,
+                  'communicationPlatformUrl',
+                )}
+                onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+              />
+              <TechnologiesSelect
+                name="technologies"
+                label="Technologies"
+                hint="Add the technologies used in your application"
+                setError={setError}
+                handleBlur={(e: FocusEvent<HTMLInputElement>) =>
+                  customHandleBlur(e, focusedElements, handleBlur)
+                }
+                setTechnologies={(e: ValueType<OptionType>) =>
+                  handleSelectChange(e, values)
+                }
+                hasError={hasError(errors, focusedElements, 'technologies')}
+              />
+
+              <ButtonWrapper>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={() =>
+                    (focusedElements =
+                      Object.keys(errors).length > 0
+                        ? [...Object.keys(errors)]
+                        : [...Object.keys(values)])
+                  }
+                >
+                  {isSubmitting ? 'Creating...' : 'Create'}
+                </Button>
+              </ButtonWrapper>
+            </Form>
           )}
-          <FormHint>
-            Where will you communicate? Share the invite link to your workspace
-            (Slack or Discord)
-          </FormHint>
-          <FormLabel htmlFor="technologies">Technologies</FormLabel>
-          <TechnologiesSelect
-            id="technologies"
-            setError={setError}
-            setTechnologies={handleSelectChange}
-          />
-          {formErrors.includes('pTech') && (
-            <Message variant="error" value="At least one technology required" />
-          )}
-          <FormHint>Add the technologies used in your application</FormHint>
-          <ButtonWrapper>
-            <ApiButton handleClick={handleClick} statusText="Creating...">
-              Create
-            </ApiButton>
-          </ButtonWrapper>
-        </Form>
+        </Formik>
       </FormWrapper>
     </Wrapper>
   );

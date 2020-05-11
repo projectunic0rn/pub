@@ -1,44 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, FocusEventHandler } from 'react';
 import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
 
-import {
-  Item,
-  ProjectTechnology,
-  ServiceResolver,
-  Tag,
-  UserTechnology,
-} from '@api';
+import { Item, ServiceResolver, Tag, UserTechnology } from '@api';
 import { theme } from '@styles';
-
-type FormValue<T = string> = {
-  val: T;
-  required: boolean;
-};
-
-type FormInputIndexPropType = string | ProjectTechnology[];
-
-type FormInput = {
-  pName: FormValue;
-  pDesc: FormValue;
-  pTech: FormValue<ProjectTechnology[]>;
-  pType: FormValue;
-  pRepo: FormValue;
-  pLaunch: FormValue;
-  pComm: FormValue;
-  [key: string]: FormValue<FormInputIndexPropType>;
-};
+import { FormInputWrapper } from './form-input-wrapper';
 
 type TechnologiesSelectProps = {
-  setFormInputs?: Function;
-  formInputs?: FormInput;
-  formErrors?: string[];
-  setFormErrors?: Function;
   setError: Function;
   initialValues?: UserTechnology[];
   setTechnologies: Function;
-  name?: string;
+  name: string;
   id?: string;
+  hint?: string;
+  label?: string;
+  handleBlur?: FocusEventHandler;
+  hasError: boolean;
 };
 
 type OptionType = {
@@ -47,15 +24,14 @@ type OptionType = {
 };
 
 export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
-  setFormInputs,
-  formInputs,
-  formErrors,
-  setFormErrors,
   setError,
   initialValues,
   setTechnologies,
   name,
   id,
+  label,
+  hint,
+  handleBlur,
 }) => {
   const styles = {
     multiValue: (styles: {}) => {
@@ -82,43 +58,10 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
   const handleSelectChange = (e: ValueType<OptionType>) => {
     let technologies: string[];
 
-    if (Array.isArray(e)) {
-      technologies = e.map((v) => v.value);
-    } else {
-      technologies = [];
-    }
+    if (Array.isArray(e)) technologies = e.map((v) => v.value);
+    else technologies = [];
 
     setTechnologies(technologies);
-
-    if (formInputs && setFormInputs) {
-      setFormInputs({
-        ...formInputs,
-        pTech: { ...formInputs.pTech, val: technologies },
-      });
-    }
-  };
-
-  const handleAsyncSelectOnBlur = () => {
-    if (formErrors && formInputs && setFormErrors) {
-      const formErrorState: string[] = formErrors;
-
-      if (formErrorState) {
-        if (
-          formErrorState.indexOf('pTech') > 0 ||
-          formInputs.pTech.val.length
-        ) {
-          if (formInputs.pTech.val.length) {
-            formErrorState.splice(formErrorState.indexOf('pTech'), 1);
-          }
-        } else {
-          if (!formInputs.pTech.val.length) {
-            formErrorState.push('pTech');
-          }
-        }
-
-        setFormErrors([...formErrorState]);
-      }
-    }
   };
 
   const promiseOptions = async (inputValue: string) => {
@@ -143,17 +86,19 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
     });
 
   return (
-    <AsyncSelect
-      cacheOptions
-      defaultOptions
-      isMulti
-      onChange={handleSelectChange}
-      styles={styles}
-      onBlur={handleAsyncSelectOnBlur}
-      loadOptions={promiseOptions}
-      defaultValue={defaultValue}
-      name={name}
-      id={id}
-    />
+    <FormInputWrapper name={name} hint={hint} label={label}>
+      <AsyncSelect
+        cacheOptions
+        defaultOptions
+        isMulti
+        onChange={handleSelectChange}
+        styles={styles}
+        onBlur={handleBlur}
+        loadOptions={promiseOptions}
+        defaultValue={defaultValue}
+        name={name}
+        id={id || name}
+      />
+    </FormInputWrapper>
   );
 };

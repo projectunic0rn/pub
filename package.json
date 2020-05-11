@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.149",
+    "@types/yup": "^0.28.0",
+    "formik": "^2.1.4",
     "gatsby": "2.20.20",
     "gatsby-image": "2.3.2",
     "gatsby-plugin-alias-imports": "1.0.5",
@@ -56,7 +58,8 @@
     "react-typography": "0.16.19",
     "styled-components": "5.1.0",
     "typography": "0.16.19",
-    "typography-theme-ocean-beach": "0.16.19"
+    "typography-theme-ocean-beach": "0.16.19",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "@ruj/prettier-config": "1.0.0",

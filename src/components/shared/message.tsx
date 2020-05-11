@@ -23,7 +23,6 @@ const Wrapper = styled.span<WrapperProps>`
         return theme.colors.base;
     }
   }};
-  font-size: 14px;
 `;
 
 const Message: FC<MessageProps> = ({ value, variant = 'default' }) => (

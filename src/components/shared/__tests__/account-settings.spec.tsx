@@ -3,10 +3,15 @@ import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { AccountSettings } from '../containers';
 import { MockAuthService } from '@mocks';
-import { SignIn, JwtToken } from '@api';
+import { SignIn, JwtToken, User } from '@api';
 import { SessionStorageHelper } from '@helpers';
 
 describe('test account settings component', () => {
+  const user: User = {
+    username: 'unicorn91',
+    bio: 'My bio',
+    technologies: [{ userId: '', name: 'C++' }],
+  };
   // Test suite setup
   beforeEach(() => {
     // emulate existing user login
@@ -23,7 +28,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act
@@ -37,7 +42,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act
@@ -51,7 +56,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act
@@ -71,7 +76,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act
@@ -86,7 +91,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act
@@ -102,7 +107,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings />
+        <AccountSettings isLoading={false} user={user} />
       </MockThemeProvider>,
     );
     // Act

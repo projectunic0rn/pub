@@ -1,18 +1,19 @@
 import { Link, navigate } from 'gatsby';
-import React, { FC, useEffect, useState, useContext } from 'react';
+import React, { FC, useEffect, useState, useContext, FormEvent } from 'react';
 import styled from 'styled-components';
+import { Formik } from 'formik';
 
-import { ApiButton } from '../buttons/api-button';
+import { Button } from '@components/shared/buttons';
 import { ApiResponse, ErrorResponse, JwtToken } from '@api';
 import { useSiteMetadata } from '@hooks';
 import {
-  FormLabel,
   FormInput,
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
 import { AuthContext } from '@contexts';
+import { Message } from '..';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -28,11 +29,6 @@ const Wrapper = styled.section`
   }
 `;
 
-const Error = styled.p`
-  color: ${({ theme }) => theme.colors.alert.danger};
-  margin-bottom: 0;
-`;
-
 interface SignInFormProps {
   location: {
     state: {
@@ -41,12 +37,20 @@ interface SignInFormProps {
   };
 }
 
+interface FormValues {
+  email: string;
+  password: string;
+}
+
 export const SignInForm: FC<SignInFormProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
   const authContext = useContext(AuthContext);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+
+  const initialValues: FormValues = {
+    email: '',
+    password: '',
+  };
 
   useEffect(() => {
     if (location.state !== null) {
@@ -54,66 +58,83 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
     }
   }, [location.state]);
 
-  const handleClick = async () => {
-    if (email === '' || password === '') {
+  const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
+    if (!values.email || !values.password) {
       setMessage('Invalid email or password');
+
       return;
     }
 
-    try {
-      const response = (await authContext.signIn?.({
-        email,
-        password,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
+    setSubmitting(true);
 
-      if (response.ok) {
-        navigate('/projects/');
-      } else {
-        setMessage((response.data as ErrorResponse).message);
+    setTimeout(async () => {
+      try {
+        const { email, password } = values;
+        const response = (await authContext.signIn?.({
+          email,
+          password,
+        })) as ApiResponse<JwtToken | ErrorResponse>;
+
+        if (response.ok) {
+          navigate('/projects/');
+        } else {
+          setMessage((response.data as ErrorResponse).message);
+        }
+      } catch (err) {
+        setMessage('Invalid email or password');
       }
-    } catch (err) {
-      setMessage('Invalid email or password');
-    }
+
+      setSubmitting(false);
+    }, 1000);
   };
 
   return (
     <Wrapper>
-      <Form heading={`Sign In To ${siteMetadata.title}`}>
-        {message && <Error>{message}</Error>}
-        <FormLabel htmlFor="email-signin">Email</FormLabel>
-        <FormInput
-          name="email-signin"
-          id="email-signin"
-          type="email"
-          placeholder="unicorn@projectunicorn.net"
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setMessage('');
-          }}
-        />
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values, { setSubmitting }) => {
+          setSubmitting(false);
+          makeApiCall(values, setSubmitting);
+        }}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <Form
+            heading={`Sign In To ${siteMetadata.title}`}
+            onSubmit={(e: FormEvent<HTMLFormElement>) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
+          >
+            {message && <Message variant="error" value={message} />}
 
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <FormInput
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Your Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setMessage('');
-          }}
-        />
+            <FormInput
+              label="Email"
+              name="email"
+              id="email"
+              type="email"
+              placeholder="unicorn@projectunicorn.net"
+            />
 
-        <LinkWrapper>
-          <Link to="/signup/">New member? Sign Up!</Link>
-        </LinkWrapper>
+            <FormInput
+              label="Password"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Your Password"
+            />
 
-        <ButtonWrapper>
-          <ApiButton handleClick={handleClick} statusText="Signing In...">
-            Sign In
-          </ApiButton>
-        </ButtonWrapper>
-      </Form>
+            <LinkWrapper>
+              <Link to="/signup">New member? Sign Up!</Link>
+            </LinkWrapper>
+
+            <ButtonWrapper>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Signing In...' : 'Sign In'}
+              </Button>
+            </ButtonWrapper>
+          </Form>
+        )}
+      </Formik>
     </Wrapper>
   );
 };

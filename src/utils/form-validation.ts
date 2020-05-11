@@ -8,6 +8,7 @@ import {
   isValidUsername,
 } from './validation-utils';
 import { ProjectTechnology } from '@api';
+import { FormikErrors } from 'formik';
 
 export interface Props<T = string> {
   [index: string]: {
@@ -17,6 +18,26 @@ export interface Props<T = string> {
 }
 
 type CreateProjectTypes = string | ProjectTechnology[];
+
+export const customHandleBlur = (
+  e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  focusedElements: Array<string>,
+  handleBlur: Function,
+) => {
+  const name = e.target.name;
+
+  if (!focusedElements.includes(name)) focusedElements.push(name);
+
+  handleBlur(e);
+};
+
+export const hasError = (
+  errors: FormikErrors<unknown>,
+  focusedElements: Array<string>,
+  fieldName: string,
+): boolean =>
+  Object.keys(errors).includes(fieldName) &&
+  focusedElements.includes(fieldName);
 
 export class FormVal {
   public checkValidation(v: Props<CreateProjectTypes>) {

@@ -11,19 +11,12 @@ const FormElement = styled.form`
 
 type FormProps = {
   heading?: string;
-  handleSubmit?: Function;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 };
 
-export const Form: FC<FormProps> = ({ handleSubmit, heading, children }) => {
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleSubmit && handleSubmit(e);
-  };
-
+export const Form: FC<FormProps> = ({ onSubmit, heading, children }) => {
   return (
-    <FormElement
-      onSubmit={(e: FormEvent<HTMLFormElement>) => handleFormSubmit(e)}
-    >
+    <FormElement onSubmit={onSubmit}>
       {heading && <Heading>{heading}</Heading>}
       {children}
     </FormElement>

@@ -1,8 +1,9 @@
 import { Link, navigate } from 'gatsby';
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, FC, useState, FormEvent } from 'react';
 import styled from 'styled-components';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
-import { ApiButton } from '../buttons/api-button';
 import {
   ApiResponse,
   ErrorResponse,
@@ -11,15 +12,13 @@ import {
   Username,
   JwtToken,
 } from '@api';
-import {
-  FormLabel,
-  FormInput,
-  LinkWrapper,
-  ButtonWrapper,
-} from '@components/shared/form';
+import { FormInput, LinkWrapper, ButtonWrapper } from '@components/shared/form';
 import { Form } from '@components/shared/form';
+import { Button } from '@components/shared/buttons';
 import { SessionStorageHelper } from '@helpers';
-import { FormVal } from '@utils';
+import { messages } from '../../../const';
+import { hasError, customHandleBlur } from '@utils/form-validation';
+import Message from '../message';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -32,16 +31,8 @@ const Wrapper = styled.section`
   }
 `;
 
-const Error = styled.ul`
-  color: ${({ theme }) => theme.colors.alert.danger};
-  margin: 0;
-  li {
-    margin: 0;
-  }
-`;
-
 const UsernameCheck = styled.small<{ isValid: boolean }>`
-  color: ${(props) => (props.isValid ? '' : 'red')};
+  color: ${(props) => (props.isValid ? 'green' : 'red')};
 `;
 
 interface InputValue {
@@ -53,180 +44,211 @@ interface FormInput {
   [key: string]: InputValue;
 }
 
+interface FormValues {
+  email: string;
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 export const SignUpForm: FC = () => {
-  const validation = new FormVal();
-
-  const [formInputs, setFormInputs] = useState<FormInput>({
-    email: { val: '', required: true },
-    username: { val: '', required: true },
-    password: { val: '', required: true },
-    confirmPassword: { val: '', required: true },
-  });
-
-  const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [message, setMessage] = useState<string | UserValidation>();
+  const [message, setMessage] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [usernameAvailablity, setUsernameAvailability] = useState<
     UserValidation
   >({ valid: false, reason: '' });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const state = formInputs;
-    state[name].val = value;
+  let focusedElements: Array<string> = [];
 
-    setFormInputs({ ...state });
+  const initialValues: FormValues = {
+    email: '',
+    username: '',
+    password: '',
+    passwordConfirmation: '',
   };
 
-  const handleClick = async () => {
-    const auth = ServiceResolver.authResolver();
-    const errors = validation.userSignUp(formInputs);
+  const validationSchema = yup.object().shape({
+    email: yup
+      .string()
+      .required(messages.validation.required)
+      .email(messages.validation.email),
+    username: yup.string().required(messages.validation.required),
+    password: yup.string().required(messages.validation.required),
+    passwordConfirmation: yup.string().required(messages.validation.required),
+  });
 
-    if (errors.length) return setFormErrors([...errors]);
-    setFormErrors([]);
+  const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
+    const { username, email, password, passwordConfirmation } = values;
 
-    try {
-      const locale =
-        typeof window.navigator !== 'undefined'
-          ? window.navigator.language
-          : 'en-US';
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const response = (await auth.signUp({
-        username: formInputs.username.val,
-        email: formInputs.email.val,
-        password: formInputs.password.val,
-        passwordConfirmation: formInputs.confirmPassword.val,
-        locale,
-        timezone,
-      })) as ApiResponse<JwtToken | ErrorResponse>;
+    if (passwordConfirmation !== password) {
+      setMessage('Passwords do not match');
 
-      if (response.ok) {
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/projects/');
-      } else {
-        setMessage((response.data as ErrorResponse).message);
-      }
-    } catch (err) {
-      setMessage('Failed to sign up. Please try again');
+      return;
     }
-  };
 
-  const displayErrorMessages = () => {
-    return formErrors.map((err: string) => {
-      if (err === 'email') return <li key={err}>Invalid email</li>;
-      if (err === 'username') return <li key={err}>Invalid username</li>;
-      if (err === 'password')
-        return (
-          <li key={err}>
-            Password must contain:
-            <ul>
-              <li>six characters or more</li>
-              <li>
-                has at least one lowercase and one uppercase alphabetical
-                character
-              </li>
-              <li>or has at least one lowercase and one numeric character</li>
-              <li>or has at least one uppercase and one numeric character</li>
-            </ul>
-          </li>
-        );
-      if (err === 'confirmPassword')
-        return <li key={err}>Passwords do not match</li>;
-    });
+    setSubmitting(true);
+
+    const auth = ServiceResolver.authResolver();
+
+    setTimeout(async () => {
+      try {
+        const locale =
+          typeof window.navigator !== 'undefined'
+            ? window.navigator.language
+            : 'en-US';
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const response = (await auth.signUp({
+          username,
+          email,
+          password,
+          passwordConfirmation,
+          locale,
+          timezone,
+        })) as ApiResponse<JwtToken | ErrorResponse>;
+
+        if (response.ok) {
+          SessionStorageHelper.storeJwt(response.data as JwtToken);
+          navigate('/projects/');
+        } else {
+          setMessage((response.data as ErrorResponse).message);
+        }
+      } catch (err) {
+        setMessage('Failed to sign up. Please try again');
+      }
+
+      setSubmitting(false);
+    }, 1);
   };
 
   const checkUsername = async (e: ChangeEvent<HTMLInputElement>) => {
     const api = ServiceResolver.apiResolver();
-    const { name, value } = e.target;
-    const state = formInputs;
-    state[name].val = value;
 
-    if (value) {
-      setIsLoading(true);
+    setIsLoading(true);
+
+    setTimeout(async () => {
       const username: Username = {
-        username: value,
+        username: e.target.value,
       };
+
       try {
         const response = (await api.validateUsername(username)) as ApiResponse<
           UserValidation | ErrorResponse
         >;
 
-        if (!response.ok) setMessage(response.data as UserValidation);
+        if (!response.ok) setMessage((response.data as UserValidation).reason);
 
-        setIsLoading(false);
         setUsernameAvailability(response.data as UserValidation);
-        setFormInputs({ ...state });
-      } catch (error) {
+      } catch {
         setMessage('Failed to validate username');
       }
-    } else {
-      setUsernameAvailability({ valid: false, reason: '' });
-    }
+
+      setIsLoading(false);
+    }, 500);
   };
 
   return (
     <Wrapper>
-      <Form heading={`Sign Up`}>
-        {formErrors && <Error>{displayErrorMessages()}</Error>}
-        {message && <Error>{message}</Error>}
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <FormInput
-          name="email"
-          id="email"
-          type="email"
-          placeholder="unicorn@projectunicorn.net"
-          onChange={(e) => handleChange(e)}
-          hasError={formErrors.includes('email')}
-        />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values, { setSubmitting }) =>
+          makeApiCall(values, setSubmitting)
+        }
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          values,
+          errors,
+        }) => (
+          <Form
+            heading={`Sign Up`}
+            onSubmit={(e: FormEvent<HTMLFormElement>) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
+            {message && <Message variant="error" value={message.toString()} />}
 
-        <FormLabel htmlFor="username">Username</FormLabel>
-        <FormInput
-          name="username"
-          id="username"
-          type="text"
-          placeholder="unicorn21"
-          onChange={(e) => checkUsername(e)}
-          hasError={formErrors.includes('username')}
-        />
-        <UsernameCheck isValid={usernameAvailablity.valid}>
-          {isLoading ? 'checking...' : usernameAvailablity.reason}
-        </UsernameCheck>
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <FormInput
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Your Password"
-          onChange={(e) => handleChange(e)}
-          hasError={
-            formErrors.includes('password') ||
-            formErrors.includes('confirmPassword')
-          }
-        />
+            <FormInput
+              label="Email"
+              name="email"
+              id="email"
+              type="email"
+              placeholder="unicorn@projectunicorn.net"
+              onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                customHandleBlur(e, focusedElements, handleBlur)
+              }
+              hasError={hasError(errors, focusedElements, 'email')}
+            />
+            <FormInput
+              label="Username"
+              name="username"
+              id="username"
+              type="text"
+              placeholder="unicorn21"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                checkUsername(e);
+                handleChange(e);
+              }}
+              hasError={hasError(errors, focusedElements, 'username')}
+            />
+            <UsernameCheck isValid={usernameAvailablity.valid}>
+              {values.username &&
+                (isLoading
+                  ? 'Checking username...'
+                  : usernameAvailablity.reason)}
+            </UsernameCheck>
+            <FormInput
+              label="Password"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Your Password"
+              onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                customHandleBlur(e, focusedElements, handleBlur)
+              }
+              hasError={hasError(errors, focusedElements, 'password')}
+            />
+            <FormInput
+              label="Confirm Password"
+              name="passwordConfirmation"
+              id="passwordConfirmation"
+              type="password"
+              placeholder="Confirm Your Password"
+              onBlur={(e: FocusEvent<HTMLInputElement>) =>
+                customHandleBlur(e, focusedElements, handleBlur)
+              }
+              hasError={hasError(
+                errors,
+                focusedElements,
+                'passwordConfirmation',
+              )}
+            />
 
-        <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
-        <FormInput
-          name="confirmPassword"
-          id="confirmPassword"
-          type="password"
-          placeholder="Confirm Your Password"
-          onChange={(e) => handleChange(e)}
-          hasError={
-            formErrors.includes('password') ||
-            formErrors.includes('confirmPassword')
-          }
-        />
+            <LinkWrapper>
+              <Link to="/signin">Already a member? Sign In</Link>
+            </LinkWrapper>
 
-        <LinkWrapper>
-          <Link to="/signin">Already a member? Sign In</Link>
-        </LinkWrapper>
-
-        <ButtonWrapper>
-          <ApiButton handleClick={handleClick} statusText="Signing Up...">
-            Sign Up
-          </ApiButton>
-        </ButtonWrapper>
-      </Form>
+            <ButtonWrapper>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                onClick={() =>
+                  (focusedElements =
+                    Object.keys(errors).length > 0
+                      ? [...Object.keys(errors)]
+                      : [...Object.keys(values)])
+                }
+              >
+                {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+              </Button>
+            </ButtonWrapper>
+          </Form>
+        )}
+      </Formik>
     </Wrapper>
   );
 };

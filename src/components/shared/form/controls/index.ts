@@ -5,4 +5,4 @@ export { FormLabel } from './form-label';
 export { FormSelectInput } from './form-select-input';
 export { LinkWrapper } from './link-wrapper';
 export { TechnologiesSelect } from './technologies-select';
-export { FormTextArea } from './text-area';
+export { FormTextArea } from './form-text-area';

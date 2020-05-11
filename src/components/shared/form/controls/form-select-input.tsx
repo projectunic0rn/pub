@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import { greyLighter, red, redLight, white, black } from '@styles/constants';
+import { FormInputWrapper } from './form-input-wrapper';
 
 type FormSelectInputOption = {
   id: string;
@@ -10,12 +11,13 @@ type FormSelectInputOption = {
 
 type FormSelectInputProps = {
   options: FormSelectInputOption[];
-  name?: string;
+  name: string;
+  id?: string;
   onChange: Function;
   onBlur: Function;
   hasError?: boolean;
-  placeholder: string;
-  id: string;
+  label?: string;
+  hint?: string;
 };
 
 export const SelectInput = styled.select<FormSelectInputProps>`
@@ -26,6 +28,7 @@ export const SelectInput = styled.select<FormSelectInputProps>`
   border: ${(props) =>
     props.hasError ? `1px solid ${red}` : `1px solid ${greyLighter};`};
   background: ${(props) => (props.hasError ? redLight : white)};
+  outline: none;
 
   :focus {
     border-color: ${black};
@@ -38,7 +41,8 @@ export const FormSelectInput: FC<FormSelectInputProps> = ({
   onChange,
   onBlur,
   hasError,
-  placeholder,
+  label,
+  hint,
   id,
 }) => {
   const selectOptions = options.map((option) => (
@@ -48,21 +52,19 @@ export const FormSelectInput: FC<FormSelectInputProps> = ({
   ));
 
   return (
-    <SelectInput
-      id={id}
-      onBlur={(e) => {
-        onBlur(e);
-      }}
-      options={options}
-      name={name}
-      onChange={(e) => onChange(e)}
-      hasError={hasError}
-      placeholder={placeholder}
-    >
-      <option key="0" value="">
-        {placeholder}
-      </option>
-      {selectOptions}
-    </SelectInput>
+    <FormInputWrapper name={name} label={label} hint={hint}>
+      <SelectInput
+        onBlur={(e) => {
+          onBlur(e);
+        }}
+        options={options}
+        name={name}
+        onChange={(e) => onChange(e)}
+        hasError={hasError}
+        id={id || name}
+      >
+        {selectOptions}
+      </SelectInput>
+    </FormInputWrapper>
   );
 };

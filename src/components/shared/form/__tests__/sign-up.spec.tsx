@@ -37,7 +37,7 @@ test('shows message when at least one field is invalid', async () => {
 
   fireEvent.click(getByText(/sign up/i, { selector: 'button' }));
 
-  const messages = await findAllByText(/invalid/i);
+  const messages = await findAllByText(/required/i);
 
   expect(messages).not.toHaveLength(0);
 
