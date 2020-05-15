@@ -195,13 +195,15 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
         Project | ErrorResponse
       >;
 
+      // TODO: simplify, will always be ok inside try
       if (response.ok) {
         navigate(`/projects`);
       } else {
+        // TODO: remove, currently this will never execute.
         setError((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      setError('Failed to create project');
+      setError(err.message);
     }
   };
 
