@@ -12,7 +12,7 @@ export const getProjects: ApiResponse<Project[]> = {
       projectType: 'Community',
       repositoryUrl: 'null',
       communicationPlatformUrl: 'https://slack.com',
-      lookingForMembers: false,
+      lookingForMembers: true,
       communicationPlatform: 'slack',
       projectTechnologies: [
         {
@@ -83,7 +83,7 @@ export const getProjects: ApiResponse<Project[]> = {
       projectType: 'Other',
       repositoryUrl: 'https://github.com/projectunic0rn/Puzzle',
       communicationPlatformUrl: 'https://discordapp.com',
-      lookingForMembers: false,
+      lookingForMembers: true,
       communicationPlatform: 'discord',
       projectTechnologies: [
         {
@@ -643,7 +643,7 @@ export const getProjects: ApiResponse<Project[]> = {
       projectType: 'Community',
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
-      lookingForMembers: false,
+      lookingForMembers: true,
       communicationPlatform: 'slack',
       projectTechnologies: [],
       projectUsers: [
@@ -672,7 +672,7 @@ export const getProjects: ApiResponse<Project[]> = {
       projectType: 'Education',
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
-      lookingForMembers: false,
+      lookingForMembers: true,
       communicationPlatform: 'slack',
       projectTechnologies: [
         {

@@ -33,15 +33,17 @@ const MagicLoginPage: FC = () => {
           password: token,
         })) as ApiResponse<JwtToken | ErrorResponse>;
 
+        // TODO: simplify, will always be true
         if (response.ok) {
           SessionStorageHelper.storeJwt(response.data as JwtToken);
           navigate('/projects/');
         } else {
+          // TODO: remove, will never be executed
           setMessage((response.data as ErrorResponse).message);
         }
       } catch (err) {
         // TODO: Log error
-        setMessage('Invalid credentials');
+        setMessage(err.message);
       }
     }, 600);
   };

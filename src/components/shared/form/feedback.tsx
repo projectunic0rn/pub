@@ -99,14 +99,16 @@ export const FeedbackForm: FC = () => {
         content: feedbackInfo,
       })) as ApiResponse<Feedback | ErrorResponse>;
 
+      // TODO: simplify, will always be true
       if (response.ok) {
         setSuccess('Feedback sent successfully');
         setFeedback('');
       } else {
+        // TODO: remove, currently this will never execute.
         setError('Failed to send feedback');
       }
     } catch (err) {
-      setError('Failed to send feedback');
+      setError(err.message);
     }
   };
 

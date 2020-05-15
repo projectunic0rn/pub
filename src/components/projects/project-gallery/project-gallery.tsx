@@ -25,15 +25,16 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
         const response = (await api.getProjects()) as ApiResponse<
           Project[] | ErrorResponse
         >;
+        // TODO: simplify, reponse.ok will always be true inside try
         if (response.ok) {
           const projects = response.data as Project[];
-          const projectsLookingForMembers = projects.filter(
-            (project) => project.lookingForMembers == true,
-          );
-          setProjects(projectsLookingForMembers);
-        } else setError((response.data as ErrorResponse).message);
+          setProjects(projects);
+        } else {
+          // TODO: remove, currently this will never execute.
+          setError((response.data as ErrorResponse).message);
+        }
       } catch (err) {
-        setError('Failed to retrieve a list of projects');
+        setError(err.message);
       }
 
       setIsLoading(false);

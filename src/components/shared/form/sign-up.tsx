@@ -157,7 +157,7 @@ export const SignUpForm: FC = () => {
         setUsernameAvailability(response.data as UserValidation);
         setFormInputs({ ...state });
       } catch (error) {
-        setMessage('Failed to validate username');
+        setMessage(error.message);
       }
     } else {
       setUsernameAvailability({ valid: false, reason: '' });
