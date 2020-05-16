@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { greyLighter, red, redLight, white, black } from '@styles/constants';
 import { FormInputWrapper } from './form-input-wrapper';
+import { greyLighter, red, redLight, white, black } from '@styles/constants';
 
 type FormSelectInputOption = {
   id: string;
@@ -54,12 +54,12 @@ export const FormSelectInput: FC<FormSelectInputProps> = ({
   return (
     <FormInputWrapper name={name} label={label} hint={hint}>
       <SelectInput
-        onBlur={(e) => {
+        onBlur={(e: React.FocusEvent<HTMLSelectElement>) => {
           onBlur(e);
         }}
         options={options}
         name={name}
-        onChange={(e) => onChange(e)}
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onChange(e)}
         hasError={hasError}
         id={id || name}
       >

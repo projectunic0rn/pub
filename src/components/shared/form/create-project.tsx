@@ -13,6 +13,7 @@ import {
   ButtonWrapper,
   TechnologiesSelect,
 } from './controls';
+import { Form } from './form';
 import { Button } from '../buttons';
 import { Ribbon, CloseButton } from '../ribbons';
 import { messages } from '../../../const';
@@ -26,7 +27,6 @@ import {
 } from '@api';
 import { Seo } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
-import { Form } from './form';
 import { customHandleBlur, hasError } from '@utils/form-validation';
 
 type OwnProps = {};
@@ -70,7 +70,7 @@ interface FormValues {
   projectType: ProjectType;
   repositoryUrl: string;
   communicationPlatformUrl: string;
-  technologies: Array<ProjectTechnology>;
+  technologies: ProjectTechnology[];
 }
 
 type FormInputIndexPropType = string | ProjectTechnology[];
@@ -90,7 +90,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  let focusedElements: Array<string> = [];
+  let focusedElements: string[] = [];
 
   const initialValues: FormValues = {
     name: '',
@@ -107,15 +107,13 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     description: yup.string().required(messages.validation.required),
     launchDate: yup.string().required(messages.validation.required),
     projectType: yup.string().required(messages.validation.required),
-    repositoryUrl: yup
-      .string()
-      .required(messages.validation.required)
-      .url(messages.validation.url),
     communicationPlatformUrl: yup
       .string()
       .required(messages.validation.required)
       .url(messages.validation.url),
-    technologies: yup.array().required(messages.validation.required),
+    technologies: yup
+      .array<ProjectTechnology>()
+      .required(messages.validation.required),
   });
 
   useEffect(() => {
@@ -139,7 +137,9 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
           setProjectTypes(data);
           initialValues.projectType = data[0];
-        } else setError((response.data as ErrorResponse).message);
+        } else {
+          setError((response.data as ErrorResponse).message);
+        }
       } catch (error) {
         setError('Failed to get project types');
       }
@@ -274,7 +274,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
                 onBlur={(e: FocusEvent<HTMLInputElement>) =>
                   customHandleBlur(e, focusedElements, handleBlur)
                 }
-                hasError={hasError(errors, focusedElements, 'projectType')}
               />
               <FormInput
                 label="Project Repo"

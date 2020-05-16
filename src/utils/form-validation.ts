@@ -1,3 +1,4 @@
+import { FormikErrors } from 'formik';
 import {
   isEmptyArray,
   isValidUrl,
@@ -8,7 +9,6 @@ import {
   isValidUsername,
 } from './validation-utils';
 import { ProjectTechnology } from '@api';
-import { FormikErrors } from 'formik';
 
 export interface Props<T = string> {
   [index: string]: {
@@ -21,7 +21,7 @@ type CreateProjectTypes = string | ProjectTechnology[];
 
 export const customHandleBlur = (
   e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  focusedElements: Array<string>,
+  focusedElements: string[],
   handleBlur: Function,
 ) => {
   const name = e.target.name;
@@ -33,7 +33,7 @@ export const customHandleBlur = (
 
 export const hasError = (
   errors: FormikErrors<unknown>,
-  focusedElements: Array<string>,
+  focusedElements: string[],
   fieldName: string,
 ): boolean =>
   Object.keys(errors).includes(fieldName) &&

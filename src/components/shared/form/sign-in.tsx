@@ -3,17 +3,17 @@ import React, { FC, useEffect, useState, useContext, FormEvent } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 
-import { Button } from '@components/shared/buttons';
+import { Message } from '..';
 import { ApiResponse, ErrorResponse, JwtToken } from '@api';
-import { useSiteMetadata } from '@hooks';
 import {
   FormInput,
   LinkWrapper,
   ButtonWrapper,
 } from '@components/shared/form/controls';
 import { Form } from '@components/shared/form';
+import { Button } from '@components/shared/buttons';
 import { AuthContext } from '@contexts';
-import { Message } from '..';
+import { useSiteMetadata } from '@hooks';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -67,25 +67,23 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
 
     setSubmitting(true);
 
-    setTimeout(async () => {
-      try {
-        const { email, password } = values;
-        const response = (await authContext.signIn?.({
-          email,
-          password,
-        })) as ApiResponse<JwtToken | ErrorResponse>;
+    try {
+      const { email, password } = values;
+      const response = (await authContext.signIn?.({
+        email,
+        password,
+      })) as ApiResponse<JwtToken | ErrorResponse>;
 
-        if (response.ok) {
-          navigate('/projects/');
-        } else {
-          setMessage((response.data as ErrorResponse).message);
-        }
-      } catch (err) {
-        setMessage('Invalid email or password');
+      if (response.ok) {
+        navigate('/projects/');
+      } else {
+        setMessage((response.data as ErrorResponse).message);
       }
+    } catch (err) {
+      setMessage('Invalid email or password');
+    }
 
-      setSubmitting(false);
-    }, 1000);
+    setSubmitting(false);
   };
 
   return (

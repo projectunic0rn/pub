@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
+import Message from '../message';
+import { messages } from '../../../const';
 import {
   ApiResponse,
   ErrorResponse,
@@ -12,13 +14,11 @@ import {
   Username,
   JwtToken,
 } from '@api';
+import { Button } from '@components/shared/buttons';
 import { FormInput, LinkWrapper, ButtonWrapper } from '@components/shared/form';
 import { Form } from '@components/shared/form';
-import { Button } from '@components/shared/buttons';
 import { SessionStorageHelper } from '@helpers';
-import { messages } from '../../../const';
 import { hasError, customHandleBlur } from '@utils/form-validation';
-import Message from '../message';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.section};
@@ -90,34 +90,32 @@ export const SignUpForm: FC = () => {
 
     const auth = ServiceResolver.authResolver();
 
-    setTimeout(async () => {
-      try {
-        const locale =
-          typeof window.navigator !== 'undefined'
-            ? window.navigator.language
-            : 'en-US';
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const response = (await auth.signUp({
-          username,
-          email,
-          password,
-          passwordConfirmation,
-          locale,
-          timezone,
-        })) as ApiResponse<JwtToken | ErrorResponse>;
+    try {
+      const locale =
+        typeof window.navigator !== 'undefined'
+          ? window.navigator.language
+          : 'en-US';
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const response = (await auth.signUp({
+        username,
+        email,
+        password,
+        passwordConfirmation,
+        locale,
+        timezone,
+      })) as ApiResponse<JwtToken | ErrorResponse>;
 
-        if (response.ok) {
-          SessionStorageHelper.storeJwt(response.data as JwtToken);
-          navigate('/projects/');
-        } else {
-          setMessage((response.data as ErrorResponse).message);
-        }
-      } catch (err) {
-        setMessage('Failed to sign up. Please try again');
+      if (response.ok) {
+        SessionStorageHelper.storeJwt(response.data as JwtToken);
+        navigate('/projects/');
+      } else {
+        setMessage((response.data as ErrorResponse).message);
       }
+    } catch (err) {
+      setMessage('Failed to sign up. Please try again');
+    }
 
-      setSubmitting(false);
-    }, 1);
+    setSubmitting(false);
   };
 
   const checkUsername = async (e: ChangeEvent<HTMLInputElement>) => {

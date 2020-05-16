@@ -2,9 +2,9 @@ import React, { FC, FocusEventHandler } from 'react';
 import AsyncSelect from 'react-select/async';
 import { ValueType } from 'react-select/src/types';
 
+import { FormInputWrapper } from './form-input-wrapper';
 import { Item, ServiceResolver, Tag, UserTechnology } from '@api';
 import { theme } from '@styles';
-import { FormInputWrapper } from './form-input-wrapper';
 
 type TechnologiesSelectProps = {
   setError: Function;
@@ -58,8 +58,11 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
   const handleSelectChange = (e: ValueType<OptionType>) => {
     let technologies: string[];
 
-    if (Array.isArray(e)) technologies = e.map((v) => v.value);
-    else technologies = [];
+    if (Array.isArray(e)) {
+      technologies = e.map((v) => v.value);
+    } else {
+      technologies = [];
+    }
 
     setTechnologies(technologies);
   };

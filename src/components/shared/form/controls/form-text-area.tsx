@@ -80,11 +80,9 @@ export const FormTextArea: FC<FormTextAreaProps> = ({
       />
 
       {displayCharCount && (
-        <>
-          <FormTextAreaHint>
-            {value.length}/{maxCharCount}
-          </FormTextAreaHint>
-        </>
+        <FormTextAreaHint>
+          {value.length}/{maxCharCount}
+        </FormTextAreaHint>
       )}
     </TextAreaWrapper>
   );

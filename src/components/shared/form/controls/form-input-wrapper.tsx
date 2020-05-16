@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
-
 import { ErrorMessage } from 'formik';
 
 import { FormLabel } from '@components/shared/form/controls';
@@ -26,10 +25,10 @@ export const FormInputWrapper: FC<FormInputWrapperProps> = ({
   label,
   children,
 }) => (
-  <>
+  <Fragment>
     {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
     {children}
     <FormErrorMessage name={name} component="span" />
     {hint && <FormHint>{hint}</FormHint>}
-  </>
+  </Fragment>
 );

@@ -5,12 +5,14 @@ import React, {
   useCallback,
   FormEvent,
   ChangeEvent,
+  useContext,
 } from 'react';
 import { debounce } from 'lodash';
 import * as yup from 'yup';
 import { MainContent } from './main-content';
 import { SettingsContainer } from './settings-container';
 import { Button } from '@components/shared/buttons';
+import { AuthContext } from '@contexts';
 import { Form } from '../form';
 import {
   FormInput,
@@ -18,8 +20,9 @@ import {
   TechnologiesSelect,
   FormTextArea,
 } from '../form/controls';
-import { MenuItem } from '../side-panels/container-side-panel';
 import { ContainerSidePanel, Image } from '../side-panels';
+import { MenuItem } from '../side-panels/container-side-panel';
+import { messages } from '../../../const';
 import {
   ApiResponse,
   ErrorResponse,
@@ -30,11 +33,10 @@ import {
   UserValidation,
 } from '@api';
 import { defaultProfileImage } from '@images';
+import { hasError, customHandleBlur } from '@utils';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
 import { Formik } from 'formik';
-import { messages } from '../../../const';
-import { hasError, customHandleBlur } from '@utils';
 
 interface OptionType {
   label: string;
@@ -66,6 +68,7 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
     UserValidation
   >({ valid: true, reason: '' });
   const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
+  const authContext = useContext(AuthContext);
 
   const initialValues: FormValues = {
     username: user ? user.username : '',
@@ -79,7 +82,7 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
     technologies: yup.array().required(messages.validation.required),
   });
 
-  let focusedElements: Array<string> = [];
+  let focusedElements: string[] = [];
 
   useEffect(() => {
     if (user && user.technologies) {
@@ -91,7 +94,6 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
   const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
     setSubmitting(true);
 
-    const api = ServiceResolver.apiResolver();
     const { username, bio, technologies } = values;
 
     try {
@@ -102,12 +104,15 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
         technologies,
       };
 
-      const response = (await api.editUser(updatedUser)) as ApiResponse<
-        User | ErrorResponse
-      >;
+      const response = (await authContext.editUser?.(
+        updatedUser,
+      )) as ApiResponse<User | ErrorResponse>;
 
-      if (response.ok) setSuccess('Settings saved');
-      else setError((response.data as ErrorResponse).message);
+      if (response.ok) {
+        setSuccess('Settings saved');
+      } else {
+        setError((response.data as ErrorResponse).message);
+      }
     } catch (err) {
       setError('Failed to save settings. Please try again');
     }
