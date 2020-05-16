@@ -8,7 +8,7 @@ tags:
   - Project Learnings
 ---
 
-Starting a project and seeing it through to the end isn't easy - so we like to highlight teams that are able to stick it througn and take a project from idea to production. After a few months of building, today Matt launches [Geornal](https://geornal.herokuapp.com/)!
+Starting a project and seeing it through to the end isn't easy - so we like to highlight teams that are able to stick it through and take a project from idea to production. After a few months of building, today Matt launches [Geornal](https://geornal.herokuapp.com/)!
 
 Matt answered a few questions about the challenges he faced building his project and also shares some solid advice for other devs building their own projects. Take a look at his advice below and check out his project. You can create your own map - [here's mine](https://geornal.herokuapp.com/public/roymoran).
 
