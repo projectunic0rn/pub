@@ -66,13 +66,15 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
         password,
       })) as ApiResponse<JwtToken | ErrorResponse>;
 
+      // TODO: simplify, will always be true
       if (response.ok) {
         navigate('/projects/');
       } else {
+        // TODO: remove, currently this will never execute.
         setMessage((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      setMessage('Invalid email or password');
+      setMessage(err.message);
     }
   };
 

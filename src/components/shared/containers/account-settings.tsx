@@ -66,6 +66,7 @@ export const AccountSettings: FC = () => {
           User | ErrorResponse
         >;
 
+        // TODO: simplift, response.ok will always be true in try block
         if (response.ok) {
           const user = response.data as User;
           setUser(user);
@@ -73,10 +74,11 @@ export const AccountSettings: FC = () => {
           setBio(user.bio);
           setTechnologies(user.technologies ?? []);
         } else {
+          // TODO: remove, currently this will never execute.
           setError((response.data as ErrorResponse).message);
         }
-      } catch {
-        setError('Failed to get user information');
+      } catch (err) {
+        setError(err.message);
       }
 
       setIsLoading(false);
@@ -102,10 +104,11 @@ export const AccountSettings: FC = () => {
       if (response.ok) {
         setSuccess('Settings saved');
       } else {
+        // TODO: move to try catch, currently this will never execute.
         setError((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      setError('Failed to save settings. Please try again');
+      setError(err.message);
     }
   };
 
@@ -127,6 +130,8 @@ export const AccountSettings: FC = () => {
       const response = (await api.validateUsername(u)) as ApiResponse<
         UserValidation | ErrorResponse
       >;
+
+      // TODO: remove, will always be true inside try
       if (response.ok) {
         setUsernameAvailability(response.data as UserValidation);
       }

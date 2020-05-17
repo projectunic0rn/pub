@@ -111,6 +111,7 @@ const Card: FC<CardProps> = ({ content, setError }) => {
     if (response.ok) {
       setHasMemberJoinedProject(!hasMemberJoinedProject);
     } else {
+      // TODO: move to try catch, currently this will never execute.
       setError((response.data as ErrorResponse).message);
     }
   };
@@ -138,9 +139,11 @@ const Card: FC<CardProps> = ({ content, setError }) => {
       content.projectUsers.push(joinProjectResponseBody);
     }
 
+    // TODO: simplify, will always be true
     if (response.ok) {
       setHasMemberJoinedProject(!hasMemberJoinedProject);
     } else {
+      // TODO: move to try catch, currently this will never execute.
       setError((response.data as ErrorResponse).message);
     }
   };
@@ -148,7 +151,7 @@ const Card: FC<CardProps> = ({ content, setError }) => {
   const memberCount = content.projectUsers.length;
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="project">
       <CardTitle
         name={content.name}
         clickable={hasMemberJoinedProject}

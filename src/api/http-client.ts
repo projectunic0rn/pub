@@ -1,11 +1,26 @@
+import { SessionStorageHelper } from '@helpers';
+import { ErrorResponse, ApiResponse } from './types';
+
 export class HttpClient {
   public static async makeRequest(request: Request): Promise<unknown> {
     const response = await fetch(request);
 
-    // TODO: If 401 - sign out user with
-    // message that session has expired.
     if (!response.ok && response.type) {
-      throw new Error(response.statusText);
+      const status = response.status;
+      switch (status) {
+        case 401:
+          // handle unauthorized response
+          SessionStorageHelper.deleteJwt();
+          throw new Error('Your session expired, please sign in again.');
+        default:
+          // handle non 2xx response by parsing
+          // and returning api message
+          const text = await response.text();
+          const message = HttpClient.tryParseErrorMessage(text)
+            ? (JSON.parse(text) as ApiResponse<ErrorResponse>).data.message
+            : 'Something unexpected happened on our end please try again.';
+          throw new Error(message);
+      }
     }
 
     const text = await response.text();
@@ -63,5 +78,15 @@ export class HttpClient {
     });
 
     return await HttpClient.makeRequest(request);
+  }
+
+  private static tryParseErrorMessage(text: string): boolean {
+    let result = true;
+    try {
+      (JSON.parse(text) as ApiResponse<ErrorResponse>).data.message;
+    } catch {
+      result = false;
+    }
+    return result;
   }
 }

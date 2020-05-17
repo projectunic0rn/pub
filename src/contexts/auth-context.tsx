@@ -56,6 +56,8 @@ export const AuthProvider: FC = (props) => {
       const userResponse = (await getUser()) as ApiResponse<
         User | ErrorResponse
       >;
+
+      // TODO: simplify, will always be true
       if (userResponse.ok) {
         const user = userResponse.data as User;
         const authContextState = {
