@@ -12,7 +12,6 @@ import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
 import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
-import ButtonTemplate from '@components/index-page/button-template';
 import { Button } from '../buttons';
 
 type ProfileContainerProps = {
@@ -50,14 +49,16 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
           User | ErrorResponse
         >;
 
+        // TODO: simplify, will always true in try
         if (response.ok) {
           const user = response.data as User;
           setUser(user);
         } else {
+          // TODO: remove, currently this will never execute.
           setError((response.data as ErrorResponse).message);
         }
-      } catch {
-        setError('Failed to get user information');
+      } catch (err) {
+        setError(err.message);
       }
 
       setIsLoading(false);
