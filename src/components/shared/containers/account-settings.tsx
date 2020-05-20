@@ -49,26 +49,20 @@ interface FormValues {
   technologies: UserTechnology[];
 }
 
-interface AccountSettingsProps {
-  isLoading: boolean;
-  user?: User;
-}
-
 const UsernameCheck = styled.small<{ isValid: boolean }>`
   color: ${(props) => (props.isValid ? '' : 'red')};
 `;
 
-export const AccountSettings: FC<AccountSettingsProps> = ({
-  isLoading,
-  user,
-}) => {
+export const AccountSettings: FC = () => {
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>();
+  const [success, setSuccess] = useState<string | null>(null);
   const [usernameAvailablity, setUsernameAvailability] = useState<
     UserValidation
   >({ valid: true, reason: '' });
   const [technologies, setTechnologies] = useState<UserTechnology[]>([]);
   const authContext = useContext(AuthContext);
+  const user = authContext.member;
+  const api = ServiceResolver.apiResolver();
 
   const initialValues: FormValues = {
     username: user ? user.username : '',
@@ -87,9 +81,10 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
   useEffect(() => {
     if (user && user.technologies) {
       setTechnologies(user.technologies);
+      initialValues.username = user.username;
       initialValues.technologies = user.technologies;
     }
-  }, [initialValues.technologies, user]);
+  }, [initialValues.technologies, user, initialValues.username]);
 
   const makeApiCall = async (values: FormValues, setSubmitting: Function) => {
     setSubmitting(true);
@@ -103,18 +98,18 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
         bio,
         technologies,
       };
-
-      const response = (await authContext.editUser?.(
-        updatedUser,
-      )) as ApiResponse<User | ErrorResponse>;
+      const response = (await api.editUser(updatedUser)) as ApiResponse<
+        User | ErrorResponse
+      >;
 
       if (response.ok) {
         setSuccess('Settings saved');
       } else {
+        // TODO: move to try catch, currently this will never execute.
         setError((response.data as ErrorResponse).message);
       }
     } catch (err) {
-      setError('Failed to save settings. Please try again');
+      setError(err.message);
     }
 
     setSubmitting(false);
@@ -184,7 +179,6 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
       setError={setError}
       success={success}
       setSuccess={setSuccess}
-      isLoading={isLoading}
     >
       <ContainerSidePanel>
         <MenuItem>General</MenuItem>
@@ -231,10 +225,7 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
                 hasError={hasError(errors, focusedElements, 'username')}
               />
               <UsernameCheck isValid={usernameAvailablity.valid}>
-                {values.username &&
-                  (isLoading
-                    ? 'Checking username...'
-                    : usernameAvailablity.reason)}
+                {values.username && usernameAvailablity.reason}
               </UsernameCheck>
               <br />
               <br />

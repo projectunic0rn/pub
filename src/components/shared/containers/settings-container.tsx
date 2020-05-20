@@ -7,7 +7,7 @@ import { Loader } from '@components/shared';
 
 type SettingsContainerProps = {
   error: string | null | undefined;
-  isLoading: boolean;
+  isLoading?: boolean;
   setError: Function;
   success: string | null | undefined;
   setSuccess: Function;

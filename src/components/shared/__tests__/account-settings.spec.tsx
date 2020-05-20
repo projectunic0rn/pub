@@ -3,9 +3,10 @@ import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { AccountSettings } from '../containers';
 import { MockAuthService } from '@mocks';
-import { user } from '@mocks';
+
 import { SignIn, JwtToken } from '@api';
 import { SessionStorageHelper } from '@helpers';
+import { AuthProvider } from '@contexts';
 
 describe('test account settings component', () => {
   // Test suite setup
@@ -24,7 +25,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
+        <AccountSettings />
       </MockThemeProvider>,
     );
     // Act
@@ -38,7 +39,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
+        <AccountSettings />
       </MockThemeProvider>,
     );
     // Act
@@ -51,9 +52,11 @@ describe('test account settings component', () => {
   test('general tab displays technologies with label', async () => {
     // Arrange
     const { getByLabelText } = render(
-      <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
-      </MockThemeProvider>,
+      <AuthProvider>
+        <MockThemeProvider>
+          <AccountSettings />
+        </MockThemeProvider>
+      </AuthProvider>,
     );
     // Act
     const text = await waitFor(() => getByLabelText('Technologies'));
@@ -71,9 +74,11 @@ describe('test account settings component', () => {
   test('edit user api is called successfully when saved', async () => {
     // Arrange
     const { getByText } = render(
-      <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
-      </MockThemeProvider>,
+      <AuthProvider>
+        <MockThemeProvider>
+          <AccountSettings />
+        </MockThemeProvider>
+      </AuthProvider>,
     );
     // Act
     const saveButton = await waitFor(() => getByText('Save'));
@@ -87,7 +92,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
+        <AccountSettings />
       </MockThemeProvider>,
     );
     // Act
@@ -103,7 +108,7 @@ describe('test account settings component', () => {
     // Arrange
     const { getByLabelText } = render(
       <MockThemeProvider>
-        <AccountSettings isLoading={false} user={user.data} />
+        <AccountSettings />
       </MockThemeProvider>,
     );
     // Act

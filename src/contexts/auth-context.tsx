@@ -18,7 +18,6 @@ interface AuthContextState {
     credentials: SignIn,
   ) => Promise<ApiResponse<JwtToken | ErrorResponse>>;
   signOut?: () => void;
-  editUser?: (user: User) => Promise<ApiResponse<User | ErrorResponse>>;
 }
 
 const defaultAuthContextState: AuthContextState = {
@@ -57,6 +56,8 @@ export const AuthProvider: FC = (props) => {
       const userResponse = (await getUser()) as ApiResponse<
         User | ErrorResponse
       >;
+
+      // TODO: simplify, will always be true
       if (userResponse.ok) {
         const user = userResponse.data as User;
         const authContextState = {
@@ -74,26 +75,6 @@ export const AuthProvider: FC = (props) => {
 
   const signOut = () => {
     SessionStorageHelper.deleteJwt();
-  };
-
-  const editUser = async (
-    user: User,
-  ): Promise<ApiResponse<User | ErrorResponse>> => {
-    const api = ServiceResolver.apiResolver();
-    const response = (await api.editUser(user)) as ApiResponse<
-      User | ErrorResponse
-    >;
-    if (response.ok) {
-      const authContextState = {
-        authenticated: true,
-        avatar: user.profilePictureUrl || defaultProfileImage,
-        member: user,
-        editUser: editUser,
-      };
-
-      setAuthContextState(authContextState);
-    }
-    return response;
   };
 
   useEffect(() => {
@@ -119,9 +100,7 @@ export const AuthProvider: FC = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ ...authContextState, signIn, signOut, editUser }}
-    >
+    <AuthContext.Provider value={{ ...authContextState, signIn, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );
