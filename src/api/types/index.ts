@@ -13,3 +13,4 @@ export * from './user-validation';
 export * from './user';
 export * from './user-technology';
 export * from './username';
+export * from './change-password';

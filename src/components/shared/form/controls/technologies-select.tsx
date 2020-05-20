@@ -131,7 +131,7 @@ export const TechnologiesSelect: FC<TechnologiesSelectProps> = ({
 
       return options;
     } catch (error) {
-      setError('Failed to get tags');
+      setError('Failed to populate technologies');
     }
   };
 

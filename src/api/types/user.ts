@@ -9,6 +9,6 @@ export interface User {
   profilePictureUrl?: string;
   gitHubUsername?: string;
   bio: string;
-  technologies?: UserTechnology[];
+  technologies: UserTechnology[];
   projects?: Project[];
 }

@@ -1,5 +1,12 @@
 import { HttpClient } from './http-client';
-import { Feedback, ProjectUser, Project, User, Username } from './types';
+import {
+  Feedback,
+  ProjectUser,
+  Project,
+  User,
+  Username,
+  ChangePassword,
+} from './types';
 import { SessionStorageHelper } from '@helpers';
 
 export class ApiService {
@@ -81,6 +88,14 @@ export class ApiService {
       `${this.apiEndpoint}/users`,
       this.headers,
       user,
+    );
+  }
+
+  public async changePassword(changePassword: ChangePassword) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/auth/change-password`,
+      this.headers,
+      changePassword,
     );
   }
 }
