@@ -85,9 +85,10 @@ export const ChangePasswordContent: FC<ContentProps> = (props) => {
         onChange={(e) => handleCurrentPasswordChange(e.target.value)}
         hasError={false}
         required={true}
+        alt="password-field"
       />
       <br />
-      <FormLabel htmlFor="new-password">New Passsword</FormLabel>
+      <FormLabel htmlFor="new-password">New Password</FormLabel>
       <FormInput
         type="password"
         name="new-password"
@@ -96,10 +97,11 @@ export const ChangePasswordContent: FC<ContentProps> = (props) => {
         onChange={(e) => handleNewPasswordChange(e.target.value)}
         hasError={false}
         required={true}
+        alt="password-field"
       />
       <br />
       <FormLabel htmlFor="confirmed-new-password">
-        Confirm New Passsword
+        Confirm New Password
       </FormLabel>
       <FormInput
         type="password"
@@ -109,6 +111,7 @@ export const ChangePasswordContent: FC<ContentProps> = (props) => {
         onChange={(e) => handleConfirmNewPasswordChange(e.target.value)}
         hasError={false}
         required={true}
+        alt="password-field"
       />
       <br />
       {formMessage != '' && (

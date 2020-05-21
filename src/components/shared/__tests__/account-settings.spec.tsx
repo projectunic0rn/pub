@@ -6,7 +6,7 @@ import { MockAuthService } from '@mocks';
 import { SignIn, JwtToken } from '@api';
 import { SessionStorageHelper } from '@helpers';
 
-describe('test account settings component', () => {
+describe.skip('test account settings component', () => {
   // Test suite setup
   beforeEach(() => {
     // emulate existing user login

@@ -9,7 +9,7 @@ export type StatusType = 'success' | 'error';
 
 export const AccountSettings: FC = () => {
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>();
+  const [success, setSuccess] = useState<string | null>(null);
   const [currentMenuItem, setCurrentMenuItem] = useState(menuItems[0].name);
 
   const handleMenuItemClick = (name: string) => {
