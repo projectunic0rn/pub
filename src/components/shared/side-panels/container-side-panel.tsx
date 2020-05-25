@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+interface MenuItemProp {
+  readonly active?: boolean;
+}
 export const ContainerSidePanel = styled.div`
   flex: 0.3;
   border: none;
@@ -37,8 +40,10 @@ export const MenuItemContainer = styled.div`
   margin-top: 20px;
 `;
 
-export const MenuItem = styled.div`
-  color: ${({ theme }) => theme.colors.highlight};
+export const MenuItem = styled.div<MenuItemProp>`
+  color: #000000;
+  font-weight: ${(props) => (props.active ? 'bold' : '400')};
+  border-left: ${(props) => (props.active ? 'black solid 2px' : '')};
   padding: 5px 15px;
   :hover {
     background: ${({ theme }) => theme.colors.shadow};

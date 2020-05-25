@@ -39,7 +39,11 @@ export const AccountSettings: FC = () => {
       <ContainerSidePanel>
         {menuItems.map((m) => {
           return (
-            <MenuItem onClick={() => handleMenuItemClick(m.name)} key={m.name}>
+            <MenuItem
+              onClick={() => handleMenuItemClick(m.name)}
+              key={m.name}
+              active={m.name === currentMenuItem}
+            >
               {m.name}
             </MenuItem>
           );
