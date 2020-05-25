@@ -114,7 +114,7 @@ export const ChangePasswordContent: FC<ContentProps> = (props) => {
         alt="password-field"
       />
       <br />
-      {formMessage != '' && (
+      {formMessage !== '' && (
         <FormMessage isValid={formValid}>{formMessage}</FormMessage>
       )}
       <ButtonWrapper>

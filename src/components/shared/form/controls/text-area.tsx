@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from 'react';
+import React, { FC, FormEvent, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import { greyLighter, red, redLight, white } from '@styles/constants';
@@ -6,12 +6,13 @@ import { greyLighter, red, redLight, white } from '@styles/constants';
 const FormTextAreaHint = styled.small`
   color: ${greyLighter};
   position: absolute;
-  right: 0;
-  bottom: -20px;
+  right: 20px;
+  bottom: 10px;
 `;
 
 const TextAreaWrapper = styled.div`
   padding: 0.3125em 0.3125em 0 0.3125em;
+  position: relative;
 `;
 
 const TextArea = styled.textarea<FormTextAreaProps>`
@@ -30,7 +31,7 @@ const TextArea = styled.textarea<FormTextAreaProps>`
 `;
 
 type FormTextAreaProps = {
-  onChange: Function;
+  onChange: (e: ChangeEvent<HTMLInputElement>, value: string) => void;
   onBlur?: Function;
   value: string;
   placeholder?: string;
@@ -63,7 +64,9 @@ export const FormTextArea: FC<FormTextAreaProps> = ({
   return (
     <TextAreaWrapper>
       <TextArea
-        onChange={(e) => onChange(e, checkLength(e))}
+        // TODO Refactor to remove any type
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onChange={(e: any) => onChange(e, checkLength(e))}
         value={value}
         placeholder={placeholder}
         name={name}

@@ -1,12 +1,5 @@
 import { debounce } from 'lodash';
-import React, {
-  FC,
-  ChangeEvent,
-  useState,
-  useCallback,
-  useContext,
-  useEffect,
-} from 'react';
+import React, { FC, useState, useCallback, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { ValueType } from 'react-select/src/types';
 
@@ -175,7 +168,7 @@ export const ProfileContent: FC<ContentProps> = (props) => {
       <FormTextArea
         name="bio"
         id="bio"
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setBio(e.target.value)}
+        onChange={(e) => setBio(e.target.value)}
         value={bio}
         rows={5}
       >

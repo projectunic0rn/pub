@@ -5,6 +5,7 @@ import { AccountSettings } from '../account-settings';
 import { MockAuthService } from '@mocks';
 import { SignIn, JwtToken } from '@api';
 import { SessionStorageHelper } from '@helpers';
+import { menuItems } from '../content/menu-items';
 
 describe('test account settings component', () => {
   // Test suite setup
@@ -67,10 +68,40 @@ describe('test account settings component', () => {
     expect(text).toBeVisible();
   });
 
-  test('current menu item is emphasized', async () => {
+  test('active menu item is emphasized', async () => {
     // Arrange
+    const { getByText } = render(
+      <MockThemeProvider>
+        <AccountSettings />
+      </MockThemeProvider>,
+    );
+
+    // Assumed active item is always first
+    // element in list
+    const activeItem = menuItems[0].name;
     // Act
+    const menuItem = getByText(activeItem);
     // Assert
+    expect(menuItem).toHaveStyle('font-weight: bold;');
+    expect(menuItem).toHaveStyle('border-left: black solid 2px;');
+  });
+
+  test('inactive menu item is not emphasized', async () => {
+    // Arrange
+    const { getByText } = render(
+      <MockThemeProvider>
+        <AccountSettings />
+      </MockThemeProvider>,
+    );
+
+    // Assumed active item is always first
+    // element in list
+    const activeItem = menuItems[1].name;
+    // Act
+    const menuItem = getByText(activeItem);
+    // Assert
+    expect(menuItem).toHaveStyle('font-weight: 400;');
+    expect(menuItem).toHaveStyle('border-left: ;');
   });
 
   test('edit user api is called successfully when saved from edit profile tab', async () => {
@@ -106,7 +137,7 @@ describe('test account settings component', () => {
     const updatedUsername = getByLabelText('Username');
     const inputElement = updatedUsername as HTMLInputElement;
     // Assert
-    expect(inputElement.value).toBe('newUsername');
+    expect(inputElement).toHaveValue('newUsername');
   });
 
   test('bio is updated successfully from edit profile tab', () => {
