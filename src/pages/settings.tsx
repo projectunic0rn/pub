@@ -2,7 +2,7 @@ import { navigate } from 'gatsby';
 import React, { FC, useEffect } from 'react';
 
 import { Layout, Seo } from '@components/shared';
-import { AccountSettings } from '@components/shared/containers';
+import { AccountSettings } from '@components/account/account-settings';
 import { UserAuthHelper } from '@helpers';
 import { useSiteMetadata } from '@hooks';
 

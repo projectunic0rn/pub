@@ -13,17 +13,24 @@ import { SessionStorageHelper, UserAuthHelper } from '@helpers';
 interface AuthContextState {
   authenticated: boolean;
   avatar: string;
-  member?: User;
+  member: User;
   signIn?: (
     credentials: SignIn,
   ) => Promise<ApiResponse<JwtToken | ErrorResponse>>;
   signOut?: () => void;
+  setMember?: (user: User) => void;
 }
+
+const defaultMember: User = {
+  username: '',
+  bio: '',
+  technologies: [],
+};
 
 const defaultAuthContextState: AuthContextState = {
   authenticated: false,
   avatar: defaultProfileImage,
-  member: undefined,
+  member: defaultMember,
 };
 
 export const AuthContext = React.createContext(defaultAuthContextState);
@@ -77,13 +84,23 @@ export const AuthProvider: FC = (props) => {
     SessionStorageHelper.deleteJwt();
   };
 
+  const setMember = (user: User) => {
+    const authContext = {
+      ...authContextState,
+      member: user,
+      avatar: user.profilePictureUrl || defaultProfileImage,
+    };
+
+    setAuthContextState(authContext);
+  };
+
   useEffect(() => {
     const initializeAuthContext = async () => {
       const isUserAuthenticated = UserAuthHelper.isUserAuthenticated();
       const defaultAuthContextState: AuthContextState = {
         authenticated: isUserAuthenticated,
         avatar: defaultProfileImage,
-        member: undefined,
+        member: defaultMember,
       };
 
       if (isUserAuthenticated) {
@@ -100,7 +117,9 @@ export const AuthProvider: FC = (props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...authContextState, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ ...authContextState, signIn, signOut, setMember }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

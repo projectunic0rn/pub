@@ -9,7 +9,7 @@ import {
   createProject,
   user,
 } from './responses';
-import { Project, User } from '@api';
+import { Project, User, ChangePassword } from '@api';
 
 export class MockApiService {
   public async createProject(project: Project) {
@@ -46,5 +46,9 @@ export class MockApiService {
 
   public async editUser(_user: User) {
     return user;
+  }
+
+  public async changePassword(changePassword: ChangePassword) {
+    return changePassword;
   }
 }
