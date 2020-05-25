@@ -100,14 +100,10 @@ export const SignUpForm: FC = () => {
         timezone,
       })) as ApiResponse<JwtToken | ErrorResponse>;
 
-      if (response.ok) {
-        SessionStorageHelper.storeJwt(response.data as JwtToken);
-        navigate('/projects/');
-      } else {
-        setMessage((response.data as ErrorResponse).message);
-      }
+      SessionStorageHelper.storeJwt(response.data as JwtToken);
+      navigate('/projects/');
     } catch (err) {
-      setMessage('Failed to sign up. Please try again');
+      setMessage(err.message);
     }
   };
 
