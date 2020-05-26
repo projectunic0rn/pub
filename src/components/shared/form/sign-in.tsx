@@ -109,7 +109,9 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
         <LinkWrapper>
           <Link to="/signup/">New member? Sign Up!</Link>
         </LinkWrapper>
-
+        <LinkWrapper>
+          <Link to="/forgot-password/">Forgot Password? Reset it!</Link>
+        </LinkWrapper>
         <ButtonWrapper>
           <ApiButton handleClick={handleClick} statusText="Signing In...">
             Sign In

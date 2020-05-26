@@ -14,3 +14,4 @@ export * from './user';
 export * from './user-technology';
 export * from './username';
 export * from './change-password';
+export * from './password-reset';
