@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 
 import { ApiButton } from '../buttons/api-button';
-import { ServiceResolver, PasswordReset } from '@api';
+import { ServiceResolver, ResetPasswordRequest } from '@api';
 import {
   FormLabel,
   FormInput,
@@ -54,11 +54,11 @@ export const ForgotPasswordForm: FC = () => {
     }
 
     const auth = ServiceResolver.authResolver();
-    const passwordReset: PasswordReset = {
+    const passwordReset: ResetPasswordRequest = {
       email,
     };
     try {
-      await auth.resetPassword(passwordReset);
+      await auth.resetPasswordRequest(passwordReset);
       setFormMessage('Check your email for the password reset link.');
     } catch (err) {
       setFormValid(false);

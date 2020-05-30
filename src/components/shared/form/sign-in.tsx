@@ -80,7 +80,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
 
   return (
     <Wrapper>
-      <Form heading={`Sign In To ${siteMetadata.title}`}>
+      <Form heading={`Sign In`}>
         {message && <Error>{message}</Error>}
         <FormLabel htmlFor="email-signin">Email</FormLabel>
         <FormInput
