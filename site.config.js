@@ -45,7 +45,7 @@ module.exports = Object.freeze({
     tag: 'Build something awesome.',
     /** The description of the website. */
     description:
-      'Project Unicorn is a place for developers to discover software projects and team up with other developers to build and ship them.',
+      'Project Unicorn is a place where developers help each other build and ship meaningful software.',
     /** The url of the website. */
     siteUrl: process.env.BUILD_SITE_URL,
     logo: path.resolve(__dirname, 'src/images/logo.png'),
