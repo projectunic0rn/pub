@@ -34,7 +34,7 @@ const mockUseStaticQueryImplementation = () => {
         tag: 'Build something awesome.',
         /** The description of the website. */
         description:
-          'Project Unicorn is a virtual co-working space of software developers around the world working together to create and deploy meaningful software.',
+          'Project Unicorn is a community where developers discover meaningful software projects and help each other build and ship them.',
         /** The url of the website. */
         siteUrl: 'http://localhost:8000',
         logo: 'src/images/logo.png',
