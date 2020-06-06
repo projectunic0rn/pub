@@ -168,9 +168,7 @@ describe('test account settings component', () => {
     // Act
     const tab = getByText('Change Password');
     fireEvent.click(tab);
-    const passwordFields = await waitFor(() =>
-      findAllByAltText('password-field'),
-    );
+    const passwordFields = await findAllByAltText('password-field');
     // Assert
     expect(passwordFields.length).toBe(3);
   });

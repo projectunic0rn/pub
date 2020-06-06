@@ -1,5 +1,5 @@
 import { HttpClient } from './http-client';
-import { SignIn, SignUp } from './types';
+import { SignIn, SignUp, ResetPasswordRequest, ResetPassword } from './types';
 
 export class AuthService {
   private headers = {
@@ -25,6 +25,24 @@ export class AuthService {
       `${this.apiEndpoint}/auth/register`,
       this.headers,
       signUp,
+    );
+  }
+
+  public async resetPasswordRequest(
+    resetPasswordRequest: ResetPasswordRequest,
+  ) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/auth/reset-passsword-request`,
+      this.headers,
+      resetPasswordRequest,
+    );
+  }
+
+  public async resetPassword(resetPassword: ResetPassword) {
+    return await HttpClient.post(
+      `${this.apiEndpoint}/auth/reset-passsword`,
+      this.headers,
+      resetPassword,
     );
   }
 }

@@ -1,8 +1,8 @@
-import { Location } from '@reach/router';
-import React, { FC, Fragment, useState } from 'react';
+import { useLocation } from '@reach/router';
+import React, { FC, useState, useContext, useEffect } from 'react';
 import { navigate } from 'gatsby';
 
-import { ApiResponse, ErrorResponse, JwtToken, ServiceResolver } from '@api';
+import { ApiResponse, ErrorResponse, JwtToken } from '@api';
 import {
   Container,
   Layout,
@@ -12,9 +12,12 @@ import {
 } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 import { SessionStorageHelper } from '@helpers';
+import { AuthContext } from '@contexts';
 
 /** Page allows members to login via magic link method */
 const MagicLoginPage: FC = () => {
+  const location = useLocation();
+  const authContext = useContext(AuthContext);
   const [message, setMessage] = useState<string>('Logging in...');
   const siteMetadata = useSiteMetadata();
 
@@ -25,44 +28,31 @@ const MagicLoginPage: FC = () => {
         setMessage('Login token missing.');
         return;
       }
-      const auth = ServiceResolver.authResolver();
 
       try {
-        const response = (await auth.signIn({
+        const response = (await authContext.signIn?.({
           email: 'token',
           password: token,
         })) as ApiResponse<JwtToken | ErrorResponse>;
 
-        // TODO: simplify, will always be true
-        if (response.ok) {
-          SessionStorageHelper.storeJwt(response.data as JwtToken);
-          navigate('/projects/');
-        } else {
-          // TODO: remove, will never be executed
-          setMessage((response.data as ErrorResponse).message);
-        }
+        SessionStorageHelper.storeJwt(response.data as JwtToken);
+        navigate('/projects/');
       } catch (err) {
-        // TODO: Log error
         setMessage(err.message);
       }
     }, 600);
   };
 
+  useEffect(() => {
+    handleLogin(new URLSearchParams(location.search).get('token'));
+  });
+
   return (
     <Layout>
-      {/* Using location to read token from URL Param
-          and log in member.
-      */}
-      <Location>
-        {({ location }) => {
-          handleLogin(new URLSearchParams(location.search).get('token'));
-          return <Fragment />;
-        }}
-      </Location>
       <Seo
-        title={`${siteMetadata.title} - Contact Us`}
-        description={`Contact page for ${siteMetadata.title} website`}
-        urlSlug="contact/"
+        title={`${siteMetadata.title} - Magic Login`}
+        description={`Magic login page for ${siteMetadata.title} website`}
+        urlSlug="magin-login/"
       />
       <Container>
         <PageTitle>{message}</PageTitle>
