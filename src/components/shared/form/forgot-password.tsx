@@ -31,13 +31,13 @@ const FormMessage = styled.small<{ isValid: boolean }>`
 `;
 
 export const ForgotPasswordForm: FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState('');
   const [formValid, setFormValid] = useState(true);
   const [formMessage, setFormMessage] = useState('');
 
   const validEmail = (email: string) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    return re.test(email.toLowerCase());
   };
 
   const handleClick = async () => {

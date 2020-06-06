@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 
 import { MockThemeProvider } from '@mocks';
@@ -66,8 +66,8 @@ describe('Forgot password form tests', () => {
     const emailInput = getByLabelText('Email');
     fireEvent.change(emailInput, { target: { value: 'pub@email.com' } });
     fireEvent.click(submit);
-    const message = await waitFor(() =>
-      findByText('Check your email for the password reset link.'),
+    const message = await findByText(
+      'Check your email for the password reset link.',
     );
 
     // Assert

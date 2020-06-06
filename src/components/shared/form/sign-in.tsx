@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { ApiButton } from '../buttons/api-button';
 import { ApiResponse, ErrorResponse, JwtToken } from '@api';
-import { useSiteMetadata } from '@hooks';
 import {
   FormLabel,
   FormInput,
@@ -42,7 +41,6 @@ interface SignInFormProps {
 }
 
 export const SignInForm: FC<SignInFormProps> = ({ location }) => {
-  const siteMetadata = useSiteMetadata();
   const authContext = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -80,7 +78,7 @@ export const SignInForm: FC<SignInFormProps> = ({ location }) => {
 
   return (
     <Wrapper>
-      <Form heading={`Sign In`}>
+      <Form heading="Sign In">
         {message && <Error>{message}</Error>}
         <FormLabel htmlFor="email-signin">Email</FormLabel>
         <FormInput

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
 
 import { MockThemeProvider } from '@mocks';
@@ -22,7 +22,7 @@ test('render TechnologiesSelect select component', async () => {
   );
 
   // Act
-  const select = await waitFor(() => findByText('Select...'));
+  const select = await findByText('Select...');
 
   // Assert
   expect(select).toBeInTheDocument();

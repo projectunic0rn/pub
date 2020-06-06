@@ -10,7 +10,7 @@ const ForgotPasswordPage: FC = () => {
   return (
     <Layout>
       <Seo
-        title={`Forgot Password`}
+        title="Forgot Password"
         description={`Forgot Password Page For ${siteMetadata.title}`}
         urlSlug="forgot-password/"
       />

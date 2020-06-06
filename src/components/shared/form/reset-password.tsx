@@ -42,14 +42,14 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
   const [formMessage, setFormMessage] = useState('');
 
   useEffect(() => {
-    if (props.token == null) {
+    if (props.token === null || props.token === '') {
       setFormValid(false);
       setFormMessage("Missing required 'token' query parameter.");
     }
-  });
+  }, [props.token]);
 
   const handleClick = async () => {
-    if (props.token == null) {
+    if (props.token === null) {
       return;
     }
 
@@ -84,7 +84,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
 
   return (
     <Wrapper>
-      <Form heading={`Reset Password`} subheading={`Enter your new password.`}>
+      <Form heading="Reset Password" subheading="Enter your new password.">
         <FormLabel htmlFor="new-password">New Password</FormLabel>
         <FormInput
           name="new-password"
