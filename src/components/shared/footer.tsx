@@ -257,7 +257,13 @@ const Footer: FC = () => {
             </StyledAnchor>
           </IconWrapper>
         </SocialWrapper>
-        <AppVersion>v{siteMetadata.version}</AppVersion>
+        <AppVersion>
+          <StyledAnchor
+            href={`https://github.com/projectunic0rn/pub/releases/tag/v${siteMetadata.version}`}
+          >
+            v{siteMetadata.version}
+          </StyledAnchor>
+        </AppVersion>
       </Col>
     </Wrapper>
   );
