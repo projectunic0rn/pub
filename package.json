@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.149",
-    "gatsby": "2.20.20",
+    "gatsby": "2.20.36",
     "gatsby-image": "2.3.2",
     "gatsby-plugin-alias-imports": "1.0.5",
     "gatsby-plugin-canonical-urls": "2.2.1",
