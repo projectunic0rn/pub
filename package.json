@@ -1,6 +1,6 @@
 {
   "name": "pub",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
@@ -29,7 +29,7 @@
     "gatsby-plugin-manifest": "2.3.3",
     "gatsby-plugin-offline": "3.1.2",
     "gatsby-plugin-react-helmet": "3.2.2",
-    "gatsby-plugin-robots-txt": "1.5.0",
+    "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sharp": "2.5.4",
     "gatsby-plugin-sitemap": "2.3.2",
     "gatsby-plugin-styled-components": "3.2.1",
