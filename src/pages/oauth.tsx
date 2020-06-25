@@ -10,7 +10,7 @@ import {
 } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
 
-/** Page supports oauth authentication flow */
+/* Page supports oauth authorization flow */
 const OauthPage: FC = () => {
   const location = useLocation();
   const siteMetadata = useSiteMetadata();
