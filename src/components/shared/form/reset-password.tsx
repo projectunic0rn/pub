@@ -36,8 +36,8 @@ interface ResetPasswordFormProps {
 }
 
 export const ResetPasswordForm: FC<ResetPasswordFormProps> = (props) => {
-  const [newPassword, setNewPassword] = useState<string>('');
-  const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [formValid, setFormValid] = useState(true);
   const [formMessage, setFormMessage] = useState('');
 

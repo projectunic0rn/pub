@@ -18,7 +18,7 @@ import { AuthContext } from '@contexts';
 const MagicLoginPage: FC = () => {
   const location = useLocation();
   const authContext = useContext(AuthContext);
-  const [message, setMessage] = useState<string>('Logging in...');
+  const [message, setMessage] = useState('Logging in...');
   const siteMetadata = useSiteMetadata();
 
   const handleLogin = (token: string | null) => {
@@ -50,7 +50,7 @@ const MagicLoginPage: FC = () => {
   return (
     <Layout>
       <Seo
-        title={`${siteMetadata.title} - Magic Login`}
+        title={`Magic Login`}
         description={`Magic login page for ${siteMetadata.title} website`}
         urlSlug="magin-login/"
       />
