@@ -1,15 +1,22 @@
-import { ApiService } from './api-service';
-import { AuthService } from './auth-service';
-import { StackExchangeService } from './stack-exchange-service';
+import {
+  ApiService,
+  AuthService,
+  ProfilingService,
+  StackExchangeService,
+} from './';
 import {
   MockApiService,
   MockAuthService,
+  MockProfilingService,
   MockStackExchangeService,
 } from '@mocks';
 
 export class ServiceResolver {
   private static apiServiceInstance?: MockApiService | ApiService;
   private static authServiceInstance?: MockAuthService | AuthService;
+  private static profilingServiceInstance?:
+    | MockProfilingService
+    | ProfilingService;
   private static stackExchangeServiceInstance?:
     | MockStackExchangeService
     | StackExchangeService;
@@ -20,6 +27,10 @@ export class ServiceResolver {
 
   public static authResolver() {
     return this.getAuthServiceInstance();
+  }
+
+  public static profilingResolver() {
+    return this.getProfilingServiceInstancxe();
   }
 
   public static stackExchangeResolver() {
@@ -42,6 +53,15 @@ export class ServiceResolver {
         : new AuthService();
     }
     return this.authServiceInstance;
+  }
+
+  private static getProfilingServiceInstancxe() {
+    if (this.profilingServiceInstance === undefined) {
+      this.profilingServiceInstance = this.useMock()
+        ? new MockProfilingService()
+        : new ProfilingService();
+    }
+    return this.profilingServiceInstance;
   }
 
   private static getStackExchangeServiceInstance() {
