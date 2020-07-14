@@ -4,3 +4,4 @@ export * from './string-utils';
 export * from './url-utils';
 export * from './form-validation';
 export * from './general-utils';
+export * from './profiling-utils';

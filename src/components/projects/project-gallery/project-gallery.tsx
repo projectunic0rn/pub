@@ -6,6 +6,7 @@ import { ApiResponse, ErrorResponse, Project, ServiceResolver } from '@api';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Seo, Wrapper } from '@components/shared';
+import { ProfilingUtils } from '@utils';
 
 type OwnProps = {};
 type ProjectGalleryProps = OwnProps & RouteComponentProps;
@@ -19,6 +20,11 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
+    const profiler = new ProfilingUtils(
+      'pub-ui-projects-response-time',
+      'measure the response time of /projects from client-side.',
+    );
+    profiler.startTimeRecord();
 
     async function fetchContent() {
       try {
@@ -29,6 +35,7 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
         if (response.ok) {
           const projects = response.data as Project[];
           setProjects(projects);
+          profiler.endTimeRecord();
         } else {
           // TODO: remove, currently this will never execute.
           setError((response.data as ErrorResponse).message);
