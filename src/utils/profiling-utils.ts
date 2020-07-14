@@ -23,7 +23,6 @@ export class ProfilingUtils {
   }
 
   public startTimeRecord(): void {
-    this.reportName = name;
     this.startTime = Date.now();
     return;
   }
