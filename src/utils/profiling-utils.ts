@@ -24,7 +24,6 @@ export class ProfilingUtils {
 
   public startTimeRecord(): void {
     this.startTime = Date.now();
-    return;
   }
 
   public endTimeRecord(): void {
