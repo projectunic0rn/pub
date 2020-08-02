@@ -14,12 +14,17 @@ export class ProfilingUtils {
   private additionalReportInfo: string;
   private profilingService: MockProfilingService | ProfilingService;
 
-  constructor(reportName: string, additionalReportInfo: string) {
+  constructor() {
     this.startTime = 0;
     this.endTime = 0;
-    this.reportName = reportName;
-    this.additionalReportInfo = additionalReportInfo;
+    this.reportName = '';
+    this.additionalReportInfo = '';
     this.profilingService = ServiceResolver.profilingResolver();
+  }
+
+  public setReportInfo(name: string, additionalInfo: string): void {
+    this.reportName = name;
+    this.additionalReportInfo = additionalInfo;
   }
 
   public startTimeRecord(): void {

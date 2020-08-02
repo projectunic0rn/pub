@@ -1,13 +1,9 @@
 import { SessionStorageHelper } from '@helpers';
 import { ErrorResponse, ApiResponse } from './types';
-import { ProfilingUtils } from '@utils';
 
 export class HttpClient {
   public static async makeRequest(request: Request): Promise<unknown> {
-    const profiler = new ProfilingUtils(request.url, request.method);
-    profiler.startTimeRecord();
     const response = await fetch(request);
-    profiler.endTimeRecord();
 
     if (!response.ok && response.type) {
       const status = response.status;
