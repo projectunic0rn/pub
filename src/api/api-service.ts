@@ -8,6 +8,7 @@ import {
   ChangePassword,
 } from './types';
 import { SessionStorageHelper } from '@helpers';
+import { ProfilingUtils } from '@utils';
 
 export class ApiService {
   private headers = {
@@ -17,51 +18,65 @@ export class ApiService {
   };
 
   private apiEndpoint: string;
+  private profiler: ProfilingUtils;
 
   public constructor() {
     this.apiEndpoint = process.env.GATSBY_API_ENDPOINT || '';
+    this.profiler = new ProfilingUtils();
   }
 
   public async createProject(project: Project) {
-    return await HttpClient.post(
-      `${this.apiEndpoint}/projects`,
-      this.headers,
-      project,
-    );
+    const endpoint = `${this.apiEndpoint}/projects`;
+    this.profiler.setReportInfo(endpoint, 'createProject');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(endpoint, this.headers, project);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async getProjectTypes() {
-    return await HttpClient.get(
-      `${this.apiEndpoint}/util/projecttypes`,
-      this.headers,
-    );
+    const endpoint = `${this.apiEndpoint}/util/projecttypes`;
+    this.profiler.setReportInfo(endpoint, 'getProjectTypes');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.get(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async getProjects() {
-    return await HttpClient.get(`${this.apiEndpoint}/projects`, this.headers);
+    const endpoint = `${this.apiEndpoint}/projects`;
+    this.profiler.setReportInfo(endpoint, 'getProjects');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.get(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async joinProject(projectUser: ProjectUser) {
-    return await HttpClient.post(
-      `${this.apiEndpoint}/projectusers/`,
-      this.headers,
-      projectUser,
-    );
+    const endpoint = `${this.apiEndpoint}/projectusers`;
+    this.profiler.setReportInfo(endpoint, 'joinProject');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(endpoint, this.headers, projectUser);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async leaveProject(id: string) {
-    return await HttpClient.delete(
-      `${this.apiEndpoint}/projectusers/${id}`,
-      this.headers,
-    );
+    const endpoint = `${this.apiEndpoint}/projectusers/${id}`;
+    this.profiler.setReportInfo(endpoint, 'leaveProject');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.delete(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async validateUsername(username: Username) {
-    return await HttpClient.post(
-      `${this.apiEndpoint}/util`,
-      this.headers,
-      username,
-    );
+    const endpoint = `${this.apiEndpoint}/util`;
+    this.profiler.setReportInfo(endpoint, 'validateUsername');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(endpoint, this.headers, username);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public updateAuthHeader(token: string) {
@@ -69,33 +84,42 @@ export class ApiService {
   }
 
   public async sendFeedback(feedback: Feedback) {
-    return await HttpClient.post(
-      `${this.apiEndpoint}/util/send-feedback`,
-      this.headers,
-      feedback,
-    );
+    const endpoint = `${this.apiEndpoint}/util/send-feedback`;
+    this.profiler.setReportInfo(endpoint, 'sendFeedback');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(endpoint, this.headers, feedback);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async getUser(id: string) {
-    return await HttpClient.get(
-      `${this.apiEndpoint}/users/${id}`,
-      this.headers,
-    );
+    const endpoint = `${this.apiEndpoint}/users/${id}`;
+    this.profiler.setReportInfo(endpoint, 'getUser');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.get(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async editUser(user: User) {
-    return await HttpClient.put(
-      `${this.apiEndpoint}/users`,
-      this.headers,
-      user,
-    );
+    const endpoint = `${this.apiEndpoint}/users`;
+    this.profiler.setReportInfo(endpoint, 'editUser');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.put(endpoint, this.headers, user);
+    this.profiler.endTimeRecord();
+    return result;
   }
 
   public async changePassword(changePassword: ChangePassword) {
-    return await HttpClient.post(
-      `${this.apiEndpoint}/auth/change-password`,
+    const endpoint = `${this.apiEndpoint}/auth/change-password`;
+    this.profiler.setReportInfo(endpoint, 'changePassword');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(
+      endpoint,
       this.headers,
       changePassword,
     );
+    this.profiler.endTimeRecord();
+    return result;
   }
 }
