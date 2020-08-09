@@ -10,6 +10,10 @@ import { ApiResponse, ErrorResponse, Feedback, ServiceResolver } from '@api';
 import { UserAuthHelper } from '@helpers';
 import { useSiteMetadata } from '@hooks';
 
+interface FeedbackProps {
+  page?: string;
+}
+
 const FeedbackContainer = styled.div`
   width: 400px;
   height: 200px;
@@ -61,7 +65,7 @@ const FeedbackButton = styled(SecondaryButton)`
   box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
 `;
 
-export const FeedbackForm: FC = () => {
+export const FeedbackForm: FC<FeedbackProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const [feedback, setFeedback] = useState<string>('');
   const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
@@ -71,6 +75,8 @@ export const FeedbackForm: FC = () => {
   const buildFeedbackInfo = () => {
     let additionalFeedbackInfo = 'Additional info:\n';
 
+    // Add Page Info
+    additionalFeedbackInfo += `Page: ${props.page}\n`;
     // Add Browser Info
     const navigatorInfo = getNavigatorInfo();
     for (const [key, value] of Object.entries(navigatorInfo)) {

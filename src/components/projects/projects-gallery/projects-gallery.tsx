@@ -8,9 +8,9 @@ import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Seo, Wrapper } from '@components/shared';
 
 type OwnProps = {};
-type ProjectGalleryProps = OwnProps & RouteComponentProps;
+type ProjectsGalleryProps = OwnProps & RouteComponentProps;
 
-const ProjectGallery: FC<ProjectGalleryProps> = () => {
+export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -46,7 +46,7 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
     <Fragment>
       <Seo title="Projects" />
 
-      <FeedbackForm />
+      <FeedbackForm page="projects gallery" />
 
       <Wrapper>
         {success && (
@@ -72,5 +72,3 @@ const ProjectGallery: FC<ProjectGalleryProps> = () => {
     </Fragment>
   );
 };
-
-export default ProjectGallery;

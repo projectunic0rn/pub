@@ -2,15 +2,16 @@ import { Router } from '@reach/router';
 import React, { FC } from 'react';
 
 import { Layout } from '@components/shared';
-import { ProjectGallery } from '@components/projects';
+import { ProjectsGallery, ProjectWorkspace } from '@components/projects';
 import { CreateProjectForm } from '@components/shared/form';
 
 const Projects: FC = () => {
   return (
     <Layout>
       <Router>
+        <ProjectWorkspace path="projects/:projectId" />
         <CreateProjectForm path="projects/create" />
-        <ProjectGallery path="projects" />
+        <ProjectsGallery path="projects" />
       </Router>
     </Layout>
   );

@@ -8,6 +8,7 @@ import {
   feedback,
   createProject,
   user,
+  getProject,
 } from './responses';
 import { Project, User, ChangePassword } from '@api';
 
@@ -18,6 +19,10 @@ export class MockApiService {
 
   public async getProjectTypes() {
     return getProjectTypes;
+  }
+
+  public async getProject(projectId: string) {
+    return getProject;
   }
 
   public async getProjects() {
