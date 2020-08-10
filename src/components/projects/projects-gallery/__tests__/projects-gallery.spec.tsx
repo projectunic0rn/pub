@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import ProjectGallery from '../project-gallery';
+import { ProjectsGallery } from '../projects-gallery';
 import { MockThemeProvider } from '@mocks';
 import { getProjects } from '@mocks/responses/get-projects-response';
 
@@ -12,7 +12,7 @@ describe('project gallery tests', () => {
     // Arrange
     const { getAllByTestId } = render(
       <MockThemeProvider>
-        <ProjectGallery />
+        <ProjectsGallery />
       </MockThemeProvider>,
     );
     // Act

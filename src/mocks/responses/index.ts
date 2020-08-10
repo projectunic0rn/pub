@@ -2,6 +2,7 @@ export * from './create-project';
 export * from './feedback';
 export * from './get-project-types';
 export * from './get-projects-response';
+export * from './get-project-response';
 export * from './project-user-response';
 export * from './search-tags';
 export * from './signin-response';
