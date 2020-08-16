@@ -1,6 +1,6 @@
 {
   "name": "pub",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.149",
-    "gatsby": "2.20.36",
+    "gatsby": "2.24.47",
     "gatsby-image": "2.3.2",
     "gatsby-plugin-alias-imports": "1.0.5",
     "gatsby-plugin-canonical-urls": "2.2.1",
