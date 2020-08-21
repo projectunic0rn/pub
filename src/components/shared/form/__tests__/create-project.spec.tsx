@@ -41,7 +41,7 @@ test('shows all the required inputs', async () => {
     selector: 'input',
   });
 
-  const commPlatform = await findByLabelText(/communication platform/i, {
+  const commPlatform = await findByLabelText(/workspace/i, {
     selector: 'input',
   });
 
