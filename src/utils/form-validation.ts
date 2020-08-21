@@ -29,7 +29,7 @@ export class FormVal {
         }
 
         if (input === 'pComm' && required) {
-          return !isValidUrl(val, ['discord', 'slack']);
+          return isEmptyString(val);
         }
 
         if (typeof val === 'string' && required) {
