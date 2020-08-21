@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{HsTz:function(e,t,r){"use strict";r.r(t);var o=r("q1tI"),n=r.n(o),a=r("/p1/"),l=r("AkCr"),s=r("eZYV");t.default=function(){var e=Object(s.d)();return n.a.createElement(a.f,null,n.a.createElement(a.l,{title:"Forgot Password",description:"Forgot Password Page For "+e.title,urlSlug:"forgot-password/"}),n.a.createElement(l.d,null))}}}]);
+//# sourceMappingURL=component---src-pages-forgot-password-tsx-3639b8d4fa08eda995fd.js.map

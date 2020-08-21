@@ -31,18 +31,18 @@
 <url> <loc>https://projectunicorn.net/blog/author/rickyjw/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/blog/author/rmjordas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://projectunicorn.net/blog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/contact/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/forgot-password/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/magic-login/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/oauth/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/privacy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://projectunicorn.net/profile/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://projectunicorn.net/projects/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/reset-password/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/settings/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/signin/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/signup/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://projectunicorn.net/terms/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/blog/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/profile/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://projectunicorn.net/projects/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
