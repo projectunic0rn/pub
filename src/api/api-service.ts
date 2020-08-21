@@ -34,15 +34,6 @@ export class ApiService {
     return result;
   }
 
-  public async getProjectTypes() {
-    const endpoint = `${this.apiEndpoint}/util/projecttypes`;
-    this.profiler.setReportInfo(endpoint, 'getProjectTypes');
-    this.profiler.startTimeRecord();
-    const result = await HttpClient.get(endpoint, this.headers);
-    this.profiler.endTimeRecord();
-    return result;
-  }
-
   public async getProject(projectId: string) {
     const endpoint = `${this.apiEndpoint}/projects/${projectId}`;
     this.profiler.setReportInfo(endpoint, 'getProject');

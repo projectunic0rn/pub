@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 test('shows all the required inputs', async () => {
-  expect.assertions(11);
+  expect.assertions(10);
 
   const { findByLabelText } = render(
     <MockThemeProvider>
@@ -31,10 +31,6 @@ test('shows all the required inputs', async () => {
 
   const description = await findByLabelText(/description/i, {
     selector: 'textarea',
-  });
-
-  const projectType = await findByLabelText(/project type/i, {
-    selector: 'select',
   });
 
   const projectRepo = await findByLabelText(/project repo/i, {
@@ -54,7 +50,6 @@ test('shows all the required inputs', async () => {
   expect(projectName).toBeInTheDocument();
   expect(projectName).toHaveAttribute('type', 'text');
   expect(description).toBeInTheDocument();
-  expect(projectType).toBeInTheDocument();
   expect(projectRepo).toBeInTheDocument();
   expect(projectRepo).toHaveAttribute('type', 'text');
   expect(launchDate).toBeInTheDocument();
