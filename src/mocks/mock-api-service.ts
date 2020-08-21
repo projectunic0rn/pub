@@ -3,7 +3,6 @@
 import {
   getProjects,
   projectUser,
-  getProjectTypes,
   validateUser,
   feedback,
   createProject,
@@ -15,10 +14,6 @@ import { Project, User, ChangePassword } from '@api';
 export class MockApiService {
   public async createProject(project: Project) {
     return createProject;
-  }
-
-  public async getProjectTypes() {
-    return getProjectTypes;
   }
 
   public async getProject(projectId: string) {

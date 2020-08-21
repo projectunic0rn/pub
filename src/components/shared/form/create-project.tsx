@@ -9,7 +9,6 @@ import {
   FormInput,
   FormHint,
   FormTextArea,
-  FormSelectInput,
   ButtonWrapper,
   TechnologiesSelect,
 } from './controls';
@@ -21,7 +20,6 @@ import {
   ErrorResponse,
   Project,
   ProjectTechnology,
-  ProjectType,
   ServiceResolver,
 } from '@api';
 import { Seo } from '@components/shared';
@@ -69,7 +67,6 @@ interface FormInput {
   pName: FormValue;
   pDesc: FormValue;
   pTech: FormValue<ProjectTechnology[]>;
-  pType: FormValue;
   pRepo: FormValue;
   pLaunch: FormValue;
   pComm: FormValue;
@@ -83,40 +80,21 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
     pTech: { val: [], required: true },
-    pType: { val: '', required: true },
     pRepo: { val: '', required: false },
     pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
   });
 
-  const [projectTypes, setProjectTypes] = useState<ProjectType[]>([]);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const api = ServiceResolver.apiResolver();
-
     if (!UserAuthHelper.isUserAuthenticated()) {
       navigate('/signin', {
         state: { message: 'You need to be signed it to create a new project' },
       });
       return;
     }
-
-    async function fetchProjectTypes() {
-      try {
-        const response = (await api.getProjectTypes()) as ApiResponse<
-          ProjectType[] | ErrorResponse
-        >;
-
-        if (!response.ok) setError((response.data as ErrorResponse).message);
-        setProjectTypes(response.data as ProjectType[]);
-      } catch (error) {
-        setError('Failed to get project types');
-      }
-    }
-
-    fetchProjectTypes();
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
@@ -167,7 +145,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const handleClick = async () => {
     const api = ServiceResolver.apiResolver();
 
-    const { pName, pDesc, pTech, pType, pRepo, pLaunch, pComm } = formInputs;
+    const { pName, pDesc, pTech, pRepo, pLaunch, pComm } = formInputs;
     const errors = validation.checkValidation(formInputs);
 
     if (errors.length) return setFormErrors([...errors]);
@@ -176,7 +154,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
       name: pName.val,
       description: pDesc.val,
       launchDate: new Date(pLaunch.val),
-      projectType: pType.val,
       repositoryUrl: pRepo.val,
       communicationPlatformUrl: pComm.val,
       communicationPlatform: getPlatformName(),
@@ -250,20 +227,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
             <Message variant="error" value="Project Description Required" />
           )}
           <FormHint>Describe your project in a single tweet</FormHint>
-          <FormLabel htmlFor="project-type">Project Type</FormLabel>
-          <FormSelectInput
-            name="pType"
-            id="project-type"
-            options={projectTypes}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pType')}
-            placeholder="Select a Project Type"
-          />
-          {formErrors.includes('pType') && (
-            <Message variant="error" value="Project Type Required" />
-          )}
-          <FormHint>What category does your project belong to?</FormHint>
           <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
           <FormInput
             name="pRepo"

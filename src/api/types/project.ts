@@ -6,7 +6,6 @@ export interface Project {
   name: string;
   description: string;
   launchDate: Date;
-  projectType: string;
   repositoryUrl: string;
   communicationPlatformUrl: string;
   lookingForMembers: boolean;

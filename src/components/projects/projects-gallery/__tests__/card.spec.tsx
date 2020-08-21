@@ -26,7 +26,6 @@ test('display project details', () => {
     name: 'Grocerhub',
     description: 'Grocery list application',
     launchDate: new Date(),
-    projectType: '',
     repositoryUrl: '',
     communicationPlatformUrl: 'https://slack.com',
     lookingForMembers: true,
