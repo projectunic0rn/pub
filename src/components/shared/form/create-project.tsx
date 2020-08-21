@@ -26,6 +26,7 @@ import { Seo } from '@components/shared';
 import { Form } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
+import { WorkspaceType } from '@api/types/workspace-type';
 
 type OwnProps = {};
 type CreateProjectFormProps = OwnProps & RouteComponentProps;
@@ -87,6 +88,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [workspaceTypes, setWorkspaceTypes] = useState<WorkspaceType[]>([]);
 
   useEffect(() => {
     if (!UserAuthHelper.isUserAuthenticated()) {
@@ -95,6 +97,22 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
       });
       return;
     }
+
+    const api = ServiceResolver.apiResolver();
+    async function fetchWorkspaces() {
+      try {
+        const response = (await api.getWorkspaceTypes()) as ApiResponse<
+          WorkspaceType[] | ErrorResponse
+        >;
+
+        setWorkspaceTypes(response.data as WorkspaceType[]);
+      } catch (error) {
+        setError('Failed to get workspace types');
+      }
+      return;
+    }
+
+    fetchWorkspaces();
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
@@ -138,8 +156,14 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   };
 
   const getPlatformName = () => {
-    const platformName = formInputs['pComm'].val;
-    return platformName.search('slack') > 0 ? 'slack' : 'discord';
+    const workspaceInviteUrl = formInputs['pComm'].val;
+    for (let i = 0; i < workspaceTypes.length; i++) {
+      if (workspaceInviteUrl.includes(workspaceTypes[i].name)) {
+        return workspaceTypes[i].name;
+      }
+    }
+
+    return 'other';
   };
 
   const handleClick = async () => {
@@ -259,7 +283,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           </FormHint>
 
           <FormLabel htmlFor="communication-platform">
-            Communication Platform Invitation Link
+            Workspace Invitation Link
           </FormLabel>
           <FormInput
             name="pComm"
@@ -272,12 +296,12 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           {formErrors.includes('pComm') && (
             <Message
               variant="error"
-              value="Communication Platform link must be Slack or Discord"
+              value="Workspace invite link is required."
             />
           )}
           <FormHint>
             Where will you communicate? Share the invite link to your workspace
-            (Slack or Discord)
+            (Slack, Discord, Gitter, etc.)
           </FormHint>
           <FormLabel htmlFor="technologies">Technologies</FormLabel>
           <TechnologiesSelect
@@ -288,7 +312,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
           {formErrors.includes('pTech') && (
             <Message variant="error" value="At least one technology required" />
           )}
-          <FormHint>Add the technologies used in your application</FormHint>
+          <FormHint>Add the technologies used on your project</FormHint>
           <ButtonWrapper>
             <ApiButton handleClick={handleClick} statusText="Creating...">
               Create

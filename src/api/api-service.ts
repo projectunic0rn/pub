@@ -79,6 +79,15 @@ export class ApiService {
     return result;
   }
 
+  public async getWorkspaceTypes() {
+    const endpoint = `${this.apiEndpoint}/util/workspaces`;
+    this.profiler.setReportInfo(endpoint, 'getWorkspaceTypes');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.post(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
+  }
+
   public updateAuthHeader(token: string) {
     this.headers['Authorization'] = `Bearer ${token}`;
   }
