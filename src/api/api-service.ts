@@ -83,7 +83,7 @@ export class ApiService {
     const endpoint = `${this.apiEndpoint}/util/workspaces`;
     this.profiler.setReportInfo(endpoint, 'getWorkspaceTypes');
     this.profiler.startTimeRecord();
-    const result = await HttpClient.post(endpoint, this.headers);
+    const result = await HttpClient.get(endpoint, this.headers);
     this.profiler.endTimeRecord();
     return result;
   }
