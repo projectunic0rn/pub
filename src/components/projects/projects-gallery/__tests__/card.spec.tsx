@@ -69,7 +69,7 @@ test('display project details', () => {
 
   const card = (content = project) => (
     <MockThemeProvider>
-      <Card content={content} setError={noop} />
+      <Card content={content} setError={noop} workspaceLogo="" />
     </MockThemeProvider>
   );
 

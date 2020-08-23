@@ -1,11 +1,10 @@
 import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
 
-import { slackIcon, discordIcon } from '@images';
-
 type CardTitleProps = {
   name: string;
   communicationPlatformUrl?: string;
+  workspaceLogo: string;
   clickable?: boolean;
 };
 
@@ -17,17 +16,6 @@ type CommunicationPlatform = {
   name: string;
   icon: string;
 };
-
-const communicationPlatforms: CommunicationPlatform[] = [
-  {
-    name: 'slack',
-    icon: slackIcon,
-  },
-  {
-    name: 'discord',
-    icon: discordIcon,
-  },
-];
 
 const Wrapper = styled.h3`
   color: ${({ theme }) => theme.colors.base};
@@ -56,6 +44,7 @@ const Icon = styled.img.attrs(() => ({
 const CardTitle: FC<CardTitleProps> = ({
   name,
   communicationPlatformUrl,
+  workspaceLogo,
   clickable = false,
 }) => {
   const IconWrapper: FC = ({ children }) =>
@@ -75,18 +64,9 @@ const CardTitle: FC<CardTitleProps> = ({
   return (
     <Wrapper>
       {name}
-      {communicationPlatformUrl ? (
-        <IconWrapper>
-          <Icon
-            src={
-              communicationPlatforms.find(({ name }) =>
-                communicationPlatformUrl?.includes(name),
-              )?.icon
-            }
-            clickable={clickable}
-          />
-        </IconWrapper>
-      ) : null}
+      <IconWrapper>
+        <Icon src={workspaceLogo} clickable={clickable} />
+      </IconWrapper>
     </Wrapper>
   );
 };

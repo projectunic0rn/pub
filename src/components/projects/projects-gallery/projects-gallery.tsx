@@ -6,6 +6,7 @@ import { ApiResponse, ErrorResponse, Project, ServiceResolver } from '@api';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Seo, Wrapper } from '@components/shared';
+import { WorkspaceType } from '@api/types/workspace-type';
 
 type OwnProps = {};
 type ProjectsGalleryProps = OwnProps & RouteComponentProps;
@@ -14,12 +15,15 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [workspaceLogos, setWorkspaceLogos] = useState<{
+    [name: string]: string;
+  }>({});
 
   const [success, setSuccess] = useState<string | null>('');
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
-    async function fetchContent() {
+    async function fetchProjects() {
       try {
         const response = (await api.getProjects()) as ApiResponse<
           Project[] | ErrorResponse
@@ -39,7 +43,25 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
       setIsLoading(false);
     }
 
-    fetchContent();
+    async function fetchWorkspaces() {
+      try {
+        const response = (await api.getWorkspaceTypes()) as ApiResponse<
+          WorkspaceType[] | ErrorResponse
+        >;
+        const workspaceTypes = response.data as WorkspaceType[];
+        const workspaceDict: { [name: string]: string } = {};
+        workspaceTypes.forEach((workspace) => {
+          workspaceDict[workspace.name] = workspace.logoUrl;
+        });
+        setWorkspaceLogos(workspaceDict);
+      } catch (error) {
+        // Log to centralized log server
+      }
+      return;
+    }
+
+    fetchWorkspaces();
+    fetchProjects();
   }, []);
 
   return (
@@ -66,7 +88,11 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <Panel content={projects} setError={setError} />
+          <Panel
+            content={projects}
+            workspaceLogos={workspaceLogos}
+            setError={setError}
+          />
         )}
       </Wrapper>
     </Fragment>
