@@ -1,6 +1,6 @@
 {
   "name": "pub",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
