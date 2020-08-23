@@ -6,6 +6,7 @@ import { Project } from '@api';
 
 interface PanelProps {
   content?: Project[];
+  workspaceLogos: { [name: string]: string };
   setError: Function;
 }
 
@@ -26,10 +27,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const Panel: FC<PanelProps> = ({ content = [], setError }) => (
+const Panel: FC<PanelProps> = ({
+  content = [],
+  setError,
+  workspaceLogos = {},
+}) => (
   <Wrapper>
     {content.map((v) => (
-      <Card key={v.name} content={v} setError={setError} />
+      <Card
+        key={v.name}
+        content={v}
+        workspaceLogo={workspaceLogos[v.communicationPlatform]}
+        setError={setError}
+      />
     ))}
   </Wrapper>
 );

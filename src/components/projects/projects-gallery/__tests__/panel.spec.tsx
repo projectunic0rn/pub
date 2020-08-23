@@ -9,7 +9,7 @@ import { MockThemeProvider } from '@mocks';
 test('renders correctly', () => {
   const { getByText, container, rerender } = render(
     <MockThemeProvider>
-      <Panel setError={noop} />
+      <Panel setError={noop} workspaceLogos={{}} />
     </MockThemeProvider>,
   );
 
@@ -31,7 +31,7 @@ test('renders correctly', () => {
 
   rerender(
     <MockThemeProvider>
-      <Panel content={content} setError={noop} />
+      <Panel content={content} setError={noop} workspaceLogos={{}} />
     </MockThemeProvider>,
   );
 

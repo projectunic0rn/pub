@@ -107,7 +107,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
         setWorkspaceTypes(response.data as WorkspaceType[]);
       } catch (error) {
-        setError('Failed to get workspace types');
+        // Log to centralized log server
       }
       return;
     }

@@ -17,6 +17,7 @@ import { UserAuthHelper } from '@helpers';
 
 type CardProps = {
   content: Project;
+  workspaceLogo: string;
   setError: Function;
 };
 
@@ -68,7 +69,7 @@ const UserIcon: FC<UserIconProps> = ({ d }) => (
   </SvgIcon>
 );
 
-const Card: FC<CardProps> = ({ content, setError }) => {
+const Card: FC<CardProps> = ({ content, setError, workspaceLogo }) => {
   const [hasMemberJoinedProject, setHasMemberJoinedProject] = useState(false);
 
   const userId = UserAuthHelper.isUserAuthenticated()
@@ -154,6 +155,7 @@ const Card: FC<CardProps> = ({ content, setError }) => {
     <Wrapper data-testid="project">
       <CardTitle
         name={content.name}
+        workspaceLogo={workspaceLogo}
         clickable={hasMemberJoinedProject}
         communicationPlatformUrl={content.communicationPlatformUrl}
       />

@@ -12,7 +12,7 @@ export const getProjects: ApiResponse<Project[]> = {
       repositoryUrl: 'null',
       communicationPlatformUrl: 'https://slack.com',
       lookingForMembers: true,
-      communicationPlatform: 'slack',
+      communicationPlatform: 'gitter',
       projectTechnologies: [
         {
           name: 'illustrator',
