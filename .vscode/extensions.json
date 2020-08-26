@@ -8,6 +8,7 @@
     "dbaeumer.vscode-eslint",
     "prisma.vscode-graphql",
     "esbenp.prettier-vscode",
-    "jpoissonnier.vscode-styled-components"
+    "jpoissonnier.vscode-styled-components",
+    "kavod-io.vscode-jest-test-adapter"
   ]
 }

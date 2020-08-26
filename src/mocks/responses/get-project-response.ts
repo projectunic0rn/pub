@@ -1,12 +1,13 @@
-import { ApiResponse, Project } from '@api';
+import { ApiResponse, ProjectDetailed } from '@api';
 
-export const getProject: ApiResponse<Project> = {
+export const getProject: ApiResponse<ProjectDetailed> = {
   ok: true,
   data: {
     id: '08d6c5e7-6100-c770-61c3-834f6474a77b',
     name: 'Project Unicorn UI',
     description:
       'A frontend to streamline the starting and joining of projects on the project unicorn slack team.',
+    extendedMarkdownDescription: '**Bold description**',
     launchDate: new Date(),
     repositoryUrl: 'null',
     communicationPlatformUrl: 'https://slack.com',
@@ -39,8 +40,12 @@ export const getProject: ApiResponse<Project> = {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c53',
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
         userId: '08d6c5c9-b575-f71e-dc9a-2e6dfeb94f96',
-        username: 'unicorn1',
+        username: 'roy',
         isOwner: false,
+        timezone: 'America/Los_Angeles',
+        fullName: 'roy',
+        profilePictureUrl:
+          'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
       },
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c54',
@@ -48,6 +53,10 @@ export const getProject: ApiResponse<Project> = {
         userId: '08d6c5c9-e4c4-46a6-63bc-c68a81a8154f',
         username: 'unicorn91',
         isOwner: false,
+        timezone: 'America/Los_Angeles',
+        fullName: '',
+        profilePictureUrl:
+          'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
       },
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c55',
@@ -55,6 +64,9 @@ export const getProject: ApiResponse<Project> = {
         userId: '08d6c5c9-de33-4d5a-1451-69111480ee74',
         username: 'unicorn77',
         isOwner: false,
+        timezone: 'America/Los_Angeles',
+        profilePictureUrl:
+          'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
       },
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56',
@@ -62,6 +74,9 @@ export const getProject: ApiResponse<Project> = {
         userId: '08d6c5c9-e007-d7b8-235d-165330930563',
         username: 'unicorn81',
         isOwner: false,
+        fullName: 'roy',
+        profilePictureUrl:
+          'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
       },
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c57',
@@ -69,6 +84,18 @@ export const getProject: ApiResponse<Project> = {
         userId: '08d6c5c9-df95-b688-b09b-243fd0e32dfe',
         username: 'unicorn80',
         isOwner: false,
+        timezone: 'America/Los_Angeles',
+        fullName: 'roy',
+        profilePictureUrl: '',
+      },
+      {
+        id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c57',
+        projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
+        userId: '08d6c5c9-df95-b688-b09b-243fd0e32dfe',
+        username: 'unicorn80',
+        isOwner: false,
+        timezone: 'America/Los_Angeles',
+        fullName: 'roy',
       },
     ],
   },
