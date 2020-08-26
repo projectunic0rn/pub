@@ -12,11 +12,6 @@ type IconProps = {
   clickable?: boolean;
 };
 
-type CommunicationPlatform = {
-  name: string;
-  icon: string;
-};
-
 const Wrapper = styled.h3`
   color: ${({ theme }) => theme.colors.base};
   margin: 0.2em 0 0.8em;
