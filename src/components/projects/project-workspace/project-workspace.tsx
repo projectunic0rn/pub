@@ -72,7 +72,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     }
 
     fetchProject();
-  });
+  }, [props.projectId]);
 
   return (
     <Fragment>
