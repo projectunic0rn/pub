@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
 
 type Item = {
@@ -8,6 +8,7 @@ type Item = {
 
 type CardTagsProps = {
   items: Item[];
+  limitItemsShown?: boolean;
 };
 
 type WrapperProps = {
@@ -35,13 +36,23 @@ const Pill = styled.div.attrs({ 'data-testid': 'project-card-pill' })`
   }
 `;
 
-const CardTags: FC<CardTagsProps> = ({ items }) => {
+const CardTags: FC<CardTagsProps> = ({ items, limitItemsShown = true }) => {
   return (
     <Wrapper hasMargin={items.length > 0}>
-      {items.slice(0, 5).map(({ key, text }) => (
-        <Pill key={key}>{text}</Pill>
-      ))}
-      {items.length > 5 ? <Pill>+{items.length - 5}</Pill> : null}
+      {limitItemsShown ? (
+        <Fragment>
+          {items.slice(0, 5).map(({ key, text }) => (
+            <Pill key={key}>{text}</Pill>
+          ))}
+          {items.length > 5 ? <Pill>+{items.length - 5}</Pill> : null}
+        </Fragment>
+      ) : (
+        <Fragment>
+          {items.map(({ key, text }) => (
+            <Pill key={key}>{text}</Pill>
+          ))}
+        </Fragment>
+      )}
     </Wrapper>
   );
 };

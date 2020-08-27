@@ -13,6 +13,7 @@ import {
 } from '@api';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
+import CardTags from '../projects-gallery/card-tags';
 
 interface ProjectWorkspaceParams {
   projectId?: string;
@@ -113,16 +114,15 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
             <ContentWrapper>
               <LeftSide>
                 <Description>{project.description}</Description>
-                <div>
-                  {project.projectTechnologies.map((t, index, array) => {
-                    return (
-                      <span key={index}>
-                        {t.name}
-                        {array.length - 1 == index ? '' : ', '}
-                      </span>
-                    );
-                  })}
-                </div>
+                <CardTags
+                  items={project.projectTechnologies.map(
+                    ({ projectId, name }) => ({
+                      key: `${projectId}-${name}-tag`,
+                      text: name,
+                    }),
+                  )}
+                  limitItemsShown={false}
+                />
                 <div>{projectOwner?.timezone}</div>
                 <div>
                   <a href={project.repositoryUrl}>repo</a>,{' '}

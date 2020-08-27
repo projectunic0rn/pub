@@ -34,6 +34,14 @@ export const getProject: ApiResponse<ProjectDetailed> = {
         name: 'c#',
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
       },
+      {
+        name: 'java',
+        projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
+      },
+      {
+        name: 'reactjs',
+        projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
+      },
     ],
     projectUsers: [
       {
