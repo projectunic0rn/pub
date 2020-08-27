@@ -49,7 +49,7 @@ export const getProject: ApiResponse<ProjectDetailed> = {
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
         userId: '08d6c5c9-b575-f71e-dc9a-2e6dfeb94f96',
         username: 'roy',
-        isOwner: false,
+        isOwner: true,
         timezone: 'America/Los_Angeles',
         fullName: 'roy',
         profilePictureUrl:

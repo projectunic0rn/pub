@@ -123,7 +123,10 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                   )}
                   limitItemsShown={false}
                 />
-                <div>{projectOwner?.timezone}</div>
+                {projectOwner !== undefined &&
+                  projectOwner.timezone !== undefined && (
+                    <div>Timezone: {projectOwner?.timezone}</div>
+                  )}
                 <div>
                   <a href={project.repositoryUrl}>repo</a>,{' '}
                   <a href={project.communicationPlatformUrl}>workspace</a>
