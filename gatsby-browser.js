@@ -4,6 +4,10 @@ import './src/styles/global.css';
 import 'prismjs/themes/prism.css';
 
 export const shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
+  if (prevRouterProps === undefined) {
+    return false;
+  }
+
   if (prevRouterProps.location.pathname === routerProps.location.pathname) {
     return false;
   }
