@@ -17,3 +17,4 @@ export { default as puAlt } from './pu-alt.svg';
 export { default as redditIcon } from './reddit.svg';
 export { default as twitterIcon } from './twitter.svg';
 export { default as dotIcon } from './dot.png';
+export { default as gitIcon } from './git.png';

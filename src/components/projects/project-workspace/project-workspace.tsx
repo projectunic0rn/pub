@@ -14,6 +14,8 @@ import {
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
 import CardTags from '../projects-gallery/card-tags';
+import { gitIcon } from '@images';
+import { WorkspaceType } from '@api/types/workspace-type';
 
 interface ProjectWorkspaceParams {
   projectId?: string;
@@ -42,6 +44,11 @@ const Description = styled.p`
   font-size: 1em;
 `;
 
+const Icon = styled.img`
+  height: 1.5em;
+  margin: 0.7em 1.2em 0.7em 0;
+`;
+
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const [project, setProject] = useState<ProjectDetailed | undefined>(
@@ -51,6 +58,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [projectOwner, setProjectOwner] = useState<
     ProjectUserDetailed | undefined
   >(undefined);
+  const [workspaceLogos, setWorkspaceLogos] = useState<{
+    [name: string]: string;
+  }>({});
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -72,6 +82,25 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
       }
     }
 
+    // TODO: Consider useContext to centralize fetching of workspace types
+    async function fetchWorkspaces() {
+      try {
+        const response = (await api.getWorkspaceTypes()) as ApiResponse<
+          WorkspaceType[] | ErrorResponse
+        >;
+        const workspaceTypes = response.data as WorkspaceType[];
+        const workspaceDict: { [name: string]: string } = {};
+        workspaceTypes.forEach((workspace) => {
+          workspaceDict[workspace.name] = workspace.logoUrl;
+        });
+        setWorkspaceLogos(workspaceDict);
+      } catch (error) {
+        // Log to centralized log server
+      }
+      return;
+    }
+
+    fetchWorkspaces();
     fetchProject();
   }, [props.projectId]);
 
@@ -128,8 +157,12 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <div>Timezone: {projectOwner?.timezone}</div>
                   )}
                 <div>
-                  <a href={project.repositoryUrl}>repo</a>,{' '}
-                  <a href={project.communicationPlatformUrl}>workspace</a>
+                  <a href={project.repositoryUrl}>
+                    <Icon src={gitIcon} />
+                  </a>
+                  <a href={project.communicationPlatformUrl}>
+                    <Icon src={workspaceLogos[project.communicationPlatform]} />
+                  </a>
                 </div>
                 <div>Join Team, Become Fan</div>
                 <div>Team, Milestones, Fans, Workspace</div>
