@@ -99,6 +99,8 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     }
 
     const api = ServiceResolver.apiResolver();
+
+    // TODO: Consider useContext to centralize fetching of workspace types
     async function fetchWorkspaces() {
       try {
         const response = (await api.getWorkspaceTypes()) as ApiResponse<
