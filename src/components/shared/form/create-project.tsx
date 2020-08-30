@@ -33,7 +33,6 @@ import { Seo } from '@components/shared';
 import { Form } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
-import { WorkspaceType } from '@api/types/workspace-type';
 import { WorkspaceTypesContext } from '@contexts';
 
 type OwnProps = {};
@@ -96,7 +95,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [workspaceTypes, setWorkspaceTypes] = useState<WorkspaceType[]>([]);
 
   useEffect(() => {
     if (!UserAuthHelper.isUserAuthenticated()) {
@@ -105,24 +103,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
       });
       return;
     }
-
-    const api = ServiceResolver.apiResolver();
-
-    // TODO: Consider useContext to centralize fetching of workspace types
-    async function fetchWorkspaces() {
-      try {
-        const response = (await api.getWorkspaceTypes()) as ApiResponse<
-          WorkspaceType[] | ErrorResponse
-        >;
-
-        setWorkspaceTypes(response.data as WorkspaceType[]);
-      } catch (error) {
-        // Log to centralized log server
-      }
-      return;
-    }
-
-    fetchWorkspaces();
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, val = '') => {
