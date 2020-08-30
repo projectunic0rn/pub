@@ -16,6 +16,9 @@ import styled from 'styled-components';
 import CardTags from '../projects-gallery/card-tags';
 import { gitIcon } from '@images';
 import { WorkspaceTypesContext } from '@contexts';
+import { MultiTabMenu } from './multi-tab-menu';
+import { ApiButton } from '@components/shared/buttons';
+import { noop } from 'lodash';
 
 interface ProjectWorkspaceParams {
   projectId?: string;
@@ -47,6 +50,14 @@ const Description = styled.p`
 const Icon = styled.img`
   height: 1.5em;
   margin: 0.7em 1.2em 0.7em 0;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+`;
+
+const ButtonWrapper = styled.div`
+  margin: 0 2em 0 0;
 `;
 
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
@@ -149,9 +160,20 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     />
                   </a>
                 </div>
-                <div>Join Team, Become Fan</div>
-                <div>Team, Milestones, Fans, Workspace</div>
-                <div>Collaborator Suggestions Section</div>
+                <Buttons>
+                  <ButtonWrapper>
+                    <ApiButton handleClick={noop} statusText="Joining...">
+                      Join Team
+                    </ApiButton>
+                  </ButtonWrapper>
+                  <ButtonWrapper>
+                    <ApiButton handleClick={noop} statusText="Fanning...">
+                      Become Fan
+                    </ApiButton>
+                  </ButtonWrapper>
+                </Buttons>
+                <MultiTabMenu content={'Team, Milestones, Fans, Workspace'} />
+                <MultiTabMenu content={'Collaborator Suggestions Section'} />
               </LeftSide>
               <RightSide>
                 <div>Project Extended Details</div>
