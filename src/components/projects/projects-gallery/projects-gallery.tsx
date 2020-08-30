@@ -1,23 +1,21 @@
 import { RouteComponentProps } from '@reach/router';
-import React, { FC, Fragment, useState, useEffect } from 'react';
+import React, { FC, Fragment, useState, useEffect, useContext } from 'react';
 
 import Panel from './panel';
 import { ApiResponse, ErrorResponse, Project, ServiceResolver } from '@api';
 import { FeedbackForm } from '@components/shared/form';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
 import { Loader, Seo, Wrapper } from '@components/shared';
-import { WorkspaceType } from '@api/types/workspace-type';
+import { WorkspaceTypesContext } from '@contexts';
 
 type OwnProps = {};
 type ProjectsGalleryProps = OwnProps & RouteComponentProps;
 
 export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
+  const workspaceTypesContext = useContext(WorkspaceTypesContext);
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [workspaceLogos, setWorkspaceLogos] = useState<{
-    [name: string]: string;
-  }>({});
 
   const [success, setSuccess] = useState<string | null>('');
 
@@ -43,25 +41,6 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
       setIsLoading(false);
     }
 
-    // TODO: Consider useContext to centralize fetching of workspace types
-    async function fetchWorkspaces() {
-      try {
-        const response = (await api.getWorkspaceTypes()) as ApiResponse<
-          WorkspaceType[] | ErrorResponse
-        >;
-        const workspaceTypes = response.data as WorkspaceType[];
-        const workspaceDict: { [name: string]: string } = {};
-        workspaceTypes.forEach((workspace) => {
-          workspaceDict[workspace.name] = workspace.logoUrl;
-        });
-        setWorkspaceLogos(workspaceDict);
-      } catch (error) {
-        // Log to centralized log server
-      }
-      return;
-    }
-
-    fetchWorkspaces();
     fetchProjects();
   }, []);
 
@@ -91,7 +70,7 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
         ) : (
           <Panel
             content={projects}
-            workspaceLogos={workspaceLogos}
+            workspaceLogos={workspaceTypesContext.workspaceLogos}
             setError={setError}
           />
         )}

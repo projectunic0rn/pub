@@ -12,5 +12,9 @@ export const getWorkspaceTypes: ApiResponse<WorkspaceType[]> = {
       name: 'discord',
       logoUrl: 'https://i.imgur.com/BoARUGM.png',
     },
+    {
+      name: 'other',
+      logoUrl: '',
+    },
   ],
 };
