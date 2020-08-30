@@ -1,5 +1,5 @@
 import { RouteComponentProps } from '@reach/router';
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState, useContext } from 'react';
 
 import { Wrapper, Seo, Loader } from '@components/shared';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
@@ -15,7 +15,7 @@ import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
 import CardTags from '../projects-gallery/card-tags';
 import { gitIcon } from '@images';
-import { WorkspaceType } from '@api/types/workspace-type';
+import { WorkspaceTypesContext } from '@contexts';
 
 interface ProjectWorkspaceParams {
   projectId?: string;
@@ -51,6 +51,7 @@ const Icon = styled.img`
 
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
+  const workspaceTypesContext = useContext(WorkspaceTypesContext);
   const [project, setProject] = useState<ProjectDetailed | undefined>(
     undefined,
   );
@@ -58,9 +59,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [projectOwner, setProjectOwner] = useState<
     ProjectUserDetailed | undefined
   >(undefined);
-  const [workspaceLogos, setWorkspaceLogos] = useState<{
-    [name: string]: string;
-  }>({});
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -82,25 +80,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
       }
     }
 
-    // TODO: Consider useContext to centralize fetching of workspace types
-    async function fetchWorkspaces() {
-      try {
-        const response = (await api.getWorkspaceTypes()) as ApiResponse<
-          WorkspaceType[] | ErrorResponse
-        >;
-        const workspaceTypes = response.data as WorkspaceType[];
-        const workspaceDict: { [name: string]: string } = {};
-        workspaceTypes.forEach((workspace) => {
-          workspaceDict[workspace.name] = workspace.logoUrl;
-        });
-        setWorkspaceLogos(workspaceDict);
-      } catch (error) {
-        // Log to centralized log server
-      }
-      return;
-    }
-
-    fetchWorkspaces();
     fetchProject();
   }, [props.projectId]);
 
@@ -161,7 +140,13 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <Icon src={gitIcon} />
                   </a>
                   <a href={project.communicationPlatformUrl}>
-                    <Icon src={workspaceLogos[project.communicationPlatform]} />
+                    <Icon
+                      src={
+                        workspaceTypesContext.workspaceLogos[
+                          project.communicationPlatform
+                        ]
+                      }
+                    />
                   </a>
                 </div>
                 <div>Join Team, Become Fan</div>

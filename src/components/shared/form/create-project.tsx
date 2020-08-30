@@ -1,6 +1,13 @@
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
-import React, { ChangeEvent, FC, FocusEvent, useState, useEffect } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  FocusEvent,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
 
@@ -27,6 +34,7 @@ import { Form } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
 import { WorkspaceType } from '@api/types/workspace-type';
+import { WorkspaceTypesContext } from '@contexts';
 
 type OwnProps = {};
 type CreateProjectFormProps = OwnProps & RouteComponentProps;
@@ -76,7 +84,7 @@ interface FormInput {
 
 export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const validation = new FormVal();
-
+  const workspaceTypesContext = useContext(WorkspaceTypesContext);
   const [formInputs, setFormInputs] = useState<FormInput>({
     pName: { val: '', required: true },
     pDesc: { val: '', required: true },
@@ -159,9 +167,16 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
   const getPlatformName = () => {
     const workspaceInviteUrl = formInputs['pComm'].val;
+    const workspaceTypes: string[] = [];
+
+    // map workspace name to array
+    for (const [key] of Object.entries(workspaceTypesContext.workspaceLogos)) {
+      workspaceTypes.push(key);
+    }
+
     for (let i = 0; i < workspaceTypes.length; i++) {
-      if (workspaceInviteUrl.includes(workspaceTypes[i].name)) {
-        return workspaceTypes[i].name;
+      if (workspaceInviteUrl.includes(workspaceTypes[i])) {
+        return workspaceTypes[i];
       }
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthProvider } from '@contexts';
+import { AuthProvider, WorkspaceTypesProvider } from '@contexts';
 import './src/styles/global.css';
 import 'prismjs/themes/prism.css';
 
@@ -18,5 +18,7 @@ export const shouldUpdateScroll = ({ prevRouterProps, routerProps }) => {
 };
 
 export const wrapRootElement = ({ element }) => (
-  <AuthProvider>{element}</AuthProvider>
+  <AuthProvider>
+    <WorkspaceTypesProvider>{element}</WorkspaceTypesProvider>
+  </AuthProvider>
 );
