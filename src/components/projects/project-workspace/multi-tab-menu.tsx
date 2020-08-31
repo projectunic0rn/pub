@@ -1,14 +1,8 @@
 import React, { FC, Fragment, useState } from 'react';
 import styled from 'styled-components';
 
-interface TabItem {
-  image: string;
-  displayName: string;
-}
-
 interface MultiTabMenuProps {
   tabs: string[];
-  tabItems?: TabItem[];
 }
 
 const MenuItems = styled.div`
@@ -29,10 +23,18 @@ export const MultiTabMenu: FC<MultiTabMenuProps> = (props) => {
     setActiveItemIndex(index);
   };
 
+  if (React.Children.count(props.children) !== props.tabs.length) {
+    throw new Error(
+      `Equal number of children and tabs required, passed ${React.Children.count(
+        props.children,
+      )} children and ${props.tabs.length} tab(s)`,
+    );
+  }
+
   return (
     <Fragment>
       <MenuItems data-testid="menu-items">
-        {props.tabs?.map((item, index) => {
+        {props.tabs.map((item, index) => {
           return (
             <Item
               active={index === activeItemIndex}
@@ -45,6 +47,11 @@ export const MultiTabMenu: FC<MultiTabMenuProps> = (props) => {
         })}
       </MenuItems>
       <hr></hr>
+      {React.Children.map(props.children, (child, index) => {
+        if (index == activeItemIndex) {
+          return child;
+        }
+      })}
     </Fragment>
   );
 };
