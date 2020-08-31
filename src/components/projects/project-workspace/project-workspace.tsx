@@ -60,6 +60,10 @@ const ButtonWrapper = styled.div`
   margin: 0 2em 0 0;
 `;
 
+const MenuWrapper = styled.div`
+  margin: 2em 0 0.7em 0;
+`;
+
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const workspaceTypesContext = useContext(WorkspaceTypesContext);
@@ -172,8 +176,14 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     </ApiButton>
                   </ButtonWrapper>
                 </Buttons>
-                <MultiTabMenu content={'Team, Milestones, Fans, Workspace'} />
-                <MultiTabMenu content={'Collaborator Suggestions Section'} />
+                <MenuWrapper>
+                  <MultiTabMenu
+                    tabs={['Team', 'Milestones', 'Fans', 'Workspace']}
+                  />
+                </MenuWrapper>
+                <MenuWrapper>
+                  <MultiTabMenu tabs={['Collaborator Suggestions']} />
+                </MenuWrapper>
               </LeftSide>
               <RightSide>
                 <div>Project Extended Details</div>

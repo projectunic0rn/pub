@@ -2,12 +2,14 @@ Raleway font was initially designed by Matt McInerney and was exapanded by Pablo
 Impallari & Rodrigo Fuenzalida and is licensed under the terms of the SIL Open
 Font License, Version 1.1:
 
-- static/raleway-v13-latin-800.woff
-- static/raleway-v13-latin-800.woff2
-- static/raleway-v13-latin-italic.woff
-- static/raleway-v13-latin-italic.woff2
-- static/raleway-v13-latin-regular.woff
-- static/raleway-v13-latin-regular.woff2
+- static/raleway-v17-latin-600.woff
+- static/raleway-v17-latin-600.woff2
+- static/raleway-v17-latin-800.woff
+- static/raleway-v17-latin-800.woff2
+- static/raleway-v17-latin-italic.woff
+- static/raleway-v17-latin-italic.woff2
+- static/raleway-v17-latin-regular.woff
+- static/raleway-v17-latin-regular.woff2
 
 
 
