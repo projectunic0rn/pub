@@ -26,7 +26,7 @@ const styles: { [key in Size]: Style } = {
 const Title = styled.h1<TitleProps>`
   font-size: ${({ size }) => styles[size].fontSize};
   text-transform: capitalize;
-  font-weight: 600;
+  font-weight: 800;
   text-align: center;
   margin: 0 0 3rem 0;
   margin: ${({ size }) => styles[size].margin};

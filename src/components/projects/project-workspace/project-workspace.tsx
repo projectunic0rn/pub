@@ -179,10 +179,17 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                 <MenuWrapper>
                   <MultiTabMenu
                     tabs={['Team', 'Milestones', 'Fans', 'Workspace']}
-                  />
+                  >
+                    <div>Team</div>
+                    <div>Milestones</div>
+                    <div>Fans</div>
+                    <div>Workspace</div>
+                  </MultiTabMenu>
                 </MenuWrapper>
                 <MenuWrapper>
-                  <MultiTabMenu tabs={['Collaborator Suggestions']} />
+                  <MultiTabMenu tabs={['Collaborator Suggestions']}>
+                    <div>Collaborator Suggestions</div>
+                  </MultiTabMenu>
                 </MenuWrapper>
               </LeftSide>
               <RightSide>
