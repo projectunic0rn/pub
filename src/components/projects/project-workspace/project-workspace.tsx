@@ -64,6 +64,25 @@ const MenuWrapper = styled.div`
   margin: 2em 0 0.7em 0;
 `;
 
+const TabContentContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const ImageContainer = styled.div`
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 2em 0.5em 2em;
+`;
+
+const CircularImage = styled.img`
+  border-radius: 50%;
+  height: 5em;
+  width: 5em;
+  margin-bottom: 0;
+`;
+
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const workspaceTypesContext = useContext(WorkspaceTypesContext);
@@ -180,7 +199,22 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                   <MultiTabMenu
                     tabs={['Team', 'Milestones', 'Fans', 'Workspace']}
                   >
-                    <div>Team</div>
+                    <TabContentContainer>
+                      {project.projectUsers.length > 0 ? (
+                        <Fragment>
+                          {project.projectUsers.map((user) => {
+                            return (
+                              <ImageContainer key={user.id}>
+                                <CircularImage src="https://avatars.slack-edge.com/2019-12-15/861431544242_d975c9e1b069764d81a6_192.png" />
+                                <div>{user.username}</div>
+                              </ImageContainer>
+                            );
+                          })}
+                        </Fragment>
+                      ) : (
+                        <div>Currently no members.</div>
+                      )}
+                    </TabContentContainer>
                     <div>Milestones</div>
                     <div>Fans</div>
                     <div>Workspace</div>
