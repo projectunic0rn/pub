@@ -61,7 +61,7 @@ describe('project workspace page tests', () => {
     expect(saveChangesText).toBeVisible();
   });
 
-  test('user is prompted to save or preview changes once edit details is clicked', async () => {
+  test('user is prompted edit details once changes are saved', async () => {
     // Arrange
     const { findByText } = render(
       <MockThemeProvider>
@@ -71,15 +71,13 @@ describe('project workspace page tests', () => {
     // Act
     const editText = await findByText('Edit');
     fireEvent.click(editText);
-    const previewText = await findByText('Preview');
     const saveChangesText = await findByText('Save Changes');
-    // Assert
-    expect(previewText).toBeDefined();
-    expect(previewText).toBeInTheDocument();
-    expect(previewText).toBeVisible();
+    fireEvent.click(saveChangesText);
+    const rerenderedEditText = await findByText('Edit');
 
-    expect(saveChangesText).toBeDefined();
-    expect(saveChangesText).toBeInTheDocument();
-    expect(saveChangesText).toBeVisible();
+    // Assert
+    expect(rerenderedEditText).toBeDefined();
+    expect(rerenderedEditText).toBeInTheDocument();
+    expect(rerenderedEditText).toBeVisible();
   });
 });
