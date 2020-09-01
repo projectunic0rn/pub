@@ -14,7 +14,7 @@ import {
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
 import CardTags from '../projects-gallery/card-tags';
-import { gitIcon } from '@images';
+import { gitIcon, defaultProfileImage } from '@images';
 import { WorkspaceTypesContext } from '@contexts';
 import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
@@ -74,6 +74,7 @@ const ImageContainer = styled.div`
   border-radius: 50%;
   text-align: center;
   margin: 0 2em 0.5em 2em;
+  text-decoration: underline;
 `;
 
 const CircularImage = styled.img`
@@ -205,7 +206,12 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                           {project.projectUsers.map((user) => {
                             return (
                               <ImageContainer key={user.id}>
-                                <CircularImage src="https://avatars.slack-edge.com/2019-12-15/861431544242_d975c9e1b069764d81a6_192.png" />
+                                <CircularImage
+                                  src={
+                                    user.profilePictureUrl ||
+                                    defaultProfileImage
+                                  }
+                                />
                                 <div>{user.username}</div>
                               </ImageContainer>
                             );
