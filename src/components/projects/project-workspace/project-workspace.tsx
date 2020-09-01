@@ -47,6 +47,24 @@ const Description = styled.p`
   font-size: 1em;
 `;
 
+const DetailsTitle = styled.h4`
+  margin: 0 0 1em;
+  font-weight: 600;
+`;
+
+const DetailsTitleEditParen = styled.span`
+  font-weight: 600;
+  font-size: 16px;
+`;
+
+const DetailsTitleEdit = styled.span`
+  margin: 0 0 1em;
+  font-weight: 600;
+  font-size: 16px;
+  color: #5f8ddc;
+  cursor: pointer;
+`;
+
 const Icon = styled.img`
   height: 1.5em;
   margin: 0.7em 1.2em 0.7em 0;
@@ -90,6 +108,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [project, setProject] = useState<ProjectDetailed | undefined>(
     undefined,
   );
+  const [editingDetails, setEditingDetails] = useState<boolean>(false);
   const [error, setError] = useState<string | null>('');
   const [projectOwner, setProjectOwner] = useState<
     ProjectUserDetailed | undefined
@@ -117,6 +136,14 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
     fetchProject();
   }, [props.projectId]);
+
+  const handleEditClick = () => {
+    setEditingDetails(true);
+  };
+
+  const handleSaveCHangesClick = () => {
+    setEditingDetails(false);
+  };
 
   return (
     <Fragment>
@@ -152,7 +179,11 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
           <Loader />
         ) : (
           <Fragment>
-            <Title>{project.name}</Title>
+            <Title>
+              {project.name} <DetailsTitleEditParen>(</DetailsTitleEditParen>
+              <DetailsTitleEdit onClick={noop}>Manage</DetailsTitleEdit>
+              <DetailsTitleEditParen>)</DetailsTitleEditParen>
+            </Title>
             <hr></hr>
             <ContentWrapper>
               <LeftSide>
@@ -233,6 +264,27 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                 </MenuWrapper>
               </LeftSide>
               <RightSide>
+                <div>
+                  <DetailsTitle>
+                    Details <DetailsTitleEditParen>(</DetailsTitleEditParen>
+                    {editingDetails ? (
+                      <Fragment>
+                        <DetailsTitleEdit onClick={noop}>
+                          Preview
+                        </DetailsTitleEdit>
+                        ,{' '}
+                        <DetailsTitleEdit onClick={handleSaveCHangesClick}>
+                          Save Changes
+                        </DetailsTitleEdit>
+                      </Fragment>
+                    ) : (
+                      <DetailsTitleEdit onClick={handleEditClick}>
+                        Edit
+                      </DetailsTitleEdit>
+                    )}
+                    <DetailsTitleEditParen>)</DetailsTitleEditParen>
+                  </DetailsTitle>
+                </div>
                 <div>Project Extended Details</div>
               </RightSide>
             </ContentWrapper>
