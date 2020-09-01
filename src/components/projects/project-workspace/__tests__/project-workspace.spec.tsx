@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { ProjectWorkspace } from '../project-workspace';
 import { MockThemeProvider } from '@mocks';
 
@@ -37,5 +37,49 @@ describe('project workspace page tests', () => {
     expect(fanButton).toBeDefined();
     expect(fanButton).toBeInTheDocument();
     expect(fanButton).toBeVisible();
+  });
+
+  test('user is prompted to save or preview changes once edit details is clicked', async () => {
+    // Arrange
+    const { findByText } = render(
+      <MockThemeProvider>
+        <ProjectWorkspace projectId="08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+      </MockThemeProvider>,
+    );
+    // Act
+    const editText = await findByText('Edit');
+    fireEvent.click(editText);
+    const previewText = await findByText('Preview');
+    const saveChangesText = await findByText('Save Changes');
+    // Assert
+    expect(previewText).toBeDefined();
+    expect(previewText).toBeInTheDocument();
+    expect(previewText).toBeVisible();
+
+    expect(saveChangesText).toBeDefined();
+    expect(saveChangesText).toBeInTheDocument();
+    expect(saveChangesText).toBeVisible();
+  });
+
+  test('user is prompted to save or preview changes once edit details is clicked', async () => {
+    // Arrange
+    const { findByText } = render(
+      <MockThemeProvider>
+        <ProjectWorkspace projectId="08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+      </MockThemeProvider>,
+    );
+    // Act
+    const editText = await findByText('Edit');
+    fireEvent.click(editText);
+    const previewText = await findByText('Preview');
+    const saveChangesText = await findByText('Save Changes');
+    // Assert
+    expect(previewText).toBeDefined();
+    expect(previewText).toBeInTheDocument();
+    expect(previewText).toBeVisible();
+
+    expect(saveChangesText).toBeDefined();
+    expect(saveChangesText).toBeInTheDocument();
+    expect(saveChangesText).toBeVisible();
   });
 });
