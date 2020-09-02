@@ -11,7 +11,7 @@ test('shows a link to projects page', () => {
     </MockThemeProvider>,
   );
 
-  const link = getByText(/see projects by members/i);
+  const link = getByText(/see projects/i);
 
   expect(link).toHaveAttribute('href', '/projects');
 });

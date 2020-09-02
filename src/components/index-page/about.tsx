@@ -123,7 +123,7 @@ const About: FC = () => {
         </SubText>
 
         <StyledLink to="/projects" title={`${siteMetadata.title} projects`}>
-          See projects by members
+          See projects
           <LinkImage />
         </StyledLink>
       </Text>
