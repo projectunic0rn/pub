@@ -119,6 +119,15 @@ export class ApiService {
     return result;
   }
 
+  public async getRecentDevs() {
+    const endpoint = `${this.apiEndpoint}/users/recent`;
+    this.profiler.setReportInfo(endpoint, 'getRecentDevs');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.get(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
+  }
+
   public async changePassword(changePassword: ChangePassword) {
     const endpoint = `${this.apiEndpoint}/auth/change-password`;
     this.profiler.setReportInfo(endpoint, 'changePassword');
