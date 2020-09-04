@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { MainContent } from './main-content';
-import { FormLabel } from '../form';
+import { FormLabel, FeedbackForm } from '../form';
 import { ProfileTechPill } from '../pills';
 import { Ribbon, CloseButton } from '../ribbons';
 import { ContainerSidePanel, Summary } from '../side-panels';
@@ -68,54 +68,56 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <Wrapper>
-      {isLoading && <Loader />}
-      {error && (
-        <Ribbon type="danger">
-          {error}{' '}
-          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
-
-      {!isLoading && user && (
-        <BaseContainer>
-          <ContainerSidePanel>
-            <Summary>
-              <Image
-                src={user.profilePictureUrl || defaultProfileImage}
-                alt="Profile Picture"
-              />
-              <Summary>{user.username}</Summary>
-              {UserAuthHelper.isUserAuthenticated() && (
-                <Link to="/settings">
-                  <Button>Edit Profile</Button>
-                </Link>
+    <Fragment>
+      <FeedbackForm page={`/profile/${user?.id}`} />
+      <Wrapper>
+        {isLoading && <Loader />}
+        {error && (
+          <Ribbon type="danger">
+            {error}{' '}
+            <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+        {!isLoading && user && (
+          <BaseContainer>
+            <ContainerSidePanel>
+              <Summary>
+                <Image
+                  src={user.profilePictureUrl || defaultProfileImage}
+                  alt="Profile Picture"
+                />
+                <Summary>{user.username}</Summary>
+                {UserAuthHelper.isUserAuthenticated() && (
+                  <Link to="/settings">
+                    <Button>Edit Profile</Button>
+                  </Link>
+                )}
+              </Summary>
+            </ContainerSidePanel>
+            <MainContent>
+              {user.bio && (
+                <Fragment>
+                  <FormLabel>About</FormLabel>
+                  <p>{user.bio}</p>
+                </Fragment>
               )}
-            </Summary>
-          </ContainerSidePanel>
-          <MainContent>
-            {user.bio && (
-              <Fragment>
-                <FormLabel>Bio</FormLabel>
-                <p>{user.bio}</p>
-              </Fragment>
-            )}
 
-            {user.technologies && (
-              <Fragment>
-                <FormLabel>Technologies</FormLabel>
-                <div style={{ marginTop: '0.4em' }}>
-                  {user.technologies.map((t) => (
-                    <ProfileTechPill data-testid="technology" key={t.name}>
-                      {t.name}
-                    </ProfileTechPill>
-                  ))}
-                </div>
-              </Fragment>
-            )}
-          </MainContent>
-        </BaseContainer>
-      )}
-    </Wrapper>
+              {user.technologies && (
+                <Fragment>
+                  <FormLabel>Technologies</FormLabel>
+                  <div style={{ marginTop: '0.4em' }}>
+                    {user.technologies.map((t) => (
+                      <ProfileTechPill data-testid="technology" key={t.name}>
+                        {t.name}
+                      </ProfileTechPill>
+                    ))}
+                  </div>
+                </Fragment>
+              )}
+            </MainContent>
+          </BaseContainer>
+        )}
+      </Wrapper>
+    </Fragment>
   );
 };
