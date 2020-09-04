@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   grid-template-rows: 8fr;
   gap: 1.5em 1.5em;
   margin-bottom: 2em;
+  justify-content: center;
 
   @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
     grid-template-columns: repeat(2, 1fr);
