@@ -9,3 +9,4 @@ export * from './signup-response';
 export * from './user';
 export * from './validate-user';
 export * from './get-workspace-types';
+export * from './get-recent-devs';
