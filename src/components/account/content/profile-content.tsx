@@ -163,7 +163,7 @@ export const ProfileContent: FC<ContentProps> = (props) => {
       <br />
       <br />
 
-      <FormLabel htmlFor="bio">Bio</FormLabel>
+      <FormLabel htmlFor="bio">About</FormLabel>
 
       <FormTextArea
         name="bio"

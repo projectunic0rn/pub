@@ -46,7 +46,7 @@ describe('test account settings component', () => {
     // Act
     const tab = getByText('Edit Profile');
     fireEvent.click(tab);
-    const text = getByLabelText('Bio');
+    const text = getByLabelText('About');
     // Assert
     expect(text).toBeDefined();
     expect(text).toBeVisible();
@@ -150,9 +150,9 @@ describe('test account settings component', () => {
     // Act
     const tab = getByText('Edit Profile');
     fireEvent.click(tab);
-    const bioInput = getByLabelText('Bio');
+    const bioInput = getByLabelText('About');
     fireEvent.change(bioInput, { target: { value: 'new bio' } });
-    const updatedUsername = getByLabelText('Bio');
+    const updatedUsername = getByLabelText('About');
     const inputElement = updatedUsername as HTMLTextAreaElement;
     // Assert
     expect(inputElement.value).toBe('new bio');
