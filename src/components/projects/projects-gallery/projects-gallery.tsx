@@ -117,7 +117,7 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
 
   const getDaysAgoMessage = (devDate: Date): string => {
     const singleDay = 24 * 60 * 60 * 1000;
-    const devDateTime = devDate.getTime();
+    const devDateTime = new Date(devDate).getTime();
     const todayTime = new Date().getTime();
 
     const daysAgo = Math.round(Math.abs((todayTime - devDateTime) / singleDay));
