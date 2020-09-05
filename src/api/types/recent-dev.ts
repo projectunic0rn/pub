@@ -1,5 +1,5 @@
 export interface RecentDev {
   id: string;
   bio: string;
-  createdAt: Date;
+  updatedAt: Date;
 }

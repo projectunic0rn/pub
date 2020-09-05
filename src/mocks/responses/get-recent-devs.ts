@@ -6,13 +6,21 @@ export const getRecentDevs: ApiResponse<RecentDev[]> = {
   data: [
     {
       id: '08d6c5e7-6100-c770-61c3-834f6474a77b',
-      bio: 'this is my bio',
-      createdAt: new Date(),
+      bio:
+        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+      updatedAt: new Date(),
     },
     {
       id: '08d6c5e7-6100-c770-61c3-834f6474a77c',
-      bio: 'this is my bio',
-      createdAt: new Date(),
+      bio:
+        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+      updatedAt: new Date(2020, 8, 4),
+    },
+    {
+      id: '08d6c5e7-6100-c770-61c3-834f6474a77d',
+      bio:
+        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+      updatedAt: new Date(2020, 8, 2),
     },
   ],
 };

@@ -1,5 +1,6 @@
 import { RouteComponentProps } from '@reach/router';
 import React, { FC, Fragment, useEffect, useState, useContext } from 'react';
+import { Link } from 'gatsby';
 
 import { Wrapper, Seo, Loader } from '@components/shared';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
@@ -33,13 +34,14 @@ const Title = styled.h1`
 
 const ContentWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const LeftSide = styled.div`
-  flex-basis: 30%;
+  flex-basis: 29%;
 `;
 const RightSide = styled.div`
-  flex-basis: 70%;
+  flex-basis: 69%;
 `;
 
 const Description = styled.p`
@@ -236,15 +238,17 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         <Fragment>
                           {project.projectUsers.map((user) => {
                             return (
-                              <ImageContainer key={user.id}>
-                                <CircularImage
-                                  src={
-                                    user.profilePictureUrl ||
-                                    defaultProfileImage
-                                  }
-                                />
-                                <div>{user.username}</div>
-                              </ImageContainer>
+                              <Link to={`/profile/${user.id}/`} key={user.id}>
+                                <ImageContainer>
+                                  <CircularImage
+                                    src={
+                                      user.profilePictureUrl ||
+                                      defaultProfileImage
+                                    }
+                                  />
+                                  <div>{user.username}</div>
+                                </ImageContainer>
+                              </Link>
                             );
                           })}
                         </Fragment>
