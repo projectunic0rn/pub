@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.section};
   border-radius: 0.3125em;
-  padding: 1.5em;
+  padding: 1em;
   flex-direction: column;
   height: 100%;
   box-shadow: 1px 1px 2px ${({ theme }) => theme.colors.shadow};
