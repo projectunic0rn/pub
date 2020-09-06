@@ -8,7 +8,10 @@ describe('project workspace page tests', () => {
     // Arrange
     const { findByText } = render(
       <MockThemeProvider>
-        <ProjectWorkspace path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+        <ProjectWorkspace
+          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
+        />{' '}
       </MockThemeProvider>,
     );
     // Act
@@ -23,7 +26,10 @@ describe('project workspace page tests', () => {
     // Arrange
     const { findByText } = render(
       <MockThemeProvider>
-        <ProjectWorkspace path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+        <ProjectWorkspace
+          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
+        />{' '}
       </MockThemeProvider>,
     );
     // Act
@@ -43,7 +49,10 @@ describe('project workspace page tests', () => {
     // Arrange
     const { findByText } = render(
       <MockThemeProvider>
-        <ProjectWorkspace path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+        <ProjectWorkspace
+          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
+        />{' '}
       </MockThemeProvider>,
     );
     // Act
@@ -65,7 +74,10 @@ describe('project workspace page tests', () => {
     // Arrange
     const { findByText } = render(
       <MockThemeProvider>
-        <ProjectWorkspace path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56" />
+        <ProjectWorkspace
+          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
+        />
       </MockThemeProvider>,
     );
     // Act
