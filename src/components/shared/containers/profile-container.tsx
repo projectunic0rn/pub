@@ -8,7 +8,13 @@ import { FormLabel, FeedbackForm } from '../form';
 import { ProfileTechPill } from '../pills';
 import { Ribbon, CloseButton } from '../ribbons';
 import { ContainerSidePanel, Summary } from '../side-panels';
-import { ApiResponse, ErrorResponse, ServiceResolver, User } from '@api';
+import {
+  ApiResponse,
+  ErrorResponse,
+  ServiceResolver,
+  User,
+  UserContact,
+} from '@api';
 import { Loader } from '@components/shared';
 import { UserAuthHelper } from '@helpers';
 import { defaultProfileImage } from '@images';
@@ -39,24 +45,24 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   const [user, setUser] = useState<User>();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [displayContact, setDisplayContact] = useState(false);
+  const [contact, setContact] = useState('');
+  // indicate if profile belongs to viewing user
+  const [selfProfile, setSelfProfile] = useState(false);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
-
+    if (id === undefined) {
+      return;
+    }
     const fetchContent = async () => {
       try {
-        const response = (await api.getUser(id || '')) as ApiResponse<
+        const response = (await api.getUser(id)) as ApiResponse<
           User | ErrorResponse
         >;
 
-        // TODO: simplify, will always true in try
-        if (response.ok) {
-          const user = response.data as User;
-          setUser(user);
-        } else {
-          // TODO: remove, currently this will never execute.
-          setError((response.data as ErrorResponse).message);
-        }
+        const user = response.data as User;
+        setUser(user);
       } catch (err) {
         setError(err.message);
       }
@@ -64,7 +70,31 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
       setIsLoading(false);
     };
 
+    const fetchContactInfo = async () => {
+      try {
+        const response = (await api.getUserContact(id)) as ApiResponse<
+          UserContact | ErrorResponse
+        >;
+
+        const userContact = response.data as UserContact;
+        setContact(userContact.email);
+        setDisplayContact(true);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
     fetchContent();
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      return;
+    }
+
+    fetchContactInfo();
+    const authedUserId = UserAuthHelper.getUserId();
+
+    if (authedUserId === id) {
+      setSelfProfile(true);
+    }
   }, [id]);
 
   return (
@@ -87,7 +117,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                   alt="Profile Picture"
                 />
                 <Summary>{user.username}</Summary>
-                {UserAuthHelper.isUserAuthenticated() && (
+                {selfProfile && (
                   <Link to="/settings">
                     <Button>Edit Profile</Button>
                   </Link>
@@ -105,7 +135,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               {user.technologies && (
                 <Fragment>
                   <FormLabel>Technologies</FormLabel>
-                  <div style={{ marginTop: '0.4em' }}>
+                  <div style={{ marginTop: '0.4em', marginBottom: '1.5em' }}>
                     {user.technologies.map((t) => (
                       <ProfileTechPill data-testid="technology" key={t.name}>
                         {t.name}
@@ -114,6 +144,15 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                   </div>
                 </Fragment>
               )}
+
+              <FormLabel>Contact</FormLabel>
+              <p data-testid={'contact-info'}>
+                {displayContact ? (
+                  <a href={`mailto:${contact}`}>{contact}</a>
+                ) : (
+                  <Link to="/signin/">Sign in to view email.</Link>
+                )}{' '}
+              </p>
             </MainContent>
           </BaseContainer>
         )}

@@ -7,6 +7,7 @@ export * from './search-tags';
 export * from './signin-response';
 export * from './signup-response';
 export * from './user';
+export * from './user-contact';
 export * from './validate-user';
 export * from './get-workspace-types';
 export * from './get-recent-devs';

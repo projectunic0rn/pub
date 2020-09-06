@@ -10,6 +10,7 @@ import {
   getProject,
   getWorkspaceTypes,
   getRecentDevs,
+  userContact,
 } from './responses';
 import { Project, User, ChangePassword } from '@api';
 
@@ -44,6 +45,10 @@ export class MockApiService {
 
   public async getUser(id: string) {
     return user;
+  }
+
+  public async getUserContact(id: string) {
+    return userContact;
   }
 
   public async editUser(_user: User) {
