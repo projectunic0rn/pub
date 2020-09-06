@@ -103,11 +103,9 @@ describe('profile container', () => {
     // Arrange
     SessionStorageHelper.storeJwt(signInResponse.data as JwtToken);
     const { findByText } = render(
-      <AuthProvider>
-        <MockThemeProvider>
-          <ProfileContainer id="1" path="profile/1" />
-        </MockThemeProvider>
-      </AuthProvider>,
+      <MockThemeProvider>
+        <ProfileContainer id="1" path="profile/1" />
+      </MockThemeProvider>,
     );
     // Act
     const email = await findByText(/@email.com/i);
@@ -115,5 +113,39 @@ describe('profile container', () => {
     // Assert
     expect(email).toBeVisible();
     expect(email).toBeDefined();
+  });
+
+  test('dev can view edit button on own profile', async () => {
+    // Arrange
+    const jwtUserId = '08d73d50-6ff3-594e-1014-059b9f6d9317';
+    SessionStorageHelper.storeJwt(signInResponse.data as JwtToken);
+    const { findByText } = render(
+      <MockThemeProvider>
+        <ProfileContainer id={jwtUserId} path={`profile/${jwtUserId}`} />
+      </MockThemeProvider>,
+    );
+    // Act
+    const editProfileButton = await findByText('Edit Profile');
+    // Assert
+    expect(editProfileButton).toBeVisible();
+    expect(editProfileButton).toBeDefined();
+  });
+
+  test('dev cannot view edit button on another devs profile', async () => {
+    // Arrange
+    const apiUserIdData = user.data.id;
+    SessionStorageHelper.storeJwt(signInResponse.data as JwtToken);
+    const { queryByText } = render(
+      <MockThemeProvider>
+        <ProfileContainer
+          id={apiUserIdData}
+          path={`profile/${apiUserIdData}`}
+        />
+      </MockThemeProvider>,
+    );
+    // Act
+    const editProfileButton = await waitFor(() => queryByText('Edit Profile'));
+    // Assert
+    expect(editProfileButton).toBeNull();
   });
 });

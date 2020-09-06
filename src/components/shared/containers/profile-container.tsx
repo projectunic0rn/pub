@@ -47,6 +47,8 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [displayContact, setDisplayContact] = useState(false);
   const [contact, setContact] = useState('');
+  // indicate if profile belongs to viewing user
+  const [selfProfile, setSelfProfile] = useState(false);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -83,8 +85,15 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
     };
 
     fetchContent();
-    if (UserAuthHelper.isUserAuthenticated()) {
-      fetchContactInfo();
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      return;
+    }
+
+    fetchContactInfo();
+    const authedUserId = UserAuthHelper.getUserId();
+
+    if (authedUserId === id) {
+      setSelfProfile(true);
     }
   }, [id]);
 
@@ -108,7 +117,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
                   alt="Profile Picture"
                 />
                 <Summary>{user.username}</Summary>
-                {UserAuthHelper.isUserAuthenticated() && (
+                {selfProfile && (
                   <Link to="/settings">
                     <Button>Edit Profile</Button>
                   </Link>
@@ -137,15 +146,13 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               )}
 
               <FormLabel>Contact</FormLabel>
-              <Link to="/signin/">
-                <p data-testId={'contact-info'}>
-                  {displayContact ? (
-                    <a href={`mailto:${contact}`}>{contact}</a>
-                  ) : (
-                    <Link to="/signin/">Sign in to view email.</Link>
-                  )}{' '}
-                </p>
-              </Link>
+              <p data-testid={'contact-info'}>
+                {displayContact ? (
+                  <a href={`mailto:${contact}`}>{contact}</a>
+                ) : (
+                  <Link to="/signin/">Sign in to view email.</Link>
+                )}{' '}
+              </p>
             </MainContent>
           </BaseContainer>
         )}
