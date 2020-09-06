@@ -1,4 +1,3 @@
-import { RouteComponentProps } from '@reach/router';
 import React, { FC, Fragment, useEffect, useState, useContext } from 'react';
 import { Link } from 'gatsby';
 
@@ -21,11 +20,10 @@ import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
 import { noop } from 'lodash';
 
-interface ProjectWorkspaceParams {
+interface ProjectWorkspaceProps {
   projectId?: string;
+  path: string;
 }
-
-type ProjectWorkspaceProps = ProjectWorkspaceParams & RouteComponentProps;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.base};
