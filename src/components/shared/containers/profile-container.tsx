@@ -125,25 +125,21 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
               </Summary>
             </ContainerSidePanel>
             <MainContent>
-              {user.bio && (
-                <Fragment>
-                  <FormLabel>About</FormLabel>
-                  <p>{user.bio}</p>
-                </Fragment>
-              )}
+              <Fragment>
+                <FormLabel>About</FormLabel>
+                <p>{user.bio}</p>
+              </Fragment>
 
-              {user.technologies && (
-                <Fragment>
-                  <FormLabel>Technologies</FormLabel>
-                  <div style={{ marginTop: '0.4em', marginBottom: '1.5em' }}>
-                    {user.technologies.map((t) => (
-                      <ProfileTechPill data-testid="technology" key={t.name}>
-                        {t.name}
-                      </ProfileTechPill>
-                    ))}
-                  </div>
-                </Fragment>
-              )}
+              <Fragment>
+                <FormLabel>Technologies</FormLabel>
+                <div style={{ marginTop: '0.4em', marginBottom: '1.5em' }}>
+                  {user.technologies.map((t) => (
+                    <ProfileTechPill data-testid="technology" key={t.name}>
+                      {t.name}
+                    </ProfileTechPill>
+                  ))}
+                </div>
+              </Fragment>
 
               <FormLabel>Contact</FormLabel>
               <p data-testid={'contact-info'}>
