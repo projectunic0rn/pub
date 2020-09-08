@@ -261,6 +261,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
               {project.name}
               {selfProject && (
                 <Fragment>
+                  {' '}
                   <DetailsTitleEditParen>(</DetailsTitleEditParen>
                   <DetailsTitleEdit onClick={noop}>Manage</DetailsTitleEdit>
                   <DetailsTitleEditParen>)</DetailsTitleEditParen>
@@ -357,7 +358,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     Details
                     {selfProject && (
                       <Fragment>
-                        <DetailsTitleEditParen>(</DetailsTitleEditParen>
+                        <DetailsTitleEditParen> (</DetailsTitleEditParen>
                         {editingDetails ? (
                           <Fragment>
                             <DetailsTitleEdit onClick={handlePreviewClick}>

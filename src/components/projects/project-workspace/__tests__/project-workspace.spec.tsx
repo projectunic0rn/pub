@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { ProjectWorkspace } from '../project-workspace';
-import { MockThemeProvider } from '@mocks';
+import { MockThemeProvider, signInResponse } from '@mocks';
+import { SessionStorageHelper } from '@helpers';
+import { JwtToken } from '@api';
 
 describe('project workspace page tests', () => {
   test('page contains placeholder work in progress text', async () => {
@@ -9,7 +11,7 @@ describe('project workspace page tests', () => {
     const { findByText } = render(
       <MockThemeProvider>
         <ProjectWorkspace
-          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          path="/projects/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
           projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
         />{' '}
       </MockThemeProvider>,
@@ -27,7 +29,7 @@ describe('project workspace page tests', () => {
     const { findByText } = render(
       <MockThemeProvider>
         <ProjectWorkspace
-          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          path="/projects/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
           projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
         />{' '}
       </MockThemeProvider>,
@@ -45,12 +47,13 @@ describe('project workspace page tests', () => {
     expect(fanButton).toBeVisible();
   });
 
-  test('user is prompted to save or preview changes once edit details is clicked', async () => {
+  test('project owner is prompted to save or preview changes once edit details is clicked', async () => {
     // Arrange
+    SessionStorageHelper.storeJwt(signInResponse.data as JwtToken);
     const { findByText } = render(
       <MockThemeProvider>
         <ProjectWorkspace
-          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          path="/projects/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
           projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
         />{' '}
       </MockThemeProvider>,
@@ -70,12 +73,13 @@ describe('project workspace page tests', () => {
     expect(saveChangesText).toBeVisible();
   });
 
-  test('user is prompted edit details once changes are saved', async () => {
+  test('project owner is prompted to edit details once changes are saved', async () => {
     // Arrange
+    SessionStorageHelper.storeJwt(signInResponse.data as JwtToken);
     const { findByText } = render(
       <MockThemeProvider>
         <ProjectWorkspace
-          path="/profile/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
+          path="/projects/08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56"
           projectId={'08d6c5e7-618f-0a0b-f6bb-b8600e4e4c56'}
         />
       </MockThemeProvider>,

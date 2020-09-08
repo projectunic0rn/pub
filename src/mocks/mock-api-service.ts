@@ -11,6 +11,7 @@ import {
   getWorkspaceTypes,
   getRecentDevs,
   userContact,
+  updatedProject,
 } from './responses';
 import { Project, User, ChangePassword, ProjectDetailed } from '@api';
 
@@ -20,7 +21,8 @@ export class MockApiService {
   }
 
   public async updateProject(project: ProjectDetailed) {
-    return project;
+    updatedProject.data = project;
+    return updatedProject;
   }
 
   public async getProject(projectId: string) {
