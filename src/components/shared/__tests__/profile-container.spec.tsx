@@ -4,7 +4,6 @@ import React from 'react';
 import { MockThemeProvider } from '@mocks';
 import { user, signInResponse } from '@mocks/responses';
 import { JwtToken } from '@api';
-import { AuthProvider } from '@contexts';
 import { SessionStorageHelper } from '@helpers';
 
 describe('profile container', () => {

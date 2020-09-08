@@ -6,6 +6,7 @@ import {
   User,
   Username,
   ChangePassword,
+  ProjectDetailed,
 } from './types';
 import { SessionStorageHelper } from '@helpers';
 import { ProfilingUtils } from '@utils';
@@ -25,6 +26,15 @@ export class ApiService {
     this.profiler = new ProfilingUtils();
   }
 
+  public async getProject(projectId: string) {
+    const endpoint = `${this.apiEndpoint}/projects/${projectId}`;
+    this.profiler.setReportInfo(endpoint, 'getProject');
+    this.profiler.startTimeRecord();
+    const result = await HttpClient.get(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return result;
+  }
+
   public async createProject(project: Project) {
     const endpoint = `${this.apiEndpoint}/projects`;
     this.profiler.setReportInfo(endpoint, 'createProject');
@@ -34,11 +44,11 @@ export class ApiService {
     return result;
   }
 
-  public async getProject(projectId: string) {
-    const endpoint = `${this.apiEndpoint}/projects/${projectId}`;
-    this.profiler.setReportInfo(endpoint, 'getProject');
+  public async updateProject(project: ProjectDetailed) {
+    const endpoint = `${this.apiEndpoint}/projects`;
+    this.profiler.setReportInfo(endpoint, 'updateProject');
     this.profiler.startTimeRecord();
-    const result = await HttpClient.get(endpoint, this.headers);
+    const result = await HttpClient.put(endpoint, this.headers, project);
     this.profiler.endTimeRecord();
     return result;
   }

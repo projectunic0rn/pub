@@ -1,6 +1,6 @@
 import { ApiResponse, ProjectDetailed } from '@api';
 
-export const getProject: ApiResponse<ProjectDetailed> = {
+export const updatedProject: ApiResponse<ProjectDetailed> = {
   ok: true,
   data: {
     id: '08d6c5e7-6100-c770-61c3-834f6474a77b',
