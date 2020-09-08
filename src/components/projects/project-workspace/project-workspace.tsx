@@ -1,5 +1,6 @@
 import React, { FC, Fragment, useEffect, useState, useContext } from 'react';
 import { Link } from 'gatsby';
+import MarkdownIt from 'markdown-it';
 
 import { Wrapper, Seo, Loader } from '@components/shared';
 import { CloseButton, Ribbon } from '@components/shared/ribbons';
@@ -19,6 +20,7 @@ import { WorkspaceTypesContext } from '@contexts';
 import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
 import { noop } from 'lodash';
+import { UserAuthHelper } from '@helpers';
 
 interface ProjectWorkspaceProps {
   projectId?: string;
@@ -39,7 +41,7 @@ const LeftSide = styled.div`
   flex-basis: 29%;
 `;
 const RightSide = styled.div`
-  flex-basis: 69%;
+  flex-basis: 65%;
 `;
 
 const Description = styled.p`
@@ -102,6 +104,23 @@ const CircularImage = styled.img`
   margin-bottom: 0;
 `;
 
+const DescriptionContainer = styled.div`
+  /* 
+   TODO: There exists a global style that adds 
+   margin to all h1-h6 elements. Consider changing
+   this. For now recursively reset project font 
+   and reset margin.
+  */
+  * {
+    margin-top: 0;
+    font-family: sans-serif;
+  }
+`;
+
+const DescriptionTextArea = styled.textarea`
+  width: 100%;
+`;
+
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const workspaceTypesContext = useContext(WorkspaceTypesContext);
@@ -113,6 +132,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [projectOwner, setProjectOwner] = useState<
     ProjectUserDetailed | undefined
   >(undefined);
+  const [markdownDescription, setMarkdownDescription] = useState('');
+  // indicate if project belongs to viewing user
+  const [selfProject, setSelfProject] = useState(false);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -129,20 +151,76 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
         setProject(project);
         setProjectOwner(projectOwner);
+        setMarkdownDescription(project.extendedMarkdownDescription);
       } catch (err) {
         setError(err.message);
       }
     }
 
     fetchProject();
-  }, [props.projectId]);
+
+    if (projectOwner === undefined) {
+      return;
+    }
+
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      return;
+    }
+
+    const authedUserId = UserAuthHelper.getUserId();
+
+    if (authedUserId === projectOwner.userId) {
+      setSelfProject(true);
+    }
+  }, [projectOwner, props.projectId]);
 
   const handleEditClick = () => {
     setEditingDetails(true);
   };
 
-  const handleSaveCHangesClick = () => {
+  const handlePreviewClick = () => {
     setEditingDetails(false);
+  };
+
+  const handleSaveChangesClick = async () => {
+    const api = ServiceResolver.apiResolver();
+    if (project == undefined) {
+      return;
+    }
+
+    const projectToUpdate: ProjectDetailed = {
+      ...project,
+      extendedMarkdownDescription: markdownDescription,
+    };
+
+    try {
+      const response = (await api.updateProject(
+        projectToUpdate,
+      )) as ApiResponse<ProjectDetailed | ErrorResponse>;
+      const updatedProject = response.data as ProjectDetailed;
+      const projectOwner = updatedProject.projectUsers.find((p) => p.isOwner);
+      setProject(updatedProject);
+      setProjectOwner(projectOwner);
+      setMarkdownDescription(updatedProject.extendedMarkdownDescription);
+      setEditingDetails(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleDescriptionChangesClick = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setMarkdownDescription(event.target.value);
+  };
+
+  const parseMarkdown = (rawMarkdownDescription: string) => {
+    if (rawMarkdownDescription === null) {
+      return { __html: '<div></div>' };
+    }
+    const md = new MarkdownIt();
+    const result = md.render(rawMarkdownDescription);
+    return { __html: result };
   };
 
   return (
@@ -180,9 +258,14 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         ) : (
           <Fragment>
             <Title>
-              {project.name} <DetailsTitleEditParen>(</DetailsTitleEditParen>
-              <DetailsTitleEdit onClick={noop}>Manage</DetailsTitleEdit>
-              <DetailsTitleEditParen>)</DetailsTitleEditParen>
+              {project.name}
+              {selfProject && (
+                <Fragment>
+                  <DetailsTitleEditParen>(</DetailsTitleEditParen>
+                  <DetailsTitleEdit onClick={noop}>Manage</DetailsTitleEdit>
+                  <DetailsTitleEditParen>)</DetailsTitleEditParen>
+                </Fragment>
+              )}
             </Title>
             <hr></hr>
             <ContentWrapper>
@@ -271,26 +354,45 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
               <RightSide>
                 <div>
                   <DetailsTitle>
-                    Details <DetailsTitleEditParen>(</DetailsTitleEditParen>
-                    {editingDetails ? (
+                    Details
+                    {selfProject && (
                       <Fragment>
-                        <DetailsTitleEdit onClick={noop}>
-                          Preview
-                        </DetailsTitleEdit>
-                        ,{' '}
-                        <DetailsTitleEdit onClick={handleSaveCHangesClick}>
-                          Save Changes
-                        </DetailsTitleEdit>
+                        <DetailsTitleEditParen>(</DetailsTitleEditParen>
+                        {editingDetails ? (
+                          <Fragment>
+                            <DetailsTitleEdit onClick={handlePreviewClick}>
+                              Preview
+                            </DetailsTitleEdit>
+                            ,{' '}
+                            <DetailsTitleEdit onClick={handleSaveChangesClick}>
+                              Save Changes
+                            </DetailsTitleEdit>
+                          </Fragment>
+                        ) : (
+                          <DetailsTitleEdit onClick={handleEditClick}>
+                            Edit
+                          </DetailsTitleEdit>
+                        )}
+                        <DetailsTitleEditParen>)</DetailsTitleEditParen>
                       </Fragment>
-                    ) : (
-                      <DetailsTitleEdit onClick={handleEditClick}>
-                        Edit
-                      </DetailsTitleEdit>
                     )}
-                    <DetailsTitleEditParen>)</DetailsTitleEditParen>
                   </DetailsTitle>
                 </div>
-                <div>Project Extended Details</div>
+                <DescriptionContainer>
+                  {editingDetails ? (
+                    <DescriptionTextArea
+                      value={markdownDescription}
+                      rows={20}
+                      onChange={handleDescriptionChangesClick}
+                    />
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={parseMarkdown(
+                        markdownDescription,
+                      )}
+                    />
+                  )}
+                </DescriptionContainer>
               </RightSide>
             </ContentWrapper>
           </Fragment>

@@ -89,7 +89,7 @@ export const getProject: ApiResponse<ProjectDetailed> = {
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c57',
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
-        userId: '08d6c5c9-df95-b688-b09b-243fd0e32dfe',
+        userId: '08d6c5c9-df95-b688-b09b-243fd0e32da1',
         username: 'unicorn80',
         isOwner: false,
         timezone: 'America/Los_Angeles',
@@ -99,7 +99,7 @@ export const getProject: ApiResponse<ProjectDetailed> = {
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c57',
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
-        userId: '08d6c5c9-df95-b688-b09b-243fd0e32dfe',
+        userId: '08d6c5c9-df95-b688-b09b-243fd0e32da2',
         username: 'unicorn80',
         isOwner: false,
         timezone: 'America/Los_Angeles',

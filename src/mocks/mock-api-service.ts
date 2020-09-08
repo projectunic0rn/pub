@@ -12,11 +12,15 @@ import {
   getRecentDevs,
   userContact,
 } from './responses';
-import { Project, User, ChangePassword } from '@api';
+import { Project, User, ChangePassword, ProjectDetailed } from '@api';
 
 export class MockApiService {
   public async createProject(project: Project) {
     return createProject;
+  }
+
+  public async updateProject(project: ProjectDetailed) {
+    return project;
   }
 
   public async getProject(projectId: string) {
