@@ -236,7 +236,10 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         <Fragment>
                           {project.projectUsers.map((user) => {
                             return (
-                              <Link to={`/profile/${user.id}/`} key={user.id}>
+                              <Link
+                                to={`/profile/${user.userId}/`}
+                                key={user.userId}
+                              >
                                 <ImageContainer>
                                   <CircularImage
                                     src={
