@@ -230,7 +230,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         description={`Project Workspace for ${siteMetadata.title} website`}
       />
 
-      <FeedbackForm page="project page" />
+      <FeedbackForm />
 
       <Wrapper>
         <div style={{ color: '#E0311D' }}>
