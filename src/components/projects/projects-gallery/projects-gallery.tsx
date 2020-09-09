@@ -134,7 +134,7 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
     <Fragment>
       <Seo title="Projects" />
 
-      <FeedbackForm page="/projects" />
+      <FeedbackForm />
 
       <Wrapper>
         {success && (

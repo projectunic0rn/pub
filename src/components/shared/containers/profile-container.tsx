@@ -99,7 +99,7 @@ export const ProfileContainer: FC<ProfileContainerProps> = ({ id }) => {
 
   return (
     <Fragment>
-      <FeedbackForm page={`/profile/${user?.id}`} />
+      <FeedbackForm />
       <Wrapper>
         {isLoading && <Loader />}
         {error && (
