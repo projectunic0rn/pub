@@ -152,27 +152,27 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         setProject(project);
         setProjectOwner(projectOwner);
         setMarkdownDescription(project.extendedMarkdownDescription);
+
+        if (projectOwner === undefined) {
+          return;
+        }
+
+        if (!UserAuthHelper.isUserAuthenticated()) {
+          return;
+        }
+
+        const authedUserId = UserAuthHelper.getUserId();
+
+        if (authedUserId === projectOwner.userId) {
+          setSelfProject(true);
+        }
       } catch (err) {
         setError(err.message);
       }
     }
 
     fetchProject();
-
-    if (projectOwner === undefined) {
-      return;
-    }
-
-    if (!UserAuthHelper.isUserAuthenticated()) {
-      return;
-    }
-
-    const authedUserId = UserAuthHelper.getUserId();
-
-    if (authedUserId === projectOwner.userId) {
-      setSelfProject(true);
-    }
-  }, [projectOwner, props.projectId]);
+  }, [props.projectId]);
 
   const handleEditClick = () => {
     setEditingDetails(true);
