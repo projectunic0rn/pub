@@ -44,7 +44,7 @@ module.exports = Object.freeze({
     /** Text to be shown in the landing page heading. */
     tag: 'Build something awesome.',
     /** The description of the website. */
-    description: 'Build better, build build faster through collaboration.',
+    description: 'Build better, build faster through collaboration.',
     /** The url of the website. */
     siteUrl: process.env.BUILD_SITE_URL,
     logo: path.resolve(__dirname, 'src/images/logo.png'),
