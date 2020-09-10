@@ -44,8 +44,7 @@ module.exports = Object.freeze({
     /** Text to be shown in the landing page heading. */
     tag: 'Build something awesome.',
     /** The description of the website. */
-    description:
-      'Project Unicorn is a community where developers discover meaningful software projects and help each other build and ship them.',
+    description: 'Build better, build build faster through collaboration.',
     /** The url of the website. */
     siteUrl: process.env.BUILD_SITE_URL,
     logo: path.resolve(__dirname, 'src/images/logo.png'),

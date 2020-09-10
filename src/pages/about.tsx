@@ -24,19 +24,17 @@ const AboutPage: FC = () => {
         <PageTitle>About Us</PageTitle>
         <PageBody>
           <p>
-            Project Unicorn is a virtual co-working space of software developers
-            from around the world working together to create and deploy
-            meaningful software.
+            Project Unicorn is a community where developers come together to
+            collaborate on software.
           </p>
           <p>
             Our mission is to foster a community where creative individuals can
-            collaborate together to build real world applications. By joining
-            Project Unicorn we hope that we can help improve your technical,
+            collaborate and build real world software. By joining Project
+            Unicorn we hope that we can help improve your technical,
             communication, management and leadership skills while working
-            collaboratively with other members of the community. Project Unicorn
-            encourages everyone regardless of skills or background to join our
-            community and help build software they are passionate about with
-            others.
+            collaboratively with other developers. We encourage everyone
+            regardless of skills or background to join and help build software
+            they are excited about.
           </p>
         </PageBody>
       </Container>
