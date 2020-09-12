@@ -7,6 +7,7 @@ import React, {
   useState,
   useEffect,
   useContext,
+  Fragment,
 } from 'react';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
@@ -30,7 +31,7 @@ import {
   ServiceResolver,
 } from '@api';
 import { Seo } from '@components/shared';
-import { Form } from '@components/shared/form';
+import { Form, FeedbackForm } from '@components/shared/form';
 import { FormVal, Props } from '@utils';
 import { UserAuthHelper } from '@helpers';
 import { WorkspaceTypesContext } from '@contexts';
@@ -47,6 +48,7 @@ const FormWrapper = styled.div`
 `;
 
 const Wrapper = styled.section`
+  margin-top: 1.5em;
   background-color: ${({ theme }) => theme.colors.section};
   padding: ${({ theme }) => theme.boxes.padding.section.smallTop};
 
@@ -206,117 +208,123 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   };
 
   return (
-    <Wrapper>
-      <Seo title="Create A New Project" urlSlug="project/create/" />
+    <Fragment>
+      <FeedbackForm />
+      <Wrapper>
+        <Seo title="Create A New Project" urlSlug="project/create/" />
 
-      {error !== null && (
-        <Ribbon type="danger">
-          {error}
-          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
-      <FormWrapper>
-        <Form heading={'Create a New Project'}>
-          <FormLabel htmlFor="project-name">Project Name</FormLabel>
-          <FormInput
-            name="pName"
-            id="project-name"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={formInputs['pName'].val}
-            hasError={formErrors.includes('pName')}
-          />
-          {formErrors.includes('pName') && (
-            <Message variant="error" value="Project Name Required" />
-          )}
-          <FormHint>
-            Make your project name simple, specific and memorable
-          </FormHint>
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <FormTextArea
-            name="pDesc"
-            id="description"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={formInputs['pDesc'].val}
-            displayCharCount={true}
-            maxCharCount={280}
-            hasError={formErrors.includes('pDesc')}
-          />
-          {formErrors.includes('pDesc') && (
-            <Message variant="error" value="Project Description Required" />
-          )}
-          <FormHint>Describe your project in a single tweet</FormHint>
-          <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
-          <FormInput
-            name="pRepo"
-            id="project-repo"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pRepo')}
-          />
-          {formErrors.includes('pRepo') && (
-            <Message variant="error" value="Project Repo Required" />
-          )}
-          <FormHint>
-            Share your project repo (GitHub, GitLab etc), optional
-          </FormHint>
-          <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
-          <FormInput
-            name="pLaunch"
-            id="launch-date"
-            type="date"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pLaunch')}
-          />
-          {formErrors.includes('pLaunch') && (
-            <Message variant="error" value="Launch Date Required" />
-          )}
-          <FormHint>
-            Keep you and your team accountable with a launch date
-          </FormHint>
-
-          <FormLabel htmlFor="communication-platform">
-            Workspace Invitation Link
-          </FormLabel>
-          <FormInput
-            name="pComm"
-            id="communication-platform"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            hasError={formErrors.includes('pComm')}
-          />
-          {formErrors.includes('pComm') && (
-            <Message
-              variant="error"
-              value="Workspace invite link is required."
+        {error !== null && (
+          <Ribbon type="danger">
+            {error}
+            <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+        <FormWrapper>
+          <Form heading={'Create a New Project'}>
+            <FormLabel htmlFor="project-name">Project Name</FormLabel>
+            <FormInput
+              name="pName"
+              id="project-name"
+              type="text"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={formInputs['pName'].val}
+              hasError={formErrors.includes('pName')}
             />
-          )}
-          <FormHint>
-            Where will you communicate? Share the invite link to your workspace
-            (Slack, Discord, Gitter, etc.)
-          </FormHint>
-          <FormLabel htmlFor="technologies">Technologies</FormLabel>
-          <TechnologiesSelect
-            id="technologies"
-            setError={setError}
-            setTechnologies={handleSelectChange}
-          />
-          {formErrors.includes('pTech') && (
-            <Message variant="error" value="At least one technology required" />
-          )}
-          <FormHint>Add the technologies used on your project</FormHint>
-          <ButtonWrapper>
-            <ApiButton handleClick={handleClick} statusText="Creating...">
-              Create
-            </ApiButton>
-          </ButtonWrapper>
-        </Form>
-      </FormWrapper>
-    </Wrapper>
+            {formErrors.includes('pName') && (
+              <Message variant="error" value="Project Name Required" />
+            )}
+            <FormHint>
+              Make your project name simple, specific and memorable
+            </FormHint>
+            <FormLabel htmlFor="description">Description</FormLabel>
+            <FormTextArea
+              name="pDesc"
+              id="description"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={formInputs['pDesc'].val}
+              displayCharCount={true}
+              maxCharCount={280}
+              hasError={formErrors.includes('pDesc')}
+            />
+            {formErrors.includes('pDesc') && (
+              <Message variant="error" value="Project Description Required" />
+            )}
+            <FormHint>Describe your project in a single tweet</FormHint>
+            <FormLabel htmlFor="project-repo">Project Repo</FormLabel>
+            <FormInput
+              name="pRepo"
+              id="project-repo"
+              type="text"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              hasError={formErrors.includes('pRepo')}
+            />
+            {formErrors.includes('pRepo') && (
+              <Message variant="error" value="Project Repo Required" />
+            )}
+            <FormHint>
+              Share your project repo (GitHub, GitLab etc), optional
+            </FormHint>
+            <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
+            <FormInput
+              name="pLaunch"
+              id="launch-date"
+              type="date"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              hasError={formErrors.includes('pLaunch')}
+            />
+            {formErrors.includes('pLaunch') && (
+              <Message variant="error" value="Launch Date Required" />
+            )}
+            <FormHint>
+              Keep you and your team accountable with a launch date
+            </FormHint>
+
+            <FormLabel htmlFor="communication-platform">
+              Workspace Invitation Link
+            </FormLabel>
+            <FormInput
+              name="pComm"
+              id="communication-platform"
+              type="text"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              hasError={formErrors.includes('pComm')}
+            />
+            {formErrors.includes('pComm') && (
+              <Message
+                variant="error"
+                value="Workspace invite link is required."
+              />
+            )}
+            <FormHint>
+              Where will you communicate? Share the invite link to your
+              workspace (Slack, Discord, Gitter, etc.)
+            </FormHint>
+            <FormLabel htmlFor="technologies">Technologies</FormLabel>
+            <TechnologiesSelect
+              id="technologies"
+              setError={setError}
+              setTechnologies={handleSelectChange}
+            />
+            {formErrors.includes('pTech') && (
+              <Message
+                variant="error"
+                value="At least one technology required"
+              />
+            )}
+            <FormHint>Add the technologies used on your project</FormHint>
+            <ButtonWrapper>
+              <ApiButton handleClick={handleClick} statusText="Creating...">
+                Create
+              </ApiButton>
+            </ButtonWrapper>
+          </Form>
+        </FormWrapper>
+      </Wrapper>
+    </Fragment>
   );
 };

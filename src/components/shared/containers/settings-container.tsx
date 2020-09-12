@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
 
 import { BaseContainer } from './base-container';
 import { Ribbon, CloseButton } from '../ribbons';
 import { Loader } from '@components/shared';
+import { FeedbackForm } from '../form';
 
 type SettingsContainerProps = {
   error: string | null | undefined;
@@ -32,24 +33,28 @@ export const SettingsContainer: FC<SettingsContainerProps> = ({
   setSuccess,
 }) => {
   return (
-    <Wrapper>
-      {isLoading && <Loader />}
+    <Fragment>
+      <FeedbackForm />
 
-      {error && (
-        <Ribbon type="danger">
-          {error}{' '}
-          <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
+      <Wrapper>
+        {isLoading && <Loader />}
 
-      {success && (
-        <Ribbon type="success">
-          {success}{' '}
-          <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
-        </Ribbon>
-      )}
+        {error && (
+          <Ribbon type="danger">
+            {error}{' '}
+            <CloseButton onClick={() => setError(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
 
-      {!isLoading && <BaseContainer hasBorder>{children}</BaseContainer>}
-    </Wrapper>
+        {success && (
+          <Ribbon type="success">
+            {success}{' '}
+            <CloseButton onClick={() => setSuccess(null)}>&#10006;</CloseButton>
+          </Ribbon>
+        )}
+
+        {!isLoading && <BaseContainer hasBorder>{children}</BaseContainer>}
+      </Wrapper>
+    </Fragment>
   );
 };
