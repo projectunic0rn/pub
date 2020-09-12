@@ -11,6 +11,7 @@ import {
   ErrorResponse,
   ProjectDetailed,
   ProjectUserDetailed,
+  PatchOperation,
 } from '@api';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
@@ -113,7 +114,6 @@ const DescriptionContainer = styled.div`
   */
   * {
     margin-top: 0;
-    font-family: sans-serif;
   }
 `;
 
@@ -135,6 +135,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [markdownDescription, setMarkdownDescription] = useState('');
   // indicate if project belongs to viewing user
   const [selfProject, setSelfProject] = useState(false);
+  const [activeEdits, setActiveEdits] = useState(false);
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -184,18 +185,22 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
   const handleSaveChangesClick = async () => {
     const api = ServiceResolver.apiResolver();
-    if (project == undefined) {
+    if (project === undefined || project.id === undefined) {
       return;
     }
 
-    const projectToUpdate: ProjectDetailed = {
-      ...project,
-      extendedMarkdownDescription: markdownDescription,
-    };
+    const patch: PatchOperation[] = [
+      {
+        op: 'replace',
+        path: '/extendedMarkdownDescription',
+        value: markdownDescription,
+      },
+    ];
 
     try {
-      const response = (await api.updateProject(
-        projectToUpdate,
+      const response = (await api.patchProject(
+        project.id,
+        patch,
       )) as ApiResponse<ProjectDetailed | ErrorResponse>;
       const updatedProject = response.data as ProjectDetailed;
       const projectOwner = updatedProject.projectUsers.find((p) => p.isOwner);
@@ -203,6 +208,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
       setProjectOwner(projectOwner);
       setMarkdownDescription(updatedProject.extendedMarkdownDescription);
       setEditingDetails(false);
+      setActiveEdits(false);
     } catch (err) {
       setError(err.message);
     }
@@ -212,12 +218,14 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setMarkdownDescription(event.target.value);
+    setActiveEdits(true);
   };
 
   const parseMarkdown = (rawMarkdownDescription: string) => {
     if (rawMarkdownDescription === null) {
       return { __html: '<div></div>' };
     }
+
     const md = new MarkdownIt();
     const result = md.render(rawMarkdownDescription);
     return { __html: result };
@@ -371,7 +379,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                           </Fragment>
                         ) : (
                           <DetailsTitleEdit onClick={handleEditClick}>
-                            Edit
+                            {activeEdits ? 'Continue Edits' : 'Edit'}
                           </DetailsTitleEdit>
                         )}
                         <DetailsTitleEditParen>)</DetailsTitleEditParen>

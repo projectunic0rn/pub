@@ -6,7 +6,7 @@ import {
   User,
   Username,
   ChangePassword,
-  ProjectDetailed,
+  PatchOperation,
 } from './types';
 import { SessionStorageHelper } from '@helpers';
 import { ProfilingUtils } from '@utils';
@@ -44,11 +44,11 @@ export class ApiService {
     return result;
   }
 
-  public async updateProject(project: ProjectDetailed) {
-    const endpoint = `${this.apiEndpoint}/projects`;
-    this.profiler.setReportInfo(endpoint, 'updateProject');
+  public async patchProject(projectId: string, patch: PatchOperation[]) {
+    const endpoint = `${this.apiEndpoint}/projects/${projectId}`;
+    this.profiler.setReportInfo(endpoint, 'patchProject');
     this.profiler.startTimeRecord();
-    const result = await HttpClient.put(endpoint, this.headers, project);
+    const result = await HttpClient.patch(endpoint, this.headers, patch);
     this.profiler.endTimeRecord();
     return result;
   }

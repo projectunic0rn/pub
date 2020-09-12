@@ -69,6 +69,21 @@ export class HttpClient {
     return await HttpClient.makeRequest(request);
   }
 
+  public static async patch(
+    endpoint: string,
+    headers = {},
+    body: object = {},
+  ): Promise<unknown> {
+    const request = new Request(endpoint, {
+      body: JSON.stringify(body),
+      headers,
+      method: 'PATCH',
+      mode: 'cors',
+    });
+
+    return await HttpClient.makeRequest(request);
+  }
+
   public static async delete(endpoint: string, headers = {}): Promise<unknown> {
     const request = new Request(endpoint, {
       body: null,
