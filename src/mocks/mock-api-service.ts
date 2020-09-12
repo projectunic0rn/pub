@@ -13,15 +13,14 @@ import {
   userContact,
   updatedProject,
 } from './responses';
-import { Project, User, ChangePassword, ProjectDetailed } from '@api';
+import { Project, User, ChangePassword, PatchOperation } from '@api';
 
 export class MockApiService {
   public async createProject(project: Project) {
     return createProject;
   }
 
-  public async updateProject(project: ProjectDetailed) {
-    updatedProject.data = project;
+  public async patchProject(projectId: string, patch: PatchOperation[]) {
     return updatedProject;
   }
 
