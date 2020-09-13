@@ -7,7 +7,6 @@ interface MultiTabMenuProps {
 
 const MenuItems = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 const Item = styled.div<{ active: boolean }>`
@@ -15,6 +14,7 @@ const Item = styled.div<{ active: boolean }>`
   padding-bottom: 1px;
   cursor: pointer;
   font-weight: 600;
+  margin-right: 1em;
 `;
 
 export const MultiTabMenu: FC<MultiTabMenuProps> = (props) => {

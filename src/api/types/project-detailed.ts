@@ -1,3 +1,4 @@
+import { ProjectCollaboratorSuggestion } from './project-collaborator-suggestion';
 import { ProjectTechnology } from './project-technology';
 import { ProjectUserDetailed } from './project-user-detailed';
 
@@ -13,4 +14,5 @@ export interface ProjectDetailed {
   launchDate: Date;
   projectTechnologies: ProjectTechnology[];
   projectUsers: ProjectUserDetailed[];
+  projectCollaboratorSuggestions: ProjectCollaboratorSuggestion[];
 }

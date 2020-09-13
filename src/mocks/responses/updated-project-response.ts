@@ -106,5 +106,14 @@ export const updatedProject: ApiResponse<ProjectDetailed> = {
         fullName: 'roy',
       },
     ],
+    projectCollaboratorSuggestions: [
+      {
+        id: '08d6c5e7-6100-c770-61c3-834f6474a77b',
+        userId: '08d6c5e7-6100-c770-61c3-834f6474a77c',
+        username: 'roy',
+        profilePictureUrl:
+          'https://lh3.googleusercontent.com/a-/AOh14GieAe3KQueYz4OmZRJ1QXMBgcn7Ij7fLDnWmHAYMQ=s88-c-k-c0x00ffffff-no-rj-mo',
+      },
+    ],
   },
 };
