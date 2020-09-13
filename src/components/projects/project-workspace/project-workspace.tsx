@@ -313,16 +313,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                       Join Team
                     </ApiButton>
                   </ButtonWrapper>
-                  <ButtonWrapper>
-                    <ApiButton handleClick={noop} statusText="Fanning...">
-                      Become Fan
-                    </ApiButton>
-                  </ButtonWrapper>
                 </Buttons>
                 <MenuWrapper>
-                  <MultiTabMenu
-                    tabs={['Team', 'Milestones', 'Fans', 'Workspace']}
-                  >
+                  <MultiTabMenu tabs={['Team', 'Workspace']}>
                     <TabContentContainer>
                       {project.projectUsers.length > 0 ? (
                         <Fragment>
@@ -349,14 +342,39 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         <div>Currently no members.</div>
                       )}
                     </TabContentContainer>
-                    <div>Milestones</div>
-                    <div>Fans</div>
                     <div>Workspace</div>
                   </MultiTabMenu>
                 </MenuWrapper>
                 <MenuWrapper>
                   <MultiTabMenu tabs={['Collaborator Suggestions']}>
-                    <div>Collaborator Suggestions</div>
+                    <TabContentContainer>
+                      {project.projectCollaboratorSuggestions.length > 0 ? (
+                        <Fragment>
+                          {project.projectCollaboratorSuggestions.map(
+                            (user) => {
+                              return (
+                                <Link
+                                  to={`/profile/${user.userId}/`}
+                                  key={user.userId}
+                                >
+                                  <ImageContainer>
+                                    <CircularImage
+                                      src={
+                                        user.profilePictureUrl ||
+                                        defaultProfileImage
+                                      }
+                                    />
+                                    <div>{user.username}</div>
+                                  </ImageContainer>
+                                </Link>
+                              );
+                            },
+                          )}
+                        </Fragment>
+                      ) : (
+                        <div>Currently no collaborator suggestions.</div>
+                      )}
+                    </TabContentContainer>
                   </MultiTabMenu>
                 </MenuWrapper>
               </LeftSide>
