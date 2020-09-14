@@ -36,15 +36,10 @@ describe('project workspace page tests', () => {
     );
     // Act
     const joinButton = await findByText('Join Team');
-    const fanButton = await findByText('Become Fan');
     // Assert
     expect(joinButton).toBeDefined();
     expect(joinButton).toBeInTheDocument();
     expect(joinButton).toBeVisible();
-
-    expect(fanButton).toBeDefined();
-    expect(fanButton).toBeInTheDocument();
-    expect(fanButton).toBeVisible();
   });
 
   test('project owner is prompted to save or preview changes once edit details is clicked', async () => {
