@@ -47,22 +47,11 @@ export const getProject: ApiResponse<ProjectDetailed> = {
       {
         id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c53',
         projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
-        userId: '08d73d50-6ff3-594e-1014-059b9f6d9318',
-        username: 'roy_owner',
+        userId: '08d73d50-6ff3-594e-1014-059b9f6d9317',
+        username: 'roy',
         isOwner: true,
         timezone: 'America/Los_Angeles',
-        fullName: 'roy_owner',
-        profilePictureUrl:
-          'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
-      },
-      {
-        id: '08d6c5e7-618f-0a0b-f6bb-b8600e4e4c53',
-        projectId: '08d6c5e7-6100-c770-61c3-834f6474a77b',
-        userId: '08d73d50-6ff3-594e-1014-059b9f6d9316',
-        username: 'roy_not_owner',
-        isOwner: false,
-        timezone: 'America/Los_Angeles',
-        fullName: 'roy_not_owner',
+        fullName: 'roy',
         profilePictureUrl:
           'https://ca.slack-edge.com/TBUA4NSQZ-UBW8QQG86-d975c9e1b069-512',
       },
