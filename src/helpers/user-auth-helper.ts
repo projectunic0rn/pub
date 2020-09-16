@@ -1,3 +1,5 @@
+import { navigate } from 'gatsby';
+
 import { SessionStorageHelper } from './session-storage-helper';
 import { JwtTokenHelper } from './jwt-token-helper';
 
@@ -17,5 +19,11 @@ export class UserAuthHelper {
 
   public static getUserId() {
     return this.getMember().id;
+  }
+
+  public static redirectToSignIn() {
+    navigate('/signin', {
+      state: { message: 'You need to be signed in to join a project' },
+    });
   }
 }

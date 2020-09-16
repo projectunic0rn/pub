@@ -12,6 +12,7 @@ import {
   ProjectDetailed,
   ProjectUserDetailed,
   PatchOperation,
+  ProjectUser,
 } from '@api';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
@@ -68,9 +69,17 @@ const DetailsTitleEdit = styled.span`
   cursor: pointer;
 `;
 
-const Icon = styled.img`
+const Icon = styled.img<{ clickable: boolean }>`
   height: 1.5em;
   margin: 0.7em 1.2em 0.7em 0;
+  filter: ${({ clickable = false }) =>
+    clickable ? 'grayscale(0%)' : 'grayscale(100%)'};
+
+  @media (hover: hover) {
+    &:hover {
+      cursor: ${({ clickable = false }) => (clickable ? 'pointer' : 'default')};
+    }
+  }
 `;
 
 const Buttons = styled.div`
@@ -135,6 +144,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [markdownDescription, setMarkdownDescription] = useState('');
   // indicate if project belongs to viewing user
   const [selfProject, setSelfProject] = useState(false);
+  const [memberOnProject, setMemberOnProject] = useState(false);
   const [activeEdits, setActiveEdits] = useState(false);
 
   useEffect(() => {
@@ -163,6 +173,18 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         }
 
         const authedUserId = UserAuthHelper.getUserId();
+
+        const projectMember = project.projectUsers.find(
+          (p) => p.userId === authedUserId,
+        );
+
+        if (projectMember) {
+          setMemberOnProject(true);
+        }
+
+        if (projectOwner === undefined) {
+          return;
+        }
 
         if (authedUserId === projectOwner.userId) {
           setSelfProject(true);
@@ -231,6 +253,81 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     return { __html: result };
   };
 
+  const handleJoinProject = async () => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      UserAuthHelper.redirectToSignIn();
+      return;
+    }
+
+    if (project === undefined) {
+      return;
+    }
+
+    const api = ServiceResolver.apiResolver();
+    const projectUser: ProjectUser = {
+      projectId: project.id,
+      isOwner: false,
+      userId: UserAuthHelper.getUserId(),
+    };
+
+    try {
+      const response = (await api.joinProject(projectUser)) as ApiResponse<
+        ProjectUser | ErrorResponse
+      >;
+
+      const responseProjectUser = response.data as ProjectUser;
+
+      const newProjectUser: ProjectUserDetailed = {
+        id: responseProjectUser.id,
+        userId: responseProjectUser.userId,
+        projectId: project.id,
+        isOwner: false,
+        profilePictureUrl: '',
+        username: responseProjectUser.username,
+      };
+
+      project.projectUsers.push(newProjectUser);
+      setProject(project);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleLeaveProject = async () => {
+    if (!UserAuthHelper.isUserAuthenticated()) {
+      UserAuthHelper.redirectToSignIn();
+      return;
+    }
+
+    if (project === undefined) {
+      return;
+    }
+
+    const api = ServiceResolver.apiResolver();
+
+    try {
+      const authedUserId = UserAuthHelper.getUserId();
+
+      const projectUserIndex = project.projectUsers.findIndex(
+        (p) => p.userId === authedUserId,
+      );
+
+      if (projectUserIndex === -1) {
+        return;
+      }
+
+      (await api.leaveProject(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        project.projectUsers[projectUserIndex].id!,
+      )) as ApiResponse<ProjectUser | ErrorResponse>;
+
+      project.projectUsers.splice(projectUserIndex, 1);
+      setProject(project);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <Fragment>
       <Seo
@@ -294,23 +391,33 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <div>Timezone: {projectOwner?.timezone}</div>
                   )}
                 <div>
-                  <a href={project.repositoryUrl}>
-                    <Icon src={gitIcon} />
+                  <a href={memberOnProject ? project.repositoryUrl : '#'}>
+                    <Icon src={gitIcon} clickable={memberOnProject} />
                   </a>
-                  <a href={project.communicationPlatformUrl}>
+                  <a
+                    href={
+                      memberOnProject ? project.communicationPlatformUrl : '#'
+                    }
+                  >
                     <Icon
                       src={
                         workspaceTypesContext.workspaceLogos[
                           project.communicationPlatform
                         ]
                       }
+                      clickable={memberOnProject}
                     />
                   </a>
                 </div>
                 <Buttons>
                   <ButtonWrapper>
-                    <ApiButton handleClick={noop} statusText="Joining...">
-                      Join Team
+                    <ApiButton
+                      handleClick={
+                        memberOnProject ? handleLeaveProject : handleJoinProject
+                      }
+                      statusText={memberOnProject ? 'Leaving...' : 'Joining...'}
+                    >
+                      {memberOnProject ? 'Leave Team' : 'Join Team'}
                     </ApiButton>
                   </ButtonWrapper>
                 </Buttons>

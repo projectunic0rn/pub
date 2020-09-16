@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React, { FC, Fragment } from 'react';
 import styled from 'styled-components';
 
@@ -5,6 +6,7 @@ type CardTitleProps = {
   name: string;
   communicationPlatformUrl?: string;
   workspaceLogo: string;
+  projectId: string;
   clickable?: boolean;
 };
 
@@ -36,11 +38,20 @@ const Icon = styled.img.attrs(() => ({
   }
 `;
 
+const ProjectLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.base};
+  text-decoration: underline;
+  &:visited {
+    color: ${({ theme }) => theme.colors.base};
+  }
+`;
+
 const CardTitle: FC<CardTitleProps> = ({
   name,
   communicationPlatformUrl,
   workspaceLogo,
   clickable = false,
+  projectId,
 }) => {
   const IconWrapper: FC = ({ children }) =>
     clickable ? (
@@ -58,7 +69,7 @@ const CardTitle: FC<CardTitleProps> = ({
 
   return (
     <Wrapper>
-      {name}
+      <ProjectLink to={`/projects/${projectId}`}>{name}</ProjectLink>
       <IconWrapper>
         <Icon src={workspaceLogo} clickable={clickable} />
       </IconWrapper>

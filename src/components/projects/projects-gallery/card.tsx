@@ -1,4 +1,3 @@
-import { navigate } from 'gatsby';
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -82,15 +81,9 @@ const Card: FC<CardProps> = ({ content, setError, workspaceLogo }) => {
     );
   }, [content.projectUsers, userId]);
 
-  const redirectToSignIn = () => {
-    navigate('/signin', {
-      state: { message: 'You need to be signed in to join a project' },
-    });
-  };
-
   const leaveProject = async (project: Project) => {
     if (!UserAuthHelper.isUserAuthenticated()) {
-      redirectToSignIn();
+      UserAuthHelper.redirectToSignIn();
       return;
     }
 
@@ -119,7 +112,7 @@ const Card: FC<CardProps> = ({ content, setError, workspaceLogo }) => {
 
   const joinProject = async (project: Project) => {
     if (!UserAuthHelper.isUserAuthenticated()) {
-      redirectToSignIn();
+      UserAuthHelper.redirectToSignIn();
       return;
     }
 
@@ -155,6 +148,7 @@ const Card: FC<CardProps> = ({ content, setError, workspaceLogo }) => {
     <Wrapper data-testid="project">
       <CardTitle
         name={content.name}
+        projectId={content.id || ''}
         workspaceLogo={workspaceLogo}
         clickable={hasMemberJoinedProject}
         communicationPlatformUrl={content.communicationPlatformUrl}
