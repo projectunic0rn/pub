@@ -253,6 +253,25 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     return { __html: result };
   };
 
+  const handleProjectUpdate = async () => {
+    const api = ServiceResolver.apiResolver();
+
+    if (!props.projectId) {
+      return;
+    }
+
+    try {
+      const response = (await api.getProject(props.projectId)) as ApiResponse<
+        ProjectDetailed | ErrorResponse
+      >;
+      const project = response.data as ProjectDetailed;
+
+      setProject(project);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const handleJoinProject = async () => {
     if (!UserAuthHelper.isUserAuthenticated()) {
       UserAuthHelper.redirectToSignIn();
@@ -271,23 +290,12 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     };
 
     try {
-      const response = (await api.joinProject(projectUser)) as ApiResponse<
+      (await api.joinProject(projectUser)) as ApiResponse<
         ProjectUser | ErrorResponse
       >;
 
-      const responseProjectUser = response.data as ProjectUser;
-
-      const newProjectUser: ProjectUserDetailed = {
-        id: responseProjectUser.id,
-        userId: responseProjectUser.userId,
-        projectId: project.id,
-        isOwner: false,
-        profilePictureUrl: '',
-        username: responseProjectUser.username,
-      };
-
-      project.projectUsers.push(newProjectUser);
-      setProject(project);
+      handleProjectUpdate();
+      setMemberOnProject(true);
     } catch (err) {
       setError(err.message);
     }
@@ -321,8 +329,8 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         project.projectUsers[projectUserIndex].id!,
       )) as ApiResponse<ProjectUser | ErrorResponse>;
 
-      project.projectUsers.splice(projectUserIndex, 1);
-      setProject(project);
+      handleProjectUpdate();
+      setMemberOnProject(false);
     } catch (err) {
       setError(err.message);
     }

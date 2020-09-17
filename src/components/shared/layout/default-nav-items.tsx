@@ -11,7 +11,7 @@ export const defaultNavItems: NavItem[] = [
   {
     item: <Link to="/blog">Blog</Link>,
     key: '/blog',
-    show: Show.Always,
+    show: Show.Never,
   },
   {
     item: <Link to="/projects">Projects</Link>,
