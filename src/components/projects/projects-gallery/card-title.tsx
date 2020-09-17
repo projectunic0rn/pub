@@ -57,7 +57,7 @@ const CardTitle: FC<CardTitleProps> = ({
     clickable ? (
       <a
         href={communicationPlatformUrl}
-        title={`Communication platform link for ${name}`}
+        title={`Workspace link for ${name}`}
         target="_blank"
         rel="noopener noreferrer"
       >

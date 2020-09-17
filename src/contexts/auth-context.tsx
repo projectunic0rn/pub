@@ -106,9 +106,14 @@ export const AuthProvider: FC = (props) => {
       if (isUserAuthenticated) {
         const response = await getUser();
         const user = response.data as User;
-        defaultAuthContextState.member = response.data as User;
-        defaultAuthContextState.avatar =
-          user.profilePictureUrl || defaultProfileImage;
+        // jwt token validation may fail resulting
+        // in console error. in this case fallback
+        // on default authContext.
+        if (user !== null) {
+          defaultAuthContextState.member = response.data as User;
+          defaultAuthContextState.avatar =
+            user.profilePictureUrl || defaultProfileImage;
+        }
       }
       setAuthContextState(defaultAuthContextState);
     };
