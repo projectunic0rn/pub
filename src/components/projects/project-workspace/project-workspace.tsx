@@ -21,7 +21,6 @@ import { gitIcon, defaultProfileImage } from '@images';
 import { WorkspaceTypesContext } from '@contexts';
 import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
-import { noop } from 'lodash';
 import { UserAuthHelper } from '@helpers';
 
 interface ProjectWorkspaceProps {
@@ -370,17 +369,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
           <Loader />
         ) : (
           <Fragment>
-            <Title>
-              {project.name}
-              {selfProject && (
-                <Fragment>
-                  {' '}
-                  <DetailsTitleEditParen>(</DetailsTitleEditParen>
-                  <DetailsTitleEdit onClick={noop}>Manage</DetailsTitleEdit>
-                  <DetailsTitleEditParen>)</DetailsTitleEditParen>
-                </Fragment>
-              )}
-            </Title>
+            <Title>{project.name}</Title>
             <hr></hr>
             <ContentWrapper>
               <LeftSide>
