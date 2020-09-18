@@ -462,6 +462,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                       {project.projectCollaboratorSuggestions.length > 0 ? (
                         <Fragment>
                           {project.projectCollaboratorSuggestions
+                            .reverse()
                             .slice(0, 10)
                             .map((user) => {
                               return (
