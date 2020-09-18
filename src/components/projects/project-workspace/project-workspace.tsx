@@ -39,10 +39,29 @@ const ContentWrapper = styled.div`
 `;
 
 const LeftSide = styled.div`
-  flex-basis: 29%;
+  flex-basis: 100%;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    flex-basis: 29%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.medium}) {
+    flex-basis: 29%;
+  }
 `;
+
 const RightSide = styled.div`
-  flex-basis: 65%;
+  display: none;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.small}) {
+    flex-basis: 65%;
+    display: inline;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.width.medium}) {
+    flex-basis: 65%;
+    display: inline;
+  }
 `;
 
 const Description = styled.p`
@@ -345,18 +364,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
       <FeedbackForm />
 
       <Wrapper>
-        <div style={{ color: '#E0311D' }}>
-          Project workspace pages are a work in progress. Share feedback on{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://xd.adobe.com/spec/403111eb-671b-48f1-4aa1-a43996cf2370-3600/"
-          >
-            current design
-          </a>
-          .
-        </div>
-
         {error && (
           <Ribbon type="danger">
             {error}{' '}
@@ -454,8 +461,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <TabContentContainer>
                       {project.projectCollaboratorSuggestions.length > 0 ? (
                         <Fragment>
-                          {project.projectCollaboratorSuggestions.map(
-                            (user) => {
+                          {project.projectCollaboratorSuggestions
+                            .slice(0, 10)
+                            .map((user) => {
                               return (
                                 <Link
                                   to={`/profile/${user.userId}/`}
@@ -472,8 +480,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                                   </ImageContainer>
                                 </Link>
                               );
-                            },
-                          )}
+                            })}
                         </Fragment>
                       ) : (
                         <div>Currently no collaborator suggestions.</div>
