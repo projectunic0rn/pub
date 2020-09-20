@@ -14,7 +14,7 @@ export const getWorkspaceTypes: ApiResponse<WorkspaceType[]> = {
     },
     {
       name: 'other',
-      logoUrl: '',
+      logoUrl: 'https://i.imgur.com/887QGU1.png',
     },
   ],
 };
