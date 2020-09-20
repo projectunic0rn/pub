@@ -414,9 +414,11 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <div>Timezone: {projectOwner?.timezone}</div>
                   )}
                 <div>
-                  <a href={memberOnProject ? project.repositoryUrl : '#'}>
-                    <Icon src={gitIcon} clickable={memberOnProject} />
-                  </a>
+                  {project.repositoryUrl !== '' && (
+                    <a href={memberOnProject ? project.repositoryUrl : '#'}>
+                      <Icon src={gitIcon} clickable={memberOnProject} />
+                    </a>
+                  )}
                   <a
                     href={
                       memberOnProject ? project.communicationPlatformUrl : '#'
