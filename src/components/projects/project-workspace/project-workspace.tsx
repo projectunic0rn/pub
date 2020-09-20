@@ -13,6 +13,7 @@ import {
   ProjectUserDetailed,
   PatchOperation,
   ProjectUser,
+  WorkspaceInfo,
 } from '@api';
 import { useSiteMetadata } from '@hooks';
 import styled from 'styled-components';
@@ -164,9 +165,12 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [selfProject, setSelfProject] = useState(false);
   const [memberOnProject, setMemberOnProject] = useState(false);
   const [activeEdits, setActiveEdits] = useState(false);
+  const [workspaceInfo, setWorkspaceInfo] = useState<WorkspaceInfo>();
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
+    const workspaceService = ServiceResolver.workspaceServiceResolver();
+
     async function fetchProject() {
       try {
         if (props.projectId == undefined) {
@@ -175,12 +179,17 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         const response = (await api.getProject(props.projectId)) as ApiResponse<
           ProjectDetailed | ErrorResponse
         >;
+
         const project = response.data as ProjectDetailed;
         const projectOwner = project.projectUsers.find((p) => p.isOwner);
+        const workspaceInfo = await workspaceService.getWorkspaceInfo(
+          project.communicationPlatform,
+        );
 
         setProject(project);
         setProjectOwner(projectOwner);
         setMarkdownDescription(project.extendedMarkdownDescription);
+        setWorkspaceInfo(workspaceInfo);
 
         if (projectOwner === undefined) {
           return;
@@ -453,7 +462,17 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         <div>Currently no members.</div>
                       )}
                     </TabContentContainer>
-                    <div>Workspace</div>
+                    <TabContentContainer>
+                      {selfProject ? (
+                        <div>
+                          Share some of the converations happening in your
+                          workspace. Start by installing the{' '}
+                          <a href={workspaceInfo?.installUrl}>workspace app</a>.
+                        </div>
+                      ) : (
+                        <div>Currently no workspace activity to share.</div>
+                      )}
+                    </TabContentContainer>
                   </MultiTabMenu>
                 </MenuWrapper>
                 <MenuWrapper>

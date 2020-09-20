@@ -3,12 +3,14 @@ import {
   AuthService,
   ProfilingService,
   StackExchangeService,
+  WorkspaceService,
 } from './';
 import {
   MockApiService,
   MockAuthService,
   MockProfilingService,
   MockStackExchangeService,
+  MockWorkspaceService,
 } from '@mocks';
 
 export class ServiceResolver {
@@ -20,6 +22,9 @@ export class ServiceResolver {
   private static stackExchangeServiceInstance?:
     | MockStackExchangeService
     | StackExchangeService;
+  private static workspaceServiceInstance?:
+    | MockWorkspaceService
+    | WorkspaceService;
 
   public static apiResolver() {
     return this.getApiServiceInstance();
@@ -30,11 +35,15 @@ export class ServiceResolver {
   }
 
   public static profilingResolver() {
-    return this.getProfilingServiceInstancxe();
+    return this.getProfilingServiceInstance();
   }
 
   public static stackExchangeResolver() {
     return this.getStackExchangeServiceInstance();
+  }
+
+  public static workspaceServiceResolver() {
+    return this.getWorkspaceServiceInstance();
   }
 
   private static getApiServiceInstance() {
@@ -55,7 +64,7 @@ export class ServiceResolver {
     return this.authServiceInstance;
   }
 
-  private static getProfilingServiceInstancxe() {
+  private static getProfilingServiceInstance() {
     if (this.profilingServiceInstance === undefined) {
       this.profilingServiceInstance = this.useMock()
         ? new MockProfilingService()
@@ -71,6 +80,15 @@ export class ServiceResolver {
         : new StackExchangeService();
     }
     return this.stackExchangeServiceInstance;
+  }
+
+  private static getWorkspaceServiceInstance() {
+    if (this.workspaceServiceInstance === undefined) {
+      this.workspaceServiceInstance = this.useMock()
+        ? new MockWorkspaceService()
+        : new WorkspaceService();
+    }
+    return this.workspaceServiceInstance;
   }
 
   private static useMock() {

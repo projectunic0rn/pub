@@ -19,3 +19,4 @@ export * from './user-technology';
 export * from './user-validation';
 export * from './reset-password';
 export * from './reset-password-request';
+export * from './workspace-info';
