@@ -12,3 +12,4 @@ export * from './user-contact';
 export * from './validate-user';
 export * from './get-workspace-types';
 export * from './get-recent-devs';
+export * from './get-workspace-info';
