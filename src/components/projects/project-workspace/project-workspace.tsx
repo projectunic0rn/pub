@@ -165,7 +165,11 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const [selfProject, setSelfProject] = useState(false);
   const [memberOnProject, setMemberOnProject] = useState(false);
   const [activeEdits, setActiveEdits] = useState(false);
-  const [workspaceInfo, setWorkspaceInfo] = useState<WorkspaceInfo>();
+  const [workspaceInfo, setWorkspaceInfo] = useState<WorkspaceInfo>({
+    name: '',
+    installUrl: '',
+    version: '',
+  });
 
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
@@ -182,14 +186,20 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
         const project = response.data as ProjectDetailed;
         const projectOwner = project.projectUsers.find((p) => p.isOwner);
-        const workspaceInfo = await workspaceService.getWorkspaceInfo(
-          project.communicationPlatform,
-        );
+
+        if (project.communicationPlatform !== 'other') {
+          // workspace does not have associated workspace app if
+          // project.communicationPlatform so don't execute this api
+          // call
+          const workspaceInfo = await workspaceService.getWorkspaceInfo(
+            project.communicationPlatform,
+          );
+          setWorkspaceInfo(workspaceInfo);
+        }
 
         setProject(project);
         setProjectOwner(projectOwner);
         setMarkdownDescription(project.extendedMarkdownDescription);
-        setWorkspaceInfo(workspaceInfo);
 
         if (projectOwner === undefined) {
           return;
@@ -464,11 +474,34 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     </TabContentContainer>
                     <TabContentContainer>
                       {selfProject ? (
-                        <div>
-                          Share some of the converations happening in your
-                          workspace. Start by installing the{' '}
-                          <a href={workspaceInfo?.installUrl}>workspace app</a>.
-                        </div>
+                        <Fragment>
+                          {workspaceInfo.name === '' ? (
+                            <div>
+                              This tab lets you share the conversations
+                              happening inside your projects workspace. We
+                              currently do not have a workspace app for{' '}
+                              {
+                                new URL(project.communicationPlatformUrl)
+                                  .hostname
+                              }
+                              . Currently supported workspaces include{' '}
+                              {Object.keys(workspaceTypesContext.workspaceLogos)
+                                .join(', ')
+                                .replace(', other', '')}
+                              . Send us feedback if you would like to see
+                              support.
+                            </div>
+                          ) : (
+                            <div>
+                              Share some of the conversations happening in your
+                              workspace. Start by installing the{' '}
+                              <a href={workspaceInfo?.installUrl}>
+                                {project.communicationPlatform} app
+                              </a>{' '}
+                              on your workspace.
+                            </div>
+                          )}
+                        </Fragment>
                       ) : (
                         <div>Currently no workspace activity to share.</div>
                       )}
