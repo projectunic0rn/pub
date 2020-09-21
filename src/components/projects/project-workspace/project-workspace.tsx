@@ -23,6 +23,7 @@ import { WorkspaceTypesContext } from '@contexts';
 import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
 import { UserAuthHelper } from '@helpers';
+import { isValidUrl } from '@utils/validation-utils';
 
 interface ProjectWorkspaceProps {
   projectId?: string;
