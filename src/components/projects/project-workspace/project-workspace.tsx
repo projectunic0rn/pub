@@ -23,7 +23,6 @@ import { WorkspaceTypesContext } from '@contexts';
 import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
 import { UserAuthHelper } from '@helpers';
-import { isValidUrl } from '@utils/validation-utils';
 
 interface ProjectWorkspaceProps {
   projectId?: string;
@@ -483,7 +482,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                               This tab lets you share the conversations
                               happening inside your projects workspace. We
                               currently do not have a workspace app for{' '}
-                              {isValidUrl('invalid link')
+                              {isValidUrl(project.communicationPlatformUrl)
                                 ? new URL(project.communicationPlatformUrl)
                                     .hostname
                                 : 'your workspace'}
