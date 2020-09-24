@@ -47,3 +47,11 @@ export function getNavigatorInfo(): NavigatorInfo {
 
   return navigatorInfo;
 }
+
+export function getWindowHeightWidthInfo(): string {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  return `width: ${window.innerWidth}, height: ${window.innerHeight}`;
+}
