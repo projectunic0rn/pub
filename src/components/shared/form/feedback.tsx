@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { TextArea } from './controls2';
 import { ApiButton } from '../buttons';
 import { SecondaryButton } from '../buttons/secondary-button';
-import { noop, getNavigatorInfo } from '@utils';
+import { noop, getNavigatorInfo, getWindowHeightWidthInfo } from '@utils';
 import { Ribbon, CloseButton, Wrapper } from '@components/shared';
 import { ApiResponse, ErrorResponse, Feedback, ServiceResolver } from '@api';
 import { UserAuthHelper } from '@helpers';
@@ -84,12 +84,14 @@ export const FeedbackForm: FC = () => {
 
     // Add Page Info
     additionalFeedbackInfo += `Path: ${windowPath}\n`;
-    // Add Browser Info
+    // Add Browser Navigator Info
     const navigatorInfo = getNavigatorInfo();
     for (const [key, value] of Object.entries(navigatorInfo)) {
       additionalFeedbackInfo += `${key}: ${value}\n`;
     }
 
+    // Add browser height info
+    additionalFeedbackInfo += getWindowHeightWidthInfo();
     // Add App Version
     additionalFeedbackInfo = additionalFeedbackInfo += `app version: v${siteMetadata.version}\n`;
 
