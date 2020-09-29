@@ -202,10 +202,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         setProjectOwner(projectOwner);
         setMarkdownDescription(project.extendedMarkdownDescription);
 
-        if (projectOwner === undefined) {
-          return;
-        }
-
         if (!UserAuthHelper.isUserAuthenticated()) {
           return;
         }
