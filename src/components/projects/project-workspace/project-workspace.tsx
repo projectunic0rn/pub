@@ -188,6 +188,10 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
         const project = response.data as ProjectDetailed;
         const projectOwner = project.projectUsers.find((p) => p.isOwner);
 
+        setProject(project);
+        setProjectOwner(projectOwner);
+        setMarkdownDescription(project.extendedMarkdownDescription);
+
         if (project.communicationPlatform !== 'other') {
           // workspace does not have associated workspace app if
           // project.communicationPlatform so don't execute this api
@@ -197,10 +201,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
           );
           setWorkspaceInfo(workspaceInfo);
         }
-
-        setProject(project);
-        setProjectOwner(projectOwner);
-        setMarkdownDescription(project.extendedMarkdownDescription);
 
         if (!UserAuthHelper.isUserAuthenticated()) {
           return;

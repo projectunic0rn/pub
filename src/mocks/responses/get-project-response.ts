@@ -8,7 +8,6 @@ export const getProject: ApiResponse<ProjectDetailed> = {
     description:
       'A frontend to streamline the starting and joining of projects on the project unicorn slack team.',
     extendedMarkdownDescription: '**Bold description**',
-    launchDate: new Date(),
     repositoryUrl: 'null',
     communicationPlatformUrl: 'https://slack.com',
     lookingForMembers: true,
