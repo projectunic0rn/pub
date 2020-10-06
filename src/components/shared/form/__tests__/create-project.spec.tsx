@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 test('shows all the required inputs', async () => {
-  expect.assertions(10);
+  expect.assertions(8);
 
   const { findByLabelText } = render(
     <MockThemeProvider>
@@ -37,10 +37,6 @@ test('shows all the required inputs', async () => {
     selector: 'input',
   });
 
-  const launchDate = await findByLabelText(/launch date/i, {
-    selector: 'input',
-  });
-
   const commPlatform = await findByLabelText(/workspace/i, {
     selector: 'input',
   });
@@ -52,8 +48,6 @@ test('shows all the required inputs', async () => {
   expect(description).toBeInTheDocument();
   expect(projectRepo).toBeInTheDocument();
   expect(projectRepo).toHaveAttribute('type', 'text');
-  expect(launchDate).toBeInTheDocument();
-  expect(launchDate).toHaveAttribute('type', 'date');
   expect(commPlatform).toBeInTheDocument();
   expect(commPlatform).toHaveAttribute('type', 'text');
   expect(technologies).toBeInTheDocument();
