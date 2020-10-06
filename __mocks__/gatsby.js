@@ -33,7 +33,8 @@ const mockUseStaticQueryImplementation = () => {
         /** Text to be shown in the landing page heading. */
         tag: 'Build something awesome.',
         /** The description of the website. */
-        description: 'Build better, build build faster through collaboration.',
+        description:
+          'Where developers from around the world partner to build and ship software for fun, for learning, or for profit.',
         /** The url of the website. */
         siteUrl: 'http://localhost:8000',
         logo: 'src/images/logo.png',
