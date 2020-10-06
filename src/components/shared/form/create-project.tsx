@@ -78,7 +78,6 @@ interface FormInput {
   pDesc: FormValue;
   pTech: FormValue<ProjectTechnology[]>;
   pRepo: FormValue;
-  pLaunch: FormValue;
   pComm: FormValue;
   [key: string]: FormValue<FormInputIndexPropType>;
 }
@@ -91,7 +90,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     pDesc: { val: '', required: true },
     pTech: { val: [], required: true },
     pRepo: { val: '', required: false },
-    pLaunch: { val: '', required: true },
     pComm: { val: '', required: true },
   });
 
@@ -168,7 +166,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const handleClick = async () => {
     const api = ServiceResolver.apiResolver();
 
-    const { pName, pDesc, pTech, pRepo, pLaunch, pComm } = formInputs;
+    const { pName, pDesc, pTech, pRepo, pComm } = formInputs;
     const errors = validation.checkValidation(formInputs);
 
     if (errors.length) return setFormErrors([...errors]);
@@ -176,7 +174,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     const formData: Project = {
       name: pName.val,
       description: pDesc.val,
-      launchDate: new Date(pLaunch.val),
       repositoryUrl: pRepo.val,
       communicationPlatformUrl: pComm.val,
       communicationPlatform: getPlatformName(),
@@ -267,22 +264,6 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
             <FormHint>
               Share your project repo (GitHub, GitLab etc), optional
             </FormHint>
-            <FormLabel htmlFor="launch-date">Launch Date</FormLabel>
-            <FormInput
-              name="pLaunch"
-              id="launch-date"
-              type="date"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              hasError={formErrors.includes('pLaunch')}
-            />
-            {formErrors.includes('pLaunch') && (
-              <Message variant="error" value="Launch Date Required" />
-            )}
-            <FormHint>
-              Keep you and your team accountable with a launch date
-            </FormHint>
-
             <FormLabel htmlFor="communication-platform">
               Workspace Invitation Link
             </FormLabel>

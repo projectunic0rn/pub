@@ -19,7 +19,6 @@ test('renders correctly', () => {
     {
       name: 'Awesome Project',
       description: '',
-      launchDate: new Date(),
       repositoryUrl: '',
       communicationPlatform: '',
       communicationPlatformUrl: '',

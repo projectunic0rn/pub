@@ -5,7 +5,6 @@ export const createProject: ApiResponse<Project> = {
   data: {
     name: '',
     description: '',
-    launchDate: new Date(),
     repositoryUrl: '',
     communicationPlatform: '',
     communicationPlatformUrl: '',

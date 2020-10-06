@@ -8,7 +8,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Project Unicorn UI',
       description:
         'A frontend to streamline the starting and joining of projects on the project unicorn slack team. ',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: 'https://slack.com',
       lookingForMembers: true,
@@ -78,7 +77,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Puzzle',
       description:
         'Puzzle is a highly customizable CMS that allows you to build websites from scratch without any code.',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/Puzzle',
       communicationPlatformUrl: 'https://discordapp.com',
       lookingForMembers: true,
@@ -145,7 +143,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Motivware',
       description:
         'Motivware is an open source customer relationship management application to assist auto-mechanic shops with organization and business process improvements. ',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/Motivware',
       communicationPlatformUrl: 'https://slack.com',
       lookingForMembers: true,
@@ -173,7 +170,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Travel Map',
       description:
         'Full-screen, modern map which lets you see where you and your friends have been or plan to go in the world. ',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/Travel-Map',
       communicationPlatformUrl: 'https://slack.com',
       lookingForMembers: true,
@@ -289,7 +285,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Remote Hackathon',
       description:
         'Software to help organizers setup and execute a hackathon for 100% remote teams and communities. ',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/remote-hackathon',
       communicationPlatformUrl: 'https://discord.gg',
       lookingForMembers: true,
@@ -379,7 +374,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Stjorn',
       description:
         "Stjorn is (actually will be) a task management app. It's built with microservices written in various languages.\nApp is using many different technologies, at this moment:\nFrontend:\n-Vue.js\n-Apollo\n-GraphQL\nBackend:\nAPI Gateway:\n-graphql-tools (apollo)\n-Node.js\nAuth-service:\n-Golang\n-Ginkgo (test framework)\n-REST\nTask-management-service:\n-Ruby on Rails\n-GraphQL\n-Rspec (test framework)\nUser-service:\n-Ruby on Rails\n-GraphQL\n-Rspec (test framework)\nThere are a lot of services without choosen language, including notification-service and mailing-service, later maybe also chat-service. If you want to contribute project you will probably find whatever you are looking for, even if you don't have skills you are thinking we are looking for. At this moment, when I write these features we have 5 people in project, 4 programmers and one UI/UX designer.\ngithub: github.com/stjorn",
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -407,7 +401,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Action Events',
       description:
         'Life Planner to get your life on track and measure your progress',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/action-events',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -473,7 +466,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Detrashed',
       description:
         'A website where visitors can view, create, and join meetups planned to ‘detrash’ (cleanup) an area.',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -494,7 +486,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Warmr',
       description:
         'Mobile app to encourage people to find and interact with people/places/things, by allowing users to create location based, categorical, and social alerts.',
-      launchDate: new Date(),
       repositoryUrl: 'https://github.com/projectunic0rn/warmr',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -529,7 +520,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Petomo',
       description:
         "A web app to streamline pet adoption process. With good UI/UX and one centralized location pets will have a better reach and better chances of going to a loving owner. (psst it's Tinder for pet adoption)",
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -578,7 +568,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Nuevo Foundation ',
       description:
         'Nuevo Foundation is a 501c3 non-profit. One of the challenges underserved communities face is the unequal distribution of opportunity. With Nuevo Foundation, we are making an effort to expose students in these communities to careers in STEM, and give them the opportunity to be excited about technology. The site is currently active at https://www.nuevofoundation.org. ',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -599,7 +588,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'F-Droid Kotlin Apps',
       description:
         'An app that lets you find android apps listed in F-Droid that use the Kotlin programming language.',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -627,7 +615,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'FoundIT',
       description:
         'FoundIT allows users to post lost or found items in hope that it gets returned back to its original owners.',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,
@@ -655,7 +642,6 @@ export const getProjects: ApiResponse<Project[]> = {
       name: 'Mentrship',
       description:
         'A mentoring platform to connect industry professionals with students.',
-      launchDate: new Date(),
       repositoryUrl: 'null',
       communicationPlatformUrl: '',
       lookingForMembers: true,

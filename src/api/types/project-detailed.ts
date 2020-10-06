@@ -11,7 +11,6 @@ export interface ProjectDetailed {
   communicationPlatformUrl: string;
   lookingForMembers: boolean;
   communicationPlatform: string;
-  launchDate: Date;
   projectTechnologies: ProjectTechnology[];
   projectUsers: ProjectUserDetailed[];
   projectCollaboratorSuggestions: ProjectCollaboratorSuggestion[];
