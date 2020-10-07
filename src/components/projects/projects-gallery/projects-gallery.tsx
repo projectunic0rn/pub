@@ -123,13 +123,11 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
     const daysAgo = Math.round(Math.abs((todayTime - devDateTime) / singleDay));
     if (daysAgo === 0) {
       return 'Today';
-    } else if (daysAgo === 1) {
-      return `1 day ago`;
     } else if (daysAgo <= 30) {
-      return `${daysAgo} days ago`;
+      return `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
     } else {
       const months = Math.round(daysAgo / 30);
-      return `${months} months ago`;
+      return `${months} month${months > 1 ? 's' : ''} ago`;
     }
   };
 
