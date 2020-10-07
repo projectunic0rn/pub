@@ -492,12 +492,15 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                             </div>
                           ) : (
                             <div>
-                              Share some of the conversations happening in your
-                              workspace. Start by installing the{' '}
+                              Connect the project to your workspace and recieve
+                              new collaborator suggestions, notices if someone
+                              joins your project, and let interested devs peer
+                              into conversations in the workspace. Start by
+                              installing the{' '}
                               <a href={workspaceInfo?.installUrl}>
                                 {project.communicationPlatform} app
-                              </a>{' '}
-                              on your workspace.
+                              </a>
+                              .
                             </div>
                           )}
                         </Fragment>
