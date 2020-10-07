@@ -94,7 +94,7 @@ describe('feedback form', () => {
     fireEvent.change(feedbackTextArea, { target: { value: 'test feedback' } });
     const sendFeedbackButton = getByText('Send');
     fireEvent.click(sendFeedbackButton);
-    const banner = await waitFor(() => getByText('Feedback sent successfully'));
+    const banner = await waitFor(() => getByText('Feedback sent'));
 
     // Assert
     expect(banner).toBeDefined();
