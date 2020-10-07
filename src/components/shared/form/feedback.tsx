@@ -116,7 +116,7 @@ export const FeedbackForm: FC = () => {
 
       // TODO: simplify, will always be true
       if (response.ok) {
-        setSuccess('Feedback sent successfully');
+        setSuccess('Feedback sent');
         setFeedback('');
       } else {
         // TODO: remove, currently this will never execute.

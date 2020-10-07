@@ -125,8 +125,11 @@ export const ProjectsGallery: FC<ProjectsGalleryProps> = () => {
       return 'Today';
     } else if (daysAgo === 1) {
       return `1 day ago`;
-    } else {
+    } else if (daysAgo <= 30) {
       return `${daysAgo} days ago`;
+    } else {
+      const months = Math.round(daysAgo / 30);
+      return `${months} months ago`;
     }
   };
 
