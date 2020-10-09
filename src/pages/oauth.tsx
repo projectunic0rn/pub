@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useLocation } from '@reach/router';
+import { navigate } from 'gatsby';
+import { useSiteMetadata } from '@hooks';
 
 import {
   Container,
@@ -8,20 +10,66 @@ import {
   PageBody,
   Seo,
 } from '@components/shared';
-import { useSiteMetadata } from '@hooks';
+import { getLocalStorage, removeLocalStorage } from '@utils';
+import { OauthState } from '@components/projects';
+import { WorkspaceAppAuth } from '@api/types';
+import { ServiceResolver } from '@api';
 
 /* Page supports oauth authorization flow */
 const OauthPage: FC = () => {
   const location = useLocation();
   const siteMetadata = useSiteMetadata();
-  const [appName, setAppName] = useState('App');
+  const [message, setMessage] = useState('Waiting to be redirected...');
 
   useEffect(() => {
-    const app = new URLSearchParams(location.search).get('app');
-    if (app === null) {
-      return;
+    async function finishAuth() {
+      const searchParams = new URLSearchParams(location.search);
+      const stateParam = searchParams.get('state');
+      const codeParam = searchParams.get('code');
+
+      if (stateParam === null) {
+        setMessage(
+          'Invalid state param. This may have happened if you visited this page directly. Try installing the app from the project page.',
+        );
+        return;
+      }
+
+      if (codeParam === null) {
+        setMessage(
+          'Invalid code param. This may have happened if you visited this page directly. Try installing the app from the project page.',
+        );
+        return;
+      }
+
+      const oauthState = getLocalStorage<OauthState>(stateParam);
+
+      if (Object.keys(oauthState).length === 0) {
+        setMessage(
+          'Invalid stored state. This may have happened if you visited this page directly. Try installing the app from the project page. If the problem persists send us feedback.',
+        );
+        return;
+      }
+
+      const workspaceAppAuth: WorkspaceAppAuth = {
+        code: codeParam,
+        project: oauthState.projectId,
+      };
+
+      try {
+        const workspaceService = ServiceResolver.workspaceServiceResolver();
+        await workspaceService.finishAuth(
+          oauthState.workspaceType,
+          workspaceAppAuth,
+        );
+      } catch (error) {
+        setMessage(error.message);
+      }
+
+      removeLocalStorage(stateParam);
+      navigate(oauthState.redirectUrl);
     }
-    setAppName(app);
+
+    finishAuth();
   }, [location.search]);
 
   return (
@@ -32,11 +80,9 @@ const OauthPage: FC = () => {
         urlSlug="oauth/"
       />
       <Container>
-        <PageTitle>Successfully Authorized {appName}</PageTitle>
+        <PageTitle>Finishing app install...</PageTitle>
         <PageBody>
-          <p>
-            You successfully authorized {appName}. You can close this window.
-          </p>
+          <p>{message}</p>
         </PageBody>
       </Container>
     </Layout>

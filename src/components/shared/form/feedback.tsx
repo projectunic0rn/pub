@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  SyntheticEvent,
-  useState,
-  Fragment,
-  useEffect,
-} from 'react';
+import React, { FC, SyntheticEvent, useState, Fragment } from 'react';
 import styled from 'styled-components';
 
 import { TextArea } from './controls2';
@@ -73,17 +67,12 @@ export const FeedbackForm: FC = () => {
   const [showFeedbackForm, setShowFeedbackForm] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>('');
-  const [windowPath, setWindowPath] = useState('');
-
-  useEffect(() => {
-    setWindowPath(`${window.location.host}${window.location.pathname}`);
-  }, []);
 
   const buildFeedbackInfo = () => {
     let additionalFeedbackInfo = 'Additional info:\n';
 
     // Add Page Info
-    additionalFeedbackInfo += `Path: ${windowPath}\n`;
+    additionalFeedbackInfo += `Path: ${window.location.href}\n`;
     // Add Browser Navigator Info
     const navigatorInfo = getNavigatorInfo();
     for (const [key, value] of Object.entries(navigatorInfo)) {
