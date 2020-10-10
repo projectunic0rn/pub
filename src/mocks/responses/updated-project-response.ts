@@ -12,6 +12,7 @@ export const updatedProject: ApiResponse<ProjectDetailed> = {
     communicationPlatformUrl: 'https://slack.com',
     lookingForMembers: true,
     communicationPlatform: 'slack',
+    workspaceAppInstalled: false,
     projectTechnologies: [
       {
         name: 'illustrator',

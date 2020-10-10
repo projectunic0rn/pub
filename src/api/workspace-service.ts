@@ -1,6 +1,6 @@
 import { ProfilingUtils } from '@utils';
 import { HttpClient } from './http-client';
-import { WorkspaceInfo } from './types';
+import { WorkspaceAppAuth, WorkspaceInfo } from './types';
 
 export class WorkspaceService {
   private headers = {
@@ -26,5 +26,21 @@ export class WorkspaceService {
     const result = await HttpClient.get(endpoint, this.headers);
     this.profiler.endTimeRecord();
     return result as Promise<WorkspaceInfo>;
+  }
+
+  public async finishAuth(
+    workspaceType: string,
+    workspaceAppAuth: WorkspaceAppAuth,
+  ) {
+    const apiEndpoint = this.apiEndpoint.replace(
+      'workspaceType',
+      workspaceType,
+    );
+    const endpoint = `${apiEndpoint}/finish_auth?code=${workspaceAppAuth.code}&project=${workspaceAppAuth.project}`;
+    this.profiler.setReportInfo(endpoint, 'finishAuth');
+    this.profiler.startTimeRecord();
+    await HttpClient.post(endpoint, this.headers);
+    this.profiler.endTimeRecord();
+    return;
   }
 }

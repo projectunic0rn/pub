@@ -24,10 +24,17 @@ import { MultiTabMenu } from './multi-tab-menu';
 import { ApiButton } from '@components/shared/buttons';
 import { UserAuthHelper } from '@helpers';
 import { isValidUrl } from '@utils/validation-utils';
+import { setLocalStorage } from '@utils';
 
 interface ProjectWorkspaceProps {
   projectId?: string;
   path: string;
+}
+
+export interface OauthState {
+  projectId: string;
+  redirectUrl: string;
+  workspaceType: string;
 }
 
 const Title = styled.h1`
@@ -350,18 +357,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     try {
       const authedUserId = UserAuthHelper.getUserId();
 
-      const projectUserIndex = project.projectUsers.findIndex(
-        (p) => p.userId === authedUserId,
-      );
-
-      if (projectUserIndex === -1) {
-        return;
-      }
-
-      (await api.leaveProject(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        project.projectUsers[projectUserIndex].id!,
-      )) as ApiResponse<ProjectUser | ErrorResponse>;
+      (await api.leaveProject(authedUserId)) as ApiResponse<
+        ProjectUser | ErrorResponse
+      >;
 
       handleProjectUpdate();
       setMemberOnProject(false);
@@ -370,6 +368,37 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     }
   };
 
+  // Validate redirect requests against
+  // unique nonce value to prevent csrf
+  const generateNonce = (): string => {
+    return (
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+    );
+  };
+
+  // Tie app install to a project by storing
+  // additional state
+  const storeOauthState = (nonce: string) => {
+    if (props.projectId === undefined) {
+      return;
+    }
+
+    const oauthState: OauthState = {
+      projectId: props.projectId,
+      redirectUrl: `${window.location.href}`,
+      workspaceType: workspaceInfo.name,
+    };
+
+    setLocalStorage(nonce, oauthState);
+    return;
+  };
+
+  const nonce = generateNonce();
+  // TODO: check for workspaceAppInstalled
+  if (selfProject) {
+    storeOauthState(nonce);
+  }
   return (
     <Fragment>
       <Seo
@@ -413,7 +442,11 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                 <div>
                   {project.repositoryUrl !== '' && (
                     <a href={memberOnProject ? project.repositoryUrl : '#'}>
-                      <Icon src={gitIcon} clickable={memberOnProject} />
+                      <Icon
+                        data-testid="repo-icon"
+                        src={gitIcon}
+                        clickable={memberOnProject}
+                      />
                     </a>
                   )}
                   <a
@@ -422,6 +455,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     }
                   >
                     <Icon
+                      data-testid="workspace-icon"
                       src={
                         workspaceTypesContext.workspaceLogos[
                           project.communicationPlatform
@@ -497,7 +531,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                               joins your project, and let interested devs peer
                               into conversations in the workspace. Start by
                               installing the{' '}
-                              <a href={workspaceInfo?.installUrl}>
+                              <a
+                                href={`${workspaceInfo?.installUrl}&state=${nonce}`}
+                              >
                                 {project.communicationPlatform} app
                               </a>
                               .

@@ -55,3 +55,34 @@ export function getWindowHeightWidthInfo(): string {
 
   return `width: ${window.innerWidth}, height: ${window.innerHeight}`;
 }
+
+export function setLocalStorage<T>(key: string, item: T) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  localStorage.setItem(key, JSON.stringify(item));
+
+  return;
+}
+
+export function getLocalStorage<T>(key: string): T {
+  if (typeof window === 'undefined') {
+    return {} as T;
+  }
+
+  const item = localStorage.getItem(key);
+  if (item === null) {
+    return {} as T;
+  }
+  return JSON.parse(item) as T;
+}
+
+export function removeLocalStorage(key: string) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  localStorage.removeItem(key);
+  return;
+}

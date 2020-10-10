@@ -11,6 +11,7 @@ export interface ProjectDetailed {
   communicationPlatformUrl: string;
   lookingForMembers: boolean;
   communicationPlatform: string;
+  workspaceAppInstalled: boolean;
   projectTechnologies: ProjectTechnology[];
   projectUsers: ProjectUserDetailed[];
   projectCollaboratorSuggestions: ProjectCollaboratorSuggestion[];
