@@ -99,18 +99,12 @@ export const FeedbackForm: FC = () => {
     const api = ServiceResolver.apiResolver();
     const feedbackInfo = `${feedback}\n\n\n\n${buildFeedbackInfo()}`;
     try {
-      const response = (await api.sendFeedback({
+      (await api.sendFeedback({
         content: feedbackInfo,
       })) as ApiResponse<Feedback | ErrorResponse>;
 
-      // TODO: simplify, will always be true
-      if (response.ok) {
-        setSuccess('Feedback sent');
-        setFeedback('');
-      } else {
-        // TODO: remove, currently this will never execute.
-        setError('Failed to send feedback');
-      }
+      setSuccess('Feedback sent');
+      setFeedback('');
     } catch (err) {
       setError(err.message);
     }
