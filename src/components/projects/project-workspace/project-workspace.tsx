@@ -357,18 +357,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     try {
       const authedUserId = UserAuthHelper.getUserId();
 
-      const projectUserIndex = project.projectUsers.findIndex(
-        (p) => p.userId === authedUserId,
-      );
-
-      if (projectUserIndex === -1) {
-        return;
-      }
-
-      (await api.leaveProject(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        project.projectUsers[projectUserIndex].id!,
-      )) as ApiResponse<ProjectUser | ErrorResponse>;
+      (await api.leaveProject(authedUserId)) as ApiResponse<
+        ProjectUser | ErrorResponse
+      >;
 
       handleProjectUpdate();
       setMemberOnProject(false);
@@ -451,7 +442,11 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                 <div>
                   {project.repositoryUrl !== '' && (
                     <a href={memberOnProject ? project.repositoryUrl : '#'}>
-                      <Icon src={gitIcon} clickable={memberOnProject} />
+                      <Icon
+                        data-testid="repo-icon"
+                        src={gitIcon}
+                        clickable={memberOnProject}
+                      />
                     </a>
                   )}
                   <a
@@ -460,6 +455,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     }
                   >
                     <Icon
+                      data-testid="workspace-icon"
                       src={
                         workspaceTypesContext.workspaceLogos[
                           project.communicationPlatform
