@@ -33,6 +33,7 @@ module.exports = {
     '!src/**/index.ts',
     '!src/**/*.d.ts',
     '!src/**/types/*.ts',
+    '!src/api/*.ts',
     '!src/mocks/**/*.{ts,tsx}',
   ],
   coverageThreshold: {
