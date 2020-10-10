@@ -1,7 +1,13 @@
 /**
  * @jest-environment node
  */
-import { getScrollPosition, getNavigatorInfo } from '../browser-utils';
+import {
+  getScrollPosition,
+  getNavigatorInfo,
+  setLocalStorage,
+  getLocalStorage,
+  removeLocalStorage,
+} from '../browser-utils';
 
 test('returns default value if not in browser environment', () => {
   const actual = getScrollPosition({});
@@ -24,4 +30,28 @@ test('returns NavigatorInfo with empty user agent if not in browser environment'
   const actual = getNavigatorInfo();
   // Assert
   expect(actual.userAgent).toBe('');
+});
+
+test('returns empty object from local storage if window is undefined', () => {
+  // Arrange
+  // Act
+  const item = { name: 'test' };
+  setLocalStorage<{ name: string }>('key', item);
+  const returnedItem = getLocalStorage<{ name: string }>('key');
+  // Assert
+  expect(returnedItem).toBeDefined();
+  expect(returnedItem).toEqual({});
+});
+
+test('does not remove object from local storage if window is undefined', () => {
+  // Arrange
+  // Act
+  const item = { name: 'test' };
+  setLocalStorage<{ name: string }>('key', item);
+  removeLocalStorage('key');
+  const returnedItem = getLocalStorage('key');
+
+  // Assert
+  expect(returnedItem).toBeDefined();
+  expect(returnedItem).toEqual({});
 });
