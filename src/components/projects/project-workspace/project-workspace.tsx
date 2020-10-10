@@ -386,7 +386,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
     const oauthState: OauthState = {
       projectId: props.projectId,
-      redirectUrl: `${window.location.href}`,
+      redirectUrl: `${window.location.pathname}`,
       workspaceType: workspaceInfo.name,
     };
 
