@@ -92,6 +92,10 @@ export class ServiceResolver {
   }
 
   private static useMock() {
-    return process.env.GATSBY_USE_MOCK === '1';
+    return (
+      !process.env.NODE_ENV ||
+      process.env.NODE_ENV === 'test' ||
+      process.env.GATSBY_USE_MOCK === '1'
+    );
   }
 }
