@@ -36,10 +36,10 @@ export class WorkspaceService {
       'workspaceType',
       workspaceType,
     );
-    const endpoint = `${apiEndpoint}/finish_auth?code=${workspaceAppAuth.code}&project=${workspaceAppAuth.project}`;
+    const endpoint = `${apiEndpoint}/finish_auth?code=${workspaceAppAuth.code}&project=${workspaceAppAuth.project}&workspace=${workspaceAppAuth.workspace}&permissions=${workspaceAppAuth.permissions}`;
     this.profiler.setReportInfo(endpoint, 'finishAuth');
     this.profiler.startTimeRecord();
-    await HttpClient.post(endpoint, this.headers);
+    await HttpClient.post(endpoint, this.headers, workspaceAppAuth);
     this.profiler.endTimeRecord();
     return;
   }

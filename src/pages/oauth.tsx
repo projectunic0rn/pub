@@ -50,9 +50,23 @@ const OauthPage: FC = () => {
         return;
       }
 
+      let workspaceId = '';
+      const workspace = searchParams.get('guild_id');
+      if (workspace !== null) {
+        workspaceId = workspace;
+      }
+
+      let perms = '';
+      const permissions = searchParams.get('permissions');
+      if (permissions !== null) {
+        perms = permissions;
+      }
+
       const workspaceAppAuth: WorkspaceAppAuth = {
         code: codeParam,
         project: oauthState.projectId,
+        workspace: workspaceId,
+        permissions: perms,
       };
 
       try {
