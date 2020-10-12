@@ -41,6 +41,18 @@ const OauthPage: FC = () => {
         return;
       }
 
+      let workspaceId = '';
+      const workspace = searchParams.get('guild_id');
+      if (workspace !== null) {
+        workspaceId = workspace;
+      }
+
+      let perms = '';
+      const permissions = searchParams.get('permissions');
+      if (permissions !== null) {
+        perms = permissions;
+      }
+
       const oauthState = getLocalStorage<OauthState>(stateParam);
 
       if (Object.keys(oauthState).length === 0) {
@@ -53,6 +65,8 @@ const OauthPage: FC = () => {
       const workspaceAppAuth: WorkspaceAppAuth = {
         code: codeParam,
         project: oauthState.projectId,
+        workspace: workspaceId,
+        permissions: perms,
       };
 
       try {

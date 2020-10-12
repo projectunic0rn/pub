@@ -1,11 +1,11 @@
 {
   "name": "pub",
-  "version": "1.0.78",
+  "version": "1.0.79",
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
-    "dev": "gatsby develop --open",
+    "dev": "GATSBY_ACTIVE_ENV=development gatsby develop --open",
     "dev:m": "gatsby develop -H 0.0.0.0 -p 8000 --open",
     "format": "prettier --write \"{,!(node_modules|public|coverage|.cache)/**/}*.{json,md}\"",
     "format:precommit": "prettier --write",
