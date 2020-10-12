@@ -165,6 +165,7 @@ const generateNonce = (): string => {
     Math.random().toString(36).substring(2, 15)
   );
 };
+const nonce = generateNonce();
 
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
@@ -187,7 +188,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     installUrl: '',
     version: '',
   });
-  const [nonce, setNonce] = useState<string>(generateNonce());
+
   useEffect(() => {
     const api = ServiceResolver.apiResolver();
     const workspaceService = ServiceResolver.workspaceServiceResolver();
@@ -395,6 +396,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   };
 
   // TODO: check for workspaceAppInstalled
+  // TOOD: check if a token already in local storage
   if (selfProject) {
     storeOauthState(nonce);
   }
