@@ -41,15 +41,6 @@ const OauthPage: FC = () => {
         return;
       }
 
-      const oauthState = getLocalStorage<OauthState>(stateParam);
-
-      if (Object.keys(oauthState).length === 0) {
-        setMessage(
-          'Invalid stored state. This may have happened if you visited this page directly. Try installing the app from the project page. If the problem persists send us feedback.',
-        );
-        return;
-      }
-
       let workspaceId = '';
       const workspace = searchParams.get('guild_id');
       if (workspace !== null) {
@@ -60,6 +51,15 @@ const OauthPage: FC = () => {
       const permissions = searchParams.get('permissions');
       if (permissions !== null) {
         perms = permissions;
+      }
+
+      const oauthState = getLocalStorage<OauthState>(stateParam);
+
+      if (Object.keys(oauthState).length === 0) {
+        setMessage(
+          'Invalid stored state. This may have happened if you visited this page directly. Try installing the app from the project page. If the problem persists send us feedback.',
+        );
+        return;
       }
 
       const workspaceAppAuth: WorkspaceAppAuth = {

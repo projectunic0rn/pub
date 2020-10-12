@@ -45,3 +45,10 @@ test('flags invalid state and show message', async () => {
   });
   expect(container.innerHTML).toMatch(/Invalid stored state/i);
 });
+
+test('permissions and guild id are assigned', async () => {
+  const { container } = renderWithRouter(<OauthPage />, {
+    route: '/oauth/?state=1&code=1&permissions=1&guild_id=1',
+  });
+  expect(container.innerHTML).toMatch(/Invalid stored state/i);
+});
