@@ -157,6 +157,16 @@ const DescriptionTextArea = styled.textarea`
   width: 100%;
 `;
 
+// Nonce value used to validate redirect
+// requests via oauth state param
+const generateNonce = (): string => {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
+};
+const nonce = generateNonce();
+
 export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
   const siteMetadata = useSiteMetadata();
   const workspaceTypesContext = useContext(WorkspaceTypesContext);
@@ -368,15 +378,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     }
   };
 
-  // Validate redirect requests against
-  // unique nonce value to prevent csrf
-  const generateNonce = (): string => {
-    return (
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
-  };
-
   // Tie app install to a project by storing
   // additional state
   const storeOauthState = (nonce: string) => {
@@ -394,8 +395,8 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     return;
   };
 
-  const nonce = generateNonce();
   // TODO: check for workspaceAppInstalled
+  // TOOD: check if a token already in local storage
   if (selfProject) {
     storeOauthState(nonce);
   }
