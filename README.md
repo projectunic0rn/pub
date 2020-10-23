@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="https://sharedstorage2.blob.core.windows.net/pub/main-logo.png" alt="Project Unicorn">
+  <a href="https://projectunicorn.net" target="_blank">
+    <img src="https://sharedstorage2.blob.core.windows.net/pub/main-logo.png" alt="Project Unicorn">
+  </a>
 </p>
 
 <p align="center">
