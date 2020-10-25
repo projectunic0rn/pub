@@ -13,6 +13,9 @@ export const getProject: ApiResponse<ProjectDetailed> = {
     lookingForMembers: true,
     communicationPlatform: 'slack',
     workspaceAppInstalled: false,
+    workspaceMemberName: 'roy#8125',
+    workspaceProjectChannelName: 'general',
+    workspaceRecentMessages: ['hello', 'message 2', 'message 3'],
     projectTechnologies: [
       {
         name: 'illustrator',
