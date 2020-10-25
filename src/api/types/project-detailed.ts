@@ -12,6 +12,9 @@ export interface ProjectDetailed {
   lookingForMembers: boolean;
   communicationPlatform: string;
   workspaceAppInstalled: boolean;
+  workspaceMemberName: string;
+  workspaceRecentMessages: string[];
+  workspaceProjectChannelName: string;
   projectTechnologies: ProjectTechnology[];
   projectUsers: ProjectUserDetailed[];
   projectCollaboratorSuggestions: ProjectCollaboratorSuggestion[];

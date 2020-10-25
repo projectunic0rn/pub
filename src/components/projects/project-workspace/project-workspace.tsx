@@ -397,7 +397,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
 
   // TODO: check for workspaceAppInstalled
   // TOOD: check if a token already in local storage
-  if (selfProject) {
+  if (project && !project.workspaceAppInstalled) {
     storeOauthState(nonce);
   }
   return (
