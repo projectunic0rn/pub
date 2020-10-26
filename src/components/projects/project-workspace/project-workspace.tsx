@@ -509,36 +509,77 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                     <TabContentContainer>
                       {selfProject ? (
                         <Fragment>
-                          {workspaceInfo.name === '' ? (
-                            <div>
-                              This tab lets you share the conversations
-                              happening inside your projects workspace. We
-                              currently do not have a workspace app for{' '}
-                              {isValidUrl(project.communicationPlatformUrl)
-                                ? new URL(project.communicationPlatformUrl)
-                                    .hostname
-                                : 'your workspace'}
-                              . Currently supported workspaces include{' '}
-                              {Object.keys(workspaceTypesContext.workspaceLogos)
-                                .join(', ')
-                                .replace(', other', '')}
-                              . Send us feedback if you would like to see
-                              support.
+                          {project.workspaceAppInstalled ? (
+                            <div style={{ textAlign: 'left' }}>
+                              <div>
+                                <strong>Channel:</strong> #
+                                {project.workspaceProjectChannelName}
+                              </div>
+                              <div>
+                                <strong>Contact:</strong>{' '}
+                                {project.workspaceMemberName}
+                              </div>
+                              <br></br>
+                              <div>
+                                <strong>Recent Messages:</strong>{' '}
+                                {project.workspaceRecentMessages.map(
+                                  (message, index) => {
+                                    return (
+                                      <Fragment key={index}>
+                                        <div style={{ paddingBottom: '5px' }}>
+                                          {message}
+                                        </div>
+                                        <hr
+                                          style={{
+                                            width: '40%',
+                                            marginBottom: '15px',
+                                          }}
+                                        ></hr>
+                                      </Fragment>
+                                    );
+                                  },
+                                )}
+                              </div>
                             </div>
                           ) : (
-                            <div>
-                              Connect the project to your workspace and recieve
-                              new collaborator suggestions, notices if someone
-                              joins your project, and let interested devs peer
-                              into conversations in the workspace. Start by
-                              installing the{' '}
-                              <a
-                                href={`${workspaceInfo?.installUrl}&state=${nonce}`}
-                              >
-                                {project.communicationPlatform} app
-                              </a>
-                              .
-                            </div>
+                            <Fragment>
+                              {workspaceInfo.name === '' ? (
+                                <div>
+                                  Connect the project to your workspace and
+                                  recieve new collaborator suggestions, notices
+                                  if someone joins your project, and devs see
+                                  recent conversations related to your project
+                                  in the workspace. We currently do not have a
+                                  workspace app for{' '}
+                                  {isValidUrl(project.communicationPlatformUrl)
+                                    ? new URL(project.communicationPlatformUrl)
+                                        .hostname
+                                    : 'your workspace'}
+                                  . Currently supported workspaces include{' '}
+                                  {Object.keys(
+                                    workspaceTypesContext.workspaceLogos,
+                                  )
+                                    .join(', ')
+                                    .replace(', other', '')}
+                                  . Send us feedback if you would like to see
+                                  support.
+                                </div>
+                              ) : (
+                                <div>
+                                  Connect the project to your workspace and
+                                  recieve new collaborator suggestions, notices
+                                  if someone joins your project, and devs see
+                                  recent conversations related to your project
+                                  in the workspace. Start by installing the{' '}
+                                  <a
+                                    href={`${workspaceInfo?.installUrl}&state=${nonce}`}
+                                  >
+                                    {project.communicationPlatform} app
+                                  </a>
+                                  .
+                                </div>
+                              )}
+                            </Fragment>
                           )}
                         </Fragment>
                       ) : (
