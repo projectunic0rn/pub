@@ -507,50 +507,50 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                       )}
                     </TabContentContainer>
                     <TabContentContainer>
-                      {selfProject ? (
+                      {project.workspaceAppInstalled ? (
+                        <div style={{ textAlign: 'left' }}>
+                          <div>
+                            <strong>Channel:</strong> #
+                            {project.workspaceProjectChannelName}
+                          </div>
+                          <div>
+                            <strong>Owner:</strong>{' '}
+                            {project.workspaceMemberName}
+                          </div>
+                          <br></br>
+                          <div>
+                            <strong>Recent Messages:</strong>{' '}
+                            {project.workspaceRecentMessages.map(
+                              (message, index) => {
+                                return (
+                                  <Fragment key={index}>
+                                    <div style={{ paddingBottom: '5px' }}>
+                                      {message}
+                                    </div>
+                                    <hr
+                                      style={{
+                                        width: '40%',
+                                        marginBottom: '15px',
+                                      }}
+                                    ></hr>
+                                  </Fragment>
+                                );
+                              },
+                            )}
+                          </div>
+                        </div>
+                      ) : (
                         <Fragment>
-                          {project.workspaceAppInstalled ? (
-                            <div style={{ textAlign: 'left' }}>
-                              <div>
-                                <strong>Channel:</strong> #
-                                {project.workspaceProjectChannelName}
-                              </div>
-                              <div>
-                                <strong>Contact:</strong>{' '}
-                                {project.workspaceMemberName}
-                              </div>
-                              <br></br>
-                              <div>
-                                <strong>Recent Messages:</strong>{' '}
-                                {project.workspaceRecentMessages.map(
-                                  (message, index) => {
-                                    return (
-                                      <Fragment key={index}>
-                                        <div style={{ paddingBottom: '5px' }}>
-                                          {message}
-                                        </div>
-                                        <hr
-                                          style={{
-                                            width: '40%',
-                                            marginBottom: '15px',
-                                          }}
-                                        ></hr>
-                                      </Fragment>
-                                    );
-                                  },
-                                )}
-                              </div>
-                            </div>
-                          ) : (
+                          {selfProject ? (
                             <Fragment>
                               {workspaceInfo.name === '' ? (
                                 <div>
                                   Connect the project to your workspace and
                                   recieve new collaborator suggestions, notices
-                                  if someone joins your project, and devs see
-                                  recent conversations related to your project
-                                  in the workspace. We currently do not have a
-                                  workspace app for{' '}
+                                  if someone joins your project, and lets devs
+                                  see recent conversations related to your
+                                  project in the workspace. We currently do not
+                                  have a workspace app for{' '}
                                   {isValidUrl(project.communicationPlatformUrl)
                                     ? new URL(project.communicationPlatformUrl)
                                         .hostname
@@ -568,9 +568,10 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                                 <div>
                                   Connect the project to your workspace and
                                   recieve new collaborator suggestions, notices
-                                  if someone joins your project, and devs see
-                                  recent conversations related to your project
-                                  in the workspace. Start by installing the{' '}
+                                  if someone joins your project, and let devs
+                                  see recent conversations related to your
+                                  project in the workspace. Start by installing
+                                  the{' '}
                                   <a
                                     href={`${workspaceInfo?.installUrl}&state=${nonce}`}
                                   >
@@ -580,10 +581,10 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                                 </div>
                               )}
                             </Fragment>
+                          ) : (
+                            <div>Currently no workspace activity to share.</div>
                           )}
                         </Fragment>
-                      ) : (
-                        <div>Currently no workspace activity to share.</div>
                       )}
                     </TabContentContainer>
                   </MultiTabMenu>
