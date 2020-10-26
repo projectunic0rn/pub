@@ -57,7 +57,7 @@ const OauthPage: FC = () => {
 
       if (Object.keys(oauthState).length === 0) {
         setMessage(
-          'Invalid stored state. This may have happened if you visited this page directly. Try installing the app from the project page. If the problem persists send us feedback.',
+          'Invalid stored state. The app may already be installed on your workspace or you may have tried installing the app directly. Try installing the app from the project page. If the problem persists send us feedback.',
         );
         return;
       }
