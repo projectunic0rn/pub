@@ -131,6 +131,7 @@ const TabContentContainerWorkspace = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  flex-flow: column;
 `;
 
 const ImageContainer = styled.div`
@@ -521,7 +522,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                             <strong>Owner:</strong>{' '}
                             {project.workspaceMemberName}
                           </div>
-                          <br></br>
                           <div>
                             <strong>Recent Messages:</strong>{' '}
                             {project.workspaceRecentMessages.map(
