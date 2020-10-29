@@ -127,6 +127,12 @@ const TabContentContainer = styled.div`
   justify-content: center;
 `;
 
+const TabContentContainerWorkspace = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`;
+
 const ImageContainer = styled.div`
   border-radius: 50%;
   text-align: center;
@@ -395,8 +401,6 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
     return;
   };
 
-  // TODO: check for workspaceAppInstalled
-  // TOOD: check if a token already in local storage
   if (project && !project.workspaceAppInstalled) {
     storeOauthState(nonce);
   }
@@ -506,9 +510,9 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         <div>Currently no members.</div>
                       )}
                     </TabContentContainer>
-                    <TabContentContainer>
+                    <TabContentContainerWorkspace>
                       {project.workspaceAppInstalled ? (
-                        <div style={{ textAlign: 'left' }}>
+                        <Fragment>
                           <div>
                             <strong>Channel:</strong> #
                             {project.workspaceProjectChannelName}
@@ -538,7 +542,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                               },
                             )}
                           </div>
-                        </div>
+                        </Fragment>
                       ) : (
                         <Fragment>
                           {selfProject ? (
@@ -586,7 +590,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                           )}
                         </Fragment>
                       )}
-                    </TabContentContainer>
+                    </TabContentContainerWorkspace>
                   </MultiTabMenu>
                 </MenuWrapper>
                 <MenuWrapper>
