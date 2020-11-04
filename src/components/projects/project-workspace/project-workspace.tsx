@@ -484,33 +484,7 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                   </ButtonWrapper>
                 </Buttons>
                 <MenuWrapper>
-                  <MultiTabMenu tabs={['Team', 'Workspace']}>
-                    <TabContentContainer>
-                      {project.projectUsers.length > 0 ? (
-                        <Fragment>
-                          {project.projectUsers.map((user) => {
-                            return (
-                              <Link
-                                to={`/profile/${user.userId}/`}
-                                key={user.userId}
-                              >
-                                <ImageContainer>
-                                  <CircularImage
-                                    src={
-                                      user.profilePictureUrl ||
-                                      defaultProfileImage
-                                    }
-                                  />
-                                  <div>{user.username}</div>
-                                </ImageContainer>
-                              </Link>
-                            );
-                          })}
-                        </Fragment>
-                      ) : (
-                        <div>Currently no members.</div>
-                      )}
-                    </TabContentContainer>
+                  <MultiTabMenu tabs={['Workspace', 'Team']}>
                     <TabContentContainerWorkspace>
                       {project.workspaceAppInstalled ? (
                         <Fragment>
@@ -591,6 +565,32 @@ export const ProjectWorkspace: FC<ProjectWorkspaceProps> = (props) => {
                         </Fragment>
                       )}
                     </TabContentContainerWorkspace>
+                    <TabContentContainer>
+                      {project.projectUsers.length > 0 ? (
+                        <Fragment>
+                          {project.projectUsers.map((user) => {
+                            return (
+                              <Link
+                                to={`/profile/${user.userId}/`}
+                                key={user.userId}
+                              >
+                                <ImageContainer>
+                                  <CircularImage
+                                    src={
+                                      user.profilePictureUrl ||
+                                      defaultProfileImage
+                                    }
+                                  />
+                                  <div>{user.username}</div>
+                                </ImageContainer>
+                              </Link>
+                            );
+                          })}
+                        </Fragment>
+                      ) : (
+                        <div>Currently no members.</div>
+                      )}
+                    </TabContentContainer>
                   </MultiTabMenu>
                 </MenuWrapper>
                 <MenuWrapper>
