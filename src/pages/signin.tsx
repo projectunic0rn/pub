@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { SignInForm } from '@components/shared/form';
 import { Layout, Seo } from '@components/shared';
 import { useSiteMetadata } from '@hooks';
+import { UserAuthHelper } from '@helpers';
 
 interface SignInPageProps {
   location: {
@@ -14,6 +15,10 @@ interface SignInPageProps {
 
 const SignInPage: FC<SignInPageProps> = ({ location }) => {
   const siteMetadata = useSiteMetadata();
+  const redirected = UserAuthHelper.redirectIfAuthenticated('/');
+  if (redirected) {
+    return null;
+  }
 
   return (
     <Layout>
