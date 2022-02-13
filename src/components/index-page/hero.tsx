@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useSiteMetadata } from '@hooks';
 import { connectedWorld } from '@images';
 import ButtonTemplate from './button-template';
+import { UserAuthHelper } from '@helpers';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -68,6 +69,7 @@ const Button = styled.button`
 /** Hero contains the web site's tag line and a call-to-action button. */
 const Hero: FC = () => {
   const siteMetadata = useSiteMetadata();
+  const isAuthenticated = UserAuthHelper.isUserAuthenticated();
 
   return (
     <Wrapper>
@@ -75,9 +77,15 @@ const Hero: FC = () => {
         <Heading>{siteMetadata.tag}</Heading>
         <SubHeading>{siteMetadata.description}</SubHeading>
 
-        <Link to="/signup">
-          <Button variant="default">Sign Up</Button>
-        </Link>
+        {(isAuthenticated && (
+          <Link to="/projects">
+            <Button variant="default">View Projects</Button>
+          </Link>
+        )) || (
+          <Link to="/signup">
+            <Button variant="default">Sign Up</Button>
+          </Link>
+        )}
       </Text>
 
       <ImageWrapper>

@@ -10,6 +10,14 @@ export class UserAuthHelper {
     return !!jwt.token;
   }
 
+  public static redirectIfAuthenticated(redirectionUrl: string) {
+    if (this.isUserAuthenticated()) {
+      navigate(redirectionUrl, { replace: true });
+      return true;
+    }
+    return false;
+  }
+
   public static getMember() {
     const token = SessionStorageHelper.getJwt().token;
     if (!!token) {
