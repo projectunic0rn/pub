@@ -19,31 +19,31 @@ export const getRecentDevs: ApiResponse<RecentDev[]> = {
     {
       id: '08d6c5e7-6100-c770-61c3-834f6474a77b',
       bio:
-        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+        "Hi. I'm Dan. I've been working as a programmer for ~15 years now. Python, ML, NLP, server-side...",
       updatedAt: today,
     },
     {
       id: '08d6c5e7-6100-c770-61c3-834f6474a77c',
       bio:
-        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+        "Hi. I'm Dan. I've been working as a programmer for ~15 years now. Python, ML, NLP, server-side...",
       updatedAt: oneDayAgo,
     },
     {
-      id: '08d6c5e7-6100-c770-61c3-834f6474a77c',
+      id: '08d6c5e7-6100-c770-61c3-834f6474a77d',
       bio:
-        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+        "Hi. I'm Dan. I've been working as a programmer for ~15 years now. Python, ML, NLP, server-side...",
       updatedAt: twoDaysAgo,
     },
     {
-      id: '08d6c5e7-6100-c770-61c3-834f6474a77d',
+      id: '08d6c5e7-6100-c770-61c3-834f6474a77e',
       bio:
-        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+        "Hi. I'm Dan. I've been working as a programmer for ~15 years now. Python, ML, NLP, server-side...",
       updatedAt: oneMonthAgo,
     },
     {
-      id: '08d6c5e7-6100-c770-61c3-834f6474a77d',
+      id: '08d6c5e7-6100-c770-61c3-834f6474a77f',
       bio:
-        'Hi. I’m Dan. I’ve been working as a programmer for ~15 years now. Python, ML, NLP, server-side...',
+        "Hi. I'm Dan. I've been working as a programmer for ~15 years now. Python, ML, NLP, server-side...",
       updatedAt: twoMonthsAgo,
     },
   ],

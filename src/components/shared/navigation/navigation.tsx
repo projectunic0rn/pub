@@ -13,6 +13,7 @@ interface OwnProps {
   isSidebarOpen: boolean;
   navItems?: NavItem[];
   openSidebar: () => void;
+  updateNavItems: () => void;
 }
 
 type NavigationProps = OwnProps;
@@ -101,6 +102,7 @@ const Navigation: FC<NavigationProps> = ({
   isSidebarOpen,
   navItems = [],
   openSidebar,
+  updateNavItems,
 }) => {
   const authContext = useContext(AuthContext);
 
@@ -109,18 +111,15 @@ const Navigation: FC<NavigationProps> = ({
       return;
     }
     authContext.signOut();
+    updateNavItems();
     navigate('/');
   };
 
-  const setAvatar = (avatar: string) => {
-    navItems.map((navItem) => {
-      if (navItem.key == 'user-avatar-dropdown') {
-        navItem.item = <Profile content={avatar} signOut={signOut} />;
-      }
-    });
-  };
-
-  setAvatar(authContext.avatar);
+  navItems.map((navItem) => {
+    if (navItem.key == 'user-avatar-dropdown') {
+      navItem.item = <Profile content={authContext.avatar} signOut={signOut} />;
+    }
+  });
 
   return (
     <Wrapper isAtTop={isAtTop} isVisible={isAtTop || isVisible}>

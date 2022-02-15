@@ -29,51 +29,54 @@ interface OwnProps {
 
 type LayoutProps = OwnProps;
 
-interface NavState {
+interface NavVisibilityState {
   isNavAtTop: boolean;
   isNavVisible: boolean;
+}
+
+interface NavItemsState {
+  navItems: NavItem[];
 }
 
 interface SidebarState {
   isSidebarOpen: boolean;
 }
 
-interface AuthState {
-  isUserAuthenticated: boolean;
-}
+type LayoutState = NavVisibilityState & SidebarState & NavItemsState;
 
-type LayoutState = NavState & SidebarState & AuthState;
-
-const AUTH_IS = '[layout] AUTH_IS' as const;
 const NAV_TOGGLE = '[layout] NAV_TOGGLE' as const;
 const SIDEBAR_TOGGLE = '[layout] SIDEBAR_TOGGLE' as const;
+const NAV_ITEMS_CHANGE = '[layout] NAV_ITEMS_CHANGE' as const;
 
-type ActionType = typeof AUTH_IS | typeof SIDEBAR_TOGGLE | typeof NAV_TOGGLE;
+type ActionType =
+  | typeof SIDEBAR_TOGGLE
+  | typeof NAV_TOGGLE
+  | typeof NAV_ITEMS_CHANGE;
 
 interface LayoutAction<T = ActionType> {
   type: T;
-  payload: NavState | SidebarState | AuthState;
+  payload: NavVisibilityState | SidebarState | NavItemsState;
 }
 
 const initialState: LayoutState = {
   isNavAtTop: true,
   isNavVisible: true,
+  navItems: [],
   isSidebarOpen: false,
-  isUserAuthenticated: false,
 };
 
 const reducer: Reducer<LayoutState, LayoutAction> = (state, action) => {
   switch (action.type) {
     case NAV_TOGGLE:
-    case AUTH_IS:
     case SIDEBAR_TOGGLE:
+    case NAV_ITEMS_CHANGE:
       return { ...state, ...action.payload };
     default:
       throw new Error('unknown action type');
   }
 };
 
-const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useScrollPosition(
@@ -103,33 +106,27 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
   const setOpen = (isSidebarOpen: boolean) => () =>
     dispatch({ type: SIDEBAR_TOGGLE, payload: { isSidebarOpen } });
 
-  useLayoutEffect(() => {
+  const updateNavItems = () => {
     const isUserAuthenticated = UserAuthHelper.isUserAuthenticated();
+    const newNavItems = defaultNavItems.filter(({ show }) => {
+      switch (show) {
+        case Show.Always:
+          return true;
+        case Show.AuthOnly:
+          return isUserAuthenticated;
+        case Show.GuestOnly:
+          return !isUserAuthenticated;
+        case Show.Never:
+        default:
+          return false;
+      }
+    });
+    dispatch({ type: NAV_ITEMS_CHANGE, payload: { navItems: newNavItems } });
+  };
 
-    dispatch({ type: AUTH_IS, payload: { isUserAuthenticated } });
+  useLayoutEffect(() => {
+    updateNavItems();
   }, []);
-
-  // TODO: Possibly mutation to be added to useEffects
-  /*
-    https://reactjs.org/docs/hooks-reference.html#useeffect
-    Mutations, subscriptions, timers, logging, and other side effects are
-    not allowed inside the main body of a function component (referred to
-    as React’s render phase). Doing so will lead to confusing bugs and
-    inconsistencies in the UI.
-  */
-  navItems = navItems.filter(({ show }) => {
-    switch (show) {
-      case Show.Always:
-        return true;
-      case Show.AuthOnly:
-        return state.isUserAuthenticated;
-      case Show.GuestOnly:
-        return !state.isUserAuthenticated;
-      case Show.Never:
-      default:
-        return false;
-    }
-  });
 
   return (
     <Fragment>
@@ -141,9 +138,10 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
             <Navigation
               isAtTop={state.isNavAtTop}
               isVisible={state.isNavVisible}
-              navItems={navItems}
+              navItems={state.navItems}
               isSidebarOpen={state.isSidebarOpen}
               openSidebar={setOpen(true)}
+              updateNavItems={updateNavItems}
             />
 
             <ErrorBoundary
@@ -165,7 +163,7 @@ const Layout: FC<LayoutProps> = ({ children, navItems = defaultNavItems }) => {
             onClose={setOpen(false)}
             labelledby="menu-button"
           >
-            <Sidebar navItems={navItems} />
+            <Sidebar navItems={state.navItems} />
           </OffCanvas>
         </Fragment>
       </ThemeProvider>
