@@ -22,6 +22,7 @@ describe('navigation', () => {
             isSidebarOpen={false}
             openSidebar={jest.fn()}
             navItems={defaultNavItems}
+            updateNavItems={jest.fn()}
           ></Navigation>
         </MockThemeProvider>
       </AuthProvider>,
