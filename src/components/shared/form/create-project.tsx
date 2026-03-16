@@ -100,6 +100,7 @@ export const CreateProjectForm: FC<CreateProjectFormProps> = () => {
     if (!UserAuthHelper.isUserAuthenticated()) {
       navigate('/signin', {
         state: { message: 'You need to be signed it to create a new project' },
+        replace: true,
       });
       return;
     }
